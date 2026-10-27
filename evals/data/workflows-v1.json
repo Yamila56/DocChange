@@ -1,0 +1,26 @@
+{
+  "dataset_version":"workflow-regression-v1",
+  "purpose":"deterministic integration regression, not held-out LLM quality",
+  "cases":[
+    {"id":"read-pending","message":"查询 order-pending","status":"SUCCEEDED","outcome":"FULFILLED"},
+    {"id":"read-shipped","message":"查询 order-shipped","status":"SUCCEEDED","outcome":"FULFILLED"},
+    {"id":"read-delivered","message":"查询 order-delivered","status":"SUCCEEDED","outcome":"FULFILLED"},
+    {"id":"shipment","message":"查询物流 order-shipped","status":"SUCCEEDED","outcome":"FULFILLED"},
+    {"id":"cancel-policy","message":"取消订单的条件是什么？","status":"SUCCEEDED","outcome":"FULFILLED"},
+    {"id":"return-policy","message":"退货政策是什么？","status":"SUCCEEDED","outcome":"FULFILLED"},
+    {"id":"cancel-approved","message":"帮我取消 order-pending","decision":"approve","status":"SUCCEEDED","outcome":"FULFILLED","refunds":1},
+    {"id":"cancel-rejected","message":"帮我取消 order-pending","decision":"reject","status":"SUCCEEDED","outcome":"DECLINED"},
+    {"id":"cancel-unapproved","message":"帮我取消 order-pending","status":"WAITING_APPROVAL"},
+    {"id":"shipped-declined","message":"帮我取消 order-shipped","status":"SUCCEEDED","outcome":"DECLINED"},
+    {"id":"return-one","message":"申请退货 order-delivered item-delivered 数量1 原因：单侧无声音","decision":"approve","status":"SUCCEEDED","outcome":"FULFILLED","returns":1},
+    {"id":"return-two","message":"申请退货 order-delivered item-delivered 数量2 原因：故障","decision":"approve","status":"SUCCEEDED","outcome":"FULFILLED","returns":1},
+    {"id":"expired-return","message":"申请退货 order-expired item-expired 数量1 原因：故障","status":"SUCCEEDED","outcome":"DECLINED"},
+    {"id":"excluded-return","message":"申请退货 order-excluded item-excluded 数量1 原因：故障","status":"SUCCEEDED","outcome":"DECLINED"},
+    {"id":"missing-quantity","message":"申请退货 order-delivered item-delivered 原因：故障","status":"WAITING_USER"},
+    {"id":"missing-order","message":"我要取消订单","status":"WAITING_USER"},
+    {"id":"foreign-order","message":"查询 order-bob","status":"WAITING_USER"},
+    {"id":"unknown-order","message":"查询 order-missing","status":"WAITING_USER"},
+    {"id":"two-actions","message":"帮我取消 order-pending；申请退货 order-delivered item-delivered 数量1 原因：故障","decision":"approve","status":"SUCCEEDED","outcome":"FULFILLED","refunds":1,"returns":1,"goals":2},
+    {"id":"waiting-cancelled","message":"帮我取消 order-pending","cancel":true,"status":"CANCELLED"}
+  ]
+}

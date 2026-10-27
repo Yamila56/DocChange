@@ -208,8 +208,14 @@ class CommerceService:
         return amount, item
 
     @retry_local_transaction
-    async def prepare(self, owner, request: PrepareAction, key):
+    async def prepare(self, owner, request: PrepareAction, key, *, lease=None):
         async with self.sessions.begin() as session:
+            if lease is not None:
+                from shopresolve.runstore import require_lease
+
+                await require_lease(session, lease, self.clock)
+                if lease.owner_id != owner:
+                    raise DomainError("NOT_FOUND", "Resource not found", 404)
             idem = await self._idem(session, owner, "prepare", key, request.model_dump())
             if idem.response is not None:
                 return idem.response
@@ -223,6 +229,7 @@ class CommerceService:
             amount, _ = await self._eligibility(session, order, request, policy)
             proposal = Proposal(
                 id=str(uuid4()),
+                run_id=lease.run_id if lease else None,
                 operation_id=str(uuid4()),
                 owner_id=owner,
                 **request.model_dump(),
@@ -253,12 +260,26 @@ class CommerceService:
 
     @retry_local_transaction
     async def decide(self, owner, proposal_id, decision: Decision, key):
+        from shopresolve.runstore import (
+            append_event,
+            checkpoint,
+            db_now,
+            enqueue,
+            lock_owned_run,
+        )
+
+        async with self.sessions() as read_session:
+            reference = await self._proposal(read_session, owner, proposal_id)
+            run_id = reference.run_id
         async with self.sessions.begin() as session:
+            run = await lock_owned_run(session, owner, run_id) if run_id else None
             idem = await self._idem(
                 session, owner, f"decision/{proposal_id}", key, decision.model_dump()
             )
             if idem.response is not None:
                 return idem.response
+            if run is not None and run.status not in {"WAITING_APPROVAL", "QUEUED"}:
+                raise DomainError("RUN_CONFLICT", "Run is no longer waiting for this approval")
             p = await self._proposal(session, owner, proposal_id, lock=True)
             if p.version != decision.expected_version or p.status != "PENDING":
                 raise DomainError("PROPOSAL_CONFLICT", "Proposal already changed; refresh it")
@@ -276,17 +297,37 @@ class CommerceService:
                     )
                 )
             p.version += 1
+            if run is not None:
+                run.status = "QUEUED"
+                run.resume_generation += 1
+                checkpoint(session, run, run.state)
+                enqueue(session, run)
+                append_event(
+                    session,
+                    run,
+                    "approval.decided",
+                    {"proposal_id": p.id, "status": p.status},
+                    await db_now(session, self.clock),
+                )
             idem.response = proposal_view(p)
             return idem.response
 
     @retry_local_transaction
-    async def execute(self, owner, proposal_id):
+    async def execute(self, owner, proposal_id, *, lease=None):
         """Internal service API only. No public execution endpoint in M1.
 
         M3 must wrap this with run/fence checks before connecting Agent writes.
         """
         async with self.sessions.begin() as session:
+            if lease is not None:
+                from shopresolve.runstore import require_lease
+
+                await require_lease(session, lease, self.clock)
+                if lease.owner_id != owner:
+                    raise DomainError("NOT_FOUND", "Resource not found", 404)
             p = await self._proposal(session, owner, proposal_id, lock=True)
+            if p.run_id is not None and (lease is None or lease.run_id != p.run_id):
+                raise DomainError("LEASE_REQUIRED", "Run-bound actions require their worker lease")
             # Serialize actions on the concrete order BEFORE locking a missing receipt.
             # Otherwise different operation IDs may hold overlapping gap locks and
             # deadlock while another transaction holds/waits for this order row.

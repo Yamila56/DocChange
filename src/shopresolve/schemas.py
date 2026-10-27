@@ -32,3 +32,17 @@ class Decision(StrictInput):
 class DemoLogin(StrictInput):
     account: Literal["alice", "bob"]
     demo_code: str = Field(min_length=1, max_length=256)
+
+
+class SubmitMessage(StrictInput):
+    text: str = Field(min_length=1, max_length=4000)
+    client_message_id: str = Field(min_length=1, max_length=100)
+
+
+class ResumeMessage(SubmitMessage):
+    expected_version: int = Field(ge=1)
+    wait_generation: int = Field(ge=0)
+
+
+class SubmitAnalysis(StrictInput):
+    artifact_id: str = Field(min_length=1, max_length=36)

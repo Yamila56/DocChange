@@ -17,10 +17,10 @@ services:
       timeout: 3s
       retries: 30
   redis:
-    image: redis:7.4.5
+    image: redis:7.4.5@sha256:90e7a336d044f1abc9e9dbc05d65566850896d11453bbd1dd0fb7e5059f0e8fb
     ports:
       - "127.0.0.1:16379:6379"
-    # M1 does not use Redis yet. This is reserved for M3 task notifications.
+    # Dedicated task notifications; durable run state remains in MySQL.
     profiles: [queue]
 volumes:
   shopresolve_mysql:

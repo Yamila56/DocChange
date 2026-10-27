@@ -1,0 +1,31 @@
+{
+  "dataset_version":"retrieval-v1",
+  "synthetic":true,
+  "annotation_status":"assistant-authored, frozen before measurement; independent human review pending",
+  "cases":[
+    {"id":"dev01","split":"dev","query":"待发货的订单如何取消？","relevant":["cancel-pending"]},
+    {"id":"dev02","split":"dev","query":"货已经寄出了还能直接取消吗？","relevant":["cancel-shipped"]},
+    {"id":"dev03","split":"dev","query":"签收多久之内能退货？","relevant":["return-window"]},
+    {"id":"dev04","split":"dev","query":"护理用品也是七天随便退吗？","relevant":["return-excluded"]},
+    {"id":"dev05","split":"dev","query":"买了两件可不可以分两次退？","relevant":["return-quantity"]},
+    {"id":"dev06","split":"dev","query":"申请提交成功代表款已经到账吗？","relevant":["return-request-state"]},
+    {"id":"dev07","split":"dev","query":"耳机只有一侧发声，售后要说明什么？","relevant":["return-reason"]},
+    {"id":"dev08","split":"dev","query":"未收货可以当成签收后的退货申请处理吗？","relevant":["return-undelivered"]},
+    {"id":"test01","split":"test","query":"智能客服能不能多退一点当赔偿？","relevant":["refund-cap"]},
+    {"id":"test02","split":"test","query":"我只说了一声好的，是不是两笔订单都被同意处理？","relevant":["approval-binding"]},
+    {"id":"test03","split":"test","query":"我确认后店铺规则变了，还能拿旧的确认直接做吗？","relevant":["approval-expiry"]},
+    {"id":"test04","split":"test","query":"我点了拒绝，系统还会继续吗？","relevant":["approval-reject"]},
+    {"id":"test05","split":"test","query":"我有朋友的订单编号，能帮我查他的地址吗？","relevant":["order-access"]},
+    {"id":"test06","split":"test","query":"物流卡住了，你能承诺明天一定到吗？","relevant":["logistics-eta"]},
+    {"id":"test07","split":"test","query":"机器人说转客服了，要怎样知道真的有人工跟进？","relevant":["logistics-escalation"]},
+    {"id":"test08","split":"test","query":"资料页说有货就能直接推荐替代型号吗？","relevant":["replacement-stock"]},
+    {"id":"test09","split":"test","query":"我有商品对比表，如何安全计算哪个划算？","relevant":["comparison-csv"]},
+    {"id":"test10","split":"test","query":"支持把压缩包或电脑文件路径直接传给客服运行吗？","relevant":["upload-limits"]},
+    {"id":"test11","split":"test","query":"网络断了我又点一遍，会不会退款两次？","relevant":["duplicate-operation"]},
+    {"id":"test12","split":"test","query":"支付接口超时，没有结果时应该直接再转一笔吗？","relevant":["unknown-payment"]},
+    {"id":"test13","split":"test","query":"数据库里的19900到底是元还是分？","relevant":["currency-unit"]},
+    {"id":"test14","split":"test","query":"检索找到了旧版三十天期限，能用来审核现在的退货吗？","relevant":["policy-version"]},
+    {"id":"test15","split":"test","query":"这个演示会真的替我从银行付款吗？","relevant":["out-of-scope"]},
+    {"id":"test16","split":"test","query":"取消已执行后能否声称钱和订单已经自动恢复原样？","relevant":["approval-reject"]}
+  ]
+}

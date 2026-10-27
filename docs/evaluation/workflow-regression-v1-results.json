@@ -1,0 +1,4827 @@
+{
+  "generated_at": "2026-10-27T11:38:37.800918+00:00",
+  "dataset": "workflow-regression-v1",
+  "dataset_sha256": "5b1562ce120bb6bf2e809c6be11d73da001d0a328c1819ac8700efade0ad310c",
+  "controller": "deterministic demo-v1, NOT an LLM",
+  "retriever": {
+    "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca",
+    "mode": "bm25",
+    "embedding_model": null,
+    "reranker_model": null,
+    "expand_parent": true,
+    "document_count": 25,
+    "child_count": 51,
+    "synthetic": true
+  },
+  "clock": 1800000000,
+  "metrics": {
+    "case_count": 20,
+    "passed": 20,
+    "scenario_pass_rate": 1.0,
+    "median_latency_ms": 216.31020000131684,
+    "illegal_ledger_cases": 0
+  },
+  "cases": [
+    {
+      "case_id": "read-pending",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 186.44959999801358,
+      "final_state": {
+        "id": "6d828463-c231-4832-bdb4-2695fa10d24f",
+        "conversation_id": "34993628-7589-4cb2-839e-9f1c29aff5c9",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 7,
+        "resume_generation": 0,
+        "last_event_seq": 12,
+        "model_calls": 3,
+        "active_ms": 46,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-pending",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "ORDER_QUERY",
+            "mode": "INQUIRE",
+            "mentions": [
+              "查询 order-pending"
+            ],
+            "status": "COMPLETED",
+            "order_observation": {
+              "id": "order-pending",
+              "status": "PENDING_SHIPMENT",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": null,
+              "items": [
+                {
+                  "id": "item-pending",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            }
+          }
+        ],
+        "question": null,
+        "results": [],
+        "answer": "g1 [ORDER_QUERY]: order-pending，状态 PENDING_SHIPMENT，实付 19900 分。",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-pending",
+                "status": "PENDING_SHIPMENT",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": null,
+                "items": [
+                  {
+                    "id": "item-pending",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "read-shipped",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 193.61860000208253,
+      "final_state": {
+        "id": "e11f8757-5bb5-445c-8937-65482668dafd",
+        "conversation_id": "d59103f8-72c5-4900-b2e7-9f6752ba7c1b",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 7,
+        "resume_generation": 0,
+        "last_event_seq": 12,
+        "model_calls": 3,
+        "active_ms": 30,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-shipped",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "ORDER_QUERY",
+            "mode": "INQUIRE",
+            "mentions": [
+              "查询 order-shipped"
+            ],
+            "status": "COMPLETED",
+            "order_observation": {
+              "id": "order-shipped",
+              "status": "SHIPPED",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": null,
+              "items": [
+                {
+                  "id": "item-shipped",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            }
+          }
+        ],
+        "question": null,
+        "results": [],
+        "answer": "g1 [ORDER_QUERY]: order-shipped，状态 SHIPPED，实付 19900 分。",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-shipped",
+                "status": "SHIPPED",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": null,
+                "items": [
+                  {
+                    "id": "item-shipped",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "read-delivered",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 156.85810000286438,
+      "final_state": {
+        "id": "e06e278f-6202-4a64-ad2b-0aeb3ffe5dce",
+        "conversation_id": "05d4d1df-0073-4127-99b5-a5900d92489d",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 7,
+        "resume_generation": 0,
+        "last_event_seq": 12,
+        "model_calls": 3,
+        "active_ms": 16,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-delivered",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "ORDER_QUERY",
+            "mode": "INQUIRE",
+            "mentions": [
+              "查询 order-delivered"
+            ],
+            "status": "COMPLETED",
+            "order_observation": {
+              "id": "order-delivered",
+              "status": "DELIVERED",
+              "version": 1,
+              "paid_cents": 39800,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": 1799913600,
+              "items": [
+                {
+                  "id": "item-delivered",
+                  "name": "合成测试耳机",
+                  "quantity": 2,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            }
+          }
+        ],
+        "question": null,
+        "results": [],
+        "answer": "g1 [ORDER_QUERY]: order-delivered，状态 DELIVERED，实付 39800 分。",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-delivered",
+                "status": "DELIVERED",
+                "version": 1,
+                "paid_cents": 39800,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": 1799913600,
+                "items": [
+                  {
+                    "id": "item-delivered",
+                    "name": "合成测试耳机",
+                    "quantity": 2,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "shipment",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 185.85090000124183,
+      "final_state": {
+        "id": "fad8df77-0228-426f-9d1f-24ddfcec79da",
+        "conversation_id": "c5e6b06e-e67f-4431-a8dd-d790d318e226",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 7,
+        "resume_generation": 0,
+        "last_event_seq": 12,
+        "model_calls": 3,
+        "active_ms": 31,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-shipped",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "SHIPMENT_QUERY",
+            "mode": "INQUIRE",
+            "mentions": [
+              "查询物流 order-shipped"
+            ],
+            "status": "COMPLETED",
+            "order_observation": {
+              "id": "order-shipped",
+              "status": "SHIPPED",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": null,
+              "items": [
+                {
+                  "id": "item-shipped",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            }
+          }
+        ],
+        "question": null,
+        "results": [],
+        "answer": "g1 [SHIPMENT_QUERY]: order-shipped，状态 SHIPPED，实付 19900 分。",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-shipped",
+                "status": "SHIPPED",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": null,
+                "items": [
+                  {
+                    "id": "item-shipped",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "cancel-policy",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 185.1444999992964,
+      "final_state": {
+        "id": "f7159bde-0244-4a07-8aea-0cf7cb1334b5",
+        "conversation_id": "e1ed8b29-2cf1-45cd-b4fc-d23bab63e480",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 7,
+        "resume_generation": 0,
+        "last_event_seq": 12,
+        "model_calls": 3,
+        "active_ms": 31,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {},
+            "operation_ids": [],
+            "evidence_ids": [
+              "demo-policy-v1:cancel-pending:0",
+              "demo-policy-v1:cancel-shipped:0",
+              "demo-policy-v1:replacement-stock:1",
+              "demo-policy-v1:order-access:1",
+              "demo-policy-v1:approval-reject:1",
+              "demo-policy-v1:return-reason:1"
+            ],
+            "intent": "CANCEL_ORDER",
+            "mode": "INQUIRE",
+            "mentions": [
+              "取消订单的条件是什么？"
+            ],
+            "status": "COMPLETED"
+          }
+        ],
+        "question": null,
+        "results": [],
+        "answer": "g1 [CANCEL_ORDER]: 订单处于待发货 PENDING_SHIPMENT 时可以提出取消申请。操作必须展示订单及金额并取得本次明确批准。取消成功后登记模拟退款，不涉及银行或真实资金。\n订单已经发货 SHIPPED 后不能执行待发货取消。不能因为用户说还没发货就忽略数据库状态；需要查询实际物流或转人工。\n提供替代商品建议前需要查询当前库存、规格和价格。检索到的旧商品说明不能证明实时有货，推荐必须满足用户提出的硬性条件。\n只能读取当前账号拥有的订单；知道别人的订单编号不代表可以查看。不可通过错误消息确认他人订单是否存在，不在公共日志保存地址和支付信息。\n用户拒绝提案后不得执行该操作。撤回只能阻止尚未提交的动作，不能宣称已经提交的取消或退款被自动撤销。\n耳机单边没声音、商品破损等问题可作为用户陈述的退货原因。仍需要核对订单、商品、数量、签收时间和品类；故障描述本身不是自动退款授权。",
+        "provider": "demo",
+        "evidence": [
+          {
+            "id": "demo-policy-v1:cancel-pending:0",
+            "version": "demo-policy-v1",
+            "parent_id": "cancel-pending",
+            "locator": "cancel-pending:0",
+            "quote": "订单处于待发货 PENDING_SHIPMENT 时可以提出取消申请。操作必须展示订单及金额并取得本次明确批准。取消成功后登记模拟退款，不涉及银行或真实资金。",
+            "title": "待发货取消",
+            "content_hash": "ac8c31788dfd740b794aeed4fcd0edf20eec0139e4d228c742ccbeb3e5a54168",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:cancel-shipped:0",
+            "version": "demo-policy-v1",
+            "parent_id": "cancel-shipped",
+            "locator": "cancel-shipped:0",
+            "quote": "订单已经发货 SHIPPED 后不能执行待发货取消。不能因为用户说还没发货就忽略数据库状态；需要查询实际物流或转人工。",
+            "title": "已发货取消限制",
+            "content_hash": "3a443a1b53b24ac9361f5bb677ee8e6c55915c904664f039aa46ddad8d23f79c",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:replacement-stock:1",
+            "version": "demo-policy-v1",
+            "parent_id": "replacement-stock",
+            "locator": "replacement-stock:1",
+            "quote": "提供替代商品建议前需要查询当前库存、规格和价格。检索到的旧商品说明不能证明实时有货，推荐必须满足用户提出的硬性条件。",
+            "title": "替代商品库存",
+            "content_hash": "d650427e9c12640c5fe2f2a0138eb959eb76e0e4367748aaa4324c0e7eed479d",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:order-access:1",
+            "version": "demo-policy-v1",
+            "parent_id": "order-access",
+            "locator": "order-access:1",
+            "quote": "只能读取当前账号拥有的订单；知道别人的订单编号不代表可以查看。不可通过错误消息确认他人订单是否存在，不在公共日志保存地址和支付信息。",
+            "title": "订单隐私",
+            "content_hash": "07f2165fc9e8ca7329e265dab14196508dff37735d58191e0d6008b17033a90b",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:approval-reject:1",
+            "version": "demo-policy-v1",
+            "parent_id": "approval-reject",
+            "locator": "approval-reject:1",
+            "quote": "用户拒绝提案后不得执行该操作。撤回只能阻止尚未提交的动作，不能宣称已经提交的取消或退款被自动撤销。",
+            "title": "拒绝与撤回",
+            "content_hash": "1d3cf5e9a549d90717ecc3c83d3fb8339fa80e4b76babe7578629d384ff0e365",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:return-reason:1",
+            "version": "demo-policy-v1",
+            "parent_id": "return-reason",
+            "locator": "return-reason:1",
+            "quote": "耳机单边没声音、商品破损等问题可作为用户陈述的退货原因。仍需要核对订单、商品、数量、签收时间和品类；故障描述本身不是自动退款授权。",
+            "title": "故障与退货原因",
+            "content_hash": "24f75004d0d9f1ac78f74745d7c67ef2307e1bd0891e36635d5d5ed249714610",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          }
+        ]
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "search_policy",
+            "result": {
+              "status": "ok",
+              "data": [
+                {
+                  "id": "demo-policy-v1:cancel-pending:0",
+                  "version": "demo-policy-v1",
+                  "parent_id": "cancel-pending",
+                  "locator": "cancel-pending:0",
+                  "quote": "订单处于待发货 PENDING_SHIPMENT 时可以提出取消申请。操作必须展示订单及金额并取得本次明确批准。取消成功后登记模拟退款，不涉及银行或真实资金。",
+                  "title": "待发货取消",
+                  "content_hash": "ac8c31788dfd740b794aeed4fcd0edf20eec0139e4d228c742ccbeb3e5a54168",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:cancel-shipped:0",
+                  "version": "demo-policy-v1",
+                  "parent_id": "cancel-shipped",
+                  "locator": "cancel-shipped:0",
+                  "quote": "订单已经发货 SHIPPED 后不能执行待发货取消。不能因为用户说还没发货就忽略数据库状态；需要查询实际物流或转人工。",
+                  "title": "已发货取消限制",
+                  "content_hash": "3a443a1b53b24ac9361f5bb677ee8e6c55915c904664f039aa46ddad8d23f79c",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:replacement-stock:1",
+                  "version": "demo-policy-v1",
+                  "parent_id": "replacement-stock",
+                  "locator": "replacement-stock:1",
+                  "quote": "提供替代商品建议前需要查询当前库存、规格和价格。检索到的旧商品说明不能证明实时有货，推荐必须满足用户提出的硬性条件。",
+                  "title": "替代商品库存",
+                  "content_hash": "d650427e9c12640c5fe2f2a0138eb959eb76e0e4367748aaa4324c0e7eed479d",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:order-access:1",
+                  "version": "demo-policy-v1",
+                  "parent_id": "order-access",
+                  "locator": "order-access:1",
+                  "quote": "只能读取当前账号拥有的订单；知道别人的订单编号不代表可以查看。不可通过错误消息确认他人订单是否存在，不在公共日志保存地址和支付信息。",
+                  "title": "订单隐私",
+                  "content_hash": "07f2165fc9e8ca7329e265dab14196508dff37735d58191e0d6008b17033a90b",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:approval-reject:1",
+                  "version": "demo-policy-v1",
+                  "parent_id": "approval-reject",
+                  "locator": "approval-reject:1",
+                  "quote": "用户拒绝提案后不得执行该操作。撤回只能阻止尚未提交的动作，不能宣称已经提交的取消或退款被自动撤销。",
+                  "title": "拒绝与撤回",
+                  "content_hash": "1d3cf5e9a549d90717ecc3c83d3fb8339fa80e4b76babe7578629d384ff0e365",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:return-reason:1",
+                  "version": "demo-policy-v1",
+                  "parent_id": "return-reason",
+                  "locator": "return-reason:1",
+                  "quote": "耳机单边没声音、商品破损等问题可作为用户陈述的退货原因。仍需要核对订单、商品、数量、签收时间和品类；故障描述本身不是自动退款授权。",
+                  "title": "故障与退货原因",
+                  "content_hash": "24f75004d0d9f1ac78f74745d7c67ef2307e1bd0891e36635d5d5ed249714610",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                }
+              ],
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "return-policy",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 168.27940000075614,
+      "final_state": {
+        "id": "4f272e54-41e6-4446-85a3-f3ccd827102e",
+        "conversation_id": "552e65db-1a0b-4229-8e86-a35028729eb6",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 7,
+        "resume_generation": 0,
+        "last_event_seq": 12,
+        "model_calls": 3,
+        "active_ms": 16,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {},
+            "operation_ids": [],
+            "evidence_ids": [
+              "demo-policy-v1:policy-version:0",
+              "demo-policy-v1:approval-expiry:0",
+              "demo-policy-v1:return-reason:1",
+              "demo-policy-v1:return-quantity:0",
+              "demo-policy-v1:return-undelivered:1",
+              "demo-policy-v1:return-window:0"
+            ],
+            "intent": "RETURN_REQUEST",
+            "mode": "INQUIRE",
+            "mentions": [
+              "退货政策是什么？"
+            ],
+            "status": "COMPLETED"
+          }
+        ],
+        "question": null,
+        "results": [],
+        "answer": "g1 [RETURN_REQUEST]: 查询售后规则时只能使用适用的当前政策版本。旧文档保留用于审计，但不能引用旧的更宽松期限来批准新操作。\n批准后若订单状态或适用政策发生变化，旧提案失效。执行前必须重新核验，不能把对旧金额的批准套用到新金额；需要新提案和再次确认。\n耳机单边没声音、商品破损等问题可作为用户陈述的退货原因。仍需要核对订单、商品、数量、签收时间和品类；故障描述本身不是自动退款授权。\n退货必须明确商品与数量，不得默认整单全部退。可退数量扣除已经登记的退货申请，累计申请数量不得超过购买数量；合法的第二次部分退货可另行提出。\n退货申请要求订单处于已签收 DELIVERED 状态，且存在签收记录。运输中、待发货订单不能直接冒充已经收货的退货申请。\n商品签收后七天内可以申请退货，时间从已核验的签收记录计算。超过七天则不符合当前自动退货规则，需要说明限制；用户口述昨天收到不能替代签收记录。",
+        "provider": "demo",
+        "evidence": [
+          {
+            "id": "demo-policy-v1:policy-version:0",
+            "version": "demo-policy-v1",
+            "parent_id": "policy-version",
+            "locator": "policy-version:0",
+            "quote": "查询售后规则时只能使用适用的当前政策版本。旧文档保留用于审计，但不能引用旧的更宽松期限来批准新操作。",
+            "title": "政策版本选择",
+            "content_hash": "14d00ecd22801de086644ec34f2ff09c37e0fa97f6910e5570748def72e3cc18",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:approval-expiry:0",
+            "version": "demo-policy-v1",
+            "parent_id": "approval-expiry",
+            "locator": "approval-expiry:0",
+            "quote": "批准后若订单状态或适用政策发生变化，旧提案失效。执行前必须重新核验，不能把对旧金额的批准套用到新金额；需要新提案和再次确认。",
+            "title": "批准后状态改变",
+            "content_hash": "1f49b424fbcf22ab306fce739e81a442a89d57e1d0595344bdfe6536311fcea6",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:return-reason:1",
+            "version": "demo-policy-v1",
+            "parent_id": "return-reason",
+            "locator": "return-reason:1",
+            "quote": "耳机单边没声音、商品破损等问题可作为用户陈述的退货原因。仍需要核对订单、商品、数量、签收时间和品类；故障描述本身不是自动退款授权。",
+            "title": "故障与退货原因",
+            "content_hash": "24f75004d0d9f1ac78f74745d7c67ef2307e1bd0891e36635d5d5ed249714610",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:return-quantity:0",
+            "version": "demo-policy-v1",
+            "parent_id": "return-quantity",
+            "locator": "return-quantity:0",
+            "quote": "退货必须明确商品与数量，不得默认整单全部退。可退数量扣除已经登记的退货申请，累计申请数量不得超过购买数量；合法的第二次部分退货可另行提出。",
+            "title": "部分退货数量",
+            "content_hash": "a5390a7142ab717cbbd5bd81d86c6b4311bda6332874a852fa96968c48ef7313",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:return-undelivered:1",
+            "version": "demo-policy-v1",
+            "parent_id": "return-undelivered",
+            "locator": "return-undelivered:1",
+            "quote": "退货申请要求订单处于已签收 DELIVERED 状态，且存在签收记录。运输中、待发货订单不能直接冒充已经收货的退货申请。",
+            "title": "未签收不能走收货退货",
+            "content_hash": "01d8c093a7444a1aca64d9bf68b18bb1d865fee46313bb65586b767291104b27",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          },
+          {
+            "id": "demo-policy-v1:return-window:0",
+            "version": "demo-policy-v1",
+            "parent_id": "return-window",
+            "locator": "return-window:0",
+            "quote": "商品签收后七天内可以申请退货，时间从已核验的签收记录计算。超过七天则不符合当前自动退货规则，需要说明限制；用户口述昨天收到不能替代签收记录。",
+            "title": "退货时限",
+            "content_hash": "a9ab14e78028442a3d395d6fb0b636c4cfa6dde89f295655f2c9ab203beb677f",
+            "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+          }
+        ]
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "search_policy",
+            "result": {
+              "status": "ok",
+              "data": [
+                {
+                  "id": "demo-policy-v1:policy-version:0",
+                  "version": "demo-policy-v1",
+                  "parent_id": "policy-version",
+                  "locator": "policy-version:0",
+                  "quote": "查询售后规则时只能使用适用的当前政策版本。旧文档保留用于审计，但不能引用旧的更宽松期限来批准新操作。",
+                  "title": "政策版本选择",
+                  "content_hash": "14d00ecd22801de086644ec34f2ff09c37e0fa97f6910e5570748def72e3cc18",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:approval-expiry:0",
+                  "version": "demo-policy-v1",
+                  "parent_id": "approval-expiry",
+                  "locator": "approval-expiry:0",
+                  "quote": "批准后若订单状态或适用政策发生变化，旧提案失效。执行前必须重新核验，不能把对旧金额的批准套用到新金额；需要新提案和再次确认。",
+                  "title": "批准后状态改变",
+                  "content_hash": "1f49b424fbcf22ab306fce739e81a442a89d57e1d0595344bdfe6536311fcea6",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:return-reason:1",
+                  "version": "demo-policy-v1",
+                  "parent_id": "return-reason",
+                  "locator": "return-reason:1",
+                  "quote": "耳机单边没声音、商品破损等问题可作为用户陈述的退货原因。仍需要核对订单、商品、数量、签收时间和品类；故障描述本身不是自动退款授权。",
+                  "title": "故障与退货原因",
+                  "content_hash": "24f75004d0d9f1ac78f74745d7c67ef2307e1bd0891e36635d5d5ed249714610",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:return-quantity:0",
+                  "version": "demo-policy-v1",
+                  "parent_id": "return-quantity",
+                  "locator": "return-quantity:0",
+                  "quote": "退货必须明确商品与数量，不得默认整单全部退。可退数量扣除已经登记的退货申请，累计申请数量不得超过购买数量；合法的第二次部分退货可另行提出。",
+                  "title": "部分退货数量",
+                  "content_hash": "a5390a7142ab717cbbd5bd81d86c6b4311bda6332874a852fa96968c48ef7313",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:return-undelivered:1",
+                  "version": "demo-policy-v1",
+                  "parent_id": "return-undelivered",
+                  "locator": "return-undelivered:1",
+                  "quote": "退货申请要求订单处于已签收 DELIVERED 状态，且存在签收记录。运输中、待发货订单不能直接冒充已经收货的退货申请。",
+                  "title": "未签收不能走收货退货",
+                  "content_hash": "01d8c093a7444a1aca64d9bf68b18bb1d865fee46313bb65586b767291104b27",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                },
+                {
+                  "id": "demo-policy-v1:return-window:0",
+                  "version": "demo-policy-v1",
+                  "parent_id": "return-window",
+                  "locator": "return-window:0",
+                  "quote": "商品签收后七天内可以申请退货，时间从已核验的签收记录计算。超过七天则不符合当前自动退货规则，需要说明限制；用户口述昨天收到不能替代签收记录。",
+                  "title": "退货时限",
+                  "content_hash": "a9ab14e78028442a3d395d6fb0b636c4cfa6dde89f295655f2c9ab203beb677f",
+                  "snapshot_id": "9f427f7a7b59408a2a9776a9d0d3b926843150697dc6deea1137fa3f4fe446ca"
+                }
+              ],
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "cancel-approved",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 333.3152999985032,
+      "final_state": {
+        "id": "bd88af89-5335-42e6-882e-e7ff4f2f90a5",
+        "conversation_id": "75f7b763-1f32-471f-ac6b-dddb222533b8",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 12,
+        "resume_generation": 1,
+        "last_event_seq": 19,
+        "model_calls": 4,
+        "active_ms": 62,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-pending",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [
+              "ac3c04b8-3bef-47c6-b396-46d3f95ec13d"
+            ],
+            "evidence_ids": [],
+            "intent": "CANCEL_ORDER",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "帮我取消 order-pending"
+            ],
+            "status": "COMPLETED",
+            "order_observation": {
+              "id": "order-pending",
+              "status": "PENDING_SHIPMENT",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": null,
+              "items": [
+                {
+                  "id": "item-pending",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "proposal_id": "3c83ce0d-6e09-4a57-8f60-7b98797dbf4a"
+          }
+        ],
+        "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。",
+        "results": [
+          {
+            "status": "COMPLETED",
+            "kind": "SIMULATED_CANCELLATION",
+            "order_status": "CANCELLED",
+            "operation_id": "ac3c04b8-3bef-47c6-b396-46d3f95ec13d",
+            "proposal_id": "3c83ce0d-6e09-4a57-8f60-7b98797dbf4a",
+            "order_id": "order-pending",
+            "amount_cents": 19900,
+            "currency": "CNY"
+          }
+        ],
+        "answer": "g1 [CANCEL_ORDER]: 已取消订单并登记模拟退款（不涉及真实资金）；金额 19900 分。",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-pending",
+                "status": "PENDING_SHIPMENT",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": null,
+                "items": [
+                  {
+                    "id": "item-pending",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_APPROVAL",
+            "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 14,
+          "kind": "approval.decided",
+          "payload": {
+            "proposal_id": "3c83ce0d-6e09-4a57-8f60-7b98797dbf4a",
+            "status": "APPROVED"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 15,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 2
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 16,
+          "kind": "operations.verified",
+          "payload": {
+            "results": [
+              {
+                "status": "COMPLETED",
+                "kind": "SIMULATED_CANCELLATION",
+                "order_status": "CANCELLED",
+                "operation_id": "ac3c04b8-3bef-47c6-b396-46d3f95ec13d",
+                "proposal_id": "3c83ce0d-6e09-4a57-8f60-7b98797dbf4a",
+                "order_id": "order-pending",
+                "amount_cents": 19900,
+                "currency": "CNY"
+              }
+            ]
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 17,
+          "kind": "model.started",
+          "payload": {
+            "step": 3,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 18,
+          "kind": "model.completed",
+          "payload": {
+            "step": 3,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 19,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "cancel-rejected",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 358.150599997316,
+      "final_state": {
+        "id": "daa2b44d-7edd-4924-89f8-e9a599318cfe",
+        "conversation_id": "2cc45424-0899-4fe8-964f-a2f3dceb4de2",
+        "status": "SUCCEEDED",
+        "outcome": "DECLINED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 12,
+        "resume_generation": 1,
+        "last_event_seq": 19,
+        "model_calls": 4,
+        "active_ms": 47,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-pending",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "CANCEL_ORDER",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "帮我取消 order-pending"
+            ],
+            "status": "WITHDRAWN",
+            "order_observation": {
+              "id": "order-pending",
+              "status": "PENDING_SHIPMENT",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": null,
+              "items": [
+                {
+                  "id": "item-pending",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "proposal_id": "49a79043-7ab3-457f-b37f-0c3c3f8310e1"
+          }
+        ],
+        "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。",
+        "results": [],
+        "answer": "g1 [CANCEL_ORDER]: WITHDRAWN",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-pending",
+                "status": "PENDING_SHIPMENT",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": null,
+                "items": [
+                  {
+                    "id": "item-pending",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_APPROVAL",
+            "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 14,
+          "kind": "approval.decided",
+          "payload": {
+            "proposal_id": "49a79043-7ab3-457f-b37f-0c3c3f8310e1",
+            "status": "REJECTED"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 15,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 2
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 16,
+          "kind": "operations.verified",
+          "payload": {
+            "results": []
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 17,
+          "kind": "model.started",
+          "payload": {
+            "step": 3,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 18,
+          "kind": "model.completed",
+          "payload": {
+            "step": 3,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 19,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "DECLINED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "cancel-unapproved",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true
+      },
+      "passed": true,
+      "latency_ms": 193.99669999984326,
+      "final_state": {
+        "id": "0aa114aa-74be-4b02-88a0-4c81ae577e5c",
+        "conversation_id": "a6f4b222-af8a-4573-b4de-648b13e43b92",
+        "status": "WAITING_APPROVAL",
+        "outcome": null,
+        "stop_reason": null,
+        "version": 8,
+        "resume_generation": 0,
+        "last_event_seq": 13,
+        "model_calls": 3,
+        "active_ms": 47,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-pending",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "CANCEL_ORDER",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "帮我取消 order-pending"
+            ],
+            "status": "WAITING_APPROVAL",
+            "order_observation": {
+              "id": "order-pending",
+              "status": "PENDING_SHIPMENT",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": null,
+              "items": [
+                {
+                  "id": "item-pending",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "proposal_id": "c396c294-14ea-4f16-8b4a-73f35c9220a9"
+          }
+        ],
+        "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。",
+        "results": [],
+        "answer": null,
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-pending",
+                "status": "PENDING_SHIPMENT",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": null,
+                "items": [
+                  {
+                    "id": "item-pending",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_APPROVAL",
+            "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "shipped-declined",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 196.6930999988108,
+      "final_state": {
+        "id": "72acb99d-87a6-41bd-85f5-88fa99dc0852",
+        "conversation_id": "0f316d40-a78d-45a5-a741-30067708ade0",
+        "status": "SUCCEEDED",
+        "outcome": "DECLINED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 9,
+        "resume_generation": 0,
+        "last_event_seq": 15,
+        "model_calls": 4,
+        "active_ms": 30,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-shipped",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "CANCEL_ORDER",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "帮我取消 order-shipped"
+            ],
+            "status": "DECLINED",
+            "order_observation": {
+              "id": "order-shipped",
+              "status": "SHIPPED",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": null,
+              "items": [
+                {
+                  "id": "item-shipped",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "decline_reason": "NOT_CANCELLABLE"
+          }
+        ],
+        "question": null,
+        "results": [],
+        "answer": "g1 [CANCEL_ORDER]: DECLINED NOT_CANCELLABLE",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-shipped",
+                "status": "SHIPPED",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": null,
+                "items": [
+                  {
+                    "id": "item-shipped",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "model.started",
+          "payload": {
+            "step": 3,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 14,
+          "kind": "model.completed",
+          "payload": {
+            "step": 3,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 15,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "DECLINED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "return-one",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 436.61229999997886,
+      "final_state": {
+        "id": "a0c9ea11-3dc9-4b03-bfae-4a3e30cd9912",
+        "conversation_id": "fe15855f-e66c-4ab6-bd4b-0a8b9de29496",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 12,
+        "resume_generation": 1,
+        "last_event_seq": 19,
+        "model_calls": 4,
+        "active_ms": 155,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-delivered",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              },
+              "item_id": {
+                "value": "item-delivered",
+                "source_type": "user",
+                "source_ref": "c6c4ee83-b9e3-44f9-9f95-69eaa045515a",
+                "verification_state": "asserted"
+              },
+              "quantity": {
+                "value": 1,
+                "source_type": "user",
+                "source_ref": "c6c4ee83-b9e3-44f9-9f95-69eaa045515a",
+                "verification_state": "asserted"
+              },
+              "reason": {
+                "value": "单侧无声音",
+                "source_type": "user",
+                "source_ref": "c6c4ee83-b9e3-44f9-9f95-69eaa045515a",
+                "verification_state": "asserted"
+              }
+            },
+            "operation_ids": [
+              "d53cf56f-879e-4385-90f1-11f02dba249e"
+            ],
+            "evidence_ids": [],
+            "intent": "RETURN_REQUEST",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "申请退货 order-delivered item-delivered 数量1 原因：单侧无声音"
+            ],
+            "status": "COMPLETED",
+            "order_observation": {
+              "id": "order-delivered",
+              "status": "DELIVERED",
+              "version": 1,
+              "paid_cents": 39800,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": 1799913600,
+              "items": [
+                {
+                  "id": "item-delivered",
+                  "name": "合成测试耳机",
+                  "quantity": 2,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "proposal_id": "7d820625-2ceb-4c08-947f-de7230c809da"
+          }
+        ],
+        "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。",
+        "results": [
+          {
+            "status": "COMPLETED",
+            "kind": "RETURN_REQUESTED",
+            "return_status": "REQUESTED",
+            "refund_status": "NOT_ISSUED",
+            "operation_id": "d53cf56f-879e-4385-90f1-11f02dba249e",
+            "proposal_id": "7d820625-2ceb-4c08-947f-de7230c809da",
+            "order_id": "order-delivered",
+            "amount_cents": 19900,
+            "currency": "CNY"
+          }
+        ],
+        "answer": "g1 [RETURN_REQUEST]: 已创建退货申请，尚未发放退款；金额 19900 分。",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-delivered",
+                "status": "DELIVERED",
+                "version": 1,
+                "paid_cents": 39800,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": 1799913600,
+                "items": [
+                  {
+                    "id": "item-delivered",
+                    "name": "合成测试耳机",
+                    "quantity": 2,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_APPROVAL",
+            "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 14,
+          "kind": "approval.decided",
+          "payload": {
+            "proposal_id": "7d820625-2ceb-4c08-947f-de7230c809da",
+            "status": "APPROVED"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 15,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 2
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 16,
+          "kind": "operations.verified",
+          "payload": {
+            "results": [
+              {
+                "status": "COMPLETED",
+                "kind": "RETURN_REQUESTED",
+                "return_status": "REQUESTED",
+                "refund_status": "NOT_ISSUED",
+                "operation_id": "d53cf56f-879e-4385-90f1-11f02dba249e",
+                "proposal_id": "7d820625-2ceb-4c08-947f-de7230c809da",
+                "order_id": "order-delivered",
+                "amount_cents": 19900,
+                "currency": "CNY"
+              }
+            ]
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 17,
+          "kind": "model.started",
+          "payload": {
+            "step": 3,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 18,
+          "kind": "model.completed",
+          "payload": {
+            "step": 3,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 19,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "return-two",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 353.3621000024141,
+      "final_state": {
+        "id": "574a4f88-7ba7-406f-a8d6-45b45b01eb4a",
+        "conversation_id": "67ec666f-db1a-4b5d-b19a-91701f0595de",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 12,
+        "resume_generation": 1,
+        "last_event_seq": 19,
+        "model_calls": 4,
+        "active_ms": 45,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-delivered",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              },
+              "item_id": {
+                "value": "item-delivered",
+                "source_type": "user",
+                "source_ref": "7d28e9e7-3d5c-430d-8e54-2d12a1c652de",
+                "verification_state": "asserted"
+              },
+              "quantity": {
+                "value": 2,
+                "source_type": "user",
+                "source_ref": "7d28e9e7-3d5c-430d-8e54-2d12a1c652de",
+                "verification_state": "asserted"
+              },
+              "reason": {
+                "value": "故障",
+                "source_type": "user",
+                "source_ref": "7d28e9e7-3d5c-430d-8e54-2d12a1c652de",
+                "verification_state": "asserted"
+              }
+            },
+            "operation_ids": [
+              "0f92f436-2c9f-472c-a0a3-ca568434f52f"
+            ],
+            "evidence_ids": [],
+            "intent": "RETURN_REQUEST",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "申请退货 order-delivered item-delivered 数量2 原因：故障"
+            ],
+            "status": "COMPLETED",
+            "order_observation": {
+              "id": "order-delivered",
+              "status": "DELIVERED",
+              "version": 1,
+              "paid_cents": 39800,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": 1799913600,
+              "items": [
+                {
+                  "id": "item-delivered",
+                  "name": "合成测试耳机",
+                  "quantity": 2,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "proposal_id": "8d89be95-18fe-49b3-9601-28dab0b6fa62"
+          }
+        ],
+        "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。",
+        "results": [
+          {
+            "status": "COMPLETED",
+            "kind": "RETURN_REQUESTED",
+            "return_status": "REQUESTED",
+            "refund_status": "NOT_ISSUED",
+            "operation_id": "0f92f436-2c9f-472c-a0a3-ca568434f52f",
+            "proposal_id": "8d89be95-18fe-49b3-9601-28dab0b6fa62",
+            "order_id": "order-delivered",
+            "amount_cents": 39800,
+            "currency": "CNY"
+          }
+        ],
+        "answer": "g1 [RETURN_REQUEST]: 已创建退货申请，尚未发放退款；金额 39800 分。",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-delivered",
+                "status": "DELIVERED",
+                "version": 1,
+                "paid_cents": 39800,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": 1799913600,
+                "items": [
+                  {
+                    "id": "item-delivered",
+                    "name": "合成测试耳机",
+                    "quantity": 2,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_APPROVAL",
+            "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 14,
+          "kind": "approval.decided",
+          "payload": {
+            "proposal_id": "8d89be95-18fe-49b3-9601-28dab0b6fa62",
+            "status": "APPROVED"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 15,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 2
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 16,
+          "kind": "operations.verified",
+          "payload": {
+            "results": [
+              {
+                "status": "COMPLETED",
+                "kind": "RETURN_REQUESTED",
+                "return_status": "REQUESTED",
+                "refund_status": "NOT_ISSUED",
+                "operation_id": "0f92f436-2c9f-472c-a0a3-ca568434f52f",
+                "proposal_id": "8d89be95-18fe-49b3-9601-28dab0b6fa62",
+                "order_id": "order-delivered",
+                "amount_cents": 39800,
+                "currency": "CNY"
+              }
+            ]
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 17,
+          "kind": "model.started",
+          "payload": {
+            "step": 3,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 18,
+          "kind": "model.completed",
+          "payload": {
+            "step": 3,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 19,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "expired-return",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 420.28010000649374,
+      "final_state": {
+        "id": "5ea11d29-644b-4e74-a907-e2ef49f2ad84",
+        "conversation_id": "12712c2d-f1fb-4d29-a155-ea629cf28dbd",
+        "status": "SUCCEEDED",
+        "outcome": "DECLINED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 9,
+        "resume_generation": 0,
+        "last_event_seq": 15,
+        "model_calls": 4,
+        "active_ms": 78,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-expired",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              },
+              "item_id": {
+                "value": "item-expired",
+                "source_type": "user",
+                "source_ref": "d48bef90-6872-4f6d-9f53-3602f6a92471",
+                "verification_state": "asserted"
+              },
+              "quantity": {
+                "value": 1,
+                "source_type": "user",
+                "source_ref": "d48bef90-6872-4f6d-9f53-3602f6a92471",
+                "verification_state": "asserted"
+              },
+              "reason": {
+                "value": "故障",
+                "source_type": "user",
+                "source_ref": "d48bef90-6872-4f6d-9f53-3602f6a92471",
+                "verification_state": "asserted"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "RETURN_REQUEST",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "申请退货 order-expired item-expired 数量1 原因：故障"
+            ],
+            "status": "DECLINED",
+            "order_observation": {
+              "id": "order-expired",
+              "status": "DELIVERED",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": 1799222400,
+              "items": [
+                {
+                  "id": "item-expired",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "decline_reason": "RETURN_WINDOW_CLOSED"
+          }
+        ],
+        "question": null,
+        "results": [],
+        "answer": "g1 [RETURN_REQUEST]: DECLINED RETURN_WINDOW_CLOSED",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-expired",
+                "status": "DELIVERED",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": 1799222400,
+                "items": [
+                  {
+                    "id": "item-expired",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "model.started",
+          "payload": {
+            "step": 3,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 14,
+          "kind": "model.completed",
+          "payload": {
+            "step": 3,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 15,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "DECLINED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "excluded-return",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true
+      },
+      "passed": true,
+      "latency_ms": 337.8876999995555,
+      "final_state": {
+        "id": "94c1faf9-a9ce-4f48-952b-cac5c7163422",
+        "conversation_id": "9d3815c6-1eb1-47b2-b9b3-b0d85292495e",
+        "status": "SUCCEEDED",
+        "outcome": "DECLINED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 9,
+        "resume_generation": 0,
+        "last_event_seq": 15,
+        "model_calls": 4,
+        "active_ms": 62,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-excluded",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              },
+              "item_id": {
+                "value": "item-excluded",
+                "source_type": "user",
+                "source_ref": "34030609-c19b-4968-af0c-7da0451075f6",
+                "verification_state": "asserted"
+              },
+              "quantity": {
+                "value": 1,
+                "source_type": "user",
+                "source_ref": "34030609-c19b-4968-af0c-7da0451075f6",
+                "verification_state": "asserted"
+              },
+              "reason": {
+                "value": "故障",
+                "source_type": "user",
+                "source_ref": "34030609-c19b-4968-af0c-7da0451075f6",
+                "verification_state": "asserted"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "RETURN_REQUEST",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "申请退货 order-excluded item-excluded 数量1 原因：故障"
+            ],
+            "status": "DECLINED",
+            "order_observation": {
+              "id": "order-excluded",
+              "status": "DELIVERED",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": 1799913600,
+              "items": [
+                {
+                  "id": "item-excluded",
+                  "name": "合成护理商品",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "decline_reason": "CATEGORY_EXCLUDED"
+          }
+        ],
+        "question": null,
+        "results": [],
+        "answer": "g1 [RETURN_REQUEST]: DECLINED CATEGORY_EXCLUDED",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-excluded",
+                "status": "DELIVERED",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": 1799913600,
+                "items": [
+                  {
+                    "id": "item-excluded",
+                    "name": "合成护理商品",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "model.started",
+          "payload": {
+            "step": 3,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 14,
+          "kind": "model.completed",
+          "payload": {
+            "step": 3,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 15,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "DECLINED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "missing-quantity",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true
+      },
+      "passed": true,
+      "latency_ms": 235.9273000038229,
+      "final_state": {
+        "id": "8354b153-d9b3-4fdd-8d39-92a990c05a1a",
+        "conversation_id": "bacf7159-77cf-4bf2-aaa2-96c23dfe76e3",
+        "status": "WAITING_USER",
+        "outcome": null,
+        "stop_reason": null,
+        "version": 7,
+        "resume_generation": 0,
+        "last_event_seq": 12,
+        "model_calls": 3,
+        "active_ms": 46,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-delivered",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              },
+              "item_id": {
+                "value": "item-delivered",
+                "source_type": "user",
+                "source_ref": "fd9e622d-80b0-4c24-a410-534289d05b4b",
+                "verification_state": "asserted"
+              },
+              "reason": {
+                "value": "故障",
+                "source_type": "user",
+                "source_ref": "fd9e622d-80b0-4c24-a410-534289d05b4b",
+                "verification_state": "asserted"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "RETURN_REQUEST",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "申请退货 order-delivered item-delivered 原因：故障"
+            ],
+            "status": "WAITING_INPUT",
+            "order_observation": {
+              "id": "order-delivered",
+              "status": "DELIVERED",
+              "version": 1,
+              "paid_cents": 39800,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": 1799913600,
+              "items": [
+                {
+                  "id": "item-delivered",
+                  "name": "合成测试耳机",
+                  "quantity": 2,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            }
+          }
+        ],
+        "question": "请补充：quantity",
+        "results": [],
+        "answer": null,
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-delivered",
+                "status": "DELIVERED",
+                "version": 1,
+                "paid_cents": 39800,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": 1799913600,
+                "items": [
+                  {
+                    "id": "item-delivered",
+                    "name": "合成测试耳机",
+                    "quantity": 2,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_USER",
+            "question": "请补充：quantity"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "missing-order",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true
+      },
+      "passed": true,
+      "latency_ms": 154.80879999813624,
+      "final_state": {
+        "id": "8750a16e-f9a9-4b66-88f8-828cbb6133b7",
+        "conversation_id": "fa58155c-7e39-45c6-a97b-b852557aff84",
+        "status": "WAITING_USER",
+        "outcome": null,
+        "stop_reason": null,
+        "version": 5,
+        "resume_generation": 0,
+        "last_event_seq": 8,
+        "model_calls": 2,
+        "active_ms": 0,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {},
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "CANCEL_ORDER",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "我要取消订单"
+            ],
+            "status": "WAITING_INPUT"
+          }
+        ],
+        "question": "请提供当前账号的订单编号（order-...）。",
+        "results": [],
+        "answer": null,
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_USER",
+            "question": "请提供当前账号的订单编号（order-...）。"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "foreign-order",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true
+      },
+      "passed": true,
+      "latency_ms": 186.3487000009627,
+      "final_state": {
+        "id": "c7f9be4f-9e28-4e79-b1d6-6a6430c6c01e",
+        "conversation_id": "c5f3a552-23f1-40d1-9c3d-1865825989e8",
+        "status": "WAITING_USER",
+        "outcome": null,
+        "stop_reason": null,
+        "version": 5,
+        "resume_generation": 0,
+        "last_event_seq": 9,
+        "model_calls": 2,
+        "active_ms": 0,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-bob",
+                "source_type": "user",
+                "source_ref": "5e9e06ad-a9ef-4148-94ae-bbed67c91a77",
+                "verification_state": "asserted"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "ORDER_QUERY",
+            "mode": "INQUIRE",
+            "mentions": [
+              "查询 order-bob"
+            ],
+            "status": "UNRESOLVED"
+          }
+        ],
+        "question": "未找到可访问的订单，请核对当前账号和订单编号。",
+        "results": [],
+        "answer": null,
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "error",
+              "data": null,
+              "error_code": "NOT_FOUND",
+              "summary": "Resource not found",
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_USER",
+            "question": "未找到可访问的订单，请核对当前账号和订单编号。"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "unknown-order",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true
+      },
+      "passed": true,
+      "latency_ms": 251.70739999884972,
+      "final_state": {
+        "id": "2feb4940-f7e8-4f89-938b-a1fd8c5749eb",
+        "conversation_id": "66663aee-c664-49e4-9df1-1099935ab8a4",
+        "status": "WAITING_USER",
+        "outcome": null,
+        "stop_reason": null,
+        "version": 5,
+        "resume_generation": 0,
+        "last_event_seq": 9,
+        "model_calls": 2,
+        "active_ms": 15,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-missing",
+                "source_type": "user",
+                "source_ref": "b5589928-b5bc-4f8e-8ce5-77e97bc88d3a",
+                "verification_state": "asserted"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "ORDER_QUERY",
+            "mode": "INQUIRE",
+            "mentions": [
+              "查询 order-missing"
+            ],
+            "status": "UNRESOLVED"
+          }
+        ],
+        "question": "未找到可访问的订单，请核对当前账号和订单编号。",
+        "results": [],
+        "answer": null,
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "error",
+              "data": null,
+              "error_code": "NOT_FOUND",
+              "summary": "Resource not found",
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_USER",
+            "question": "未找到可访问的订单，请核对当前账号和订单编号。"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "two-actions",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true,
+        "outcome": true,
+        "goal_count": true
+      },
+      "passed": true,
+      "latency_ms": 509.3353999982355,
+      "final_state": {
+        "id": "08aee0a2-335d-41a1-beea-3ff1e59f13ef",
+        "conversation_id": "95602882-ab5b-4f78-a21d-9de7d2bf77c7",
+        "status": "SUCCEEDED",
+        "outcome": "FULFILLED",
+        "stop_reason": "GOALS_DISPOSED",
+        "version": 17,
+        "resume_generation": 2,
+        "last_event_seq": 27,
+        "model_calls": 6,
+        "active_ms": 92,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-pending",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [
+              "5e7c3b28-0302-49e3-b99c-8494a0c906a8"
+            ],
+            "evidence_ids": [],
+            "intent": "CANCEL_ORDER",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "帮我取消 order-pending"
+            ],
+            "status": "COMPLETED",
+            "order_observation": {
+              "id": "order-pending",
+              "status": "PENDING_SHIPMENT",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": null,
+              "items": [
+                {
+                  "id": "item-pending",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "proposal_id": "c4c7bed6-bdb6-499f-858a-84da290fd7ae"
+          },
+          {
+            "id": "g2",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-delivered",
+                "source_type": "tool",
+                "source_ref": "order-g2",
+                "verification_state": "verified"
+              },
+              "item_id": {
+                "value": "item-delivered",
+                "source_type": "user",
+                "source_ref": "0fb9dbaf-faa9-41a2-90d1-5998913f4891",
+                "verification_state": "asserted"
+              },
+              "quantity": {
+                "value": 1,
+                "source_type": "user",
+                "source_ref": "0fb9dbaf-faa9-41a2-90d1-5998913f4891",
+                "verification_state": "asserted"
+              },
+              "reason": {
+                "value": "故障",
+                "source_type": "user",
+                "source_ref": "0fb9dbaf-faa9-41a2-90d1-5998913f4891",
+                "verification_state": "asserted"
+              }
+            },
+            "operation_ids": [
+              "e83fec87-da31-4e60-98dd-78e81012dba7"
+            ],
+            "evidence_ids": [],
+            "intent": "RETURN_REQUEST",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "申请退货 order-delivered item-delivered 数量1 原因：故障"
+            ],
+            "status": "COMPLETED",
+            "order_observation": {
+              "id": "order-delivered",
+              "status": "DELIVERED",
+              "version": 1,
+              "paid_cents": 39800,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": 1799913600,
+              "items": [
+                {
+                  "id": "item-delivered",
+                  "name": "合成测试耳机",
+                  "quantity": 2,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "proposal_id": "f73b5e30-1c07-4695-8732-a0e59439b73b"
+          }
+        ],
+        "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。",
+        "results": [
+          {
+            "status": "COMPLETED",
+            "kind": "SIMULATED_CANCELLATION",
+            "order_status": "CANCELLED",
+            "operation_id": "5e7c3b28-0302-49e3-b99c-8494a0c906a8",
+            "proposal_id": "c4c7bed6-bdb6-499f-858a-84da290fd7ae",
+            "order_id": "order-pending",
+            "amount_cents": 19900,
+            "currency": "CNY"
+          },
+          {
+            "status": "COMPLETED",
+            "kind": "RETURN_REQUESTED",
+            "return_status": "REQUESTED",
+            "refund_status": "NOT_ISSUED",
+            "operation_id": "e83fec87-da31-4e60-98dd-78e81012dba7",
+            "proposal_id": "f73b5e30-1c07-4695-8732-a0e59439b73b",
+            "order_id": "order-delivered",
+            "amount_cents": 19900,
+            "currency": "CNY"
+          }
+        ],
+        "answer": "g1 [CANCEL_ORDER]: 已取消订单并登记模拟退款（不涉及真实资金）；金额 19900 分。\ng2 [RETURN_REQUEST]: 已创建退货申请，尚未发放退款；金额 19900 分。",
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-pending",
+                "status": "PENDING_SHIPMENT",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": null,
+                "items": [
+                  {
+                    "id": "item-pending",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "model.started",
+          "payload": {
+            "step": 3,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 14,
+          "kind": "model.completed",
+          "payload": {
+            "step": 3,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 15,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-delivered",
+                "status": "DELIVERED",
+                "version": 1,
+                "paid_cents": 39800,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": 1799913600,
+                "items": [
+                  {
+                    "id": "item-delivered",
+                    "name": "合成测试耳机",
+                    "quantity": 2,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 16,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 17,
+          "kind": "model.started",
+          "payload": {
+            "step": 4,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 18,
+          "kind": "model.completed",
+          "payload": {
+            "step": 4,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 19,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 20,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_APPROVAL",
+            "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 21,
+          "kind": "approval.decided",
+          "payload": {
+            "proposal_id": "c4c7bed6-bdb6-499f-858a-84da290fd7ae",
+            "status": "APPROVED"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 22,
+          "kind": "approval.decided",
+          "payload": {
+            "proposal_id": "f73b5e30-1c07-4695-8732-a0e59439b73b",
+            "status": "APPROVED"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 23,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 2
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 24,
+          "kind": "operations.verified",
+          "payload": {
+            "results": [
+              {
+                "status": "COMPLETED",
+                "kind": "SIMULATED_CANCELLATION",
+                "order_status": "CANCELLED",
+                "operation_id": "5e7c3b28-0302-49e3-b99c-8494a0c906a8",
+                "proposal_id": "c4c7bed6-bdb6-499f-858a-84da290fd7ae",
+                "order_id": "order-pending",
+                "amount_cents": 19900,
+                "currency": "CNY"
+              },
+              {
+                "status": "COMPLETED",
+                "kind": "RETURN_REQUESTED",
+                "return_status": "REQUESTED",
+                "refund_status": "NOT_ISSUED",
+                "operation_id": "e83fec87-da31-4e60-98dd-78e81012dba7",
+                "proposal_id": "f73b5e30-1c07-4695-8732-a0e59439b73b",
+                "order_id": "order-delivered",
+                "amount_cents": 19900,
+                "currency": "CNY"
+              }
+            ]
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 25,
+          "kind": "model.started",
+          "payload": {
+            "step": 5,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 26,
+          "kind": "model.completed",
+          "payload": {
+            "step": 5,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 27,
+          "kind": "run.finished",
+          "payload": {
+            "status": "SUCCEEDED",
+            "outcome": "FULFILLED",
+            "stop_reason": "GOALS_DISPOSED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    },
+    {
+      "case_id": "waiting-cancelled",
+      "checks": {
+        "status": true,
+        "refund_count": true,
+        "return_count": true
+      },
+      "passed": true,
+      "latency_ms": 343.3542999991914,
+      "final_state": {
+        "id": "e23cafd0-a8a1-4885-bbd6-d4748d291c9b",
+        "conversation_id": "e72128c6-d5c0-4da7-9127-313c2c4baff1",
+        "status": "CANCELLED",
+        "outcome": "UNRESOLVED",
+        "stop_reason": "USER_CANCELLED",
+        "version": 8,
+        "resume_generation": 0,
+        "last_event_seq": 14,
+        "model_calls": 3,
+        "active_ms": 77,
+        "goals": [
+          {
+            "id": "g1",
+            "revision": 1,
+            "slots": {
+              "order_id": {
+                "value": "order-pending",
+                "source_type": "tool",
+                "source_ref": "order-g1",
+                "verification_state": "verified"
+              }
+            },
+            "operation_ids": [],
+            "evidence_ids": [],
+            "intent": "CANCEL_ORDER",
+            "mode": "REQUEST_ACTION",
+            "mentions": [
+              "帮我取消 order-pending"
+            ],
+            "status": "WAITING_APPROVAL",
+            "order_observation": {
+              "id": "order-pending",
+              "status": "PENDING_SHIPMENT",
+              "version": 1,
+              "paid_cents": 19900,
+              "refunded_cents": 0,
+              "currency": "CNY",
+              "delivered_at": null,
+              "items": [
+                {
+                  "id": "item-pending",
+                  "name": "合成测试耳机",
+                  "quantity": 1,
+                  "unit_paid_cents": 19900,
+                  "reserved_return_quantity": 0
+                }
+              ]
+            },
+            "proposal_id": "706f4aff-6694-4dc5-a2ab-104798fbd96d"
+          }
+        ],
+        "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。",
+        "results": [],
+        "answer": null,
+        "provider": "demo",
+        "evidence": []
+      },
+      "events": [
+        {
+          "seq": 1,
+          "kind": "run.queued",
+          "payload": {
+            "provider": "demo"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 2,
+          "kind": "run.claimed",
+          "payload": {
+            "token": 1
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 3,
+          "kind": "model.started",
+          "payload": {
+            "step": 0,
+            "phase": "INTENT"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 4,
+          "kind": "model.completed",
+          "payload": {
+            "step": 0,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 5,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 6,
+          "kind": "model.started",
+          "payload": {
+            "step": 1,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 7,
+          "kind": "model.completed",
+          "payload": {
+            "step": 1,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 8,
+          "kind": "tool.completed",
+          "payload": {
+            "name": "get_order",
+            "result": {
+              "status": "ok",
+              "data": {
+                "id": "order-pending",
+                "status": "PENDING_SHIPMENT",
+                "version": 1,
+                "paid_cents": 19900,
+                "refunded_cents": 0,
+                "currency": "CNY",
+                "delivered_at": null,
+                "items": [
+                  {
+                    "id": "item-pending",
+                    "name": "合成测试耳机",
+                    "quantity": 1,
+                    "unit_paid_cents": 19900,
+                    "reserved_return_quantity": 0
+                  }
+                ]
+              },
+              "error_code": null,
+              "retryable": false,
+              "truncated": false
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 9,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 10,
+          "kind": "model.started",
+          "payload": {
+            "step": 2,
+            "phase": "DECISION"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 11,
+          "kind": "model.completed",
+          "payload": {
+            "step": 2,
+            "usage": {
+              "mode": "demo",
+              "billed_tokens": 0
+            }
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 12,
+          "kind": "step.observed",
+          "payload": {},
+          "created_at": 1800000000
+        },
+        {
+          "seq": 13,
+          "kind": "run.waiting",
+          "payload": {
+            "status": "WAITING_APPROVAL",
+            "question": "请检查操作对象、金额和影响，使用确认卡批准或拒绝。"
+          },
+          "created_at": 1800000000
+        },
+        {
+          "seq": 14,
+          "kind": "run.finished",
+          "payload": {
+            "status": "CANCELLED",
+            "outcome": "UNRESOLVED",
+            "stop_reason": "USER_CANCELLED"
+          },
+          "created_at": 1800000000
+        }
+      ]
+    }
+  ],
+  "limitations": [
+    "Regression set, not held-out real model quality",
+    "Synthetic local SQLite business environment",
+    "No paid model calls",
+    "MySQL crash/locking tests reported separately"
+  ]
+}

@@ -15,4 +15,7 @@ htmlcov/
 artifacts/
 node_modules/
 frontend/dist/
+.cache/
+dist/
 *.log
+*.tsbuildinfo
