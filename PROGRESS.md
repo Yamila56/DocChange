@@ -8,6 +8,8 @@
 
 本地代码快照：`f80c69e`（M1 + M2 初始契约）；这是本地提交，不是 GitHub 推送。
 
+最新主要代码提交：`1c92854`（单 Agent 运行闭环、Redis Harness、神经检索、沙箱与工作台）。用户要求持续推进直到额度不足；当前 5 小时额度已用约 98%，正在保存最终交接，不是因阶段结束主动等待。未使用账户中的额度重置权益。
+
 本轮验证：MySQL 全套 47 passed；临时 SQLite 集 44 passed / 3 skipped；MySQL 并发三项单跑 3 passed；实际 HTTP 子进程 smoke 通过（readiness/OpenAPI/登录/查单/越权拒绝）。Alembic upgrade/check、Ruff、pip check 已通过。CI 尚未远程运行。
 
 ## 里程碑
@@ -42,6 +44,8 @@ MySQL 首次并发测试发现间隙锁死锁，调整订单/回执锁顺序并�
 ## 下一步
 
 最新优先级（替代下方旧计划）：
+
+收尾复测：session 7784 正在运行最终全套，报告路径 docs/evaluation/mysql-final-pass.xml；如对话被额度中断，先检查该报告是否完整及 failures/errors 字段，不能把尚未结束的运行算通过。
 
 1. 本轮 MySQL 全套已完成：87 passed，报告 docs/evaluation/mysql-regression-latest.xml；本地是 81 passed / 6 skipped。历史 mysql-regression.xml 有一次 405/404 失败，已修复 API fallback，不能用历史失败文件当最终结果。之后又补了 CSV 表头公式拒绝和 provider 配置变更守卫，需看后续复测记录。
 2. CSV 作为 Agent 的受控工具整合；物流人工工单及替代商品业务按规格补齐；完善 admission/rate limit、provider 配置锁定、优雅退出和剩余故障用例。
