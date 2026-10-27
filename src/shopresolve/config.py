@@ -1,3 +1,4 @@
+from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -15,6 +16,9 @@ class Settings(BaseSettings):
     model_limit: int = 12
     active_budget_ms: int = 120000
     model_timeout_seconds: int = 30
+    model_max_output_tokens: int = Field(default=1500, ge=256, le=8192)
+    model_max_input_bytes: int = Field(default=60000, ge=1024, le=200000)
+    shutdown_grace_seconds: float = Field(default=10, gt=0, le=60)
     lease_seconds: int = 30
     queue_name: str = "shopresolve:runs"
     policy_corpus: str = "data/policies/demo.json"

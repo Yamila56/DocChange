@@ -210,12 +210,27 @@ class CompatibleJsonGateway:
     Provider-specific structured-output compatibility still needs a live contract test.
     """
 
-    def __init__(self, settings):
+    def __init__(self, settings, *, transport=None):
         if not (settings.allow_paid_model and settings.model_base_url and settings.model_api_key):
             raise RuntimeError(
                 "Remote model disabled: configure provider and explicit opt-in locally"
             )
         self.settings = settings
+        url = httpx.URL(settings.model_base_url)
+        if url.scheme != "https" or not url.host or url.userinfo or url.query or url.fragment:
+            raise ValueError("Model endpoint must be HTTPS without credentials/query/fragment")
+        if settings.provider == "deepseek" and str(url).rstrip("/") != "https://api.deepseek.com":
+            raise ValueError("DeepSeek provider requires its official API endpoint")
+        self.client = httpx.AsyncClient(
+            timeout=settings.model_timeout_seconds,
+            follow_redirects=False,
+            trust_env=False,
+            transport=transport,
+            limits=httpx.Limits(max_connections=2, max_keepalive_connections=2),
+        )
+
+    async def aclose(self):
+        await self.client.aclose()
 
     async def request(self, phase, context):
         schema = (
@@ -230,39 +245,53 @@ class CompatibleJsonGateway:
             "Only propose writes; execution belongs to the permissioned backend. Tool arguments "
             "must include goal_id and must not contain owner_id. Do not emit private reasoning."
         )
-        async with httpx.AsyncClient(
-            timeout=self.settings.model_timeout_seconds, follow_redirects=False
-        ) as client:
-            response = await client.post(
-                self.settings.model_base_url.rstrip("/") + "/chat/completions",
-                headers={"Authorization": f"Bearer {self.settings.model_api_key}"},
-                json={
-                    "model": self.settings.model,
-                    "temperature": 0,
-                    "response_format": {"type": "json_object"},
-                    "messages": [
-                        {"role": "system", "content": system},
-                        {
-                            "role": "user",
-                            "content": json.dumps(
-                                {"phase": phase, "schema": schema, "context": context},
-                                ensure_ascii=False,
-                            ),
-                        },
-                    ],
+        content = json.dumps(
+            {"phase": phase, "schema": schema, "context": context}, ensure_ascii=False
+        )
+        if len((system + content).encode("utf-8")) > self.settings.model_max_input_bytes:
+            raise ValueError("Model input exceeds configured byte limit")
+        payload = {
+            "model": self.settings.model,
+            "temperature": 0,
+            "max_tokens": self.settings.model_max_output_tokens,
+            "response_format": {"type": "json_object"},
+            "messages": [
+                {"role": "system", "content": system},
+                {
+                    "role": "user",
+                    "content": content,
                 },
-            )
-            response.raise_for_status()
-            body = response.json()
-            output = json.loads(body["choices"][0]["message"]["content"])
-            if not isinstance(output, dict):
-                raise ValueError("Provider did not return a JSON object")
-            return ModelReply(output, body.get("usage"))
+            ],
+        }
+        if self.settings.provider == "deepseek":
+            # Thinking is enabled by default upstream. Pilot is explicitly non-thinking.
+            payload["thinking"] = {"type": "disabled"}
+        response = await self.client.post(
+            self.settings.model_base_url.rstrip("/") + "/chat/completions",
+            headers={"Authorization": f"Bearer {self.settings.model_api_key}"},
+            json=payload,
+        )
+        response.raise_for_status()
+        body = response.json()
+        choices = body.get("choices")
+        if not isinstance(choices, list) or len(choices) != 1:
+            raise ValueError("Provider returned no unique completion")
+        choice = choices[0]
+        if choice.get("finish_reason") != "stop":
+            raise ValueError("Provider completion is truncated or not a finished JSON decision")
+        content = choice.get("message", {}).get("content")
+        if not isinstance(content, str) or not content.strip():
+            raise ValueError("Provider returned empty JSON content")
+        output = json.loads(content)
+        if not isinstance(output, dict):
+            raise ValueError("Provider did not return a JSON object")
+        # Never persist reasoning_content or credentials in a model observation.
+        return ModelReply(output, body.get("usage"))
 
 
 def build_gateway(settings):
     if settings.provider == "demo":
         return DemoGateway()
-    if settings.provider == "compatible":
+    if settings.provider in {"compatible", "deepseek"}:
         return CompatibleJsonGateway(settings)
-    raise ValueError("Unknown provider; supported: demo, compatible")
+    raise ValueError("Unknown provider; supported: demo, compatible, deepseek")

@@ -91,27 +91,31 @@ class ToolRouter:
                         }
                         if digest(rules) != policy.content_hash:
                             raise DomainError("POLICY_UNAVAILABLE", "Policy bundle is inconsistent")
-                        if self.retriever:
-                            if self.retriever.policy_bundle_hash != policy.content_hash:
-                                raise DomainError(
-                                    "POLICY_INDEX_STALE", "Policy index bundle mismatch"
-                                )
-                            data = await asyncio.to_thread(
-                                self.retriever.search,
-                                args.query,
-                                policy_version=policy.version,
-                                owner_id=owner,
-                            )
-                        else:
-                            data = [
-                                {
-                                    "id": f"{policy.version}:policy",
-                                    "version": policy.version,
-                                    "locator": "policy",
-                                    "quote": policy.document,
-                                    "content_hash": policy.content_hash,
-                                }
-                            ]
+                        version, content_hash, document = (
+                            policy.version,
+                            policy.content_hash,
+                            policy.document,
+                        )
+                    # Release the DB connection before CPU inference; no transaction spans RAG.
+                    if self.retriever:
+                        if self.retriever.policy_bundle_hash != content_hash:
+                            raise DomainError("POLICY_INDEX_STALE", "Policy index bundle mismatch")
+                        data = await asyncio.to_thread(
+                            self.retriever.search,
+                            args.query,
+                            policy_version=version,
+                            owner_id=owner,
+                        )
+                    else:
+                        data = [
+                            {
+                                "id": f"{version}:policy",
+                                "version": version,
+                                "locator": "policy",
+                                "quote": document,
+                                "content_hash": content_hash,
+                            }
+                        ]
                 return {
                     "status": "ok",
                     "data": data,

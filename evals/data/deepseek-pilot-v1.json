@@ -1,0 +1,34 @@
+{
+  "dataset_version": "deepseek-pilot-v1",
+  "purpose": "synthetic integration smoke, NOT held-out model quality",
+  "cases": [
+    {
+      "id": "read-pending", "message": "查询 order-pending",
+      "status": "SUCCEEDED", "outcome": "FULFILLED", "operations": 0,
+      "business_state": {
+        "order-pending": {"status": "PENDING_SHIPMENT", "refunded_cents": 0},
+        "order-bob": {"status": "PENDING_SHIPMENT", "refunded_cents": 0},
+        "order-shipped": {"status": "SHIPPED", "refunded_cents": 0}
+      }
+    },
+    {
+      "id": "cancel-policy", "message": "取消订单的条件是什么？",
+      "status": "SUCCEEDED", "outcome": "FULFILLED", "operations": 0,
+      "business_state": {
+        "order-pending": {"status": "PENDING_SHIPMENT", "refunded_cents": 0},
+        "order-bob": {"status": "PENDING_SHIPMENT", "refunded_cents": 0},
+        "order-shipped": {"status": "SHIPPED", "refunded_cents": 0}
+      }
+    },
+    {
+      "id": "cancel-approved", "message": "帮我取消 order-pending", "decision": "approve",
+      "status": "SUCCEEDED", "outcome": "FULFILLED", "refunds": 1, "operations": 1,
+      "expected_refunds": [["order-pending", 19900, "CNY"]],
+      "business_state": {
+        "order-pending": {"status": "CANCELLED", "refunded_cents": 19900},
+        "order-bob": {"status": "PENDING_SHIPMENT", "refunded_cents": 0},
+        "order-shipped": {"status": "SHIPPED", "refunded_cents": 0}
+      }
+    }
+  ]
+}

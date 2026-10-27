@@ -1,6 +1,7 @@
 import argparse
 import asyncio
 import signal
+from contextlib import suppress
 
 from sqlalchemy.engine import make_url
 
@@ -37,17 +38,52 @@ async def run_service(command):
     engine, sessions = make_database(settings.database_url)
     queue = TaskQueue(settings)
     stop = asyncio.Event()
+    worker = None
     # signal.signal works on Windows, unlike loop.add_signal_handler.
     for signum in (signal.SIGINT, signal.SIGTERM):
         signal.signal(signum, lambda *_: stop.set())
     try:
         if command == "worker":
-            await Worker(settings, sessions, queue=queue).serve(stop)
+            worker = Worker(settings, sessions, queue=queue)
+            await serve_until_stopped(worker.serve(stop), stop, settings.shutdown_grace_seconds)
         else:
-            await Dispatcher(RunStore(sessions), queue).serve(stop)
+            await serve_until_stopped(
+                Dispatcher(RunStore(sessions), queue).serve(stop),
+                stop,
+                settings.shutdown_grace_seconds,
+            )
     finally:
+        if worker is not None:
+            close = getattr(worker.runtime.gateway, "aclose", None)
+            if close is not None:
+                await close()
         await queue.close()
         await engine.dispose()
+
+
+async def serve_until_stopped(service, stop, grace_seconds):
+    """Stop intake first; on grace expiry cancel without ACK/forged terminal state."""
+    task = asyncio.create_task(service)
+    stopping = asyncio.create_task(stop.wait())
+    try:
+        done, _ = await asyncio.wait({task, stopping}, return_when=asyncio.FIRST_COMPLETED)
+        if task in done:
+            await task  # propagate unexpected service failure
+        else:
+            try:
+                await asyncio.wait_for(asyncio.shield(task), timeout=grace_seconds)
+            except TimeoutError:
+                task.cancel()
+                with suppress(asyncio.CancelledError):
+                    await task
+    finally:
+        stopping.cancel()
+        with suppress(asyncio.CancelledError):
+            await stopping
+        if not task.done():
+            task.cancel()
+            with suppress(asyncio.CancelledError):
+                await task
 
 
 if __name__ == "__main__":

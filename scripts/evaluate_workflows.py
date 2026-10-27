@@ -15,7 +15,7 @@ from shopresolve.agent.gateway import DemoGateway
 from shopresolve.agent.runtime import AgentRuntime
 from shopresolve.agent.tools import ToolRouter
 from shopresolve.db import make_database
-from shopresolve.models import Base, Refund, ReturnRequest
+from shopresolve.models import Approval, Base, Operation, Order, Refund, ReturnRequest
 from shopresolve.retrieval.index import PolicyIndex
 from shopresolve.runstore import RunStore
 from shopresolve.schemas import Decision
@@ -23,7 +23,7 @@ from shopresolve.seed import seed
 from shopresolve.service import CommerceService
 
 
-async def evaluate(case, directory, retriever):
+async def evaluate(case, directory, retriever, *, gateway=None, model_config=None):
     engine, sessions = make_database(f"sqlite+aiosqlite:///{directory / 'case.sqlite'}")
 
     def clock():
@@ -34,7 +34,7 @@ async def evaluate(case, directory, retriever):
             await connection.run_sync(Base.metadata.create_all)
         await seed(sessions, now=int(clock()))
         store, commerce = RunStore(sessions, clock), CommerceService(sessions, clock)
-        runtime = AgentRuntime(store, DemoGateway(), ToolRouter(commerce, retriever))
+        runtime = AgentRuntime(store, gateway or DemoGateway(), ToolRouter(commerce, retriever))
         conversation = await store.conversation("alice", "conversation")
         config = {
             "provider": "demo",
@@ -43,6 +43,8 @@ async def evaluate(case, directory, retriever):
             "active_budget_ms": 120000,
             "model_timeout_seconds": 5,
         }
+        if model_config:
+            config.update(model_config)
         created = await store.submit(
             "alice",
             conversation["id"],
@@ -85,6 +87,29 @@ async def evaluate(case, directory, retriever):
             checks["outcome"] = state["outcome"] == case["outcome"]
         if "goals" in case:
             checks["goal_count"] = len(state["goals"]) == case["goals"]
+        if "business_state" in case:
+            async with sessions() as session:
+                for order_id, expected in case["business_state"].items():
+                    order = await session.get(Order, order_id)
+                    checks[f"order:{order_id}"] = order is not None and all(
+                        getattr(order, key) == value for key, value in expected.items()
+                    )
+                actual_refunds = sorted(
+                    (r.order_id, r.amount_cents, r.currency)
+                    for r in (await session.scalars(select(Refund))).all()
+                )
+                checks["exact_refunds"] = actual_refunds == sorted(
+                    tuple(row) for row in case.get("expected_refunds", [])
+                )
+                operations = (await session.scalars(select(Operation))).all()
+                checks["operation_count"] = len(operations) == case.get("operations", 0)
+                for op in operations:
+                    approval = await session.get(Approval, op.proposal_id)
+                    checks[f"approval:{op.id}"] = (
+                        approval is not None
+                        and approval.decision == "approve"
+                        and approval.decided_by == "alice"
+                    )
         return {
             "case_id": case["id"],
             "checks": checks,

@@ -200,6 +200,8 @@ class Worker:
                     )
                     last_reclaim = time.monotonic()
                 for message_id, fields in pending or await self.queue.read(self.worker_id):
+                    if stop.is_set():
+                        break  # Leave unhandled notifications pending for later reclaim.
                     await self.handle(message_id, fields)
             except asyncio.CancelledError:
                 raise

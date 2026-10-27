@@ -1,63 +1,72 @@
 # ShopResolve 进度与续接记录
 
-更新：2026-10-27。项目位置：`D:\证书及申请资料\ShopResolve`。
+更新：2026-10-27。仓库：D:\证书及申请资料\ShopResolve。只允许在此仓库工作。
 
-## 当前阶段
+## 当前结论（替代旧的阶段性记录）
 
-持续实施中：单 Agent demo 闭环、MySQL/Redis Worker、检查点/fencing/SSE、真实 ONNX 混合检索、独立 Docker 分析模块及 React 已接通。整个项目未完成：真实模型尚待服务商/模型名与本地 key，CSV 还未接 Agent 自动工具，物流工单/商品替代及部分质量门禁待补齐。
+本地开发版可运行，未完成全部规格、未上线、未创建远程仓库。自写单 Agent Runtime/Harness + FastAPI + MySQL + Redis + Docker 沙箱 + React，没有切换框架。所有订单/退款均为合成模拟数据。
 
-本地代码快照：`f80c69e`（M1 + M2 初始契约）；这是本地提交，不是 GitHub 推送。
+最新完整设计—代码对照见 docs/implementation-audit-2026-10-27.md，含 R01–R18、L01–L18 的证据与缺口。不能把部分覆盖说成全通过，也不要随意估算完成百分比。
 
-最新主要代码提交：`1c92854`（单 Agent 运行闭环、Redis Harness、神经检索、沙箱与工作台）。用户要求持续推进直到额度不足；当前 5 小时额度已用约 98%，正在保存最终交接，不是因阶段结束主动等待。未使用账户中的额度重置权益。
+## 已实现与待补
 
-本轮验证：MySQL 全套 47 passed；临时 SQLite 集 44 passed / 3 skipped；MySQL 并发三项单跑 3 passed；实际 HTTP 子进程 smoke 通过（readiness/OpenAPI/登录/查单/越权拒绝）。Alembic upgrade/check、Ruff、pip check 已通过。CI 尚未远程运行。
+- 业务：取消/退货、审批、操作幂等、短事务、整数金额；运行绑定的提案执行会检查 lease/fencing。没有任意公开 execute HTTP 入口。
+- 执行：数据库 checkpoint、outbox、Redis Streams、消息回收、数据库 reconciler、等待/恢复、SSE seq 续传；同一会话一个活动 run。真实事务前/后进程硬退出测试已有证据。
+- Memory：messages + 带来源 goals/slots + observations/results + checkpoint；摘要目前按需抽取，尚无完整持久摘要版本和 TTL/删除策略。实体指代解析尚未完整接线。本期不做跨会话长期画像。
+- RAG：BM25/dense/RRF/量化重排/父节/owner+version 过滤；缺完整适用条件、索引原子发布、改写预算和逐声明支持评测。
+- 沙箱：独立受认证 manager、owner CSV、真实 Docker 无网络/非 root/资源约束/安全收集；工作台独立模块。尚未接成 Agent 工具，资源/重启/孤儿清理矩阵未完成。
+- 前端/CI：React 构建与 HTTP smoke 已验证；没有真实浏览器交互验收，CI 未远程运行。Compose 只有基础设施；没有完整应用容器编排或公网部署。
+- 待优先补：用户级限流/队列背压、provider 熔断、剩余故障与控制测试、CSV Agent 工具、物流工单和商品库存替代业务。备份恢复演练尚未做。
 
-## 里程碑
+## 本次 DeepSeek 接入补充
 
-- M1 业务内核：已实现并通过本地验证（订单、政策、提案、审批、幂等、账本、迁移、测试）。
-- M2 Agent / memory / intent / loop：进行中；demo 完整闭环可运行，真实模型接口为显式付费 opt-in 的兼容 JSON adapter（尚未调用）。新增 15 项循环测试通过，1 项 MySQL 认领竞争在 MySQL 全套验证。
-- M3 Redis 后台可靠执行与 SSE：进行中；真实 Redis 丢消息恢复、重复通知、MySQL 租约竞争等已有测试。事务提交前/后两个子进程硬退出测试通过，尚不能声称全套 R01–R18 已通过。
-- M4 hybrid / agentic RAG 及评测：已实现 BM25 / 中文 BGE 向量 / RRF / BGE 量化重排 / 父子片段与权限版本过滤。实际检索消融结果已生成，见 docs/evaluation/retrieval-v1-results.md 和配套 JSON；数据仅为小型合成集，不是 Agent 成功率。
-- M5 沙箱：独立 manager、owner-scoped CSV artifact/analysis API、固定镜像和安全收集已实现。5 项真实 Docker 测试通过，另有上传/权限/完整性及内部 manager 认证测试。实际 HTTP 上传→manager→Docker→44800 分结果核验通过。沙箱未接入 Agent 工具路由，当前是工作台独立模块。
-- M6 React、CI、真实模型评测与发布：React TypeScript/Vite build 通过，实际 HTTP 检查验证静态入口可用；尚未做浏览器视觉/交互 QA。真实模型服务待用户提供服务商/模型并本地配 key，未产生付费调用。CI 文件已编写，未在 GitHub 执行；未创建远程仓库。
+用户只有官方 API 余额，三四月充过25元，不确定剩余金额。充值不是绑定某个旧模型。无需先充值；账户实际余额仍需本地 key 后只读核验。
 
-最新新增验证：15 项 Agent 生命周期单元测试、2 项真实 Redis 测试通过；2 项真实 MySQL 子进程硬退出测试通过（事务提交前/后），最终各仅一笔模拟退款。API/Agent/检索/队列组合测试 28 passed / 1 skipped。每组是不同范围的运行，不能简单相加成独立场景总数。
+已核验官方当前 deepseek-flash 和人民币价（高峰缓存未命中输入2元/百万、输出8元/百万；可能变化）。
+本次补齐专用官方 HTTPS 端点、显式非思考、输入字节/输出 token 上限、空/截断 JSON 拒绝、HTTP 连接池与退出清理。
+CLI 增加有限 grace 退出；政策检索在 CPU 计算前释放 SQL session。
+scripts/check_deepseek.py 仅查余额/模型，不调用 completion。
+scripts/pilot_deepseek.py 默认 dry-run；显式 --execute 加本地付费 opt-in 才能调用。
+试跑3个独立合成场景，最多12次请求、建议2元预估预算；逐请求费用预留持久化到 ignored SQLite ledger，未知响应不退预留。
+该预估不是官方账户硬扣费上限；新批次不覆盖原证据。详情 docs/evaluation/deepseek-pilot-plan.md。
 
-检索冻结草案测试集 16 条（外加 8 条 dev），BM25 Recall@3=93.75%、混合+重排=100%；Recall@1 从 68.75% 到 75%，仅多命中一个样本（+6.25 个百分点），不能夸大泛化提升。重排 CPU P50≈1343ms，明显慢于 BM25≈0.4ms。报告保留所有配置，不隐藏纯向量较弱结果；标注由助手构造，待独立人工审核。
+当前没有真实模型 key，没有付费调用，不得标真实模型成功率。不要在聊天里索取密钥或打印 .env。
 
-## 续接入口
+## 最新验证证据
 
-先读本文件，再读 docs/design 中 10、11、13、14。运行 `.venv\Scripts\python.exe -m pytest` 和 Ruff，排查实际结果后更新记录。M1 的 execute 是内部服务入口，尚未接入 run/fencing；不得直接开放 HTTP 写执行接口。下一阶段必须补运行上下文权限。
+- docs/evaluation/mysql-deepseek-preflight.xml：本次真实 MySQL 全套 106 passed，163.44秒，包含 Redis、Docker 和真实退出用例，无 skipped。随后新增的 pilot 客观 grader 单测另跑4 passed，不能把报告冒充已含该新增测试。
+- 本次网关/预算新增集：18 passed；随后扩充 pilot grader 后 test_pilot_budget.py 为4 passed。
+- docs/evaluation/local-deepseek-preflight.xml：后续本地全套101 passed / 6 skipped，64.03秒；与 MySQL 报告范围不同，不相加。退出时停止领取新工作的补丁后，队列/网关/预算组合21 passed。
+- Ruff check 与 format check 通过（最终提交前再检查）。
+- scripts/pilot_deepseek.py 默认 dry-run 实际运行通过，没有 API 请求。
+- 上一阶段 docs/evaluation/mysql-final-pass.xml：88 passed；mysql-regression-latest.xml：87 passed。历史失败文件保留，不当作最新结果。
+- 上一阶段真实 HTTP Agent/Redis/SSE smoke、上传→manager→Docker 44800分计算 smoke 均通过；临时进程均已终止。
+- 本次 CLI/连接池修改后再次运行 scripts/smoke_agent_http.py 通过：API/outbox/Redis/worker/订单核验/SSE/静态工作台；临时进程已结束。
+- 真实浏览器 QA、付费 LLM、公开基准均未运行。
 
-更新：run-bound 提案现在已在同一业务事务检查有效 lease/fencing 和 owner；不能继续沿用上段旧 M1 注记当作当前未实现。没有开放任意 execute HTTP 入口。当前 `.cache` 下有模型/上传/沙箱运行数据，都是 ignored，不应推送。
+既有检索实验：16条合成冻结草案 + 8 dev；BM25 Recall@3=93.75%，hybrid+rerank=100%；Recall@1仅多1题（+6.25个百分点）；重排CPU P50约1343ms。标签由助手构造，待独立审阅，不能声称普遍提升。
+既有20条 workflow 回归20/20、0额外账本案例，控制器为 deterministic demo，不是LLM成功率。
+pilot 新增金额/目标订单/审批/operation和其他用户哨兵检查；正式冻结集、语言证据支持和更多trial仍待补。
 
-## 环境与安全
+## 环境、数据与 GitHub
 
-Python 3.12.13 的项目专用 `.venv`，未改原 Conda。Docker Desktop 已启动；独立 shopresolve-mysql-1（MySQL 8.4.6）绑定 127.0.0.1:13316，独立卷 shopresolve_shopresolve_mysql。shopresolve 库含合成演示订单；shopresolve_test 供测试重建。其他数据库/容器未修改。所有数据为合成，无真实交易。未连接模型供应商，不需要 API key。HTTP smoke 的临时进程已自行终止。
+项目专用 .venv，Python3.12.13；不改全局 Python/Conda。MySQL8.4.6 在127.0.0.1:13316，Redis7.4.5在127.0.0.1:16379。
+shopresolve 为合成演示库；shopresolve_test 为唯一允许重建的测试库。不得清理其他数据库、Docker容器或卷。
+沙箱镜像 shopresolve-sandbox:v1 已构建。Compose MySQL/Redis 保留；没有常驻 API/Worker/manager。
+.env、.venv、.cache、模型缓存、node_modules、dist均 ignored，不提交。上层是证件/申请材料，绝不可 git add 上层。
+GitHub 先私有，检查后才能公开。账号 Yamila56，远程仓库未创建/推送。已完成本地提交历史保留，不覆盖。
 
-MySQL 首次并发测试发现间隙锁死锁，调整订单/回执锁顺序并增加只针对 1205/1213 的有限重试后全套通过，详见 docs/adr/0001-business-kernel-first.md。真实 kill/restart 恢复仍未实现，不将事务异常回滚测试冒充进程恢复。
+## 续接与命令
 
-用户已确认 GitHub 先私有，检查后再公开。GitHub 账号已能读取；远程仓库尚未创建/推送。不可把上层申请资料目录加入 Git；只推送 ShopResolve 内已审查文件。不得提交 .env、.venv、个人证件或成绩单。
+先读本文件、AGENTS.md，再完整读 docs/design/10、11、13、14；以当前 diff/报告核实，不把设计文档开头的“待实现”当当前实现状态。
+文档本身不是完成证据。
 
-额度/会话突然停止时，以本文件及实际 Git diff/测试状态为准，不能把计划当完成。
+- .venv\Scripts\python.exe -m ruff check .
+- .venv\Scripts\python.exe -m ruff format --check .
+- .venv\Scripts\python.exe -m pytest -q
+- .venv\Scripts\python.exe scripts/test_mysql.py --junitxml=新的报告路径
+- .venv\Scripts\python.exe scripts/smoke_agent_http.py
+- .venv\Scripts\python.exe scripts/smoke_sandbox_http.py
 
-## 下一步
-
-最新优先级（替代下方旧计划）：
-
-收尾复测：session 7784 正在运行最终全套，报告路径 docs/evaluation/mysql-final-pass.xml；如对话被额度中断，先检查该报告是否完整及 failures/errors 字段，不能把尚未结束的运行算通过。
-
-1. 本轮 MySQL 全套已完成：87 passed，报告 docs/evaluation/mysql-regression-latest.xml；本地是 81 passed / 6 skipped。历史 mysql-regression.xml 有一次 405/404 失败，已修复 API fallback，不能用历史失败文件当最终结果。之后又补了 CSV 表头公式拒绝和 provider 配置变更守卫，需看后续复测记录。
-2. CSV 作为 Agent 的受控工具整合；物流人工工单及替代商品业务按规格补齐；完善 admission/rate limit、provider 配置锁定、优雅退出和剩余故障用例。
-3. 真实模型服务信息与本地 key 到位后，先有明确调用预算的小样本 contract test，再做冻结任务集/多次重复评测。当前用户仅确认会提供，尚无服务商或模型名。
-4. 浏览器交互 QA、CI 运行及安全检查、GitHub 私有推送（完成验收后）。
-
-本轮已生成 docs/evaluation/workflow-regression-v1-results.json（20/20 deterministic 回归、0 额外账本），不算真实 LLM 能力。真实 API+dispatcher+worker+Redis+SSE 多进程 smoke 和独立 sandbox HTTP smoke 均通过；测试进程已终止，数据库/Redis 保留。
-
-1. 完成 M2 的 ModelGateway/scripted provider、工具注册与单 Agent 循环；先只读和受控提案，不直接接执行写工具。
-2. 实现会话/TaskGoal/slot/memory 的持久化与上下文装配，对齐 L01–L18。
-3. M3 再接 outbox/worker/run lease/fencing/审批恢复，最后开放经保护的执行路径。
-
-运行命令：`.venv\Scripts\python.exe -m pytest -q`、`.venv\Scripts\python.exe -m ruff check .`。MySQL 全套需要 SHOPRESOLVE_TEST_DATABASE_URL（用 .env 的项目数据库凭据，但库名改成 shopresolve_test；不要打印/提交密码）。实际 HTTP 检查用 `.venv\Scripts\python.exe scripts/smoke_http.py`。
-
-本地 MySQL 测试也可直接运行 `.venv\Scripts\python.exe scripts/test_mysql.py`，它自动读取本项目 .env 并仅切换到 shopresolve_test，避免复制密码。Docker MySQL 当前保留运行供下阶段开发；没有常驻 API/Worker。请不要对该 Compose 执行带卷删除的清理命令，以免丢失演示数据。
+用户要求持续推进，不因里程碑自然停工；本轮配额已重置，不沿用旧记录“98%用完”。不要自动购买额度或消耗重置权益。
+真实评测试跑需要用户本地配置密钥及确认费用；这不阻止继续无密钥工程工作。

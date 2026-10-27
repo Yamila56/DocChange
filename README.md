@@ -13,7 +13,9 @@
 - 独立内部 Sandbox Manager、CSV 上传、无网络非 root Docker 分析、资源限制、日志限额与安全输出收集。
 - React 工作台：任务、订单、政策依据、确认卡、执行时间线及独立 CSV 分析模块。
 
-注意：CSV 分析尚未接为 Agent 自动委派工具；物流人工工单、商品库存/替代品业务、部分质量门禁仍待补齐。真实模型适配器已编写，但服务商配置和真实模型评测尚未完成。不宣称生产就绪、所有故障已覆盖或已部署到 GitHub。
+注意：CSV 分析尚未接为 Agent 自动委派工具；物流人工工单、商品库存/替代品业务、限流背压与部分质量门禁仍待补齐。已确定首个模型服务为官方 DeepSeek，适配器离线测试通过，但本地密钥和真实模型评测尚未完成。不宣称生产就绪、所有故障已覆盖或已部署到 GitHub。
+
+逐项状态及 R01–R18/L01–L18 缺口见 [实现审查](docs/implementation-audit-2026-10-27.md)。Memory 有工作状态和恢复，不等于已完成全部摘要版本/生命周期设计；Compose 当前只编排基础设施，不等于整套应用上线。
 
 ## 架构
 
@@ -70,6 +72,20 @@ cd ..
 ```
 
 之后在 .env 设置 SHOPRESOLVE_RETRIEVAL_MODE=hybrid、SHOPRESOLVE_ENABLE_RERANKER=true，再重启 Worker。重排提高部分命中但显著增加 CPU 时延，默认保持 BM25。下载缓存不提交 Git。真实远程模型须明确设置 provider/model/base URL/key 及 ALLOW_PAID_MODEL，当前没有付费调用。
+
+### DeepSeek 首轮试跑
+
+先运行免费预览：
+
+```powershell
+.\.venv\Scripts\python.exe scripts/pilot_deepseek.py
+```
+
+密钥只放本地 `.env`，不发聊天、不提交 Git。`scripts/check_deepseek.py` 可只读查询官方余额和模型。
+付费执行必须显式 `--execute` 并配置 opt-in；建议先最多12次请求/2元预估预算。
+费用预留在本地持久保存，未知响应不退预留；这不是官方账户扣费硬上限。
+三场景 smoke 不是最终准确率，报告默认只存 ignored 本地目录。
+配置、费用算式、正式评测与公开数据集边界见 [评测计划](docs/evaluation/deepseek-pilot-plan.md)。
 
 ## 可选隔离计算
 
