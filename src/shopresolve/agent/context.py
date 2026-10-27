@@ -3,7 +3,9 @@
 import copy
 import json
 
+from shopresolve.agent.capabilities import manifest
 from shopresolve.errors import DomainError
+from shopresolve.service import digest
 
 
 class ContextBuilder:
@@ -11,18 +13,33 @@ class ContextBuilder:
         self.max_bytes = max_utf8_bytes
         self.recent_messages = recent_messages
 
-    def build(self, state, tool_specs):
-        messages = state["messages"]
-        earlier = messages[: -self.recent_messages]
+    def refresh_summary(self, state):
+        earlier = state["messages"][: -self.recent_messages]
+        previous = state.get("conversation_summary")
         summary = None
         if earlier:
+            text = "\n".join(m["text"][:100] for m in earlier)[-2000:]
             summary = {
-                "version": 1,
+                "version": previous.get("version", 0) if previous else 0,
                 "method": "extractive-not-authoritative",
                 "message_ids": [m["id"] for m in earlier],
-                "text": "\n".join(m["text"][:100] for m in earlier)[-2000:],
+                "source_hash": digest(earlier),
+                "text": text,
+                "text_hash": digest(text),
             }
+            if summary != previous:
+                summary["version"] += 1
+        if summary == previous:
+            return False
+        state["conversation_summary"] = summary
+        return True
+
+    def build(self, state, tool_specs):
+        self.refresh_summary(state)
+        messages = state["messages"]
+        summary = copy.deepcopy(state.get("conversation_summary"))
         context = {
+            "capabilities": manifest(),
             "goals": copy.deepcopy(state["goals"]),
             "messages": messages[-self.recent_messages :],
             "history_summary": summary,

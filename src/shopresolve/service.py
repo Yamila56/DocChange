@@ -169,7 +169,61 @@ class CommerceService:
                 ).all()
             ]
 
-    async def _eligibility(self, session, order, request, policy):
+    async def eligibility(self, owner, order_id):
+        """Read-only advisory facts; no proposal/approval or financial side effect."""
+        async with self.sessions() as session:
+            order = await self._order(session, owner, order_id)
+            policies = (await session.scalars(select(Policy).where(Policy.active.is_(True)))).all()
+            if len(policies) != 1:
+                raise DomainError("POLICY_UNAVAILABLE", "No unique active policy")
+            policy = policies[0]
+            items = (
+                await session.scalars(select(OrderItem).where(OrderItem.order_id == order_id))
+            ).all()
+            probes = [PrepareAction(action="CANCEL_ORDER", order_id=order_id)] + [
+                PrepareAction(
+                    action="REQUEST_RETURN",
+                    order_id=order_id,
+                    item_id=item.id,
+                    quantity=1,
+                    reason="只读资格核验，不构成申请或批准",
+                )
+                for item in items
+            ]
+            results = []
+            for request in probes:
+                try:
+                    amount, _ = await self._eligibility(session, order, request, policy, lock=False)
+                    result = {"allowed": True, "reason": None, "probe_amount_cents": amount}
+                except DomainError as exc:
+                    if exc.code not in {
+                        "NOT_CANCELLABLE",
+                        "NOT_RETURNABLE",
+                        "RETURN_WINDOW_CLOSED",
+                        "CATEGORY_EXCLUDED",
+                        "QUANTITY_EXCEEDED",
+                        "AMOUNT_EXCEEDED",
+                    }:
+                        raise
+                    result = {"allowed": False, "reason": exc.code}
+                results.append(
+                    {
+                        "action": request.action,
+                        "item_id": request.item_id,
+                        "probe_quantity": request.quantity,
+                        **result,
+                    }
+                )
+            return {
+                "order_id": order_id,
+                "order_version": order.version,
+                "policy_version": policy.version,
+                "actions": results,
+                "observed_at": int(self.clock()),
+                "advisory_only": True,
+            }
+
+    async def _eligibility(self, session, order, request, policy, *, lock=True):
         if (
             not policy.active
             or digest(
@@ -191,11 +245,10 @@ class CommerceService:
         now = int(self.clock())
         if order.delivered_at > now or now - order.delivered_at > policy.return_days * 86400:
             raise DomainError("RETURN_WINDOW_CLOSED", "Order is outside the return window")
-        item = await session.scalar(
-            select(OrderItem)
-            .where(OrderItem.id == request.item_id, OrderItem.order_id == order.id)
-            .with_for_update()
+        item_query = select(OrderItem).where(
+            OrderItem.id == request.item_id, OrderItem.order_id == order.id
         )
+        item = await session.scalar(item_query.with_for_update() if lock else item_query)
         if item is None:
             raise DomainError("NOT_FOUND", "Resource not found", 404)
         if item.category in policy.excluded_categories:
@@ -208,7 +261,9 @@ class CommerceService:
         return amount, item
 
     @retry_local_transaction
-    async def prepare(self, owner, request: PrepareAction, key, *, lease=None):
+    async def prepare(
+        self, owner, request: PrepareAction, key, *, lease=None, expected_policy_version=None
+    ):
         async with self.sessions.begin() as session:
             if lease is not None:
                 from shopresolve.runstore import require_lease
@@ -216,7 +271,10 @@ class CommerceService:
                 await require_lease(session, lease, self.clock)
                 if lease.owner_id != owner:
                     raise DomainError("NOT_FOUND", "Resource not found", 404)
-            idem = await self._idem(session, owner, "prepare", key, request.model_dump())
+            payload = request.model_dump()
+            if expected_policy_version is not None:
+                payload["expected_policy_version"] = expected_policy_version
+            idem = await self._idem(session, owner, "prepare", key, payload)
             if idem.response is not None:
                 return idem.response
             order = await self._order(session, owner, request.order_id, lock=True)
@@ -226,6 +284,8 @@ class CommerceService:
                     "POLICY_UNAVAILABLE", "Exactly one active demo policy is required"
                 )
             policy = policies[0]
+            if expected_policy_version is not None and policy.version != expected_policy_version:
+                raise DomainError("POLICY_EVIDENCE_STALE", "Retrieved policy is no longer active")
             amount, _ = await self._eligibility(session, order, request, policy)
             proposal = Proposal(
                 id=str(uuid4()),

@@ -100,7 +100,12 @@ def test_legal_decline_is_not_fulfilled_outcome():
         kind="final_answer", text="已发货，不能取消", goal_ids=["g1"], evidence_ids=["e1"]
     )
     goal = GoalSnapshot(
-        "g1", Intent.CANCEL_ORDER, "REQUEST_ACTION", "DECLINED", evidence_required=True
+        "g1",
+        Intent.CANCEL_ORDER,
+        "REQUEST_ACTION",
+        "DECLINED",
+        evidence_required=True,
+        evidence_ids=("e1",),
     )
     report = check_completion(answer, [goal], verified_operations=set(), accessible_evidence={"e1"})
     assert report.allowed and report.outcome == "DECLINED"

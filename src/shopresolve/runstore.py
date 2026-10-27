@@ -13,6 +13,7 @@ from shopresolve.models import (
     Conversation,
     Message,
     ModelStep,
+    Operation,
     Outbox,
     Proposal,
     Run,
@@ -430,6 +431,43 @@ class RunStore:
             )
 
     async def _finish(self, session, run, status, outcome, reason, now):
+        # A business transaction can commit just before cancellation/expiry or a
+        # worker failure, while its subsequent loop checkpoint has not committed.
+        # Reconcile authoritative receipts under the same run lock, never hide them.
+        operations = (
+            await session.scalars(
+                select(Operation)
+                .join(Proposal, Operation.proposal_id == Proposal.id)
+                .where(Proposal.run_id == run.id, Operation.owner_id == run.owner_id)
+            )
+        ).all()
+        state = copy.deepcopy(run.state)
+        known = {r["operation_id"] for r in state.get("results", [])}
+        recovered = []
+        for operation in operations:
+            if operation.id not in known:
+                state["results"].append(copy.deepcopy(operation.result))
+                recovered.append(operation.id)
+                known.add(operation.id)
+            for goal in state.get("goals", []):
+                if goal.get("proposal_id") == operation.proposal_id:
+                    goal["operation_ids"] = [operation.id]
+                    goal["status"] = "COMPLETED"
+        if status in {"CANCELLED", "EXPIRED"}:
+            for goal in state.get("goals", []):
+                if goal["status"] not in {"COMPLETED", "DECLINED", "WITHDRAWN"}:
+                    goal["status"] = "WITHDRAWN"
+            state["pending"], state["question"] = None, None
+            state["answer"] = "任务已停止；已提交的业务操作不会回滚。" + "\n".join(
+                f"操作 {r['operation_id']}，金额 {r['amount_cents']} 分（模拟业务）。"
+                for r in state.get("results", [])
+            )
+        elif recovered:
+            state["answer"] = (state.get("answer") or "") + "\n已回查到业务提交回执。"
+        if state != run.state:
+            checkpoint(session, run, state)
+        if status != "SUCCEEDED" and state.get("results"):
+            outcome = "PARTIAL"
         run.status, run.outcome, run.stop_reason = status, outcome, reason
         run.lease_owner, run.lease_until = None, 0
         await session.execute(

@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 from sqlalchemy import func, select
 
+from shopresolve.agent.gateway import ScriptedGateway
 from shopresolve.models import Refund, Run
 from shopresolve.schemas import Decision
 from tests.test_runs import drive, new_run
@@ -58,3 +59,47 @@ async def test_hard_process_exit_preserves_exactly_one_local_effect(commerce, po
     async with sessions() as session:
         assert await session.scalar(select(func.count()).select_from(Refund)) == 1
     assert (await service.get_order("alice", "order-pending"))["refunded_cents"] == 19900
+
+
+@pytest.mark.mysql
+async def test_hard_exit_after_saved_decision_reuses_original_tool_request(commerce):
+    _, sessions, _ = commerce
+    async with sessions() as session:
+        if session.bind.dialect.name != "mysql":
+            pytest.skip("Real crash recovery requires the disposable MySQL schema")
+        url = session.bind.url.render_as_string(hide_password=False)
+    store, rid, runtime = await new_run(commerce)
+    environment = os.environ.copy()
+    environment["SHOPRESOLVE_DATABASE_URL"] = url
+    root = Path(__file__).resolve().parents[1]
+    child = await asyncio.create_subprocess_exec(
+        sys.executable,
+        str(root / "scripts" / "crash_worker_once.py"),
+        rid,
+        "after_model_response_commit",
+        env=environment,
+        cwd=root,
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE,
+        creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0,
+    )
+    try:
+        _, stderr = await asyncio.wait_for(child.communicate(), timeout=30)
+    except BaseException:
+        if child.returncode is None:
+            child.kill()
+            await child.wait()
+        raise
+    assert child.returncode == 23, stderr.decode(errors="replace")[-2000:]
+    async with sessions.begin() as session:
+        row = await session.get(Run, rid)
+        calls = row.model_calls
+        original = row.state["pending"]
+        assert original["phase"] == "DECISION"
+        assert original["response"]["calls"][0]["arguments"]["order_id"] == "order-pending"
+        row.lease_until = 0
+    runtime.gateway = ScriptedGateway([])
+    final = await drive(store, rid, runtime)
+    assert final["outcome"] == "FULFILLED", final
+    assert final["model_calls"] == calls
+    assert runtime.gateway.calls == 0

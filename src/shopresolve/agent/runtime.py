@@ -9,6 +9,7 @@ from dataclasses import asdict
 import httpx
 from pydantic import ValidationError
 
+from shopresolve.agent.capabilities import SUPPORTED_INTENTS
 from shopresolve.agent.context import ContextBuilder
 from shopresolve.agent.contracts import (
     AskUser,
@@ -25,6 +26,8 @@ from shopresolve.agent.control import (
     check_completion,
     validate_intent_sources,
 )
+from shopresolve.agent.entities import explicit_choice
+from shopresolve.agent.evidence import assess, policy_goal_complete
 from shopresolve.errors import DomainError
 from shopresolve.schemas import PrepareAction
 from shopresolve.service import digest
@@ -58,10 +61,35 @@ class AgentRuntime:
                     await self.store.pause(lease, state, "WAITING_APPROVAL")
                     return
                 config = state["config"]
+                # Verified, terminal dispositions need no extra paid request to narrate them.
+                if (
+                    state["phase"] != "INTENT"
+                    and state["goals"]
+                    and all(g["status"] in DISPOSED for g in state["goals"])
+                    and state.get("pending") is None
+                ):
+                    await self._act(
+                        lease,
+                        state,
+                        -1,
+                        FinalAnswer(
+                            kind="final_answer",
+                            text="服务端核验结果",
+                            goal_ids=[g["id"] for g in state["goals"]],
+                            evidence_ids=list(
+                                dict.fromkeys(
+                                    eid for g in state["goals"] for eid in g.get("evidence_ids", [])
+                                )
+                            ),
+                        ),
+                    )
+                    return
                 if active_ms >= config["active_budget_ms"]:
                     raise DomainError("ACTIVE_BUDGET", "Active execution budget exhausted")
                 pending = state.get("pending")
                 if pending is None:
+                    if self.context.refresh_summary(state):
+                        await self.store.save(lease, state, kind="memory.summary_updated")
                     context = self.context.build(state, self.tools.descriptions())
                     seq = await self.store.reserve_model(
                         lease, state["phase"], digest(context), config["model_limit"]
@@ -119,6 +147,8 @@ class AgentRuntime:
                         "NO_PROGRESS",
                         "MODEL_BUDGET",
                         "ACTIVE_BUDGET",
+                        "RETRIEVAL_BUDGET",
+                        "POLICY_EVIDENCE_STALE",
                     }:
                         raise
                     state["pending"] = None
@@ -168,6 +198,11 @@ class AgentRuntime:
         by_id = {g["id"]: g for g in state["goals"]}
         message_map = {m["id"]: m["text"] for m in state["messages"]}
         for item in frame.items:
+            if any(
+                not any(mention in message_map[mid] for mid in frame.source_message_ids)
+                for mention in item.target_mentions
+            ):
+                raise DomainError("INVALID_SOURCE", "Target mentions must quote user messages")
             if item.existing_goal_id:
                 goal = by_id[item.existing_goal_id]
                 if goal["status"] == "COMPLETED":
@@ -191,18 +226,40 @@ class AgentRuntime:
             if item.relation_to_goal == "replace":
                 goal["slots"] = {}
                 goal.pop("order_observation", None)
+                goal.pop("entity_candidates", None)
+            mentions = list(
+                dict.fromkeys(
+                    (goal.get("mentions", []) if item.relation_to_goal == "refine" else [])
+                    + item.target_mentions
+                )
+            )[-10:]
             goal.update(
                 intent=item.intent.value,
                 mode=item.mode,
-                mentions=item.target_mentions,
+                mentions=mentions,
                 status="UNRESOLVED",
             )
+            goal["evidence_ids"] = []
+            goal["policy_evidence"] = {}
+            goal.pop("policy_assessment", None)
+            choice = explicit_choice(
+                state["messages"][-1]["text"], goal.get("entity_candidates", [])
+            )
+            if choice:
+                goal["slots"]["order_id"] = {
+                    "value": choice,
+                    "source_type": "user",
+                    "source_ref": state["messages"][-1]["id"],
+                    "verification_state": "asserted",
+                }
+                goal.pop("order_observation", None)
             for slot in item.slot_candidates:
                 if slot.name not in {"order_id", "item_id", "quantity", "reason"}:
                     raise DomainError("INVALID_SLOT", "Unsupported slot")
                 if (
                     slot.name in {"order_id", "item_id"}
                     and str(slot.value) not in message_map[slot.source_message_id]
+                    and not (slot.name == "order_id" and slot.value == choice)
                 ):
                     raise DomainError("INVALID_SOURCE", "Entity ID was not supplied by the user")
                 old = goal["slots"].get(slot.name)
@@ -214,7 +271,13 @@ class AgentRuntime:
                     "source_type": "user",
                     "source_ref": slot.source_message_id,
                     "verification_state": "asserted",
+                    "observed_at": int(self.tools.service.clock()),
                 }
+            if item.intent.value not in SUPPORTED_INTENTS:
+                goal["status"], goal["decline_reason"] = "DECLINED", "UNSUPPORTED_CAPABILITY"
+                goal["capability_notice"] = (
+                    "当前不支持该业务，未创建人工工单、未执行换货或商品推荐。"
+                )
         state["intent_frame"] = frame.model_dump(mode="json")
 
     @staticmethod
@@ -228,12 +291,32 @@ class AgentRuntime:
         if isinstance(decision, ToolCalls):
             for call in decision.calls:
                 goal = self.goal(state, call.arguments.get("goal_id"))
+                if goal["status"] in DISPOSED | {"WAITING_APPROVAL"}:
+                    raise DomainError(
+                        "GOAL_CLOSED", "Cannot issue new tools for a disposed/waiting goal"
+                    )
+                if call.name == "resolve_order":
+                    if call.arguments.get("mention") not in goal.get("mentions", []):
+                        raise DomainError(
+                            "INVALID_SOURCE", "Resolve only a verbatim target mention"
+                        )
+                if call.name == "search_policy":
+                    requests = goal.setdefault("policy_requests", [])
+                    identifier = f"{step}:{call.call_id}"
+                    if identifier not in requests:
+                        if len(requests) >= 3:
+                            raise DomainError(
+                                "RETRIEVAL_BUDGET", "At most two policy query rewrites"
+                            )
+                        requests.append(identifier)
                 expected_order = goal.get("slots", {}).get("order_id", {}).get("value")
-                if call.name in {"get_order", "get_shipment"} and expected_order is not None:
-                    if call.arguments.get("order_id") != expected_order:
+                if call.name in {"get_order", "get_shipment", "calculate_eligibility"}:
+                    if expected_order is None or call.arguments.get("order_id") != expected_order:
                         raise DomainError(
                             "TARGET_MISMATCH", "Read target differs from the user's order"
                         )
+            # Persist retrieval reservations before IO; replaying a saved decision uses same IDs.
+            await self.store.save(lease, state)
             results = await asyncio.gather(
                 *[self._read(lease, state, step, call) for call in decision.calls]
             )
@@ -245,6 +328,38 @@ class AgentRuntime:
                 )
                 made_progress = False
                 if result["status"] == "ok":
+                    if call.name == "calculate_eligibility":
+                        made_progress = goal.get("eligibility_observation") != result["data"]
+                        goal["eligibility_observation"] = result["data"]
+                        if goal["mode"] == "INQUIRE" and policy_goal_complete(goal):
+                            goal["status"] = "COMPLETED"
+                    if call.name == "resolve_order":
+                        candidates = result["data"]["candidates"]
+                        previous = goal.get("entity_candidates")
+                        goal["entity_candidates"] = candidates
+                        goal["entity_source_ref"] = call.call_id
+                        made_progress = previous != candidates
+                        if len(candidates) == 1 and not result["data"]["truncated"]:
+                            goal["slots"]["order_id"] = {
+                                "value": candidates[0]["id"],
+                                "source_type": "tool",
+                                "source_ref": call.call_id,
+                                "verification_state": "verified",
+                            }
+                        else:
+                            goal["status"] = "WAITING_INPUT"
+                            labels = [
+                                f"第{i}个：{row['id']}，{row['status']}，"
+                                + "/".join(item["name"] for item in row["items"])
+                                for i, row in enumerate(candidates, 1)
+                            ]
+                            state["question"] = (
+                                "请明确选择订单（订单编号或第几个）；不能唯一确定。\n"
+                                + "\n".join(labels)
+                            )
+                            state["pending"] = None
+                            await self.store.pause(lease, state, "WAITING_USER")
+                            return "PAUSE"
                     if call.name in {"get_order", "get_shipment"}:
                         data = result["data"]
                         previous = goal.get("order_observation")
@@ -256,6 +371,17 @@ class AgentRuntime:
                             "verification_state": "verified",
                         }
                         made_progress = previous != data
+                        if (
+                            goal["intent"] == "RETURN_REQUEST"
+                            and "item_id" not in goal["slots"]
+                            and len(data["items"]) == 1
+                        ):
+                            goal["slots"]["item_id"] = {
+                                "value": data["items"][0]["id"],
+                                "source_type": "tool",
+                                "source_ref": call.call_id,
+                                "verification_state": "verified",
+                            }
                         if goal["mode"] == "INQUIRE" and goal["intent"] in {
                             "ORDER_QUERY",
                             "SHIPMENT_QUERY",
@@ -266,10 +392,31 @@ class AgentRuntime:
                         known = {e["id"] for e in state["evidence"]}
                         new = [e for e in evidence if e["id"] not in known]
                         state["evidence"].extend(new)
-                        goal["evidence_ids"] = [e["id"] for e in evidence]
                         made_progress = bool(new)
-                        if evidence and goal["mode"] == "INQUIRE":
+                        # Only evidence observed for THIS goal may discharge its obligation.
+                        goal_evidence = goal.setdefault("policy_evidence", {})
+                        for e in evidence:
+                            goal_evidence[e["id"]] = e
+                        assessment = assess(goal, list(goal_evidence.values()))
+                        goal["policy_assessment"] = assessment
+                        goal["evidence_ids"] = assessment["evidence_ids"]
+                        if goal["mode"] == "INQUIRE" and policy_goal_complete(goal):
                             goal["status"] = "COMPLETED"
+                        elif (
+                            assessment["unsupported_topic"]
+                            or not assessment["required_sections"]
+                            or (
+                                len(goal.get("policy_requests", [])) >= 3
+                                and not assessment["supported"]
+                            )
+                        ):
+                            goal["status"] = "WAITING_INPUT"
+                            state["question"] = (
+                                "现有政策证据不足以回答该问题，请明确咨询范围；尚未转人工。"
+                            )
+                            state["pending"] = None
+                            await self.store.pause(lease, state, "WAITING_USER")
+                            return "PAUSE"
                 elif result["error_code"] == "NOT_FOUND":
                     # A missing/unauthorized target is not an automatic successful resolution.
                     state["question"] = "未找到可访问的订单，请核对当前账号和订单编号。"
@@ -288,13 +435,18 @@ class AgentRuntime:
                 if not can_continue:
                     raise DomainError("NO_PROGRESS", "Repeated tool calls produced no progress")
         elif isinstance(decision, AskUser):
-            for gid in decision.goal_ids:
-                self.goal(state, gid)["status"] = "WAITING_INPUT"
+            question_goals = [self.goal(state, gid) for gid in decision.goal_ids]
+            if any(goal["status"] in DISPOSED | {"WAITING_APPROVAL"} for goal in question_goals):
+                raise DomainError("GOAL_CLOSED", "Cannot rewrite a disposed or approval goal")
+            for goal in question_goals:
+                goal["status"] = "WAITING_INPUT"
             state["question"], state["pending"] = decision.question, None
             await self.store.pause(lease, state, "WAITING_USER")
             return "PAUSE"
         elif isinstance(decision, ProposeAction):
             goal = self.goal(state, decision.goal_id)
+            if goal["status"] in DISPOSED | {"WAITING_APPROVAL"}:
+                raise DomainError("GOAL_CLOSED", "Proposal already pending or goal disposed")
             required_intent = {"CANCEL_ORDER": "CANCEL_ORDER", "REQUEST_RETURN": "RETURN_REQUEST"}
             if (
                 goal["mode"] != "REQUEST_ACTION"
@@ -309,6 +461,11 @@ class AgentRuntime:
                 or slots.get("order_id", {}).get("verification_state") != "verified"
             ):
                 raise DomainError("UNVERIFIED_TARGET", "Read the authorized order first")
+            assessment = goal.get("policy_assessment", {})
+            if not assessment.get("supported") or len(assessment.get("versions", [])) != 1:
+                raise DomainError(
+                    "POLICY_EVIDENCE_REQUIRED", "Retrieve applicable policy before proposing"
+                )
             request = PrepareAction(**decision.model_dump(exclude={"kind", "goal_id"}))
             for key, value in request.model_dump(exclude={"action"}).items():
                 if value is not None and slots.get(key, {}).get("value") != value:
@@ -321,6 +478,7 @@ class AgentRuntime:
                     request,
                     f"{lease.run_id}/{step}/{decision.goal_id}",
                     lease=lease,
+                    expected_policy_version=assessment["versions"][0],
                 )
                 goal["proposal_id"], goal["status"] = proposal["id"], "WAITING_APPROVAL"
                 state["question"] = "请检查操作对象、金额和影响，使用确认卡批准或拒绝。"
@@ -346,6 +504,7 @@ class AgentRuntime:
                     tuple(g["operation_ids"]),
                     g["mode"] == "INQUIRE"
                     and g["intent"] in {"POLICY_QUERY", "RETURN_REQUEST", "CANCEL_ORDER"},
+                    tuple(g.get("evidence_ids", [])),
                 )
                 for g in state["goals"]
             ]
@@ -417,7 +576,11 @@ class AgentRuntime:
                     else "已取消订单并登记模拟退款（不涉及真实资金）"
                 )
                 lines.append(f"{label}: {description}；金额 {result['amount_cents']} 分。")
-            elif goal["status"] == "COMPLETED" and goal.get("order_observation"):
+            elif (
+                goal["status"] == "COMPLETED"
+                and goal.get("order_observation")
+                and goal["intent"] in {"ORDER_QUERY", "SHIPMENT_QUERY"}
+            ):
                 order = goal["order_observation"]
                 lines.append(
                     f"{label}: {order['id']}，状态 {order['status']}，"
@@ -425,9 +588,28 @@ class AgentRuntime:
                 )
             elif goal["status"] == "COMPLETED" and goal.get("evidence_ids"):
                 quotes = [e["quote"] for e in state["evidence"] if e["id"] in goal["evidence_ids"]]
+                if goal.get("eligibility_observation"):
+                    checks = goal["eligibility_observation"]
+                    target_action = (
+                        "CANCEL_ORDER" if goal["intent"] == "CANCEL_ORDER" else "REQUEST_RETURN"
+                    )
+                    facts = [
+                        f"{a['item_id'] or '订单'}："
+                        + ("符合当前规则" if a["allowed"] else f"不符合（{a['reason']}）")
+                        for a in checks["actions"]
+                        if a["action"] == target_action
+                    ]
+                    lines.append(
+                        f"{label}: {checks['order_id']} 当前只读资格核验："
+                        + "；".join(facts)
+                        + "；未创建提案、未办理业务。"
+                    )
                 lines.append(f"{label}: " + "\n".join(quotes))
             else:
-                lines.append(f"{label}: {goal['status']} {goal.get('decline_reason', '')}".strip())
+                lines.append(
+                    f"{label}: {goal['status']} {goal.get('decline_reason', '')} "
+                    f"{goal.get('capability_notice', '')}".strip()
+                )
         if fallback:
             lines.append(fallback)
         return "\n".join(lines)

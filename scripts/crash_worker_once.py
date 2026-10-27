@@ -32,6 +32,10 @@ async def main():
 
     async def fault(point, lease):
         if point == args.point:
+            if point == "after_model_response_commit":
+                saved, _, _ = await store.load(lease)
+                if saved["pending"]["phase"] != "DECISION":
+                    return
             os._exit(23)
 
     if args.point == "before_tool_commit":

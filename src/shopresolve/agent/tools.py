@@ -7,6 +7,8 @@ from typing import Any
 from pydantic import BaseModel, ConfigDict, Field, ValidationError
 from sqlalchemy import select
 
+from shopresolve.agent.entities import narrow_candidates
+from shopresolve.agent.evidence import fallback_sections
 from shopresolve.errors import DomainError
 from shopresolve.models import Policy
 from shopresolve.service import CommerceService, digest
@@ -25,6 +27,10 @@ class PolicyArguments(Arguments):
     query: str = Field(min_length=1, max_length=1000)
 
 
+class ResolveArguments(Arguments):
+    mention: str = Field(min_length=1, max_length=1000)
+
+
 @dataclass(frozen=True)
 class ToolSpec:
     name: str
@@ -36,15 +42,29 @@ class ToolSpec:
 
 class ToolRouter:
     def __init__(self, service: CommerceService, retriever=None):
+        from shopresolve.retrieval.index import PolicyIndex
+
         self.service = service
-        self.retriever = retriever
+        self.retriever = (
+            retriever if retriever is not None else PolicyIndex("data/policies/demo.json")
+        )
         self.specs = {
             s.name: s
             for s in [
                 ToolSpec(
                     "list_orders", Arguments, "List current user's orders; no other user's IDs"
                 ),
+                ToolSpec(
+                    "resolve_order",
+                    ResolveArguments,
+                    "Find authorized order candidates by product/status; clarify multiple matches",
+                ),
                 ToolSpec("get_order", OrderArguments, "Read one authorized order and its items"),
+                ToolSpec(
+                    "calculate_eligibility",
+                    OrderArguments,
+                    "Read current cancel/return eligibility; creates no proposal",
+                ),
                 ToolSpec(
                     "get_shipment", OrderArguments, "Read order/dispatch state, never invent ETA"
                 ),
@@ -74,8 +94,19 @@ class ToolRouter:
             async with asyncio.timeout(spec.timeout_seconds):
                 if name == "list_orders":
                     data = await self.service.list_orders(owner)
+                elif name == "resolve_order":
+                    rows = await self.service.list_orders(owner)
+                    # Bound work explicitly. A truncated search must never be called unique.
+                    truncated = len(rows) >= 100
+                    orders = [await self.service.get_order(owner, row["id"]) for row in rows[:20]]
+                    data = {
+                        "candidates": narrow_candidates(orders, args.mention),
+                        "truncated": truncated or len(rows) > 20,
+                    }
                 elif name in {"get_order", "get_shipment"}:
                     data = await self.service.get_order(owner, args.order_id)
+                elif name == "calculate_eligibility":
+                    data = await self.service.eligibility(owner, args.order_id)
                 else:
                     async with self.service.sessions() as session:
                         policies = (
@@ -113,7 +144,9 @@ class ToolRouter:
                                 "version": version,
                                 "locator": "policy",
                                 "quote": document,
-                                "content_hash": content_hash,
+                                "content_hash": digest(document),
+                                "policy_bundle_hash": content_hash,
+                                "policy_sections": fallback_sections(document),
                             }
                         ]
                 return {

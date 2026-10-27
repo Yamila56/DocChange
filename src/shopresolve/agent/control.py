@@ -41,6 +41,7 @@ class GoalSnapshot:
     status: str
     operation_ids: tuple[str, ...] = ()
     evidence_required: bool = False
+    evidence_ids: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -75,7 +76,9 @@ def check_completion(
             if not goal.operation_ids or not set(goal.operation_ids) <= verified_operations:
                 errors.append(f"MISSING_OPERATION_RECEIPT:{goal.goal_id}")
         if goal.evidence_required and goal.status in {"COMPLETED", "DECLINED"}:
-            if not answer.evidence_ids:
+            if not goal.evidence_ids or not set(goal.evidence_ids) <= (
+                set(answer.evidence_ids) & accessible_evidence
+            ):
                 errors.append(f"MISSING_EVIDENCE:{goal.goal_id}")
     statuses = {goal.status for goal in goals}
     if errors:

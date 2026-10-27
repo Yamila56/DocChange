@@ -145,6 +145,7 @@ class PolicyIndex:
                     "title": doc["title"],
                     "content_hash": digest(quote),
                     "snapshot_id": self.snapshot_id,
+                    "policy_sections": [doc["parent_id"]],
                 }
             )
             if len(results) >= top_k:
