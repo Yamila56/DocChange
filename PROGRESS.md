@@ -6,6 +6,8 @@
 
 M1 业务内核已实现并验证；M2 已开始类型契约和确定性控制组件。完整 Agent 尚未实现，不能作为完成项目展示。
 
+本地代码快照：`f80c69e`（M1 + M2 初始契约）；这是本地提交，不是 GitHub 推送。
+
 本轮验证：MySQL 全套 47 passed；临时 SQLite 集 44 passed / 3 skipped；MySQL 并发三项单跑 3 passed；实际 HTTP 子进程 smoke 通过（readiness/OpenAPI/登录/查单/越权拒绝）。Alembic upgrade/check、Ruff、pip check 已通过。CI 尚未远程运行。
 
 ## 里程碑
@@ -38,3 +40,5 @@ MySQL 首次并发测试发现间隙锁死锁，调整订单/回执锁顺序并�
 3. M3 再接 outbox/worker/run lease/fencing/审批恢复，最后开放经保护的执行路径。
 
 运行命令：`.venv\Scripts\python.exe -m pytest -q`、`.venv\Scripts\python.exe -m ruff check .`。MySQL 全套需要 SHOPRESOLVE_TEST_DATABASE_URL（用 .env 的项目数据库凭据，但库名改成 shopresolve_test；不要打印/提交密码）。实际 HTTP 检查用 `.venv\Scripts\python.exe scripts/smoke_http.py`。
+
+本地 MySQL 测试也可直接运行 `.venv\Scripts\python.exe scripts/test_mysql.py`，它自动读取本项目 .env 并仅切换到 shopresolve_test，避免复制密码。Docker MySQL 当前保留运行供下阶段开发；没有常驻 API/Worker。请不要对该 Compose 执行带卷删除的清理命令，以免丢失演示数据。

@@ -58,6 +58,8 @@ docker compose up -d mysql
 
 需要独立、可丢弃的 **shopresolve_test** 数据库，以及仅针对该库的账号权限。设置 `SHOPRESOLVE_TEST_DATABASE_URL=mysql+asyncmy://.../shopresolve_test` 后运行 pytest。测试会重建该库内的业务表；fixture 明确拒绝其他库名。不要设置成用户已有 MySQL 数据库。
 
+当前本地环境已创建该测试库。可用 `.\.venv\Scripts\python.exe scripts/test_mysql.py` 从项目 .env 安全加载配置、自动换成测试库名运行，无需在命令行粘贴密码。首次克隆项目时，需要先在本项目 Compose MySQL 内执行 `scripts/create_test_database.sql` 创建专用测试库并授权。
+
 ## 文档
 
 - [进度、测试结果及续接记录](PROGRESS.md)
