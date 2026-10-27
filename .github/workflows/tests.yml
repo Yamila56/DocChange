@@ -1,0 +1,40 @@
+name: business-core
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -c requirements-dev.lock -e '.[dev]'
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: pytest -q
+  mysql:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.4.6@sha256:869218921e61d6c3c89820955d63cca42971f0e3e6c1e2792247bbd944ebc6e9
+        env:
+          MYSQL_ROOT_PASSWORD: ephemeral-ci-root
+          MYSQL_DATABASE: shopresolve_test
+          MYSQL_USER: shopresolve
+          MYSQL_PASSWORD: ephemeral-ci-user
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h localhost --silent"
+          --health-interval=5s --health-timeout=3s --health-retries=30
+    env:
+      SHOPRESOLVE_TEST_DATABASE_URL: mysql+asyncmy://shopresolve:ephemeral-ci-user@127.0.0.1:3306/shopresolve_test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -c requirements-dev.lock -e '.[dev]'
+      - run: pytest -q
