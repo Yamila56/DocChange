@@ -1,0 +1,147 @@
+{
+  "dataset": "document-engineering-v1",
+  "dataset_sha256": "5722ed75cb765598824b98c627c53f85fdfdae473ef0f7d6857fcd3b7b3ac75a",
+  "controller": "deterministic-demo-NOT-LLM",
+  "scope": "Development engineering tasks, overlapping mechanics, not held-out model benchmark",
+  "paid_calls": 0,
+  "total": 9,
+  "passed": 9,
+  "median_ms": 449.78,
+  "cases": [
+    {
+      "id": "rename-multi",
+      "observed": "PUBLISHED",
+      "checks": {
+        "disposition": true,
+        "exact_documents": true,
+        "protected_unchanged": true,
+        "snapshot_index": true,
+        "revision_count": true
+      },
+      "passed": true,
+      "calls": 5,
+      "tools": 5,
+      "latency_ms": 446.05
+    },
+    {
+      "id": "preserve-history",
+      "observed": "PUBLISHED",
+      "checks": {
+        "disposition": true,
+        "exact_documents": true,
+        "protected_unchanged": true,
+        "snapshot_index": true,
+        "revision_count": true
+      },
+      "passed": true,
+      "calls": 5,
+      "tools": 5,
+      "latency_ms": 415.12
+    },
+    {
+      "id": "timeout",
+      "observed": "PUBLISHED",
+      "checks": {
+        "disposition": true,
+        "exact_documents": true,
+        "protected_unchanged": true,
+        "snapshot_index": true,
+        "revision_count": true
+      },
+      "passed": true,
+      "calls": 4,
+      "tools": 4,
+      "latency_ms": 359.48
+    },
+    {
+      "id": "chinese",
+      "observed": "PUBLISHED",
+      "checks": {
+        "disposition": true,
+        "exact_documents": true,
+        "protected_unchanged": true,
+        "snapshot_index": true,
+        "revision_count": true
+      },
+      "passed": true,
+      "calls": 5,
+      "tools": 5,
+      "latency_ms": 449.78
+    },
+    {
+      "id": "reject",
+      "observed": "REJECTED",
+      "checks": {
+        "disposition": true,
+        "exact_documents": true,
+        "protected_unchanged": true,
+        "snapshot_index": true,
+        "revision_count": true
+      },
+      "passed": true,
+      "calls": 5,
+      "tools": 5,
+      "latency_ms": 566.89
+    },
+    {
+      "id": "missing",
+      "observed": "WAITING_USER",
+      "checks": {
+        "disposition": true,
+        "exact_documents": true,
+        "protected_unchanged": true,
+        "snapshot_index": true,
+        "revision_count": true
+      },
+      "passed": true,
+      "calls": 3,
+      "tools": 3,
+      "latency_ms": 1010.67
+    },
+    {
+      "id": "link-error",
+      "observed": "FAILED",
+      "checks": {
+        "disposition": true,
+        "exact_documents": true,
+        "protected_unchanged": true,
+        "snapshot_index": true,
+        "revision_count": true
+      },
+      "passed": true,
+      "calls": 5,
+      "tools": 5,
+      "latency_ms": 530.87
+    },
+    {
+      "id": "query",
+      "observed": "SUCCEEDED",
+      "checks": {
+        "disposition": true,
+        "exact_documents": true,
+        "protected_unchanged": true,
+        "snapshot_index": true,
+        "revision_count": true
+      },
+      "passed": true,
+      "calls": 3,
+      "tools": 3,
+      "latency_ms": 388.75
+    },
+    {
+      "id": "stale",
+      "observed": "STALE",
+      "checks": {
+        "disposition": true,
+        "exact_documents": true,
+        "protected_unchanged": true,
+        "snapshot_index": true,
+        "revision_count": true
+      },
+      "passed": true,
+      "calls": 5,
+      "tools": 5,
+      "latency_ms": 1292.17
+    }
+  ]
+}

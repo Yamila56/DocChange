@@ -212,18 +212,19 @@ class DockerSandbox:
                     if rc:
                         raise SandboxError("Cannot collect sandbox output")
                     manifest["outputs"] = self.collect_archive(archive)
-                self.write_manifest(manifest_path, manifest)
                 return manifest
             except SandboxError:
                 manifest["status"] = "FAILED"
                 manifest["error_code"] = "OUTPUT_REJECTED"
-                self.write_manifest(manifest_path, manifest)
                 raise
             finally:
                 info = await self.inspect(name)
                 if info and self.owned(info, job_id):
                     # Exact, verified project container only. Never prune global Docker state.
                     await self.command("rm", "-f", name)
+                # Publish terminal status only after container cleanup. Otherwise
+                # a caller can stop the manager on COMPLETED while cleanup is in flight.
+                self.write_manifest(manifest_path, manifest)
 
     @staticmethod
     def collect_archive(data):

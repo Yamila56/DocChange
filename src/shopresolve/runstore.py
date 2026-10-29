@@ -121,6 +121,9 @@ def snapshot(run):
         "answer": run.state.get("answer"),
         "provider": run.state.get("provider"),
         "evidence": run.state.get("evidence", []),
+        "domain": run.state.get("config", {}).get("domain", "commerce"),
+        "document": run.state.get("config", {}).get("document"),
+        "changeset_id": run.state.get("changeset_id"),
     }
 
 
@@ -442,7 +445,7 @@ class RunStore:
             )
         ).all()
         state = copy.deepcopy(run.state)
-        known = {r["operation_id"] for r in state.get("results", [])}
+        known = {r["operation_id"] for r in state.get("results", []) if "operation_id" in r}
         recovered = []
         for operation in operations:
             if operation.id not in known:

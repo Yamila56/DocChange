@@ -12,6 +12,7 @@ from sqlalchemy import select
 from shopresolve.agent.gateway import build_gateway
 from shopresolve.agent.runtime import AgentRuntime
 from shopresolve.agent.tools import ToolRouter
+from shopresolve.documents.runtime import DocumentDemoGateway, DocumentGateway, DocumentRuntime
 from shopresolve.models import Outbox, Run
 from shopresolve.retrieval.index import build_index
 from shopresolve.runstore import TERMINAL, WAITING, RunStore, db_now
@@ -137,6 +138,13 @@ class Worker:
             gateway or build_gateway(settings),
             ToolRouter(CommerceService(sessions), retriever or build_index(settings)),
         )
+        self.document_runtime = DocumentRuntime(
+            self.store,
+            gateway
+            or (
+                DocumentDemoGateway() if settings.provider == "demo" else DocumentGateway(settings)
+            ),
+        )
 
     async def handle(self, message_id, fields):
         lease = await self.store.claim(
@@ -156,7 +164,10 @@ class Worker:
             await self.store.finish(lease, state, "FAILED", "UNRESOLVED", "PROVIDER_CONFIG_CHANGED")
             await self.queue.ack(message_id)
             return
-        task = asyncio.create_task(self.runtime.run(lease))
+        runtime = (
+            self.document_runtime if state["config"].get("domain") == "document" else self.runtime
+        )
+        task = asyncio.create_task(runtime.run(lease))
         heartbeat_lost = False
 
         async def heartbeat():

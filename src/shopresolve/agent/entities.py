@@ -8,6 +8,18 @@ def narrow_candidates(candidates, mention):
     if any(word in mention for word in ("没收到", "未收到", "不是", "不要", "除了")):
         # Negation/exclusion needs clarification, not a positive-keyword guess.
         return candidates
+    explicit_ids = set(
+        re.findall(
+            r"(?<![a-zA-Z0-9-])(?:order-[a-z0-9-]+|"
+            r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})"
+            r"(?![a-zA-Z0-9-])",
+            mention,
+        )
+    )
+    if explicit_ids:
+        # An explicit identifier narrows only the already-authorized candidate set.
+        # Unknown IDs return no match, rather than falling back to every order.
+        filtered = [row for row in filtered if row["id"] in explicit_ids]
     conditions = (
         (("未发货", "没发货", "待发货"), "PENDING_SHIPMENT"),
         (("已签收", "已收货", "收到", "收到了"), "DELIVERED"),

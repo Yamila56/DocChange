@@ -1,3 +1,4 @@
+import json
 from dataclasses import asdict
 
 import pytest
@@ -12,6 +13,7 @@ from shopresolve.agent.control import (
     resolve_entity,
     validate_intent_sources,
 )
+from shopresolve.agent.entities import narrow_candidates
 from shopresolve.errors import DomainError
 
 
@@ -38,6 +40,25 @@ def test_intent_sources_must_belong_to_current_conversation():
     validate_intent_sources(frame(), {"m1"}, set())
 
 
+def test_unregistered_slot_from_live_protocol_failure_is_rejected():
+    value = {
+        "source_message_ids": ["m1"],
+        "items": [
+            {
+                "intent": "ORDER_QUERY",
+                "mode": "INQUIRE",
+                "slot_candidates": [
+                    {"name": "order_reference", "value": "order-pending", "source_message_id": "m1"}
+                ],
+            }
+        ],
+    }
+    with pytest.raises(ValidationError):
+        IntentFrame.model_validate_json(json.dumps(value))
+    value["items"][0]["slot_candidates"][0]["name"] = "order_id"
+    assert IntentFrame.model_validate_json(json.dumps(value)).items[0].slot_candidates
+
+
 def test_entity_ambiguity_does_not_guess():
     a = AuthorizedEntity("a", "耳机 A", "read1")
     b = AuthorizedEntity("b", "耳机 B", "read1")
@@ -47,9 +68,34 @@ def test_entity_ambiguity_does_not_guess():
             resolve_entity(candidates)
 
 
+def test_explicit_order_mentions_narrow_only_authorized_candidates():
+    rows = [
+        {"id": oid, "status": "PENDING_SHIPMENT", "items": [{"name": "耳机"}]}
+        for oid in ("order-pending", "order-pending-extra", "order-other")
+    ]
+    assert narrow_candidates(rows, "取消order-pending") == rows[:1]
+    assert narrow_candidates(rows, "order-pending和order-other") == [rows[0], rows[2]]
+    assert narrow_candidates(rows, "order-unknown") == []
+    assert narrow_candidates(rows, "不要取消order-pending") == rows
+
+
 def test_partial_tool_json_never_becomes_a_decision():
     with pytest.raises(ValidationError):
         decision_adapter.validate_json('{"kind":"tool_calls","calls":[{"name":')
+
+
+def test_cancel_proposal_cannot_contain_a_generated_return_reason():
+    proposal = {
+        "kind": "propose_action",
+        "goal_id": "g1",
+        "action": "CANCEL_ORDER",
+        "order_id": "order-pending",
+        "reason": "User wants a cancellation",
+    }
+    with pytest.raises(ValidationError):
+        decision_adapter.validate_json(json.dumps(proposal))
+    proposal["reason"] = None
+    assert decision_adapter.validate_json(json.dumps(proposal)).action == "CANCEL_ORDER"
 
 
 def test_duplicate_tool_call_ids_rejected():

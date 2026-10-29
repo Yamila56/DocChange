@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./style.css";
+import DocumentApp from "./documents";
 
 type Goal = {
   id: string;
@@ -59,13 +60,32 @@ function App() {
   const [error, setError] = useState("");
   const [runs, setRuns] = useState<Run[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(
+    sessionStorage.getItem("shopresolve-selected-run") || "",
+  );
   const [run, setRun] = useState<Run | null>(null);
   const [proposals, setProposals] = useState<Proposal[]>([]);
   const [events, setEvents] = useState<Event[]>([]);
   const [text, setText] = useState("");
   const [busy, setBusy] = useState(false);
   const cursor = useRef(0);
+
+  useEffect(() => {
+    if (selected) sessionStorage.setItem("shopresolve-selected-run", selected);
+    else sessionStorage.removeItem("shopresolve-selected-run");
+  }, [selected]);
+
+  function clearSession() {
+    sessionStorage.removeItem("shopresolve-token");
+    sessionStorage.removeItem("shopresolve-selected-run");
+    setToken("");
+    setSelected("");
+    setRun(null);
+    setRuns([]);
+    setOrders([]);
+    setProposals([]);
+    setEvents([]);
+  }
 
   async function api(path: string, body?: unknown, idempotency?: string) {
     const response = await fetch(path, {
@@ -80,8 +100,7 @@ function App() {
     const data = await response.json();
     if (!response.ok) {
       if (response.status === 401 && token) {
-        sessionStorage.removeItem("shopresolve-token");
-        setToken("");
+        clearSession();
       }
       throw new Error(data.message || JSON.stringify(data.detail || data));
     }
@@ -316,8 +335,7 @@ function App() {
           <button
             className="link"
             onClick={() => {
-              sessionStorage.removeItem("shopresolve-token");
-              setToken("");
+              clearSession();
             }}
           >
             退出
@@ -621,4 +639,4 @@ function ComparisonPanel({ token }: { token: string }) {
     </div>
   );
 }
-createRoot(document.getElementById("root")!).render(<App />);
+createRoot(document.getElementById("root")!).render(window.location.pathname === "/commerce" ? <App /> : <DocumentApp />);

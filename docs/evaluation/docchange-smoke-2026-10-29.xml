@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites name="pytest tests"><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="4" time="10.393" timestamp="2026-10-29T14:42:17.412598+08:00" hostname="LAPTOP-ay9000p"><testcase classname="tests.test_documents" name="test_document_publish_replay_and_snapshot" time="1.699"><failure message="KeyError: 'operation_id'">commerce = (&lt;shopresolve.service.CommerceService object at 0x000002AC537DD070&gt;, async_sessionmaker(class_='AsyncSession', bind=&lt;s...cio.engine.AsyncEngine object at 0x000002AC539FD890&gt;, autoflush=True, expire_on_commit=False), Clock(value=1800000000))
+
+    @pytest.mark.asyncio
+    async def test_document_publish_replay_and_snapshot(commerce):
+        _, sessions, clock = commerce
+        service = DocumentService(sessions)
+        workspace = await service.create("alice", "test", DOCS, "create-doc")
+        run = await submit(sessions, clock, workspace["id"])
+        assert run["status"] == "WAITING_APPROVAL", run
+        change = await service.change("alice", run["changeset_id"])
+        before = await service.get("alice", workspace["id"])
+        assert before["revision"] == 1
+&gt;       result = await service.decide("alice", change["id"], True, change["payload_hash"], "approve")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests\test_documents.py:65: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\shopresolve\service.py:46: in wrapped
+    return await method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\shopresolve\documents\service.py:317: in decide
+    await self.runs._finish(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;shopresolve.runstore.RunStore object at 0x000002AC2557BE60&gt;
+session = &lt;sqlalchemy.ext.asyncio.session.AsyncSession object at 0x000002AC53C03950&gt;
+run = &lt;shopresolve.models.Run object at 0x000002AC53CC6480&gt;
+status = 'SUCCEEDED', outcome = 'FULFILLED', reason = None, now = 1793256141
+
+    async def _finish(self, session, run, status, outcome, reason, now):
+        # A business transaction can commit just before cancellation/expiry or a
+        # worker failure, while its subsequent loop checkpoint has not committed.
+        # Reconcile authoritative receipts under the same run lock, never hide them.
+        operations = (
+            await session.scalars(
+                select(Operation)
+                .join(Proposal, Operation.proposal_id == Proposal.id)
+                .where(Proposal.run_id == run.id, Operation.owner_id == run.owner_id)
+            )
+        ).all()
+        state = copy.deepcopy(run.state)
+&gt;       known = {r["operation_id"] for r in state.get("results", [])}
+                 ^^^^^^^^^^^^^^^^^
+E       KeyError: 'operation_id'
+
+src\shopresolve\runstore.py:448: KeyError</failure></testcase><testcase classname="tests.test_documents" name="test_document_reject_stale_and_owner" time="1.522"><failure message="KeyError: 'operation_id'">commerce = (&lt;shopresolve.service.CommerceService object at 0x000002AC53A03C50&gt;, async_sessionmaker(class_='AsyncSession', bind=&lt;s...cio.engine.AsyncEngine object at 0x000002AC537E1050&gt;, autoflush=True, expire_on_commit=False), Clock(value=1800000000))
+
+    @pytest.mark.asyncio
+    async def test_document_reject_stale_and_owner(commerce):
+        _, sessions, clock = commerce
+        service = DocumentService(sessions)
+        w = await service.create("alice", "test", DOCS, "create-doc")
+        rejected = await submit(sessions, clock, w["id"])
+        c = await service.change("alice", rejected["changeset_id"])
+&gt;       await service.decide("alice", c["id"], False, c["payload_hash"], "reject")
+
+tests\test_documents.py:85: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+src\shopresolve\service.py:46: in wrapped
+    return await method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+src\shopresolve\documents\service.py:317: in decide
+    await self.runs._finish(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;shopresolve.runstore.RunStore object at 0x000002AC53A03680&gt;
+session = &lt;sqlalchemy.ext.asyncio.session.AsyncSession object at 0x000002AC53A02C00&gt;
+run = &lt;shopresolve.models.Run object at 0x000002AC53DF9760&gt;
+status = 'SUCCEEDED', outcome = 'DECLINED', reason = None, now = 1793256143
+
+    async def _finish(self, session, run, status, outcome, reason, now):
+        # A business transaction can commit just before cancellation/expiry or a
+        # worker failure, while its subsequent loop checkpoint has not committed.
+        # Reconcile authoritative receipts under the same run lock, never hide them.
+        operations = (
+            await session.scalars(
+                select(Operation)
+                .join(Proposal, Operation.proposal_id == Proposal.id)
+                .where(Proposal.run_id == run.id, Operation.owner_id == run.owner_id)
+            )
+        ).all()
+        state = copy.deepcopy(run.state)
+&gt;       known = {r["operation_id"] for r in state.get("results", [])}
+                 ^^^^^^^^^^^^^^^^^
+E       KeyError: 'operation_id'
+
+src\shopresolve\runstore.py:448: KeyError</failure></testcase><testcase classname="tests.test_documents" name="test_document_query_missing_and_link_validation" time="2.209" /><testcase classname="tests.test_documents" name="test_document_http_and_idempotency" time="2.067" /></testsuite></testsuites>

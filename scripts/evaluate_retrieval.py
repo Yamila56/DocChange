@@ -35,8 +35,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--lexical-only", action="store_true")
     parser.add_argument("--output", default="docs/evaluation/retrieval-v1-results.json")
+    parser.add_argument("--dataset", default="evals/data/retrieval-v1.json")
     args = parser.parse_args()
-    data_path = Path("evals/data/retrieval-v1.json")
+    data_path = Path(args.dataset)
     dataset = json.loads(data_path.read_text(encoding="utf-8"))
     encoder = None if args.lexical_only else NeuralEncoder()
     reranker = None if args.lexical_only else NeuralReranker()
@@ -123,7 +124,8 @@ def main():
         "# Retrieval v1 measured results",
         "",
         "Synthetic corpus; independent label review pending.",
-        "Test: 16 cases. Percentages below are retrieval metrics, not Agent success.",
+        f"Test: {sum(c['split'] == 'test' for c in dataset['cases'])} cases. "
+        "Percentages below are retrieval metrics, not Agent success.",
         "",
         "| Configuration | Recall@1 | Recall@3 | Recall@6 | MRR@6 | P50 ms | P95 ms |",
         "|---|---:|---:|---:|---:|---:|---:|",

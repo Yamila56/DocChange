@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "shopresolve"
 version = "0.1.0"
-description = "A policy-grounded commerce agent with controlled, recoverable actions"
+description = "Versioned document workbench with a durable agent harness and controlled publication"
 requires-python = ">=3.12,<3.14"
 dependencies = [
   "fastapi>=0.115,<1", "uvicorn>=0.34,<1", "pydantic-settings>=2.8,<3",

@@ -1,4 +1,56 @@
-# ShopResolve
+# DocChange · V0.1
+
+版本化文档工作台：检索授权资料、生成有来源的修改、查看差异、人工审批，发布可回看的新版本。Python/FastAPI + React + 自写 Agent Runtime/Harness；保留旧 ShopResolve 电商域。
+
+首版定位：**本地可运行的开发版**。默认免费演示控制器；真实 DeepSeek 文档任务已做受控联调。部署到 GitHub 指托管源码，不等于已上线后端服务。
+
+## 快速启动
+
+需要 Python 3.12、Node.js 与 pnpm。在仓库根目录：
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -c requirements-dev.lock -e ".[dev]"
+pnpm --dir frontend install --frozen-lockfile
+pnpm --dir frontend build
+.\.venv\Scripts\python.exe -m scripts.run_docchange
+```
+
+打开 http://127.0.0.1:8011，账号 `alice`，本地演示码 `docs-local-2026`。无需模型Key、MySQL或Redis即可运行本地演示；数据持久保存在ignored `.cache/docchange/`。本地演示码用于本机，不适合公网认证。
+
+创建示例工作区 → 提交默认迁移任务 → 查看两篇文档diff → 批准并发布 → 切换R1/R2查看正文。
+
+真实模型需在本地 `.env` 保存 `SHOPRESOLVE_MODEL_API_KEY`，再显式执行 `python -m scripts.run_docchange --remote`（使用项目虚拟环境）。交互模式有持久20请求/预估0.5元预算；不会自动充值或重置。详细配置见[使用说明](docs/DOCCHANGE.md)。
+
+## 已实现与证据
+
+- 文档导入、owner隔离、只读来源/历史、不可变工作区快照、BM25与全量精确扫描。
+- 文档Agent工具循环、读取/批读取、补问、精确补丁、引用与链接检查。
+- ChangeSet差异审核、hash绑定批准、拒绝、过期版本拦截、幂等发布与旧版回看。
+- 复用checkpoint、租约/fencing、工具结果日志、事件与恢复。Redis Worker支持文档域；一键演示入口用SQLite持久轮询。
+- 导出修改记录与可选固定沙箱检查。
+
+验收：9个确定性工程fixture通过；真实模型首轮4题2题通过，发现协议问题后两个失败场景复测通过。不是独立benchmark的100%准确率。完整结果、失败和费用见[交付报告](docs/evaluation/docchange-delivery-2026-10-29.md)。
+
+本轮发布前本地全套：157 passed / 16 skipped（依赖服务用例等），不是MySQL/Redis/Docker全栈通过。CI配置已提供，远程CI尚未运行。
+
+当前小文档索引同步构建后随版本发布，未接Dense/Rerank；首版单Agent。文档域MySQL/Redis实机联调、真实Docker文档检查与生产认证尚待补充，不以历史电商测试替代。
+
+## 开发验证
+
+```powershell
+.\.venv\Scripts\python.exe -m ruff check .
+.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe scripts/evaluate_documents.py
+```
+
+工程fixture成绩不代表LLM能力；新增付费评测必须显式执行并受预算限制。`.env`、模型、数据库与本地日志均不提交。仓库先保持Private。
+
+## 原 ShopResolve 历史说明
+
+2026-10-29：项目主线已迁移为 **DocChange 版本化文档工作台**，在现有后端与持久 Harness 上新增文档、检索、补丁、审批与版本发布。启动与真实模型验收见 [DocChange 使用说明](docs/DOCCHANGE.md)。一条命令：`.venv\Scripts\python.exe -m scripts.run_docchange`，访问 `http://127.0.0.1:8011`。下文保留原电商项目历史，不代表新文档域的全部功能或测试成绩。
+
+2026-10-28联调更新：已用官方DeepSeek Flash完成受控真实模型开发试跑，并实测浏览器审批/拒绝、CSV隔离计算及刷新恢复。开发中发现的协议与持久化问题、失败及修复均见[联调报告](docs/evaluation/integration-and-live-eval-2026-10-28.md)。这不是正式冻结成绩；默认仍为无密钥demo，生产功能缺口继续保留。
 
 电商售后与订单异常处理 Agent：查事实、查政策、提出方案、明确批准、受控执行、回读核验。
 
@@ -14,7 +66,7 @@
 - 独立内部 Sandbox Manager、CSV 上传、无网络非 root Docker 分析、资源限制、日志限额与安全输出收集。
 - React 工作台：任务、订单、政策依据、确认卡、执行时间线及独立 CSV 分析模块。
 
-注意：CSV 分析尚未接为 Agent 自动委派工具；物流人工工单、商品库存/替代品业务、限流背压与部分质量门禁仍待补齐。已确定首个模型服务为官方 DeepSeek，适配器离线测试通过，但本地密钥和真实模型评测尚未完成。不宣称生产就绪、所有故障已覆盖或已部署到 GitHub。
+注意：CSV 分析尚未接为 Agent 自动委派工具；物流人工工单、商品库存/替代品业务、限流背压与部分质量门禁仍待补齐。官方 DeepSeek Flash 已做真实开发联调，正式冻结、多trial与模型对比仍待完成。不宣称生产就绪、所有故障已覆盖或已部署到 GitHub。
 
 逐项状态及 R01–R18/L01–L18 缺口见 [实现审查](docs/implementation-audit-2026-10-27.md)。Memory 有工作状态和恢复，不等于已完成全部摘要版本/生命周期设计；Compose 当前只编排基础设施，不等于整套应用上线。
 

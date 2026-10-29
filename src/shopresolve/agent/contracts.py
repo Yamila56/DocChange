@@ -3,6 +3,8 @@ from typing import Annotated, Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, model_validator
 
+from shopresolve.schemas import PrepareAction
+
 
 class Contract(BaseModel):
     model_config = ConfigDict(extra="forbid", strict=True)
@@ -22,7 +24,7 @@ class Intent(StrEnum):
 
 
 class SlotCandidate(Contract):
-    name: str = Field(min_length=1, max_length=64)
+    name: Literal["order_id", "item_id", "quantity", "reason"]
     value: str | int | bool | None
     source_message_id: str
 
@@ -76,13 +78,40 @@ class AskUser(Contract):
 
 
 class ProposeAction(Contract):
+    model_config = ConfigDict(
+        extra="forbid",
+        strict=True,
+        json_schema_extra={
+            "allOf": [
+                {
+                    "if": {"properties": {"action": {"const": "CANCEL_ORDER"}}},
+                    "then": {
+                        "properties": {
+                            "item_id": {"type": "null"},
+                            "quantity": {"type": "null"},
+                            "reason": {"type": "null"},
+                        }
+                    },
+                }
+            ]
+        },
+    )
     kind: Literal["propose_action"]
     goal_id: str
     action: Literal["CANCEL_ORDER", "REQUEST_RETURN"]
     order_id: str
     item_id: str | None = None
     quantity: int | None = Field(default=None, ge=1)
-    reason: str | None = None
+    reason: str | None = Field(
+        default=None,
+        max_length=500,
+        description="User-supplied return reason only. CANCEL_ORDER requires null or omission.",
+    )
+
+    @model_validator(mode="after")
+    def validate_business_shape(self):
+        PrepareAction(**self.model_dump(exclude={"kind", "goal_id"}))
+        return self
 
 
 class FinalAnswer(Contract):

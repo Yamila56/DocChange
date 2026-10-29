@@ -1,3 +1,4 @@
+import asyncio
 import base64
 import json
 from uuid import uuid4
@@ -34,6 +35,29 @@ json.dump(result,open('/output/result.json','w'))
     assert await runner.run(job_id, code, content) == result
     with pytest.raises(SandboxError, match="different inputs"):
         await runner.run(job_id, code + "\nprint('different')", content)
+
+
+async def test_terminal_result_is_not_published_before_container_cleanup(runner):
+    job_id = str(uuid4())
+    reached_cleanup, allow_cleanup = asyncio.Event(), asyncio.Event()
+    original = runner.command
+
+    async def delayed_cleanup(*args, **kwargs):
+        if args[:2] == ("rm", "-f"):
+            reached_cleanup.set()
+            await asyncio.wait_for(allow_cleanup.wait(), timeout=10)
+        return await original(*args, **kwargs)
+
+    runner.command = delayed_cleanup
+    task = asyncio.create_task(runner.run(job_id, "print('done')", b"x\n1\n"))
+    try:
+        await asyncio.wait_for(reached_cleanup.wait(), timeout=15)
+        manifest = json.loads((runner.folder(job_id) / "manifest.json").read_text(encoding="utf-8"))
+        assert manifest["status"] == "RUNNING"
+    finally:
+        allow_cleanup.set()
+        await task
+    assert await runner.inspect("shopresolve-sandbox-" + job_id) is None
 
 
 async def test_sandbox_has_no_network_keys_or_host_files(runner):

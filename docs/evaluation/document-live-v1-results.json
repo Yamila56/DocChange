@@ -1,0 +1,93 @@
+{
+  "scope": "4 self-authored live acceptance cases; not a held-out benchmark",
+  "source_plan_hash": "6e621bbb24e515ba9a1d93c89a3707e6c595b431256fdc1de578685e14254c2b",
+  "results": [
+    {
+      "id": "grounded-query",
+      "passed": true,
+      "checks": {
+        "answer": true,
+        "citations": true,
+        "no_proposal": true,
+        "no_write": true
+      },
+      "status": "SUCCEEDED",
+      "stop_reason": null,
+      "answer": "客户端的默认请求超时是 30 秒。来源：client.md 第 1–4 行（证据 ID：66e5c031a3c2c813ec412042），原文为“默认请求超时：30 秒。”。注意：server.md 中的“连接超时：60 秒”是服务端设置，不是客户端默认请求超时。",
+      "question": null,
+      "model_calls": 2,
+      "tools": 2,
+      "latency_ms": 2922.49
+    },
+    {
+      "id": "cross-document-migration",
+      "passed": false,
+      "checks": {
+        "proposal": false,
+        "preserved:release-v2.md": true,
+        "preserved:history.md": true,
+        "required:guide.md": false,
+        "required:api.md": false,
+        "removed:guide.md": false,
+        "removed:api.md": false
+      },
+      "status": "FAILED",
+      "stop_reason": "MODEL_UNAVAILABLE",
+      "answer": "Model request failed; inspect the task log",
+      "question": null,
+      "model_calls": 2,
+      "tools": 1,
+      "latency_ms": 2294.94
+    },
+    {
+      "id": "scoped-semantic-update",
+      "passed": true,
+      "checks": {
+        "proposal": true,
+        "published": true,
+        "preserved:server.md": true,
+        "preserved:new-spec.md": true,
+        "required:client.md": true
+      },
+      "status": "WAITING_APPROVAL",
+      "stop_reason": null,
+      "answer": "修改提案已生成，请查看差异并批准或拒绝。",
+      "question": null,
+      "model_calls": 3,
+      "tools": 3,
+      "latency_ms": 3223.19
+    },
+    {
+      "id": "conflicting-sources",
+      "passed": false,
+      "checks": {
+        "clarified": false,
+        "no_proposal": true,
+        "preserved:spec-a.md": true,
+        "preserved:spec-b.md": true,
+        "no_write": true
+      },
+      "status": "FAILED",
+      "stop_reason": "MODEL_UNAVAILABLE",
+      "answer": "Model request failed; inspect the task log",
+      "question": null,
+      "model_calls": 1,
+      "tools": 0,
+      "latency_ms": 1277.87
+    }
+  ],
+  "budget": {
+    "by_model": {
+      "deepseek-flash": {
+        "calls": 8,
+        "unknown_usage": 2,
+        "estimated_cny": "0.093492",
+        "input_tokens": 6070,
+        "output_tokens": 303
+      }
+    },
+    "carry_cny": "0",
+    "estimated_total_with_carry_cny": "0.093492",
+    "cap_cny": "0.5"
+  }
+}

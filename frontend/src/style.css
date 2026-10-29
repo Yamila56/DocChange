@@ -62,7 +62,7 @@ small,
 }
 .app {
   display: grid;
-  grid-template-columns: 240px 1fr;
+  grid-template-columns: 240px minmax(0, 1fr);
   min-height: 100vh;
 }
 aside {
@@ -136,6 +136,7 @@ aside > .secondary {
   border-color: #4a6a53;
 }
 main {
+  min-width: 0;
   padding: 30px 34px;
   max-width: 1600px;
   width: 100%;
@@ -172,12 +173,17 @@ header h1 {
   align-items: start;
 }
 .panel {
+  min-width: 0;
   background: white;
   border: 1px solid #e1e6dc;
   border-radius: 12px;
   padding: 22px;
   margin-bottom: 18px;
   box-shadow: 0 4px 16px #173d2d04;
+}
+input[type="file"] {
+  width: 100%;
+  min-width: 0;
 }
 .section-heading {
   display: flex;
@@ -427,7 +433,7 @@ details p {
   }
   .side-panels {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 16px;
   }
   .side-panels > .panel:last-child {

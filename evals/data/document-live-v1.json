@@ -1,0 +1,10 @@
+{
+  "version":"document-live-v1",
+  "scope":"Four distinct assistant-authored acceptance cases. Not an external or independently annotated benchmark.",
+  "cases":[
+    {"id":"grounded-query","mode":"query","text":"客户端的默认请求超时是多少秒？请引用来源。","documents":{"client.md":{"role":"document","content":"# 客户端\n\n默认请求超时：30 秒。\n失败请求最多重试 2 次。\n"},"server.md":{"role":"document","content":"# 服务端\n\n连接超时：60 秒。\n"}},"expect":"answer","answer_contains":"30"},
+    {"id":"cross-document-migration","mode":"update","text":"根据 release-v2.md，将当前接入文档和接口示例中的 user_id 迁移为 account_id。保留历史版本说明、来源和超时。","documents":{"guide.md":{"role":"document","content":"# 接入\n\n用 user_id 标识账户。\n参考 [接口](api.md)。\n"},"api.md":{"role":"document","content":"# API\n\nGET /account?user_id=42\n\n请求超时为 30 秒。\n"},"release-v2.md":{"role":"source","content":"# V2 规范\n\n当前版本账户标识字段从 user_id 改为 account_id。\n历史文档保留原文。\n"},"history.md":{"role":"archive","content":"# V1 历史\n\nV1 使用 user_id。\n"}},"expect":"publish","required":{"guide.md":["account_id"],"api.md":["account_id","30"]},"forbidden":{"guide.md":["user_id"],"api.md":["user_id"]}},
+    {"id":"scoped-semantic-update","mode":"update","text":"按新规范调整客户端请求超时。只改客户端默认超时，其他设置与服务端文档保持原样。","documents":{"client.md":{"role":"document","content":"# 客户端\n\n默认请求超时：30 秒。\n失败请求最多重试 2 次。\n"},"server.md":{"role":"document","content":"# 服务端\n\n连接超时：60 秒。\n最大连接数：30。\n"},"new-spec.md":{"role":"source","content":"# 客户端新规范\n\n客户端默认请求超时调整为 45 秒，重试次数不变。\n本次不变更服务端配置。\n"}},"expect":"publish","required":{"client.md":["45","2"]},"unchanged":["server.md"]},
+    {"id":"conflicting-sources","mode":"update","text":"依据这两份同等优先级、同一天生效的规范更新客户端超时；没有哪份覆盖另一份。若无法确定，不要自行选值。","documents":{"client.md":{"role":"document","content":"# 客户端\n\n默认请求超时：30 秒。\n"},"spec-a.md":{"role":"source","content":"# 规范 A\n\n2026-10-29 生效，客户端默认超时为 45 秒。\n"},"spec-b.md":{"role":"source","content":"# 规范 B\n\n2026-10-29 生效，客户端默认超时为 90 秒。\n"}},"expect":"clarify"}
+  ]
+}

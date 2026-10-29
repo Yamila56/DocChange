@@ -1,0 +1,18 @@
+{
+  "git_base": "04c38965ea0b853fb1cd4f0c07ec4ee8b4997bc5",
+  "working_tree_modified": true,
+  "final_source_sha256": {
+    "src/shopresolve/agent/contracts.py": "a72993435cf6ebafd492386a40576a32817c01d2fb359c54910f3bfeac34c767",
+    "src/shopresolve/agent/gateway.py": "4fc452eaddb5c4f7a7519df7d892437d7c5a73be30c58f20d00798c5ce8dde4e",
+    "src/shopresolve/agent/runtime.py": "3d4087e02a8b38f04ea3abf1fc6c7569fbfbfa977229f75b48dd0b5a39aa8cb8",
+    "src/shopresolve/agent/context.py": "b860b89c38d724eb5f68088db871992613feb1c8e97b5e3019911ac044fd1e27",
+    "src/shopresolve/agent/entities.py": "2b3c06656e72d485cd7164edbcbc5820f3337e874b87e15671ce62d24ec4c014",
+    "src/shopresolve/sandbox/runner.py": "1329af60b0c871347725196349082c3f96e8c2024c9bc8075bdb761f87822ee5",
+    "scripts/pilot_deepseek.py": "053aa193f6b7cc0ef62ad8bb00bda7b1ef660dc49de28352f10eb49110c59754",
+    "scripts/evaluate_workflows.py": "e71c3c83fb6f6052cf240957eed6a733d8f16fe0262d7d2c2f971e281636973c",
+    "evals/data/live-development-v1.json": "7261b1ebd9a3e31c70ce34f0a52bdb00ee50e5fbe9305f608063d88de35bfc4b",
+    "frontend/src/main.tsx": "316618cc2c7ba4bfdcb585b97e13ad4e698403635fb83b14e17e331fc34965c8",
+    "frontend/src/style.css": "fabadd32f4b0ddf379799c776091813c454d31b142baf359040e241601467b6e"
+  },
+  "scope": "Current source after development fixes; historical batches span earlier revisions, not one frozen benchmark."
+}

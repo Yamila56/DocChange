@@ -1,5 +1,7 @@
 # ShopResolve implementation instructions
 
+- Active application is DocChange (versioned document workspace); see docs/DOCCHANGE.md and docs/design/16-两项目定案与实施路线-2026-10-29.md. Commerce remains preserved legacy. Report document-domain evidence separately from old commerce results.
+
 - Read PROGRESS.md first. Read docs/design 10, 11, 13, 14 completely before changing architecture.
 - Single Agent, custom Runtime/Harness, FastAPI, MySQL, Redis. No unapproved framework switch.
 - Work ONLY inside this repository. The parent folder contains private application documents; never add or upload it.

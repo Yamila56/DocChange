@@ -1,0 +1,244 @@
+.doc-app,
+.doc-login {
+  font-family: Inter, "Microsoft YaHei", sans-serif;
+  color: #203047;
+  background: #f3f5f8;
+  min-height: 100vh;
+  font-size: 14px;
+}
+.doc-app {
+  padding: 28px 4vw;
+}
+.doc-app *,
+.doc-login * {
+  box-sizing: border-box;
+}
+.doc-header,
+.doc-panel-head,
+.doc-toolbar,
+.doc-actions,
+.doc-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.doc-header,
+.doc-panel-head {
+  justify-content: space-between;
+}
+.doc-header h1 {
+  font-size: 26px;
+  margin: 6px 0 22px;
+}
+.doc-eyebrow {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #4b6992;
+}
+.doc-toolbar {
+  flex-wrap: wrap;
+  margin: 12px 0 22px;
+}
+.doc-app button,
+.doc-login button {
+  background: white;
+  border: 1px solid #ced7e3;
+  color: #263e60;
+  border-radius: 7px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.doc-app button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.doc-app .primary,
+.doc-login button {
+  background: #244e80;
+  color: white;
+  border-color: #244e80;
+}
+.doc-app input,
+.doc-app select,
+.doc-app textarea,
+.doc-login input,
+.doc-login select {
+  width: 100%;
+  border: 1px solid #ccd5df;
+  border-radius: 6px;
+  background: white;
+  color: #203047;
+  padding: 10px;
+  font: inherit;
+}
+.doc-toolbar select {
+  width: 300px;
+}
+.doc-app textarea {
+  margin: 14px 0;
+  resize: vertical;
+}
+.doc-grid {
+  display: grid;
+  grid-template-columns: 230px minmax(0, 1fr);
+  gap: 22px;
+}
+.doc-panel {
+  background: white;
+  border: 1px solid #e0e5ec;
+  border-radius: 10px;
+  padding: 22px;
+  margin-bottom: 20px;
+  min-width: 0;
+}
+.doc-panel h2 {
+  font-size: 16px;
+  margin: 0 0 16px;
+  color: #203047;
+}
+.doc-app .doc-file {
+  display: block;
+  width: 100%;
+  text-align: left;
+  border: 0;
+  margin: 5px 0;
+  padding: 12px;
+  background: #f6f8fb;
+  overflow-wrap: anywhere;
+}
+.doc-file small {
+  display: block;
+  color: #78889a;
+  margin-top: 5px;
+}
+.doc-app .doc-file.selected {
+  background: #e7eef8;
+  color: #174a88;
+}
+.doc-main {
+  min-width: 0;
+}
+.doc-content,
+.doc-diff {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font:
+    13px/1.9 Consolas,
+    monospace;
+  background: #f7f9fc;
+  color: #213a52;
+  border-radius: 6px;
+  padding: 16px;
+  max-height: 420px;
+  overflow: auto;
+}
+.doc-diff {
+  background: #eef6f2;
+}
+.doc-search input {
+  flex: 1;
+}
+.doc-muted {
+  color: #728194;
+  font-size: 12px;
+}
+.doc-replace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.doc-app label,
+.doc-login label {
+  display: block;
+  font-size: 12px;
+  color: #52647a;
+}
+.doc-app label input {
+  margin-top: 7px;
+}
+.doc-app blockquote {
+  border-left: 3px solid #96b0ce;
+  margin: 15px 0;
+  padding: 8px 16px;
+  background: #f8fafc;
+  white-space: pre-wrap;
+  font-size: 12px;
+}
+.doc-badge {
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: #e8eef7;
+  font-size: 12px;
+}
+.doc-answer {
+  white-space: pre-wrap;
+  line-height: 1.8;
+}
+.doc-app details {
+  margin: 18px 0;
+  color: #536b83;
+}
+.doc-app summary {
+  cursor: pointer;
+}
+.doc-error {
+  background: #fff0ee;
+  color: #923d35;
+  padding: 14px;
+  margin: 10px 0;
+  border-radius: 6px;
+}
+.doc-app footer {
+  text-align: center;
+  color: #8a99aa;
+  font-size: 12px;
+  padding: 10px;
+}
+.doc-login {
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+.doc-card {
+  padding: 38px;
+  background: white;
+  border: 1px solid #e0e5ec;
+  border-radius: 12px;
+  width: 430px;
+  max-width: 100%;
+}
+.doc-card label {
+  margin: 16px 0;
+}
+.doc-card input,
+.doc-card select {
+  margin-top: 6px;
+}
+.doc-card h1 {
+  font-size: 24px;
+}
+.doc-card p {
+  color: #708095;
+}
+@media (max-width: 800px) {
+  .doc-grid {
+    grid-template-columns: 1fr;
+  }
+  .doc-header {
+    align-items: flex-start;
+  }
+  .doc-app {
+    padding: 18px;
+  }
+  .doc-replace {
+    grid-template-columns: 1fr;
+  }
+  .doc-toolbar select {
+    width: 100%;
+  }
+  .doc-grid aside {
+    max-height: 260px;
+    overflow: auto;
+  }
+}

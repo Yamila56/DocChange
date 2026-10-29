@@ -141,6 +141,7 @@ class AgentRuntime:
                             return
                     state["pending"] = None
                     state["protocol_errors"] = 0
+                    state.pop("last_error_detail", None)
                 except (ValidationError, DomainError) as exc:
                     if isinstance(exc, DomainError) and exc.code in {
                         "LEASE_LOST",
@@ -155,6 +156,14 @@ class AgentRuntime:
                     state["last_error"] = (
                         exc.code if isinstance(exc, DomainError) else "INVALID_MODEL_OUTPUT"
                     )
+                    state["last_error_detail"] = (
+                        exc.message
+                        if isinstance(exc, DomainError)
+                        else "; ".join(
+                            f"{'.'.join(map(str, error['loc']))}: {error['msg']}"
+                            for error in exc.errors(include_input=False, include_url=False)
+                        )
+                    )[:1000]
                     state["protocol_errors"] = state.get("protocol_errors", 0) + 1
                     if state["protocol_errors"] >= 2:
                         raise DomainError(
@@ -203,8 +212,15 @@ class AgentRuntime:
                 for mention in item.target_mentions
             ):
                 raise DomainError("INVALID_SOURCE", "Target mentions must quote user messages")
+            previous_target = None
             if item.existing_goal_id:
                 goal = by_id[item.existing_goal_id]
+                previous_target = (
+                    goal["intent"],
+                    goal["mode"],
+                    goal.get("slots", {}).get("order_id", {}).get("value"),
+                    goal.get("slots", {}).get("item_id", {}).get("value"),
+                )
                 if goal["status"] == "COMPLETED":
                     raise DomainError("GOAL_COMMITTED", "Committed actions cannot be rewritten")
                 goal["revision"] += 1
@@ -239,9 +255,6 @@ class AgentRuntime:
                 mentions=mentions,
                 status="UNRESOLVED",
             )
-            goal["evidence_ids"] = []
-            goal["policy_evidence"] = {}
-            goal.pop("policy_assessment", None)
             choice = explicit_choice(
                 state["messages"][-1]["text"], goal.get("entity_candidates", [])
             )
@@ -266,6 +279,15 @@ class AgentRuntime:
                 if slot.name == "order_id" and old and old["value"] != slot.value:
                     goal.pop("order_observation", None)
                     goal["slots"] = {}
+                if (
+                    slot.name in {"order_id", "item_id"}
+                    and old
+                    and old["value"] == slot.value
+                    and old.get("verification_state") == "verified"
+                ):
+                    # Restating an unchanged, tool-verified ID is not a new target.
+                    old["asserted_again_by"] = slot.source_message_id
+                    continue
                 goal["slots"][slot.name] = {
                     "value": slot.value,
                     "source_type": "user",
@@ -273,6 +295,21 @@ class AgentRuntime:
                     "verification_state": "asserted",
                     "observed_at": int(self.tools.service.clock()),
                 }
+            current_target = (
+                goal["intent"],
+                goal["mode"],
+                goal.get("slots", {}).get("order_id", {}).get("value"),
+                goal.get("slots", {}).get("item_id", {}).get("value"),
+            )
+            if item.relation_to_goal == "refine" and previous_target == current_target:
+                assessment = assess(goal, list(goal.get("policy_evidence", {}).values()))
+                goal["policy_assessment"] = assessment
+                goal["evidence_ids"] = assessment["evidence_ids"]
+            else:
+                goal["evidence_ids"] = []
+                goal["policy_evidence"] = {}
+                goal.pop("policy_assessment", None)
+                goal.pop("eligibility_observation", None)
             if item.intent.value not in SUPPORTED_INTENTS:
                 goal["status"], goal["decline_reason"] = "DECLINED", "UNSUPPORTED_CAPABILITY"
                 goal["capability_notice"] = (
@@ -317,8 +354,9 @@ class AgentRuntime:
                         )
             # Persist retrieval reservations before IO; replaying a saved decision uses same IDs.
             await self.store.save(lease, state)
+            persistence_lock = asyncio.Lock()
             results = await asyncio.gather(
-                *[self._read(lease, state, step, call) for call in decision.calls]
+                *[self._read(lease, state, step, call, persistence_lock) for call in decision.calls]
             )
             # Results are applied in original model order, regardless of completion order.
             for call, result in zip(decision.calls, results, strict=True):
@@ -423,6 +461,8 @@ class AgentRuntime:
                     state["pending"] = None
                     await self.store.pause(lease, state, "WAITING_USER")
                     return "PAUSE"
+                if result["status"] == "ok":
+                    self._settle_rule_denial(goal)
                 monitor = ProgressMonitor(**state.get("progress", {}))
                 can_continue = monitor.observe(
                     call.name,
@@ -521,13 +561,70 @@ class AgentRuntime:
             return "FINISH"
         return None
 
-    async def _read(self, lease, state, step, call):
-        identifier, result = await self.store.invocation(
-            lease, step, call.call_id, call.name, call.arguments
+    @staticmethod
+    def _settle_rule_denial(goal):
+        """Close only a rule-proven denial with matching order and policy evidence."""
+        if goal["mode"] != "REQUEST_ACTION" or goal["status"] in DISPOSED:
+            return
+        order = goal.get("order_observation", {})
+        eligibility = goal.get("eligibility_observation", {})
+        assessment = goal.get("policy_assessment", {})
+        if not (
+            order
+            and eligibility
+            and not assessment.get("unsupported_topic")
+            and eligibility.get("order_id") == order["id"]
+            and eligibility.get("order_version") == order["version"]
+            and assessment.get("versions") == [eligibility.get("policy_version")]
+        ):
+            return
+        action = {"CANCEL_ORDER": "CANCEL_ORDER", "RETURN_REQUEST": "REQUEST_RETURN"}.get(
+            goal["intent"]
         )
+        item_id = goal.get("slots", {}).get("item_id", {}).get("value")
+        for option in eligibility.get("actions", []):
+            if option["action"] != action or (
+                action == "REQUEST_RETURN" and option.get("item_id") != item_id
+            ):
+                continue
+            if not option["allowed"] and option.get("reason") in {
+                "NOT_CANCELLABLE",
+                "NOT_RETURNABLE",
+                "RETURN_WINDOW_CLOSED",
+                "CATEGORY_EXCLUDED",
+            }:
+                section = {
+                    "NOT_CANCELLABLE": "cancel-pending",
+                    "NOT_RETURNABLE": "return-undelivered",
+                    "RETURN_WINDOW_CLOSED": "return-window",
+                    "CATEGORY_EXCLUDED": "return-excluded",
+                }[option["reason"]]
+                decisive = [
+                    e["id"]
+                    for e in goal.get("policy_evidence", {}).values()
+                    if section in e.get("policy_sections", [])
+                    and e.get("version") == eligibility["policy_version"]
+                    and e.get("content_hash") == digest(e.get("quote", ""))
+                ]
+                if not decisive:
+                    return
+                # One rule-proven necessary-condition failure is sufficient for denial.
+                # Positive proposals still require the complete policy assessment.
+                goal["evidence_ids"] = decisive
+                goal["status"], goal["decline_reason"] = "DECLINED", option["reason"]
+                return
+
+    async def _read(self, lease, state, step, call, persistence_lock):
+        # Tool IO stays parallel; journal writes within one batch are serialized.
+        # Cross-worker authority remains the database lease/fence and row locks.
+        async with persistence_lock:
+            identifier, result = await self.store.invocation(
+                lease, step, call.call_id, call.name, call.arguments
+            )
         if result is None:
             result = await self.tools.execute(lease.owner_id, call.name, call.arguments)
-            await self.store.save_tool(lease, identifier, result)
+            async with persistence_lock:
+                await self.store.save_tool(lease, identifier, result)
         return result
 
     async def _settle_approvals(self, lease, state):

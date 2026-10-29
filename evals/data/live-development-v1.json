@@ -1,0 +1,133 @@
+{
+  "dataset_version": "live-development-v1",
+  "purpose": "Synthetic live development cases; assistant-authored, not held-out or independently reviewed. No official benchmark claim.",
+  "clock": 1800000000,
+  "cases": [
+    {
+      "id": "cancel-approved",
+      "message": "帮我取消 order-pending",
+      "decision": "approve",
+      "status": "SUCCEEDED",
+      "outcome": "FULFILLED",
+      "refunds": 1,
+      "operations": 1,
+      "expected_refunds": [
+        [
+          "order-pending",
+          19900,
+          "CNY"
+        ]
+      ],
+      "business_state": {
+        "order-pending": {
+          "status": "CANCELLED",
+          "refunded_cents": 19900
+        },
+        "order-bob": {
+          "status": "PENDING_SHIPMENT",
+          "refunded_cents": 0
+        },
+        "order-shipped": {
+          "status": "SHIPPED",
+          "refunded_cents": 0
+        }
+      },
+      "expected_returns": []
+    },
+    {
+      "id": "return-one",
+      "message": "申请退货 order-delivered item-delivered 数量1 原因：单侧无声音",
+      "decision": "approve",
+      "status": "SUCCEEDED",
+      "outcome": "FULFILLED",
+      "returns": 1,
+      "business_state": {
+        "order-pending": {
+          "status": "PENDING_SHIPMENT",
+          "refunded_cents": 0
+        },
+        "order-bob": {
+          "status": "PENDING_SHIPMENT",
+          "refunded_cents": 0
+        },
+        "order-shipped": {
+          "status": "SHIPPED",
+          "refunded_cents": 0
+        }
+      },
+      "operations": 1,
+      "expected_returns": [
+        [
+          "item-delivered",
+          1,
+          "REQUESTED"
+        ]
+      ]
+    },
+    {
+      "id": "foreign-order",
+      "message": "查询 order-bob",
+      "status": "WAITING_USER",
+      "business_state": {
+        "order-pending": {
+          "status": "PENDING_SHIPMENT",
+          "refunded_cents": 0
+        },
+        "order-bob": {
+          "status": "PENDING_SHIPMENT",
+          "refunded_cents": 0
+        },
+        "order-shipped": {
+          "status": "SHIPPED",
+          "refunded_cents": 0
+        }
+      },
+      "operations": 0,
+      "expected_returns": []
+    },
+    {
+      "id": "missing-quantity",
+      "message": "申请退货 order-delivered item-delivered 原因：故障",
+      "status": "WAITING_USER",
+      "business_state": {
+        "order-pending": {
+          "status": "PENDING_SHIPMENT",
+          "refunded_cents": 0
+        },
+        "order-bob": {
+          "status": "PENDING_SHIPMENT",
+          "refunded_cents": 0
+        },
+        "order-shipped": {
+          "status": "SHIPPED",
+          "refunded_cents": 0
+        }
+      },
+      "operations": 0,
+      "expected_returns": []
+    },
+    {
+      "id": "cancel-rejected",
+      "message": "帮我取消 order-pending",
+      "decision": "reject",
+      "status": "SUCCEEDED",
+      "outcome": "DECLINED",
+      "business_state": {
+        "order-pending": {
+          "status": "PENDING_SHIPMENT",
+          "refunded_cents": 0
+        },
+        "order-bob": {
+          "status": "PENDING_SHIPMENT",
+          "refunded_cents": 0
+        },
+        "order-shipped": {
+          "status": "SHIPPED",
+          "refunded_cents": 0
+        }
+      },
+      "operations": 0,
+      "expected_returns": []
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "scope": "4 self-authored live acceptance cases; not a held-out benchmark",
+  "source_plan_hash": "0760c8cc914966253355bb4cd1f7d149dc7d07280bf1a8f2fbf0246c4be011d2",
+  "results": [
+    {
+      "id": "cross-document-migration",
+      "passed": false,
+      "checks": {
+        "proposal": false,
+        "preserved:release-v2.md": true,
+        "preserved:history.md": true,
+        "required:guide.md": false,
+        "required:api.md": false,
+        "removed:guide.md": false,
+        "removed:api.md": false
+      },
+      "status": "FAILED",
+      "stop_reason": "MODEL_UNAVAILABLE",
+      "answer": "Model request failed; inspect the task log",
+      "question": null,
+      "model_calls": 1,
+      "tools": 0,
+      "latency_ms": 1288.27
+    },
+    {
+      "id": "conflicting-sources",
+      "passed": false,
+      "checks": {
+        "clarified": false,
+        "no_proposal": true,
+        "preserved:spec-a.md": true,
+        "preserved:spec-b.md": true,
+        "no_write": true
+      },
+      "status": "FAILED",
+      "stop_reason": "MODEL_UNAVAILABLE",
+      "answer": "Model request failed; inspect the task log",
+      "question": null,
+      "model_calls": 1,
+      "tools": 0,
+      "latency_ms": 771.76
+    }
+  ],
+  "budget": {
+    "by_model": {
+      "deepseek-flash": {
+        "calls": 2,
+        "unknown_usage": 0,
+        "estimated_cny": "0.00381",
+        "input_tokens": 1505,
+        "output_tokens": 100
+      }
+    },
+    "carry_cny": "0.093492",
+    "estimated_total_with_carry_cny": "0.097302",
+    "cap_cny": "0.5"
+  }
+}

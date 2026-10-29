@@ -55,6 +55,43 @@ async def test_read_only_agent_completes_from_real_order(commerce):
     assert any(e["kind"] == "tool.completed" for e in events)
 
 
+async def test_parallel_reads_keep_durable_event_sequence_unique(commerce):
+    store, rid, runtime = await new_run(commerce)
+    runtime.gateway = ScriptedGateway(
+        [
+            DemoGateway()._intents,
+            {
+                "kind": "tool_calls",
+                "calls": [
+                    {
+                        "call_id": name,
+                        "name": name,
+                        "arguments": {"goal_id": "g1", "order_id": "order-pending"},
+                    }
+                    for name in ("get_order", "get_shipment", "calculate_eligibility")
+                ],
+            },
+        ]
+    )
+    original_execute = runtime.tools.execute
+    all_started = asyncio.Event()
+    started = []
+
+    async def synchronized_reads(owner, name, arguments):
+        started.append(name)
+        if len(started) == 3:
+            all_started.set()
+        await asyncio.wait_for(all_started.wait(), timeout=5)
+        return await original_execute(owner, name, arguments)
+
+    runtime.tools.execute = synchronized_reads
+    result = await drive(store, rid, runtime)
+    assert result["status"] == "SUCCEEDED", result
+    events = await store.events("alice", rid)
+    assert sum(e["kind"] == "tool.completed" for e in events) == 3
+    assert [e["seq"] for e in events] == list(range(1, len(events) + 1))
+
+
 async def test_action_waits_for_approval_then_executes_once(commerce):
     service, sessions, _ = commerce
     store, rid, runtime = await new_run(commerce, "帮我取消 order-pending")
@@ -247,6 +284,40 @@ async def test_bad_model_output_is_bounded(commerce):
     result = await drive(store, rid, runtime)
     assert result["status"] == "FAILED", result
     assert result["model_calls"] == 2
+
+
+async def test_repair_context_explains_premature_final_and_bad_citation(commerce):
+    store, rid, runtime = await new_run(commerce)
+
+    def repair(context):
+        assert context["last_error"] == "PREMATURE_FINAL"
+        assert "INVALID_EVIDENCE" in context["last_error_detail"]
+        assert "GOAL_NOT_FINISHED:g1" in context["last_error_detail"]
+        return {
+            "kind": "tool_calls",
+            "calls": [
+                {
+                    "call_id": "read",
+                    "name": "get_order",
+                    "arguments": {"goal_id": "g1", "order_id": "order-pending"},
+                }
+            ],
+        }
+
+    runtime.gateway = ScriptedGateway(
+        [
+            DemoGateway()._intents,
+            {
+                "kind": "final_answer",
+                "text": "premature",
+                "goal_ids": ["g1"],
+                "evidence_ids": ["call-id-is-not-evidence"],
+            },
+            repair,
+        ]
+    )
+    result = await drive(store, rid, runtime)
+    assert result["status"] == "SUCCEEDED", result
 
 
 async def test_sse_cursor_replays_only_later_events(commerce):

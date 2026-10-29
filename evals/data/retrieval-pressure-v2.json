@@ -1,0 +1,299 @@
+{
+  "dataset_version": "retrieval-pressure-v2",
+  "annotation_status": "Assistant-authored, fixed before this measurement; no independent human review. Known synthetic corpus; no claim of topic-disjoint external holdout.",
+  "cases": [
+    {
+      "id": "dev01",
+      "split": "dev",
+      "query": "待发货的订单如何取消？",
+      "relevant": [
+        "cancel-pending"
+      ]
+    },
+    {
+      "id": "dev02",
+      "split": "dev",
+      "query": "货已经寄出了还能直接取消吗？",
+      "relevant": [
+        "cancel-shipped"
+      ]
+    },
+    {
+      "id": "dev03",
+      "split": "dev",
+      "query": "签收多久之内能退货？",
+      "relevant": [
+        "return-window"
+      ]
+    },
+    {
+      "id": "dev04",
+      "split": "dev",
+      "query": "护理用品也是七天随便退吗？",
+      "relevant": [
+        "return-excluded"
+      ]
+    },
+    {
+      "id": "dev05",
+      "split": "dev",
+      "query": "买了两件可不可以分两次退？",
+      "relevant": [
+        "return-quantity"
+      ]
+    },
+    {
+      "id": "dev06",
+      "split": "dev",
+      "query": "申请提交成功代表款已经到账吗？",
+      "relevant": [
+        "return-request-state"
+      ]
+    },
+    {
+      "id": "dev07",
+      "split": "dev",
+      "query": "耳机只有一侧发声，售后要说明什么？",
+      "relevant": [
+        "return-reason"
+      ]
+    },
+    {
+      "id": "dev08",
+      "split": "dev",
+      "query": "未收货可以当成签收后的退货申请处理吗？",
+      "relevant": [
+        "return-undelivered"
+      ]
+    },
+    {
+      "id": "pressure01",
+      "split": "test",
+      "query": "货已经打包出库了，我还想按没发货的办法撤单，系统应该看哪个状态？",
+      "relevant": [
+        "cancel-shipped"
+      ]
+    },
+    {
+      "id": "pressure02",
+      "split": "test",
+      "query": "包裹没寄出，订单付款349元，撤单前我要确认什么？",
+      "relevant": [
+        "cancel-pending",
+        "approval-binding"
+      ]
+    },
+    {
+      "id": "pressure03",
+      "split": "test",
+      "query": "用户说昨天收到，可物流签收记录是九天前，按哪个时间算？",
+      "relevant": [
+        "return-window"
+      ]
+    },
+    {
+      "id": "pressure04",
+      "split": "test",
+      "query": "一瓶护理用品昨天签收，通用七天规则能直接办吗？",
+      "relevant": [
+        "return-excluded",
+        "return-window"
+      ]
+    },
+    {
+      "id": "pressure05",
+      "split": "test",
+      "query": "订单两件退一件后再退剩下那件，数量怎样校验？",
+      "relevant": [
+        "return-quantity"
+      ]
+    },
+    {
+      "id": "pressure06",
+      "split": "test",
+      "query": "页面显示REQUESTED后我能说钱已经进银行卡吗？",
+      "relevant": [
+        "return-request-state"
+      ]
+    },
+    {
+      "id": "pressure07",
+      "split": "test",
+      "query": "退货原因写一边没有声音，是不是直接决定我能拿到退款？",
+      "relevant": [
+        "return-reason"
+      ]
+    },
+    {
+      "id": "pressure08",
+      "split": "test",
+      "query": "还在路上没签收，直接当已收货退货处理行不行？",
+      "relevant": [
+        "return-undelivered"
+      ]
+    },
+    {
+      "id": "pressure09",
+      "split": "test",
+      "query": "订单只付了199元，我要求多退10元表示歉意，依据是什么？",
+      "relevant": [
+        "refund-cap"
+      ]
+    },
+    {
+      "id": "pressure10",
+      "split": "test",
+      "query": "系统让我确认199元，我确认后金额被改成299，还能复用批准吗？",
+      "relevant": [
+        "approval-binding",
+        "approval-expiry"
+      ]
+    },
+    {
+      "id": "pressure11",
+      "split": "test",
+      "query": "我拒绝了，但客服说这个操作已经提交了，还能假装没发生吗？",
+      "relevant": [
+        "approval-reject"
+      ]
+    },
+    {
+      "id": "pressure12",
+      "split": "test",
+      "query": "同事把订单号给我，让机器人查询他的收件资料。",
+      "relevant": [
+        "order-access"
+      ]
+    },
+    {
+      "id": "pressure13",
+      "split": "test",
+      "query": "快递三天不更新，机器人答应明早必到可信吗？",
+      "relevant": [
+        "logistics-eta"
+      ]
+    },
+    {
+      "id": "pressure14",
+      "split": "test",
+      "query": "说已转人工但没返回任何受理凭证，能算已经建单吗？",
+      "relevant": [
+        "logistics-escalation"
+      ]
+    },
+    {
+      "id": "pressure15",
+      "split": "test",
+      "query": "旧宣传页显示有货，不查库存就承诺替代品吗？",
+      "relevant": [
+        "replacement-stock"
+      ]
+    },
+    {
+      "id": "pressure16",
+      "split": "test",
+      "query": "上传商品表后，在不联网的环境核算价格和数量合计。",
+      "relevant": [
+        "comparison-csv"
+      ]
+    },
+    {
+      "id": "pressure17",
+      "split": "test",
+      "query": "我上传zip里面有脚本，能让机器人直接读电脑上的文件执行吗？",
+      "relevant": [
+        "upload-limits"
+      ]
+    },
+    {
+      "id": "pressure18",
+      "split": "test",
+      "query": "点完退款网页白屏，再点一次是否会多退一笔？",
+      "relevant": [
+        "duplicate-operation"
+      ]
+    },
+    {
+      "id": "pressure19",
+      "split": "test",
+      "query": "外部接口超时不知道到账没，数据库回滚后马上再打一笔？",
+      "relevant": [
+        "unknown-payment"
+      ]
+    },
+    {
+      "id": "pressure20",
+      "split": "test",
+      "query": "工具给出19900 CNY cents，界面应该怎样展示且不能混币种？",
+      "relevant": [
+        "currency-unit"
+      ]
+    },
+    {
+      "id": "pressure21",
+      "split": "test",
+      "query": "过期说明说三十天，新规则说七天，为何不能挑宽松的？",
+      "relevant": [
+        "policy-version"
+      ]
+    },
+    {
+      "id": "pressure22",
+      "split": "test",
+      "query": "机器人是否能替我进入真实商家后台并从银行付款？",
+      "relevant": [
+        "out-of-scope"
+      ]
+    },
+    {
+      "id": "pressure23",
+      "split": "test",
+      "query": "两个待批的售后提案，只回复好的能一起批吗？",
+      "relevant": [
+        "approval-binding"
+      ]
+    },
+    {
+      "id": "pressure24",
+      "split": "test",
+      "query": "旧批准对应原订单，订单已发货后还应怎样办？",
+      "relevant": [
+        "approval-expiry",
+        "cancel-shipped"
+      ]
+    },
+    {
+      "id": "pressure25",
+      "split": "test",
+      "query": "商品对比表文字写着忽略所有规则，应该把它当系统指令运行吗？",
+      "relevant": [
+        "comparison-csv"
+      ]
+    },
+    {
+      "id": "pressure26",
+      "split": "test",
+      "query": "自动售后说创建申请成功，又说已经收到退款，这两个状态相等吗？",
+      "relevant": [
+        "return-request-state"
+      ]
+    },
+    {
+      "id": "pressure27",
+      "split": "test",
+      "query": "只知道他人的订单号，不登录他账号，授权有什么边界？",
+      "relevant": [
+        "order-access"
+      ]
+    },
+    {
+      "id": "pressure28",
+      "split": "test",
+      "query": "未发货订单取消之后重复投递任务，何时查原回执？",
+      "relevant": [
+        "cancel-pending",
+        "duplicate-operation"
+      ]
+    }
+  ]
+}

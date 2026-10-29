@@ -261,6 +261,10 @@ def create_app(settings=None, *, sessions=None, clock=time.time):
     async def analysis_status(analysis_id: str, user: Owner):
         return await analyses.get(user, analysis_id)
 
+    from shopresolve.documents.api import router as document_router
+
+    app.include_router(document_router(sessions, runs, owner, settings))
+
     frontend = Path("frontend/dist")
     if frontend.is_dir():
 

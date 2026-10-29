@@ -48,6 +48,7 @@ class ContextBuilder:
             "tools": tool_specs,
             "results": state["results"],
             "last_error": state.get("last_error"),
+            "last_error_detail": state.get("last_error_detail"),
         }
         # This is a conservative byte bound, NOT an exact model tokenizer. Actual
         # usage is recorded from provider responses; do not call byte counts tokens.

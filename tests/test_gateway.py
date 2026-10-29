@@ -59,6 +59,13 @@ async def test_deepseek_bounded_non_thinking_json_and_connection_lifecycle():
         assert payload["max_tokens"] == 1500
         assert payload["response_format"] == {"type": "json_object"}
         assert requests[0].url == "https://api.deepseek.com/chat/completions"
+        supplied = json.loads(payload["messages"][1]["content"])
+        assert supplied["schema"]["$defs"]["SlotCandidate"]["properties"]["name"]["enum"] == [
+            "order_id",
+            "item_id",
+            "quantity",
+            "reason",
+        ]
         assert not gateway.client.is_closed
     finally:
         await gateway.aclose()

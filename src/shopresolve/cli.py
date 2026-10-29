@@ -57,6 +57,9 @@ async def run_service(command):
             close = getattr(worker.runtime.gateway, "aclose", None)
             if close is not None:
                 await close()
+            close_document = getattr(worker.document_runtime.gateway, "aclose", None)
+            if close_document is not None:
+                await close_document()
         await queue.close()
         await engine.dispose()
 

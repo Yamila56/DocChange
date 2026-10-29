@@ -1,0 +1,15 @@
+{
+  "version": "document-engineering-v1",
+  "provenance": "Assistant-authored development fixtures, frozen before this batch; deterministic demo controller, no model capability claim.",
+  "cases": [
+    {"id":"rename-multi", "mode":"update", "old":"user_id", "new":"account_id", "approve":true, "expected":"PUBLISHED"},
+    {"id":"preserve-history", "mode":"update", "old":"user_id", "new":"account_id", "approve":true, "expected":"PUBLISHED"},
+    {"id":"timeout", "mode":"update", "old":"30", "new":"60", "approve":true, "expected":"PUBLISHED"},
+    {"id":"chinese", "mode":"update", "old":"必填", "new":"可选", "approve":true, "expected":"PUBLISHED"},
+    {"id":"reject", "mode":"update", "old":"user_id", "new":"account_id", "approve":false, "expected":"REJECTED"},
+    {"id":"missing", "mode":"update", "old":"unknown_field", "new":"new_field", "expected":"WAITING_USER"},
+    {"id":"link-error", "mode":"update", "old":"api.md", "new":"missing.md", "expected":"FAILED"},
+    {"id":"query", "mode":"query", "text":"user_id", "expected":"SUCCEEDED"},
+    {"id":"stale", "mode":"update", "old":"user_id", "new":"account_id", "approve":true, "stale":true, "expected":"STALE"}
+  ]
+}
