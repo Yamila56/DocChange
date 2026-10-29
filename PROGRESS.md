@@ -1,5 +1,7 @@
 # ShopResolve 进度与续接记录
 
+2026-10-29 远程CI完成：首版源码4d6c36d对应Actions run 40873084174全部成功（unit、frontend、mysql）。同一源码tag触发的重复run 40873255403已取消，保留main分支成功记录；只改交付文档的后续commit使用[skip ci]，避免重复执行。未新增业务代码、模型调用或付费训练。
+
 2026-10-29 私有GitHub首版已上传：安装官方GitHub CLI 2.103.3（用户目录 `C:\Users\legion\AppData\Local\Programs\GitHubCLI\2.103.3\bin\gh.exe`，官方SHA256校验通过，已添加用户PATH），用户完成浏览器登录，身份回读为Yamila56。助手新建 `https://github.com/Yamila56/DocChange`，回读可见性PRIVATE，已推送main及v0.1.0（源码commit 4d6c36dc59b410e6ed369158a95f881a58e8ab6b），origin/main跟踪已设置。上传前可达历史236个blob扫描无密钥发现，父目录/.env/cache未上传。首版远程CI已触发，实际结果见Actions；不把触发当通过。此前“无法建仓/未push”状态已被本条取代。没有新增模型调用或租卡。
 
 2026-10-29 V0.1发布准备：本轮仅整理发布与后训练完整操作流程，没有新付费模型调用/租卡。DocChange本地全套实际157 passed/16 skipped、133.25秒，报告 `docs/evaluation/docchange-release-local-2026-10-29.xml`；修复历史分析脚本5处纯格式门禁，Ruff全仓通过。README已补完整安装与V0.1说明，说明源码托管与公网部署区别。发布说明 `docs/RELEASE-v0.1.0.md`。目前仍无远程仓库；GitHub账号Yamila56连接可读，但连接器不能新建repo、本机无gh，浏览器新建页不可用，未远程push。后训练完整步骤/硬件/环境/命令/未实现边界已写入 `D:\证书及申请资料\WorkflowRepair\RUNBOOK.md`；没有开始新域训练。GPU建议为同机2×A100 80GB，先完成CPU数据/adapter再租，绝不按旧聊天价格自动购买。

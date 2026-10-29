@@ -6,7 +6,7 @@
 
 本地快速入口：`python -m scripts.run_docchange`（项目虚拟环境）。真实模型入口加`--remote`，使用持久交互预算；`.env`与模型密钥不打包。
 
-发布前本地结果：157 passed / 16 skipped，133.25秒；Ruff check/format通过；前端已构建。跳过项和已有环境依赖不等同通过，详见 `evaluation/docchange-release-local-2026-10-29.xml`。首版push已触发远程CI，结果见仓库Actions，不以本地结果冒充远程结果。
+发布前本地结果：157 passed / 16 skipped，133.25秒；Ruff check/format通过；前端已构建。跳过项和已有环境依赖不等同通过，详见 `evaluation/docchange-release-local-2026-10-29.xml`。首版源码commit `4d6c36d` 的[远程CI](https://github.com/Yamila56/DocChange/actions/runs/40873084174)已完成，unit、frontend、mysql三个job均通过；这不代表Redis/Docker等所有可选服务用例都运行过。
 
 真实模型验收：原始首轮2/4；补诊断定位相邻JSON读请求；增加受控read_many后两失败题复测2/2。14请求、保守费用0.111042元。工程fixture9/9属于免费控制器。详见交付报告，不能合并成独立4/4准确率。
 
