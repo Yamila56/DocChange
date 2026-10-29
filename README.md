@@ -6,7 +6,14 @@
 
 ## 快速启动
 
-需要 Python 3.12、Node.js 与 pnpm。在仓库根目录：
+需要 Python 3.12、Node.js 与 pnpm。获取私有仓库需要已授权的 GitHub 账号：
+
+```powershell
+git clone https://github.com/Yamila56/DocChange.git
+cd DocChange
+```
+
+在仓库根目录：
 
 ```powershell
 python -m venv .venv
@@ -32,7 +39,7 @@ pnpm --dir frontend build
 
 验收：9个确定性工程fixture通过；真实模型首轮4题2题通过，发现协议问题后两个失败场景复测通过。不是独立benchmark的100%准确率。完整结果、失败和费用见[交付报告](docs/evaluation/docchange-delivery-2026-10-29.md)。
 
-本轮发布前本地全套：157 passed / 16 skipped（依赖服务用例等），不是MySQL/Redis/Docker全栈通过。CI配置已提供，远程CI尚未运行。
+本轮发布前本地全套：157 passed / 16 skipped（依赖服务用例等），不是MySQL/Redis/Docker全栈通过。私有仓库首版已上传，远程CI已触发；实际状态见 [GitHub Actions](https://github.com/Yamila56/DocChange/actions)。
 
 当前小文档索引同步构建后随版本发布，未接Dense/Rerank；首版单Agent。文档域MySQL/Redis实机联调、真实Docker文档检查与生产认证尚待补充，不以历史电商测试替代。
 

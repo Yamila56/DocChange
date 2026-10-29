@@ -6,7 +6,7 @@
 
 本地快速入口：`python -m scripts.run_docchange`（项目虚拟环境）。真实模型入口加`--remote`，使用持久交互预算；`.env`与模型密钥不打包。
 
-发布前本地结果：157 passed / 16 skipped，133.25秒；Ruff check/format通过；前端已构建。跳过项和已有环境依赖不等同通过，详见 `evaluation/docchange-release-local-2026-10-29.xml`。远程CI尚未运行。
+发布前本地结果：157 passed / 16 skipped，133.25秒；Ruff check/format通过；前端已构建。跳过项和已有环境依赖不等同通过，详见 `evaluation/docchange-release-local-2026-10-29.xml`。首版push已触发远程CI，结果见仓库Actions，不以本地结果冒充远程结果。
 
 真实模型验收：原始首轮2/4；补诊断定位相邻JSON读请求；增加受控read_many后两失败题复测2/2。14请求、保守费用0.111042元。工程fixture9/9属于免费控制器。详见交付报告，不能合并成独立4/4准确率。
 
@@ -26,14 +26,15 @@
 
 ## 上传状态
 
-本地首版提交、tag和zip将用于源码交付。当前仓库没有远程origin，GitHub连接器没有新建仓库接口，本机没有gh命令；本轮浏览器创建页未能打开，因此没有创建或上传远程仓库。已连接账号为Yamila56，但“账号可读”不等于“仓库已建立”。
+2026-10-29 已由助手创建并推送至私有仓库：
 
-创建名为DocChange的Private空仓库后（不初始化README），可以在本仓库执行：
+- 仓库：https://github.com/Yamila56/DocChange
+- 可见性：PRIVATE，GitHub API已回读确认。
+- 默认分支：main，已推送并设置origin/main跟踪。
+- 首版源码commit：`4d6c36dc59b410e6ed369158a95f881a58e8ab6b`。
+- 版本tag：`v0.1.0`，已推送；指向上述源码commit。
+- 上传前检查了本仓库可达历史的236个blob，未发现当前配置密钥、凭证格式匹配或敏感数据库文件；没有上传父目录、.env和本地缓存。
 
-```powershell
-git remote add origin https://github.com/Yamila56/DocChange.git
-git push -u origin HEAD
-git push origin v0.1.0
-```
+此前阻塞为连接器缺少建仓接口、本机未安装CLI。本轮安装官方GitHub CLI 2.103.3，校验官方下载SHA256，用户完成一次浏览器登录后由CLI建仓/推送，问题已解除。无需每个项目手动建仓；登录有效且权限足够时可继续复用。
 
-这些是待执行命令，不是本轮已完成的远程操作。保持Private，后续公开需用户明确决定。
+这是源码托管交付，本地服务仍需按README启动。保持Private，后续公开需用户明确决定。
