@@ -48,6 +48,11 @@ async def execute(sessions, service, wid, case):
         "text": case.get("text", "根据指定目标更新当前文档，保留其他内容。"),
         "old": case.get("old", ""),
         "new": case.get("new", ""),
+        **{
+            k: case[k]
+            for k in ("editable_paths", "required_absent", "required_present")
+            if k in case
+        },
     }
     cfg = {
         "domain": "document",

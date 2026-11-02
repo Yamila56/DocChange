@@ -5,7 +5,6 @@ import re
 from pathlib import PurePosixPath
 from uuid import uuid4
 
-from rank_bm25 import BM25Okapi
 from sqlalchemy import select
 
 from shopresolve.errors import DomainError
@@ -13,10 +12,57 @@ from shopresolve.runstore import RunStore, append_event, checkpoint, db_now, req
 from shopresolve.service import CommerceService, digest, retry_local_transaction
 
 from .models import ChangeSet, Revision, Workspace
+from .retriever import DocumentRetriever, tokens
+
+EDITABLE_SUFFIXES = {".md", ".mdx", ".rst", ".txt"}
 
 
-def tokens(text):
-    return re.findall(r"[a-z0-9_]+|[\u4e00-\u9fff]", text.lower())
+def valid_path(path):
+    p = PurePosixPath(path)
+    return bool(path) and not (
+        p.is_absolute()
+        or ".." in p.parts
+        or ".git" in p.parts
+        or "\\" in path
+        or ":" in path
+        or "\x00" in path
+        or str(p) != path
+        or len(path) > 512
+    )
+
+
+def apply_edits(documents, edits, read_paths, *, allowed=None, creatable=None):
+    """Shared deterministic patch guard for workbench and repository adapters."""
+    candidate = copy.deepcopy(documents)
+    for edit in edits:
+        path = edit["path"]
+        operation = edit.get("operation", "replace")
+        if not valid_path(path) or PurePosixPath(path).suffix.lower() not in EDITABLE_SUFFIXES:
+            raise DomainError("INVALID_PATH", "Use a relative documentation path")
+        if allowed is not None and path not in allowed:
+            raise DomainError("SCOPE_VIOLATION", "Edit outside the authorized task scope")
+        if operation == "create":
+            if path in candidate or (creatable is not None and path not in creatable):
+                raise DomainError("CREATE_CONFLICT", "New document path is not available")
+            if not edit.get("new"):
+                raise DomainError("INVALID_PATCH", "New document must have content")
+            candidate[path] = {"role": "document", "content": edit["new"]}
+            continue
+        if path not in candidate or candidate[path].get("role", "document") != "document":
+            raise DomainError("READ_ONLY", "Only target documents may be changed")
+        if path not in read_paths:
+            raise DomainError("READ_FIRST", "Read the target before editing")
+        if operation == "delete":
+            del candidate[path]
+        elif operation == "replace":
+            old, new = edit.get("old", ""), edit.get("new", "")
+            count = candidate[path]["content"].count(old) if old else 0
+            if not count or count != edit.get("count", 1) or old == new:
+                raise DomainError("PATCH_MISMATCH", "Exact occurrence count differs; reread target")
+            candidate[path]["content"] = candidate[path]["content"].replace(old, new)
+        else:
+            raise DomainError("INVALID_PATCH", "Unknown edit operation")
+    return candidate
 
 
 def check_documents(documents):
@@ -24,19 +70,13 @@ def check_documents(documents):
         raise DomainError("DOCUMENT_LIMIT", "Import between 1 and 50 Markdown files", 422)
     total = 0
     for path, doc in documents.items():
-        p = PurePosixPath(path)
-        if (
-            p.is_absolute()
-            or ".." in p.parts
-            or "\\" in path
-            or ":" in path
-            or str(p) != path
-            or not path.endswith(".md")
-            or len(path) > 160
-        ):
-            raise DomainError("INVALID_PATH", "Use relative .md paths without traversal", 422)
         if not isinstance(doc, dict) or not isinstance(doc.get("content"), str):
             raise DomainError("INVALID_DOCUMENT", "Document content must be text", 422)
+        p = PurePosixPath(path)
+        if not valid_path(path) or (
+            doc.get("role", "document") == "document" and p.suffix.lower() not in EDITABLE_SUFFIXES
+        ):
+            raise DomainError("INVALID_PATH", "Use relative documentation paths", 422)
         total += len(doc["content"].encode())
         if len(doc["content"].encode()) > 60000:
             raise DomainError("DOCUMENT_LIMIT", "Each file must be under 60KB", 422)
@@ -89,6 +129,40 @@ def broken_links(documents):
 
 
 class DocumentService:
+    @staticmethod
+    def validate_contract(documents, contract):
+        allowed = contract.get("editable_paths")
+        creatable = contract.get("creatable_paths") or []
+        if any(
+            not valid_path(p)
+            or p in documents
+            or PurePosixPath(p).suffix.lower() not in EDITABLE_SUFFIXES
+            for p in creatable
+        ):
+            raise DomainError("INVALID_SCOPE", "New document paths must be safe and unused", 422)
+        if allowed is not None and (
+            not allowed
+            or any(
+                (p not in documents and p not in creatable)
+                or documents.get(p, {}).get("role", "document") != "document"
+                for p in allowed
+            )
+        ):
+            raise DomainError("INVALID_SCOPE", "Select existing editable documents", 422)
+        for field in ("required_absent", "required_present"):
+            conditions = contract.get(field) or {}
+            if len(conditions) > 50:
+                raise DomainError("INVALID_CONTRACT", "Too many postconditions", 422)
+            for path, phrases in conditions.items():
+                if (path not in documents and path not in creatable) or (
+                    allowed is not None and path not in allowed
+                ):
+                    raise DomainError("INVALID_CONTRACT", "Postcondition outside task scope", 422)
+                if not phrases or len(phrases) > 30 or any(not s or len(s) > 1000 for s in phrases):
+                    raise DomainError(
+                        "INVALID_CONTRACT", "Use bounded nonempty postconditions", 422
+                    )
+
     def __init__(self, sessions):
         self.sessions = sessions
         self.idempotency = CommerceService(sessions)
@@ -159,50 +233,67 @@ class DocumentService:
         if exact:
             hits = [c for c in chunks if query in c["quote"]]
         else:
-            corpus = [tokens(c["quote"]) or ["_"] for c in chunks]
-            # Positive IDF for a small corpus; common terms must not all score zero.
-            bm25 = BM25Okapi(corpus)
-            scores = bm25.get_scores(tokens(query))
-            ranked = sorted(range(len(chunks)), key=lambda i: float(scores[i]), reverse=True)
-            hits = [chunks[i] for i in ranked if set(tokens(query)) & set(corpus[i])][:6]
+            index = DocumentRetriever([c["id"] for c in chunks], [c["quote"] for c in chunks])
+            by_id = {c["id"]: c for c in chunks}
+            hits = [
+                by_id[key]
+                for key in index.rank(query, len(chunks))
+                if set(tokens(query)) & set(tokens(by_id[key]["quote"]))
+            ][:6]
         return [{**c, "version": f"{wid}@{number}"} for c in hits]
 
     async def prepare(self, lease, state, edits, evidence, summary):
         cfg = state["config"]["document"]
         base = await self.get(lease.owner_id, cfg["workspace_id"], cfg["revision"])
+        self.validate_contract(base["documents"], cfg)
         known = {c["id"]: c for c in state.get("evidence", [])}
         if not evidence or not set(evidence) <= set(known):
             raise DomainError("EVIDENCE_REQUIRED", "Read and cite source evidence before proposing")
         if not 1 <= len(edits) <= 30:
             raise DomainError("INVALID_PATCH", "Provide 1 to 30 exact replacement edits")
-        candidate = copy.deepcopy(base["documents"])
-        for edit in edits:
-            path, old, new = edit["path"], edit["old"], edit["new"]
-            if path not in candidate or candidate[path].get("role", "document") != "document":
-                raise DomainError("READ_ONLY", "Only target documents may be changed")
-            if path not in state.get("read_paths", []):
-                raise DomainError("READ_FIRST", "Read the target before editing")
-            count = candidate[path]["content"].count(old) if old else 0
-            if not count or count != edit["count"] or old == new:
-                raise DomainError("PATCH_MISMATCH", "Exact occurrence count differs; reread target")
-            candidate[path]["content"] = candidate[path]["content"].replace(old, new)
+        candidate = apply_edits(
+            base["documents"],
+            edits,
+            state.get("read_paths", []),
+            allowed=cfg.get("editable_paths"),
+            creatable=cfg.get("creatable_paths", []),
+        )
         check_documents(candidate)
+        for field, must_exist in (("required_absent", False), ("required_present", True)):
+            for path, phrases in (cfg.get(field) or {}).items():
+                if any(
+                    (phrase in candidate.get(path, {}).get("content", "")) != must_exist
+                    for phrase in phrases
+                ):
+                    raise DomainError("POSTCONDITION_FAILED", f"Unmet {field} condition in {path}")
         broken = sorted(set(broken_links(candidate)) - set(broken_links(base["documents"])))
         if broken:
             raise DomainError("BROKEN_LINK", "New broken internal links: " + "; ".join(broken))
         diffs = {}
-        for path, doc in candidate.items():
-            previous = base["documents"][path]["content"]
-            if doc["content"] != previous:
+        for path in sorted(set(candidate) | set(base["documents"])):
+            previous = base["documents"].get(path, {}).get("content", "")
+            content = candidate.get(path, {}).get("content", "")
+            if content != previous:
                 diffs[path] = "".join(
                     difflib.unified_diff(
                         previous.splitlines(True),
-                        doc["content"].splitlines(True),
+                        content.splitlines(True),
                         fromfile=path,
                         tofile=path,
                     )
                 )
         payload = {
+            "impact": {
+                "base_revision": cfg["revision"],
+                "changed_paths": sorted(diffs),
+                "created_paths": sorted(set(candidate) - set(base["documents"])),
+                "deleted_paths": sorted(set(base["documents"]) - set(candidate)),
+                "preserved_paths": sorted(set(candidate) - set(diffs)),
+                "replacement_occurrences": sum(e["count"] for e in edits),
+                "contract": {
+                    k: cfg.get(k) for k in ("editable_paths", "required_absent", "required_present")
+                },
+            },
             "documents": candidate,
             "index": build_index(candidate),
             "diffs": diffs,

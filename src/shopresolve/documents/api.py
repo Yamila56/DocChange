@@ -25,6 +25,10 @@ class Task(BaseModel):
     old: str = Field(default="", max_length=10000)
     new: str = Field(default="", max_length=10000)
     revision: int | None = Field(default=None, ge=1)
+    editable_paths: list[str] | None = Field(default=None, max_length=50)
+    creatable_paths: list[str] = Field(default_factory=list, max_length=50)
+    required_absent: dict[str, list[str]] = Field(default_factory=dict)
+    required_present: dict[str, list[str]] = Field(default_factory=dict)
 
 
 class Review(BaseModel):
@@ -80,6 +84,7 @@ def router(sessions, runs, owner, settings):
         idempotency_key: str = Header(min_length=1, max_length=128),
     ):
         snap = await service.get(user, wid, body.revision)
+        service.validate_contract(snap["documents"], body.model_dump())
         cfg = {
             "provider": settings.provider,
             "model": settings.model,

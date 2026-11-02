@@ -389,7 +389,11 @@ class CompatibleJsonGateway:
         content = choice.get("message", {}).get("content")
         if not isinstance(content, str) or not content.strip():
             raise ValueError("Provider returned empty JSON content")
-        output = json.loads(content)
+        try:
+            output = json.loads(content)
+        except json.JSONDecodeError as exc:
+            exc.usage = body.get("usage")
+            raise
         if not isinstance(output, dict):
             raise ValueError("Provider did not return a JSON object")
         # Never persist reasoning_content or credentials in a model observation.

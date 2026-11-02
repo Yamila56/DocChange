@@ -1,0 +1,33 @@
+{
+  "dogbench_commit": "35bc80734093ffc3d0801476b02ceb2ab0c80bd2",
+  "dogbench_revision": "f8e5dd2040414810cc79e8f77167c84a12d76932",
+  "scidocs_revision": "acebceec772628c6679d76d6cff30ad517d17f4e",
+  "scidocs_qrels_revision": "735ea1048e37b1ebce14c6dc3d33a5edaf66d3dc",
+  "files": {
+    ".cache\\benchmarks\\dogbench-data\\items.jsonl": {
+      "sha256": "fd3c4707b67418da605edcadc47ff11da6c4412e0eafbea76ae855f4830412ef",
+      "bytes": 676813
+    },
+    ".cache\\benchmarks\\dogbench-data\\outcomes.jsonl": {
+      "sha256": "48481665c0887a64a136a34dd7dc6d07c96dac3ed33716b674d538277b3efcce",
+      "bytes": 2098434
+    },
+    ".cache\\benchmarks\\scidocs-hf\\corpus\\corpus-00000-of-00001.parquet": {
+      "sha256": "e1855cbf47a19e4ff1fc870674c3c441bc5a32a76ecc151851d4452a9aa43a28",
+      "bytes": 18673258
+    },
+    ".cache\\benchmarks\\scidocs-hf\\queries\\queries-00000-of-00001.parquet": {
+      "sha256": "f9ad7adff7d396e652789de371f69b5a3adfa8f39e1f37fff728c231e7db3202",
+      "bytes": 92568
+    },
+    ".cache\\benchmarks\\scidocs-qrels-hf\\test.tsv": {
+      "sha256": "dcd3d7f77417294bb6f338537f3c28d8a5ea72b30fe6633f407fa85528767e35",
+      "bytes": 2543906
+    }
+  },
+  "scifact": {
+    "url": "https://public.ukp.informatik.tu-darmstadt.de/thakur/BEIR/datasets/scifact.zip",
+    "md5": "5f7d1de60b170fc8027bb7898e2efca1",
+    "sha256": "536e14446a0ba56ed1398ab1055f39fe852686ecad24a6306c80c490fa8e0165"
+  }
+}

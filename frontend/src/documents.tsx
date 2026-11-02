@@ -37,6 +37,7 @@ type Change = {
   diffs: Record<string, string>;
   validation: unknown;
   published_revision?: number;
+  impact?: { changed_paths: string[]; preserved_paths: string[]; replacement_occurrences: number };
 };
 const uid = () => crypto.randomUUID();
 const samples: Record<string, File> = {
@@ -83,6 +84,8 @@ export default function DocumentApp() {
   );
   const [oldText, setOld] = useState("user_id");
   const [newText, setNew] = useState("account_id");
+  const [scope, setScope] = useState("");
+  const [forbidden, setForbidden] = useState("");
   const [query, setQuery] = useState("");
   const [reply, setReply] = useState("");
   const [hits, setHits] = useState<Evidence[]>([]);
@@ -412,6 +415,12 @@ export default function DocumentApp() {
             />
             {mode === "update" && (
               <>
+                <label>允许修改的文件（逗号分隔，留空为全部当前文档）
+                  <input value={scope} onChange={(e) => setScope(e.target.value)} placeholder="guide.md, api.md" />
+                </label>
+                <label>发布前必须清除的旧标识符（可选）
+                  <input value={forbidden} onChange={(e) => setForbidden(e.target.value)} placeholder="user_id" />
+                </label>
                 <div className="doc-replace">
                   <label>
                     演示原文
@@ -444,6 +453,10 @@ export default function DocumentApp() {
                     old: oldText,
                     new: newText,
                     revision: space?.revision,
+                    editable_paths: mode === "update" && scope.trim() ? scope.split(",").map(p => p.trim()).filter(Boolean) : null,
+                    required_absent: mode === "update" && forbidden.trim() ? Object.fromEntries(
+                      (scope.trim() ? scope.split(",").map(p => p.trim()).filter(Boolean) : Object.entries(space?.documents || {}).filter(([,d]) => d.role === "document").map(([p]) => p)).map(p => [p, [forbidden.trim()]])
+                    ) : {},
                   });
                   setRid(r.run_id);
                   await refresh();
@@ -513,6 +526,7 @@ export default function DocumentApp() {
               {change && (
                 <>
                   <h3>{change.summary}</h3>
+                  {change.impact && <p>修改 {change.impact.changed_paths.join("、")}；保留 {change.impact.preserved_paths.length} 篇；精确替换 {change.impact.replacement_occurrences} 处。</p>}
                   <div className="doc-actions">
                     <button
                       disabled={busy}
