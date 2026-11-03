@@ -17,3 +17,6 @@ Python、FastAPI、Pydantic、SQLAlchemy、MySQL / SQLite、Redis Streams、BM25
 演示与面试准备：[项目边界、工程验证及演示顺序](INTERVIEW-DOCCHANGE.md)。
 
 仓库定位补充：在DoGBench公开需修改任务的110项可评分路径标签上，章节混合检索Recall@10由文件BM25的60.88%提升至69.10%（+8.22pp），Hit@10为81.82%；[完整分母和退步案例](evaluation/repository-localization-2026-11-03.md)。这是离线定位指标，不是补丁成功率；Pro本轮按用户要求在约50项收尾，实际49/175项有结果、126项缺失，不能替换旧完整基线，也不在简历宣称端到端质量提升。详见[最终报告](evaluation/docchange-final-2026-11-03.md)。
+
+
+最新同题配置对照：Flash在原Pro同49题上完成延时复测，正常返回最终决定25/49（原Pro 11/49），执行失败24项（原Pro 38项）；模型、思考、轮次和时间预算共同改变，不作为单因素模型优劣证据。见[完整对照](evaluation/docchange-flash-comparison-2026-11-04.md)。

@@ -1,0 +1,18 @@
+diff --git a/contents/docs/experiments/exposures.mdx b/contents/docs/experiments/exposures.mdx
+index 052a3980166fd73d93a2c7b9bb8ed67d2a18e899..ce0cdc4284acea169d05bc4b789e32c734b14fe3 100644
+--- a/contents/docs/experiments/exposures.mdx
++++ b/contents/docs/experiments/exposures.mdx
+@@ -86,10 +86,12 @@ To configure a custom exposure event:
+ If you're using PostHog's SDKs and feature flags, variant tracking is handled automatically. However, if you're using custom exposure events or your own feature flag system, you need to ensure the correct properties are set:
+ 
+ - **Standard PostHog flags**: The SDK automatically populates `$feature_flag_response` in `$feature_flag_called` events
+-- **Custom exposure events**: You must manually include `$feature/<flag-key>` property with the variant value
++- **Custom exposure events**: You must manually include the `$feature/<flag-key>` property with the variant value
+ 
+ For example, if your flag key is "new-checkout" and you're using a custom "viewed_checkout" event, that event must include the property `$feature/new-checkout` with values like "control" or "test".
+ 
++If you're using an external feature flag system, you can also send a `$feature_flag_called` event yourself with the `$feature_flag` and `$feature_flag_response` properties set to your flag key and variant. This is the same event PostHog's SDKs send automatically, so it works with the default exposure criteria without needing to configure a custom exposure event.
++
+ </CalloutBox>
+ 
+ ## Handling multiple exposures

@@ -1,0 +1,90 @@
+diff --git a/docs/website/docs/plus/ecosystem/iceberg.md b/docs/website/docs/plus/ecosystem/iceberg.md
+index fe9e1426ec7825b7b767dac6be0b5c3984154932..6e8cb719900c2eb9c09bb932a6f383344dec7247 100644
+--- a/docs/website/docs/plus/ecosystem/iceberg.md
++++ b/docs/website/docs/plus/ecosystem/iceberg.md
+@@ -310,6 +310,85 @@ export DESTINATION__ICEBERG__CAPABILITIES__TABLE_LOCATION_LAYOUT={dataset_name}/
+ 
+ For more information, refer to the [Lakekeeper section above](#lakekeeper-catalog).
+ 
++### AWS catalogs
++
++AWS offers three ways to run Iceberg tables with the Iceberg destination. All of them use `catalog_type=rest` and authenticate with SigV4, so you need AWS credentials available to `pyiceberg` (for example via the `filesystem.credentials` section or the standard AWS credential chain).
++
++#### S3 Tables REST catalog
++
++Use the S3 Tables REST catalog when you want AWS to manage the table bucket and catalog. Configure an S3 Table bucket, the warehouse ARN, the S3 Tables endpoint, and the `s3tables` SigV4 service:
++
++```toml
++[destination.iceberg]
++catalog_type="rest"
++
++[destination.iceberg.credentials]
++warehouse="arn:aws:s3tables:<region>:<account-id>:bucket/<bucket>"
++uri="https://s3tables.<region>.amazonaws.com/iceberg"
++
++[destination.iceberg.credentials.properties]
++rest.sigv4-enabled="true"
++rest.signing-name="s3tables"
++rest.signing-region="<region>"
++
++[destination.iceberg.filesystem]
++bucket_url="s3://<bucket>"
++```
++
++* `credentials.warehouse` - the S3 Table bucket ARN in the form `arn:aws:s3tables:<region>:<account-id>:bucket/<bucket>`.
++* `credentials.uri` - the S3 Tables Iceberg REST endpoint `https://s3tables.<region>.amazonaws.com/iceberg`.
++* `credentials.properties.rest.signing-name=s3tables` - signs requests with the `s3tables` SigV4 service.
++
++#### Glue REST catalog with S3 Tables
++
++Use the Glue REST catalog when you want to access S3 Tables through the Glue Data Catalog. Configure an S3 Table bucket, the Glue warehouse identifier, the Glue endpoint, and the `glue` SigV4 service. Your IAM, Glue, and Lake Formation permissions must be prepared for S3 Tables (for example, the S3 Tables integration with Lake Formation and the required IAM policies).
++
++```toml
++[destination.iceberg]
++catalog_type="rest"
++
++[destination.iceberg.credentials]
++warehouse="<account-id>:s3tablescatalog/<bucket>"
++uri="https://glue.<region>.amazonaws.com/iceberg"
++
++[destination.iceberg.credentials.properties]
++rest.sigv4-enabled="true"
++rest.signing-name="glue"
++rest.signing-region="<region>"
++
++[destination.iceberg.filesystem]
++bucket_url="s3://<bucket>"
++```
++
++* `credentials.warehouse` - the Glue warehouse identifier in the form `<account-id>:s3tablescatalog/<bucket>`.
++* `credentials.uri` - the Glue Iceberg REST endpoint `https://glue.<region>.amazonaws.com/iceberg`.
++* `credentials.properties.rest.signing-name=glue` - signs requests with the `glue` SigV4 service.
++
++#### Direct Glue catalog
++
++Use the Glue Data Catalog directly when your Iceberg tables live in a regular S3 bucket. Configure the Glue catalog as the warehouse and point `filesystem.bucket_url` at your S3 bucket. The IAM principal must have access to both the S3 bucket and the Glue Data Catalog.
++
++```toml
++[destination.iceberg]
++catalog_type="rest"
++
++[destination.iceberg.credentials]
++warehouse="<account-id>"
++uri="https://glue.<region>.amazonaws.com/iceberg"
++
++[destination.iceberg.credentials.properties]
++rest.sigv4-enabled="true"
++rest.signing-name="glue"
++rest.signing-region="<region>"
++
++[destination.iceberg.filesystem]
++bucket_url="s3://<regular-bucket>"
++```
++
++* `credentials.warehouse` - your AWS account ID, which selects the Glue Data Catalog.
++* `credentials.uri` - the Glue Iceberg REST endpoint `https://glue.<region>.amazonaws.com/iceberg`.
++* `filesystem.bucket_url` - a regular S3 bucket (not an S3 Table bucket) where table data is stored.
++
+ ## Write dispositions
+ 
+ All [write dispositions](../../general-usage/incremental-loading.md) are supported.

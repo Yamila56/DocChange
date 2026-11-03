@@ -1,0 +1,48 @@
+diff --git a/docs/userguide/tasks.rst b/docs/userguide/tasks.rst
+index 0a29e0982d94eefb7bdb0a526fda180e5cb3e927..61a2802635e8edbbbd8546c900577d6a892a45a9 100644
+--- a/docs/userguide/tasks.rst
++++ b/docs/userguide/tasks.rst
+@@ -1023,11 +1023,25 @@ General
+     The hard time limit, in seconds, for this task.
+     When not set the workers default is used.
+ 
++    Defaults to the :setting:`task_time_limit` setting. A value set
++    explicitly on the task class takes precedence over the setting.
++
++    The effective limits for the currently executing task are also
++    available at runtime as ``task.request.time_limit`` and
++    ``task.request.soft_time_limit`` (see :ref:`task-requests-and-custom-requests`).
++
+ .. attribute:: Task.soft_time_limit
+ 
+     The soft time limit for this task.
+     When not set the workers default is used.
+ 
++    Defaults to the :setting:`task_soft_time_limit` setting. A value set
++    explicitly on the task class takes precedence over the setting.
++
++    The effective limits for the currently executing task are also
++    available at runtime as ``task.request.time_limit`` and
++    ``task.request.soft_time_limit`` (see :ref:`task-requests-and-custom-requests`).
++
+ .. attribute:: Task.ignore_result
+ 
+     Don't store task state. Note that this means you can't use
+diff --git a/docs/userguide/workers.rst b/docs/userguide/workers.rst
+index 024b3aa7078c02ffb30318ace4366be1d80d4acc..651976518a8b9fe9ec8cfde653b5f865b2f52d10 100644
+--- a/docs/userguide/workers.rst
++++ b/docs/userguide/workers.rst
+@@ -736,6 +736,13 @@ Time limits can also be set using the :setting:`task_time_limit` /
+ limits for client side operation using ``timeout`` argument of
+ ``AsyncResult.get()`` function.
+ 
++Per-task limits can be declared on the task class (``time_limit`` /
++``soft_time_limit``) or passed when calling the task, for example
++``mytask.apply_async(time_limit=30, soft_time_limit=20)``. Limits passed
++at call time override those declared on the task class. Inside the task,
++the effective limits are available as ``self.request.time_limit`` and
++``self.request.soft_time_limit`` (both ``None`` when no limits apply).
++
+ .. note::
+ 
+     Time limits don't currently work on platforms that don't support

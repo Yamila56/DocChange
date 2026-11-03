@@ -1,0 +1,49 @@
+diff --git a/docs/references/schemas/config.md b/docs/references/schemas/config.md
+index 6056f23e1544aec406d016ed93e571fa64ea6fd5..57ae27499aca409911ce363a67b8597d7f6748b3 100644
+--- a/docs/references/schemas/config.md
++++ b/docs/references/schemas/config.md
+@@ -8,6 +8,7 @@ Configuration options for Doc Detective operations.
+ Field | Type | Description | Default
+ :-- | :-- | :-- | :--
+ configId | string |  Optional. Identifier for the configuration. | Generated UUID
++configPath | string |  Read-only. Path to the configuration file. | 
+ input | unknown |  Optional. Path(s) to test specifications and documentation source files. May be paths to specific files or to directories to scan for files. | `.`
+ output | string |  Optional. Path of the directory in which to store the output of Doc Detective commands. If a file path is specified, Doc Detective attempts to honor the file name specified, but file path behavior is controlled by the configured reporters. | `.`
+ recursive | boolean |  Optional. If `true` searches `input`, `setup`, and `cleanup` paths recursively for test specifications and source files. | `true`
+@@ -25,6 +26,10 @@ integrations.openApi | array of unknown |  Optional. No description provided. |
+ telemetry | object |  Optional. Options around sending telemetry for Doc Detective usage. | ``{"send":true}``
+ telemetry.send | boolean |  Required. If `true`, sends Doc Detective telemetry. | `true`
+ telemetry.userId | string |  Optional. Identifier for the organization, group, or individual running Doc Detective. | 
++environment | object |  Read-only. Environment information for the system running Doc Detective. | 
++environment.workingDirectory | string |  Optional. The current working directory of the process running Doc Detective. | 
++environment.platform | string |  Required. The operating system type running Doc Detective.<br/><br/>Accepted values: `linux`, `mac`, `windows` | 
++environment.arch | string |  Optional. The processor architecture of the system running Doc Detective.<br/><br/>Accepted values: `arm32`, `arm64`, `x32`, `x64` | 
+ 
+ ## Examples
+ 
+diff --git a/docs/references/schemas/specification.md b/docs/references/schemas/specification.md
+index 7afd8d5ee010d3834b83caa3f61c27ddb5426699..e61849c00c0f40930017aaf961e16b163f1f39bc 100644
+--- a/docs/references/schemas/specification.md
++++ b/docs/references/schemas/specification.md
+@@ -9,6 +9,7 @@ Field | Type | Description | Default
+ :-- | :-- | :-- | :--
+ specId | string |  Optional. Unique identifier for the test specification. | Generated UUID
+ description | string |  Optional. Description of the test specification. | 
++specPath | string |  Optional. Path to the test specification. | 
+ contentPath | string |  Optional. Path to the content that the specification is associated with. | 
+ runOn | array of object([context](/docs/references/schemas/context)) |  Optional. Contexts to run the test in. Overrides contexts defined at the config and spec levels. | 
+ openApi | array of unknown |  Optional. No description provided. | 
+diff --git a/docs/references/schemas/test.md b/docs/references/schemas/test.md
+index 533c9fdf543078ddafe52fd3dc98417e39ab1005..b47bfdf03115bac3cf36fda13a1b6f3cd77a2170 100644
+--- a/docs/references/schemas/test.md
++++ b/docs/references/schemas/test.md
+@@ -15,7 +15,8 @@ runOn | array of object([context](/docs/references/schemas/context)) |  Optional
+ openApi | array of unknown |  Optional. No description provided. | 
+ before | string |  Optional. Path to a test specification to perform before this test, while maintaining this test's context. Useful for setting up testing environments. Only the `steps` property is used from the first test in the setup spec. | 
+ after | string |  Optional. Path to a test specification to perform after this test, while maintaining this test's context. Useful for cleaning up testing environments. Only the `steps` property is used from the first test in the cleanup spec. | 
+-steps | array of <br/>one of:<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown |  Required. Steps to perform as part of the test. Performed in the sequence defined. If one or more actions fail, the test fails. By default, if a step fails, the test stops and the remaining steps are not executed. | 
++steps | array of <br/>one of:<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown<br/>- unknown |  Optional. Steps to perform as part of the test. Performed in the sequence defined. If one or more actions fail, the test fails. By default, if a step fails, the test stops and the remaining steps are not executed. A test must include either `steps` or `contexts`. | 
++contexts | array of object |  Read-only. Resolved contexts to run the test in. This is a resolved version of the `runOn` property. It is not user-defined and should not be used in test specifications. | 
+ 
+ ## Examples
+ 

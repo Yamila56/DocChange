@@ -6,7 +6,7 @@
 
 V0.2 增加任务修改范围与后置条件、MDX/RST 新建删除、按需读取真实 Git 仓库和原生候选补丁导出。公开检索已覆盖 SciFact 全300题与 SCIDOCS 全1000题；文档维护采用 DoGBench 公开175题，原始失败与评分口径单独保留。
 
-当前报告：[检索改进与完整配对评测](docs/evaluation/docchange-retrieval-improvement-2026-11-03.md) · [仓库维护基线](docs/evaluation/docchange-public-2026-11-02.md) · [公开数据复现命令](docs/PUBLIC_BENCHMARK_RUNBOOK.md) · [简历表述](docs/RESUME-DOCCHANGE.md)。
+当前报告：[Flash同49题延时配置对照](docs/evaluation/docchange-flash-comparison-2026-11-04.md) · [检索改进与完整配对评测](docs/evaluation/docchange-retrieval-improvement-2026-11-03.md) · [仓库维护基线](docs/evaluation/docchange-public-2026-11-02.md) · [公开数据复现命令](docs/PUBLIC_BENCHMARK_RUNBOOK.md) · [简历表述](docs/RESUME-DOCCHANGE.md)。
 
 ## 核心能力
 

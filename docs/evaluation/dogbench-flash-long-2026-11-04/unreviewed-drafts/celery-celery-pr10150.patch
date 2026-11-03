@@ -1,0 +1,52 @@
+diff --git a/docs/userguide/configuration.rst b/docs/userguide/configuration.rst
+index 5642480eafc84dda78a578366c0b3f165e3a759a..91240b717dc72328d9f4e79c56fae9487af020ee 100644
+--- a/docs/userguide/configuration.rst
++++ b/docs/userguide/configuration.rst
+@@ -625,6 +625,47 @@ Configuring this setting only applies to tasks that are
+ acknowledged **after** they have been executed and only if
+ :setting:`task_acks_late` is enabled.
+ 
++.. deprecated:: 6.0
++    Use :setting:`task_acks_on_failure` and :setting:`task_acks_on_timeout`
++    instead.
++
++.. setting:: task_acks_on_failure
++
++``task_acks_on_failure``
++~~~~~~~~~~~~~~~~~~~~~~~~
++
++Default: None
++
++When enabled messages for all tasks will be acknowledged even if they
++fail. When disabled, failed messages will be rejected instead.
++
++If not set, this setting falls back to
++:setting:`task_acks_on_failure_or_timeout`, and ultimately defaults to
++enabled.
++
++Configuring this setting only applies to tasks that are
++acknowledged **after** they have been executed and only if
++:setting:`task_acks_late` is enabled.
++
++.. setting:: task_acks_on_timeout
++
++``task_acks_on_timeout``
++~~~~~~~~~~~~~~~~~~~~~~~~
++
++Default: None
++
++When enabled messages for all tasks will be acknowledged even if they
++time out. When disabled, timed-out messages will be rejected and requeued
++instead of being acknowledged.
++
++If not set, this setting falls back to
++:setting:`task_acks_on_failure_or_timeout`, and ultimately defaults to
++enabled.
++
++Configuring this setting only applies to tasks that are
++acknowledged **after** they have been executed and only if
++:setting:`task_acks_late` is enabled.
++
+ .. setting:: task_reject_on_worker_lost
+ 
+ ``task_reject_on_worker_lost``

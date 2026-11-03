@@ -1,0 +1,46 @@
+diff --git a/format/spec.md b/format/spec.md
+index 28ff9be3ae27f368b267b1db4f4315ee409a7154..0d85f57c04ee42cb8c58ae2f2d3ee83928d9080d 100644
+--- a/format/spec.md
++++ b/format/spec.md
+@@ -592,7 +592,7 @@ A data or delete file is associated with a sort order by the sort order's id wit
+ 
+ ### Manifests
+ 
+-A manifest is an immutable Avro file that lists data files or delete files, along with each file’s partition data tuple, metrics, and tracking information. One or more manifest files are used to store a [snapshot](#snapshots), which tracks all of the files in a table at some point in time. Manifests are tracked by a [manifest list](#manifest-lists) for each table snapshot.
++A manifest is an immutable file that lists data files or delete files, along with each file’s partition data tuple, metrics, and tracking information. Manifests are written as Avro files in format versions 1 through 3. In format version 4, manifests are written as Parquet files by default, and readers and writers must also support Avro manifests when explicitly selected. One or more manifest files are used to store a [snapshot](#snapshots), which tracks all of the files in a table at some point in time. Manifests are tracked by a [manifest list](#manifest-lists) for each table snapshot.
+ 
+ A manifest is a valid Iceberg data file: files must use valid Iceberg formats, schemas, and column projection.
+ 
+@@ -600,7 +600,7 @@ A manifest may store either data files or delete files, but not both because man
+ 
+ A manifest stores files for a single partition spec. When a table’s partition spec changes, old files remain in the older manifest and newer files are written to a new manifest. This is required because a manifest file’s schema is based on its partition spec (see below). The partition spec of each manifest is also used to transform predicates on the table's data rows into predicates on partition values that are used during job planning to select files from a manifest.
+ 
+-A manifest file must store the partition spec and other metadata as properties in the Avro file's key-value metadata:
++A manifest file must store the partition spec and other metadata as properties in the file's key-value metadata (Avro file metadata or Parquet key-value metadata):
+ 
+ === "v1 - v3"
+     | v1         | v2 and v3  | Key                 | Value                                                                                                                                       |
+@@ -614,6 +614,8 @@ A manifest file must store the partition spec and other metadata as properties i
+ 
+ The schema of a manifest file is defined by the `manifest_entry` struct, described in the following section.
+ 
++In format version 4, manifests may be written as Parquet files. Parquet cannot represent an empty struct, so for unpartitioned tables the `partition` field is omitted from the Parquet manifest schema. Readers must treat a missing `partition` field as an unpartitioned partition tuple and adjust field offsets accordingly.
++
+ #### Manifest Entry Fields
+ 
+ The `manifest_entry` struct consists of the following fields:
+@@ -1794,6 +1796,14 @@ The binary single-value serialization can be used to store the lower and upper b
+ 
+ ## Appendix E: Format version changes
+ 
++### Version 4
++
++Manifest file format changes:
++
++* Data and delete manifests are written as Parquet files in v4 tables; v1 through v3 tables continue to use Avro manifests
++* Manifest readers and writers must support both Avro and Parquet manifests when the format is explicitly selected
++* For unpartitioned tables, the `partition` field is omitted from Parquet manifests because Parquet cannot store an empty struct; readers must treat the missing field as an unpartitioned partition tuple
++
+ ### Version 3
+ 
+ Default values are added to struct fields in v3.

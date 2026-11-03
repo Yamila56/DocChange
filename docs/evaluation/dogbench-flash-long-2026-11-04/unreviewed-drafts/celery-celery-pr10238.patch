@@ -1,0 +1,51 @@
+diff --git a/docs/userguide/calling.rst b/docs/userguide/calling.rst
+index b014357e2b6970a6a9ac2bdc7ce8596e0407e073..68137d1c837e0ba7c8f18b00278fa52f93255753 100644
+--- a/docs/userguide/calling.rst
++++ b/docs/userguide/calling.rst
+@@ -855,3 +855,7 @@ AMQP's full routing capabilities. Interested parties may read the
+     A number between `0` and `255`, where `255` is the highest priority.
+ 
+     Supported by: RabbitMQ, Redis (priority reversed, 0 is highest).
++
++    The meaning of the number is broker-specific: with RabbitMQ (AMQP) higher
++    values mean higher priority, while with Redis lower values mean higher
++    priority (``0`` is the highest).
+diff --git a/docs/userguide/routing.rst b/docs/userguide/routing.rst
+index f88d64b0f29530ec7ad078927d1391eb8add756b..2354c0dd52238a0c888dab7e615f2589540cf138 100644
+--- a/docs/userguide/routing.rst
++++ b/docs/userguide/routing.rst
+@@ -251,6 +251,11 @@ A default priority for all tasks can also be specified using the
+ 
+     app.conf.task_default_priority = 5
+ 
++With RabbitMQ (and AMQP in general), higher numeric priority values mean
++higher priority: a task with priority ``9`` is processed before a task with
++priority ``0``. The maximum priority is set per queue with
++``x-max-priority`` (or :setting:`task_queue_max_priority`).
++
+ .. _amqp-primer:
+ 
+ 
+@@ -280,6 +285,10 @@ The highest priority queue will be named celery, and the other queues will
+ have a separator (by default `\x06\x16`) and their priority number appended to
+ the queue name.
+ 
++Note that the Redis transport sorts priorities in reverse compared to AMQP:
++lower numeric priority values mean higher priority, so ``0`` is the highest
++priority and ``9`` is the lowest.
++
+ .. code-block:: python
+ 
+     ['celery', 'celery\x06\x163', 'celery\x06\x166', 'celery\x06\x169']
+@@ -758,8 +767,9 @@ default priority.
+     responsiveness of your system without the costs of disabling prefetching
+     entirely.
+ 
+-    Note that priorities values are sorted in reverse when
+-    using the redis broker: 0 being highest priority.
++    Note that priority values are sorted in reverse when using the Redis
++    broker: ``0`` is the highest priority and ``9`` is the lowest, whereas
++    with RabbitMQ (AMQP) higher values mean higher priority.
+ 
+ 
+ Broadcast

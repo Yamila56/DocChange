@@ -46,6 +46,12 @@ def atomic(path, value):
 async def main(args):
     if args.workers < 1 or args.model_limit < 1:
         raise ValueError("workers and model-limit must be positive")
+    task_timeout = getattr(args, "task_timeout_seconds", 900)
+    request_timeout = getattr(args, "request_timeout_seconds", None) or (
+        120 if args.model == PRO_MODEL else 85
+    )
+    if task_timeout <= 0 or request_timeout <= 0 or request_timeout > task_timeout:
+        raise ValueError("Require 0 < request timeout <= task timeout")
     if args.retrieval_provider == "CUDAExecutionProvider":
         import onnxruntime as ort
 
@@ -59,6 +65,17 @@ async def main(args):
     os.environ.pop("GITHUB_TOKEN", None)
     items_path = ROOT / ".cache/benchmarks/dogbench-data/items.jsonl"
     items = [json.loads(line) for line in items_path.read_text().splitlines() if line]
+    cohort = getattr(args, "cohort_predictions", None)
+    if cohort:
+        # Read IDs only. Prior outputs and scores never enter candidate context.
+        ids = [
+            json.loads(line)["instance_id"]
+            for line in cohort.read_text(encoding="utf-8").splitlines()
+            if line.strip()
+        ]
+        if not ids or len(ids) != len(set(ids)) or set(ids) - {i["instance_id"] for i in items}:
+            raise ValueError("Cohort must contain unique released task IDs")
+        items = [item for item in items if item["instance_id"] in set(ids)]
     if args.limit:
         items = items[: args.limit]
     out = args.output.resolve()
@@ -68,6 +85,8 @@ async def main(args):
         ROOT / "scripts/evaluate_models.py",
         ROOT / "scripts/verify_repository_input.py",
     ]
+    if getattr(args, "capture_error_usage", False):
+        sources.append(ROOT / "scripts/resume_offpeak_dogbench.py")
     if args.subscription:
         sources += [
             ROOT / "scripts/codex_repository_gateway.py",
@@ -81,7 +100,7 @@ async def main(args):
         "items": [i["instance_id"] for i in items],
         "model": args.model,
         "model_limit": args.model_limit,
-        "task_timeout_seconds": 900,
+        "task_timeout_seconds": task_timeout,
         "max_requests": len(items) * args.model_limit if args.subscription else 2800,
         "cap_cny": None if args.subscription else args.cap_cny,
         "billing": "Codex subscription; cost unknown" if args.subscription else "DeepSeek API",
@@ -97,6 +116,14 @@ async def main(args):
         "preparation": "Exact released prompts/trees; original prose overlap findings retained",
         "score_contract": "Unmodified official rubrics, evidence validator and numeric scorer",
     }
+    if cohort:
+        plan["cohort_ids_sha256"] = hashlib.sha256(
+            json.dumps(sorted(ids), separators=(",", ":")).encode()
+        ).hexdigest()
+    if getattr(args, "request_timeout_seconds", None) is not None:
+        plan["request_timeout_seconds"] = request_timeout
+    if getattr(args, "capture_error_usage", False):
+        plan["capture_error_usage"] = True
     if (out / "plan.json").exists():
         previous = json.loads((out / "plan.json").read_text())
         if previous != plan and (out / "source-repair-amendment.json").exists():
@@ -133,7 +160,7 @@ async def main(args):
         model_base_url="https://api.deepseek.com",
         allow_paid_model=True,
         model_max_output_tokens=8192 if args.model == PRO_MODEL else 4096,
-        model_timeout_seconds=120 if args.model == PRO_MODEL else 85,
+        model_timeout_seconds=request_timeout,
         model_max_input_bytes=120000,
     )
     if not settings.model_api_key and not args.subscription:
@@ -160,7 +187,12 @@ async def main(args):
 
                 gateway = CodexRepositoryGateway(settings)
             else:
-                gateway = RepositoryGateway(settings)
+                if getattr(args, "capture_error_usage", False):
+                    from scripts.resume_offpeak_dogbench import UsageCapturingGateway
+
+                    gateway = UsageCapturingGateway(settings)
+                else:
+                    gateway = RepositoryGateway(settings)
             engine, sessions = make_database(f"sqlite+aiosqlite:///{folder / 'runs.sqlite'}")
             try:
                 native_windows = os.name == "nt" and prepared["path"].startswith("/")
@@ -246,7 +278,7 @@ async def main(args):
                     "repository_policy": "coverage-v1",
                     "model_limit": args.model_limit,
                     "model_timeout_seconds": settings.model_timeout_seconds,
-                    "active_budget_ms": 900000,
+                    "active_budget_ms": task_timeout * 1000,
                 }
                 execution_path = folder / "execution.json"
                 if execution_path.exists():
@@ -277,7 +309,7 @@ async def main(args):
                 runtime = RepositoryRuntime(
                     store, wrapped, environment, folder / "docchange.events.jsonl"
                 )
-                async with asyncio.timeout(900):
+                async with asyncio.timeout(task_timeout):
                     decision = await runtime.run(lease, prompt.decode())
                 row.update(status="completed", **decision)
                 row["run"] = await store.get("benchmark", rid)
@@ -401,6 +433,10 @@ if __name__ == "__main__":
         "--retrieval-mode", choices=["section_bm25", "dense", "hybrid"], default="hybrid"
     )
     parser.add_argument("--model-limit", type=int, default=16)
+    parser.add_argument("--task-timeout-seconds", type=int, default=900)
+    parser.add_argument("--request-timeout-seconds", type=int)
+    parser.add_argument("--cohort-predictions", type=Path)
+    parser.add_argument("--capture-error-usage", action="store_true")
     parser.add_argument(
         "--retrieval-provider",
         choices=["CPUExecutionProvider", "CUDAExecutionProvider"],

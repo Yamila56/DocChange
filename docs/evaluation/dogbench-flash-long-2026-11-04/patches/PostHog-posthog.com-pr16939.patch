@@ -1,0 +1,31 @@
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index 22e644116364371aa2da26fef681f819812b0d66..a2e9909f56d2cbe268b16d183dbab7c519acb771 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -21,7 +21,7 @@ To link Postgres:
+    - **Database:** The name of the database you want like `analytics_db`.
+    - **User:** The username with the necessary permissions to access the database.
+    - **Password:** The password for the user.
+-   - **Schema:** The schema for your database where your tables are located. The default is `public`.
++   - **Schema:** The schema for your database where your tables are located. The default is `public`. This is optional – if you leave it blank, PostHog discovers tables across all non-system schemas, and same-named tables from different schemas are synced as separate tables.
+ 4. If you need to connect through an SSH tunnel, enable and configure it (optional):
+    - **Tunnel host:** The hostname of your SSH server.
+    - **Tunnel port:** The port your SSH server is listening on.
+@@ -33,6 +33,17 @@ To link Postgres:
+ 
+ The data warehouse then starts syncing your Postgres data. You can see details and progress in the [sources tab](https://app.posthog.com/data-management/sources).
+ 
++## Selecting columns to sync
++
++By default, PostHog syncs every column of each table you import. To keep columns out of PostHog (for example, PII columns), you can choose which columns to sync:
++
++- **During setup:** On the **Select tables to import** step, click **Columns** on a table and check the columns you want to sync.
++- **After setup:** On the source's schemas tab, click **Columns** on a table, or open the table's configuration page and use the **Columns** section.
++
++Primary key columns and the active incremental field are always synced, even if you don't select them, so incremental syncs and deduplication keep working. Selecting no columns syncs only those required columns.
++
++Columns you disable are removed from the table's schema in PostHog, so they won't appear in HogQL queries. Previously synced data for a disabled column stays in storage, and the column is repopulated on subsequent syncs if you re-enable it. If you add columns to a table using incremental, append, or CDC sync that already has synced data, PostHog asks whether to sync forward only (existing rows keep their current values for the new columns) or run a full resync.
++
+ ## Configuration
+ 
+ <SourceParameters />

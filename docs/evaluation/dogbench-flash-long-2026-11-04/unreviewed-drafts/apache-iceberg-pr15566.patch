@@ -1,0 +1,51 @@
+diff --git a/docs/docs/flink-maintenance.md b/docs/docs/flink-maintenance.md
+index 1d5af840feca4967cfb5c16ef735250a60a28015..7dd015abf8f9538b26ff5fc0abfc7dd700c87d2a 100644
+--- a/docs/docs/flink-maintenance.md
++++ b/docs/docs/flink-maintenance.md
+@@ -232,7 +232,7 @@ env.execute("Table Maintenance Job");
+ | Method                                   | Description                                                                                                                                                                                                                                                                                                                                                             | Default Value           | Type               |
+ |------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|--------------------|
+ | `location(string)`                       | The location to start the recursive listing of the candidate files for removal.                                                                                                                                                                                                                                                                                            | Table's location        | String             |
+-| `usePrefixListing(boolean)`              | When true, use prefix-based file listing via the SupportsPrefixOperations interface. The Table FileIO implementation must support SupportsPrefixOperations when this flag is enabled.(Note: Setting it to False will use a recursive method to obtain file information. If the underlying storage is object storage, it will repeatedly call the API to get the path.)  | False                   | boolean            |
++| `usePrefixListing(boolean)`              | When true, use prefix-based file listing via the SupportsPrefixOperations interface. The Table FileIO implementation must support SupportsPrefixOperations when this flag is enabled.(Note: Setting it to False will use a recursive method to obtain file information. If the underlying storage is object storage, it will repeatedly call the API to get the path.)  | True                    | boolean            |
+ | `prefixMismatchMode(PrefixMismatchMode)` | Action behavior when location prefixes (schemes/authorities) mismatch: <ul><li>ERROR - throw an exception. </li><li>IGNORE - no action.</li><li>DELETE - delete files.</li></ul>                                                                                                                                                                                        | ERROR                   | PrefixMismatchMode |
+ | `equalSchemes(Map<String, String>)`      | Mapping of file system schemes to be considered equal. Key is a comma-separated list of schemes and value is a scheme                                                                                                                                                                                                                                                   | "s3n"=>"s3","s3a"=>"s3" | Map<String,String> |  
+ | `equalAuthorities(Map<String, String>)`  | Mapping of file system authorities to be considered equal. Key is a comma-separated list of authorities and value is an authority.                                                                                                                                                                                                                                      | Empty map               | Map<String,String> |  
+@@ -302,6 +302,16 @@ public class TableMaintenanceJob {
+ 
+ Apache Iceberg Sink V2 for Flink allows automatic execution of maintenance tasks after data is committed to the table, using the addPostCommitTopology(...) method.
+ 
++Maintenance tasks can be enabled through write options. Each task type has its own `enabled` flag:
++
++| Option | Default | Description |
++|--------|---------|-------------|
++| `rewrite-data-files.enabled` | false | Enable post-commit compaction (rewrite data files). The legacy key `compaction-enabled` is deprecated but still accepted as an alias. |
++| `expire-snapshots.enabled` | false | Enable post-commit snapshot expiration. |
++| `delete-orphan-files.enabled` | false | Enable post-commit orphan file deletion. |
++
++Each task's tunable parameters can be set using the corresponding maintenance config keys (for example `flink-maintenance.expire-snapshots.retain-last` or `flink-maintenance.delete-orphan-files.min-age-seconds`).
++
+ ```java
+ Map<String, String> flinkConf = new HashMap<>();
+ 
+@@ -330,7 +340,10 @@ You can enable maintenance and configure locks using SQL before executing writes
+ ```sql
+ -- Enable Iceberg V2 Sink and compaction (maintenance)
+ SET 'table.exec.iceberg.use.v2.sink' = 'true';
+-SET 'compaction-enabled' = 'true';
++SET 'rewrite-data-files.enabled' = 'true';
++-- Optionally enable snapshot expiration and orphan file deletion
++SET 'expire-snapshots.enabled' = 'true';
++SET 'delete-orphan-files.enabled' = 'true';
+ 
+ -- Configure maintenance lock (JDBC)
+ SET 'flink-maintenance.lock.type' = 'jdbc';
+@@ -352,7 +365,7 @@ CREATE TABLE db.tbl (
+   'catalog-name' = 'my_catalog',
+   'catalog-database' = 'db',
+   'catalog-table' = 'tbl',
+-  'compaction-enabled' = 'true',
++  'rewrite-data-files.enabled' = 'true',
+ 
+   'flink-maintenance.lock.type' = 'jdbc',
+   'flink-maintenance.lock.lock-id' = 'catalog.db.table',

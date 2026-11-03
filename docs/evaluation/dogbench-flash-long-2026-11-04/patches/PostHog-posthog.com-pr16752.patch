@@ -1,0 +1,35 @@
+diff --git a/contents/docs/product-analytics/subscriptions.mdx b/contents/docs/product-analytics/subscriptions.mdx
+index adcb5095f61aa8e0cdaab105736e1c5251bd8ae5..0d1650c86cb7e3d06583413737b54f395397ef77 100644
+--- a/contents/docs/product-analytics/subscriptions.mdx
++++ b/contents/docs/product-analytics/subscriptions.mdx
+@@ -47,6 +47,7 @@ From here you can:
+ - **Filter** by delivery channel (email, Slack, or webhook) and creator
+ - **Sort** by creation date, next delivery date, title, or creator
+ - **Edit** a subscription by navigating to its source insight or dashboard
++- **Pause or resume** a subscription with the toggle in the list, without deleting it
+ - **Test delivery** to immediately send a subscription without waiting for the next scheduled delivery
+ - **Delete** subscriptions with an undo option
+ 
+@@ -143,8 +144,22 @@ Each subscription displays its next scheduled delivery date, so you can see exac
+ 
+ When editing a subscription, a preview of the next delivery date appears below the scheduling options so you can verify your configuration before saving.
+ 
++## Pausing and resuming subscriptions
++
++Each subscription has an **enabled** state. You can pause a subscription by toggling it off in the subscriptions list or on the subscription's detail view. A paused subscription keeps its configuration but stops delivering on its schedule – it is not deleted, and you can resume it at any time with the same toggle.
++
++Pausing is distinct from deleting: deleting a subscription soft-deletes it, while a paused subscription is fully reversible.
++
++### Automatic disabling
++
++PostHog automatically pauses a subscription when its delivery target becomes permanently invalid – for example, when the Slack integration backing a Slack subscription is removed, or when the subscription's delivery channel is not supported. When this happens, the subscription is set to disabled, an activity record is written, and the subscription owner receives an email explaining why.
++
++To resume delivery, fix the underlying issue first (for example, reconnect the Slack integration) and then re-enable the subscription. Re-enabling triggers an immediate delivery so you can confirm the fix worked. If the underlying issue is still unresolved, re-enabling is rejected with an error explaining what needs to be fixed.
++
+ ## Testing subscriptions
+ 
+ You can manually trigger a test delivery for any subscription. Click the **...** menu on a subscription in the list and select **Test delivery**. This immediately sends the subscription content to the configured target (email or Slack channel) without waiting for the next scheduled delivery.
+ 
+ This is useful for verifying that the subscription is configured correctly and the content looks as expected.
++
++Test delivery is not available for paused subscriptions. Re-enable the subscription first, then send a test delivery.

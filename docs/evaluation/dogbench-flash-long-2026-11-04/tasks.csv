@@ -1,0 +1,50 @@
+﻿instance_id,status,decision,model_turns,error_type,expected_outcome,decision_correct,score,blocking_p0,latency_ms,error
+Azure-azure-service-operator-pr4202,completed,patch,27,,patch,True,15.0,C1;C2;C4,120124.97789999952,
+Azure-azure-service-operator-pr5490,error,,7,JSONDecodeError,patch,False,0.0,,124611.10989999998,Extra data: line 3 column 1 (char 88)
+Azure-azure-service-operator-pr4196,error,,32,DomainError,abstain,False,0.0,,129880.93560000016,Model-call budget exhausted
+Azure-azure-service-operator-pr4394,error,,20,DomainError,abstain,False,0.0,,148440.55819999948,Coverage review failed after repair
+Azure-azure-service-operator-pr4003,completed,patch,23,,patch,True,0.0,C1,164408.44650000008,
+MaterializeInc-materialize-pr36618,completed,patch,6,,patch,True,0.0,C1;C6;C7;C8,181964.90689999974,
+MaterializeInc-materialize-pr36075,error,,32,DomainError,abstain,False,0.0,,226157.80740000037,Model-call budget exhausted
+MaterializeInc-materialize-pr37023,completed,patch,16,,patch,True,31.6,C1;C2;C4,167517.2260999998,
+MaterializeInc-materialize-pr36328,error,,32,DomainError,patch,False,0.0,,303451.26839999965,Model-call budget exhausted
+PostHog-posthog-pr63817,error,,13,DomainError,abstain,False,0.0,,232766.88660000038,Coverage review failed after repair
+MaterializeInc-materialize-pr36803,error,,32,DomainError,abstain,False,0.0,,265093.17159999954,Model-call budget exhausted
+PostHog-posthog-pr63886,completed,abstain,15,,abstain,True,100.0,,228375.87239999993,
+PostHog-posthog.com-pr16354,completed,patch,20,,patch,True,22.2,C2;C5,220678.40259999956,
+PostHog-posthog.com-pr16714,error,,15,DomainError,patch,False,0.0,,195523.06800000044,Coverage review failed after repair
+PostHog-posthog-pr63871,error,,32,DomainError,patch,False,0.0,,315756.77040000027,Model-call budget exhausted
+PostHog-posthog.com-pr16752,completed,patch,8,,patch,True,53.8,,183300.21979999947,
+PostHog-posthog.com-pr16822,completed,patch,16,,patch,True,22.2,C1,177853.42179999952,
+apache-flink-pr27195,completed,patch,6,,patch,True,7.1,C2;C4;C6;C15,81721.34709999955,
+apache-flink-pr27325,error,,19,DomainError,abstain,False,0.0,,100324.59219999964,Coverage review failed after repair
+PostHog-posthog.com-pr16939,completed,patch,12,,patch,True,46.7,C1,183828.85439999972,
+apache-flink-pr27345,completed,patch,9,,abstain,False,0.0,,91180.3014999996,
+PostHog-posthog.com-pr17231,completed,patch,5,,patch,True,20.0,,169218.36020000046,
+apache-iceberg-pr15566,error,,32,DomainError,patch,False,0.0,,82239.03530000008,Model-call budget exhausted
+apache-iceberg-pr15814,completed,patch,7,,patch,True,0.0,C1;C2;C4;C5;C6;C7;C8;C9,22583.994800000255,
+apache-iceberg-pr15634,error,,32,DomainError,abstain,False,0.0,,85964.92099999977,Model-call budget exhausted
+apache-flink-pr28237,error,,27,DomainError,patch,False,0.0,,137987.70440000045,Coverage review failed after repair
+bentoml-bentoml-pr5465,completed,patch,15,,patch,True,23.5,C9;C11,58058.823200000006,
+apache-iceberg-pr15667,completed,patch,20,,abstain,False,0.0,,96352.2227000003,
+bentoml-bentoml-pr5518,completed,patch,10,,patch,True,33.3,C1,35960.702800000035,
+celery-celery-pr10135,completed,patch,6,,patch,True,28.6,C2;C5;C10;C11,31257.21270000031,
+apache-iceberg-pr16241,completed,patch,30,,abstain,False,0.0,,109406.11499999977,
+celery-celery-pr10206,completed,patch,8,,patch,True,60.0,C2;C3,36594.536500000686,
+apache-flink-pr28212,error,,32,DomainError,patch,False,0.0,,211374.37370000043,Model-call budget exhausted
+celery-celery-pr10150,error,,12,DomainError,patch,False,0.0,,51956.13020000019,Coverage review failed after repair
+celery-celery-pr10174,error,,12,DomainError,patch,False,0.0,,49040.79360000014,Coverage review failed after repair
+celery-celery-pr9879,completed,patch,5,,patch,True,40.0,,25246.62199999966,
+PostHog-posthog.com-pr17172,error,,32,DomainError,patch,False,0.0,,315565.16639999975,Model-call budget exhausted
+dagworks-inc-hamilton-pr1445,completed,patch,6,,patch,True,30.0,C1;C3;C5;C8,43664.14760000043,
+dlt-hub-dlt-pr2500,completed,patch,7,,patch,True,20.0,C4,40171.49680000057,
+celery-celery-pr10238,error,,17,DomainError,patch,False,0.0,,77614.33529999977,Coverage review failed after repair
+astral-sh-ruff-pr21369,error,,32,DomainError,patch,False,0.0,,163008.36590000018,Model-call budget exhausted
+doc-detective-common-pr112,error,,15,DomainError,patch,False,0.0,,48316.431600000215,Coverage review failed after repair
+doc-detective-doc-detective-pr146,completed,patch,8,,patch,True,50.0,C1;C2,19005.45240000065,
+doc-detective-common-pr65,completed,patch,9,,abstain,False,0.0,,27109.46799999965,
+dlt-hub-dlt-pr2965,error,,16,DomainError,patch,False,0.0,,69899.5506000001,Coverage review failed after repair
+doc-detective-common-pr63,error,,32,DomainError,patch,False,0.0,,75458.01099999971,Model-call budget exhausted
+doc-detective-common-pr78,completed,patch,21,,patch,True,28.6,,54302.455299999565,
+doc-detective-doc-detective-pr21,error,,23,DomainError,patch,False,0.0,,88842.37589999975,Coverage review failed after repair
+dlt-hub-dlt-pr2836,error,,32,DomainError,patch,False,0.0,,211464.73640000023,Model-call budget exhausted

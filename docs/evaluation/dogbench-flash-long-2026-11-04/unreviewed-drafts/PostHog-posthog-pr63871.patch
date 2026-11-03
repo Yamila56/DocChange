@@ -1,0 +1,13 @@
+diff --git a/contents/docs/slack/setup.mdx b/contents/docs/slack/setup.mdx
+index 9c38c1c9e8eda67128b535fdf5a1c9364e7ecfec..74582de7dfdd7de9f9368cca40b176238fadb6a7 100644
+--- a/contents/docs/slack/setup.mdx
++++ b/contents/docs/slack/setup.mdx
+@@ -17,7 +17,7 @@ You need two integrations to use `@PostHog` in Slack: one workspace-wide Slack c
+ 
+ <Step title="Connect Slack to your project" badge="required">
+ 
+-Head to [**Settings → Integrations**](https://app.posthog.com/settings/project-integrations #selectedSetting=integration-slack&setting=integration-slack) in your PostHog project and click **Add to Slack** in the Slack integration section. Approve the requested scopes – you'll need to be a project admin to install.
++Head to [**Settings → Integrations**](https://app.posthog.com/settings/project-integrations #selectedSetting=integration-slack&setting=integration-slack) in your PostHog project and click **Add to Slack** in the Slack integration section. Alternatively, open the [Slack landing page](https://app.posthog.com/integrations/slack) and click **Add to Slack** there. Approve the requested scopes – you'll need to be a project admin to install.
+ 
+ <ProductScreenshot
+ imageLight="https://res.cloudinary.com/dmukukwp6/image/upload/q_auto,f_auto,w_800/slack_integration_settings_3396ec1b7d.png"

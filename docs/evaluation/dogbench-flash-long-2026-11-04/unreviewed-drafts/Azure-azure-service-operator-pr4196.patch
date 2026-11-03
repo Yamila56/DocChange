@@ -1,0 +1,13 @@
+diff --git a/docs/hugo/content/design/ADR-2024-04-RoleAssignment-UUID-Generation.md b/docs/hugo/content/design/ADR-2024-04-RoleAssignment-UUID-Generation.md
+index 7f7662951274b40557048f471052df6523b334b1..12f20c4f3ea0b580f26789dd05155f8ff34b35b3 100644
+--- a/docs/hugo/content/design/ADR-2024-04-RoleAssignment-UUID-Generation.md
++++ b/docs/hugo/content/design/ADR-2024-04-RoleAssignment-UUID-Generation.md
+@@ -88,7 +88,7 @@ We retain how the resource shape looks like and suggest using OperatorSpec prope
+ 
+ ## Status
+ 
+-Proposed.
++Implemented. The chosen property is `operatorSpec.namingConvention`, accepting `stable` (default) or `random`.
+ 
+ ## Consequences
+ 

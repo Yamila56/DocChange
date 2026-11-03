@@ -1,0 +1,158 @@
+diff --git a/docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md b/docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md
+index 08aa500ee62ce531b0acf4bc67e42d6d9552acc1..e55186b263b94d187d5825fcbdb3aefa2b652498 100644
+--- a/docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md
++++ b/docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md
+@@ -142,7 +142,7 @@ If the pipeline fails, pass error messages to the LLM. Restart after 4-8 failed
+ Launch the dashboard to validate your pipeline:
+ 
+ ```sh
+-dlt pipeline {source}_pipeline show --dashboard
++dlt pipeline {source}_pipeline show
+ ```
+ 
+ The dashboard shows:
+diff --git a/docs/website/docs/plus/reference.md b/docs/website/docs/plus/reference.md
+index 716c2fb3773a4a2fa863df16f59b9a75f5ce811e..e9719a0c7e100677ef94700418eda7e9a0b15f49 100644
+--- a/docs/website/docs/plus/reference.md
++++ b/docs/website/docs/plus/reference.md
+@@ -906,7 +906,7 @@ Inherits arguments from [`dlt`](#dlt).
+ 
+ **Available subcommands**
+ * [`info`](#dlt-pipeline-info) - Displays state of the pipeline, use -v or -vv for more info
+-* [`show`](#dlt-pipeline-show) - Generates and launches streamlit app with the loading status and dataset explorer
++* [`show`](#dlt-pipeline-show) - Launches the pipeline dashboard app with a comprehensive interface to inspect the pipeline state, schemas, and data in the destination
+ * [`failed-jobs`](#dlt-pipeline-failed-jobs) - Displays information on all the failed loads in all completed packages, failed jobs and associated error messages
+ * [`drop-pending-packages`](#dlt-pipeline-drop-pending-packages) - Deletes all extracted and normalized packages including those that are partially loaded.
+ * [`sync`](#dlt-pipeline-sync) - Drops the local state of the pipeline and resets all the schemas and restores it from destination. the destination state, data and schemas are left intact.
+@@ -948,20 +948,22 @@ Inherits arguments from [`dlt pipeline`](#dlt-pipeline).
+ 
+ ### `dlt pipeline show`
+ 
+-Generates and launches Streamlit app with the loading status and dataset explorer.
++Launches the pipeline dashboard app with a comprehensive interface to inspect the pipeline state, schemas, and data in the destination.
+ 
+ **Usage**
+ ```sh
+-dlt pipeline [pipeline_name] show [-h]
++dlt pipeline [pipeline_name] show [-h] [--streamlit] [--edit]
+ ```
+ 
+ **Description**
+ 
+-Generates and launches Streamlit (https://streamlit.io/) app with the loading status and dataset explorer.
++Launches the pipeline dashboard app with a comprehensive interface to inspect the pipeline state, schemas, and data in the destination.
+ 
+-This is a simple app that you can use to inspect the schemas and data in the destination as well as your pipeline state and loading status/stats. It should be executed from the same folder from which you ran the pipeline script to access destination credentials.
++This app should be executed from the same folder from which you ran the pipeline script to be able access destination credentials.
+ 
+-Requires `streamlit` to be installed in the current environment: `pip install streamlit`.
++If the --edit flag is used, will launch the editable version of the app if it exists in the current directory, or create this version and launch it in edit mode.
++
++Requires `marimo` to be installed in the current environment: `pip install marimo`. Use the --streamlit flag to launch the legacy streamlit app.
+ 
+ <details>
+ 
+@@ -971,6 +973,8 @@ Inherits arguments from [`dlt pipeline`](#dlt-pipeline).
+ 
+ **Options**
+ * `-h, --help` - Show this help message and exit
++* `--streamlit` - Launch the legacy Streamlit dashboard instead of the new pipeline dashboard.
++* `--edit` - Creates editable version of pipeline dashboard in current directory if it does not exist there yet and launches it in edit mode. Will have no effect when using the streamlit flag.
+ 
+ </details>
+ 
+diff --git a/docs/website/docs/reference/command-line-interface.md b/docs/website/docs/reference/command-line-interface.md
+index 88badbdac86c8f1d6a95a9e0f54a6b08d509a6a4..ae3ec87708eae0e115bdea09ec8ef72f416c7dd1 100644
+--- a/docs/website/docs/reference/command-line-interface.md
++++ b/docs/website/docs/reference/command-line-interface.md
+@@ -54,6 +54,7 @@ dlt [-h] [--version] [--disable-telemetry] [--enable-telemetry]
+ * [`render-docs`](#dlt-render-docs) - Renders markdown version of cli docs
+ * [`deploy`](#dlt-deploy) - Creates a deployment package for a selected pipeline script
+ * [`ai`](#dlt-ai) - Use ai-powered development tools and utilities
++* [`dashboard`](#dlt-dashboard) - Launches the pipeline dashboard app
+ 
+ </details>
+ 
+@@ -144,7 +145,7 @@ Inherits arguments from [`dlt`](#dlt).
+ 
+ **Available subcommands**
+ * [`info`](#dlt-pipeline-info) - Displays state of the pipeline, use -v or -vv for more info
+-* [`show`](#dlt-pipeline-show) - Generates and launches streamlit app with the loading status and dataset explorer
++* [`show`](#dlt-pipeline-show) - Launches the pipeline dashboard app with a comprehensive interface to inspect the pipeline state, schemas, and data in the destination
+ * [`failed-jobs`](#dlt-pipeline-failed-jobs) - Displays information on all the failed loads in all completed packages, failed jobs and associated error messages
+ * [`drop-pending-packages`](#dlt-pipeline-drop-pending-packages) - Deletes all extracted and normalized packages including those that are partially loaded.
+ * [`sync`](#dlt-pipeline-sync) - Drops the local state of the pipeline and resets all the schemas and restores it from destination. the destination state, data and schemas are left intact.
+@@ -183,20 +184,22 @@ Inherits arguments from [`dlt pipeline`](#dlt-pipeline).
+ 
+ ### `dlt pipeline show`
+ 
+-Generates and launches Streamlit app with the loading status and dataset explorer.
++Launches the pipeline dashboard app with a comprehensive interface to inspect the pipeline state, schemas, and data in the destination.
+ 
+ **Usage**
+ ```sh
+-dlt pipeline [pipeline_name] show [-h] [--dashboard] [--edit]
++dlt pipeline [pipeline_name] show [-h] [--streamlit] [--edit]
+ ```
+ 
+ **Description**
+ 
+-Generates and launches Streamlit (https://streamlit.io/) app with the loading status and dataset explorer.
++Launches the pipeline dashboard app with a comprehensive interface to inspect the pipeline state, schemas, and data in the destination.
+ 
+-This is a simple app that you can use to inspect the schemas and data in the destination as well as your pipeline state and loading status/stats. It should be executed from the same folder from which you ran the pipeline script to access destination credentials.
++This app should be executed from the same folder from which you ran the pipeline script to be able access destination credentials.
+ 
+-Requires `streamlit` to be installed in the current environment: `pip install streamlit`. Using --dashboard flag to launch pipeline dashboard preview instead of streamlit.
++If the --edit flag is used, will launch the editable version of the app if it exists in the current directory, or create this version and launch it in edit mode.
++
++Requires `marimo` to be installed in the current environment: `pip install marimo`. Use the --streamlit flag to launch the legacy streamlit app.
+ 
+ <details>
+ 
+@@ -206,8 +209,8 @@ Inherits arguments from [`dlt pipeline`](#dlt-pipeline).
+ 
+ **Options**
+ * `-h, --help` - Show this help message and exit
+-* `--dashboard` - Launch pipeline dashboard instead of streamlit. will launch editable version of app (created with the --edit flag) if it exists in the current directory.
+-* `--edit` - Creates editable version of pipeline dashboard in current directory if it does not exist there yet and launches it in edit mode. only works when using the pipeline dashboard (--dashboard flag).
++* `--streamlit` - Launch the legacy Streamlit dashboard instead of the new pipeline dashboard.
++* `--edit` - Creates editable version of pipeline dashboard in current directory if it does not exist there yet and launches it in edit mode. Will have no effect when using the streamlit flag.
+ 
+ </details>
+ 
+@@ -532,6 +535,34 @@ Inherits arguments from [`dlt`](#dlt).
+ 
+ </details>
+ 
++## `dlt dashboard`
++
++Launches the pipeline dashboard app.
++
++**Usage**
++```sh
++dlt dashboard [-h] [--pipelines-dir PIPELINES_DIR] [--edit]
++```
++
++**Description**
++
++The `dlt dashboard` command starts the dlt pipeline dashboard. You can use the dashboard to inspect the pipeline state, schemas, and data in the destination. It should be executed from the same folder from which you ran the pipeline script to access destination credentials.
++
++Requires `marimo` to be installed in the current environment: `pip install marimo`.
++
++<details>
++
++<summary>Show Arguments and Options</summary>
++
++Inherits arguments from [`dlt`](#dlt).
++
++**Options**
++* `-h, --help` - Show this help message and exit
++* `--pipelines-dir PIPELINES_DIR` - Pipelines working directory
++* `--edit` - Eject Dashboard and start editable version
++
++</details>
++
+ ## `dlt render-docs`
+ 
+ Renders markdown version of cli docs.

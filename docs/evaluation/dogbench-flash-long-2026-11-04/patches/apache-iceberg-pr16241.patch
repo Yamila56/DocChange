@@ -1,0 +1,39 @@
+diff --git a/docs/docs/configuration.md b/docs/docs/configuration.md
+index 17bf1f8ac0a1281ee618fd49b0226597225bf755..6be2c93af5ca6a81b500a1c2f89e5c98a0a4663e 100644
+--- a/docs/docs/configuration.md
++++ b/docs/docs/configuration.md
+@@ -50,7 +50,7 @@ Iceberg tables support table properties to configure table behavior, like the de
+ | write.parquet.dict-size-bytes                       | 2097152 (2 MB)              | Parquet dictionary page size                                                                                                                                                                                                                       |
+ | write.parquet.compression-codec                     | zstd                        | Parquet compression codec: zstd, brotli, lz4, gzip, snappy, uncompressed                                                                                                                                                                           |
+ | write.parquet.compression-level                     | null                        | Parquet compression level                                                                                                                                                                                                                          |
+-| write.parquet.shred-variants                        | false                       | When true, variant columns are written with shredded Parquet encoding for improved query performance                                                                                                                                               |
++| write.parquet.shred-variants                        | false                       | When true, variant columns are written with shredded Parquet encoding for improved query performance. Typed Parquet fields are inferred from buffered rows; values outside the inferred schema remain readable                                                                                                      |
+ | write.parquet.variant-inference-buffer-size         | 100                         | Number of rows to buffer for schema inference when variant shredding is enabled                                                                                                                                                                    |
+ | write.parquet.bloom-filter-enabled.column.col1      | (not set)                   | Hint to parquet to write a bloom filter for the column: 'col1'                                                                                                                                                                                     |
+ | write.parquet.bloom-filter-max-bytes                | 1048576 (1 MB)              | The maximum number of bytes for a bloom filter bitset                                                                                                                                                                                              |
+diff --git a/docs/docs/spark-configuration.md b/docs/docs/spark-configuration.md
+index 5972aafc3d3994c7621ea85a59bdbc9e48967d74..5c5d0d83c0847f23a40024a00cd429c340e8b6b2 100644
+--- a/docs/docs/spark-configuration.md
++++ b/docs/docs/spark-configuration.md
+@@ -191,8 +191,8 @@ val spark = SparkSession.builder()
+ | spark.sql.iceberg.distribution-mode                    | See [Spark Writes](spark-writes.md#writing-distribution-modes) | Controls distribution strategy during writes                                                                                    |
+ | spark.wap.id                                           | null                                                           | [Write-Audit-Publish](branching.md#audit-branch) snapshot staging ID                                                            |
+ | spark.wap.branch                                       | null                                                           | WAP branch name for snapshot commit                                                                                             |
+-| spark.sql.iceberg.shred-variants                       | Table default                                                  | When true, variant columns are written with shredded Parquet encoding for improved query performance                             |
+-| spark.sql.iceberg.variant-inference-buffer-size        | Table default                                                  | Number of rows to buffer for schema inference when variant shredding is enabled                                                  |
++| spark.sql.iceberg.shred-variants                       | Table default                                                  | When true, variant columns are written with shredded Parquet encoding for improved query performance. Disabled by default; overrides the table property `write.parquet.shred-variants` |
++| spark.sql.iceberg.variant-inference-buffer-size        | Table default                                                  | Number of rows to buffer for schema inference when variant shredding is enabled. Overrides the table property `write.parquet.variant-inference-buffer-size` |
+ | spark.sql.iceberg.compression-codec                    | Table default                                                  | Write compression codec (e.g., `zstd`, `snappy`)                                                                                |
+ | spark.sql.iceberg.compression-level                    | Table default                                                  | Compression level for Parquet/Avro                                                                                              |
+ | spark.sql.iceberg.compression-strategy                 | Table default                                                  | Compression strategy for ORC                                                                                                    |
+@@ -264,8 +264,8 @@ df.writeTo("catalog.db.table")
+ | compression-strategy   | Table write.orc.compression-strategy       | Overrides this table's compression strategy for ORC tables for this write |
+ | distribution-mode | See [Spark Writes](spark-writes.md#writing-distribution-modes) for defaults | Override this table's distribution mode for this write |
+ | delete-granularity | file | Override this table's delete granularity for this write |
+-| shred-variants | false | Overrides this table's write.parquet.shred-variants for this write |
+-| variant-inference-buffer-size | 100 | Overrides this table's write.parquet.variant-inference-buffer-size for this write |
++| shred-variants | false | Overrides this table's write.parquet.shred-variants for this write. When true, variant columns are written with shredded Parquet encoding: typed Parquet fields are inferred from the first buffered rows, while the original values are retained so all data remains readable |
++| variant-inference-buffer-size | 100 | Overrides this table's write.parquet.variant-inference-buffer-size for this write. Number of rows buffered to infer the shredded schema |
+ 
+ CommitMetadata provides an interface to add custom metadata to a snapshot summary during a SQL execution, which can be beneficial for purposes such as auditing or change tracking. If properties start with `snapshot-property.`, then that prefix will be removed from each property. Here is an example:
+ 

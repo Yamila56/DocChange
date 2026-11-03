@@ -1,0 +1,43 @@
+diff --git a/docs/concepts/function-modifiers.rst b/docs/concepts/function-modifiers.rst
+index 6bbed9ebc6b58d4d3df420c74fb1a17b4abe4256..82dd38bf8987d1729a48dba271529472ee1d84c8 100644
+--- a/docs/concepts/function-modifiers.rst
++++ b/docs/concepts/function-modifiers.rst
+@@ -108,6 +108,8 @@ Customize visualization by tag
+ 
+ Tags are also accessible to the visualization styling feature, allowing you to highlight important nodes for your documentation. See :ref:`custom-visualization-style` for details.
+ 
++Additionally, the ``display_name`` tag sets a human-readable label for a node in the visualization, without renaming the function. See :ref:`custom-visualization-style` for details.
++
+ .. image:: ./_function-modifiers/custom_viz.png
+     :height: 250px
+ 
+diff --git a/docs/concepts/visualization.rst b/docs/concepts/visualization.rst
+index 407e7c6f35eae02c26e0babbabdd73228b3343be..28acc099e0fbeacc9bf5a76bd70f2570f682d6be 100644
+--- a/docs/concepts/visualization.rst
++++ b/docs/concepts/visualization.rst
+@@ -173,6 +173,25 @@ Apply custom style
+ 
+ By default, each node is labeled with name and type, and stylized (shape, color, outline, etc.). By passing a function to the parameter ``custom_style_function``, you can customize the node style based on its attributes. This pairs nicely with the ``@tag`` function modifier (learn more :ref:`tag-decorators`)
+ 
++Customize node labels with ``display_name``
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++To show a human-readable label in the visualization without renaming the function, add a ``display_name`` tag to the node. The label is resolved in this order:
++
++1. an explicitly supplied ``name`` parameter (when calling the graph creation function directly)
++2. the node's ``display_name`` tag value
++3. the node's Python identifier
++
++.. code-block:: python
++
++    from hamilton.function_modifiers import tag
++
++    @tag(display_name="My Custom Display Name")
++    def node_with_display_name(input_a: int) -> int:
++        return input_a + 1
++
++If ``display_name`` is a list, the first element is used; an empty list falls back to the node name. All resolved display names are HTML-escaped before being embedded in the label, so special characters such as ``<``, ``>``, ``&``, and quotes render safely.
++
+ Your own custom style function must:
+ 
+ 1. Use only keyword arguments, taking in ``node`` and ``node_class``.

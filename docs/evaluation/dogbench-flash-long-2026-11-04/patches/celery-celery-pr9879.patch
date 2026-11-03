@@ -1,0 +1,33 @@
+diff --git a/docs/userguide/configuration.rst b/docs/userguide/configuration.rst
+index fe01b6ecd959b985e9410ccacc9851f112506219..1f181d26092f18842fe4b8b487729160d048791b 100644
+--- a/docs/userguide/configuration.rst
++++ b/docs/userguide/configuration.rst
+@@ -1332,6 +1332,28 @@ health checks.  If a ConnectionError or a TimeoutError is
+ encountered during the health check, the connection will be
+ re-established and the command retried exactly once.
+ 
++.. setting:: redis_backend_credential_provider
++
++``redis_backend_credential_provider``
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++Default: Not configured
++
++The Redis backend supports credential providers as defined by
++``redis.CredentialProvider``. This value may be either a dotted path to a
++``redis.CredentialProvider`` subclass (which will be resolved and instantiated
++when the connection is set up) or an instance of such a class.
++
++When a credential provider is configured, the ``username`` and ``password``
++connection parameters are removed to avoid conflicts. Passing a value that is
++neither a valid dotted path to a ``redis.CredentialProvider`` subclass nor a
++``redis.CredentialProvider`` instance raises an error.
++
++The credential provider can also be supplied as a ``credential_provider``
++query parameter in the connection URL::
++
++    result_backend = 'redis://host:port/db?credential_provider=redis.CredentialProvider'
++
+ .. setting:: redis_backend_use_ssl
+ 
+ ``redis_backend_use_ssl``

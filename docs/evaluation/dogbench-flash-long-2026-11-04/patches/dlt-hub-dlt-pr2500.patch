@@ -1,0 +1,44 @@
+diff --git a/docs/website/docs/general-usage/resource.md b/docs/website/docs/general-usage/resource.md
+index 1741814221c2d67d60959c471d761ee1d7d020f5..02a7e5d0d8d65a597b56b554197b51b0ca86358f 100644
+--- a/docs/website/docs/general-usage/resource.md
++++ b/docs/website/docs/general-usage/resource.md
+@@ -389,6 +389,39 @@ for user in users().add_filter(lambda user: user["user_id"] != "me").add_map(ano
+     print(user)
+ ```
+ 
++#### Transform data with `add_map`
++
++`add_map` attaches a function that is applied to each individual data item (for example, a dict or
++row) as it is extracted from the resource. The function receives one item and must return the
++transformed item. Use it to rename or drop fields, compute new values, anonymize records, or
++otherwise reshape data before it is normalized and loaded.
++
++```py
++import dlt
++
++@dlt.resource
++def users():
++    yield {"id": 1, "email": "jane@example.com", "created_at": "2024-01-01"}
++    yield {"id": 2, "email": "john@example.com", "created_at": "2024-01-02"}
++
++def add_email_domain(user):
++    user["email_domain"] = user["email"].split("@")[-1]
++    return user
++
++# apply the transformation to every item yielded by the resource
++users_with_domain = users().add_map(add_email_domain)
++```
++
++You can chain `add_map` with other item-level transformations such as `add_filter` and
++`add_yield_map`, and call it on a resource instance obtained from a source (for example,
++`source.my_resource.add_map(...)`).
++
++:::tip
++By default, transformations are appended after the resource's own steps. If you need a map to run
++before other steps such as incremental processing, pass the `insert_at` parameter to control the
++order of execution. See [transform records before incremental processing](./incremental/cursor.md#transform-records-before-incremental-processing).
++:::
++
+ ### Reduce the nesting level of generated tables
+ 
+ You can limit how deep `dlt` goes when generating nested tables and flattening dicts into columns. By default, the library will descend

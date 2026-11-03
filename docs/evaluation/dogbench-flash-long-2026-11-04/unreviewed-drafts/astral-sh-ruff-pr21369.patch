@@ -1,0 +1,28 @@
+diff --git a/docs/formatter.md b/docs/formatter.md
+index a80028d09e8a4ff0dfbe6f82aa3405c0be915784..3bec12b148409162e909443fd3760a7b7421247e 100644
+--- a/docs/formatter.md
++++ b/docs/formatter.md
+@@ -394,6 +394,23 @@ If you've identified a new deviation, please [file an issue](https://github.com/
+ Similar to [Black](https://black.readthedocs.io/en/stable/the_black_code_style/future_style.html#preview-style), Ruff implements formatting changes
+ under the [`preview`](https://docs.astral.sh/ruff/settings/#format_preview) flag, promoting them to stable through minor releases, in accordance with our [versioning policy](https://github.com/astral-sh/ruff/discussions/6998#discussioncomment-7016766).
+ 
++#### Fluent call chains split before the first call
++
++When a call chain is formatted in fluent style, Ruff breaks the chain before the first call or
++subscript rather than before the second one. For example, in preview mode, a chain that doesn't
++fit on a single line is split as:
++
++```python
++obj
++    .first_call()
++    .second_call()
++```
++
++rather than keeping `obj.first_call()` together on the first line. Consecutive calls and
++subscripts on a single object are treated as one unit, and a parenthesized root counts as one
++call-like element even if it isn't itself a call or subscript. This only affects preview mode;
++stable formatting is unchanged.
++
+ ### F-string formatting
+ 
+ _Stabilized in Ruff 0.9.0_

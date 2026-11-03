@@ -1,0 +1,13 @@
+diff --git a/reference/schemas/saveScreenshot.md b/reference/schemas/saveScreenshot.md
+index 0165395fb7f4094627967cb6a7dee6f776358ebb..4d61de4898c12f2d2e97a38ec7b548141a3c82c1 100644
+--- a/reference/schemas/saveScreenshot.md
++++ b/reference/schemas/saveScreenshot.md
+@@ -29,7 +29,7 @@ id | string |  Optional. ID of the step. | Generated UUID
+ description | string |  Optional. Description of the step. | 
+ action | string |  Required. The action to perform. | 
+ path | string |  Optional. Relative file path of the PNG file from `directory`. If not specified, the file name is the ID of the step. | 
+-directory | string |  Optional. Directory of the PNG file. Attempts to creatr the directory if it doesn't exist. If not specified, the directory is your media directory. | 
++directory | string |  Optional. Directory of the PNG file. Attempts to create the directory if it doesn't exist. If not specified, the directory is your media directory. | 
+ 
+ ## Examples
+ 

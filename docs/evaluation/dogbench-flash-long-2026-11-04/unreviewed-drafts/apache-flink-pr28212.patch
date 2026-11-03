@@ -1,0 +1,26 @@
+diff --git a/docs/content.zh/docs/dev/table/functions/ptfs.md b/docs/content.zh/docs/dev/table/functions/ptfs.md
+index 4190e9e3ba5a6302dc38a7bf8a1563a667e71155..a7636d997dca9f5f4c9288dbe27e0efa65156988 100644
+--- a/docs/content.zh/docs/dev/table/functions/ptfs.md
++++ b/docs/content.zh/docs/dev/table/functions/ptfs.md
+@@ -2349,7 +2349,7 @@ void testPOJO() throws Exception {
+ ### PTF Features Unsupported by the TestHarness
+ 
+ - `Context` paramter
+-- State (`@StateHint`)
++- State TTL
+ - Timers (`onTimer`)
+ - `on_time` / `rowtime`
+ - Update traits (`SUPPORTS_UPDATES`, `REQUIRE_UPDATE_BEFORE`)
+diff --git a/docs/content/docs/dev/table/functions/ptfs.md b/docs/content/docs/dev/table/functions/ptfs.md
+index 7181fc1a3d142838b75268a48ea16f7f6a8398c8..0b8a8866fcfd81a4c414a12d8d1e2b4396183214 100644
+--- a/docs/content/docs/dev/table/functions/ptfs.md
++++ b/docs/content/docs/dev/table/functions/ptfs.md
+@@ -2352,7 +2352,7 @@ void testPOJO() throws Exception {
+ ### PTF Features Unsupported by the TestHarness
+ 
+ - `Context` paramter
+-- State (`@StateHint`)
++- State TTL
+ - Timers (`onTimer`)
+ - `on_time` / `rowtime`
+ - Update traits (`SUPPORTS_UPDATES`, `REQUIRE_UPDATE_BEFORE`)

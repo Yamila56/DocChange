@@ -1,0 +1,82 @@
+diff --git a/docs/hugo/content/contributing/create-a-new-release.md b/docs/hugo/content/contributing/create-a-new-release.md
+index b6205878d63d89898a932b131cdc58938b3c8b49..1c039e4895a25b5433a4ff5e925e80e288e7cf28 100644
+--- a/docs/hugo/content/contributing/create-a-new-release.md
++++ b/docs/hugo/content/contributing/create-a-new-release.md
+@@ -47,32 +47,30 @@ service Swagger specifications. We must validate each breaking change so that we
+ 
+ Perform a simple smoke test to make sure the new release is capable of starting up and creating some Azure resources.
+ 
+-1. Create a kind cluster
++1. Create a kind cluster with workload identity enabled
+    ``` bash
+-   task controller:kind-create
++   task controller:kind-create-wi
+    ```
+ 
+-2. Install cert-manager
++2. Create a managed identity with a federated credential for the cluster
++   ``` bash
++   task controller:create-mi-for-workload-identity
++   ```
++
++3. Install cert-manager
+    ``` bash
+    task controller:install-cert-manager
+    ```
+ 
+-3. Create the namespace for the operator
++4. Create the namespace for the operator
+    ``` bash
+    kubectl create namespace azureserviceoperator-system
+    ```
+ 
+-4. Ensure you have a [Service Principal](https://azure.github.io/azure-service-operator/#installation) and export these environment variables:
++5. Ensure you have exported these environment variables:
+ 
+-   * AZURE_SUBSCRIPTION
++   * AZURE_SUBSCRIPTION_ID
+    * AZURE_TENANT_ID
+-   * AZURE_CLIENT_ID
+-   * AZURE_CLIENT_SECRET
+-
+-5. Create a secret in your cluster with the Service Principal credentials for ASO to use:
+-   ``` bash
+-   task controller:make-sp-secret
+-   ```
+ 
+ 6. Download asoctl
+ 
+@@ -113,8 +111,8 @@ Perform a simple smoke test to make sure the new release is capable of starting
+     ```
+    helm install --set azureSubscriptionID=$AZURE_SUBSCRIPTION_ID \
+    --set azureTenantID=$AZURE_TENANT_ID \
+-   --set azureClientSecret=$AZURE_CLIENT_SECRET \
+-   --set azureClientID=$AZURE_CLIENT_ID \
++   --set azureClientID=$(cat v2/out/kind-identity/azure/miclientid.txt) \
++   --set useWorkloadIdentityAuth=true \
+    asov2 -n azureserviceoperator-system --create-namespace ./v2/charts/azure-service-operator/.
+     ```
+ 5. Wait for the chart installation.
+diff --git a/docs/hugo/content/contributing/running-a-development-version.md b/docs/hugo/content/contributing/running-a-development-version.md
+index 7a70c644480dc387095e5f36048c8f2a598231d9..c43f56a3ef6f8259f3665062e88804375a926b91 100644
+--- a/docs/hugo/content/contributing/running-a-development-version.md
++++ b/docs/hugo/content/contributing/running-a-development-version.md
+@@ -7,13 +7,14 @@ title: Running a Development Version
+ If you would like to try something out but do not want to write an integration test, you can run your local version of the
+ operator locally in a [kind](https://kind.sigs.k8s.io) cluster.
+ 
+-Before launching `kind`, make sure that your shell has the `AZURE_SUBSCRIPTION_ID`, `AZURE_TENANT_ID`, `AZURE_CLIENT_ID`,
+-and `AZURE_CLIENT_SECRET` environment variables set. See [testing](../testing/#recordreplay) for more details about them.
++Before launching `kind`, make sure that your shell has the `AZURE_SUBSCRIPTION_ID` and `AZURE_TENANT_ID` environment variables set.
++See [testing](../testing/#recordreplay) for more details about them.
+ 
+ Once you've set the environment variables above, run one of the following commands to create a `kind` cluster:
+ 
+-1. Service Principal authentication cluster: `task controller:kind-create-with-service-principal`.
+-2. AAD Pod Identity authentication enabled cluster (emulates Managed Identity): `controller:kind-create-with-podidentity`.
++1. Workload identity authentication enabled cluster: `task controller:kind-create-wi`, followed by `task controller:create-mi-for-workload-identity` to provision a managed identity with a federated credential for the cluster.
++2. Service Principal authentication cluster: `task controller:kind-create-with-service-principal`.
++3. AAD Pod Identity authentication enabled cluster (emulates Managed Identity): `controller:kind-create-with-podidentity`.
+ 
+ You can use `kubectl` to interact with the local `kind` cluster.
+ 

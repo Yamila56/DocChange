@@ -1,0 +1,45 @@
+diff --git a/docs/docs/flink-maintenance.md b/docs/docs/flink-maintenance.md
+index bdf26adbd1c95f0dd2e214afa7d65a75ebe9cd88..80ace1a06da0dee89ade09852e8c049a16513fd7 100644
+--- a/docs/docs/flink-maintenance.md
++++ b/docs/docs/flink-maintenance.md
+@@ -320,6 +320,21 @@ IcebergSink.forRowData(dataStream)
+     .append();
+ ```
+ 
++Arbitrary post-commit maintenance tasks can also be registered through the generic `maintenance(...)` method, which may be called multiple times:
++
++```java
++IcebergSink.forRowData(dataStream)
++    .table(table)
++    .tableLoader(tableLoader)
++    .maintenance(RewriteDataFiles.builder()
++        .scheduleOnDataFileCount(20))
++    .maintenance(ExpireSnapshots.builder()
++        .retainLast(5))
++    .maintenance(DeleteOrphanFiles.builder()
++        .minAge(Duration.ofDays(3)))
++    .append();
++```
++
+ ##### Config
+ 
+ All maintenance tasks are configured through string properties:
+@@ -421,6 +436,9 @@ These keys are used in SQL (SET or table WITH options) or via `IcebergSink.Build
+ | `flink-maintenance.expire-snapshots.enabled` | Enable expire snapshots | `false` |
+ | `flink-maintenance.delete-orphan-files.enabled` | Enable delete orphan files | `false` |
+ 
++!!! note
++    The legacy key `compaction-enabled` is deprecated in favor of `flink-maintenance.rewrite.enabled` and is still accepted as an alias.
++
+ #### Rewrite Data Files Configuration
+ 
+ | Key | Description | Default |
+@@ -453,7 +471,7 @@ These keys are used in SQL (SET or table WITH options) or via `IcebergSink.Build
+ | `flink-maintenance.delete-orphan-files.min-age-seconds` | Minimum age of files to consider for deletion (seconds) | `259200` (3 days) |
+ | `flink-maintenance.delete-orphan-files.delete-batch-size` | Batch size for deleting orphan files | `1000` |
+ | `flink-maintenance.delete-orphan-files.location` | Location to start recursive listing | Table location |
+-| `flink-maintenance.delete-orphan-files.use-prefix-listing` | Use prefix listing for file discovery | `true` |
++| `flink-maintenance.delete-orphan-files.use-prefix-listing` | Use prefix listing for file discovery | `true` (changed from `false` in earlier versions) |
+ | `flink-maintenance.delete-orphan-files.planning-worker-pool-size` | Worker pool size for planning | Shared pool |
+ | `flink-maintenance.delete-orphan-files.equal-schemes` | Equivalent schemes (format: `s3n=s3,s3a=s3`) | `s3n=s3,s3a=s3` |
+ | `flink-maintenance.delete-orphan-files.equal-authorities` | Equivalent authorities (format: `auth1=auth2`) | Not set |

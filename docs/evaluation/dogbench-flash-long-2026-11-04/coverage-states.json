@@ -1,0 +1,3040 @@
+[
+  {
+    "instance_id": "Azure-azure-service-operator-pr4202",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "aks-affinity",
+        "description": "Document guidance for running ASO on AKS, including scheduling/affinity considerations (e.g. avoiding user node pools / preferring system node pools) since ASO will not add AKS-specific affinity by default.",
+        "evidence_ids": [
+          "28550ea6f14f2c2a025ca8a6"
+        ]
+      },
+      {
+        "id": "argo-helm",
+        "description": "Document how to install ASO via Argo CD using the Helm chart repository (repoURL pointing at v2/charts with chart: azure-service-operator), explaining that pointing Argo at the git source directory misses generated templates like the manager ClusterRole.",
+        "evidence_ids": [
+          "28550ea6f14f2c2a025ca8a6"
+        ]
+      },
+      {
+        "id": "aso-data-passing",
+        "description": "Document how to pass data between ASO resources (e.g. referencing values from one resource in another).",
+        "evidence_ids": [
+          "28550ea6f14f2c2a025ca8a6"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "aks-affinity",
+          "status": "covered",
+          "evidence_ids": [
+            "46ff1fcb38ccb75118c1e91f",
+            "28550ea6f14f2c2a025ca8a6"
+          ],
+          "reason": "FAQ gains a new section explaining ASO sets no AKS-specific affinity by default and shows a preferred node affinity example targeting the system node pool, matching the issue's resolution to document rather than add default affinity."
+        },
+        {
+          "requirement_id": "argo-helm",
+          "status": "covered",
+          "evidence_ids": [
+            "46ff1fcb38ccb75118c1e91f",
+            "28550ea6f14f2c2a025ca8a6"
+          ],
+          "reason": "FAQ adds guidance to point Argo CD at the Helm chart repository (repoURL v2/charts, chart: azure-service-operator) and explains that the git source directory misses generated templates like the manager ClusterRole, with a working Application example."
+        },
+        {
+          "requirement_id": "aso-data-passing",
+          "status": "covered",
+          "evidence_ids": [
+            "caee5bd7f3d7d87af505937b",
+            "112b71ccf215585b53a94907",
+            "e6c255e23d1503b796f9e265"
+          ],
+          "reason": "configmaps.md gains a 'How to pass data between ASO resources' section with a UserAssignedIdentity exporting clientId/principalId and a RoleAssignment consuming principalIdFromConfig, consistent with existing export examples."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr5490",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new built-in CEL function `aso.parseResourceId` that parses an ARM resource ID string into a structured ResourceID object.",
+        "evidence_ids": [
+          "45fc1f6d1733b967ae290212"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the fields exposed by the returned ResourceID type: subscriptionId, resourceGroupName, provider, location, name, nested resourceType (namespace, type), and recursive parent.",
+        "evidence_ids": [
+          "45fc1f6d1733b967ae290212"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the new native CEL types ResourceID and ResourceType registered in the CEL environment.",
+        "evidence_ids": [
+          "45fc1f6d1733b967ae290212"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Provide an example of using aso.parseResourceId in SecretExpressions (e.g. exporting subscription ID from a managed identity's ARM ID for workload identity).",
+        "evidence_ids": [
+          "45fc1f6d1733b967ae290212"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr4196",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new operatorSpec.namingConvention setting (stable|random) for RoleAssignment in API versions 2020-08-01-preview and 2022-04-01, and RoleDefinition in 2022-04-01, including that stable is the default and random generates a new random UUID.",
+        "evidence_ids": [
+          "62bceeea022f4fceb5e9b179"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Explain that namingConvention is operator-only and not sent to Azure, and applies only when no explicit AzureName is provided.",
+        "evidence_ids": [
+          "62bceeea022f4fceb5e9b179"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check existing docs for RoleAssignment name generation / UUID behavior and update any reference or example surfaces that describe the deterministic UUID default.",
+        "evidence_ids": [
+          "62bceeea022f4fceb5e9b179"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr4394",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Determine whether the relocation of web ARM types into an `arm` sub-package (and removal of `_ARM` suffixes) affects any user-facing documentation such as API reference, type listings, or generated docs.",
+        "evidence_ids": [
+          "fb68ba23baaf2267cf718a20"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Check whether the generator package deny-list change (removing `web`) is documented anywhere user-facing (e.g., contributor/generator docs describing which packages are emitted).",
+        "evidence_ids": [
+          "fb68ba23baaf2267cf718a20"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Verify whether any docs reference the old `_ARM` type names or the root-package ARM types for web resources that would now be stale.",
+        "evidence_ids": [
+          "fb68ba23baaf2267cf718a20"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "missing",
+          "evidence_ids": [
+            "e88a3e9f7e11c6bda76c7104",
+            "ac8d22943e079c2d0d43b2ea",
+            "1c45bdeababd0378a6ffa424",
+            "e0822160a9ba8927df59d6d9",
+            "f1b2a1ac35a8f3f5b2f4e2ca",
+            "f767b2191088141e5a635dea"
+          ],
+          "reason": "The reference doc docs/hugo/content/reference/web/v1api20220301.md still documents the old root-package ARM types (ExtendedLocation_ARM, Capability_ARM, ManagedServiceIdentity_ARM, Serverfarm_Spec_ARM, Site_Spec_ARM) and structure.txt still lists ServerFarm_Spec_ARM/Site_Spec_ARM. The candidate made no edits, so the stale generated reference content is not addressed."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "no_change",
+          "evidence_ids": [
+            "0c48c8b13e3260e5a5298ff5",
+            "19c2b667dbaf7ef54f5f278a"
+          ],
+          "reason": "Contributor/generator docs describe adding resources and conversion internals but do not enumerate the package deny list, so no user-facing doc change is required for the deny-list edit."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "missing",
+          "evidence_ids": [
+            "e88a3e9f7e11c6bda76c7104",
+            "ac8d22943e079c2d0d43b2ea",
+            "1c45bdeababd0378a6ffa424",
+            "e0822160a9ba8927df59d6d9",
+            "f1b2a1ac35a8f3f5b2f4e2ca",
+            "f767b2191088141e5a635dea"
+          ],
+          "reason": "Docs still reference the old _ARM type names for web resources; the candidate did not update them, leaving stale references."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [
+        "Claim that the reference docs are generated artifacts not hand-maintained and therefore need no update — the checked-in reference doc still contains the now-removed _ARM type names, so it is stale regardless of generation."
+      ],
+      "reason": "Not ready. The candidate abstained, but the checked-in reference documentation (docs/hugo/content/reference/web/v1api20220301.md) and structure.txt still describe the removed root-package _ARM types (Serverfarm_Spec_ARM, Site_Spec_ARM, ExtendedLocation_ARM, Capability_ARM, ManagedServiceIdentity_ARM, etc.). These should be regenerated/updated to reflect the new arm sub-package types (ServerFarm_Spec, Site_Spec, ExtendedLocation, Capability, etc.). Suggested search: grep for '_ARM' and 'Serverfarm_Spec_ARM'/'Site_Spec_ARM' in docs/hugo/content/reference/web/v1api20220301.md and v2/api/web/v1api20220301/structure.txt, and regenerate the reference docs via the project's doc-generation tooling.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr4003",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Determine whether docs describe CI secrets AZURE_CLIENT_ID/AZURE_CLIENT_SECRET or service principal auth for integration tests/releases that must be updated to workload identity.",
+        "evidence_ids": [
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Determine whether docs describe the identity package API (NewCredentialProvider, credential constructors) that must reflect the new TokenCredentialProvider interface and optional CredentialProviderOptions.",
+        "evidence_ids": [
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Determine whether docs describe the make-mi-fic shell script or managed identity/federated credential setup that must be updated to the Python equivalent.",
+        "evidence_ids": [
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Determine whether docs describe CI agent pool size or Bicep provisioning that must reflect max size 8 and user-assigned managed identity.",
+        "evidence_ids": [
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Determine whether docs describe AKS cluster creation / OIDC issuer or multi-tenant integration test setup that must reflect OIDC issuer enablement and managed identity provisioning.",
+        "evidence_ids": [
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "944f039268deccd2c8a98179",
+            "6a3e61113423e0436ab41811",
+            "c7cb55d9e9a4952bdb585aa2"
+          ],
+          "reason": "Candidate removes AZURE_CLIENT_ID/AZURE_CLIENT_SECRET from the release smoke-test and dev-version docs, replacing with workload identity (kind-create-wi, create-mi-for-workload-identity, useWorkloadIdentityAuth=true)."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "no_change",
+          "evidence_ids": [
+            "c7cb55d9e9a4952bdb585aa2"
+          ],
+          "reason": "The identity package API (NewCredentialProvider, TokenCredentialProvider) is internal Go code with no user-facing documentation describing it; no doc change warranted."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "no_change",
+          "evidence_ids": [
+            "c7cb55d9e9a4952bdb585aa2"
+          ],
+          "reason": "make-mi-fic.sh -> .py is an internal script swap; no user-facing docs reference the shell script directly."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "no_change",
+          "evidence_ids": [
+            "c7cb55d9e9a4952bdb585aa2"
+          ],
+          "reason": "CI agent pool size and Bicep provisioning are internal infrastructure not documented for users."
+        },
+        {
+          "requirement_id": "R5",
+          "status": "covered",
+          "evidence_ids": [
+            "944f039268deccd2c8a98179",
+            "6a3e61113423e0436ab41811",
+            "c7cb55d9e9a4952bdb585aa2"
+          ],
+          "reason": "Docs now instruct creating a workload-identity kind cluster and provisioning a managed identity with federated credential, reflecting OIDC/workload identity enablement."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36618",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new `active_environmentd_image_ref` behavior on the Materialize CR: downstream resources (balancerd, console) track the last completed rollout image, falling back to spec.environmentdImageRef, so reverting only requestRollout does not cause version skew.",
+        "evidence_ids": [
+          "882cca1ae1d394f5515bc120"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that balancerd and console image refs are derived from the active (last completed rollout) environmentd image rather than the raw spec image, including the mid-rollout / canceled-rollout scenario.",
+        "evidence_ids": [
+          "882cca1ae1d394f5515bc120"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "882cca1ae1d394f5515bc120",
+            "303a1934c2b52ea3f93dec66"
+          ],
+          "reason": "The candidate adds a note in the upgrading guide explaining that the Operator tracks the last completed rollout image (status.lastCompletedRolloutEnvironmentdImageRef) and falls back to spec.environmentdImageRef when no rollout has completed, matching the new active_environmentd_image_ref behavior."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "882cca1ae1d394f5515bc120",
+            "303a1934c2b52ea3f93dec66"
+          ],
+          "reason": "The note is placed directly after the cancel-rollout instructions and states balancerd and console track the last completed rollout image so they stay aligned with the running environmentd, covering the mid-rollout/canceled-rollout scenario."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36075",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Determine whether the timestamp type refactor changes any user-facing behavior, options, defaults, or documented semantics that require documentation updates.",
+        "evidence_ids": [
+          "25d485acd8c1663c58042c66"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr37023",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document how to set up a dedicated PostgreSQL replica using native logical replication (publication/subscription) for use as a Materialize source.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document how to point a Materialize PostgreSQL source at the replica instead of the production primary, including connection details and any caveats.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "959adaca7f61d23427a4f20a",
+            "2e1fb41d68a17513e424c552",
+            "6763f6f05d22f8bda0e8468e"
+          ],
+          "reason": "The patch adds a new optional step 3 to the self-hosted guide that documents provisioning a replica, creating a publication on the primary, creating a subscription on the replica, and creating a separate publication on the replica for Materialize. This satisfies the request to document native logical replication setup for a dedicated replica."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "4baab4d96190edd9dc391863",
+            "9f8468384631fa68c2aa9163",
+            "1d514e04789a8864033ddb9a",
+            "ba3b9d9e5b159f48a221a570"
+          ],
+          "reason": "The patch instructs users to use the replica's host/port when creating the connection and to reference the replica publication, and includes caveats (replication slot placement, lag, wal_level/max_wal_senders/max_replication_slots, schema-change propagation). This addresses pointing the source at the replica with connection details and caveats."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36328",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new `bounded staleness <duration>` transaction isolation level in the SQL reference for SET transaction_isolation / isolation levels, including accepted duration syntax and that D=0 is rejected.",
+        "evidence_ids": [
+          "90b6896ee8f383a6284f735c"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document restrictions: writes (INSERT/UPDATE/DELETE/COPY FROM) rejected, real_time_recency=on conflict, non-wall-clock timelines unsupported, and the BoundedStalenessExceeded error (SQLSTATE 40001).",
+        "evidence_ids": [
+          "90b6896ee8f383a6284f735c"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the `enable_bounded_staleness_isolation` feature flag in the feature flags reference.",
+        "evidence_ids": [
+          "90b6896ee8f383a6284f735c"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document the new `mz_timestamp_difference_for_bounded_staleness_ms` metric in the metrics reference.",
+        "evidence_ids": [
+          "90b6896ee8f383a6284f735c"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog-pr63817",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new GET /api/projects/{team_id}/signals/scout/runs/{run_id}/emissions/reports/ endpoint (reverse lookup from scout finding to inbox report), including response shape and null semantics.",
+        "evidence_ids": [
+          "58fa01e2cf311224f03e5c71"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document required scopes for the new endpoint (signal_scout:read + task:read) and team-scoping 404 behavior.",
+        "evidence_ids": [
+          "58fa01e2cf311224f03e5c71"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document that DELETED/SUPPRESSED reports and ClickHouse failures degrade to null report links (best-effort).",
+        "evidence_ids": [
+          "58fa01e2cf311224f03e5c71"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "missing",
+          "evidence_ids": [
+            "58fa01e2cf311224f03e5c71",
+            "afa517703302746513ded5fd",
+            "b276c13cbb1e5c77bf02e560"
+          ],
+          "reason": "The candidate abstained without adding any documentation for the new endpoint. The change introduces a user-visible read endpoint (GET .../signals/scout/runs/{run_id}/emissions/reports/) with a defined response shape and null semantics; the docs workspace contains PostHog Code Inbox docs (contents/docs/posthog-code/inbox/index.mdx, research.mdx) describing the report/signal flow, so a user-facing surface exists that could reference the reverse lookup. No edit was made."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "missing",
+          "evidence_ids": [
+            "58fa01e2cf311224f03e5c71"
+          ],
+          "reason": "No documentation of the required scopes (signal_scout:read + task:read) or the team-scoped 404 behavior was added. The candidate made no edits."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "missing",
+          "evidence_ids": [
+            "58fa01e2cf311224f03e5c71"
+          ],
+          "reason": "No documentation of the best-effort null semantics (DELETED/SUPPRESSED reports and ClickHouse failures degrade to null) was added. The candidate made no edits."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "Candidate abstained (NO_DOC_CHANGES_NEEDED) but the change adds a user-visible read endpoint consumed by the Scout UI, and the docs workspace already documents the Inbox report/signal flow (contents/docs/posthog-code/inbox/index.mdx, research.mdx). Abstention is not justified. Recommended next steps: (1) search contents/docs/posthog-code/inbox/ for where report evidence/signals are described and add a short note that findings on the Scout page link back to the inbox report they contributed to, including that the link is best-effort and may be null; (2) if an API reference page exists for signals/scout endpoints, document the new route, its response shape (finding_id, source_id, nullable report {id,title,status}), required scopes (signal_scout:read + task:read), and 404 for foreign-team runs; (3) avoid asserting the MCP tool is available since it is disabled by default.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36803",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new mz-sql-anonymize helper binary: what it does (AST-based identifier renaming, literal/number redaction), how to build/locate it (MZ_SQL_ANONYMIZE_BIN, target/release|debug), and its JSON request/response protocol if user-facing.",
+        "evidence_ids": [
+          "cf021879546624de70f8cbf0"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the mz-workload-anonymize CLI behavior changes: parser now required, explicit -o/--in-place output required, verify pass on by default, redaction levels (string-like vs numeric), consistent salted redacted_<hash> tokens, and <REDACTED> placeholder semantics.",
+        "evidence_ids": [
+          "cf021879546624de70f8cbf0"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document workload replay change: query parameters carrying <REDACTED> are bound as NULL at execution time.",
+        "evidence_ids": [
+          "cf021879546624de70f8cbf0"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document the built-in keep-lists (system_catalog_identifiers.txt, load_generator_identifiers.txt) and why builtin/load-generator names are not renamed.",
+        "evidence_ids": [
+          "cf021879546624de70f8cbf0"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog-pr63886",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that MCP analytics submission endpoints (feedback, missing_capabilities) are gated by the `mcp-analytics` feature flag rather than staff-only access, if any user-facing docs describe the access model.",
+        "evidence_ids": [
+          "d0b6dfd9a0f7cdfc8cc29fef"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the `mcp_analytics` API scope (read/write) for programmatic access to submission endpoints, if API scope docs exist.",
+        "evidence_ids": [
+          "d0b6dfd9a0f7cdfc8cc29fef"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the two new MCP tools `mcp-feedback-submit` and `mcp-missing-capability-report` if there is a user-facing MCP tools reference.",
+        "evidence_ids": [
+          "d0b6dfd9a0f7cdfc8cc29fef"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "no_change",
+          "evidence_ids": [
+            "b057d6cbc977de0e918c4d75",
+            "40e33e4831f1001bde16ad6a",
+            "d4e79aa3c9cf0ebdf3f2ec54"
+          ],
+          "reason": "The MCP analytics docs describe the `@posthog/mcp` TypeScript SDK (instrumentation, events, options) and explicitly note there is no dedicated MCP analytics UI yet. They do not document the submission endpoints' access model (staff-only vs feature-flag), so there is no user-facing statement about the access model to update."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "no_change",
+          "evidence_ids": [
+            "b057d6cbc977de0e918c4d75",
+            "40e33e4831f1001bde16ad6a",
+            "553c5efe7a3decb51473bd9b"
+          ],
+          "reason": "No API scope reference for `mcp_analytics` exists in the docs; the MCP analytics section covers SDK options and events, not API scopes. Nothing documents the previous INTERNAL lock or scope mapping, so no doc change is warranted."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "no_change",
+          "evidence_ids": [
+            "40e33e4831f1001bde16ad6a",
+            "cd67cf17e82df7568fac2e1e",
+            "ec637b0dd6710abad07e610e"
+          ],
+          "reason": "The docs' MCP analytics pages document SDK-emitted events and the `get_more_tools` virtual tool, not the PostHog MCP server's per-tool reference for analytics tools. The new `mcp-feedback-submit` and `mcp-missing-capability-report` tools are auto-generated server tools with no existing user-facing tools reference page in the MCP analytics docs to update."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "Abstain is appropriate: the change is internal to the MCP analytics backend (permission class swap to feature-flag gating, scope remap, and enabling two auto-generated MCP server tools). The user-facing MCP analytics documentation describes the `@posthog/mcp` TypeScript SDK — its options, events, and virtual tools — and explicitly states there is no dedicated MCP analytics UI yet. It does not document the submission endpoints' access model, the `mcp_analytics` API scope, or a per-tool reference for the PostHog MCP server's analytics tools. No documented public option, default, or behavior changes, so no documentation update is warranted.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16354",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new initial_sync_complete field on external data schemas if it is user-visible (e.g., in data warehouse schema docs or API reference).",
+        "evidence_ids": [
+          "e232992e90e282d48f77c3dc"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the webhook S3 ingestion path for sources (Stripe) if users can enable/observe it, including any feature flag behavior.",
+        "evidence_ids": [
+          "e232992e90e282d48f77c3dc"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check whether reset_pipeline / SourceInputs changes affect any documented user-facing behavior.",
+        "evidence_ids": [
+          "e232992e90e282d48f77c3dc"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "no_change",
+          "evidence_ids": [
+            "b3bb1df285c8411c927610fa"
+          ],
+          "reason": "initial_sync_complete is an internal boolean on ExternalDataSchema used to gate webhook routing; it is not exposed as a user-facing field in schema/API docs, so no documentation change is warranted."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "10ce53da14578152f2e2ed2a",
+            "5acd02b599714ba45ea3e2d6",
+            "b3bb1df285c8411c927610fa"
+          ],
+          "reason": "The candidate adds a note to the Stripe source doc explaining that webhook sync only applies after initial sync completes, only for incremental tables, and falls back to scheduled syncing after a pipeline reset. This matches the webhook_enabled gating logic (is_incremental, initial_sync_complete, reset_pipeline)."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "no_change",
+          "evidence_ids": [
+            "5acd02b599714ba45ea3e2d6"
+          ],
+          "reason": "reset_pipeline is an internal SourceInputs field forwarded through the import activity; its only user-visible effect (falling back to scheduled sync after a reset) is already captured by the R2 note, so no separate documentation is needed."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16714",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "cdc-prereqs",
+        "description": "Document Postgres CDC prerequisites: database-level replication slots and publications, required permissions/settings (e.g. wal_level=logical), and how they are configured.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "cdc-table-modes",
+        "description": "Document the different table modes under which Postgres CDC operates and what each mode means for capture behavior.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "cdc-wal-lag",
+        "description": "Document WAL lag effects and failure conditions that determine how capture behaves, including troubleshooting guidance.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "cdc-prereqs",
+          "status": "covered",
+          "evidence_ids": [
+            "1a466b60512946a8002c26df",
+            "99152464b09ab8dd1dda3378"
+          ],
+          "reason": "The patch adds a CDC Prerequisites section to postgres.mdx covering wal_level=logical, replication slot with REPLICATION privilege, publication creation/permissions, and table primary key/replica identity requirements."
+        },
+        {
+          "requirement_id": "cdc-table-modes",
+          "status": "covered",
+          "evidence_ids": [
+            "3f9516e642ae8535d7c1f594",
+            "c260b61b21ff3cfdf020e219",
+            "e5432479bbf89dedb96a8d4b"
+          ],
+          "reason": "The patch adds a Table modes section (enabled with CDC, disabled, schema changes) and a CDC entry in the sync methods list in index.mdx, describing capture behavior per mode."
+        },
+        {
+          "requirement_id": "cdc-wal-lag",
+          "status": "covered",
+          "evidence_ids": [
+            "1a466b60512946a8002c26df",
+            "99152464b09ab8dd1dda3378"
+          ],
+          "reason": "The patch adds a WAL lag and failure conditions section covering WAL retention/disk growth, slot invalidation (failover, max_slot_wal_keep_size), publication changes, and a troubleshooting checklist."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [
+        "Claim that the connecting user needs the REPLICATION privilege (or superuser) and permission to create publications — not corroborated by any source evidence; the existing docs only state read permissions are required.",
+        "Claim that tables must have a primary key (or replica identity) for CDC — not supported by provided sources.",
+        "Claim that slot invalidation after failover or exceeding max_slot_wal_keep_size requires a full resync — not supported by provided sources.",
+        "Claim that disabling a CDC table means changes made while disabled aren't captured and re-enabling may require a full resync — not supported by provided sources (only webhook tables have documented disable/re-enable behavior).",
+        "Claim that CDC is 'available on sources that support logical replication' generally — sources only show Postgres/Supabase; the generalization is unverified."
+      ],
+      "reason": "The candidate adds plausible CDC documentation but several factual claims (REPLICATION privilege, publication permissions, primary key/replica identity requirement, slot invalidation/resync behavior, disabled-table gap behavior) are not backed by the provided source evidence. The existing postgres.mdx Permissions note says only read permissions are required, which directly conflicts with the new privilege claims. Before marking ready, verify against the actual Postgres source implementation (e.g. search code for 'wal_level', 'replication slot', 'publication', 'REPLICA IDENTITY', 'max_slot_wal_keep_size', and the CDC table enable/disable logic) and reconcile the Permissions callout. Also confirm whether CDC is Postgres-only or broadly available before generalizing in index.mdx.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog-pr63871",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new per-integration landing page route /integrations/:slug (chrome-less page with logo, name, description, connect button, success screen) if integrations are documented in user docs.",
+        "evidence_ids": [
+          "9ea2f666d4a36a18562a839f"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Check whether existing integration setup docs (Slack, GitHub, GitLab, Jira, Linear) reference settings-only connection flow and need updating to mention the new landing page entry point.",
+        "evidence_ids": [
+          "9ea2f666d4a36a18562a839f"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Determine whether the change is purely internal refactoring (component relocation, registry centralization, title attribute) requiring no user-facing docs.",
+        "evidence_ids": [
+          "9ea2f666d4a36a18562a839f"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16752",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new `enabled` boolean field on subscriptions (default true), how to pause/resume delivery via the API (PATCH enabled), and that it is distinct from `deleted`.",
+        "evidence_ids": [
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document auto-disable behavior: subscriptions are automatically set to enabled=false when the delivery target is permanently invalid (e.g. Slack integration removed, unsupported target type), with an activity record and owner email notification.",
+        "evidence_ids": [
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the re-enable guard: PATCH enabled=true is rejected (400) when the underlying issue is unresolved (missing Slack integration, unsupported target type, exhausted schedule), and re-enabling triggers an immediate delivery.",
+        "evidence_ids": [
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document that test-delivery on a disabled subscription returns 409 Conflict and that disabled subscriptions are skipped by the delivery workflow.",
+        "evidence_ids": [
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Document the frontend toggle control in subscription list/detail views for pausing and resuming subscriptions.",
+        "evidence_ids": [
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "9019d1f1fb5aa3f152b355de",
+            "3209b5e0a86ec08a0bb7cb3d"
+          ],
+          "reason": "New 'Pausing and resuming subscriptions' section documents the enabled state, pausing without deleting, and distinguishes pausing from deleting (soft-delete)."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "9019d1f1fb5aa3f152b355de",
+            "3209b5e0a86ec08a0bb7cb3d"
+          ],
+          "reason": "'Automatic disabling' subsection documents auto-pause on permanently invalid target (Slack removed, unsupported channel), activity record, and owner email."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "9019d1f1fb5aa3f152b355de",
+            "3209b5e0a86ec08a0bb7cb3d"
+          ],
+          "reason": "Documents that re-enabling triggers immediate delivery and is rejected with an error when the underlying issue is unresolved."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "covered",
+          "evidence_ids": [
+            "9019d1f1fb5aa3f152b355de",
+            "3209b5e0a86ec08a0bb7cb3d"
+          ],
+          "reason": "Adds note that test delivery is unavailable for paused subscriptions (re-enable first), reflecting the 409 behavior. Workflow-skip is implied by 'stops delivering on its schedule'."
+        },
+        {
+          "requirement_id": "R5",
+          "status": "covered",
+          "evidence_ids": [
+            "0638f4c559a6ef0547577b49",
+            "3209b5e0a86ec08a0bb7cb3d"
+          ],
+          "reason": "List bullet and section describe the toggle in list and detail views for pausing/resuming."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16822",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Documentation for configuring exposure tracking in PostHog experiments using an external feature flag system must be corrected to reflect the actual supported configuration.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "64339301bca7f84fbce964db",
+            "8161db3373f8b398ace5c965",
+            "b1912a776d0c48de44b9f035"
+          ],
+          "reason": "The candidate adds a paragraph to the 'Important for custom implementations' callout in exposures.mdx explaining that external feature flag systems can send a `$feature_flag_called` event with `$feature_flag` and `$feature_flag_response`, which matches the documented default exposure criteria (b1912a77) and the manual event documented in running-experiments-without-feature-flags (8161db33). This corrects the prior implication that external systems must use a custom exposure event."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-flink-pr27195",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the three new built-in async retry predicate helpers (empty_result_predicate, has_exception_predicate, exception_type_predicate) in the Python DataStream async I/O / async retry documentation, including their signatures and semantics.",
+        "evidence_ids": [
+          "fdc6bbabfbe6e3aa3d0542f0"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that AsyncRetryPredicate and AsyncRetryStrategy interface methods are now abstract, so incomplete subclasses raise TypeError at instantiation.",
+        "evidence_ids": [
+          "fdc6bbabfbe6e3aa3d0542f0"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "3e4042a304764260f480e263",
+            "488afd2cf4ec5cd524b7b9d6",
+            "6290de630a0c0792c29cb371"
+          ],
+          "reason": "Both English and Chinese asyncio.md add a 'Built-in predicates' bullet documenting empty_result_predicate, has_exception_predicate, and exception_type_predicate with signatures and semantics matching the source module."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "72d2516da34cf67e6abf012c",
+            "488afd2cf4ec5cd524b7b9d6",
+            "6290de630a0c0792c29cb371"
+          ],
+          "reason": "Both language pages state that result_predicate/exception_predicate and the AsyncRetryStrategy methods are abstract and that incomplete subclasses raise TypeError at instantiation, consistent with the @abstractmethod decorators."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-flink-pr27325",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that STDDEV_POP/STDDEV_SAMP/VAR_POP/VAR_SAMP now use Welford's online algorithm (M2) internally, improving numerical stability and fixing edge cases like single-element variance returning zero, if built-in function docs describe these functions.",
+        "evidence_ids": [
+          "af50d1a1a14605c48f6e47a4"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Determine whether the new internal function $WELFORD_M2$1 is user-facing (it is marked internal/runtimeProvided) and thus should NOT be documented as a public built-in function.",
+        "evidence_ids": [
+          "af50d1a1a14605c48f6e47a4"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check whether variance aggregations' incompatibility with fixed-length hash aggregation is a documented limitation that needs updating.",
+        "evidence_ids": [
+          "af50d1a1a14605c48f6e47a4"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "no_change",
+          "evidence_ids": [
+            "af50d1a1a14605c48f6e47a4"
+          ],
+          "reason": "The change alters only the internal computation formula for STDDEV_POP/STDDEV_SAMP/VAR_POP/VAR_SAMP. Public function names, signatures, and documented semantics are unchanged; the improvement is numerical accuracy and edge-case correctness, not a documented behavior contract. No doc describes the internal formula, so no update is warranted."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "no_change",
+          "evidence_ids": [
+            "af50d1a1a14605c48f6e47a4"
+          ],
+          "reason": "$WELFORD_M2$1 is declared internal() and runtimeProvided() in BuiltInFunctionDefinitions, so it is not a user-facing built-in function and must not be documented."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "no_change",
+          "evidence_ids": [
+            "af50d1a1a14605c48f6e47a4"
+          ],
+          "reason": "The hash-aggregation incompatibility is an internal planner/test concern (conditionally disabled test cases), not a documented user-facing limitation. No existing doc states a fixed-length hash-agg constraint for variance functions."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "Abstain is not fully justified: the candidate asserts existing docs only list these functions as reserved keywords and Python expression references, but the provided sources do not include those files (docs/content/docs/dev/table/sql/overview.md, docs/content.zh/.../overview.md, flink-python/docs/reference/pyflink.table/expressions.rst). Before concluding NO_DOC_CHANGES_NEEDED, verify: (1) search docs for STDDEV_POP/STDDEV_SAMP/VAR_POP/VAR_SAMP to confirm no page documents the computation formula or edge-case behavior (e.g., single-element variance); (2) confirm the SQL built-in function reference pages do not describe these functions' semantics in a way that the edge-case fix contradicts; (3) confirm no doc mentions hash-aggregation limitations for variance. If any page describes the formula or the single-element edge case, an update is warranted.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16939",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that Postgres data warehouse sources can select which source columns to sync (enabled_columns), with all columns as default and PK/incremental field always retained.",
+        "evidence_ids": [
+          "b0df96dc6b44e3fbb3752bf0"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that Postgres warehouse sources no longer require a default schema and support multiple schemas, with same-named tables from different schemas coexisting.",
+        "evidence_ids": [
+          "b0df96dc6b44e3fbb3752bf0"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document that disabled columns are hidden from queryable table schemas in HogQL for both warehouse and direct query modes.",
+        "evidence_ids": [
+          "b0df96dc6b44e3fbb3752bf0"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "4d83d819f040b22fd741dea1",
+            "b0df96dc6b44e3fbb3752bf0"
+          ],
+          "reason": "New 'Selecting columns to sync' section documents per-column selection, default of all columns, PK/incremental retention, and the forward-only vs full resync prompt."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "4d83d819f040b22fd741dea1",
+            "b0df96dc6b44e3fbb3752bf0"
+          ],
+          "reason": "Schema field note updated to state it is optional and that leaving it blank discovers tables across all non-system schemas with same-named tables synced separately."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "4d83d819f040b22fd741dea1",
+            "b0df96dc6b44e3fbb3752bf0"
+          ],
+          "reason": "Section states disabled columns are removed from the table schema so they won't appear in HogQL queries, and that stored data persists and repopulates on re-enable."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-flink-pr27345",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Determine whether the new OutputAdjustment interface and delayedWatermarkOutput factory are user-facing (Experimental public API) and need reference documentation.",
+        "evidence_ids": [
+          "bf0d13a61bb74d4ffeda0fb9"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Determine whether the new RichFunction.useInterruptibleTimers() opt-in and its interaction with the existing interruptible-timers config option (ENABLE_UNALIGNED_INTERRUPTIBLE_TIMERS) requires documentation updates.",
+        "evidence_ids": [
+          "bf0d13a61bb74d4ffeda0fb9"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check whether interval join behavior change (interruptible timers for row-time interval joins) is documented anywhere user-facing and needs updating.",
+        "evidence_ids": [
+          "bf0d13a61bb74d4ffeda0fb9"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Check existing docs for interruptible timers / unaligned checkpoints configuration reference to see if any documented behavior or defaults changed.",
+        "evidence_ids": [
+          "bf0d13a61bb74d4ffeda0fb9"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "no_change",
+          "evidence_ids": [
+            "bf0d13a61bb74d4ffeda0fb9"
+          ],
+          "reason": "OutputAdjustment is annotated @Experimental and is an internal operator-construction mechanism (wrapping operator output at construction). It is not a user-facing configuration or API surface documented in the user docs; no reference documentation exists for such internal operator plumbing, so preserving docs is justified."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "no_change",
+          "evidence_ids": [
+            "bf0d13a61bb74d4ffeda0fb9",
+            "31034fcf826c45c3b97a356c"
+          ],
+          "reason": "useInterruptibleTimers() is @Internal on RichFunction and only affects which operators opt in. The user-facing config option execution.checkpointing.unaligned.interruptible-timers.enabled is unchanged; the only user-visible consequence is the set of supported operators, which is captured under R3/R4."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "31034fcf826c45c3b97a356c",
+            "bf0d13a61bb74d4ffeda0fb9"
+          ],
+          "reason": "The release notes list which operators support interruptible timers; the candidate adds row-time interval joins to that list, matching the TimeIntervalJoin override returning true."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "covered",
+          "evidence_ids": [
+            "31034fcf826c45c3b97a356c"
+          ],
+          "reason": "The documented default (disabled) and config key are unchanged; only the supported-operator sentence is updated, which is the correct minimal change."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "The candidate makes a single, accurate edit to the 1.20 release notes supported-operator list, adding row-time interval joins. This aligns with the TimeIntervalJoin override of useInterruptibleTimers() returning true. The OutputAdjustment interface and RichFunction.useInterruptibleTimers() are @Internal/@Experimental operator plumbing and do not warrant user-facing reference docs. The config option and its default are unchanged. No unsupported claims. Note: the Chinese release notes (docs/content.zh/release-notes/flink-1.20.md) may contain the same sentence and could be updated for parity, but this is not strictly required for readiness.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr17231",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Determine whether funnel breakdown path cleaning is a user-facing feature that needs documentation (e.g., in funnel breakdown docs or path cleaning docs).",
+        "evidence_ids": [
+          "d98e939a9af40a202d30b221"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Check existing docs for path cleaning / breakdown_normalize_url coverage to see if funnels support should be added or clarified.",
+        "evidence_ids": [
+          "d98e939a9af40a202d30b221"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Assess whether the session recording snapshot change (internal SQL) requires any user-facing doc change.",
+        "evidence_ids": [
+          "d98e939a9af40a202d30b221"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "e610ca2570b2c79f9e6c70df",
+            "2032bb4e59764570f9b9762b",
+            "d98e939a9af40a202d30b221"
+          ],
+          "reason": "The change wires path cleaning into funnel event breakdowns, a user-visible feature. The candidate edits the path-cleaning snippet's 'Where path cleaning applies' section to add funnels alongside trends, which is the correct user-facing location."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "e610ca2570b2c79f9e6c70df",
+            "2032bb4e59764570f9b9762b"
+          ],
+          "reason": "Existing docs only mention trends insights with a path breakdown. The candidate adds funnels to that sentence, accurately reflecting the new support."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "no_change",
+          "evidence_ids": [
+            "d98e939a9af40a202d30b221"
+          ],
+          "reason": "The session recording snapshot change is an internal SQL generation correction with no user-facing behavior change, so no documentation update is warranted."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-iceberg-pr15566",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new write options `expire-snapshots.enabled` and `delete-orphan-files.enabled` (and the renamed `rewrite-data-files.enabled` with deprecated alias `compaction-enabled`) in the Flink write options / configuration reference.",
+        "evidence_ids": [
+          "41fa723af0ae31244f362ac1"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the new maintenance config classes `ExpireSnapshotsConfig` and `DeleteOrphanFilesConfig` and their tunable parameters (schedule interval, min age, batch sizes, retain last, max snapshot age, clean expired metadata, location, use-prefix-listing, planning worker pool size, equal schemes/authorities, prefix mismatch mode) in the Flink maintenance configuration docs.",
+        "evidence_ids": [
+          "41fa723af0ae31244f362ac1"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the changed default of `usePrefixListing` for orphan file deletion from false to true.",
+        "evidence_ids": [
+          "41fa723af0ae31244f362ac1"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document the new `config(...)` builder methods on `ExpireSnapshots.Builder` and `DeleteOrphanFiles.Builder`, the `TableMaintenance.Builder.add(Collection)` overload, and the IcebergSink builder `maintenance(...)` method for arbitrary post-commit maintenance tasks.",
+        "evidence_ids": [
+          "41fa723af0ae31244f362ac1"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-iceberg-pr15814",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "hms-compat-issue",
+        "description": "Document the Hive Metastore compatibility issue that can affect Iceberg schema-evolution operations, including symptoms and workaround/guidance.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "hms-compat-issue",
+          "status": "covered",
+          "evidence_ids": [
+            "cf049caf0b86e38e71c26a5e",
+            "9747d20c8038983f98aed7b8"
+          ],
+          "reason": "The candidate adds a warning admonition in the Schema evolution section of docs/docs/hive.md describing the HMS compatibility issue affecting Iceberg schema-evolution operations, listing symptoms (schema change fails or Hive table schema out of sync), and providing guidance (verify supported HMS version via Global Hive catalog link, upgrade, or work around by using another engine and refreshing metadata). This is placed adjacent to the existing schema-evolution commands, which is the appropriate location."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-iceberg-pr15634",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that format version 4 tables write data and delete manifests as Parquet files, while versions 1-3 continue to use Avro manifests.",
+        "evidence_ids": [
+          "9c02398b655df741a525a31e"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that version 4 manifest readers/writers support both Avro and Parquet when explicitly selected, including unpartitioned manifests where the partition field is absent in Parquet.",
+        "evidence_ids": [
+          "9c02398b655df741a525a31e"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document any user-facing configuration/property or API option controlling manifest file format for v4 (e.g. MIN_FORMAT_VERSION_PARQUET_MANIFESTS or writer selection by file extension).",
+        "evidence_ids": [
+          "9c02398b655df741a525a31e"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Update format-version specification docs describing manifest file format per version.",
+        "evidence_ids": [
+          "9c02398b655df741a525a31e"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-flink-pr28237",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document how sink primary-key conflicts are handled when an updating table uses a different upsert key and multiple input records can target the same sink row.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Locate existing documentation on upsert keys, updating tables, and sink primary-key conflict handling to extend consistently.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "390df44f7259e87756ea9510",
+            "42b4308e5d22a8b59ec7b694"
+          ],
+          "reason": "The patch adds a paragraph to the Primary Key section of the table connector overview explaining that an updating table's upsert key may differ from the sink primary key, that multiple input records can map to the same sink row producing several upsert/delete messages, and that the final row depends on message ordering/determinism, with guidance to align keys or ensure determinism. This addresses the requested conflict-handling documentation."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "390df44f7259e87756ea9510",
+            "42b4308e5d22a8b59ec7b694"
+          ],
+          "reason": "The edit is placed in the existing 'Primary Key' subsection of docs/content/docs/connectors/table/overview.md, which already discusses source/sink primary keys and upserting, and the wording is consistent with the determinism/upsert-key concepts documented in determinism.md and ptfs.md."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [
+        "The claim that 'the result is only well-defined if the changelog is deterministic' and that aligning the upsert key with the sink primary key avoids ambiguity is a general assertion not directly backed by the cited sources; the determinism doc discusses NDU handling but does not state this specific sink-conflict rule.",
+        "The statement that 'the sink receives several upsert or delete messages for that row' presumes a specific runtime behavior (message emission per input record) that is not evidenced in the provided sources."
+      ],
+      "reason": "The candidate adds a reasonable paragraph in the right location (Primary Key section of connectors/table/overview.md), satisfying R1 and R2 structurally. However, it is not ready: (1) the paragraph makes behavioral claims about how many upsert/delete messages the sink receives and that determinism is required for well-defined results, which are not supported by the cited evidence; these should be softened or backed by a source (e.g., the determinism/NDU doc or SinkUpsertMaterializer release note). (2) The docs are bilingual; the Chinese counterpart (docs/content.zh/docs/connectors/table/overview.md) likely has the same Primary Key section and should receive a matching translation to keep docs consistent. Suggested next steps: search docs/content.zh/docs/connectors/table/overview.md for the 'Primary Key'/'主键' section and add the translated paragraph; verify the message-emission wording against the determinism.md and release-notes/flink-2.2.md SinkUpsertMaterializer content, or rephrase to avoid unsupported specifics.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "bentoml-bentoml-pr5465",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that services declaring a custom command are now served via an in-process reverse proxy that forwards requests to the HTTP server started by the custom command, polling its health endpoint before accepting traffic.",
+        "evidence_ids": [
+          "48a34336024b0f364785c9ba"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the new `proxy_port` integer configuration field under `http` (default 8000) controlling the port the custom-command subprocess is expected to bind.",
+        "evidence_ids": [
+          "48a34336024b0f364785c9ba"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the `__metrics__` service hook: when defined on a service class, it receives raw Prometheus metrics text and returns a modified string injected into the /metrics response.",
+        "evidence_ids": [
+          "48a34336024b0f364785c9ba"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document that the /metrics endpoint is now a named route registered only when metrics are enabled, and the metrics middleware no longer intercepts that path.",
+        "evidence_ids": [
+          "48a34336024b0f364785c9ba"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Determine whether the ThreadedArbiter refactor (composition over multiple inheritance) is internal-only and needs no user-facing documentation.",
+        "evidence_ids": [
+          "48a34336024b0f364785c9ba"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "c55614d4156a734a5118469c",
+            "f99f2bd78077c8e825b78a7e",
+            "b1a45592aa8cdea8821f68a9"
+          ],
+          "reason": "services.rst custom-command paragraph is rewritten to describe the in-process reverse proxy and health-endpoint polling, matching proxy.py behavior."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "61f35112872f273da0a954ae",
+            "b1a45592aa8cdea8821f68a9",
+            "8e1d207ea0d13c59551d6154"
+          ],
+          "reason": "configurations.rst adds a proxy_port subsection with default 8000 and an example; services.rst references http.proxy_port. Matches default_configuration.yaml and proxy.py."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "7e3b333b59bfdd93901d58b3",
+            "48a34336024b0f364785c9ba"
+          ],
+          "reason": "metrics.rst adds a 'Customize the metrics response' section documenting __metrics__ with a sync/async note and example."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "covered",
+          "evidence_ids": [
+            "7e3b333b59bfdd93901d58b3",
+            "f26ad028e2769f0c82aa57e6"
+          ],
+          "reason": "metrics.rst states /metrics is only registered when metrics.enabled (default True), consistent with the conditional route registration."
+        },
+        {
+          "requirement_id": "R5",
+          "status": "no_change",
+          "evidence_ids": [
+            "48a34336024b0f364785c9ba"
+          ],
+          "reason": "ThreadedArbiter refactor is internal implementation detail with no user-facing behavior change; no docs needed."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-iceberg-pr15667",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new Flink write options for enabling post-commit table maintenance tasks (expire snapshots, delete orphan files) alongside compaction, including the deprecated 'compaction-enabled' key alias and the new option keys.",
+        "evidence_ids": [
+          "fab5cd8187988217b1520463"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the new ExpireSnapshotsConfig and DeleteOrphanFilesConfig classes and their configuration options (schedule interval, min age, batch size, prefix listing, equal schemes/authorities, prefix mismatch mode) if the maintenance docs describe configuration.",
+        "evidence_ids": [
+          "fab5cd8187988217b1520463"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the changed default for usePrefixListing (false -> true) in DeleteOrphanFiles if user-facing docs mention this default.",
+        "evidence_ids": [
+          "fab5cd8187988217b1520463"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document the new IcebergSink builder maintenance(...) method and TableMaintenance.Builder.add(Collection) for registering arbitrary post-commit maintenance tasks, if sink/builder usage is documented.",
+        "evidence_ids": [
+          "fab5cd8187988217b1520463"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "0f1c0b693bde9eb9411a49e3",
+            "fab5cd8187988217b1520463"
+          ],
+          "reason": "The candidate adds a note documenting that the legacy 'compaction-enabled' key is deprecated in favor of 'flink-maintenance.rewrite.enabled' and still accepted as an alias, matching the FlinkWriteOptions change (COMPACTION_ENABLE key now RewriteDataFilesConfig.PREFIX + 'enabled' with deprecated key 'compaction-enabled'). The enable-flags table already lists the expire-snapshots and delete-orphan-files enable keys."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "no_change",
+          "evidence_ids": [
+            "0f1c0b693bde9eb9411a49e3",
+            "1e1fec597e60b3cf705a2f7b"
+          ],
+          "reason": "The existing docs already document the expire-snapshots and delete-orphan-files configuration keys (retain-last, max-snapshot-age-seconds, min-age-seconds, delete-batch-size, location, use-prefix-listing, planning-worker-pool-size, equal-schemes, equal-authorities, prefix-mismatch-mode). The new config classes are internal plumbing that read these same keys, so no additional user-facing documentation is required beyond what exists."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "0f1c0b693bde9eb9411a49e3",
+            "fab5cd8187988217b1520463"
+          ],
+          "reason": "The candidate updates the use-prefix-listing row to note the default changed from false in earlier versions, reflecting the DeleteOrphanFiles.Builder default change to true."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "covered",
+          "evidence_ids": [
+            "bbae795b2b6bbd5fb01cfe8a",
+            "fab5cd8187988217b1520463"
+          ],
+          "reason": "The candidate adds a section documenting the generic maintenance(...) method on IcebergSink.Builder that can be called multiple times to register arbitrary post-commit maintenance tasks, with an example using RewriteDataFiles, ExpireSnapshots, and DeleteOrphanFiles builders."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "bentoml-bentoml-pr5518",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new Image.build_include(*file_paths) method and build_include_paths field, including chaining and path-relative-to-bento-context semantics.",
+        "evidence_ids": [
+          "335b4fd7d7bed9ba6dc25046"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that build_include paths are emitted as COPY instructions into ./src/<name> in the image build context.",
+        "evidence_ids": [
+          "335b4fd7d7bed9ba6dc25046"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document wheel handling change: wheels stay at src/wheels and are auto-included in build_include_paths.",
+        "evidence_ids": [
+          "335b4fd7d7bed9ba6dc25046"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "335b4fd7d7bed9ba6dc25046",
+            "1d7ab156ab2848ffb2fe22df"
+          ],
+          "reason": "The patch adds a ``build_include()`` subsection to runtime-environment.rst documenting the method, chaining, and that paths are relative to the Bento context root, with an example. This satisfies the method/field documentation requirement."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "335b4fd7d7bed9ba6dc25046",
+            "1d7ab156ab2848ffb2fe22df"
+          ],
+          "reason": "The new subsection states each included path is copied into the image under ``./src/<name>`` during the build, matching the COPY template behavior."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "335b4fd7d7bed9ba6dc25046",
+            "2ff0b82aea375ace685388fe"
+          ],
+          "reason": "The patch adds a note in the Prebuilt wheels section that a ``wheels/`` directory is automatically included in the build context (equivalent to ``.build_include(\"wheels\")``) and remains available at ``src/wheels``, matching the auto-append and no-move behavior."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "celery-celery-pr10135",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new database_engine_callback configuration option for the database result backend, including that it accepts a callable or dotted import path and is invoked with the SQLAlchemy engine after creation.",
+        "evidence_ids": [
+          "998598b419dc5e4bc261c828"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that engine_callback can be passed as a DatabaseBackend constructor keyword argument, taking precedence over the database_engine_callback setting.",
+        "evidence_ids": [
+          "998598b419dc5e4bc261c828"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document that a non-callable resolved value raises ImproperlyConfigured.",
+        "evidence_ids": [
+          "998598b419dc5e4bc261c828"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "fe1ba296fedf9365c286a4b6",
+            "998598b419dc5e4bc261c828"
+          ],
+          "reason": "The patch adds a new `database_engine_callback` setting section in docs/userguide/configuration.rst, placed after `database_engine_options` and before `database_short_lived_sessions`, documenting that it is invoked with the SQLAlchemy engine after creation, accepts a callable or dotted import path, and includes an example. This matches the implementation in celery/app/defaults.py and celery/backends/database/__init__.py."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "fe1ba296fedf9365c286a4b6",
+            "998598b419dc5e4bc261c828"
+          ],
+          "reason": "The patch documents that the callback can be passed as the `engine_callback` keyword argument to the DatabaseBackend constructor and that it takes precedence over the setting, consistent with the kwargs.get('engine_callback', conf.database_engine_callback) logic."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "fe1ba296fedf9365c286a4b6",
+            "998598b419dc5e4bc261c828"
+          ],
+          "reason": "The patch states that if the resolved value is not callable, an ImproperlyConfigured exception is raised, matching the implementation's check."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "The candidate adds a well-formed `database_engine_callback` setting section to docs/userguide/configuration.rst, correctly placed among the database result backend settings. It covers all three requirements: the setting itself (callable or dotted path, invoked with the engine after creation), the constructor keyword argument with precedence, and the ImproperlyConfigured behavior for non-callable values. The example code is consistent with the implementation and tests. No unsupported factual claims were found, and unrelated content is preserved. Ready.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-iceberg-pr16241",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new Spark write option `shred-variants` and session conf `spark.sql.iceberg.shred-variants` (and table property `write.parquet.shred-variants`) that enable variant shredding, noting it is disabled by default and that per-write options take precedence over session conf and table properties.",
+        "evidence_ids": [
+          "9b7439bce7947d07f7bd29d5"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the configurable variant inference buffer size option `variant-inference-buffer-size` / `spark.sql.iceberg.variant-inference-buffer-size` / table property `write.parquet.variant-buffer-size` controlling how many rows are buffered to infer the shredded schema.",
+        "evidence_ids": [
+          "9b7439bce7947d07f7bd29d5"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the behavior of variant shredding: typed Parquet fields inferred from buffered rows, values retained for correct reads, fields/values outside the inferred schema remain readable.",
+        "evidence_ids": [
+          "9b7439bce7947d07f7bd29d5"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "3ed1cd627c5e7373beaf64fd",
+            "dedb421a4e22e0b2d4aba7fb",
+            "f8913f10b9cca8c1b8ba9408",
+            "60210e35a2e82c5e8632d335",
+            "c6fafec60854e0efa037e111",
+            "ed14d94237561ea41ec0226a",
+            "1c1ad3e9a048614909b32e2f"
+          ],
+          "reason": "The candidate edits the Spark session conf table (spark.sql.iceberg.shred-variants) to note it is disabled by default and overrides the table property write.parquet.shred-variants, and edits the write-options table (shred-variants) to describe the per-write override. The table property row in configuration.md already exists and is retained. Precedence (option > session > table) is conveyed via the override wording."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "3ed1cd627c5e7373beaf64fd",
+            "dedb421a4e22e0b2d4aba7fb",
+            "f8913f10b9cca8c1b8ba9408",
+            "60210e35a2e82c5e8632d335",
+            "c6fafec60854e0efa037e111",
+            "fe83d7076a2eeaa1a44f419b"
+          ],
+          "reason": "The candidate updates the session conf row (spark.sql.iceberg.variant-inference-buffer-size) to note it overrides the table property, and the write-option row (variant-inference-buffer-size) to describe buffering rows to infer the shredded schema. The table property write.parquet.variant-inference-buffer-size row is retained in configuration.md."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "60210e35a2e82c5e8632d335",
+            "c6fafec60854e0efa037e111",
+            "f8913f10b9cca8c1b8ba9408"
+          ],
+          "reason": "The candidate adds descriptions that typed Parquet fields are inferred from buffered rows and that original values are retained so all data remains readable, and that values outside the inferred schema remain readable. This matches the framing of the change."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "The candidate updates the existing Spark session conf, write-option, and table property rows to document the new shred-variants and variant-inference-buffer-size settings, their defaults, precedence, and the buffered-inference behavior. The table property rows already existed in configuration.md and are preserved. No unrelated content is altered and no unsupported factual claims are introduced. Ready for merge.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "celery-celery-pr10206",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that task.request (Context) now exposes time_limit and soft_time_limit attributes reflecting the effective limits for the current task execution.",
+        "evidence_ids": [
+          "357ead016cf5f8607549a678"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that task_time_limit and task_soft_time_limit app config values propagate to task.time_limit/task.soft_time_limit, and that explicit task-level values are not overwritten.",
+        "evidence_ids": [
+          "357ead016cf5f8607549a678"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document that time_limit/soft_time_limit passed to apply_async override task-declared limits and are visible via task.request inside the task.",
+        "evidence_ids": [
+          "357ead016cf5f8607549a678"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "bfd0f748a70d9721d4fead8e",
+            "e2c1e8d3fd993356f6472ad0",
+            "357ead016cf5f8607549a678"
+          ],
+          "reason": "Both edits add text stating that the effective limits are available at runtime as task.request.time_limit and task.request.soft_time_limit, including the None case in workers.rst. This matches the Context attributes added in the diff."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "bfd0f748a70d9721d4fead8e",
+            "42532f8250696edf2af79a55",
+            "357ead016cf5f8607549a678"
+          ],
+          "reason": "tasks.rst now states Task.time_limit/Task.soft_time_limit default to task_time_limit/task_soft_time_limit and that explicit task-level values take precedence, matching the new app-config bindings and the test_explicit_task_time_limit_not_overwritten_by_app_config behavior."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "e2c1e8d3fd993356f6472ad0",
+            "357ead016cf5f8607549a678"
+          ],
+          "reason": "workers.rst adds that limits can be passed via apply_async(time_limit=..., soft_time_limit=...), that call-time limits override task-declared limits, and that they are visible via self.request inside the task — matching the integration tests."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-flink-pr28212",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Determine whether the ProcessTableFunctionTestHarness documentation mentions that state parameters are unsupported/rejected, and if so update it to reflect new state support (scalar, ListView, MapView, Row/POJO structured types).",
+        "evidence_ids": [
+          "f56356bdfd58e93e7954c02d"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Check whether any user-facing docs describe the harness's supported argument kinds / limitations (e.g., state TTL unsupported) that need updating.",
+        "evidence_ids": [
+          "f56356bdfd58e93e7954c02d"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Verify whether the renamed internal helper (ConverterPair -> TableArgumentConverters) or new internal classes are documented anywhere user-facing; internal-only changes likely need no doc change.",
+        "evidence_ids": [
+          "f56356bdfd58e93e7954c02d"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "celery-celery-pr10150",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new task_acks_on_failure and task_acks_on_timeout settings (defaults None, fall back to task_acks_on_failure_or_timeout, ultimately True) in the configuration reference.",
+        "evidence_ids": [
+          "6150d3db9abb3778483a96ae"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Mark task_acks_on_failure_or_timeout as deprecated in favor of the two new settings in the configuration reference.",
+        "evidence_ids": [
+          "6150d3db9abb3778483a96ae"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the new Task attributes acks_on_failure and acks_on_timeout, including fallback behavior and deprecation of acks_on_failure_or_timeout.",
+        "evidence_ids": [
+          "6150d3db9abb3778483a96ae"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document changed timeout behavior: on timeout with acks_on_timeout False the message is rejected with requeue rather than dropped.",
+        "evidence_ids": [
+          "6150d3db9abb3778483a96ae"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "c758ca43cefd20e58b54e9f6",
+            "0debc4303cb518a9c9c16b91",
+            "6150d3db9abb3778483a96ae"
+          ],
+          "reason": "The patch adds task_acks_on_failure and task_acks_on_timeout setting sections with Default: None, fallback to task_acks_on_failure_or_timeout, and ultimate default enabled, matching the code defaults and bind() fallback logic."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "c758ca43cefd20e58b54e9f6",
+            "6150d3db9abb3778483a96ae"
+          ],
+          "reason": "A deprecated:: 6.0 directive pointing to the two new settings is added to the task_acks_on_failure_or_timeout section, consistent with deprecate_by='6.0' in defaults.py."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "missing",
+          "evidence_ids": [
+            "6150d3db9abb3778483a96ae",
+            "c9f8712cb510d2b35f34cb7c"
+          ],
+          "reason": "The new Task attributes acks_on_failure and acks_on_timeout (with fallback and deprecation of acks_on_failure_or_timeout) are not documented in the task attribute reference (docs/userguide/tasks.rst); only the configuration settings were added."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "covered",
+          "evidence_ids": [
+            "6150d3db9abb3778483a96ae",
+            "c758ca43cefd20e58b54e9f6"
+          ],
+          "reason": "The task_acks_on_timeout section states that when disabled, timed-out messages are rejected and requeued instead of acknowledged, matching the on_timeout reject(requeue=True) behavior."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "Configuration reference updates are accurate and cover R1, R2, R4. However R3 is missing: the new Task attributes acks_on_failure/acks_on_timeout and the deprecation of acks_on_failure_or_timeout should be documented in the task attribute reference (docs/userguide/tasks.rst, near the acks_late/acks_on_failure_or_timeout attribute docs). Search docs/userguide/tasks.rst for 'acks_on_failure_or_timeout' and 'acks_late' to locate the attribute section and add the two new attributes with fallback semantics and a deprecated directive.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "celery-celery-pr10174",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new broker_pool_acquire_timeout configuration option (float, default None) in the broker settings reference, including that it limits how long dispatch blocks waiting for a pool connection and that None blocks indefinitely.",
+        "evidence_ids": [
+          "eb351e162df1e3839a0d0b85"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that exceeding the pool limit within the configured timeout raises OperationalError (previously LimitExceeded), and mention broker_pool_limit interaction.",
+        "evidence_ids": [
+          "eb351e162df1e3839a0d0b85"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the corrected native delayed delivery routing behavior: quorum queue detection only evaluated when eta/countdown provided, and eta resolving to now no longer triggers delayed exchange routing.",
+        "evidence_ids": [
+          "eb351e162df1e3839a0d0b85"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "245721841cee17d7b95f0df7",
+            "7f85d7ee41a34f17fa98e7b5",
+            "eb351e162df1e3839a0d0b85"
+          ],
+          "reason": "Candidate adds BROKER_POOL_ACQUIRE_TIMEOUT to the env-var mapping table and a new broker_pool_acquire_timeout setting section documenting float default None, that it bounds the wait for a pool connection when broker_pool_limit is reached, and that None blocks indefinitely. Matches the implementation (Option(None, type='float') passed as timeout to pool acquire)."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "7f85d7ee41a34f17fa98e7b5",
+            "eb351e162df1e3839a0d0b85"
+          ],
+          "reason": "New section states that when the timeout elapses an OperationalError is raised and advises increasing broker_pool_limit or the timeout, matching the LimitExceeded->OperationalError re-raise and the broker_pool_limit interaction in the code."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "missing",
+          "evidence_ids": [
+            "eb351e162df1e3839a0d0b85"
+          ],
+          "reason": "The corrected native delayed delivery routing (quorum detection only when eta/countdown provided; eta==now no longer triggers delayed exchange routing) is a user-visible behavior change but no documentation edit addresses it. The candidate only touches configuration.rst for the new setting."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "The new broker_pool_acquire_timeout setting is documented well (env-var table entry plus a setting section covering default None, blocking behavior, and OperationalError on timeout). However, the delayed-delivery routing fix (R3) is not documented. Consider adding a note in the native delayed delivery / routing documentation (e.g. docs/userguide/configuration.rst near broker_native_delayed_delivery_queue_type or docs/userguide/routing.rst) explaining that quorum-queue detection is only performed when eta/countdown is supplied and that an eta resolving to the current time no longer reroutes to the celery_delayed_27 exchange. Also verify the '.. versionadded:: 5.6' value against the actual upcoming release version.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "celery-celery-pr9879",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "redis-credential-provider-config",
+        "description": "Document the new `redis_backend_credential_provider` configuration option for the Redis backend, including that it accepts a dotted-string class path or a direct `redis.CredentialProvider` instance, and that it can also be supplied as a `credential_provider` query parameter in the connection URL.",
+        "evidence_ids": [
+          "55012db16bf77f50401ddb94"
+        ]
+      },
+      {
+        "id": "redis-credential-provider-behavior",
+        "description": "Document that when a credential provider is active, `username` and `password` are removed from connection parameters, and that invalid values raise `ImportError` (bad class path) or `ValueError` (non-conforming object).",
+        "evidence_ids": [
+          "55012db16bf77f50401ddb94"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "redis-credential-provider-config",
+          "status": "covered",
+          "evidence_ids": [
+            "f2a6eb031c924c7d63fafec5",
+            "55012db16bf77f50401ddb94"
+          ],
+          "reason": "The patch adds a new `redis_backend_credential_provider` setting section in docs/userguide/configuration.rst documenting the dotted-path/instance acceptance and the `credential_provider` URL query parameter with an example, inserted before `redis_backend_use_ssl`."
+        },
+        {
+          "requirement_id": "redis-credential-provider-behavior",
+          "status": "covered",
+          "evidence_ids": [
+            "f2a6eb031c924c7d63fafec5",
+            "55012db16bf77f50401ddb94"
+          ],
+          "reason": "The new section states that username and password connection parameters are removed when a credential provider is configured, and that invalid values raise an error. The specific exception types (ImportError vs ValueError) are not named, but the behavior is described; this is a minor completeness gap rather than a missing requirement."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "The candidate adds a well-placed, accurate setting section for `redis_backend_credential_provider` in the Redis result backend configuration docs, covering both the config option and URL query parameter, the username/password removal behavior, and error on invalid values. Content is consistent with the implementation and preserves surrounding documentation. Minor optional improvement: explicitly name ImportError (bad class path) and ValueError (non-conforming object) for precision.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr17172",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "cdc-lifecycle",
+        "description": "Document that CDC can now be enabled, disabled, and reconfigured after source creation via the Configuration tab (enable_cdc, disable_cdc, update_cdc_settings, cdc_status API actions), including that disabling forces CDC schemas to pick a new sync strategy.",
+        "evidence_ids": [
+          "787128a6f36eba3daf7250a3"
+        ]
+      },
+      {
+        "id": "cdc-management-modes",
+        "description": "Document the two PostgreSQL CDC management modes: PostHog-managed (engine creates and owns replication slot and publication) and self-managed (customer supplies an existing publication; engine creates only the slot and never touches the customer-owned publication).",
+        "evidence_ids": [
+          "787128a6f36eba3daf7250a3"
+        ]
+      },
+      {
+        "id": "cdc-settings",
+        "description": "Document editable CDC settings after enable: cdc_auto_drop_slot and lag warning/critical thresholds (warn < crit validation), and that other CDC fields are immutable post-enable.",
+        "evidence_ids": [
+          "787128a6f36eba3daf7250a3"
+        ]
+      },
+      {
+        "id": "cdc-schema-qualified-events",
+        "description": "Document that CDC change events are now keyed by schema-qualified schema.table names, so multiple schemas sharing a table name route correctly.",
+        "evidence_ids": [
+          "787128a6f36eba3daf7250a3"
+        ]
+      },
+      {
+        "id": "cdc-pk-immutable",
+        "description": "Document the validation guard preventing primary key changes on a CDC schema once data has synced, and that newly discovered tables persist their detected primary key so they can be switched to CDC without manual refresh.",
+        "evidence_ids": [
+          "787128a6f36eba3daf7250a3"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "cdc-lifecycle",
+          "status": "covered",
+          "evidence_ids": [
+            "52e55b67199c756010d42177",
+            "e9fb6dfedad7cc1cf4bc3a7b"
+          ],
+          "reason": "Patch adds a note in the linking steps that CDC can be enabled later from the Configuration tab, and a new 'Enabling and disabling CDC' section describing enable/monitor/update/disable, including that disabling pauses CDC schemas which must pick a new sync method."
+        },
+        {
+          "requirement_id": "cdc-management-modes",
+          "status": "covered",
+          "evidence_ids": [
+            "e9fb6dfedad7cc1cf4bc3a7b"
+          ],
+          "reason": "Existing 'Slot and publication management' section already documents PostHog-managed vs self-managed; patch adds an explicit statement that PostHog never modifies or drops the customer-owned publication and only the slot is dropped on disable/delete."
+        },
+        {
+          "requirement_id": "cdc-settings",
+          "status": "covered",
+          "evidence_ids": [
+            "8b85b83f7f7b3042a55bb32c",
+            "e9fb6dfedad7cc1cf4bc3a7b"
+          ],
+          "reason": "New section documents editable settings after enable (automatic slot protection, WAL lag warning/critical thresholds with warn<crit validation) and that management mode, slot name, and publication name are immutable post-enable."
+        },
+        {
+          "requirement_id": "cdc-schema-qualified-events",
+          "status": "missing",
+          "evidence_ids": [
+            "787128a6f36eba3daf7250a3"
+          ],
+          "reason": "The schema-qualified change-event routing fix is an internal decoder correctness fix with no user-visible configuration or behavior change described in the docs; no edit addresses it. Arguably no user-facing doc change is needed, but no source justifies an explicit no_change statement either."
+        },
+        {
+          "requirement_id": "cdc-pk-immutable",
+          "status": "covered",
+          "evidence_ids": [
+            "8b85b83f7f7b3042a55bb32c"
+          ],
+          "reason": "Patch adds a limitation bullet stating the primary key can't be changed once a CDC table has synced data because it is the merge key for updates/deletes."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [
+        "'Enabling fails if CDC is already enabled, or if a replication slot or publication with the chosen name already exists.' — the pre-flight existence check is described in the change framing, but the 'already enabled' 409 behavior is only asserted in linked-issue context, not verified against the implementation excerpt.",
+        "'PostHog cancels any running CDC syncs' — the implementation scopes cancellation to CDC schemas only; the doc phrasing is acceptable but should be verified against the final code.",
+        "'soft-deletes the `_cdc` history tables' — asserted from linked-issue context; verify against external_data_source.py disable_cdc implementation."
+      ],
+      "reason": "Mostly solid, but two things to address before ready:\n\n1. cdc-schema-qualified-events is unaddressed. Either add a short note (e.g. in the CDC limitations or a 'how CDC routes changes' sentence) that change events are keyed by schema-qualified `schema.table`, so tables with the same name in different schemas are routed correctly — or explicitly justify no_change if you judge it purely internal. Given the framing calls it a silent data-loss fix, a one-line mention is warranted.\n\n2. Verify the disable_cdc claims against products/data_warehouse/backend/api/external_data_source.py: confirm (a) only CDC-schema running jobs are cancelled, (b) `_cdc` companion tables are soft-deleted, (c) `cdc_*` keys are cleared and `sync_type` reset. Also confirm the 'already enabled' 409 and pre-flight slot/publication existence checks in the enable path so the 'Enabling fails if...' sentence is accurate.\n\nAlso consider whether the new `check_cdc_prerequisites_for_source` action deserves a mention in the 'CDC requirements' section (it re-runs prereqs server-side on enable).",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "dagworks-inc-hamilton-pr1445",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that a `display_name` tag on a node is used as the graphviz label, with resolution order: explicit name param > display_name tag > node name.",
+        "evidence_ids": [
+          "e7831dc81446049f327f5ea7"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that list-valued display_name uses the first element, empty list falls back to node name, and values are HTML-escaped.",
+        "evidence_ids": [
+          "e7831dc81446049f327f5ea7"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check existing visualization/graphviz docs and tag documentation surfaces for where display_name should be described.",
+        "evidence_ids": [
+          "e7831dc81446049f327f5ea7"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "7a3429b73890c39466e7da84",
+            "ffd8440ddc7d1b8649614385",
+            "e7831dc81446049f327f5ea7"
+          ],
+          "reason": "The candidate adds a 'Customize node labels with display_name' section in visualization.rst documenting the resolution order (explicit name > display_name tag > Python identifier), and a cross-reference note in function-modifiers.rst. This matches the implementation's _get_node_label logic."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "7a3429b73890c39466e7da84",
+            "e7831dc81446049f327f5ea7"
+          ],
+          "reason": "The new visualization.rst section documents list-valued display_name (first element used, empty list falls back to node name) and HTML-escaping of special characters, consistent with the implementation."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "e516623771478908138f1cfb",
+            "ffd8440ddc7d1b8649614385",
+            "36956a9abf8af59823d42060"
+          ],
+          "reason": "The candidate correctly targets the existing visualization.rst 'Apply custom style' area and the function-modifiers.rst 'Customize visualization by tag' section, which are the natural surfaces for this feature. The tag reference page is autoclass-based and not required."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "dlt-hub-dlt-pr2500",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document how to transform data with dlt's add_map capability (what add_map does, where it applies in the pipeline, and a usage example).",
+        "evidence_ids": [
+          "8520d56200d9d8c8b1befed2",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Ensure the add_map documentation is discoverable from existing resource/transform documentation surfaces (reference, usage guides, examples).",
+        "evidence_ids": [
+          "8520d56200d9d8c8b1befed2"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "7d76af0c3c0d97f920a1b97a",
+            "6b4e79f18d3a9d609970939f",
+            "2a907c9d2be44df337937577"
+          ],
+          "reason": "The patch adds a new subsection 'Transform data with `add_map`' under 'Filter, transform, and pivot data' in resource.md. It explains what add_map does (applies a function to each item as extracted, receives one item, returns transformed item), where it applies (before normalization/loading, chainable with add_filter/add_yield_map, callable on source resources), and includes a concrete usage example. It also documents insert_at ordering with a link to the incremental cursor docs, which matches the existing source at cursor.md."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "7d76af0c3c0d97f920a1b97a",
+            "9b840ac743336f38190f7f36",
+            "f760aebbfafdf6346ad29bd2",
+            "1f76e91d2f920c5da75ad34f"
+          ],
+          "reason": "The new content is placed within the existing 'Customize resources' > 'Filter, transform, and pivot data' section of resource.md, which is the anchor target referenced by the data-enrichment guides (resource.md#customize-resources) and by cursor.md (resource.md#filter-transform-and-pivot-data). This makes add_map discoverable from existing transform documentation surfaces."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "The candidate adds a well-scoped add_map subsection to the canonical resource customization page, satisfying both the content requirement (what/where/example) and discoverability (placed at the anchor referenced by enrichment guides and incremental docs). The insert_at tip and cross-link are consistent with the existing cursor.md source. No unsupported factual claims detected; unrelated content preserved.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "celery-celery-pr10238",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Documentation must clarify that task priority ordering is broker-specific: for RabbitMQ/AMQP higher numeric values mean higher priority, while for Redis lower numeric values mean higher priority.",
+        "evidence_ids": [
+          "b756bd04d92fc1035f7a2509"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "The task priority option reference (priority int, 0-9, defaults to priority attribute) should be updated to explain the meaning of the integer and broker differences.",
+        "evidence_ids": [
+          "b756bd04d92fc1035f7a2509"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Any existing priority documentation (e.g., routing/task options, Redis/RabbitMQ broker notes) should be checked for consistency and updated where it implies a single universal ordering.",
+        "evidence_ids": [
+          "b756bd04d92fc1035f7a2509"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "8dd710778ad123050e53563e",
+            "2ef0f3a87d5f5170c1358c41",
+            "4d06b604d6fca2d952eb070c"
+          ],
+          "reason": "Patch adds explicit broker-specific ordering statements in routing.rst: RabbitMQ/AMQP higher values = higher priority, Redis lower values = higher priority (0 highest), plus a corrected note in the prefetch admonition."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "e082f8d83e6fcfa1ac85a454"
+          ],
+          "reason": "calling.rst priority option now explains the integer is broker-specific: RabbitMQ higher = higher, Redis lower = higher (0 highest)."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "4d06b604d6fca2d952eb070c",
+            "2ef0f3a87d5f5170c1358c41",
+            "8dd710778ad123050e53563e"
+          ],
+          "reason": "Existing reverse-sort note in routing.rst was corrected to state both directions, and the Redis section and RabbitMQ section each gained consistent broker-specific ordering text."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [
+        "The added text says the maximum priority is set per queue with ``x-max-priority`` (or :setting:`task_queue_max_priority`); the setting is a default for queues, not a per-queue maximum, so the parenthetical equivalence is imprecise.",
+        "The calling.rst priority option still states 'A number between 0 and 255, where 255 is the highest priority' while the new sentence says Redis 0 is highest; the 0-255 range and '255 highest' claim is not reconciled with the broker-specific statement and may be inaccurate for Redis (0-9 levels)."
+      ],
+      "reason": "Not ready. The candidate correctly adds broker-specific ordering guidance (R1-R3 covered), but two issues remain. (1) In docs/userguide/calling.rst the priority option block still asserts 'A number between 0 and 255, where 255 is the highest priority' immediately above the new broker-specific sentence; this is internally contradictory for Redis and should be reconciled (e.g., note the 0-9 levels for Redis and that 255-highest applies to AMQP). (2) In docs/userguide/routing.rst the phrase 'The maximum priority is set per queue with ``x-max-priority`` (or :setting:`task_queue_max_priority`)' conflates a per-queue argument with a global default setting; reword to distinguish them. Also consider checking docs/faq.rst ('Does Celery support task priorities?') and the Redis section's 'That said, note that...' continuation for consistency with the new broker-specific wording. Suggested searches: grep for 'priority' in docs/userguide/routing.rst, docs/userguide/calling.rst, docs/faq.rst, and docs/userguide/configuration.rst (task_default_priority, task_queue_max_priority) to ensure no remaining single-universal-ordering implication.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "astral-sh-ruff-pr21369",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new preview-mode fluent call-chain behavior: in preview, a fluent chain breaks before the first call/subscript (e.g. `obj.first_call().second_call()` breaks before `.first_call`), shifting the chain root one step left; stable output unchanged.",
+        "evidence_ids": [
+          "9331b22b2cde70c1f74e07db"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the new preview flag (fluent_layout_split_first_call) in the formatter preview options/feature list.",
+        "evidence_ids": [
+          "9331b22b2cde70c1f74e07db"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Update any existing docs describing fluent call-chain formatting / call chain layout to reflect the new first-call split and parenthesized-root counting.",
+        "evidence_ids": [
+          "9331b22b2cde70c1f74e07db"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "9331b22b2cde70c1f74e07db",
+            "3cfb9196cf3da275642a4beb"
+          ],
+          "reason": "The candidate adds a 'Fluent call chains split before the first call' subsection under Preview style in docs/formatter.md describing the break before the first call/subscript, the one-unit grouping of consecutive calls/subscripts, parenthesized-root counting, and that stable output is unchanged."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "no_change",
+          "evidence_ids": [
+            "8575e6ebb4974b7e5db8f01b",
+            "824f74e15af72248e48cc7de"
+          ],
+          "reason": "The preview flag is an internal Rust const gated on context.is_preview(); it is not a user-configurable option. docs/preview.md describes preview mode generically and does not enumerate individual formatter preview flags, so no per-flag documentation is warranted."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "3cfb9196cf3da275642a4beb",
+            "9331b22b2cde70c1f74e07db"
+          ],
+          "reason": "The only existing user-facing prose about fluent call-chain formatting is the Preview style section in docs/formatter.md; the candidate adds the new subsection there, which is the appropriate place to reflect the new behavior."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [
+        "The example block under '# Preview' shows identical input and output (`obj.first_call().second_call()`), which is confusing and does not demonstrate the described change; the illustrative split example is also unindented, which may not match actual formatter output (methods are typically indented under the parenthesized expression)."
+      ],
+      "reason": "The candidate covers the core behavior (R1) and places it in the right section (R3), and correctly leaves the internal preview flag undocumented (R2). However, the example is misleading: the '# Preview' block repeats the input verbatim, and the concrete split example shows unindented `.first_call()`/`.second_call()` lines, which likely does not match real output (fluent chains are typically indented inside parentheses). Before marking ready, replace the confusing example with a clear before/after that reflects actual preview output (e.g. `obj\n    .first_call()\n    .second_call()`), and verify the exact rendering against the fluent.py snapshot. Also confirm the subsection heading level is consistent with sibling preview-style subsections.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "doc-detective-common-pr112",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "resolved-test-schema",
+        "description": "Document the new resolvedTests schema and that test records may contain either original steps or resolved contexts, including resolved execution contexts.",
+        "evidence_ids": [
+          "149241e100a723c02e8bb595"
+        ]
+      },
+      {
+        "id": "config-metadata",
+        "description": "Document new read-only config metadata fields: configPath, specPath, and environment details (platform, architecture, workingDirectory).",
+        "evidence_ids": [
+          "149241e100a723c02e8bb595"
+        ]
+      },
+      {
+        "id": "openapi-definition",
+        "description": "Document the new read-only OpenAPI 'definition' property containing the resolved OpenAPI definition object.",
+        "evidence_ids": [
+          "149241e100a723c02e8bb595"
+        ]
+      },
+      {
+        "id": "release-publishing",
+        "description": "Document release publishing behavior: build and test across Node.js 18/20/22/24 on Linux/Windows/macOS before publishing version 3.0.4.",
+        "evidence_ids": [
+          "149241e100a723c02e8bb595"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "resolved-test-schema",
+          "status": "covered",
+          "evidence_ids": [
+            "2b9cdae3f0f83bd0dc2c119f",
+            "ec8b4301441503ca2d23222c",
+            "0fb9d2d45a2dc03bc3dedd5a"
+          ],
+          "reason": "test.md now documents the read-only `contexts` property (resolved contexts) and clarifies steps is optional with either steps or contexts required, matching the schema's anyOf and contexts definition."
+        },
+        {
+          "requirement_id": "config-metadata",
+          "status": "covered",
+          "evidence_ids": [
+            "2ab0d808e64ded3152908e75",
+            "742e8535b1100bfd99c35209",
+            "d7a8b7b44ef8bffe6a08aa78"
+          ],
+          "reason": "config.md adds configPath and environment (workingDirectory, platform, arch) fields; specification.md adds specPath. All match source schema descriptions and enums."
+        },
+        {
+          "requirement_id": "openapi-definition",
+          "status": "missing",
+          "evidence_ids": [
+            "4baeee501fe05c7cf6eba13d",
+            "125603f582e0c82904c04a33"
+          ],
+          "reason": "The new read-only `definition` property on the OpenAPI schema is not documented in any OpenAPI schema reference page. No edit adds it."
+        },
+        {
+          "requirement_id": "release-publishing",
+          "status": "no_change",
+          "evidence_ids": [
+            "149241e100a723c02e8bb595"
+          ],
+          "reason": "CI workflow and dependency/version changes are internal build/release mechanics with no user-facing documentation surface in this repo's docs; preserving existing docs is appropriate."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "Not ready: the OpenAPI `definition` property (read-only resolved OpenAPI definition object) is a user-visible schema addition but is not documented. Add a row to the OpenAPI schema reference page (e.g. docs/references/schemas/openApi.md) for `definition` with type object, read-only, description matching the schema: 'OpenAPI definition object loaded from the `descriptionPath`. This is a resolved version of the OpenAPI description and should not be user-defined.' Verify the exact OpenAPI reference page path and existing table format before editing. Also confirm the resolvedTests schema itself does not warrant a dedicated reference page beyond the test.md contexts documentation.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr146",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "input-multi",
+        "description": "Document that the --input/-i CLI argument accepts a comma-separated list of paths, each resolved to an absolute path (URLs left as-is), and that config.input is an array.",
+        "evidence_ids": [
+          "054364ca5e8d233aa4e01149"
+        ]
+      },
+      {
+        "id": "config-arg",
+        "description": "Document that --config can specify a config file path, and that an unreadable config file causes setConfig to return null (error logged).",
+        "evidence_ids": [
+          "054364ca5e8d233aa4e01149"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "input-multi",
+          "status": "covered",
+          "evidence_ids": [
+            "d6e0059e96f6063528f8da09",
+            "054364ca5e8d233aa4e01149"
+          ],
+          "reason": "The candidate adds a paragraph and example to README.md documenting that --input accepts a comma-separated list, each path resolved to an absolute path relative to cwd, and URLs used as-is. This matches the implementation (split on comma, trim, path.resolve unless http(s))."
+        },
+        {
+          "requirement_id": "config-arg",
+          "status": "no_change",
+          "evidence_ids": [
+            "d6e0059e96f6063528f8da09",
+            "054364ca5e8d233aa4e01149"
+          ],
+          "reason": "README already documents the --config argument and that paths are relative to cwd. The internal change (setConfig returning null on unreadable config, error logged) is an internal error-handling detail not previously documented and not a user-facing contract change requiring docs; existing --config documentation remains accurate."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "doc-detective-common-pr65",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Documentation should describe the new `arazzo` array field accepted in the config schema, including that `name` and `descriptionPath` are required at config level and `workflowId`/`inputs` are not allowed there.",
+        "evidence_ids": [
+          "dc7b398b7c5b3625890e6c49"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Documentation should describe Arazzo entries at the spec/test level, where `workflowId` and `inputs` are permitted, and that test items now accept Arazzo workflow references.",
+        "evidence_ids": [
+          "dc7b398b7c5b3625890e6c49"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Documentation should describe the new arazzo_v2 schema (name, descriptionPath, workflowId, inputs) and its availability in the published schemas.",
+        "evidence_ids": [
+          "dc7b398b7c5b3625890e6c49"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "98db67c195a2d308d9db665c",
+            "dc7b398b7c5b3625890e6c49"
+          ],
+          "reason": "config.md gains an `arazzo` row describing the array, requiring `name`/`descriptionPath`, and restricting `workflowId`/`inputs` to test level."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "06075923fe8ebc8548945ef1",
+            "dc7b398b7c5b3625890e6c49"
+          ],
+          "reason": "specification.md `tests` row now lists both test and arazzo object types and notes Arazzo workflow references support `workflowId` and `inputs`."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "dc7b398b7c5b3625890e6c49"
+          ],
+          "reason": "New docs/references/schemas/arazzo.md documents name, descriptionPath, workflowId, inputs with examples matching the schema."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "Candidate adds a new arazzo schema reference page and updates config and specification schema references to reflect the new `arazzo` array and widened test item union. Content aligns with the schema definitions; no unsupported claims detected.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "dlt-hub-dlt-pr2965",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that `dlt pipeline <name> show` now launches the new pipeline dashboard by default, and that the legacy Streamlit view is available via the `--streamlit` flag (replacing the old `--dashboard` flag).",
+        "evidence_ids": [
+          "711b7b3396bd79be2106cb0d"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the `dlt dashboard` command as enabled, including its new `--pipelines-dir` and `--edit` options.",
+        "evidence_ids": [
+          "711b7b3396bd79be2106cb0d"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document dashboard capabilities: selecting among all pipeline schemas, schema-specific data and row counts, source/resource state, remote state, run failures, refreshed pipeline data, and opening local locations.",
+        "evidence_ids": [
+          "711b7b3396bd79be2106cb0d"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document that the dashboard requires `marimo` (not `streamlit`) to be installed, and that DuckDB Ibis connections are opened read-only.",
+        "evidence_ids": [
+          "711b7b3396bd79be2106cb0d"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "a0d99bb09afd5169e141b9b9",
+            "410eea4247b6322de8e52d67",
+            "b2b1802fe5bb2ef4551204ee",
+            "8e531c8f02cfcb9bfd1c190f",
+            "5d07a99eabcb9313c2c4f0c2"
+          ],
+          "reason": "The candidate updates the `dlt pipeline show` sections in both command-line-interface.md and plus/reference.md to describe the new dashboard default, replaces `--dashboard` with `--streamlit`, and updates the subcommand summary lines and the llm-native-workflow example to drop `--dashboard`."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "ac6fbe3bda93f2fab3f4404e",
+            "49661dc67667eb1db1ae36ba"
+          ],
+          "reason": "The candidate adds `dashboard` to the top-level subcommand list and adds a full `dlt dashboard` section documenting `--pipelines-dir` and `--edit` in command-line-interface.md."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "missing",
+          "evidence_ids": [
+            "711b7b3396bd79be2106cb0d"
+          ],
+          "reason": "No edit documents the dashboard capabilities (schema selection, schema-specific data/row counts, source/resource state, remote state, run failures, refresh, opening local locations). The new sections only give a generic 'inspect pipeline state, schemas, and data' sentence."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "covered",
+          "evidence_ids": [
+            "a0d99bb09afd5169e141b9b9",
+            "49661dc67667eb1db1ae36ba"
+          ],
+          "reason": "The candidate replaces the streamlit requirement with `pip install marimo` in the show sections and the new dashboard section. The DuckDB read-only Ibis detail is not documented, but the marimo requirement is covered; the read-only aspect is noted as a gap under R3/R4 scope."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "Not ready. R3 is missing: the dashboard capability details (multi-schema selection, schema-specific data and row counts, source/resource state, remote state, run failures, refresh, opening local locations) are not documented anywhere. Also consider documenting the DuckDB read-only Ibis connection behavior (part of R4) in a dashboard usage page. Suggested search: grep docs for 'dashboard', 'marimo', 'streamlit', 'pipeline show' to find a dedicated dashboard usage page (e.g. under general-usage or dlt-ecosystem) where capabilities should be described; verify the plus/reference.md top-level subcommand list also includes `dashboard` if that file mirrors the CLI.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "doc-detective-common-pr63",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new public `readFile(fileURL)` API method: reads remote HTTP/HTTPS URLs or local paths, parses JSON/YAML, returns raw content for other formats, returns null on error.",
+        "evidence_ids": [
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the new `openApi` schema object usable at config, spec, test, and step levels, with `descriptionPath` and `operationId` plus optional `server`, `validateAgainstSchema`, `useExample`, `mockResponse`.",
+        "evidence_ids": [
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document that `httpRequest` step `url` is now optional when an `openApi` block is provided.",
+        "evidence_ids": [
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document `validate` function's new `addDefaults` parameter and structured error when schema key not found.",
+        "evidence_ids": [
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Document path resolution skipping user-configurable spec properties (request/response data, headers, params).",
+        "evidence_ids": [
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "doc-detective-common-pr78",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "runCode-action",
+        "description": "Document the new runCode action schema: language (optional, defaults to shell), code, args, workingDirectory, exitCodes, output matcher, and that it is a valid step type in test definitions.",
+        "evidence_ids": [
+          "0bbf3d086b08a193e5c78fd3"
+        ]
+      },
+      {
+        "id": "viewport-options",
+        "description": "Document new viewport_width and viewport_height integer options in browser application context options, which override width/height.",
+        "evidence_ids": [
+          "0bbf3d086b08a193e5c78fd3"
+        ]
+      },
+      {
+        "id": "click-button",
+        "description": "Document that find action's click field now accepts either a boolean or an object with a button property of left/right/middle.",
+        "evidence_ids": [
+          "0bbf3d086b08a193e5c78fd3"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "runCode-action",
+          "status": "covered",
+          "evidence_ids": [
+            "df2a983be469f6d5b8afb9f8",
+            "5ccbbd4aea90ebfe2ef4f095",
+            "a8a0a1ec94fbfa9c98688ed8"
+          ],
+          "reason": "Candidate adds docs/references/schemas/runCode.md documenting language (optional, defaults to shell), code, args, workingDirectory, exitCodes, output, plus a get-started actions page, and adds runCode to the test.md steps list matching the schema's anyOf."
+        },
+        {
+          "requirement_id": "viewport-options",
+          "status": "covered",
+          "evidence_ids": [
+            "2dab6df6fb4c3fdd518e9bfb",
+            "26f1387caa25b8065012c8d2"
+          ],
+          "reason": "context.md reference gains viewport_width/viewport_height rows with override notes, and the contexts guide explains they override width/height with an updated example."
+        },
+        {
+          "requirement_id": "click-button",
+          "status": "covered",
+          "evidence_ids": [
+            "824a0b673a8eb85821e95b99",
+            "b1a443969708479e6937567c"
+          ],
+          "reason": "find.md click row updated to oneOf boolean/object with a click.button row listing left/right/middle, matching the schema enum."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr21",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new named 'Image' configuration pattern that uses a regex to extract image URLs from markdown image syntax and triggers a saveScreenshot action.",
+        "evidence_ids": [
+          "a2fd3525e06f40545a6fff85"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the saveScreenshot action's new 'directory' parameter for configuring the screenshot output directory.",
+        "evidence_ids": [
+          "a2fd3525e06f40545a6fff85"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document test auto-detection for the saveScreenshot action.",
+        "evidence_ids": [
+          "a2fd3525e06f40545a6fff85"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Reflect version bump to 2.4.0 and updated common/core dependency ranges where user-facing (e.g., install/version references).",
+        "evidence_ids": [
+          "a2fd3525e06f40545a6fff85"
+        ]
+      }
+    ],
+    "review": {
+      "ready": false,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "missing",
+          "evidence_ids": [
+            "6d211342118f2c896d9cabad",
+            "c9fcb00dfa912fc11acb3d98"
+          ],
+          "reason": "The change adds a new named 'Image' markup pattern (regex extracting markdown image URLs, triggering saveScreenshot with directory param) in samples/config.json. The candidate patch only fixes a typo in saveScreenshot.md and does not document this new pattern anywhere in the docs (e.g., config.md examples or a dedicated section)."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "ebbeecd4f5a82c96682611f4"
+          ],
+          "reason": "saveScreenshot.md already documents the 'directory' field with an example; the candidate corrects the 'creatr' typo to 'create', which is a valid associated edit for this requirement."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "missing",
+          "evidence_ids": [
+            "a2fd3525e06f40545a6fff85"
+          ],
+          "reason": "The PR body states test auto-detection for saveScreenshot was added, but no documentation of this behavior exists or was added by the candidate."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "no_change",
+          "evidence_ids": [
+            "8fcfadd0695f243ccdea615f",
+            "98a8738e1b75ed71e9dc9d36"
+          ],
+          "reason": "Version bump to 2.4.0 and dependency range updates are internal package metadata; the docs (get-started.md) reference install via npm without pinning versions, so no user-facing doc change is warranted."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "Not ready. The candidate only fixes a typo in saveScreenshot.md. It fails to document the new 'Image' config pattern (R1) and the saveScreenshot test auto-detection (R3). Suggested next steps: (1) In reference/schemas/config.md, add the new 'Image' markup pattern example (name 'Image', regex extracting markdown image URLs, actions saveScreenshot with directory param) alongside existing markup examples; (2) Add a note about saveScreenshot auto-detection behavior in saveScreenshot.md or config.md. Verify the exact regex/params against samples/config.json before writing.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 2,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "dlt-hub-dlt-pr2836",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document S3 Tables REST catalog configuration for the Iceberg destination: S3 Table bucket, warehouse ARN arn:aws:s3tables:<region>:<account-id>:bucket/<bucket>, endpoint https://s3tables.<region>.amazonaws.com/iceberg, SigV4 service s3tables.",
+        "evidence_ids": [
+          "fe90524260c12a22b6e840ab"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document Glue REST catalog configuration for S3 Tables: S3 Table bucket, warehouse identifier <account-id>:s3tablescatalog/<bucket>, endpoint https://glue.<region>.amazonaws.com/iceberg, SigV4 service glue, with IAM, Glue, and Lake Formation prepared for S3 Tables.",
+        "evidence_ids": [
+          "fe90524260c12a22b6e840ab"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document direct Glue catalog configuration: Glue Data Catalog with a regular S3 bucket and IAM access to both bucket and catalog.",
+        "evidence_ids": [
+          "fe90524260c12a22b6e840ab"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Locate existing Iceberg destination documentation surfaces (reference, setup, examples) to place the new AWS catalog configuration guidance.",
+        "evidence_ids": [
+          "fe90524260c12a22b6e840ab"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Newly discovered requirements need new IDs",
+    "candidate_exists": true
+  }
+]

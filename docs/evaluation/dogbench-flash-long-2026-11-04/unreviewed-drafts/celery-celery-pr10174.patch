@@ -1,0 +1,40 @@
+diff --git a/docs/userguide/configuration.rst b/docs/userguide/configuration.rst
+index bd8e6ece101c1376d856b1ac09b1e4efb3d5358a..75c0b952f042f78110b48e747213c420790d1d98 100644
+--- a/docs/userguide/configuration.rst
++++ b/docs/userguide/configuration.rst
+@@ -81,6 +81,7 @@ have been moved into a new  ``task_`` prefix.
+ ``BROKER_LOGIN_METHOD``                    :setting:`broker_login_method`
+ ``BROKER_NATIVE_DELAYED_DELIVERY_QUEUE_TYPE`` :setting:`broker_native_delayed_delivery_queue_type`
+ ``BROKER_POOL_LIMIT``                      :setting:`broker_pool_limit`
++``BROKER_POOL_ACQUIRE_TIMEOUT``            :setting:`broker_pool_acquire_timeout`
+ ``BROKER_USE_SSL``                         :setting:`broker_use_ssl`
+ ``CELERY_CACHE_BACKEND``                   :setting:`cache_backend`
+ ``CELERY_CACHE_BACKEND_OPTIONS``           :setting:`cache_backend_options`
+@@ -3154,6 +3155,27 @@ contention can arise and you should consider increasing the limit.
+ If set to :const:`None` or 0 the connection pool will be disabled and
+ connections will be established and closed for every use.
+ 
++.. setting:: broker_pool_acquire_timeout
++
++``broker_pool_acquire_timeout``
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++.. versionadded:: 5.6
++
++Default: :const:`None`.
++
++The maximum number of seconds to wait for a connection to become available
++from the broker connection pool when sending a task. When the pool limit
++(:setting:`broker_pool_limit`) has been reached, sending a task blocks until
++a connection is released; this setting bounds that wait.
++
++If set to :const:`None` (the default), sending a task blocks indefinitely
++until a connection becomes available.
++
++If the timeout elapses before a connection is acquired, an
++:exc:`~celery.exceptions.OperationalError` is raised. Consider increasing
++:setting:`broker_pool_limit` or this timeout if that happens frequently.
++
+ .. setting:: broker_connection_timeout
+ 
+ ``broker_connection_timeout``

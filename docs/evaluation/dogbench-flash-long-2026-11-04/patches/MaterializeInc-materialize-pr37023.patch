@@ -1,0 +1,78 @@
+diff --git a/doc/user/content/ingest-data/postgres/self-hosted.md b/doc/user/content/ingest-data/postgres/self-hosted.md
+index 4fb4b852ba0c03d65daee7ff3cf8212629d7b8f9..8f2f2a9f771902b9cb587d00154a94ea2db48bab 100644
+--- a/doc/user/content/ingest-data/postgres/self-hosted.md
++++ b/doc/user/content/ingest-data/postgres/self-hosted.md
+@@ -60,6 +60,73 @@ Enable your PostgreSQL's logical replication.
+ 
+ {{% include-from-yaml data="ingest_postgres" name="create-a-publication-other" %}}
+ 
++### 3. (Optional) Use a dedicated replica as the source
++
++To avoid running logical replication directly against your production primary,
++you can stand up a dedicated PostgreSQL replica and point Materialize at it
++instead. The replica uses PostgreSQL's native [logical
++replication](https://www.postgresql.org/docs/current/logical-replication.html)
++to receive changes from the primary, and Materialize then reads from the
++replica using its own publication.
++
++{{< note >}}
++This is an optional topology. It adds a second PostgreSQL instance and an extra
++hop of replication, so weigh the reduced load on the primary against the extra
++operational overhead and replication lag.
++{{< /note >}}
++
++1. Provision a PostgreSQL instance to serve as the replica, and configure it as
++   described in steps 1 and 2 above: set `wal_level` to `logical`, and create a
++   replication user.
++
++1. On the **primary**, create a publication for the tables you want to
++   replicate to the replica:
++
++    ```postgres
++    CREATE PUBLICATION mz_replica_pub FOR TABLE <table1>, <table2>;
++    ```
++
++1. On the **replica**, create a subscription to the primary's publication:
++
++    ```postgres
++    CREATE SUBSCRIPTION mz_replica_sub
++      CONNECTION 'host=<primary_host> port=5432 dbname=<dbname> user=<replication_user> password=<password>'
++      PUBLICATION mz_replica_pub;
++    ```
++
++    The subscription copies the initial table data and then streams ongoing
++    changes from the primary.
++
++1. On the **replica**, create a separate publication for Materialize to read
++   from. Materialize creates its own replication slot on the instance you
++   connect to, so the publication must exist on the replica:
++
++    ```postgres
++    CREATE PUBLICATION mz_source FOR TABLE <table1>, <table2>;
++    ```
++
++1. Verify that changes on the primary are reaching the replica before creating
++   the source in Materialize.
++
++When you [create the connection](#2-create-a-connection) in Materialize, use
++the replica's host and port instead of the primary's, and reference the
++publication you created on the replica (`mz_source` in the example above).
++
++{{< warning >}}
++- Materialize creates a replication slot on the instance it connects to. Point
++  the source at the replica, not the primary, or you will reintroduce load on
++  the primary.
++- Changes are only visible to Materialize after they have been applied on the
++  replica, so expect additional replication lag compared to sourcing directly
++  from the primary.
++- The replica must have `wal_level` set to `logical` and enough
++  `max_wal_senders` and `max_replication_slots` capacity for both the
++  subscription from the primary and the slot created by Materialize.
++- Schema changes on the primary must be propagated to the replica before
++  Materialize observes them; see the [known
++  limitations](/sql/create-source/postgres/#known-limitations).
++{{< /warning >}}
++
+ ## B. (Optional) Configure network security
+ 
+ {{< note >}}

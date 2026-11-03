@@ -1,0 +1,74 @@
+diff --git a/docs/source/build-with-bentoml/observability/metrics.rst b/docs/source/build-with-bentoml/observability/metrics.rst
+index 1142e46dc4e841f5d3800aeacf44cf0c286d33c2..e73e4e715cdd42a6ec4e7286f7df95728f6fc98a 100644
+--- a/docs/source/build-with-bentoml/observability/metrics.rst
++++ b/docs/source/build-with-bentoml/observability/metrics.rst
+@@ -273,6 +273,23 @@ To define custom metrics, use the metric classes from the ``prometheus_client``
+ 
+ For more information on ``prometheus_client``, see the `Prometheus Python client library documentation <https://prometheus.github.io/client_python/>`_.
+ 
++Customize the metrics response
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++You can define a ``__metrics__`` method on your Service class to modify the raw Prometheus metrics text returned by the ``/metrics`` endpoint. The method receives the metrics text as a string and must return the modified string, which is then served as the response. It can be synchronous or asynchronous.
++
++.. code-block:: python
++
++    import bentoml
++
++    @bentoml.service
++    class MyService:
++        def __metrics__(self, metrics_content: str) -> str:
++            # Append a custom metric line to the default metrics output
++            return metrics_content + '\nmy_custom_metric 1.0\n'
++
++The ``/metrics`` endpoint is only registered when metrics are enabled (``metrics.enabled``, which is ``True`` by default).
++
+ An example with custom metrics
+ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+diff --git a/docs/source/build-with-bentoml/services.rst b/docs/source/build-with-bentoml/services.rst
+index 822e136e79f97544d9f2bd6b4f6a6f7609c1e55b..af7bf0affe3ec3db779ed7af3d4de9fa3179e56c 100644
+--- a/docs/source/build-with-bentoml/services.rst
++++ b/docs/source/build-with-bentoml/services.rst
+@@ -273,6 +273,8 @@ However, directly calling synchronous blocking functions within an asynchronous
+ 
+ In this example, the ``.to_async`` property converts synchronous methods (``txt2img`` and ``synthesize`` of ``SDXLTurboService`` and ``XTTSService`` respectively) into their asynchronous versions, enabling the ``generate_card`` method to perform multiple asynchronous operations concurrently with ``asyncio.gather``.
+ 
++.. _bentoml-custom-command:
++
+ Custom service start command
+ ----------------------------
+ 
+@@ -306,7 +308,9 @@ Alternatively, compute the command at runtime:
+ 
+ Use this method when there are parameters whose values can only be determined at runtime.
+ 
+-When a custom command is provided, BentoML will launch a single process for that Service using your command. It will set the ``PORT`` environment variable (and ``BENTOML_HOST``/``BENTOML_PORT`` for the entry Service). Your process must listen on the provided ``PORT`` and serve HTTP endpoints. Server-level options like CORS/SSL/timeouts defined in BentoML won't apply automatically—configure them in your own server if needed.
++When a custom command is provided, BentoML runs your command as a subprocess and serves the Service through an in-process reverse proxy that forwards all incoming requests to the HTTP server started by that command. Before accepting traffic, BentoML polls the Service's health endpoint (``/health`` by default, or the ``livez`` endpoint configured under ``endpoints``) until the subprocess reports healthy.
++
++Your process must listen on the port configured by ``http.proxy_port`` (default ``8000``) and serve HTTP endpoints. Server-level options like CORS/SSL/timeouts defined in BentoML won't apply automatically—configure them in your own server if needed.
+ 
+ .. _bentoml-tasks:
+ 
+diff --git a/docs/source/reference/bentoml/configurations.rst b/docs/source/reference/bentoml/configurations.rst
+index 548ee861064d2a137f2585a8190a2f4f1437ac56..11fb7b4efe825c740f5e3e869333e0ada8e3ca94 100644
+--- a/docs/source/reference/bentoml/configurations.rst
++++ b/docs/source/reference/bentoml/configurations.rst
+@@ -237,6 +237,17 @@ By default, BentoML starts an HTTP server on port ``3000``. To change the port:
+     class MyService:
+         # Service implementation
+ 
++``proxy_port`` specifies the port that a Service using a :ref:`custom start command <bentoml-custom-command>` is expected to bind. BentoML forwards requests to that port through an in-process reverse proxy. The default is ``8000``.
++
++.. code-block:: python
++
++    @bentoml.service(
++        cmd=["uvicorn", "myapp:app", "--host", "127.0.0.1", "--port", "9000"],
++        http={"proxy_port": 9000},
++    )
++    class MyService:
++        # Service implementation
++
+ You can configure `CORS <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>`_ settings if your Service needs to accept cross-origin requests. By default, CORS is disabled. If it is enabled, all fields under ``http.cors`` will be parsed to `CORSMiddleware <https://www.starlette.io/middleware/#corsmiddleware>`_. Here is an example:
+ 
+ .. code-block:: python

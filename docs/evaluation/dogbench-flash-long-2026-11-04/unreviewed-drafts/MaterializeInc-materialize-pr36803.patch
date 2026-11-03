@@ -1,0 +1,86 @@
+diff --git a/test/workload-replay/README.md b/test/workload-replay/README.md
+index c0adccb4cb6490e18b76a06651e425996d33a117..d0fa77555dd48753e353c72d04bd876a208d332f 100644
+--- a/test/workload-replay/README.md
++++ b/test/workload-replay/README.md
+@@ -67,6 +67,8 @@ bin/mz-workload-capture postgres://mz_system:materialize@127.0.0.1/materialize \
+ 
+ Anonymizes identifiers and literals in workload captures for sharing without exposing sensitive information.
+ 
++All SQL rewriting is done on Materialize's own parsed AST (via the `mz-sql-anonymize` helper, see below) rather than by text substitution, so identifiers are renamed as whole tokens and literals are never rewritten inside strings. The parser is **required**: the anonymizer refuses to run if the helper is missing, and refuses to write output if any statement fails to parse.
++
+ **What it anonymizes:**
+ 
+ *Identifiers (`--identifiers`, enabled by default):*
+@@ -77,10 +79,18 @@ Anonymizes identifiers and literals in workload captures for sharing without exp
+ - View, materialized view, source, sink, connection names
+ - All identifiers in `create_sql` definitions and queries
+ 
++The same original name always maps to the same anonymized name, so cross-references (e.g. a source's columns and the subsource that uses them) stay consistent. Built-in system catalog names and load-generator output columns are never renamed (see [Built-in keep-lists](#built-in-keep-lists)).
++
+ *Literals (`--literals`, enabled by default):*
+-- String literals in SQL → `'literal_1'`, `'literal_2'`, ...
++- String literals in SQL → `'<REDACTED>'`
+ - String default values in table/source/child columns
+ - String literals in queries
++- Typed option strings that a plain redacted display would skip, such as connection hosts, usernames, and sink topics
++- Numeric literals in queries and in view/materialized-view/index bodies → `1`
++
++Numbers in option positions (cluster sizes, ports, replication factors, column defaults) and interval/duration literals are kept, since replay needs them to be valid. DDL string values that replay cross-references (Kafka topics, upstream databases, connection hosts) are replaced with a stable `redacted_<hash>` token instead of the inert placeholder, so each original lines up everywhere it is used. The hash is salted with a per-run random value, so the tokens cannot be reversed by a dictionary attack on the shared output.
++
++Bound query parameters (`$1`, `$2`, ...) are redacted to `<REDACTED>`; at replay time these are bound as `NULL`, consistent with how redacted SQL literals are handled.
+ 
+ **Usage:**
+ ```bash
+@@ -90,9 +100,11 @@ bin/mz-workload-anonymize <file> [OPTIONS]
+ **Options:**
+ | Option | Description | Default |
+ |--------|-------------|---------|
+-| `-o, --output` | Path to write output | overwrites input file |
++| `-o, --output` | Path to write output, `-` for stdout. Required unless `--in-place` is given | none |
++| `--in-place` | Overwrite the input file (destroys the original capture) | disabled |
+ | `--identifiers` / `--no-identifiers` | Anonymize object names | enabled |
+ | `--literals` / `--no-literals` | Anonymize string literals | enabled |
++| `--verify` / `--no-verify` | Scan the output for surviving original identifiers and non-anonymized literals, and refuse to write if any are found | enabled |
+ 
+ **Examples:**
+ ```bash
+@@ -104,11 +116,29 @@ bin/mz-workload-anonymize workload_prod.yml --no-literals -o workload_prod_anon.
+ 
+ # Only anonymize literals, keep original object names
+ bin/mz-workload-anonymize workload_prod.yml --no-identifiers -o workload_prod_anon.yml
++
++# Overwrite the input file in place
++bin/mz-workload-anonymize workload_prod.yml --in-place
+ ```
+ 
+ The anonymizer preserves SQL keywords and built-in Materialize objects while applying consistent mapping throughout the workload to maintain referential integrity.
+ 
+-Note that the query and `create-sql` replacements are currently heuristics and can go wrong. If possible, share an unanonymized workload yaml file.
++#### The `mz-sql-anonymize` helper
++
++The anonymizer drives a standalone Rust binary, `mz-sql-anonymize` (crate `src/sql-anonymize`), as a subprocess over a JSON protocol. It reads a JSON request on stdin and writes a JSON response on stdout, rewriting each statement on the parsed AST. It is located via the `MZ_SQL_ANONYMIZE_BIN` environment variable if set, otherwise from `target/release/mz-sql-anonymize` or `target/debug/mz-sql-anonymize` in the repository. Build it with:
++
++```bash
++cargo build -p mz-sql-anonymize
++```
++
++#### Built-in keep-lists
++
++Two allowlists in `test/workload-replay/` name built-in identifiers that are never renamed, because renaming them breaks replay:
++
++- `system_catalog_identifiers.txt` — built-in object, column, function, and type names (e.g. a view over `mz_internal.mz_role_auth` must keep `password_hash`)
++- `load_generator_identifiers.txt` — built-in load-generator output columns (e.g. `l_quantity`, `c_acctbal`)
++
++Each file's header records the SQL it was generated from.
+ 
+ ### Workload Replay
+ 
+@@ -251,6 +281,8 @@ queries:
+     result_size: 100
+ ```
+ 
++In an anonymized workload, query parameters that carried sensitive values are replaced with the `<REDACTED>` placeholder. Replay binds such parameters as `NULL`, consistent with how redacted `'<REDACTED>'` SQL literals are handled.
++
+ ## Synthetic Data Generation
+ 
+ The framework tries to generate realistic random data based on captured schema information:

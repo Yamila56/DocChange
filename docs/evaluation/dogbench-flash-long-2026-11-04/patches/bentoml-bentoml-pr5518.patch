@@ -1,0 +1,34 @@
+diff --git a/docs/source/build-with-bentoml/runtime-environment.rst b/docs/source/build-with-bentoml/runtime-environment.rst
+index 5f8694b12958abce763a294c59ea34f9dafc9203..a9132227d610d152b0b1129aedebea199677b6d7 100644
+--- a/docs/source/build-with-bentoml/runtime-environment.rst
++++ b/docs/source/build-with-bentoml/runtime-environment.rst
+@@ -130,6 +130,8 @@ Include prebuilt wheels in your Bento by placing them inside a ``wheels/`` direc
+ 
+ You can also list the paths to your local wheel files in ``requirements.txt``. See :ref:`requirements_file` below.
+ 
++When a ``wheels/`` directory is present in your Bento, BentoML automatically includes it in the image build context (equivalent to calling ``.build_include("wheels")``), so the wheels remain available at ``src/wheels`` during the build.
++
+ PyPI packages
+ """""""""""""
+ 
+@@ -280,6 +282,20 @@ Here is an example:
+ 
+ ``run()`` is context-sensitive. For example, commands placed before ``.python_packages()`` are executed before installing Python dependencies, while those placed after are executed after installation. This allows you to perform certain tasks in the correct order.
+ 
++``build_include()``
++^^^^^^^^^^^^^^^^^^^^
++
++Include additional files from your Bento build context in the image. The paths are relative to the Bento context root (typically the directory where your ``service.py`` resides). It supports chaining with other methods.
++
++.. code-block:: python
++
++    import bentoml
++
++    image = bentoml.images.Image(python_version='3.11') \
++        .build_include("data/", "config.yaml")
++
++Each included path is copied into the image under ``./src/<name>`` during the build. This is useful when your Service needs files that are not Python packages, such as configuration files or data directories.
++
+ ``run_script()``
+ ^^^^^^^^^^^^^^^^
+ 

@@ -140,3 +140,8 @@ $env:PYTHONPATH=(Resolve-Path .cache/ir-cuda-runtime).Path
 模型预算不足时，未完成项暂不生成prediction；不是把未调用任务算作模型失败。已实际执行的轮次耗尽、协议错误和内容失败全部保留。新完整综合分只能在175项全部执行并取得有效评分后发布。
 
 最终批次已停止，既有账本/结果保留。导出命令：`python -m scripts.export_docchange_final --batch .cache/evals/dogbench-coverage-pro-frozen-20261103 --judgments .cache/evals/dogbench-coverage-pro-judgments-20261103 --output docs/evaluation/dogbench-pro-2026-11-03`。这只读取已保存结果，不发模型请求。
+
+
+## 9. Flash同49题延时配置（2026-11-04）
+
+原Pro结果保留。本轮固定同49个任务ID，使用`--model deepseek-flash --model-limit 32 --task-timeout-seconds 1800 --request-timeout-seconds 180 --cohort-predictions docs/evaluation/dogbench-pro-2026-11-03/predictions.jsonl --capture-error-usage`，独立输出目录，8任务并发。沿用混合检索和官方评分；这是配置对照，不是模型单因素消融。新参数写入冻结plan，中断后须保持一致。使用新的输出和账本，禁止覆盖旧Pro/Flash批次。详见[结果与全部补丁](evaluation/docchange-flash-comparison-2026-11-04.md)。

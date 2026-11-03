@@ -1,0 +1,55 @@
+diff --git a/contents/docs/cdp/sources/index.mdx b/contents/docs/cdp/sources/index.mdx
+index 95516a7e1b0f5830eecb12209f32f4c6850eaaf3..dc0995f82f7a816fec5a490a42576bb35f1be2c5 100644
+--- a/contents/docs/cdp/sources/index.mdx
++++ b/contents/docs/cdp/sources/index.mdx
+@@ -96,6 +96,10 @@ As with incremental syncing, selecting a nullable field as the cursor skips any
+ 
+ This reloads the whole table on every sync. This is great for tables with common data deletions or ones without an incrementing field (such as a `updated_at` timestamp).
+ 
++### CDC
++
++Change data capture (CDC) streams inserts, updates, and deletes from the source's write-ahead log in near real time. It's available on sources that support logical replication, such as [Postgres](/docs/cdp/sources/postgres#change-data-capture-cdc), and requires database-level setup like replication slots and publications.
++
+ ## Syncing
+ 
+ Once you add a source, you can see its status, sync frequency, and last successful run in the [sources page](https://app.posthog.com/data-management/sources). You can also reload or delete sources here.
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index 0c82621568d86c7145da4288c5c07f03ef10aa40..b6e70786f6649572b41305e34126c1fdf3d69e2c 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -68,6 +68,35 @@ PostgreSQL sources created after February 18, 2026 require SSL/TLS encryption fo
+ 
+ > **Permissions** The Postgres source only requires read permissions on the schemas and tables you intend to sync.
+ 
++## Change data capture (CDC)
++
++CDC sync captures inserts, updates, and deletes in near real time by reading your database's write-ahead log (WAL) instead of polling tables. It relies on database-level Postgres mechanisms, so your database must meet some prerequisites before you can use it.
++
++### Prerequisites
++
++- **Logical replication enabled** – Set `wal_level = logical` in your Postgres configuration (`postgresql.conf`) and restart the database. CDC can't start if logical replication is disabled.
++- **Replication slot** – PostHog uses a logical replication slot to track its position in the WAL. The connecting user needs the `REPLICATION` privilege (or superuser). Each slot retains WAL until it's consumed, so unused slots can fill disk.
++- **Publication** – PostHog uses a publication for the tables you sync so it receives change events for those tables. The connecting user needs permission to create publications, or an existing publication must include the tables you want to capture.
++- **Table requirements** – Tables must have a primary key (or replica identity) so updates and deletes can be matched to rows.
++
++### Table modes
++
++CDC behaves differently depending on how a table is configured:
++
++- **Enabled with CDC** – Changes are streamed continuously from the WAL. Deletes and updates are captured, unlike incremental or append-only syncs.
++- **Disabled** – The table stops consuming changes. Changes made while it's disabled aren't captured, so re-enabling may require a full resync to avoid gaps.
++- **Schema changes** – Adding columns prompts you to sync forward only or run a full resync, as described in [Selecting columns](#selecting-columns).
++
++### WAL lag and failure conditions
++
++CDC reads from the WAL, so capture behavior depends on how quickly PostHog consumes it:
++
++- **WAL lag** – If PostHog falls behind, the replication slot retains WAL on your database and disk usage grows. Prolonged lag can exhaust disk space and cause writes to fail.
++- **Slot invalidation** – If the replication slot is dropped or invalidated (for example, after a failover or `max_slot_wal_keep_size` is exceeded), CDC can't resume from its previous position and a full resync is required.
++- **Publication changes** – Tables removed from the publication stop producing change events, so their updates and deletes won't be captured.
++
++If a CDC sync fails, check that `wal_level` is `logical`, that the replication slot and publication still exist, and that disk usage from retained WAL is under control.
++
+ <CalloutBox icon="IconWarning" title="Decimal precision limits" type="caution">
+ 
+ Numeric or decimal columns with values exceeding precision 76 or scale 32 can't be synced. If a sync fails with this error, you have three options:

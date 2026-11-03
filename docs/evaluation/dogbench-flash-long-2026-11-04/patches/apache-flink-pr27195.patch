@@ -1,0 +1,34 @@
+diff --git a/docs/content.zh/docs/dev/datastream/operators/asyncio.md b/docs/content.zh/docs/dev/datastream/operators/asyncio.md
+index e30344fbdf1809ac677ab5a2b1fc49dfbb5ac0f8..aeaae80a690de481f970fb905cc856697bcd34d2 100644
+--- a/docs/content.zh/docs/dev/datastream/operators/asyncio.md
++++ b/docs/content.zh/docs/dev/datastream/operators/asyncio.md
+@@ -194,6 +194,12 @@ Flink 提供两种模式控制结果记录以何种顺序发出。
+     需要注意，在满足触发重试条件后，有可能因为当前重试次数超过预设的上限放弃重试，或是在任务结束时被强制终止重试（这种情况下，系统以最后一次执行的结果或异常作为最终状态）。
+ 
+   - **AsyncRetryPredicate**: 触发重试条件可以选择基于返回结果、 执行异常来定义条件，两种条件是或的关系，满足其一即会触发。
++    `result_predicate` 和 `exception_predicate` 均为抽象方法，因此 `AsyncRetryPredicate` 的子类必须实现它们；同样，`AsyncRetryStrategy` 的子类必须实现 `can_retry`、`get_backoff_time_millis` 和 `get_retry_predicate`。实例化未完整实现的子类会抛出 `TypeError`。
++
++  - **内置重试条件**: Python API 在 `pyflink.datastream.async_retry_predicates` 中提供了三个可直接使用的重试条件函数：
++    - `empty_result_predicate(result)`: 当返回结果为 `None` 或空列表时返回 `True`。
++    - `has_exception_predicate(error)`: 当存在异常（即不为 `None`）时返回 `True`。
++    - `exception_type_predicate(error, expected_error_type)`: 当异常是 `expected_error_type` 的实例时返回 `True`。
+ 
+ 
+ ### 实现提示
+diff --git a/docs/content/docs/dev/datastream/operators/asyncio.md b/docs/content/docs/dev/datastream/operators/asyncio.md
+index b587350ef3a343a2602faddfd06c247c5d8b4042..ce7642149268b03e0ca0e29cca3499645e7bde8b 100644
+--- a/docs/content/docs/dev/datastream/operators/asyncio.md
++++ b/docs/content/docs/dev/datastream/operators/asyncio.md
+@@ -228,6 +228,12 @@ The retry support introduces a built-in mechanism for async operator which being
+     or to be forced to terminate the retry at the end of the task (in this case, the system takes the last execution result or exception as the final state).
+ 
+   - **AsyncRetryPredicate**: The retry condition can be triggered based on the return result or the execution exception.
++    Both `result_predicate` and `exception_predicate` are abstract methods, so a subclass of `AsyncRetryPredicate` must implement them; likewise, subclasses of `AsyncRetryStrategy` must implement `can_retry`, `get_backoff_time_millis` and `get_retry_predicate`. Instantiating an incomplete subclass raises `TypeError`.
++
++  - **Built-in predicates**: The Python API provides three ready-to-use predicate functions in `pyflink.datastream.async_retry_predicates`:
++    - `empty_result_predicate(result)`: returns `True` when the result is `None` or an empty list.
++    - `has_exception_predicate(error)`: returns `True` when an error is present (i.e. not `None`).
++    - `exception_type_predicate(error, expected_error_type)`: returns `True` when the error is an instance of `expected_error_type`.
+ 
+ 
+ ### Implementation Tips

@@ -1,0 +1,109 @@
+diff --git a/docs/hugo/content/guide/configmaps.md b/docs/hugo/content/guide/configmaps.md
+index aa630d317413d67a10d278e0eb1081988e13010f..c3bef0cfb240180042674e943391b9c6dfd5129d 100644
+--- a/docs/hugo/content/guide/configmaps.md
++++ b/docs/hugo/content/guide/configmaps.md
+@@ -43,6 +43,53 @@ This reads the `principalId` value from a `ConfigMap`. Alternatively it could ha
+ Note that not every field for every resource supports importing data from `ConfigMap`. To check if a resource supports it,
+ consult its [documentation](../../reference/authorization/v1api20200801preview/#authorization.azure.com/v1api20200801preview.RoleAssignment).
+ 
++## How to pass data between ASO resources
++
++You can pass data from one ASO resource to another without hardcoding values. If the source resource can export a value to a `ConfigMap` (see below), configure it to do so, then have the consuming resource read that value with a `...FromConfig` field.
++
++For example, a `UserAssignedIdentity` can export its `clientId` and `principalId` to a `ConfigMap`:
++
++```yaml
++apiVersion: managedidentity.azure.com/v1api20181130
++kind: UserAssignedIdentity
++metadata:
++  name: sampleuserassignedidentity
++  namespace: default
++spec:
++  owner:
++    name: aso-sample-rg
++  operatorSpec:
++    configMaps:
++      clientId:
++        name: identity-settings
++        key: clientId
++      principalId:
++        name: identity-settings
++        key: principalId
++```
++
++A `RoleAssignment` can then read the `principalId` from that `ConfigMap`:
++
++```yaml
++apiVersion: authorization.azure.com/v1api20200801preview
++kind: RoleAssignment
++metadata:
++  name: fee8b6b1-fe6e-481d-8330-0e950e4e6b86 # Should be UUID
++  namespace: default
++spec:
++  owner:
++    name: aso-sample-rg
++    group: resources.azure.com
++    kind: ResourceGroup
++  principalIdFromConfig:
++    name: identity-settings
++    key: principalId
++  roleDefinitionReference:
++    armId: /subscriptions/00000000-0000-0000-0000-000000000000/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c
++```
++
++The exporting resource won't move to `Ready=True` until the data has been written, so the consuming resource can rely on the value being present. For resources that support references to other ASO resources directly (such as `roleDefinitionReference` above), you can also point at the Kubernetes resource instead of a raw ARM ID.
++
+ ## How to export ConfigMap data from ASO
+ 
+ Some resources support saving data into a `ConfigMap`. The individual properties can be exported to a `ConfigMap` of your choosing by
+diff --git a/docs/hugo/content/guide/frequently-asked-questions.md b/docs/hugo/content/guide/frequently-asked-questions.md
+index 85fd06e4dc166079e630812405f276456010daa2..5b99856f814c4fc5e4bba378f3a342366e6db001 100644
+--- a/docs/hugo/content/guide/frequently-asked-questions.md
++++ b/docs/hugo/content/guide/frequently-asked-questions.md
+@@ -73,6 +73,46 @@ Yes! We strongly recommend using something like [fluxcd](https://fluxcd.io/) or
+ If using argocd, make sure to **avoid** the `SyncPolicy Replace=true`, as that removes finalizers and annotations added by the operator whenever resources are re-applied.
+ ASO relies on the finalizer and annotations it adds being left alone to function properly. If they are unexpectedly removed the operator may not behave as expected.
+ 
++When installing ASO with Argo CD, point Argo at the ASO Helm chart repository rather than at the chart directory in the git source. Argo CD fetches and templates the published Helm chart, which includes generated templates such as the `azureserviceoperator-manager-role` `ClusterRole`. Pointing Argo at the git source directory instead can miss those generated templates, leaving the controller pod unable to start.
++
++```yaml
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++spec:
++  source:
++    repoURL: https://raw.githubusercontent.com/Azure/azure-service-operator/main/v2/charts
++    targetRevision: v2.8.0
++    chart: azure-service-operator
++    helm:
++      releaseName: aso2
++      valuesObject:
++        installCRDs: true
++        crdPattern: 'containerregistry.azure.com/*'
++```
++
++Set `targetRevision` to the ASO version you want to install.
++
++### How should I schedule ASO when running on AKS?
++
++ASO doesn't set any AKS-specific node affinity by default, because ASO is supported on many kinds of Kubernetes cluster, not just AKS. On AKS, you may want to keep the ASO controller off your user node pools (or prefer your system node pool) by configuring affinity yourself.
++
++For example, to prefer scheduling the ASO controller on the system node pool, add a preferred node affinity to the `azureserviceoperator-controller-manager` deployment:
++
++```yaml
++affinity:
++  nodeAffinity:
++    preferredDuringSchedulingIgnoredDuringExecution:
++    - weight: 1
++      preference:
++        matchExpressions:
++        - key: kubernetes.azure.com/mode
++          operator: In
++          values:
++          - system
++```
++
++Use `preferred` rather than `required` so that ASO can still be scheduled on clusters (or node pools) that don't have this label.
++
+ ### What's the difference between ASO and Crossplane.io?
+ 
+ There are a lot of similarities between ASO and Crossplane. They do similar things and have similar audiences. You can see some of this discussed [here](https://github.com/Azure/azure-service-operator/issues/1190).

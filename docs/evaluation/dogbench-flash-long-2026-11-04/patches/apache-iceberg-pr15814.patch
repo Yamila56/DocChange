@@ -1,0 +1,19 @@
+diff --git a/docs/docs/hive.md b/docs/docs/hive.md
+index 0531e9b04a15abbdb508e1e03177c0e47ac1d8f8..10c0825fe37650e3e67ef430fd695897eb2a84a3 100644
+--- a/docs/docs/hive.md
++++ b/docs/docs/hive.md
+@@ -385,6 +385,14 @@ ALTER TABLE orders REPLACE COLUMNS (remaining string);
+     Note, that dropping columns is only thing REPLACE COLUMNS can be used for
+     i.e. if columns are specified out-of-order an error will be thrown signalling this limitation.
+ 
++!!! warn
++    Some Hive Metastore versions have compatibility issues that can affect Iceberg schema-evolution
++    operations performed through the Hive engine. If a schema change (such as adding, renaming, or
++    dropping a column) fails or leaves the Hive table schema out of sync with the Iceberg table,
++    verify that your Hive Metastore version is supported (see [Global Hive catalog](#global-hive-catalog))
++    and upgrade the metastore if needed. As a workaround, perform the schema change using another
++    engine (for example, Spark or the Java API) and then refresh the Hive table metadata.
++
+ #### Partition evolution
+ You change the partitioning schema using the following commands:
+ 
