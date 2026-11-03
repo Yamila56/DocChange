@@ -144,6 +144,7 @@ class Worker:
             or (
                 DocumentDemoGateway() if settings.provider == "demo" else DocumentGateway(settings)
             ),
+            model_cache_dir=settings.model_cache_dir,
         )
 
     async def handle(self, message_id, fields):

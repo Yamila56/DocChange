@@ -1,5 +1,11 @@
 # ShopResolve 进度与续接记录
 
+2026-11-03（用户新授权：要求真实改善并复测低分检索，进行中）：新增可选文档语义检索，保持原FastAPI/SQL/Redis/Harness结构和默认BM25。工作台可选dense/hybrid/hybrid_rerank；BGE-base-en-v1.5 FP32 ONNX、RRF k60、MiniLM-L6交叉编码器top20，模型仓库revision见`evals/document-retrieval-models.lock.json`。原owner/revision读取、精确扫描、审批发布不变；语义索引为有界进程缓存，按owner/工作区/revision/内容隔离，计算在线程内。新增检索/语义/发布相关回归17 passed、17.63秒，报告`docs/evaluation/docchange-retrieval-regression-2026-11-03.xml`。
+
+正在跑完整SCIDOCS1000+SciFact300、BM25/dense/hybrid/hybrid_rerank四组，脚本`scripts/evaluate_document_hybrid.py`。使用原题、原文档、原qrels、原K/TREC scorer；要求BM25精确重现旧分。没有删难题、扩大K后替换同名指标或用mock冒充成绩。当前GPU批次`.cache/evals/public-ir-v03-cuda-20261103`、session23808，编码/逐题结果断点落盘，源哈希已冻结，不要在运行中改neural/retriever/service或评测器。尚无完整新成绩，不能先宣传提升。
+
+CPU早期批次`.cache/evals/public-ir-v03-20261103`因首次编码慢主动停止，只生成少量embedding，不是质量结果；正式GPU批次在任何新质量结果产生前固定改用相同BGE基础模型的FP32导出以适配CUDA。RTX4050本机6GB可用于小模型推理，不租卡、不训练、不调用生成API。已有Conda Torch CUDA DLL仅只读使用，GPU ONNX1.23.2通过`.cache/ir-cuda-runtime`隔离覆盖导入，未改原.venv/全局环境。安装临时目录改到本仓D盘，避免C盘空间不足；模型/Xet/轮子均在ignored D盘路径。全部CPU/GPU预试不计作完整基准。待全量完成后生成配对差异/互补性、更新简历与首页摘要，保留原始低分在完整报告，再提交私有GitHub。
+
 2026-11-03 V0.2本轮已完成并推送：代码/工件提交`c2886cd`，简历排版提交`e517753`，已推私有`Yamila56/DocChange`的main；远端再次回读PRIVATE。本轮Actions run `41576363937`对应`e517753399213ff45158873ac56b95431a51c4b2`，unit/frontend/mysql三任务均成功：unit165 passed/16 skipped、28.40秒，MySQL配置任务174 passed/7 skipped、66.40秒；不是两套成绩相加，不代表Redis或Docker文档端到端通过。Ruff与前端构建亦在同次CI通过。110份本轮文件及未推送历史共132个blob做本地凭据扫描无发现；73份Git patch逐一与JSON预测及评分hash一致，35个本地文档链接有效。旧自建评测的未跟踪草稿没有纳入本版，未删除；`.env`、缓存、下载仓库、数据库不上传。本条替代下面“待提交/待CI”状态。仅剩本记录的文档提交，不再改代码或追加模型调用。
 
 2026-11-03（最新授权：有限修改、突出已有后端与评测，不再扩建）：保持自研单Agent/FastAPI/SQL/Redis/React架构，不启动新的完整模型批次。保留公开基线175题综合25.6094、SciFact300与SCIDOCS1000完整结果；不能把两个检索集都称为高分，不能删掉低分伪造总成绩。新增`docs/RESUME-DOCCHANGE.md`和`docs/RELEASE-v0.2.0.md`，更新README、使用说明、设计18和基线后的修正说明，以“受控文档变更工作台”定位，强调版本审核、恢复和异步任务。

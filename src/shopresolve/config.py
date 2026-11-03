@@ -1,3 +1,5 @@
+from typing import Literal
+
 from pydantic import Field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -27,6 +29,7 @@ class Settings(BaseSettings):
     embedding_model: str = "BAAI/bge-small-zh-v1.5"
     reranker_model: str = "BAAI/bge-reranker-v2-m3-int8"
     model_cache_dir: str = ".cache/models"
+    document_retrieval_mode: Literal["bm25", "dense", "hybrid", "hybrid_rerank"] = "bm25"
     artifact_root: str = ".cache/artifacts"
     sandbox_root: str = ".cache/sandbox"
     sandbox_url: str = "http://127.0.0.1:18081"

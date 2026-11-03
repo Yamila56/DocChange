@@ -3,7 +3,10 @@ import copy
 import difflib
 import posixpath
 import re
+from collections import OrderedDict
+from functools import lru_cache
 from pathlib import PurePosixPath
+from threading import Lock
 from uuid import uuid4
 
 from sqlalchemy import select
@@ -13,7 +16,7 @@ from shopresolve.runstore import RunStore, append_event, checkpoint, db_now, req
 from shopresolve.service import CommerceService, digest, retry_local_transaction
 
 from .models import ChangeSet, Revision, Workspace
-from .retriever import DocumentRetriever, tokens
+from .retriever import DocumentRetriever, SemanticDocumentRetriever, tokens
 
 EDITABLE_SUFFIXES = {".md", ".mdx", ".rst", ".txt"}
 
@@ -129,12 +132,51 @@ def broken_links(documents):
     return sorted(broken)
 
 
-def search_chunks(chunks, query, exact):
+_semantic_cache = OrderedDict()
+_semantic_lock = Lock()
+
+
+@lru_cache(maxsize=2)
+def neural_models(cache_dir, rerank):
+    from .neural import DocumentEncoder, DocumentReranker
+
+    return DocumentEncoder(cache_dir), DocumentReranker(cache_dir) if rerank else None
+
+
+def search_chunks(chunks, query, exact, mode="bm25", cache_key=None, cache_dir=".cache/models"):
     """Compute against a detached revision snapshot, without holding a SQL session."""
     if not chunks or not query.strip():
         return []
     if exact:
         return [c for c in chunks if query in c["quote"]]
+    if mode != "bm25":
+        if mode not in {"dense", "hybrid", "hybrid_rerank"}:
+            raise DomainError("RETRIEVAL_CONFIG", "Unknown document retrieval mode")
+        # This lock is held only in an offloaded thread, never on the event loop.
+        # The cache is scoped to owner/workspace/revision/content/model configuration.
+        key = (cache_key, digest(chunks), mode, cache_dir)
+        with _semantic_lock:
+            index = _semantic_cache.get(key)
+            if index is None:
+                try:
+                    encoder, reranker = neural_models(cache_dir, mode == "hybrid_rerank")
+                except (OSError, ValueError) as exc:
+                    raise DomainError(
+                        "RETRIEVAL_NOT_READY", "Prepare pinned document models before enabling mode"
+                    ) from exc
+                index = SemanticDocumentRetriever(
+                    [c["id"] for c in chunks],
+                    [c["quote"] for c in chunks],
+                    encoder,
+                    reranker=reranker,
+                )
+                _semantic_cache[key] = index
+            _semantic_cache.move_to_end(key)
+            while len(_semantic_cache) > 8:
+                _semantic_cache.popitem(last=False)
+            ranking = index.rank(query, min(len(chunks), 1000), mode=mode)
+        by_id = {c["id"]: c for c in chunks}
+        return [by_id[k] for k in list(ranking)[:6]]
     index = DocumentRetriever([c["id"] for c in chunks], [c["quote"] for c in chunks])
     by_id = {c["id"]: c for c in chunks}
     terms = set(tokens(query))
@@ -180,8 +222,9 @@ class DocumentService:
                         "INVALID_CONTRACT", "Use bounded nonempty postconditions", 422
                     )
 
-    def __init__(self, sessions):
+    def __init__(self, sessions, *, retrieval_mode="bm25", model_cache_dir=".cache/models"):
         self.sessions = sessions
+        self.retrieval_mode, self.model_cache_dir = retrieval_mode, model_cache_dir
         self.idempotency = CommerceService(sessions)
         self.runs = RunStore(sessions)
 
@@ -242,11 +285,19 @@ class DocumentService:
                 "index": r.index,
             }
 
-    async def search(self, owner, wid, number, query, *, exact=False):
+    async def search(self, owner, wid, number, query, *, exact=False, retrieval_mode=None):
         snapshot = await self.get(owner, wid, number)
         # get() closes its session before CPU work. Keep the event loop available
         # for task submissions, model I/O and worker heartbeats during retrieval.
-        hits = await asyncio.to_thread(search_chunks, snapshot["index"]["chunks"], query, exact)
+        hits = await asyncio.to_thread(
+            search_chunks,
+            snapshot["index"]["chunks"],
+            query,
+            exact,
+            retrieval_mode or self.retrieval_mode,
+            (owner, wid, snapshot["revision"], snapshot["content_hash"]),
+            self.model_cache_dir,
+        )
         return [{**c, "version": f"{wid}@{number}"} for c in hits]
 
     async def prepare(self, lease, state, edits, evidence, summary):

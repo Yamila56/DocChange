@@ -184,9 +184,9 @@ class DocumentDemoGateway:
 
 
 class DocumentRuntime:
-    def __init__(self, store, gateway):
+    def __init__(self, store, gateway, *, model_cache_dir=".cache/models"):
         self.store, self.gateway = store, gateway
-        self.documents = DocumentService(store.sessions)
+        self.documents = DocumentService(store.sessions, model_cache_dir=model_cache_dir)
 
     async def run(self, lease):
         state = None
@@ -287,6 +287,7 @@ class DocumentRuntime:
                                 snap["id"],
                                 cfg["revision"],
                                 d.query,
+                                retrieval_mode=cfg.get("retrieval_mode", "bm25"),
                                 exact=d.kind == "scan",
                             ),
                         }

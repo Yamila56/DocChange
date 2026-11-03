@@ -38,7 +38,11 @@ class Review(BaseModel):
 
 def router(sessions, runs, owner, settings):
     api = APIRouter(prefix="/v1/documents", tags=["DocChange"])
-    service = DocumentService(sessions)
+    service = DocumentService(
+        sessions,
+        retrieval_mode=settings.document_retrieval_mode,
+        model_cache_dir=settings.model_cache_dir,
+    )
     owner_dependency = Depends(owner)
 
     @api.get("/runs/{rid}/timeline")
@@ -92,7 +96,12 @@ def router(sessions, runs, owner, settings):
             "model_limit": settings.model_limit,
             "active_budget_ms": settings.active_budget_ms,
             "model_timeout_seconds": settings.model_timeout_seconds,
-            "document": {**body.model_dump(), "workspace_id": wid, "revision": snap["revision"]},
+            "document": {
+                **body.model_dump(),
+                "workspace_id": wid,
+                "revision": snap["revision"],
+                "retrieval_mode": settings.document_retrieval_mode,
+            },
         }
         conversation = await runs.conversation(user, "doc:" + idempotency_key)
         return await runs.submit(

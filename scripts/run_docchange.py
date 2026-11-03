@@ -25,6 +25,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--port", type=int, default=8011)
     parser.add_argument("--remote", action="store_true", help="Explicit paid DeepSeek mode")
+    parser.add_argument(
+        "--retrieval-mode", choices=["bm25", "dense", "hybrid", "hybrid_rerank"], default="bm25"
+    )
     args = parser.parse_args()
     folder = Path(".cache/docchange")
     folder.mkdir(parents=True, exist_ok=True)
@@ -39,6 +42,8 @@ def main():
         allow_paid_model=False,
         sandbox_url=configured.sandbox_url,
         sandbox_token=configured.sandbox_token,
+        document_retrieval_mode=args.retrieval_mode,
+        model_cache_dir=configured.model_cache_dir,
     )
     inner = None
     gateway = DocumentDemoGateway()
@@ -57,6 +62,8 @@ def main():
             model="deepseek-flash",
             model_base_url="https://api.deepseek.com",
             allow_paid_model=True,
+            document_retrieval_mode=args.retrieval_mode,
+            model_cache_dir=configured.model_cache_dir,
         )
         inner = DocumentGateway(settings)
         budget = EvaluationBudget(folder / "interactive-budget.sqlite", 20, 0.5, 0)
@@ -65,7 +72,7 @@ def main():
     store = RunStore(sessions)
 
     async def poll():
-        runtime = DocumentRuntime(store, gateway)
+        runtime = DocumentRuntime(store, gateway, model_cache_dir=settings.model_cache_dir)
         while True:
             async with sessions() as session:
                 ids = (
