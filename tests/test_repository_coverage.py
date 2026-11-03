@@ -121,6 +121,10 @@ async def test_coverage_review_drives_repair_and_controls_finalization(
                     }
                 )
             if not context["read_paths"]:
+                if not any(
+                    o.get("action", {}).get("kind") == "list" for o in context["observations"]
+                ):
+                    return ModelReply({"kind": "list", "root": "docs"})
                 return ModelReply({"kind": "read", "path": "guide.mdx"})
             evidence = next(
                 o["result"]["evidence_id"]
@@ -152,5 +156,5 @@ async def test_coverage_review_drives_repair_and_controls_finalization(
             await runtime.run(lease, "Change timeout to 60")
     run = await store.get("alice", rid)
     assert run["status"] == ("WAITING_APPROVAL" if approve_after_repair else "FAILED")
-    assert run["model_calls"] == 6
+    assert run["model_calls"] == 7
     assert "Timeout: 30" in (root / "guide.mdx").read_text()

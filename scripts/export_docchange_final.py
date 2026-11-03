@@ -35,6 +35,8 @@ def main(args):
     by_id = {r["instance_id"]: r for r in scores["scores"]} if scores else {}
     patch_dir = out / "patches"
     patch_dir.mkdir(exist_ok=True)
+    draft_dir = out / "unreviewed-drafts"
+    draft_dir.mkdir(exist_ok=True)
     rows, policy, calls = [], [], []
     for prediction in predictions:
         key = prediction["instance_id"]
@@ -49,10 +51,14 @@ def main(args):
         if prediction.get("patch"):
             data = prediction["patch"].encode("utf-8")
             (patch_dir / (key + ".patch")).write_bytes(data)
-            assert (
-                hashlib.sha256(data).hexdigest()
-                == hashlib.sha256((folder / "candidate.patch").read_bytes()).hexdigest()
-            )
+            artifact = (folder / "candidate.patch").read_bytes()
+            # Native write_text may expand LF; scoring uses the canonical JSON patch bytes.
+            assert artifact in (data, data.replace(b"\n", b"\r\n"))
+            if scored_hash := by_id.get(key, {}).get("patch_sha256"):
+                assert hashlib.sha256(data).hexdigest() == scored_hash
+        candidate = state.get("repository_candidate", {})
+        if candidate.get("patch") and not prediction.get("patch"):
+            (draft_dir / (key + ".patch")).write_bytes(candidate["patch"].encode("utf-8"))
         if (folder / "model-calls.jsonl").exists():
             calls.extend(
                 json.loads(s)
@@ -103,6 +109,7 @@ def main(args):
         "actual_api_log_records": len(calls),
         "returned_models": dict(Counter(c.get("provider_model", "unknown") for c in calls)),
         "phase_calls": dict(Counter(c["phase"] for c in calls)),
+        "unreviewed_drafts": len(list(draft_dir.glob("*.patch"))),
         "notes": [
             "API-only adapter; not the upstream native Docker/CLI leaderboard lane",
             "Public development cohort; not independent held-out generalization",
@@ -122,6 +129,8 @@ def main(args):
             out / "authorized-budget-amendment.json",
             read(batch / "authorized-budget-amendment.json"),
         )
+    if (batch / "source-repair-amendment.json").exists():
+        dump(out / "source-repair-amendment.json", read(batch / "source-repair-amendment.json"))
     (out / "predictions.jsonl").write_text(
         "".join(json.dumps(p, ensure_ascii=False) + "\n" for p in predictions), encoding="utf-8"
     )

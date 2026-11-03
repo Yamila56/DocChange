@@ -22,10 +22,16 @@ def main(args):
     batch = args.batch.resolve()
     plan_path = batch / "plan.json"
     plan = json.loads(plan_path.read_text(encoding="utf-8"))
+    repair_path = batch / "source-repair-amendment.json"
+    repairs = json.loads(repair_path.read_text(encoding="utf-8")) if repair_path.exists() else {}
     if plan["model"] != "deepseek-v4-pro" or len(plan["items"]) != 175:
         raise ValueError("Expected the complete frozen Pro cohort")
     for name, expected in plan["source_sha256"].items():
-        if hashlib.sha256((evaluation.ROOT / name).read_bytes()).hexdigest() != expected:
+        actual = hashlib.sha256((evaluation.ROOT / name).read_bytes()).hexdigest()
+        allowed = repairs.get("files", {}).get(name, {})
+        if actual != expected and not (
+            allowed.get("before_sha256") == expected and allowed.get("after_sha256") == actual
+        ):
             raise ValueError("Frozen evaluated source changed: " + name)
     total = Decimal(str(args.authorized_total_cny))
     if not Decimal(str(plan["cap_cny"])) <= total <= Decimal("60"):

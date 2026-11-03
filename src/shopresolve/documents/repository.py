@@ -625,7 +625,11 @@ class RepositoryRuntime:
                         for obs in state["repository_observations"]:
                             result = obs.get("result", {})
                             for item in result.get("files", result.get("results", [result])):
-                                if item.get("evidence_id") and item.get("content"):
+                                if (
+                                    isinstance(item, dict)
+                                    and item.get("evidence_id")
+                                    and item.get("content")
+                                ):
                                     sources[item["evidence_id"]] = {
                                         "evidence_id": item["evidence_id"],
                                         "root": item.get("root"),

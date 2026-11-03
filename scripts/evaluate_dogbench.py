@@ -98,7 +98,14 @@ async def main(args):
         "score_contract": "Unmodified official rubrics, evidence validator and numeric scorer",
     }
     if (out / "plan.json").exists():
-        if json.loads((out / "plan.json").read_text()) != plan:
+        previous = json.loads((out / "plan.json").read_text())
+        if previous != plan and (out / "source-repair-amendment.json").exists():
+            repair = json.loads((out / "source-repair-amendment.json").read_text())
+            for name, change in repair["files"].items():
+                if previous["source_sha256"].get(name) != change["before_sha256"]:
+                    raise RuntimeError("Repair amendment does not match original frozen source")
+                previous["source_sha256"][name] = change["after_sha256"]
+        if previous != plan:
             raise RuntimeError("Frozen evaluation source/config changed; use a new batch")
     else:
         atomic(out / "plan.json", plan)
