@@ -2,8 +2,10 @@
 
 ## 可直接使用的项目描述
 
-**DocChange｜基于自研 Agent Harness 的版本化文档变更工作台**  
-独立开发项目｜2026.10 – 至今  
+**DocChange｜基于自研 Agent Harness 的版本化文档变更工作台**
+
+独立开发项目｜2026.10 – 至今
+
 Python、FastAPI、Pydantic、SQLAlchemy、MySQL / SQLite、Redis Streams、BM25、React、Git
 
 - **业务闭环与版本管理：** 面向接口、配置及示例更新中的跨文档维护任务，设计“依据定位—修改提案—差异审核—版本发布”流程；以不可变 Revision 保存正文与检索索引，通过 ChangeSet、hash 绑定审批及版本冲突检查，约束未经审核的修改与过期提案覆盖。
