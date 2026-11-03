@@ -72,6 +72,7 @@ def main(args):
                 "status": prediction["status"],
                 "decision": prediction.get("decision"),
                 "model_turns": used,
+                "error_type": result.get("error_type"),
                 "expected_outcome": scored.get("expected_outcome"),
                 "decision_correct": scored.get("decision_correct"),
                 "score": scored.get("overall"),
@@ -131,6 +132,9 @@ def main(args):
         )
     if (batch / "source-repair-amendment.json").exists():
         dump(out / "source-repair-amendment.json", read(batch / "source-repair-amendment.json"))
+    for name in ("engineering-recovery.json", "workspace-repair-audit.json"):
+        if (batch / name).exists():
+            dump(out / name, read(batch / name))
     (out / "predictions.jsonl").write_text(
         "".join(json.dumps(p, ensure_ascii=False) + "\n" for p in predictions), encoding="utf-8"
     )
