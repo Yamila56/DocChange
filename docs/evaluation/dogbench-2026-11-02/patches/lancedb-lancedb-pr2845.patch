@@ -1,0 +1,37 @@
+diff --git a/java/README.md b/java/README.md
+index de7d91349a23271d04854034c2bdc3bb300493b1..6c33e366bfbd4d667cbef10a204c5c00c64f3d87 100644
+--- a/java/README.md
++++ b/java/README.md
+@@ -7,24 +7,27 @@
+ For LanceDB Cloud, use the simplified builder API:
+ 
+ ```java
+-import com.lancedb.lance.namespace.LanceRestNamespace;
++import org.lance.namespace.RestNamespace;
++import com.lancedb.LanceDbRestNamespaceBuilder;
+ 
+ // If your DB url is db://example-db, then your database here is example-db
+-LanceRestNamespace namespace = LanceDBRestNamespaces.builder()
++RestNamespace namespace = LanceDbRestNamespaceBuilder.newBuilder()
+     .apiKey("your_lancedb_cloud_api_key")
+     .database("your_database_name")
+     .build();
+ ```
+ 
++The region defaults to `us-east-1`; override it with `.region("eu-west-1")` if needed.
++
+ ### LanceDB Enterprise
+ 
+ For Enterprise deployments, use your VPC endpoint:
+ 
+ ```java
+-LanceRestNamespace namespace = LanceDBRestNamespaces.builder()
++RestNamespace namespace = LanceDbRestNamespaceBuilder.newBuilder()
+     .apiKey("your_lancedb_enterprise_api_key")
+-    .database("your-top-dir") // Your top level folder under your cloud bucket, e.g. s3://your-bucket/your-top-dir/
+-    .hostOverride("http://<vpc_endpoint_dns_name>:80")
++    .database("your_database_name")
++    .endpoint("<your_enterprise_endpoint>")
+     .build();
+ ```
+ 

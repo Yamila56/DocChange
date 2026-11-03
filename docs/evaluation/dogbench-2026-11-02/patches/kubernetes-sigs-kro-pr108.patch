@@ -1,0 +1,129 @@
+diff --git a/website/docs/docs/getting-started/02-deploy-a-resource-group.md b/website/docs/docs/getting-started/02-deploy-a-resource-group.md
+index ba8eb36e12e2a045a5b4fbf7205ebde09fc83872..6c9a0bbf1dccd309715a36b1a21933b620312872 100644
+--- a/website/docs/docs/getting-started/02-deploy-a-resource-group.md
++++ b/website/docs/docs/getting-started/02-deploy-a-resource-group.md
+@@ -2,25 +2,28 @@
+ sidebar_position: 2
+ ---
+ 
+-# Deploy a Resource Group
++# Deploy a ResourceGraphDefinition
+ 
+-ResourceGroups are the core building blocks of KRO. They define the structure of
+-your application and the resources it requires. In this guide, you'll learn how
+-to deploy a ResourceGroup using KRO.
++ResourceGraphDefinitions (RGDs) are the core building blocks of KRO. They define
++the structure of your application and the resources it requires. In this guide,
++you'll learn how to deploy a ResourceGraphDefinition using KRO, create an
++instance of it, and inspect the resources KRO creates for you.
+ 
+ ## Prerequisites
+ 
+ Before you begin, ensure you have the following:
+ 
+-- Installed KRO on your Kubernetes cluster
+-- A ResourceGroup manifest file
++- Installed KRO on your Kubernetes cluster (see
++  [Installing KRO](./01-Installation.md))
++- A ResourceGraphDefinition manifest file
+ 
+-For this examole, we'll use a simple ResourceGroup that defines a Deployment and
+-a Service. Here's an example of a `ResourceGroup` manifest file:
++For this example, we'll use a simple ResourceGraphDefinition that defines a
++Deployment and a Service. Here's an example of a `ResourceGraphDefinition`
++manifest file:
+ 
+ ```yaml title="deploymentservice-rg.yaml"
+ apiVersion: kro.run/v1alpha1
+-kind: ResourceGroup
++kind: ResourceGraphDefinition
+ metadata:
+   name: deployment-service
+ spec:
+@@ -68,37 +71,42 @@ spec:
+ 
+ ## Steps
+ 
+-1. **Create a ResourceGroup manifest file**: Create a new file with the
+-   ResourceGroup definition. You can use the example above as a template.
++1. **Create a ResourceGraphDefinition manifest file**: Create a new file with
++   the ResourceGraphDefinition definition. You can use the example above as a
++   template.
+ 
+-2. **Deploy the ResourceGroup**: Use the `kubectl` command to deploy the
+-   ResourceGroup to your Kubernetes cluster:
++2. **Deploy the ResourceGraphDefinition**: Use the `kubectl` command to deploy
++   the ResourceGraphDefinition to your Kubernetes cluster:
+ 
+    ```bash
+    kubectl apply -f deploymentservice-rg.yaml
+    ```
+ 
+-3. **Verify the resources**: Check the status of the resources created by the
+-   ResourceGroup using the `kubectl` command:
++3. **Verify the ResourceGraphDefinition**: Check the status of the
++   ResourceGraphDefinition using the `kubectl` command:
+ 
+    ```bash
+-   kubectl get rg
++   kubectl get rgd
+    ```
+ 
+    You should see something like this:
+ 
+    ```bash
+-   NAME                                   APIVERSION   KIND                STATE    AGE
+-   deployment-service                     v1alpha1     DeploymentService   ACTIVE   16m
++   NAME                 APIVERSION   KIND                STATE    AGE
++   deployment-service   v1alpha1     DeploymentService   ACTIVE   16m
+    ```
+ 
+-4. **Install a resource group instance**: Create an instance for the resource group you
++   Once the ResourceGraphDefinition is `ACTIVE`, KRO has generated and
++   registered a new CRD (`DeploymentService`) for it.
++
++4. **Create an instance**: Create an instance of the ResourceGraphDefinition you
+    just deployed. Instances are used to define the desired state of the resources
+-   in the ResourceGroup.
++   in the ResourceGraphDefinition.
+ 
+-   Here's an example of an Instance for the `EKSCluster` ResourceGroup:
++   Here's an example of an instance for the `DeploymentService`
++   ResourceGraphDefinition:
+ 
+-   ```yaml
++   ```yaml title="deploymentservice-instance.yaml"
+    apiVersion: kro.run/v1alpha1
+    kind: DeploymentService
+    metadata:
+@@ -107,5 +115,28 @@ spec:
+      name: app1
+    ```
+ 
+-   The spec fields of an Instance correspond to the parameters defined in the
+-   ResourceGroup.
++   The spec fields of an instance correspond to the parameters defined in the
++   ResourceGraphDefinition.
++
++   Apply the instance:
++
++   ```bash
++   kubectl apply -f deploymentservice-instance.yaml
++   ```
++
++5. **Inspect the deployed application**: Verify that KRO created the underlying
++   resources for your instance:
++
++   ```bash
++   kubectl get deployments,services
++   ```
++
++   You should see a Deployment and a Service named after the `name` you set in
++   the instance spec (`app1`). You can also inspect the instance status:
++
++   ```bash
++   kubectl get deploymentservice my-deployment-and-service -o yaml
++   ```
++
++   The `status` section reflects the current state of the resources managed by
++   KRO for this instance.

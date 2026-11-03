@@ -1,0 +1,31 @@
+diff --git a/docs/en/docs/tutorial/handling-errors.md b/docs/en/docs/tutorial/handling-errors.md
+index 53501837c9e246df0c9beedb1b563634d26e829d..921cfddb3ae9d5b47d70cdc9ebf91eb9cf79acef 100644
+--- a/docs/en/docs/tutorial/handling-errors.md
++++ b/docs/en/docs/tutorial/handling-errors.md
+@@ -162,9 +162,11 @@ These are technical details that you might skip if it's not important for you no
+ 
+ ///
+ 
+-`RequestValidationError` is a sub-class of Pydantic's <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>.
++`RequestValidationError` is **not** a sub-class of Pydantic's <a href="https://docs.pydantic.dev/latest/concepts/models/#error-handling" class="external-link" target="_blank">`ValidationError`</a>. They are separate classes, so an exception handler registered for `ValidationError` will not catch request validation errors.
+ 
+-**FastAPI** uses it so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
++To handle request validation errors, register your handler for `RequestValidationError` (as shown above). To handle Pydantic `ValidationError`s raised elsewhere in your code, register a separate handler for `ValidationError`.
++
++**FastAPI** uses `RequestValidationError` so that, if you use a Pydantic model in `response_model`, and your data has an error, you will see the error in your log.
+ 
+ But the client/user will not see it. Instead, the client will receive an "Internal Server Error" with an HTTP status code `500`.
+ 
+@@ -172,6 +174,12 @@ It should be this way because if you have a Pydantic `ValidationError` in your *
+ 
+ And while you fix it, your clients/users shouldn't have access to internal information about the error, as that could expose a security vulnerability.
+ 
++/// warning
++
++Be careful not to return the raw exception or its internal details (such as `str(exc)` or `exc.errors()`) directly to the client for errors that are not caused by the client's request. Doing so could expose sensitive internal information.
++
++///
++
+ ### Override the `HTTPException` error handler { #override-the-httpexception-error-handler }
+ 
+ The same way, you can override the `HTTPException` handler.

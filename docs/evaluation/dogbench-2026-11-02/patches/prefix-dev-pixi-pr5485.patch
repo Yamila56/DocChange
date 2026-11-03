@@ -1,0 +1,27 @@
+diff --git a/docs/workspace/environment.md b/docs/workspace/environment.md
+index 2675c587d0a3162061322bda8948ea5ff22ee628..3da3bd260c836a0f0bde689039baadfddbab8045 100644
+--- a/docs/workspace/environment.md
++++ b/docs/workspace/environment.md
+@@ -168,6 +168,22 @@ This location is configurable by setting the `PIXI_CACHE_DIR` or `RATTLER_CACHE_
+ 
+ When you want to clean the cache, you can simply delete the cache directory, and Pixi will re-create the cache when needed.
+ 
++### Sharing packages between environments
++
++Because the cache is shared, Pixi does not need to download or unpack the same package twice.
++When a package is installed into an environment, Pixi links it from the cache into the environment's prefix instead of copying it.
++On most platforms this is done with hardlinks, so the package data on disk is stored only once even though it appears in multiple environments.
++
++This means that having several environments that depend on the same packages does not multiply their disk usage.
++For example, if your `default` and `cuda` environments both use `python` and `numpy`, those packages are stored once in the cache and linked into both `.pixi/envs/default` and `.pixi/envs/cuda`.
++Only packages that are unique to an environment add to its disk usage.
++
++A few caveats apply:
++
++- Hardlinks require the cache and the environments to live on the same filesystem. If they are on different filesystems (for example when using [detached environments](../reference/pixi_configuration.md#detached-environments) on another drive), Pixi falls back to copying the files, and the packages will take up space in each environment.
++- Files that a package modifies at runtime (for example compiled bytecode or generated data) can break the sharing for those files, as the hardlink is replaced by a separate copy.
++- Removing an environment with `pixi clean` only removes the links; the cached packages remain available for other environments until you clean the cache itself.
++
+ The cache contains multiple folders concerning different caches from within pixi.
+ 
+ - `pkgs`: Contains the downloaded/unpacked `conda` packages.

@@ -1,0 +1,15 @@
+diff --git a/docs/content/docs/dev/datastream/operators/asyncio.md b/docs/content/docs/dev/datastream/operators/asyncio.md
+index b587350ef3a343a2602faddfd06c247c5d8b4042..69fd50d0b855f2164101752a78dd7393e3dc9b05 100644
+--- a/docs/content/docs/dev/datastream/operators/asyncio.md
++++ b/docs/content/docs/dev/datastream/operators/asyncio.md
+@@ -228,6 +228,10 @@ The retry support introduces a built-in mechanism for async operator which being
+     or to be forced to terminate the retry at the end of the task (in this case, the system takes the last execution result or exception as the final state).
+ 
+   - **AsyncRetryPredicate**: The retry condition can be triggered based on the return result or the execution exception.
++    For Python, the `pyflink.datastream.async_retry_predicates` module provides built-in predicates that can be used directly:
++    `empty_result_predicate` (matches when the result collection is `None` or empty),
++    `has_exception_predicate` (matches when an error is present), and
++    `exception_type_predicate` (matches when the error is an instance of a specific type).
+ 
+ 
+ ### Implementation Tips

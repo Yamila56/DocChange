@@ -1,0 +1,59 @@
+diff --git a/docs/content/getting-started/running-in-production.mdx b/docs/content/getting-started/running-in-production.mdx
+new file mode 100644
+index 0000000000000000000000000000000000000000..42b3468fa3f52a0580c39a97125eff135cbe7198
+--- /dev/null
++++ b/docs/content/getting-started/running-in-production.mdx
+@@ -0,0 +1,35 @@
++---
++title: Running OpenFGA in Production
++description: Recommendations for deploying and operating OpenFGA in production
++sidebar_position: 2
++slug: /getting-started/running-in-production
++---
++
++import {
++  DocumentationNotice,
++} from "@components/Docs";
++
++# Running OpenFGA in Production
++
++<DocumentationNotice />
++
++If you have tried OpenFGA locally, decided it works as expected, and now want to deploy it to production, we recommend the following preparation.
++
++## Server Configuration
++
++Update the [server configuration](./setup-openfga.mdx#configuring-the-server) as follows:
++
++- Configure authentication on the server as explained in [Configuring Authentication](./setup-openfga.mdx#configuring-authentication).
++- Enable TLS on the server.
++- Enable production logging by changing the `log.format` in the `config.yaml` configuration file to `json`.
++- Disable the Playground.
++
++## Interceptors
++
++- Add a rate limiter interceptor (for example, [in the server configuration](https://pkg.go.dev/github.com/openfga/openfga/server#Config)) that protects your OpenFGA server against bursts in traffic.
++- Add a logger interceptor (for example, [in the server configuration](https://pkg.go.dev/github.com/openfga/openfga/server#Config)) that sends logs to your logging platform of choice.
++
++## Related
++
++- [Setup OpenFGA Server](./setup-openfga.mdx)
++- [Health Check](./setup-openfga.mdx#health-check)
+diff --git a/docs/content/getting-started/setup-openfga.mdx b/docs/content/getting-started/setup-openfga.mdx
+index b5516034a98516a96b05146426915eace2e483c0..668461cb169a63ce3ef37b6ac7dd09989fe7c027 100644
+--- a/docs/content/getting-started/setup-openfga.mdx
++++ b/docs/content/getting-started/setup-openfga.mdx
+@@ -303,12 +303,4 @@ Experimental feature flags are also not considered part of API compatibility and
+ 
+ ## Production Recommendations
+ 
+-If you have tried OpenFGA locally, decided it works as expected, and now want to deploy it to production, we recommend the following preparation:
+-
+-- Update the configuration as follows:
+-  - Configure authentication on the server as explained above.
+-  - Enable TLS on the server.
+-  - Enable production logging by changing the `log.format` in the [config.yaml](#configuring-the-server) configuration file to `json`.
+-  - Disable Playground.
+-- Add a rate limiter interceptor (for example, [in the server configuration](https://pkg.go.dev/github.com/openfga/openfga/server#Config)) that protects your OpenFGA server against bursts in traffic.
+-- Add a logger interceptor (for example, [in the server configuration](https://pkg.go.dev/github.com/openfga/openfga/server#Config)) that sends logs to your logging platform of choice.
++If you have tried OpenFGA locally, decided it works as expected, and now want to deploy it to production, see [Running OpenFGA in Production](./running-in-production.mdx) for our recommendations.

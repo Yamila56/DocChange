@@ -1,0 +1,45 @@
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index 0c82621568d86c7145da4288c5c07f03ef10aa40..1ebd3da007262b9ad58cc32bee55a2eb942e51eb 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -37,6 +37,40 @@ The data warehouse then starts syncing your Postgres data. You can see details a
+ 
+ <SourceParameters />
+ 
++## Change data capture (CDC)
++
++Postgres CDC syncs inserts, updates, and deletes from your tables in near real-time. It relies on Postgres's native logical replication, which means your database must be configured correctly before you enable CDC on a table.
++
++### Prerequisites
++
++- **`wal_level` set to `logical`** – Postgres must be configured to write enough information to the write-ahead log (WAL) for logical decoding. This requires a server restart to change.
++- **A replication slot** – PostHog creates and uses a logical replication slot to stream changes. Each CDC source uses one slot, and Postgres retains WAL segments until the slot consumes them.
++- **A publication** – PostHog creates a publication that lists the tables being captured. Tables must be added to the publication to be captured.
++- **Replication permissions** – The database user needs the `REPLICATION` role (or superuser) and `SELECT` on the captured tables.
++- **`max_replication_slots` and `max_wal_senders`** – Must be high enough to accommodate the slots and connections PostHog uses alongside any other consumers.
++
++### Table modes
++
++CDC can be enabled per table, and each table can use a different mode:
++
++- **CDC** – Captures inserts, updates, and deletes. Requires a primary key so changes can be applied to the correct rows.
++- **Incremental** – Syncs new and updated rows using a replication key. Deletes are not captured.
++- **Append only** – Appends new rows using a cursor. Updates and deletes are not captured.
++- **Full table** – Reloads the whole table on every sync.
++
++You can switch a table between modes, but switching to or from CDC may trigger a resync.
++
++### WAL lag and failure conditions
++
++Because Postgres retains WAL until the replication slot consumes it, an inactive or slow CDC sync can cause WAL to accumulate on your database and fill up disk. Watch for:
++
++- **Growing WAL / disk usage** – If a slot is inactive (for example, the source is paused or failing), Postgres keeps WAL segments. Monitor `pg_replication_slots` for `active` and `restart_lsn`, and drop unused slots.
++- **Slot invalidation** – If WAL required by a slot is removed (for example, after `max_slot_wal_keep_size` is exceeded), the slot is invalidated and CDC can no longer resume from where it left off. A full resync is required.
++- **Replica identity** – Tables without a primary key or with `REPLICA IDENTITY` set to `NOTHING` can't emit the data needed to apply updates and deletes.
++- **Schema changes** – Adding or dropping columns on a captured table may require a resync.
++
++If CDC stops capturing, check the source's status in the [sources tab](https://app.posthog.com/data-management/sources) and verify the slot and publication still exist in your database.
++
+ ## Selecting columns
+ 
+ By default, PostHog syncs all columns from each table. To sync only specific columns:

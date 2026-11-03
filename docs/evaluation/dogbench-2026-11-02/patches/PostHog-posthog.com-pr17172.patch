@@ -1,0 +1,59 @@
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index e7a3ccf0f2d8bb9ccb2d33a08361469fdf9cd939..966ca74b510864e5bcb341a5f4d69e4b96cd4386 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -33,7 +33,7 @@ To link Postgres:
+      - For password authentication, enter your SSH username and password.
+      - For key-based authentication, enter your SSH username, private key, and optional passphrase.
+    - **Require TLS through tunnel?** - Whether to require TLS encryption through the SSH tunnel. Enabled by default. Disable if your database does not support TLS.
+-5. Optional: enable **Change data capture (CDC)** if your database is prepared for logical replication.
++5. Optional: enable **Change data capture (CDC)** if your database is prepared for logical replication. You can also enable CDC later from the source's **Configuration** tab (see [Enabling and disabling CDC after setup](#enabling-and-disabling-cdc-after-setup)).
+ 6. Click **Next**, select the tables to sync, choose the sync method for each table, then click **Link**
+ 
+ The data warehouse then starts syncing your Postgres data. You can see details and progress in the [sources tab](https://app.posthog.com/data-management/sources).
+@@ -292,6 +292,36 @@ ALTER PUBLICATION "posthog_pub" ADD TABLE "analytics"."new_table";
+ 
+ Avoid putting unrelated tables in the publication. PostHog filters out changes for tables that are not active CDC schemas, but the database still has to decode and send those changes.
+ 
++## Enabling and disabling CDC after setup
++
++You don't have to decide on CDC when you create the source. The **Configuration** tab of an existing Postgres source has a CDC section where you can turn CDC on or off and tune lag thresholds without deleting and recreating the source (which would lose your schedule and schema history).
++
++### Enabling CDC
++
++1. Go to the [sources tab](https://app.posthog.com/data-management/sources) and open your Postgres source.
++2. Open the **Configuration** tab and find the CDC section.
++3. Choose a management mode: **PostHog-managed** or **self-managed** (see [Slot and publication management](#slot-and-publication-management)). For self-managed, enter the name of the publication you created.
++4. Click **Check CDC compatibility** to re-run the prerequisite checks against your database.
++5. Confirm to enable CDC. PostHog provisions the replication slot (and, in PostHog-managed mode, the publication) and stores the CDC settings on the source.
++
++Enabling CDC doesn't automatically switch existing tables to CDC sync. After enabling, configure individual tables to use the CDC sync method.
++
++### Changing CDC settings
++
++While CDC is enabled, you can edit the WAL lag warning and critical thresholds and the automatic slot protection setting from the same section. The warning threshold must be lower than the critical threshold. Other CDC settings, such as the management mode and slot or publication names, can't be changed after CDC is enabled.
++
++### Disabling CDC
++
++When you disable CDC, PostHog:
++
++- Cancels any running CDC syncs for the source.
++- Removes the CDC extraction schedule.
++- Drops the replication slot, and in PostHog-managed mode the publication too. In self-managed mode, your publication is left untouched.
++- Soft-deletes the `_cdc` history tables.
++- Resets CDC tables so they no longer sync. You'll need to choose a new sync method for each of them.
++
++You can re-enable CDC later. Re-enabling starts from a fresh replication slot, so CDC tables need a new initial snapshot.
++
+ ## WAL lag protection
+ 
+ Replication slots retain WAL until the consumer advances the slot. If PostHog stops consuming changes, retained WAL can grow.
+@@ -322,7 +352,7 @@ CDC is powerful, but it changes how your production database retains WAL. Keep t
+ 
+ - Enabling logical replication often requires a database restart.
+ - A stuck replication slot can fill your database disk with retained WAL.
+-- PostHog CDC only supports tables with primary keys.
++- PostHog CDC only supports tables with primary keys. Once a CDC table has synced data, you can't change its primary key, because the primary key is the merge key for updates and deletes. To use a different primary key, disable CDC for that table and resync it.
+ - CDC captures row changes, not a complete history before the initial snapshot.
+ - PostgreSQL logical replication doesn't send DDL as normal row changes. Schema changes may require a full resync, especially destructive changes like dropping or changing column types.
+ - Large `TOAST`ed values can be omitted from some update messages when they are unchanged. Validate CDC output carefully if your tables include very large `text`, `jsonb`, or `bytea` columns.

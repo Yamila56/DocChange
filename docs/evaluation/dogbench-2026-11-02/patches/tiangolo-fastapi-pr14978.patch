@@ -1,0 +1,55 @@
+diff --git a/docs/en/docs/advanced/index.md b/docs/en/docs/advanced/index.md
+index 9355516fb4fd4317197ac085e958081879cd6174..256c49ba78d513d48342abc3a235d48ed3540f15 100644
+--- a/docs/en/docs/advanced/index.md
++++ b/docs/en/docs/advanced/index.md
+@@ -19,3 +19,7 @@ And it's possible that for your use case, the solution is in one of them.
+ You could still use most of the features in **FastAPI** with the knowledge from the main [Tutorial - User Guide](../tutorial/index.md){.internal-link target=_blank}.
+ 
+ And the next sections assume you already read it, and assume that you know those main ideas.
++
++## Strict Content-Type { #strict-content-type }
++
++By default, **FastAPI** rejects requests that carry a body but omit a `Content-Type` header with a `422` response, instead of parsing the body as JSON. You can read more about it in [Strict Content-Type](strict-content-type.md){.internal-link target=_blank}.
+diff --git a/docs/en/docs/advanced/strict-content-type.md b/docs/en/docs/advanced/strict-content-type.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..61b885c9476f699c23926da2254e7a8cfb93ba54
+--- /dev/null
++++ b/docs/en/docs/advanced/strict-content-type.md
+@@ -0,0 +1,37 @@
++# Strict Content-Type { #strict-content-type }
++
++By default, **FastAPI** is strict about the `Content-Type` header of incoming requests that carry a body.
++
++If a request includes a body but does not include a `Content-Type` header, **FastAPI** will **not** parse the body as JSON, and the request will be rejected with a `422 Unprocessable Entity` response.
++
++## Why Strict Content-Type? { #why-strict-content-type }
++
++This prevents potential cross-site request forgery (CSRF) attacks that exploit the browser's ability to send requests without a `Content-Type` header, bypassing CORS preflight checks. This is particularly relevant for apps that need to be run locally (in localhost).
++
++## Disable Strict Content-Type { #disable-strict-content-type }
++
++You can disable this behavior by setting the `strict_content_type` parameter to `False` on the `FastAPI` application:
++
++```python
++from fastapi import FastAPI
++
++app = FastAPI(strict_content_type=False)
++```
++
++With this setting, requests without a `Content-Type` header will have their body parsed as JSON, which maintains compatibility with certain clients that don't send `Content-Type` headers.
++
++You can also set it on an `APIRouter`:
++
++```python
++from fastapi import APIRouter
++
++router = APIRouter(strict_content_type=False)
++```
++
++## Inheritance { #inheritance }
++
++The setting participates in the existing inheritance chain: a value explicitly set on a router overrides whatever the parent application specifies, while routers that leave the parameter at its default pick up the parent's value. Nested router configurations follow the same resolution order.
++
++## Explicit Content-Type { #explicit-content-type }
++
++Requests that include an explicit `Content-Type: application/json` header are unaffected by this setting and continue to be parsed as JSON as before.

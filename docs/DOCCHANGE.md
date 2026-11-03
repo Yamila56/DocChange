@@ -24,7 +24,7 @@
 }
 ```
 
-当前限制：50篇、单篇60KB、合计500KB；Markdown纯文本。角色隔离在工具层执行。首版不执行文档中的任意代码。
+当前限制：50篇、单篇60KB、合计500KB；可编辑 MD、MDX、RST、TXT 文本。角色隔离在工具层执行，不执行文档中的任意代码。大仓库按需读取与候选 Git patch 导出使用[独立入口](PUBLIC_BENCHMARK_RUNBOOK.md#5-普通仓库使用)。
 
 免费模式是显式替换控制器，不理解任意自然语言。填写演示原文/新文，它会查来源、扫描全部匹配、读取目标、生成提案。查询返回检索原文，不冒充LLM答案。
 
@@ -49,6 +49,8 @@ React → FastAPI → MySQL/SQLite + Outbox → Redis Streams → Worker
 `run_docchange` 是免基础设施的本地入口，使用同一个 RunStore/DocumentRuntime，通过持久数据库轮询领取任务，未使用 Redis。现有 `shopresolve.cli worker/dispatcher` 已按 domain 路由文档任务，可使用原 MySQL/Redis 配置；首次需运行 `alembic upgrade head` 增加文档表。两种运行方式分别标明，不把本地轮询演示称为 Redis 实测。
 
 工作区按 owner 隔离。每个任务绑定不可变 revision。快照保存正文与分段索引，校验 source_hash；新候选完整构建后在短事务中发布。当前索引为小型工作区同步构建的 BM25，不是异步索引服务；没有接入 Dense/Rerank。精确扫描枚举全部标识符，top-k检索不承担全量替换。
+
+异步任务已经实现：提交返回HTTP202与run_id，后台执行而不占住原请求；模型、SQL、Redis为异步I/O，Redis Worker独立心跳。文档检索在读取快照并关闭数据库会话后经线程计算，保持事件循环可服务。一进程Worker顺序消费，可多进程部署；本地轮询模式与Redis模式分别说明，未作吞吐量或高并发提升声明。
 
 模型动作：search、scan、read/read_many、propose、answer、ask。只读批次最多12文档；相邻JSON只读对象可规范化为一个read_many，混合写动作不会被抢救执行。工具响应先记录，检查点恢复可复用决策。
 

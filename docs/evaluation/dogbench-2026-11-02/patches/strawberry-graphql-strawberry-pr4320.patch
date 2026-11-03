@@ -1,0 +1,41 @@
+diff --git a/docs/guides/convert-to-dictionary.md b/docs/guides/convert-to-dictionary.md
+index 876fad5466187de4542fb2999709c514dbd8e725..d68afb61f0d02aa694006c7776e2f70b4631430d 100644
+--- a/docs/guides/convert-to-dictionary.md
++++ b/docs/guides/convert-to-dictionary.md
+@@ -19,3 +19,36 @@ class User:
+ # should be {"name": "Lorem", "age": 25}
+ user_dict = strawberry.asdict(User(name="Lorem", age=25))
+ ```
++
++## Handling `UNSET` and `Maybe`
++
++`strawberry.asdict` differs from `dataclasses.asdict` in a few ways to better
++match Strawberry's semantics:
++
++- Fields whose value is `UNSET` are omitted from the returned dictionary
++  entirely.
++- Fields explicitly set to `None` are preserved.
++- `Some(value)` containers are unwrapped, returning their `value` only.
++- For fields annotated with `Maybe`, a value of `None` is converted back to
++  `UNSET` (and therefore omitted).
++
++These rules apply recursively to nested dataclasses, lists, and dictionaries.
++
++```python
++import strawberry
++from strawberry import UNSET, Maybe, Some
++
++
++@strawberry.input
++class Filter:
++    name: Maybe[str] = UNSET
++    age: Maybe[int] = Some(30)
++
++
++# should be {"age": 30}
++filter_dict = strawberry.asdict(Filter())
++```
++
++Because the transformation uses a shallow copy rather than re-instantiating the
++dataclass, `__init__`/`__post_init__` are not called and `init=False` fields are
++supported. Frozen dataclasses are also supported.

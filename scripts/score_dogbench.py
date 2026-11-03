@@ -32,7 +32,7 @@ def atomic(path, value):
 
 
 def readonly_judge(prompt, schema, output, log, model):
-    binary = shutil.which("codex")
+    binary = os.environ.get("DOCCHANGE_CODEX_BINARY") or shutil.which("codex")
     if not binary and os.name == "nt":
         candidates = sorted(
             (Path(os.environ["LOCALAPPDATA"]) / "OpenAI/Codex/bin").glob("*/codex.exe")
@@ -50,7 +50,52 @@ def readonly_judge(prompt, schema, output, log, model):
             for s in ("API_KEY", "GH_TOKEN", "GITHUB_TOKEN", "SHOPRESOLVE", "OPENAI_BASE_URL")
         )
     }
-    with tempfile.TemporaryDirectory(prefix="docchange-judge-") as clean:
+    if os.environ.get("DOCCHANGE_CODEX_HOME"):
+        environment["CODEX_HOME"] = os.environ["DOCCHANGE_CODEX_HOME"]
+    bridge = os.name != "nt" and str(binary).lower().endswith(".exe")
+    if bridge:
+        for name in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "NO_PROXY"):
+            if environment.get("DOCCHANGE_NATIVE_" + name):
+                environment[name] = environment["DOCCHANGE_NATIVE_" + name]
+        environment.pop("WSLENV", None)
+        environment.pop("HOME", None)
+        profile = str(Path(environment["CODEX_HOME"]).parent).replace("/", "\\")
+        # Linux Path does not parse a Windows drive; use the native separator.
+        profile = environment["CODEX_HOME"].rsplit("\\", 1)[0]
+        environment.update(
+            USERPROFILE=profile,
+            SYSTEMROOT="C:\\Windows",
+            LOCALAPPDATA=profile + "\\AppData\\Local",
+            APPDATA=profile + "\\AppData\\Roaming",
+            TEMP=profile + "\\AppData\\Local\\Temp",
+            TMP=profile + "\\AppData\\Local\\Temp",
+        )
+
+    def native(path):
+        if bridge:
+            return subprocess.check_output(
+                ["wslpath", "-w", str(Path(path).resolve())], text=True
+            ).strip()
+        return str(Path(path).resolve())
+
+    if bridge:
+        command = [
+            str(ROOT / ".venv/Scripts/python.exe"),
+            native(ROOT / "scripts/judge_windows_bridge.py"),
+            native(prompt),
+            native(schema),
+            native(output),
+            native(log),
+            model,
+        ]
+        result = subprocess.run(command, env=environment, capture_output=True, timeout=330)
+        if result.returncode:
+            raise RuntimeError(
+                "Native model bridge failed: " + result.stderr.decode(errors="replace")[-1000:]
+            )
+        return
+
+    with tempfile.TemporaryDirectory(prefix="docchange-judge-", dir=ROOT / ".cache") as clean:
         command = [
             binary,
             "exec",
@@ -61,7 +106,7 @@ def readonly_judge(prompt, schema, output, log, model):
             "--sandbox",
             "read-only",
             "--cd",
-            clean,
+            native(clean),
             "--model",
             model,
             "-c",
@@ -69,9 +114,9 @@ def readonly_judge(prompt, schema, output, log, model):
             "-c",
             'web_search="disabled"',
             "--output-schema",
-            str(schema.resolve()),
+            native(schema),
             "--output-last-message",
-            str(output.resolve()),
+            native(output),
             "--json",
         ]
         for feature in (

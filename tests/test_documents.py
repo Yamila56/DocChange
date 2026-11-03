@@ -1,3 +1,5 @@
+import asyncio
+import threading
 from uuid import uuid4
 
 import httpx
@@ -5,6 +7,7 @@ import pytest
 
 from shopresolve.api import create_app
 from shopresolve.config import Settings
+from shopresolve.documents import service as document_service
 from shopresolve.documents.runtime import DocumentDemoGateway, DocumentRuntime
 from shopresolve.documents.service import DocumentService
 from shopresolve.errors import DomainError
@@ -16,6 +19,37 @@ DOCS = {
     "release.md": {"role": "source", "content": "# V2\nuser_id is now account_id.\n"},
     "v1.md": {"role": "archive", "content": "# History\nuser_id was required.\n"},
 }
+
+
+@pytest.mark.asyncio
+async def test_slow_retrieval_leaves_event_loop_and_database_available(commerce, monkeypatch):
+    _, sessions, _ = commerce
+    service = DocumentService(sessions)
+    workspace = await service.create("alice", "async-search", DOCS, "async-search")
+    loop = asyncio.get_running_loop()
+    loop_thread = threading.get_ident()
+    entered, release = asyncio.Event(), threading.Event()
+    original = document_service.search_chunks
+
+    def blocked_search(*args):
+        assert threading.get_ident() != loop_thread
+        loop.call_soon_threadsafe(entered.set)
+        if not release.wait(5):
+            raise TimeoutError("Test did not release retrieval")
+        return original(*args)
+
+    monkeypatch.setattr(document_service, "search_chunks", blocked_search)
+    search = asyncio.create_task(service.search("alice", workspace["id"], 1, "user_id"))
+    try:
+        await asyncio.wait_for(entered.wait(), 5)
+        assert not search.done()
+        snapshot = await asyncio.wait_for(service.get("alice", workspace["id"]), 5)
+        assert snapshot["revision"] == 1
+    finally:
+        release.set()
+        hits = await search
+    assert hits and all(h["version"] == f"{workspace['id']}@1" for h in hits)
+    assert any(h["path"] == "api.md" for h in hits)
 
 
 async def submit(

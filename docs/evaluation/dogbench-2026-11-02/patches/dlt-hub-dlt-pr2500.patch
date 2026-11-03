@@ -1,0 +1,111 @@
+diff --git a/docs/website/docs/dlt-ecosystem/transformations/index.md b/docs/website/docs/dlt-ecosystem/transformations/index.md
+index 6c51e8cd8d8abbcdd4ff003ef73e38514792bcf4..1231c134810fa9c76e62ee3de19c8ee08b9bbf37 100644
+--- a/docs/website/docs/dlt-ecosystem/transformations/index.md
++++ b/docs/website/docs/dlt-ecosystem/transformations/index.md
+@@ -15,6 +15,7 @@ If you'd like to transform your data after a pipeline load, you have 3 options a
+ 
+ If you need to preprocess some of your data before it is loaded, you can learn about strategies to:
+ 
++* [Transform data with `add_map`.](../../general-usage/customising-pipelines/transforming_data)
+ * [Rename columns.](../../general-usage/customising-pipelines/renaming_columns)
+ * [Pseudonymize columns.](../../general-usage/customising-pipelines/pseudonymizing_columns)
+ * [Remove columns.](../../general-usage/customising-pipelines/removing_columns)
+diff --git a/docs/website/docs/general-usage/customising-pipelines/transforming_data.md b/docs/website/docs/general-usage/customising-pipelines/transforming_data.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..09be8b0a54ffc9a1deb727b03ef413d4e87e58cd
+--- /dev/null
++++ b/docs/website/docs/general-usage/customising-pipelines/transforming_data.md
+@@ -0,0 +1,93 @@
++---
++title: Transforming data with add_map
++description: Transforming data before loading using the add_map capability
++keywords: [transforming, add_map, map, customising, pipelines]
++---
++
++# Transforming data with `add_map`
++
++`add_map` lets you apply a function to each item (row) of a resource before it is loaded. It is a flexible way to transform, enrich, or clean your data as it flows through the pipeline. The function you pass receives a single item and must return the transformed item.
++
++## Basic usage
++
++In the example below, we create a dummy source and use `add_map` to add a computed column to each row.
++
++```py
++import dlt
++
++@dlt.source
++def dummy_source():
++    @dlt.resource(write_disposition="replace")
++    def dummy_data():
++        for i in range(3):
++            yield {"id": i, "name": f"Jane Washington {i}"}
++
++    return dummy_data()
++
++def add_greeting(doc):
++    doc["greeting"] = f"Hello, {doc['name']}!"
++    return doc
++
++# 1. Create an instance of the source so you can edit it.
++source_instance = dummy_source()
++
++# 2. Modify this source instance's resource
++source_instance.dummy_data.add_map(add_greeting)
++
++# 3. Inspect your result
++for row in source_instance:
++    print(row)
++# {'id': 0, 'name': 'Jane Washington 0', 'greeting': 'Hello, Jane Washington 0!'}
++# ...
++```
++
++## Applying `add_map` to a resource directly
++
++You can also call `add_map` directly on a resource, which is useful when you want to transform data without creating a source instance first:
++
++```py
++for row in dummy_source().dummy_data.add_map(add_greeting):
++    print(row)
++```
++
++## Using a lambda
++
++For simple transformations, you can pass a lambda function:
++
++```py
++source_instance.dummy_data.add_map(lambda doc: {**doc, "id": doc["id"] * 10})
++```
++
++## Chaining multiple maps
++
++`add_map` returns the resource, so you can chain multiple transformations together. They are applied in the order they are added:
++
++```py
++source_instance.dummy_data.add_map(add_greeting).add_map(
++    lambda doc: {**doc, "name": doc["name"].upper()}
++)
++```
++
++## Running the pipeline
++
++Once you have modified the resource, run the pipeline as usual:
++
++```py
++pipeline = dlt.pipeline(
++    pipeline_name="example",
++    destination="bigquery",
++    dataset_name="transformed_data",
++)
++load_info = pipeline.run(source_instance)
++print(load_info)
++```
++
++:::tip
++`add_map` is applied to each item individually. If you need to filter items, use `add_filter`; if you need to transform the whole batch at once, use `add_yield_map`.
++:::
++
++## Related
++
++* [Renaming columns.](./renaming_columns)
++* [Pseudonymizing columns.](./pseudonymizing_columns)
++* [Removing columns.](./removing_columns)

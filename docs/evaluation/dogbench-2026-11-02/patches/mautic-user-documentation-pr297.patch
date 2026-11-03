@@ -1,0 +1,35 @@
+diff --git a/docs/getting_started/how_to_install_mautic.rst b/docs/getting_started/how_to_install_mautic.rst
+index 6fbaa1e517c06a001aab1e6dfcf71e1e6dd0ad17..993ee8670179c3009de5f201e6e23cd8c0772735 100644
+--- a/docs/getting_started/how_to_install_mautic.rst
++++ b/docs/getting_started/how_to_install_mautic.rst
+@@ -317,6 +317,10 @@ Using the Recommended Project
+ 
+ The Mautic :xref:`Recommended Project` is a template which provides a starter kit for managing your Mautic dependencies with Composer.
+ 
++.. note::
++
++  By default, the Recommended Project installs Mautic into a ``docroot`` subdirectory of your project. Your web server's document root - or the directory you point your virtual host at - must therefore be set to ``docroot``, not the project root. If you serve the project root directly, Mautic won't be reachable at the expected URL. See :ref:`How can you use another folder than docroot as the root folder?` if you need a different layout.
++
+ .. note::
+   The instructions below refer to the global Composer installation. You might need to replace Composer with ``php composer.phar`` or something similar for your setup.
+ 
+@@ -344,7 +348,7 @@ What does the Recommended Project template actually do?
+ 
+ When installing the given ``composer.json`` the following occurs:
+ 
+-- Install Mautic in the ``docroot`` directory.
++- Install Mautic in the ``docroot`` directory. This is the directory that must be configured as your web server's document root.
+ - Autoloader uses the generated Composer autoloader in ``vendor/autoload.php``, instead of the one provided by Mautic in ``docroot/vendor/autoload.php``.
+ - Plugins - packages of type ``mautic-plugin`` - are in ``docroot/plugins/``.
+ - Themes - packages of type ``mautic-theme`` - are in ``docroot/themes/``.
+@@ -432,8 +436,8 @@ To prevent this you can add this code to specify the PHP version you want to use
+ How can you use another folder than ``docroot`` as the root folder?
+ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+-By default the ``composer.json`` file places all Mautic core, Plugin and Theme files in the ``docroot`` folder.
+-It's possible to change this folder to your own needs.
++By default the ``composer.json`` file places all Mautic core, Plugin and Theme files in the ``docroot`` folder, and this folder is expected to be your web server's document root.
++It's possible to change this folder to your own needs - for example if your hosting environment requires a different public directory name.
+ 
+ In following examples, ``docroot`` moves into ``public``.
+ 

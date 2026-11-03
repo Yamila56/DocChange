@@ -1,0 +1,155 @@
+diff --git a/website/docs/docs/overview.md b/website/docs/docs/overview.md
+index 00059ccbd80e4c3690f75575800cceec257af5bc..c4622e6e88d845990086b0151bbca28692119e4a 100644
+--- a/website/docs/docs/overview.md
++++ b/website/docs/docs/overview.md
+@@ -18,6 +18,81 @@ grouped resources with minimal configuration.
+ 
+ ## Example: Complete ResourceGraphDefinition
+ 
++A **ResourceGraphDefinition (RGD)** is a single YAML document that declares a
++custom API and the resources it manages. The example below defines an
++`ApplicationStack` API that creates a `Deployment`, a `Service`, and an
++`Ingress`, wiring values between them with CEL expressions:
++
++```yaml
++apiVersion: kro.run/v1alpha1
++kind: ResourceGraphDefinition
++metadata:
++  name: application-stack
++spec:
++  schema:
++    apiVersion: v1alpha1
++    kind: ApplicationStack
++    spec:
++      name: string
++      image: string
++      replicas: integer
++      expose: boolean
++  resources:
++    - id: deployment
++      template:
++        apiVersion: apps/v1
++        kind: Deployment
++        metadata:
++          name: ${schema.spec.name}
++        spec:
++          replicas: ${schema.spec.replicas}
++          selector:
++            matchLabels:
++              app: ${schema.spec.name}
++          template:
++            metadata:
++              labels:
++                app: ${schema.spec.name}
++            spec:
++              containers:
++                - name: app
++                  image: ${schema.spec.image}
++    - id: service
++      template:
++        apiVersion: v1
++        kind: Service
++        metadata:
++          name: ${schema.spec.name}
++        spec:
++          selector:
++            app: ${schema.spec.name}
++          ports:
++            - port: 80
++              targetPort: 8080
++    - id: ingress
++      includeWhen:
++        - ${schema.spec.expose}
++      template:
++        apiVersion: networking.k8s.io/v1
++        kind: Ingress
++        metadata:
++          name: ${schema.spec.name}
++        spec:
++          rules:
++            - http:
++                paths:
++                  - path: /
++                    pathType: Prefix
++                    backend:
++                      service:
++                        name: ${service.metadata.name}
++                        port:
++                          number: 80
++```
++
++Applying this RGD registers the `ApplicationStack` kind in the cluster. End
++users then create instances of it, and kro creates and reconciles the
++underlying resources in dependency order.
+ 
+ # How does kro work?
+ 
+@@ -35,6 +110,20 @@ creates resources such as the **Deployment**, **Ingress**, **ServiceAccount**,
+ This allows Developers to manage and deploy their applications in a
+ standardized way.
+ 
++```mermaid
++flowchart LR
++    Dev([Developer]) -->|kubectl apply| API[Custom API<br/>ApplicationStack]
++    API --> D[Deployment]
++    API --> S[Service]
++    API --> I[Ingress]
++    API --> SA[ServiceAccount]
++    API --> PM[Prometheus Monitor]
++    API --> IR[IAM Role]
++    API --> IP[IAM Policy]
++    API --> S3[Amazon S3 Bucket]
++```
++_Figure 1: End user interface - Custom API_
++
+ <div align="center">
+ 
+ ![End user interface - Custom API](/img/architecture/KRO-Dev-Interface.png)
+@@ -57,6 +146,27 @@ and available for the Developer to interact with. The Developers no longer need
+ directly manage the underlying infrastructure complexities, as the custom API
+ handles the deployment and configuration of the required resources.
+ 
++```mermaid
++flowchart TB
++    subgraph Platform["Platform / Security / Compliance Teams"]
++        RGD[ResourceGraphDefinition<br/>Application Stack]
++    end
++    RGD -->|registers| CRD[Custom API<br/>kind: ApplicationStack]
++    CRD -->|available to| Dev([Developer])
++    subgraph Managed["Resources managed by the RGD"]
++        D[Deployment]
++        S[Service]
++        I[Ingress]
++        SA[ServiceAccount]
++        PM[Prometheus Monitor]
++        IR[IAM Role]
++        IP[IAM Policy]
++        S3[Amazon S3 Bucket]
++    end
++    RGD --> Managed
++```
++_Figure 2: ResourceGraphDefinition (RGD) - Platform Team Interface_
++
+ <div align="center">
+ 
+ ![Platform Team Interface](/img/architecture/KRO-Platform-Team.png)
+@@ -75,6 +185,19 @@ keep their service internal to the cluster. This flexibility allows each
+ development team to customize their application stack based on their specific
+ requirements.
+ 
++```mermaid
++flowchart TB
++    CRD[Custom API<br/>kind: ApplicationStack]
++    CRD --> A["Dev Team A instance<br/>expose: true"]
++    CRD --> B["Dev Team B instance<br/>expose: false"]
++    A --> AD[Deployment]
++    A --> AS[Service]
++    A --> AI[Ingress]
++    B --> BD[Deployment]
++    B --> BS[Service]
++```
++_Figure 3: ResourceGraphDefinition Instance_
++
+ <div align="center">
+ 
+ ![ResourceGraphDefinition Instance](/img/architecture/KRO-Instance.png)

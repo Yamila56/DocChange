@@ -1,0 +1,76 @@
+diff --git a/website/content/docs/install.mdx b/website/content/docs/install.mdx
+index 840d084b3de3b9f6cd04d483626bf8d0f445bf29..a7749c3405b68e8c2107968de4cfd1807d3cbcea 100644
+--- a/website/content/docs/install.mdx
++++ b/website/content/docs/install.mdx
+@@ -247,19 +247,59 @@ Primary key fingerprint: 66D1 5FDD 8728 7219 C8E1  5478 D200 CD70 2853 E6D0
+ 
+ ### Cosign and Rekor
+ 
+-To verify Cosign signed artifacts, use `rekor-cli` or `curl` to [pull the entry from Rekor](https://edu.chainguard.dev/open-source/sigstore/rekor/how-to-verify-file-signatures-with-rekor-or-curl/).
++OpenBao release artifacts are signed with [Cosign](https://docs.sigstore.dev/cosign/overview/)
++and the signatures are recorded in the public [Rekor](https://docs.sigstore.dev/logging/overview/)
++transparency log. The recommended way to verify them is with the `cosign verify-blob`
++command, which checks the signature against the certificate embedded in the
++signature bundle and confirms that the signing event is present in the
++transparency log.
+ 
+-For example, to verify `checksums.txt` with the `checksums.txt.sig` stored locally:
++First, download the release artifact, its signature, and its certificate:
+ 
+ ```shell-session
+-$ SHASUM="$(openssl sha256 -r checksums.txt | awk '{print $1}')"
+-bc53476e7e69c98650bf69690caf1aa32dc08c19735375819ae3b29bb9c2b733
+-$ curl -X POST -H "Content-type: application/json" 'https://rekor.sigstore.dev/api/v1/index/retrieve' --data-raw "{\"hash\":\"sha256:$SHASUM\"}"
+-24296fb24b8ad77aedcc1a0cea8b33a04926d6f3b8db35107a1e864c007bb4aa84416a5153cc0bca
+-$ UUID=24296fb24b8ad77aedcc1a0cea8b33a04926d6f3b8db35107a1e864c007bb4aa84416a5153cc0bca
+-$ curl -X GET "https://rekor.sigstore.dev/api/v1/log/entries/${UUID}" > response.json
+-$ jq -r ".[\"$UUID\"].body" < response.json | base64 -d | jq -r '.spec.signature.publicKey.content' | base64 -d > certificate.pem
+-$ base64 -d < checksums-freebsd.txt.sig > checksums-freebsd.txt.rawsig
+-$ openssl pkeyutl -verify -certin -inkey certificate.pem -sigfile checksums-freebsd.txt.rawsig -in checksums-freebsd.txt -rawin
+-Signature Verified Successfully
++$ OS="freebsd"
++$ ARCH="x86_64"
++$ PLATFORM="$OS_$ARCH"
++$ VERSION=$(curl -s https://api.github.com/repos/openbao/openbao/releases | jq -r '.[0] .tag_name' | cut -d'v' -f2-)
++$ RELEASE="bao_$VERSION_$PLATFORM.tar.gz"
++$ wget https://github.com/openbao/openbao/releases/download/v$VERSION/$RELEASE
++$ wget https://github.com/openbao/openbao/releases/download/v$VERSION/$RELEASE.sig
++$ wget https://github.com/openbao/openbao/releases/download/v$VERSION/$RELEASE.pem
++```
++
++Then verify the artifact with `cosign verify-blob`. The `--certificate-identity`
++and `--certificate-oidc-issuer` flags pin the verification to the OpenBao
++release workflow, and `--rekor-url` points at the public transparency log:
++
++```shell-session
++$ cosign verify-blob \
++    --certificate "$RELEASE.pem" \
++    --signature "$RELEASE.sig" \
++    --certificate-identity-regexp '^https://github.com/openbao/openbao/.github/workflows/release.*$' \
++    --certificate-oidc-issuer https://token.actions.githubusercontent.com \
++    --rekor-url https://rekor.sigstore.dev \
++    "$RELEASE"
++Verified OK
+ ```
++
++If you have a signature bundle (`.sigstore` or `.bundle` file) instead of
++separate signature and certificate files, pass it with `--bundle`:
++
++```shell-session
++$ cosign verify-blob \
++    --bundle "$RELEASE.sigstore" \
++    --certificate-identity-regexp '^https://github.com/openbao/openbao/.github/workflows/release.*$' \
++    --certificate-oidc-issuer https://token.actions.githubusercontent.com \
++    --rekor-url https://rekor.sigstore.dev \
++    "$RELEASE"
++Verified OK
++```
++
++:::note
++
++Older releases may only provide a detached `.sig` file without a certificate.
++For those, you can still inspect the entry in the Rekor transparency log using
++`rekor-cli` or `curl`, as described in the
++[Rekor documentation](https://docs.sigstore.dev/logging/overview/).
++
++:::

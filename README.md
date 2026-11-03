@@ -1,8 +1,29 @@
-# DocChange · V0.1
+# DocChange · V0.2
 
 版本化文档工作台：检索授权资料、生成有来源的修改、查看差异、人工审批，发布可回看的新版本。Python/FastAPI + React + 自写 Agent Runtime/Harness；保留旧 ShopResolve 电商域。
 
-首版定位：**本地可运行的开发版**。默认免费演示控制器；真实 DeepSeek 文档任务已做受控联调。部署到 GitHub 指托管源码，不等于已上线后端服务。
+定位：**面向技术文档变更审核的后端 Agent 项目**。针对接口、配置与示例更新，定位依据并生成待审核修改，保留历史版本与发布回执。默认演示控制器；真实模型路径由模型决定工具调用。
+
+V0.2 增加任务修改范围与后置条件、MDX/RST 新建删除、按需读取真实 Git 仓库和原生候选补丁导出。公开检索已覆盖 SciFact 全300题与 SCIDOCS 全1000题；文档维护采用 DoGBench 公开175题，原始失败与评分口径单独保留。
+
+当前报告：[公开评测与失败分析](docs/evaluation/docchange-public-2026-11-02.md) · [仓库适配设计](docs/design/18-DocChange仓库适配与公开评测.md) · [公开数据复现命令](docs/PUBLIC_BENCHMARK_RUNBOOK.md) · [简历表述](docs/RESUME-DOCCHANGE.md)。
+
+## 核心能力
+
+- **变更可审查：** 任务绑定文档快照和修改范围，生成精确补丁、证据与影响清单，经 hash 绑定审批后发布新版本。
+- **执行可恢复：** 自研单 Agent Harness 保存模型决策、工具回执和 checkpoint；结合幂等、Worker Lease/Fencing 约束重复执行与过期 Worker。
+- **长任务异步化：** API 提交返回 HTTP 202；Outbox → Redis Streams → Worker 执行，模型与数据库采用异步 I/O，Worker 独立心跳；本地入口提供持久数据库轮询模式。
+- **维护范围明确：** 工作台维护小型版本化文档集；Git 适配器按需读取大仓库并导出候选 patch，供人工审查。
+
+## 公开评测摘要
+
+| 评测对象 | 公开范围 | 主要结果 |
+|---|---|---|
+| BM25 检索组件 / SciFact | 完整 test 300 查询 | Recall@5 **72.68%**、Recall@10 **77.57%**，CPU 检索 P95 **19.42 ms** |
+| BM25 检索组件 / SCIDOCS | 完整 test 1,000 查询 | Recall@10 **15.43%**，显示语义关联检索的局限 |
+| 仓库文档维护 / DoGBench | 公开 dev 175 任务，API 工具适配 | 综合 **25.61/100**；73 份候选补丁全部通过可应用性检查，语义质量见完整报告 |
+
+三项独立计分，不合成项目总分。检索成绩不代表文档修改准确率；公开 dev 不是未见测试集。当前优势是受控变更流程与可追溯执行，开放仓库自主维护仍需人工复核。
 
 ## 快速启动
 
@@ -37,9 +58,17 @@ pnpm --dir frontend build
 - 复用checkpoint、租约/fencing、工具结果日志、事件与恢复。Redis Worker支持文档域；一键演示入口用SQLite持久轮询。
 - 导出修改记录与可选固定沙箱检查。
 
+### 异步执行与一致性
+
+提交任务只负责持久化 Run/Outbox，不在 HTTP 请求内等待模型完成。Dispatcher 将通知送入 Redis Streams，Worker 领取租约后执行工具循环，独立心跳维持租约；通知允许重复，执行资格和状态以 SQL 为准。单个 Worker 进程逐项处理任务，可通过多个进程消费；没有宣称单进程高并发吞吐或压测成绩。
+
+工作台 BM25/精确扫描在读取快照、关闭 SQL 会话后经 `asyncio.to_thread` 执行；仓库工具的文件/Git 操作同样离开事件循环。单任务中有依赖的读取、提案和发布按顺序执行。文档正文与索引仍随同一 Revision 原子发布，未拆成异步索引服务。前端当前轮询快照和事件；通用 SSE 接口可续传。
+
 验收：9个确定性工程fixture通过；真实模型首轮4题2题通过，发现协议问题后两个失败场景复测通过。不是独立benchmark的100%准确率。完整结果、失败和费用见[交付报告](docs/evaluation/docchange-delivery-2026-10-29.md)。
 
-本轮发布前本地全套：157 passed / 16 skipped（依赖服务用例等），不是MySQL/Redis/Docker全栈通过。私有仓库首版已上传；源码commit `4d6c36d` 的远程CI中 unit、frontend、mysql 三个job均通过，见 [GitHub Actions](https://github.com/Yamila56/DocChange/actions/runs/40873084174)。
+本轮修改后定向回归：**35 passed / 2 skipped**，包含文档发布、仓库补丁、模型协议、预算与队列测试；跳过的依赖环境用例不算实机通过。[本轮 JUnit](docs/evaluation/docchange-v02-final-2026-11-03.xml)。
+
+首版2026-10-29本地全套：157 passed / 16 skipped（依赖服务用例等），不是本轮全套成绩。首版源码commit `4d6c36d` 的远程CI中 unit、frontend、mysql 三个job均通过，见 [历史 GitHub Actions](https://github.com/Yamila56/DocChange/actions/runs/40873084174)；后续提交的验证以各自Actions为准。
 
 当前小文档索引同步构建后随版本发布，未接Dense/Rerank；首版单Agent。文档域MySQL/Redis实机联调、真实Docker文档检查与生产认证尚待补充，不以历史电商测试替代。
 

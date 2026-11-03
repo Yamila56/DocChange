@@ -1,0 +1,52 @@
+diff --git a/docs/source/build-with-bentoml/observability/metrics.rst b/docs/source/build-with-bentoml/observability/metrics.rst
+index 1142e46dc4e841f5d3800aeacf44cf0c286d33c2..d3040c00db737648d783e9d1a3660f7f96885206 100644
+--- a/docs/source/build-with-bentoml/observability/metrics.rst
++++ b/docs/source/build-with-bentoml/observability/metrics.rst
+@@ -84,9 +84,23 @@ To customize how metrics are collected and reported in BentoML, use the ``metric
+     class MyService:
+         # Service implementation
+ 
+-- ``enabled``: This option is enabled by default. When enabled, you can access the metrics through the ``metrics`` endpoint of a BentoML Service.
++- ``enabled``: This option is enabled by default. When enabled, you can access the metrics through the ``metrics`` endpoint of a BentoML Service. When disabled, the ``/metrics`` route is not registered at all.
+ - ``namespace``: Follows the `labeling convention <https://prometheus.io/docs/practices/naming/#metric-and-label-naming>`_ of Prometheus. The default namespace is ``bentoml_service``, which covers most use cases.
+ 
++Add custom metric lines
++^^^^^^^^^^^^^^^^^^^^^^^
++
++To inject additional metric lines into the ``/metrics`` response, define a ``__metrics__`` method on your Service class. It receives the raw Prometheus metrics text and must return a (possibly modified) string:
++
++.. code-block:: python
++
++    @bentoml.service
++    class MyService:
++        def __metrics__(self, metrics_text: str) -> str:
++            return metrics_text + '\nmy_custom_metric 1\n'
++
++This is useful for exposing metrics produced by your own code alongside the default BentoML metrics.
++
+ Customize the duration bucket size
+ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+diff --git a/docs/source/build-with-bentoml/services.rst b/docs/source/build-with-bentoml/services.rst
+index 822e136e79f97544d9f2bd6b4f6a6f7609c1e55b..da74acc4871973086bd7f6fd08e94d6e9bf7e368 100644
+--- a/docs/source/build-with-bentoml/services.rst
++++ b/docs/source/build-with-bentoml/services.rst
+@@ -306,7 +306,17 @@ Alternatively, compute the command at runtime:
+ 
+ Use this method when there are parameters whose values can only be determined at runtime.
+ 
+-When a custom command is provided, BentoML will launch a single process for that Service using your command. It will set the ``PORT`` environment variable (and ``BENTOML_HOST``/``BENTOML_PORT`` for the entry Service). Your process must listen on the provided ``PORT`` and serve HTTP endpoints. Server-level options like CORS/SSL/timeouts defined in BentoML won't apply automatically—configure them in your own server if needed.
++When a custom command is provided, BentoML launches a single process for that Service using your command. It sets the ``PORT`` environment variable (and ``BENTOML_HOST``/``BENTOML_PORT`` for the entry Service). Your process must listen on the provided ``PORT`` and serve HTTP endpoints.
++
++BentoML then runs an in-process reverse proxy in front of that process: incoming requests to the Service are forwarded to the HTTP server started by your command. Before accepting traffic, BentoML polls the health endpoint of your server, so make sure it responds to health checks once it is ready. The port your subprocess is expected to bind is controlled by the ``proxy_port`` configuration field (default ``8000``):
++
++.. code-block:: yaml
++
++    services:
++      http:
++        proxy_port: 8000
++
++Server-level options like CORS/SSL/timeouts defined in BentoML won't apply automatically—configure them in your own server if needed.
+ 
+ .. _bentoml-tasks:
+ 

@@ -1,0 +1,123 @@
+diff --git a/docs/source/accelerate/deepspeed.md b/docs/source/accelerate/deepspeed.md
+index 056bce4fde6ae491091ffaeecb7f5acbe6dfca61..f256b0db6909be293fb618029100d32f95f1479d 100644
+--- a/docs/source/accelerate/deepspeed.md
++++ b/docs/source/accelerate/deepspeed.md
+@@ -16,11 +16,11 @@ Below is a table that summarizes the compatibility between PEFT's LoRA, [`bitsan
+ |---|---|
+ | Zero-1 |  🟢 |
+ | Zero-2   |  🟢 |
+-| Zero-3  |  🔴 |
++| Zero-3  |  🟢 (with `bnb_4bit_quant_storage` set) |
+ 
+ For confirming these observations, we ran the SFT (Supervised Fine-tuning) [offical example scripts](https://github.com/huggingface/trl/tree/main/examples) of the [Transformers Reinforcement Learning (TRL) library](https://github.com/huggingface/trl) using QLoRA + PEFT and the accelerate configs available [here](https://github.com/huggingface/trl/tree/main/examples/accelerate_configs). We ran these experiments on a 2x NVIDIA T4 GPU.
+ 
+-Note DeepSpeed-Zero3 and `bitsandbytes` are currently **not** compatible.
++Note DeepSpeed-Zero3 and `bitsandbytes` are compatible when the 4-bit storage dtype is set to a half or full precision dtype (for example `bfloat16`) via `bnb_4bit_quant_storage`. See [QLoRA with DeepSpeed ZeRO-3](#qlora-with-deepspeed-zero-3) below.
+ 
+ # Use PEFT and DeepSpeed with ZeRO3 for finetuning large models on multiple machines and multiple nodes
+ 
+@@ -159,6 +159,30 @@ trainer.train(resume_from_checkpoint=checkpoint)
+ trainer.save_model()
+ ```
+ 
++## QLoRA with DeepSpeed ZeRO-3
++
++You can combine 4-bit quantization (QLoRA) with DeepSpeed ZeRO-3. With recent versions of `bitsandbytes`, the storage dtype of 4-bit parameters is no longer fixed to `uint8`, so you can use half or full precision storage (for example `bfloat16`) which is required for sharded distributed training. Pass `bnb_4bit_quant_storage` to `BitsAndBytesConfig` and load the model with a matching `torch_dtype`:
++
++```python
++from transformers import BitsAndBytesConfig
++
++quant_storage_dtype = torch.bfloat16
++bnb_config = BitsAndBytesConfig(
++    load_in_4bit=True,
++    bnb_4bit_quant_type="nf4",
++    bnb_4bit_compute_dtype=torch.bfloat16,
++    bnb_4bit_use_double_quant=True,
++    bnb_4bit_quant_storage=quant_storage_dtype,
++)
++model = AutoModelForCausalLM.from_pretrained(
++    model_name_or_path,
++    quantization_config=bnb_config,
++    torch_dtype=quant_storage_dtype,
++)
++```
++
++A ready-to-use example is available at [run_peft_qlora_deepspeed_stage3.sh](https://github.com/huggingface/peft/blob/main/examples/sft/run_peft_qlora_deepspeed_stage3.sh) with its config at [deepspeed_config_z3_qlora.yaml](https://github.com/huggingface/peft/blob/main/examples/sft/configs/deepspeed_config_z3_qlora.yaml).
++
+ ## Memory usage
+ 
+ In the above example, the memory consumed per GPU is 64 GB (80%) as seen in the screenshot below:
+diff --git a/docs/source/accelerate/fsdp.md b/docs/source/accelerate/fsdp.md
+index 659bffb7d271bb38e2501bceaf5c138abfe37dc5..8ae41a37b9c8d09c77d15a0a05bf20f321bfb874 100644
+--- a/docs/source/accelerate/fsdp.md
++++ b/docs/source/accelerate/fsdp.md
+@@ -128,14 +128,7 @@ trainer = SFTTrainer(
+     max_seq_length=data_args.max_seq_length,
+ )
+ trainer.accelerator.print(f"{trainer.model}")
+-if model_args.use_peft_lora:
+-    # handle PEFT+FSDP case
+-    trainer.model.print_trainable_parameters()
+-    if getattr(trainer.accelerator.state, "fsdp_plugin", None):
+-        from peft.utils.other import fsdp_auto_wrap_policy
+-
+-        fsdp_plugin = trainer.accelerator.state.fsdp_plugin
+-        fsdp_plugin.auto_wrap_policy = fsdp_auto_wrap_policy(trainer.model)
++trainer.model.print_trainable_parameters()
+ 
+ # train
+ checkpoint = None
+@@ -150,16 +143,32 @@ trainer.save_model()
+ ```
+ 
+ 
+-Here, one main thing to note currently when using FSDP with PEFT is that `use_orig_params` needs to be `False` to realize GPU memory savings. Due to `use_orig_params=False`, the auto wrap policy for FSDP needs to change so that trainable and non-trainable parameters are wrapped separately. This is done by the code snippt below which uses the util function `fsdp_auto_wrap_policy` from PEFT:
++Here, one main thing to note currently when using FSDP with PEFT is that `use_orig_params` needs to be `False` to realize GPU memory savings. Due to `use_orig_params=False`, the auto wrap policy for FSDP needs to change so that trainable and non-trainable parameters are wrapped separately. This is now handled internally by 🤗 Accelerate, so you no longer need to set `fsdp_plugin.auto_wrap_policy` manually after constructing the trainer.
+ 
+-```
+-if getattr(trainer.accelerator.state, "fsdp_plugin", None):
+-    from peft.utils.other import fsdp_auto_wrap_policy
++## QLoRA with FSDP
+ 
+-    fsdp_plugin = trainer.accelerator.state.fsdp_plugin
+-    fsdp_plugin.auto_wrap_policy = fsdp_auto_wrap_policy(trainer.model)
++You can also combine 4-bit quantization (QLoRA) with FSDP. With recent versions of `bitsandbytes`, the storage dtype of 4-bit parameters is no longer fixed to `uint8`, so you can use half or full precision storage (for example `bfloat16`) which is required for sharded distributed training. Pass `bnb_4bit_quant_storage` to `BitsAndBytesConfig` and load the model with a matching `torch_dtype`:
++
++```python
++from transformers import BitsAndBytesConfig
++
++quant_storage_dtype = torch.bfloat16
++bnb_config = BitsAndBytesConfig(
++    load_in_4bit=True,
++    bnb_4bit_quant_type="nf4",
++    bnb_4bit_compute_dtype=torch.bfloat16,
++    bnb_4bit_use_double_quant=True,
++    bnb_4bit_quant_storage=quant_storage_dtype,
++)
++model = AutoModelForCausalLM.from_pretrained(
++    model_name_or_path,
++    quantization_config=bnb_config,
++    torch_dtype=quant_storage_dtype,
++)
+ ```
+ 
++A ready-to-use example is available at [run_peft_qlora_fsdp.sh](https://github.com/huggingface/peft/blob/main/examples/sft/run_peft_qlora_fsdp.sh) with its config at [fsdp_config_qlora.yaml](https://github.com/huggingface/peft/blob/main/examples/sft/configs/fsdp_config_qlora.yaml).
++
+ ## Memory usage
+ 
+ In the above example, the memory consumed per GPU is  72-80 GB (90-98%) as seen in the screenshot below. The slight increase in GPU memory at the end is when saving the model using `FULL_STATE_DICT` state dict type instead of the `SHARDED_STATE_DICT` so that the model has adapter weights that can be loaded normally with `from_pretrained` method during inference:
+diff --git a/examples/sft/README.md b/examples/sft/README.md
+index 5f075712ede3422330ca2ab5f5a911c78594882f..59bef634f8e4e49649ff19ec28f6fec3f1cf430b 100644
+--- a/examples/sft/README.md
++++ b/examples/sft/README.md
+@@ -29,4 +29,10 @@ When you have access to multiple GPUs, it would be better to use normal LoRA wit
+ ## Multi-GPU SFT with LoRA and FSDP
+ When you have access to multiple GPUs, it would be better to use normal LoRA with DeepSpeed/FSDP. TO use LoRA with DeepSpeed, refer the docs at [PEFT with FSDP](https://huggingface.co/docs/peft/accelerate/fsdp).
+ 
++## Multi-GPU SFT with QLoRA and FSDP
++QLoRA can also be combined with FSDP. Set `bnb_4bit_quant_storage` to a half or full precision dtype (for example `bfloat16`) so the 4-bit weights can be sharded, and pass the matching `torch_dtype` when loading the model. The launch command is available at [run_peft_qlora_fsdp.sh](https://github.com/huggingface/peft/blob/main/examples/sft/run_peft_qlora_fsdp.sh) with its config at [fsdp_config_qlora.yaml](https://github.com/huggingface/peft/blob/main/examples/sft/configs/fsdp_config_qlora.yaml).
++
++## Multi-GPU SFT with QLoRA and DeepSpeed ZeRO-3
++QLoRA can also be combined with DeepSpeed ZeRO-3. Set `bnb_4bit_quant_storage` to a half or full precision dtype (for example `bfloat16`) so the 4-bit weights can be sharded, and pass the matching `torch_dtype` when loading the model. The launch command is available at [run_peft_qlora_deepspeed_stage3.sh](https://github.com/huggingface/peft/blob/main/examples/sft/run_peft_qlora_deepspeed_stage3.sh) with its config at [deepspeed_config_z3_qlora.yaml](https://github.com/huggingface/peft/blob/main/examples/sft/configs/deepspeed_config_z3_qlora.yaml).
++
+ 

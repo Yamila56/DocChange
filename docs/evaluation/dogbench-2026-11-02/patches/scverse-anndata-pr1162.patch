@@ -1,0 +1,68 @@
+diff --git a/docs/fileformat-prose.md b/docs/fileformat-prose.md
+index 340be1fdc2f311fbfbf1aaf25549dd5040a06bbf..0a5d2e4e570313526dc7e96481b0cfd76f94c070 100644
+--- a/docs/fileformat-prose.md
++++ b/docs/fileformat-prose.md
+@@ -13,6 +13,63 @@ This allows us to have very similar structures in disk and on memory.
+ As an example we’ll look into a typical `.h5ad` object that’s been through an analysis.
+ This structure should be largely equivalent to Zarr structure, though there are a few minor differences.
+ 
++## Zarr storage
++
++When an `AnnData` object is written to Zarr (e.g. via `write_zarr` or `AnnData.write_zarr`),
++the same element encodings described below are used, but the container is a Zarr store
++instead of an HDF5 file. A Zarr store is a directory (or a store backed by another
++hierarchical key-value system) whose keys form a tree, mirroring the groups and arrays
++of the HDF5 layout.
++
++Each group in the tree is represented by a directory containing a `.zgroup` file,
++and each array is a directory containing a `.zarray` file (describing shape, dtype and
++chunking) plus one or more chunk files. The `encoding-type` and `encoding-version`
++metadata described below are stored in the group's or array's `.zattrs` file.
++
++For example, an `AnnData` object written to Zarr has a tree structure like:
++
++```
++adata.zarr
++├── .zgroup
++├── .zattrs                 # {'encoding-type': 'anndata', 'encoding-version': '0.1.0'}
++├── X
++│   ├── .zgroup
++│   ├── .zattrs             # {'encoding-type': 'csr_matrix', 'encoding-version': '0.1.0', 'shape': [...]}
++│   ├── data
++│   ├── indices
++│   └── indptr
++├── obs
++│   ├── .zgroup
++│   ├── .zattrs             # {'encoding-type': 'dataframe', 'encoding-version': '0.2.0', ...}
++│   └── ...
++├── var
++│   └── ...
++├── layers
++│   └── ...
++├── obsm
++│   └── ...
++├── varm
++│   └── ...
++├── obsp
++│   └── ...
++├── varp
++│   └── ...
++└── uns
++    └── ...
++```
++
++You can inspect this tree with Zarr's `tree()` method:
++
++```python
++>>> import zarr
++>>> z = zarr.open("adata.zarr", "r")
++>>> z.tree()
++```
++
++The element specifications in the following sections apply equally to Zarr and HDF5,
++with the Zarr-specific notes called out where the two formats differ
++(e.g. for string scalars and string arrays).
++
+ ## Elements
+ 
+ 

@@ -1,0 +1,13 @@
+diff --git a/docs/contacts/tags.rst b/docs/contacts/tags.rst
+index 9ec22b6dd1ac728904071ba55a331c9dae8e1d9d..d6a613557665e411c4c74a3daed2fac510a5afb0 100644
+--- a/docs/contacts/tags.rst
++++ b/docs/contacts/tags.rst
+@@ -151,6 +151,8 @@ You can search for Contacts with specific Tags using the search bar:
+ 
+ Replace ``tagname`` with the actual name of the Tag. If the Tag name contains spaces, wrap it in quotes, for example, ``tag:"tag name"``.
+ 
++Tag search also matches the Tag's description, so a search term that appears only in a Tag's description returns the Contacts with that Tag.
++
+ Best practices
+ **************
+ 

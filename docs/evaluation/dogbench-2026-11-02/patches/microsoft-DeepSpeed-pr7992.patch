@@ -1,0 +1,38 @@
+diff --git a/docs/code-docs/source/training.rst b/docs/code-docs/source/training.rst
+index 1415e616c5d13f9c7a4f4083cdb61c212bf2a4d0..911cebf44fe903f59ae6bde43e95d80ab282cdfe 100644
+--- a/docs/code-docs/source/training.rst
++++ b/docs/code-docs/source/training.rst
+@@ -59,6 +59,33 @@ Gradient Accumulation
+ ---------------------
+ .. autofunction:: deepspeed.DeepSpeedEngine.is_gradient_accumulation_boundary
+ 
++Coalescing Gradient Reduction Across Multiple Backward Calls
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++.. autofunction:: deepspeed.DeepSpeedEngine.coalesce_grad_reduction
++
++When you issue multiple ``engine.backward()`` calls within a single optimizer
++step (for example, cached contrastive losses or custom autograd functions),
++ZeRO stages 1, 2, and 3 normally reduce gradients on every backward. Wrap the
++backwards in ``engine.coalesce_grad_reduction()`` to defer the reduction and
++issue a single reduction pass on context exit, before the next ``engine.step()``:
++
++.. code-block:: python
++
++    for batch in data_loader:
++        with model_engine.coalesce_grad_reduction():
++            for chunk in cached_chunks:
++                loss = model_engine(chunk)
++                model_engine.backward(loss)
++        model_engine.step()
++
++One ``with`` block corresponds to one optimizer step. The following are not
++supported and raise an error:
++
++* Calling ``engine.step()`` inside the block.
++* Nesting with ``engine.no_sync()``.
++* ZeRO stage 0, pipeline parallelism, and the BF16/FP16 optimizer wrappers
++  (``NotImplementedError``).
++
+ 
+ Mixed Precision Training
+ -------------------------

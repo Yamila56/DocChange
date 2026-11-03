@@ -1,5 +1,23 @@
 # ShopResolve 进度与续接记录
 
+2026-11-03（最新授权：有限修改、突出已有后端与评测，不再扩建）：保持自研单Agent/FastAPI/SQL/Redis/React架构，不启动新的完整模型批次。保留公开基线175题综合25.6094、SciFact300与SCIDOCS1000完整结果；不能把两个检索集都称为高分，不能删掉低分伪造总成绩。新增`docs/RESUME-DOCCHANGE.md`和`docs/RELEASE-v0.2.0.md`，更新README、使用说明、设计18和基线后的修正说明，以“受控文档变更工作台”定位，强调版本审核、恢复和异步任务。
+
+已有异步能力经代码核实：任务API返回202；SQL Outbox→Redis Streams→Worker、异步模型/SQL/Redis和独立Worker心跳已存在。一进程Worker逐项处理，可多进程消费；UI当前轮询，不冒充流式UI或吞吐实测。本轮仅将工作台BM25/精确扫描在数据库会话关闭后交给`asyncio.to_thread`，保留原排序、精确扫描语义与Revision发布，不新增异步索引服务。新增并发回归验证检索线程被控制阻塞时事件循环仍可完成数据库读取。
+
+本轮定向回归实际35 passed/2 skipped、30.26秒，JUnit `docs/evaluation/docchange-v02-final-2026-11-03.xml`；Ruff check/format通过。仓库批读、定位读取、阅读清单、草稿复核、零匹配无证据处理及预算preflight修复纳入本版；没有公开同集复测，因此没有新Agent提升数字。此前strong-v2试运行因零匹配缺失evidence_id停止，已修复且回归覆盖，不能当作完整175对照；Windows/WSL中未发现仍运行的evaluate_dogbench。Codex适配接口已联通但仅为实验入口，订阅费用未知，计划/summary已避免显示伪造0元预算。
+
+导出器改为按预测原文写UTF-8字节，`.gitattributes`让评测patch不被换行转换；待提交73份patch逐一与评分绑定hash核验。私有远端回读仍PRIVATE。本轮后续仅做工件完整性、提交/推送和远程CI，实际提交与CI结果另补，不把尚未完成写为成功。未充值、租卡、运行新训练或追加模型评测。
+
+2026-11-03（用户新授权继续改进，尚未交付）：旧 Flash 175题最终评分已完成并导出 `docs/evaluation/dogbench-2026-11-02/`（逐题CSV、73补丁、完整裁判、requests usage、metadata）。综合25.6094，Q16.3073，弃答recall59.6154，决策94/175，113终态（73patch40abstain）/62轮次失败；73/73原生patch可应用且未改工作树，63对应需改、57部分/全部有分、15无P0、一个rubric100仅拼写更正，不能宣传73或57个完全正确。检索SciFact300/SCIDOCS1000完整指标已在JSON、汇总CSV；人读基线报告 `docs/evaluation/docchange-public-2026-11-02.md` 已写。原始context95通过80被标记，兼容准入、17符号链接工具隔离及3旧仓库ID绑定均披露。1979 API请求+101未发API的预留，cache-aware峰值费用上界9.5917元（不是账单），接口2次另计。
+
+本地源码已有7682fb9，仍未push；GitHub应保持PRIVATE。用户随后明确允许继续修复，不能把基线收尾当已完成新目标。当前改动增加Repository read_many最多4文件、零匹配过滤（Retriever默认不变，所以BEIR旧成绩仍有效）、剩余轮次提示、一次草稿复核；RecordedGateway增加preflight，先做费用预检再占模型轮次，修复101次空占；EvaluationBudget可选cache_hit_rate默认None兼容旧账本。相关回归最新22 passed，16.36秒；全仓Ruff还剩2处长行（repository.py:60、run_benchmark_linux.py:15）。新版Flash诊断 `.cache/evals/dogbench-v2-20261103`、`.cache/evals/dogbench-v2-final-20261103` 均已因前段重复探索/效果差而主动停止，不能报成完整175对照；第一个诊断发现预算提示放在观察前会破坏缓存，已移到最后。已发生费用各自账本保留，不得覆盖或无限新开批次。
+
+正在接强模型的同Harness JSON模型适配（不切Agent框架）：`scripts/codex_repository_gateway.py`，通过已登录Windows Codex CLI的schema输出、禁工具/网络/只读，模型只返回决策，真正读写仍由RepositoryRuntime执行。`--subscription --model gpt-6.1-sol` 路由在evaluate_dogbench.py已加，但尚未证明联通，不得宣传GPT模型成绩/零费用（订阅额度单列）。WSL到Windows路径与环境桥接在scripts/score_dogbench.py、judge_windows_bridge.py、run_benchmark_linux.py；早期接口1–4因.EXE大小写导致未转Windows路径，5–6已进入CLI但models refresh超时，日志在ignored `.cache/codex-model-calls/*/events.jsonl`。当前接口6 session27759，原生Windows最小健康调用session18723（`.cache/native-model-health/`）；先查进程和结果，别重新调用完成项。接口调试目录与基线分开，不能算benchmark。尚需联通强模型并做有用的同公开任务验证，若可行再冻结完整175对照；完成新报告/简历/CI后再commit/push。不应再盲目扩大失败的Flash批次。
+
+2026-11-02（进行中，替代此前未评测状态）：用户要求完成 DocChange 五项仓库适配、完整公开评测、简历与私有 GitHub 推送；不继续 Search Agent 后训练。新增 Git 仓库只读参考/分页检索读取/MDX-RST/新建删除/候选原生 patch 适配，共享原 RunStore 与补丁 guard；新增关键回归 6 passed。真实 BEIR SciFact300、SCIDOCS1000 已完成，结果在 `docs/evaluation/public-ir-2026-11-02/`，不等于编辑成功率。DoGBench 上游 commit `35bc80734093ffc3d0801476b02ceb2ab0c80bd2`、官方 dev 数据175条已下载校验；Ubuntu `.venv-bench-linux` 环境已建，密钥仍只在本地 .env。准备器保留原始 overlap finding，对精确哈希绑定的官方公开输入提供显式兼容准入，故不是原样官方 Docker CLI 榜单协议。全量准备175已尝试，158准备成功，17因原始符号链接/仓库身份不一致被拦截，未删除数据或绕过这两项。第一批 `.cache/evals/dogbench-20261102` 已有143记录、52完成、91错误（网络/轮次/总预算）；1026请求保守估算14.943616元，15元上限阻止后续调用。网络中断后不得抹除或伪装175模型成功完成。正在独立 `.cache/evals/dogbench-recovery-20261102` 恢复未完成项，额外5元上限、跨批次每题合计仍限16请求，不重复完成的语义决策。官方 Terra 裁判使用已登录 Codex CLI，原始提示/证据校验/数值计分不变，改为 read-only、禁用插件/工具、最多2次评分尝试；不要调用上游默认 bypass-sandbox。首个真实补丁已评分（0分），不是评分器未运行。尚需等恢复与全量评分、产出诚实报告/简历、完成 lint/关键回归并 commit/push；当前代码未推送，不能说本轮完成。
+
+续跑路径：Linux准备数据在 `/home/duyumeng/.cache/docchange/dogbench-prepared`；Windows通过 `scripts/run_benchmark_linux.py -m scripts.continue_dogbench` 启动恢复。已评测生产源码在第一批 plan/source 中冻结，恢复脚本核验源哈希；运行中不要修改 documents 源码导致恢复配置漂移。Windows评分 `python -m scripts.score_dogbench --predictions 最终predictions.jsonl --output .cache/judge-dogbench`，逐条hash缓存避免重复裁判。大TREC运行文件在ignored `.cache/evals/public-ir`，不可提交。后台进程可能随网络/WSL关闭，应先查结果和账本，勿重新开始付费批次。
+
 2026-10-29 远程CI完成：首版源码4d6c36d对应Actions run 40873084174全部成功（unit、frontend、mysql）。同一源码tag触发的重复run 40873255403已取消，保留main分支成功记录；只改交付文档的后续commit使用[skip ci]，避免重复执行。未新增业务代码、模型调用或付费训练。
 
 2026-10-29 私有GitHub首版已上传：安装官方GitHub CLI 2.103.3（用户目录 `C:\Users\legion\AppData\Local\Programs\GitHubCLI\2.103.3\bin\gh.exe`，官方SHA256校验通过，已添加用户PATH），用户完成浏览器登录，身份回读为Yamila56。助手新建 `https://github.com/Yamila56/DocChange`，回读可见性PRIVATE，已推送main及v0.1.0（源码commit 4d6c36dc59b410e6ed369158a95f881a58e8ab6b），origin/main跟踪已设置。上传前可达历史236个blob扫描无密钥发现，父目录/.env/cache未上传。首版远程CI已触发，实际结果见Actions；不把触发当通过。此前“无法建仓/未push”状态已被本条取代。没有新增模型调用或租卡。

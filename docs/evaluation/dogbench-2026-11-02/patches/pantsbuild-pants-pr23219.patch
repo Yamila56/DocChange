@@ -1,0 +1,41 @@
+diff --git a/docs/docs/python/goals/test.mdx b/docs/docs/python/goals/test.mdx
+index 53dffaacc8e60447db4021904a72387bdd6d0cbb..0d57fe05c710e53b4dd206d7768b5d92701f0692 100644
+--- a/docs/docs/python/goals/test.mdx
++++ b/docs/docs/python/goals/test.mdx
+@@ -564,6 +564,36 @@ You can change the output dir with the `output_dir` option in the `[coverage-py]
+ 
+ You may want to set `[coverage-py].fail_under` to cause Pants to gracefully fail if coverage is too low, e.g. `fail_under = 70`.
+ 
++### Combining coverage from sharded test runs
++
++When you shard your test runs (for example, across multiple CI jobs), each shard produces its own coverage data. To apply a coverage threshold to the combined result, first collect the per-shard coverage output, then combine it before checking the threshold.
++
++Run each shard with coverage enabled and the `raw` report format so that the underlying coverage data files are preserved:
++
++```toml title="pants.toml"
++[coverage-py]
++report = ["raw"]
++```
++
++```bash
++# In each shard, run a subset of the tests with coverage.
++❯ pants test --use-coverage <shard-targets>
++```
++
++After all shards have finished, gather the raw coverage data files from each shard's output directory (see `[coverage-py].output_dir`) into a single location, then combine them with Coverage.py's `combine` command:
++
++```bash
++❯ python -m coverage combine path/to/shard1 path/to/shard2 ...
++```
++
++Finally, apply the threshold to the combined data with `coverage report --fail-under`:
++
++```bash
++❯ python -m coverage report --fail-under=70
++```
++
++This lets you enforce a single coverage threshold over the union of all shards, rather than per-shard thresholds that could each pass while the overall coverage is too low.
++
+ You may use a Coverage config file, e.g. `.coveragerc` or `pyproject.toml`. Pants will autodiscover the config file for you, and you can also set `[coverage-py].config` in your `pants.toml` to point to a non-standard location.
+ 
+ :::note You must include `relative_files = true` in the `[run]` section for Pants to work:

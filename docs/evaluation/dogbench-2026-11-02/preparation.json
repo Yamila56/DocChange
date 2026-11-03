@@ -1,0 +1,2563 @@
+[
+  {
+    "instance_id": "Azure-azure-service-operator-pr4003",
+    "logical_input_sha256": "38948aef783e99a07e47ee553e1d8564f36ffbffe2edd51b68ecf69eb9405f3c",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr4196",
+    "logical_input_sha256": "b2d1515c8a80ad6494c0e3a6e6e0f2fbfc4e48272788e00b228cc9242558e4a2",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "db9ebc0092369a474fdf1b02bc488a53bb31b520c0c0581af54913b7a817d49b"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr4202",
+    "logical_input_sha256": "ded79f31b69623797f23679f97f37308415f8cfad7ef773b9e360e3f87ba9201",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "heldout_gold_token_overlap",
+        "kind": "human_reference",
+        "marker": "15-token contiguous overlap"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr4394",
+    "logical_input_sha256": "2c97399c909c0e44616a7beb0604505f68902b2a099664687cc1723befbe72dd",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr5490",
+    "logical_input_sha256": "317ebd652d387ba6fc37a31ca5068aa5632763b4f44851bd4ee9bba0049383e4",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "9ccb213f39ff3f69a2f1e2d7ebe7c0061cc4567c5eb22676d88ff1f29a2b9a6c"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36075",
+    "logical_input_sha256": "e21c6100d1896bcb4ca31f747872d5d63cc62bdb431c887db1d3498f4ef9c0cd",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36328",
+    "logical_input_sha256": "6c32182fc3e32cde629bdebad4a35d45b1d3e1b021a8f6a8cc22816802239f5d",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "baf1eb1bc08c47d187c506e15ea5bdac2e14631a5f4b0cfa846b50a0ca9b85f5"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36618",
+    "logical_input_sha256": "1f664b60d54070da870172125536d30089d922415e2beeb58bdc4f835c1f2a71",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "3116cef5e832e19bff19bc98988852d3bc541de13d93ce170a6341cdd8bb32dd"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36803",
+    "logical_input_sha256": "36c135fcba617ec916f12829da2ec02455d203eb67b605723da2a668f80d19b0",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "d08eab44115c810442269935ce5a0a4e2e093c9dde93eba785daccfe327c63ad"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr37023",
+    "logical_input_sha256": "8d6adf621b89e08960bcf9c00ad20c1f1da20150b07feb1ed0484cbd293663a0",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "520dc98c3e9e11e5903ba380fc074ce63f06a3898cc3136202e9ff50ed4600d2"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog-pr63817",
+    "logical_input_sha256": "91141be16e3a1a1a418489710e5ae89e3f90c95eb47c4600177d11349ad3655f",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "32af4689514c6694815436d757c4ed2a2277ef210e14ec86d14d91b465d90307"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog-pr63871",
+    "logical_input_sha256": "d73bd3aec19633d71c7477f32ba1ea9fbeabd3f0686c4884171916b6baeb0a8e",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "6b95b3e5428a3a1b92fe88b552cc5911cbee919f78b7f76e2b45b88a11b62d93"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog-pr63886",
+    "logical_input_sha256": "97cd5bdd4add201f36d18da64b22a8e532a4d6907ad32a7c5fae83afbe9383de",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "44ba7f6b4ecd6124fb10f7e85a44e4afd8dca628066d40d32c22b22789e139ea"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16354",
+    "logical_input_sha256": "7a669e10b326b3e359d5c6b03b0c4670227e2c06c7a316e6abf0554b528d1537",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16714",
+    "logical_input_sha256": "008a5369aa239570029a6079d19d2df61be7105100b75c623c338cab2d4bf6be",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16752",
+    "logical_input_sha256": "2e18e9ce6eff3a422a9d9c14e136b39c26df6583b76ddb692df175fa5c2a18ae",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "cffe98d4f6ac5f1a2deef67de3d669d0a142e5f95f9f1e8dd3b7c20621b3c360"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16822",
+    "logical_input_sha256": "180e9e1eff0d18eec11ddf187a653b12f4c14925d9c9b51276f319eb8ca44d13",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16939",
+    "logical_input_sha256": "5688bc95f9fd39f01f84e0289b55b3d05fde9f4eea7729d5aa7377d6d2c21e22",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "04159dfadbf95fb729a84a9059cceec8a4746d225a61f475de0fe9408bd0a40e"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr17172",
+    "logical_input_sha256": "c635b8b0039deeca95772d15da39e474c7cbf99eb3de69766923bd80efd0aae9",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "9d3da02b46bb34d25098baf216be84f671909a091196ed566d298c7ec2c5a635"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr17231",
+    "logical_input_sha256": "839058b059ba3dfff84a2cd66deae0b0c40f09ec707f9226965854c4b33ca23a",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "3e01643cc9f051e121384895106234a01ce2cf5912447104c5985e42657f56f8"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-flink-pr27195",
+    "logical_input_sha256": "e8699f99778730812197f622d7b530094480c51e04c41929e2f2fd9a97bf9747",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "38ae0c4b672687cb1744478b6fd067fb51c154ed8010ad234ed182a9b329fe2f"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-flink-pr27325",
+    "logical_input_sha256": "4de968c7db3d63404f2d779cf735db8adcae70e6b7e4f0ee2ae8e365c3a05179",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "3e5af040615a662a980f30454a8a1cf057b33639fc2a46e09c7b2701fb065ef6"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-flink-pr27345",
+    "logical_input_sha256": "7e6ab520f85d5bfa7cf36da2ad89d3d03b21dff3019544fc5836dd4b7b58ab0e",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "f4b9e032ab40f9d9376874a3feee0f01c621c51f3a5d40ca9e45d5e628590d1b"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-flink-pr28212",
+    "logical_input_sha256": "d24426b7de8c8c0ec5d40e5a0691e791e6b287ec21b03566d97f1bfc0ed3db72",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "e6b0c4211036406fe3c2e9748137a41c2e3ce8e284534425ec26ea84036ff2d1"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-flink-pr28237",
+    "logical_input_sha256": "e75d4645d97bbf6aae6c643dabdfd92b57284baf60e0941c4807dcf4b6bd4a4d",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-iceberg-pr15566",
+    "logical_input_sha256": "a0b498bcab587eebd872ec86129c6e9e778e12e66baf8d0bcce3349bce357047",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "14a65979381b4d456064b5eebe521eab55697925ce3d0ff552e642e7175b69f4"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-iceberg-pr15634",
+    "logical_input_sha256": "d53f6cb7b79bbe0648ecdffa985187ba93eb80b68840da2d37c893cb98f34306",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "d408b04ec78d05314adc4b749447ce2c726cdddd95fb43fb35e1e507096da476"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-iceberg-pr15667",
+    "logical_input_sha256": "3a8e743d99861a5a748ba08440b796d7eafab444e3fa091727f29044f7f4e663",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-iceberg-pr15814",
+    "logical_input_sha256": "05909cfc467437e6e583ba182953ae7087a4b7e449e01824a622fc65c5f1264b",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "apache-iceberg-pr16241",
+    "logical_input_sha256": "6f3517da6c125c4a65297827a3b525f2d224c300281fc4e4f1c42b36177c561a",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "f4019a9c7b011ffcd18e5596e9a0255cbe1135f89f4a7fdcea711bd4d97af62e"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "astral-sh-ruff-pr21369",
+    "logical_input_sha256": "c9962812dadfe8fe0992595fc82fec44825163c703887c2b4cd5f5dc08afdd60",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "astral-sh-ruff-pr22119",
+    "logical_input_sha256": "ef16646918eede1e1edda034bf21a2a5e906f088f2da9e30f83a8fcd666a4a53",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "bentoml-bentoml-pr5465",
+    "logical_input_sha256": "08364e2e04b0e34150144fec64a5a53edf47c3e19b32874be6201d090058bb2a",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "bentoml-bentoml-pr5518",
+    "logical_input_sha256": "ae767ba188d008af8743f093387f7f2d261bd255a910d06d30ae442800f4d00b",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "celery-celery-pr10135",
+    "logical_input_sha256": "ad3af59a562cf42273cbe3fdee56941ef5e50977fff85fbdc6c541f90fa2ab56",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "celery-celery-pr10150",
+    "logical_input_sha256": "e67181c8aeca8a51261fc763c21d4d328c285f97d639708a798c639d98540ccd",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "celery-celery-pr10174",
+    "logical_input_sha256": "4339267c5850bb8707b3729a5654d512d57f8e8003c1b2d58929fe65f89c00d8",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "celery-celery-pr10206",
+    "logical_input_sha256": "31d5dcc6f887c0e31565375420e7c7b80549e1570e9f9b5a525b24feb6bd81de",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "celery-celery-pr10238",
+    "logical_input_sha256": "cfbc19b522b76e2832caf4fa3dae9843642ff18ed9c2228853dfea23e433d27f",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "celery-celery-pr9879",
+    "logical_input_sha256": "055df44a08b4596a92a101ab0dffdec39aff94bbd01e55b24fcc444d29621a02",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "dagworks-inc-hamilton-pr1445",
+    "logical_input_sha256": "dffed8428c7d13dcb24ed1cf0f486b58a877e3640bca9169d3a40550fdb87fc5",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/examples/ray/hello_world/business_logic.py",
+        "target": "../../hello_world/my_functions.py"
+      },
+      {
+        "path": "code/examples/dask/hello_world/business_logic.py",
+        "target": "../../hello_world/my_functions.py"
+      },
+      {
+        "path": "code/examples/spark/scraping_and_chunking",
+        "target": "/Users/stefankrawczyk/dagworks/hamilton/examples/LLM_Workflows/scraping_and_chunking/spark"
+      },
+      {
+        "path": "code/examples/spark/pandas_on_spark/business_logic.py",
+        "target": "../../hello_world/my_functions.py"
+      },
+      {
+        "path": "code/ui/backend/hamilton_ui",
+        "target": "server"
+      },
+      {
+        "path": "code/docs/concepts/ui.rst",
+        "target": "../hamilton-ui/ui.rst"
+      },
+      {
+        "path": "code/plugin_tests/h_narwhals/resources",
+        "target": "../../tests/resources"
+      },
+      {
+        "path": "code/plugin_tests/h_spark/resources",
+        "target": "../../tests/resources"
+      },
+      {
+        "path": "code/plugin_tests/h_dask/resources",
+        "target": "../../tests/resources"
+      },
+      {
+        "path": "code/plugin_tests/h_ray/resources",
+        "target": "../../tests/resources"
+      },
+      {
+        "path": "docs/examples/ray/hello_world/business_logic.py",
+        "target": "../../hello_world/my_functions.py"
+      },
+      {
+        "path": "docs/examples/dask/hello_world/business_logic.py",
+        "target": "../../hello_world/my_functions.py"
+      },
+      {
+        "path": "docs/examples/spark/scraping_and_chunking",
+        "target": "/Users/stefankrawczyk/dagworks/hamilton/examples/LLM_Workflows/scraping_and_chunking/spark"
+      },
+      {
+        "path": "docs/examples/spark/pandas_on_spark/business_logic.py",
+        "target": "../../hello_world/my_functions.py"
+      },
+      {
+        "path": "docs/ui/backend/hamilton_ui",
+        "target": "server"
+      },
+      {
+        "path": "docs/docs/concepts/ui.rst",
+        "target": "../hamilton-ui/ui.rst"
+      },
+      {
+        "path": "docs/plugin_tests/h_narwhals/resources",
+        "target": "../../tests/resources"
+      },
+      {
+        "path": "docs/plugin_tests/h_spark/resources",
+        "target": "../../tests/resources"
+      },
+      {
+        "path": "docs/plugin_tests/h_dask/resources",
+        "target": "../../tests/resources"
+      },
+      {
+        "path": "docs/plugin_tests/h_ray/resources",
+        "target": "../../tests/resources"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "dlt-hub-dlt-pr2500",
+    "logical_input_sha256": "40da5e181f0d65d41b241a7945612482a1be58ed11f301a613b0c05b2a7e44ec",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "dlt-hub-dlt-pr2836",
+    "logical_input_sha256": "3f57981fb8fd748176f6e3012474dcffa39a3209d552fb78575e51eeb81cf2ed",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "dlt-hub-dlt-pr2965",
+    "logical_input_sha256": "f2d23ac6ca888cd089207e56132a13be06729953144d739d48745d7937b24217",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "364e1eb7524988f21baff9e2dd4355acac49d8450305554880fc430398dc2e17"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-common-pr112",
+    "logical_input_sha256": "53ce7505c72785da13dd96a39c1dc55e76c00caa0435fe05220ea6c8d66fd64f",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "ba64004b7da60baf90157b766a706bb5d2472263cf900516c040134586689b4e"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-common-pr63",
+    "logical_input_sha256": "d98b0d3003747d716fc0824115b76eedb6edd821c5ac6b4042596d53d3d2c689",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "adc09284577393c23d4eb5ece037c7b0cb4bd7d7206b9daa436d3cff173264ec"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-common-pr65",
+    "logical_input_sha256": "ce43dcc74b9d75631035e7c63d5b12085b0cf0e7e0d284b28c1ae00af23590ac",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-common-pr78",
+    "logical_input_sha256": "b3b7d0d0d987e2256563cae25a800bb3522ae32d04f35d9b276ff574a23434fb",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "06bbdd42788199ab1c24c56195cc051cdf3fffa37395d6cf6354f88c6e0e8e6b"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr146",
+    "logical_input_sha256": "af2a462b12fb22f52a8f074ec80a258ab3932f107ed27d18fbff2f357e0ddd74",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "42cb5f36d45c5a55467639b45c647d07459b66c1f23ce6692743af14044db647"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr21",
+    "logical_input_sha256": "2f7d23054b2909cf8509111be8f769c0a97d33b9e4e5190ce58d990530af12cb",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "84ad2804a5f93260e679df0c82323eeb0352276a36ff71b64fd7c1c536f4491e"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr238",
+    "logical_input_sha256": "a958f5e230c215818757c482112e5dffb6fee7387fddd74427e00e2786bc8c88",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "8088add955d149145db29c571f188fda78f5e865064e8642f03a3c4962652d14"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr244",
+    "logical_input_sha256": "1c03d5e8bf3c29c3e4d4f7f5b626766304a90ae88b894aabe994d64b83ec5706",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr296",
+    "logical_input_sha256": "cbc2a185697fa6e25bfe3c9332b7991a45eff33bbc0906e55322b7f7cd7e1e75",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr352",
+    "logical_input_sha256": "1f5983a60e2e5c9cfdb3b0727a2809f017d30e1dbea3db8c448fe4fa551b6b7a",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "01c100f933406d9a51ba5f26d96405da5afef381371660213e4b49a7b498c00b"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr357",
+    "logical_input_sha256": "cccf72896e3ba8384cfb78dd1e80d368848a45a1426cd1dd40fd14d4f18c60d1",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "8f2e4a31a53f57750ac056cdce81942a16d98a1ee9bf6b6a2c06f1f9ae90adc0"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr45",
+    "logical_input_sha256": "cd52df5e1b9d642a9bf0e2fabac4934012b8eb8df9218fbe07cfcb6e93605ca0",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr66",
+    "logical_input_sha256": "2e2ff2e40190292688d0c7e447ebbed77bcb4899d50ae07824b1dade5e976de4",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "b60f2f36a52a81917631f9347e3a13c5af3715f25c5e1088ee56e2ba32be54ee"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "doc-detective-doc-detective.github.io-pr112",
+    "logical_input_sha256": "49176d6b568c095c1c6bdf1aa8dc6ca71a1fb9b8b73ac40d3567af6910b212a3",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "finos-rune-dsl-pr1246",
+    "logical_input_sha256": "7ac6d3042b1e064a368266a709ed1dc90d93bb7d4fd32952fda8f7d0bdda9060",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "finos-rune-dsl-pr1258",
+    "logical_input_sha256": "17553070f9173f1b9ccfbe7338b55ff5efe5410eb3ee96d7095872e3a950cba4",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "heldout_gold_token_overlap",
+        "kind": "human_reference",
+        "marker": "12-token contiguous overlap"
+      },
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "6d33a25b1adaed35ae51d20e9bc25f5718fb8575c02c5d5379df8e7a7c3eb759"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "finos-rune-dsl-pr473",
+    "logical_input_sha256": "9c52da033d63e60762e4b1d2b00db2c32e947749fc9f2fb8f1cef29eb3fc77d0",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "finos-rune-dsl-pr520",
+    "logical_input_sha256": "ffdcda5ac9c3e12d59080d2c1b7696b279fc5d9acdc89325235a0d70acd57751",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr13604",
+    "logical_input_sha256": "54799dc6d5f4b67c2f3bcd6b77de9e647f3d1684cd79fca455452d0df7cf7a90",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "65053730aa025d6d80811cfc55136580b590dc455842612c1608828be6870858"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr13655",
+    "logical_input_sha256": "d94c8247a0164388f6cbc8e181bb4ebe8666a4e079d5c93984a42afbcbaf97ae",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "722f94bd4acc94f85f52956c3440c170383de8d5c2f4a2aa1ab4654b359b775a"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr30984",
+    "logical_input_sha256": "2d2723030ef79efe581b0f7afd81a3d2581381319e7eb5e62fc904565638b41d",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "6a9e8f1dc7f0fa377aef330b78eb2d01184e220fdbb206a6fdc0d4ef7c70ece4"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/chart/v3/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr31011",
+    "logical_input_sha256": "a002330647494b794c380a74ff6751b89f2317f2dfea9ca6bf1e8728c0dfc564",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "e91eaca0f891ba420bb25b4c98fb8c512fb6f0ca8f46812cea9d24c8ad6b2971"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr31030",
+    "logical_input_sha256": "dd80ababc28a5c1e29d255d1443b190e104e424b50dd484216285d5acc2669d4",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "d05deb657ab89446a9f1d64fa9665d4ca6b27593c85d10489e78a90b1bef15a9"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/chart/v3/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr31034",
+    "logical_input_sha256": "8bafb409fb1864a15a03db6db5628553699bce56b99ab5b93bcde79463fdb07a",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "29fc71330402f83c9a21a56150bc8c518ec2d97da35742b2de1b54f58354df8f"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr31057",
+    "logical_input_sha256": "fae385d740b7e4e73913e0d50cf765156287c71c77eba4fd8cdfd81b6373447f",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "679c6cf2f02aaacc277e6f257fc1386266a7478c051553b9c9c58f8c1e03aaff"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr31376",
+    "logical_input_sha256": "a23ef1fb302f010d49cbb40532eeee85fc667e0e6be7b1dbb48b7c51da85dc36",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "69dbf9a228266340882e33b23437df783104a84c4b899a50feed14f54211cdce"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/chart/v3/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr31462",
+    "logical_input_sha256": "e8fa020585aa58cae67e62c4d5ad19e973f6c700b10a65822c1d00c53c45697b",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "215dce1749ba286bd62a038f04b46afc806540e9d3f42ab7ccc4cd335d60c898"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/chart/v3/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-pr31491",
+    "logical_input_sha256": "c7db91eae017f27a593b127a787f57297c1aa5a2e37277be0fbe685be733dc7c",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "c282bfa4ac751d957719582bd4a453b73b337a29a83bf80e48d13568fb192f0c"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/chart/v3/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-www-issue1889",
+    "logical_input_sha256": "57f8e1d5818bff88a025fa51ae084d77c677c131821da228539e4a35ed57f166",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-www-pr1734",
+    "logical_input_sha256": "5f01090d91f37546827a35b446fffe557f2302c533e7092752d239ff46e18658",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "507e2ed7ec0f0ea5ec0169997d72d8f55ee569e2554ec1cba36ce20b12b84aed"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-www-pr1898",
+    "logical_input_sha256": "af03e34e525e571216bde5e32fdcef17448f824693fae13af465d78f475e1a56",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-www-pr1926",
+    "logical_input_sha256": "7b30841fe623f5860329f4eef13e54d4d144c506fe1a4bd12c47eef9a910fabc",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-www-pr2045",
+    "logical_input_sha256": "46651fce10f8c5a4c42f6b978caf3f86aa181363a09543acde936f5a7a9cf383",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "97335ad1550b439156b992d95e978fa96c889949f78b62468eaa45633fbed717"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/chart/v3/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/v2/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-www-pr2056",
+    "logical_input_sha256": "adbbec47a3f71f88888ebc8f918c7beacc8f6a6ed81dddbdf4cbb914e7965737",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/windows-file-symlink",
+        "target": "C:/Users/ibrahim/go/src/github.com/golang/dep/internal/fs/testdata/test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/file-symlink",
+        "target": "../test.file"
+      },
+      {
+        "path": "code/internal/third_party/dep/fs/testdata/symlinks/invalid-symlink",
+        "target": "/non/existing/file"
+      },
+      {
+        "path": "code/pkg/chart/loader/testdata/frobnitz_with_dev_null/null",
+        "target": "/dev/null"
+      }
+    ],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "helm-helm-www-pr2098",
+    "logical_input_sha256": "9ab95973d3c792b63efa201cc6c528e84853752ddd79a9c82a36ca416ab67b92",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "huggingface-peft-pr1550",
+    "logical_input_sha256": "0cb5505f58948747730529c022ce961cbb3e68812bd2ed63c49653435b69ae5c",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "30a75cbef8787fc1da2db6690a89ad9d87875977dd3206e740fb20178904c5f3"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "huggingface-peft-pr2525",
+    "logical_input_sha256": "401798068074d9aed77e2bb86befd4b3c47878c6bc34daf37671bcdf460da7df",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "huggingface-peft-pr2763",
+    "logical_input_sha256": "f9ffaae4758b9c852ff7a8132b075ba9befb8072b61b4d91ffe48b8287ef69a4",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "huggingface-peft-pr2953",
+    "logical_input_sha256": "a91e5c0fa43a6a3d6ac88202ccb83a1f2d254e1c261c053a0d09961704832d5f",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "iterorganization-IMAS-Core-pr48",
+    "logical_input_sha256": "20a8151b1bf140b97e1bade763cbaa1c8e52bfd40665c3522f9f17474695ea33",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "8212f3aa6aef33fe8eb93a48bd24270ec1826aa8ed7207f56e0ada223deec959"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "iterorganization-IMAS-Core-pr49",
+    "logical_input_sha256": "4b009dcb47a058c0c674a7572bb91c533dde379f854f3832f57196b00185106d",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "3e430ed3f9d6571923fced7a6b3de8c411126bdde616307b008a56e50bd9ef46"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "iterorganization-IMAS-Core-pr52",
+    "logical_input_sha256": "7f666cdc37c225166c2417e0e2ce594d9aea5d4896a9802b579d6f8338eddda0",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "5d28f6bb88985bc4b83bccbc1b9032725fc48213a842db8874b4b97ad64f7044"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "iterorganization-IMAS-Core-pr65",
+    "logical_input_sha256": "2628b582fed9475d2e598c9c6fb766ab89a9b0a35f626bf061dc7f6961e6e307",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "jj-vcs-jj-pr7479",
+    "logical_input_sha256": "b276181e252b85748ced9df1f37bca5e977d09f615fa48fa367609b05f38429e",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "jj-vcs-jj-pr7537",
+    "logical_input_sha256": "01fde9c5e45618145bbb3d5a4d142b614ff0762afc4dd26b18d78b59a7d5e1ab",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "jj-vcs-jj-pr8297",
+    "logical_input_sha256": "d33f3b51d548cb2cb8f4155f38bdbbe111e7ef95386304694f6429f02daf371c",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "b1dd4fcc6a4453615d5a8ee1ba876fde8c6e8f298f2c66b72059b6cb1d5a952d"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "jj-vcs-jj-pr9085",
+    "logical_input_sha256": "1499cf2515aa4fcfd355beae24cdad73c1c64933f41c33f79bbff67fa84e70f2",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "jj-vcs-jj-pr9347",
+    "logical_input_sha256": "fd07b74cc9cbb48f695f4d74c34f3baae53f20625dbcd2b61c9664fdf3c62c2c",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "f8b04ac0465020e433afbb7262bbef3d9e31522fc0a7131ac595e49f2c9db851"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "kubernetes-sigs-kro-pr108",
+    "logical_input_sha256": "1037134ef6e06dbace29bb1fab945267f7811be6ccf25b414d879d400a701322",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "kubernetes-sigs-kro-pr1106",
+    "logical_input_sha256": "1add298bf455df20fb26bfdbc5ef242d163a1dfbf86253d6be3f87836763e320",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "2032539d8c73ade96baac836499ad1f38aa154229be23d9e82ee541487c1b3c4"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "kubernetes-sigs-kro-pr1110",
+    "logical_input_sha256": "5136a5fc1d9ff644c00670060ad76dc2ac724186bbadd227bb27e2717c1f5624",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "lancedb-lancedb-pr2845",
+    "logical_input_sha256": "67d135779da57df1712e5fdd83fb79099930701e68eed84512f7f0277331bac6",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "lancedb-lancedb-pr2887",
+    "logical_input_sha256": "1da7e23ddb35690f2b7d04266b588d3926d356153326f114c7328ef2e70bf086",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "litestar-org-litestar-pr4506",
+    "logical_input_sha256": "6cf9453cb0d6d4021cb850e5146bbfed826e6a920465fee41017d572c921de56",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-developer-documentation-new-pr525",
+    "logical_input_sha256": "72ce5854bee4cbd2a68f1bc16662368d99f17843ec707ed738f63249bd650ecf",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "049f26c0f0f6e6b06237f3ef32ef46b7bf25f054976f999eb1cf9c4b719ba1e4"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-mautic-pr15476",
+    "logical_input_sha256": "052887237813eec1a79cc0ae5eec2b12d107ac589b16eadfc50a4257f116f2e4",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "2f220776cb884dcdcbe35fbcc3ba74e25f54d70d9c5eb7a46cbc5aafadee1f0e"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-mautic-pr15508",
+    "logical_input_sha256": "fbf781f3894a64b1baf326b99044a84368981ba981282657765ebe88c742c0f2",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-mautic-pr15719",
+    "logical_input_sha256": "5302cc8e9548cc3df98704e636acee30ffd3d2bbc9a13a9fa8ec48f5d06df636",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "ed61a26388c6aa90ca5ffd1bc285d061b04dd8a489fb2ff9d169dda1b1308ce5"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-mautic-pr15954",
+    "logical_input_sha256": "4f26a69484bc3f37a40e89b3e79a318392c599cdf5d29457fa686abe8708d717",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-mautic-pr16101",
+    "logical_input_sha256": "545e97e65b873d66b9321faaf0781b8b1ed0712659c64bf3ff436df53bd2d790",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "b7d6cfcb47a061c927b1d748f429fb3b53f8c1bd818c8a8a9bc68be32f3c23c8"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-mautic-pr16173",
+    "logical_input_sha256": "26c518d1725a5e65b8124c867265e3525efee4d98acc96705d97a8f5c7f36bc2",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-mautic-pr16264",
+    "logical_input_sha256": "3acea10efe618d495e901d9c83b836bd2de6aca716fd1cccd84dbc29d8de93fc",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr162",
+    "logical_input_sha256": "bcfc666e8924a7e390b3f28531752de6e3c8da9069cd12f2a248d1d236c10060",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr174",
+    "logical_input_sha256": "fb23466076d261383fdf136a5b11671dc71b58f9b5dd2b39534bd0c5517bb8c8",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "077c65f7a5e7978c9342d3228172ad645ab175275a7b5ed3e3229e74aaddd92b"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr297",
+    "logical_input_sha256": "cb4d3b284e69942cfeac1741bf3523142c190567a0c051a5f99fccfd1bdf7117",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr302",
+    "logical_input_sha256": "f7a4bcccfe1d6ef01a8c6c7942dc2b4c725840929fe17bfe186e8a96463e074a",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr358",
+    "logical_input_sha256": "fdab6ee4e521af5521d99898a0f55d669caa2c61a02749ecf369cf2f7387a0ad",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr651",
+    "logical_input_sha256": "50e60e949f24caf71e747b5f0d8bfa06b83aa869c44e273de60bd1ac0d14d8f1",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr699",
+    "logical_input_sha256": "d3749c5b64157a7790c27ac3ecbe0479d9797361c48d1e2371c0385affa771d6",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr701",
+    "logical_input_sha256": "6d6e49c6f466b67b701434e1cb5dfa5ddcb2d5365cc8e7153936279b3466e043",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr705",
+    "logical_input_sha256": "1823377e8176711c52008112816d9ae88ea9c00a73417f534e7102c3634c89f4",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr723",
+    "logical_input_sha256": "a92935ff503ed3f8a2923924ee7282ebeff534cc41bc29d87887fcdd7f12144b",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "ebeb9607d6dee86609da26960248d468ced5d4e139ddc49a4ce6a8ef6ab68bba"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr727",
+    "logical_input_sha256": "3a2a97b6d4b455e1d1c8c6d04fea83d4eacfd360b1f6c09e6eb427aa46e3ddd7",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "mautic-user-documentation-pr741",
+    "logical_input_sha256": "449029b2244ddcc3ab453a23e25161e9c47bd661d9d45dc90789dfb0c96e3f7a",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "microsoft-DeepSpeed-pr5338",
+    "logical_input_sha256": "11b2c330d3730d12281749b1bb26a55355979ed22eecb1f9fb691061714ee37d",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "b1e3758385cfa8936db070b12f37c0a67c6fb4e9535ba40cf1d16ab005be2799"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/bin/dsr",
+        "target": "ds_report"
+      },
+      {
+        "path": "code/bin/deepspeed.pt",
+        "target": "ds"
+      },
+      {
+        "path": "code/bin/deepspeed",
+        "target": "ds"
+      },
+      {
+        "path": "code/deepspeed/accelerator",
+        "target": "../accelerator/"
+      },
+      {
+        "path": "code/deepspeed/ops/op_builder",
+        "target": "../../op_builder"
+      },
+      {
+        "path": "code/deepspeed/ops/csrc",
+        "target": "../../csrc"
+      },
+      {
+        "path": "docs/bin/dsr",
+        "target": "ds_report"
+      },
+      {
+        "path": "docs/bin/deepspeed.pt",
+        "target": "ds"
+      },
+      {
+        "path": "docs/bin/deepspeed",
+        "target": "ds"
+      },
+      {
+        "path": "docs/deepspeed/accelerator",
+        "target": "../accelerator/"
+      },
+      {
+        "path": "docs/deepspeed/ops/op_builder",
+        "target": "../../op_builder"
+      },
+      {
+        "path": "docs/deepspeed/ops/csrc",
+        "target": "../../csrc"
+      }
+    ],
+    "repository_alias_binding": [
+      {
+        "declared_url": "https://github.com/microsoft/DeepSpeed",
+        "github_repository_id": 235860204,
+        "source_slug": "deepspeedai/DeepSpeed"
+      }
+    ]
+  },
+  {
+    "instance_id": "microsoft-DeepSpeed-pr5827",
+    "logical_input_sha256": "f8ed9d9d5f3539bf20f8696c2ece653c60bc04b2d62ea9589e85cf8750b89856",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "microsoft-DeepSpeed-pr7515",
+    "logical_input_sha256": "84c562e3e49ac9a8c1950a850b5c6b594b08e195beeb882c252866ebee52dcf4",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "5e317bac49be940333913e97c92c115ac4831ec2edac5e580b3fff024439534e"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/bin/dsr",
+        "target": "ds_report"
+      },
+      {
+        "path": "code/bin/deepspeed.pt",
+        "target": "ds"
+      },
+      {
+        "path": "code/bin/deepspeed",
+        "target": "ds"
+      },
+      {
+        "path": "code/deepspeed/accelerator",
+        "target": "../accelerator/"
+      },
+      {
+        "path": "code/deepspeed/ops/op_builder",
+        "target": "../../op_builder"
+      },
+      {
+        "path": "code/deepspeed/ops/csrc",
+        "target": "../../csrc"
+      },
+      {
+        "path": "docs/bin/dsr",
+        "target": "ds_report"
+      },
+      {
+        "path": "docs/bin/deepspeed.pt",
+        "target": "ds"
+      },
+      {
+        "path": "docs/bin/deepspeed",
+        "target": "ds"
+      },
+      {
+        "path": "docs/deepspeed/accelerator",
+        "target": "../accelerator/"
+      },
+      {
+        "path": "docs/deepspeed/ops/op_builder",
+        "target": "../../op_builder"
+      },
+      {
+        "path": "docs/deepspeed/ops/csrc",
+        "target": "../../csrc"
+      }
+    ],
+    "repository_alias_binding": [
+      {
+        "declared_url": "https://github.com/microsoft/DeepSpeed",
+        "github_repository_id": 235860204,
+        "source_slug": "deepspeedai/DeepSpeed"
+      }
+    ]
+  },
+  {
+    "instance_id": "microsoft-DeepSpeed-pr7992",
+    "logical_input_sha256": "daff3f3e183d6d332d9e3c0916ab38d38457cc74b94e331f0b6a19502a73b1b4",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "60e1683734e64f8691ae04a512704d21ca2076e60a035a2b1dbbe077a9e38d79"
+      }
+    ],
+    "api_only_symlink_compatibility": true,
+    "reference_symlinks": [
+      {
+        "path": "code/bin/dsr",
+        "target": "ds_report"
+      },
+      {
+        "path": "code/bin/deepspeed.pt",
+        "target": "ds"
+      },
+      {
+        "path": "code/bin/deepspeed",
+        "target": "ds"
+      },
+      {
+        "path": "code/deepspeed/accelerator",
+        "target": "../accelerator/"
+      },
+      {
+        "path": "code/deepspeed/ops/op_builder",
+        "target": "../../op_builder"
+      },
+      {
+        "path": "code/deepspeed/ops/csrc",
+        "target": "../../csrc"
+      },
+      {
+        "path": "docs/bin/dsr",
+        "target": "ds_report"
+      },
+      {
+        "path": "docs/bin/deepspeed.pt",
+        "target": "ds"
+      },
+      {
+        "path": "docs/bin/deepspeed",
+        "target": "ds"
+      },
+      {
+        "path": "docs/deepspeed/accelerator",
+        "target": "../accelerator/"
+      },
+      {
+        "path": "docs/deepspeed/ops/op_builder",
+        "target": "../../op_builder"
+      },
+      {
+        "path": "docs/deepspeed/ops/csrc",
+        "target": "../../csrc"
+      }
+    ],
+    "repository_alias_binding": [
+      {
+        "declared_url": "https://github.com/microsoft/DeepSpeed",
+        "github_repository_id": 235860204,
+        "source_slug": "deepspeedai/DeepSpeed"
+      }
+    ]
+  },
+  {
+    "instance_id": "openbao-openbao-pr2353",
+    "logical_input_sha256": "a5374726fdc9573305711528e776635f3e82139c042c1891d5be84fdb6f4c0ec",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "a597513dac3f275004b7df3803a47b4c8931b4b004d73d49cb8664e4dabc4508"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "openbao-openbao-pr3176",
+    "logical_input_sha256": "7b6ae460b5274fcfa000695a0f9beb3bd1ddbfa9678ca2aa6cdac06e5e00d2a3",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "openbao-openbao-pr3224",
+    "logical_input_sha256": "86754b79ae219ac3177cf01a909003e03fac585bb4bfdfbf3d3a309e8a0c0752",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "d4395673147affbcf2d18569957c1c5c2b2b8e50dc6d9273b6a80ea1156ba90d"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "opencost-opencost-pr3722",
+    "logical_input_sha256": "3ae661c019e131eab131a70f812be1e6987a9efb4ecb40a2669601347d03d83c",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "opencost-opencost-pr3783",
+    "logical_input_sha256": "53b1b3bb4be70b342e7609aa5c0ffbea95aca56dd3fcf504810728437bda9797",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "opencost-opencost-website-pr102--code-pr1842",
+    "logical_input_sha256": "dd35c68d438fe064e9cd6b5e1e98fb3dbad207ab03b23d5e0856b411ca56069c",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "opencost-opencost-website-pr135",
+    "logical_input_sha256": "f87666fefb42d13fa8abbcd5199a6d4f0334dee0c239bdc4272663df6526457c",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "openfga-openfga-pr3016",
+    "logical_input_sha256": "08008edebb57098252c1dccd42175119df59074703a8075c44249201322d2d17",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "cc96dd5f1263562e4784acf3b0c90fb2d72616f11f92e7fc08a96cb6b0823059"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "openfga-openfga-pr3035",
+    "logical_input_sha256": "1e2e68ee29388c15fc1f44b69b100e6ce1614c768aa7c87702744beb8cfb1d2a",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "openfga-openfga-pr3149",
+    "logical_input_sha256": "b2d5b0de2c6e6ba0d4bba2309aa271a935dd8e0a14c3b5d3a8670b1a2e614a61",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "openfga-openfga.dev-pr264",
+    "logical_input_sha256": "21d297d2061d92336d84706882f8ea13de85085ba03eacb38250a180d716d39f",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "openfga-openfga.dev-pr314",
+    "logical_input_sha256": "918e107e37b770494923594b380497b6bdcb3728b48625d1eead2a704628bc25",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "openfga-openfga.dev-pr355",
+    "logical_input_sha256": "27b044e9d90947850f09e9d9dbf2924105b46a6b66582f60af505c6ca7caa461",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "pantsbuild-pants-pr22034",
+    "logical_input_sha256": "b09651230af3b0ad830cc1c5e4c1715af91a3d2356202ad95fdfd54021456161",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "2e756cf1a4febeba4276a49255bee0b7b22c20e1d2e7fef95c2a91bcb38a31eb"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "pantsbuild-pants-pr23052",
+    "logical_input_sha256": "697dc0ab8847629cfeec92901a8e354d2c4ff0166f591fb7f5d7c26b2679d073",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "14b60aa7a9a05b845673170e520a388b1cbb59b7c52a99c30da4f4cb2e81027d"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "pantsbuild-pants-pr23187",
+    "logical_input_sha256": "2854e2bb9a1cce81bb6c1e3f51b4020ed6a8f5410fc80909525fa36e2781fe18",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "c5baf57e5ee094920446c21e95c7e9f05c3bdc759841f014d959fc8e7e1683f6"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "pantsbuild-pants-pr23219",
+    "logical_input_sha256": "33c4096a63c24062520d7e17396120194a6a3135c8a1e1ab9d140445a419dcaf",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "pantsbuild-pants-pr23320",
+    "logical_input_sha256": "f343677109ae53d32cfa3bed58137a2274f95ed2b7dd202b6e72d2d86108d804",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "bfcc68887e93e31b588b2931a9db1cf881b8a92b01a3ad240857cf985b7d2755"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "pantsbuild-pants-pr23400",
+    "logical_input_sha256": "acd7bbe58295f88d0de0cc00fe3334eeecfb8e088ab9b56e7d8d9bc5ccef79a8",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "064fac7fa75b53b02277913c058b3fee800aa4961db6d87213c1f3e225521b12"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "prefecthq-prefect-pr19580",
+    "logical_input_sha256": "034d38ae09daeba9deef983a73a3192aebc7c8961713184c9d0091b8d0ff3ade",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "prefix-dev-pixi-pr4915",
+    "logical_input_sha256": "45bf27b224eb89cbc231a50029ead3c3378c46a55bcebd48369ed7a00b31161f",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "8b6a221053430dfb68ef901e71567c879c9fd52285b2ad5b63b231d8344548b1"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "prefix-dev-pixi-pr5485",
+    "logical_input_sha256": "9cf8bc90e644b0c7a34bf35b83ccec691c1a7a54b662b61a8dfc61f0c7cf6f2a",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "prefix-dev-pixi-pr5840",
+    "logical_input_sha256": "b30a232734f52f4dbb55cd8eef9d76d11aa0b7d18306629aa4d454bbf835a2a2",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "48c8bf87e0fb638bae95db52587d780e1a49249aa6a4154e9939a06d058e84f7"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "prefix-dev-pixi-pr5916",
+    "logical_input_sha256": "3abd915659964e88735f047ad2955514eb2933ddec0ecf95852c87e7ffa34811",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "2eda184acd79bcb3b414a7c97de7d4afcd4e6708fb783d55ac7057f1f5f58c68"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "pydantic-pydantic-pr12518",
+    "logical_input_sha256": "53b2809d11e4e0db37e86000c8a7959525b8f7580ef1b8800ebb9b8587a89b4e",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "pydantic-pydantic-pr12572",
+    "logical_input_sha256": "cb34a6c8a61ec35445886b723e4c4074012c10b476a1fa8aa1e6bedad6ed275f",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "python-mypy-pr20007",
+    "logical_input_sha256": "c66a358d565ca54afe668fe34cb8ad972983997412a7e67a193af9065845ad75",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "python-mypy-pr20635",
+    "logical_input_sha256": "043781c7570610a7f19763e97fe15e7c0714f67cf05694e984de02ea1f8cbea4",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "dca531939f2885ebd9298433ad9b13f8a7ed6ac88104f8dfd2ccb8b208710ed1"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "python-mypy-pr21304",
+    "logical_input_sha256": "712ce6dce62539174858e0c70bcd269b8509ce1b0ec0b122008fcc24f19ba691",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "8218474a05e073ae4f0b22eb50d865023120211b5934dea92ea1dff2943927a8"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "python-mypy-pr21382",
+    "logical_input_sha256": "3e57ac0868acd57bb6068ab6cdbaf845a36bcca86ae366baa1981f163b1fac2e",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "971cfc2628effba621459b5bbe3df734d218befaf11e58aa41047601e2b7c66e"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "python-mypy-pr21387",
+    "logical_input_sha256": "2d44903f62c6f68fe9b7353080012e56396caca57ce242245570076cccd20a6a",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "19037bf74b2d78110c901843af6ab299c2ea6bfd933642d70ff9f0fbde0ee577"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "rilldata-rill-pr9315",
+    "logical_input_sha256": "048a3dd3e9eeb045e9b96dfee7f3e04b7f10cbab1dee0dace365681f204dca51",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "rilldata-rill-pr9451",
+    "logical_input_sha256": "0c1e1394d313b44752dbb7b49e36914f32d857aa0ea7df071c6f3873efe15ef4",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "720af8fbaa17bf447eb72b35127433feccbee3647edc019aeec1e4211b7b310d"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "scverse-anndata-pr1162",
+    "logical_input_sha256": "562677ff7f3a58dbbd834fe71e9fbe4ace795f5b04f692ee59ea0231f811c8b8",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "scverse-anndata-pr2290",
+    "logical_input_sha256": "e24f3a1e4feea53870533f384d0304dccc324f153a0aafd63f10b894a6d87a24",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "428228333fb50122cbc08fdf85b577553bb2b9e1c13f751da1fe6cc8ba4e4d3e"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "scverse-scanpy-pr3191",
+    "logical_input_sha256": "ae2fc9ec01acaf662b560b7a611fc61ce983c53c5dde8f39767ea01738ca14df",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "scverse-scanpy-pr4100",
+    "logical_input_sha256": "e926a4fd462ecbcc40b74f932479db72c03d77944b66a2ce7327e3d8f4796427",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "strawberry-graphql-strawberry-pr4059",
+    "logical_input_sha256": "a3aa31357373dcfb6ae7bba21235b344503675d353dedaa66f6aa0fac5dd7a50",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "strawberry-graphql-strawberry-pr4320",
+    "logical_input_sha256": "b5c2dd0fedecd658b72df07154c10017eb5943fbc7c0fd6db500ce93c3130e71",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "strawberry-graphql-strawberry-pr4342",
+    "logical_input_sha256": "d2fdd750bfa44cd487382b8b1861f0faa76c484c0fe2f8c5f8dc359804fca329",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "tiangolo-fastapi-pr14262",
+    "logical_input_sha256": "5fcac494ae0ce9362e9d8680751063dfd48d49cd5b37f76ef413ca356ec4b93b",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "tiangolo-fastapi-pr14487",
+    "logical_input_sha256": "e640fcfabd9f764d83423c3663aee2e59915eaef373a2a3156460642eae325e5",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "heldout_gold_line_overlap",
+        "kind": "human_reference",
+        "marker": "47db5346827ad9902f8a96f5886cdcfa73248b462b5358f2b6058fdbdbadf412"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "tiangolo-fastapi-pr14681",
+    "logical_input_sha256": "02b9932585117c40e20e5f073665886e3a6343df254ac3088731242b2162356d",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "tiangolo-fastapi-pr14978",
+    "logical_input_sha256": "9e0119adc2dd2ac1553a1fc6a0943253cae86bb2c3d37b415ccf5d17c797bf7a",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "tiangolo-fastapi-pr15022",
+    "logical_input_sha256": "d0a0dc7361c2297838fe1441b7713c7db37532dbebd52746053d52537a435e30",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "trinodb-trino-pr28937",
+    "logical_input_sha256": "52cda0e7e0a3cf65956835da49c4e62171382bc767b93ea3cb9bd2b75eb1feaf",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "heldout_gold_line_overlap",
+        "kind": "human_reference",
+        "marker": "fc5a8bd7acde8776241d51e10ca07e5de2d9840dc04d01ca1d546f88bcb3f93a"
+      },
+      {
+        "code": "heldout_gold_token_overlap",
+        "kind": "human_reference",
+        "marker": "15-token contiguous overlap"
+      },
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "a8688964fb5409cf7381726099dd32e33ba1754d5d97f20db272e352e9cc03ee"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "trinodb-trino-pr29039",
+    "logical_input_sha256": "17da2d8a93fb4d473e7caced65cded6f0898cc6cad796720c9df7bf5e233eb5a",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "trinodb-trino-pr29900",
+    "logical_input_sha256": "ac369f4ecd96e6848115573a7e318942c4198e3803d912b5a7c6f01cf56d6d2f",
+    "strict_context_eligible": false,
+    "context_findings": [
+      {
+        "code": "source_pr_prose_overlap",
+        "kind": "source_pr_solution_prose",
+        "marker": "02c2a452135739df1108c37bb435752a0b0fe1dab8154483808bd0330bc6ad89"
+      }
+    ],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "vllm-project-vllm-pr43603",
+    "logical_input_sha256": "8db9628d678b197fd5c1aaff692184d48d035f2c3cca4465cb2418ea429f3df1",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "vllm-project-vllm-pr43805",
+    "logical_input_sha256": "2d50a9fbcdbb9e0ee2129fb19d9418e0856effa6e12587c6f636a0668aa6af82",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "vllm-project-vllm-pr45003",
+    "logical_input_sha256": "32933b6f19167f5cfbce566944858f3d24ac2e16bb44796b16ac4f87e288b7f7",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "volcengine-verl-pr5186",
+    "logical_input_sha256": "48566ff03d9877e97640ebecb99fa740e123b7ada5ff9dc37fa4093b191ee424",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  },
+  {
+    "instance_id": "volcengine-verl-pr6086",
+    "logical_input_sha256": "da115169a70e03713d3e7c9c94e640603c2c78bf3e66fb7b66ce6e9c34ee5d4b",
+    "strict_context_eligible": true,
+    "context_findings": [],
+    "api_only_symlink_compatibility": false,
+    "reference_symlinks": [],
+    "repository_alias_binding": []
+  }
+]

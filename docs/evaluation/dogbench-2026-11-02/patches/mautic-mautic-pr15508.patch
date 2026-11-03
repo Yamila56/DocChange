@@ -1,0 +1,15 @@
+diff --git a/docs/authentication/authentication.rst b/docs/authentication/authentication.rst
+index 23dbb57106498bdbac663a196110ee14b432c3c6..f92b6a4eee406a7dd5f10e5bacb8507f8d568f2f 100644
+--- a/docs/authentication/authentication.rst
++++ b/docs/authentication/authentication.rst
+@@ -72,6 +72,10 @@ Once configured with the IDP and the IDP with Mautic, Mautic redirects all login
+ 
+ Login to the IDP, which then redirects you back to Mautic. If the exchange is successful Mautic creates a User if it doesn't already exist, and logs the User into the system.
+ 
++If the SAML exchange fails, Mautic displays a message and a login button so you can retry the authentication with the IDP.
++
++Users who are logged in through SAML don't see the password fields on their profile page or on the User edit page, because their password is managed by the IDP.
++
+ Turning off SAML
+ ================
+ 

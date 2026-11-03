@@ -1,0 +1,28 @@
+diff --git a/docs/features/speculative_decoding/extract_hidden_states.md b/docs/features/speculative_decoding/extract_hidden_states.md
+index 2184a71f489f1a9bf79a9d14b586dcadf1799ebc..24ea340852c8e119acb649e8c79a696c5d120e8d 100644
+--- a/docs/features/speculative_decoding/extract_hidden_states.md
++++ b/docs/features/speculative_decoding/extract_hidden_states.md
+@@ -19,7 +19,6 @@ from vllm.distributed.kv_transfer.kv_connector.v1 import (
+ with tempfile.TemporaryDirectory() as tmpdir:
+     llm = LLM(
+         model="Qwen/Qwen3-8B",
+-        enable_chunked_prefill=False,
+         speculative_config={
+             "method": "extract_hidden_states",
+             "num_speculative_tokens": 1,
+@@ -59,8 +58,7 @@ For improved performance, it is recommended to use a RAM-mounted file system suc
+ ```bash
+ vllm serve Qwen/Qwen3-8B \
+     --speculative_config '{"method": "extract_hidden_states", "num_speculative_tokens": 1, "draft_model_config": {"hf_config": {"eagle_aux_hidden_state_layer_ids": [1, 2, 3, 4]}}}' \
+-    --kv_transfer_config '{"kv_connector": "ExampleHiddenStatesConnector", "kv_role": "kv_producer", "kv_connector_extra_config": {"shared_storage_path": "/dev/shm/hidden_states"}}' \
+-    --no-enable-chunked-prefill
++    --kv_transfer_config '{"kv_connector": "ExampleHiddenStatesConnector", "kv_role": "kv_producer", "kv_connector_extra_config": {"shared_storage_path": "/dev/shm/hidden_states"}}'
+ ```
+ 
+ ## Configuration
+@@ -83,4 +81,4 @@ Each request produces a `.safetensors` file containing:
+ The file path is returned in `output.kv_transfer_params["hidden_states_path"]`. Use `load_hidden_states()` from the connector module to read the file with proper synchronization.
+ 
+ !!! note
+-    Chunked prefill is not compatible with this feature and must be disabled.
++    Chunked prefill is supported alongside this feature. When `use_synchronization_lock` is enabled, the connector pre-creates the lock file for each new request before the output path is returned to the client, so readers can safely block until the write completes.

@@ -1,0 +1,155 @@
+{
+  "date": "2026-11-02",
+  "evaluated_source_commit": "7682fb9",
+  "upstream_commit": "35bc80734093ffc3d0801476b02ceb2ab0c80bd2",
+  "model": "deepseek-flash",
+  "judge_model": "gpt-5.6-terra",
+  "official_numeric_report": {
+    "items": 175,
+    "expected_items": 175,
+    "complete": true,
+    "missing_ids": [],
+    "patch_needed": 123,
+    "no_op": 52,
+    "delivered_patch_quality": 16.307317073170733,
+    "no_op_recall": 59.61538461538461,
+    "composite_score": 25.609388436940897,
+    "decision_accuracy_percent": 53.714285714285715,
+    "patch_recall_percent": 51.21951219512195,
+    "p0_clean_delivery_percent": 12.195121951219512,
+    "documentation_quality_mean": 31.83809523809524,
+    "documentation_quality_median": 30.8,
+    "execution_failures": 62
+  },
+  "generation": {
+    "tasks": 175,
+    "completed": 113,
+    "patches": 73,
+    "abstentions": 40,
+    "turn_budget_failures": 62,
+    "all_tasks_have_api_requests": true,
+    "maximum_actual_api_requests_per_task": 16,
+    "reserved_model_turns_total": 2080,
+    "budget_preflight_reservations_without_api_request": 101,
+    "failed_tasks_with_fewer_than_16_actual_requests": 32
+  },
+  "patch_quality": {
+    "patches": 73,
+    "apply_check_passed": 73,
+    "change_was_needed": 63,
+    "unnecessary_patches": 10,
+    "needed_patches_with_positive_score": 57,
+    "needed_patches_with_zero_score": 6,
+    "needed_patches_with_full_rubric_score": 1,
+    "needed_patches_without_blocking_p0": 15,
+    "mergeable_means_no_p0_only": true
+  },
+  "budget_stages": {
+    "dogbench-20261102": {
+      "requests": 1026,
+      "unknown_usage": 34,
+      "known_prompt_tokens": 5733419,
+      "known_completion_tokens": 55536,
+      "known_cache_hit_tokens": 4636416,
+      "no_cache_peak_upper_cny": "14.943616",
+      "cache_aware_peak_upper_cny": "5.85624064"
+    },
+    "dogbench-recovery-20261102": {
+      "requests": 370,
+      "unknown_usage": 7,
+      "known_prompt_tokens": 2120710,
+      "known_completion_tokens": 29568,
+      "known_cache_hit_tokens": 1686144,
+      "no_cache_peak_upper_cny": "4.943836",
+      "cache_aware_peak_upper_cny": "1.63899376"
+    },
+    "dogbench-recovery2-20261102": {
+      "requests": 411,
+      "unknown_usage": 4,
+      "known_prompt_tokens": 2963911,
+      "known_completion_tokens": 26909,
+      "known_cache_hit_tokens": 2539392,
+      "no_cache_peak_upper_cny": "6.378716",
+      "cache_aware_peak_upper_cny": "1.40150768"
+    },
+    "dogbench-final-20261102": {
+      "requests": 172,
+      "unknown_usage": 1,
+      "known_prompt_tokens": 1214932,
+      "known_completion_tokens": 7732,
+      "known_cache_hit_tokens": 946560,
+      "no_cache_peak_upper_cny": "2.550246",
+      "cache_aware_peak_upper_cny": "0.69498840"
+    }
+  },
+  "budget_totals": {
+    "api_requests": 1979,
+    "unknown_usage": 46,
+    "no_cache_peak_upper_cny": "28.816414",
+    "cache_aware_peak_upper_cny": "9.59173048"
+  },
+  "interface_pilot_separate": {
+    "requests": 2,
+    "unknown_usage": 1,
+    "known_prompt_tokens": 1181,
+    "known_completion_tokens": 18,
+    "known_cache_hit_tokens": 0,
+    "no_cache_peak_upper_cny": "0.074294",
+    "cache_aware_peak_upper_cny": "0.074294"
+  },
+  "packages": {
+    "numpy": "2.5.4",
+    "rank-bm25": "0.2.2",
+    "pytrec-eval-terrier": "0.5.11"
+  },
+  "metric_notes": [
+    "Recovered cohort, not first-attempt success; prior decisions were not regenerated",
+    "Logical turn cap includes preflight reservations rejected before an API request",
+    "Official mergeable flag only means no blocking P0, not human acceptance",
+    "One rubric-100 patch is a typo-only correction; inspect case analysis",
+    "Cost figures are peak-price estimates with unknown-usage reservations, not invoices"
+  ],
+  "context_audit_sensitivity": {
+    "original_context_check_passed": {
+      "items": 95,
+      "expected_items": 95,
+      "complete": true,
+      "missing_ids": [],
+      "patch_needed": 78,
+      "no_op": 17,
+      "delivered_patch_quality": 15.370512820512822,
+      "no_op_recall": 58.8235294117647,
+      "composite_score": 24.372517948024676,
+      "decision_accuracy_percent": 55.78947368421053,
+      "patch_recall_percent": 55.12820512820513,
+      "p0_clean_delivery_percent": 11.538461538461538,
+      "documentation_quality_mean": 27.881395348837213,
+      "documentation_quality_median": 25.0,
+      "execution_failures": 30
+    },
+    "original_context_check_flagged": {
+      "items": 80,
+      "expected_items": 80,
+      "complete": true,
+      "missing_ids": [],
+      "patch_needed": 45,
+      "no_op": 35,
+      "delivered_patch_quality": 17.93111111111111,
+      "no_op_recall": 60.0,
+      "composite_score": 27.61071031395249,
+      "decision_accuracy_percent": 51.25,
+      "patch_recall_percent": 44.44444444444444,
+      "p0_clean_delivery_percent": 13.333333333333334,
+      "documentation_quality_mean": 40.345,
+      "documentation_quality_median": 45.85,
+      "execution_failures": 32
+    }
+  },
+  "preparation_compatibility": {
+    "prepared": 175,
+    "original_context_check_passed": 95,
+    "original_context_check_flagged": 80,
+    "symlink_compatibility_workspaces": 17,
+    "repository_alias_bindings": 3
+  }
+}

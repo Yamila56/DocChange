@@ -1,0 +1,13 @@
+diff --git a/docs/content/docs/connectors/table/overview.md b/docs/content/docs/connectors/table/overview.md
+index 4cf924330e1e7afb0dbd3c05f0622d40300ec4d7..4bcb7644daddd8f70e74d52b6f4739de60a6ca80 100644
+--- a/docs/content/docs/connectors/table/overview.md
++++ b/docs/content/docs/connectors/table/overview.md
+@@ -262,6 +262,8 @@ Primary key constraints tell that a column or a set of columns of a table are un
+ 
+ The primary key of a source table is a metadata information for optimization. The primary key of a sink table is usually used by the sink implementation for upserting.
+ 
++When writing an updating table to a sink, the sink may use a different upsert key than the table's declared primary key (for example, when the sink's primary key is a subset of, or differs from, the query's unique key). In that case, multiple input records can map to the same sink row. Such records are applied to the sink in the order they are received, so the last record for a given sink key wins. If the input records for the same sink row arrive out of order, the resulting sink state is non-deterministic. To avoid this, make sure the query produces at most one updating record per sink key, or define the sink primary key so that it matches the query's unique key.
++
+ SQL standard specifies that a constraint can either be ENFORCED or NOT ENFORCED. This controls if the constraint checks are performed on the incoming/outgoing data. Flink does not own the data the only mode we want to support is the NOT ENFORCED mode. Its up to the user to ensure that the query enforces key integrity.
+ 
+ {{< tabs "9e32660c-868b-4b6a-9632-3b3ea482fe7d" >}}

@@ -1,0 +1,27 @@
+diff --git a/docs/src/main/sphinx/client/client-protocol.md b/docs/src/main/sphinx/client/client-protocol.md
+index a6d01a91bcf950bb1f9b91d0b8d5ee45188cd3d6..37de2f9455175bed9f1c4d7659ea3d9c67fc9667 100644
+--- a/docs/src/main/sphinx/client/client-protocol.md
++++ b/docs/src/main/sphinx/client/client-protocol.md
+@@ -66,6 +66,8 @@ on a Trino cluster:
+   storage catalog or spooling for any other Trino clusters.
+ * Configure the object storage in `etc/spooling-manager.properties` using the
+   [](prop-spooling-file-system).
++* Configure server-side encryption with customer-provided keys (SSE-C) for the
++  object storage. The spooling protocol requires SSE-C to function.
+ 
+ Minimal configuration in [](config-properties):
+ 
+@@ -83,7 +85,12 @@ Refer to [](prop-protocol-spooling) for further optional configuration.
+ 
+ Suitable object storage systems for spooling are S3 and compatible systems,
+ Azure Storage, and Google Cloud Storage. The object storage system must provide
+-good connectivity for all cluster nodes as well as any clients. 
++good connectivity for all cluster nodes as well as any clients.
++
++The spooling protocol requires server-side encryption with customer-provided
++keys (SSE-C). Configure SSE-C support for your object storage, for example with
++`fs.s3.sse-c.enabled=true` for S3-compatible systems, in
++`etc/spooling-manager.properties`.
+ 
+ Activate the desired system with
+ `fs.s3.enabled`, `fs.azure.enabled`, or `fs.gcs.enabled` in

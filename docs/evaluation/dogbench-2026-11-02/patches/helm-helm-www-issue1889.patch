@@ -1,0 +1,199 @@
+diff --git a/docs/plugins/developer/tutorial-cli-plugin.mdx b/docs/plugins/developer/tutorial-cli-plugin.mdx
+index e376a654cea68bdc8159aaf9fac8ce40446bcbef..8fc55553ca8da6ecbda5c6c8375797535e8d8f7a 100644
+--- a/docs/plugins/developer/tutorial-cli-plugin.mdx
++++ b/docs/plugins/developer/tutorial-cli-plugin.mdx
+@@ -134,6 +134,76 @@ Now let's do it again, this time using Wasm runtime…
+ - Prerequisites from [Subprocess Runtime](#subprocess-runtime)
+ - Go 1.25 installed
+ 
+-:::warning
+-To-do: add this section
+-:::
++Build the same `helm system-info` command as a Wasm plugin using the [Extism](https://extism.org/) PDK.
++
++### 1. Set up repository
++
++Scaffold a new repository from the template (or just clone):
++https://github.com/gjenkins8/helm-extism-plugin-template
++
++### 2. Update plugin manifest
++
++Note the `runtime` and `runtimeConfig` field values change for Wasm:
++
++```yaml title="plugin.yaml" showLineNumbers
++apiVersion: v1
++type: cli/v1
++name: "system-info"
++version: "0.1.0"
++runtime: extism/v1
++config:
++  usage: system-info
++  shortHelp: Display system and Helm information
++  longHelp: Shows OS info, Helm version, and environment details
++runtimeConfig:
++  memory:
++    maxPages: 16
++  timeout: 30000
++```
++
++### 3. Update `main.go`
++
++Specify the plugin's input/output messages and implement the entry function. The default entry function name is `helm_plugin_main` (configurable via `runtimeConfig.entryFuncName`):
++
++```go title="main.go" showLineNumbers
++package main
++
++...
++
++type InputMessage struct {
++	Args []string `json:"args"`
++}
++
++type OutputMessage struct {
++	Output string `json:"output"`
++}
++
++func systemInfo(input InputMessage) (*OutputMessage, error) {
++	pdk.Log(pdk.LogLevelInfo, "system-info plugin running")
++	output := OutputMessage{
++		Output: fmt.Sprintf("Arguments: %v", input.Args),
++	}
++	return &output, nil
++}
++```
++
++### 4. Build WebAssembly
++
++```bash
++$ make build
++$ ls -la plugin.wasm
++```
++
++### 5. Install in Dev Mode and Test
++
++Same as the Subprocess CLI Plugin step:
++
++```bash
++% helm plugin install $HOME/code/helm/plugins/system-info
++Installing plugin from local directory (development mode)
++Installed plugin: system-info
++
++% helm system-info
++```
++
++What you built: A CLI plugin using the Wasm runtime with sandboxed execution and structured communication via the Extism PDK!
+diff --git a/docs/plugins/developer/tutorial-postrenderer-plugin.mdx b/docs/plugins/developer/tutorial-postrenderer-plugin.mdx
+index defde0aedc45c77dbefedb39cf66289714daa3d9..dede5dc47d06bafdd8138fb2ac2522113ea12418 100644
+--- a/docs/plugins/developer/tutorial-postrenderer-plugin.mdx
++++ b/docs/plugins/developer/tutorial-postrenderer-plugin.mdx
+@@ -112,6 +112,71 @@ Let's do this one in Wasm runtime now too…
+ - Prerequisites from [Subprocess Runtime](#subprocess-runtime)
+ - Go 1.25 installed
+ 
+-:::warning
+-To-do: add this section
+-:::
++Build the same label-injecting postrenderer as a Wasm plugin using the [Extism](https://extism.org/) PDK.
++
++### 1. Set up repository
++
++Scaffold a new repository from the template (or just clone):
++https://github.com/gjenkins8/helm-extism-plugin-template
++
++### 2. Update plugin manifest
++
++Note the `runtime` and `runtimeConfig` field values change for Wasm:
++
++```yaml title="plugin.yaml" showLineNumbers
++apiVersion: v1
++type: postrenderer/v1
++name: label-injector
++version: 0.1.0
++runtime: extism/v1
++runtimeConfig:
++  memory:
++    maxPages: 16
++  timeout: 30000
++```
++
++### 3. Update `main.go`
++
++Specify the plugin's input/output messages. Postrenderer plugins receive the rendered manifests and return the modified manifests:
++
++```go title="main.go" showLineNumbers
++package main
++
++...
++
++type InputMessage struct {
++	Manifests string `json:"manifests"`
++}
++
++type OutputMessage struct {
++	Manifests string `json:"manifests"`
++}
++
++func injectLabels(input InputMessage) (*OutputMessage, error) {
++	// Parse the YAML manifests, add the label, and re-serialize.
++	// See the Subprocess tutorial for the equivalent yq expression.
++	output := OutputMessage{Manifests: input.Manifests}
++	return &output, nil
++}
++```
++
++### 4. Build WebAssembly
++
++```bash
++$ make build
++$ ls -la plugin.wasm
++```
++
++### 5. Install in Dev Mode and Test
++
++Same as the Subprocess Postrenderer step:
++
++```bash
++% helm plugin install $HOME/code/helm/plugins/label-injector
++Installing plugin from local directory (development mode)
++Installed plugin: label-injector
++
++% helm template ../mychart --post-renderer label-injector
++```
++
++What you built: A Postrenderer plugin using the Wasm runtime with sandboxed execution and structured communication via the Extism PDK!
+diff --git a/docs/plugins/overview.md b/docs/plugins/overview.md
+index fef32cd8114f928eb918b4c8be90ac601a208e4a..26a1e8812840d6ff4200637d4f17dfe2d21f5ab7 100644
+--- a/docs/plugins/overview.md
++++ b/docs/plugins/overview.md
+@@ -18,6 +18,8 @@ Helm currently has 3 types of Plugins:
+ 
+ Starting with Helm 4, the plugin system is set up to more easily allow adding additional plugin types, which would allow users to modify other areas of Helm functionality.
+ 
++Helm 4 plugins run on one of two runtimes: the legacy **subprocess** runtime, or the sandboxed **Wasm** runtime (via [Extism](https://extism.org/)). Wasm plugins run in a secure sandbox with only the access to your system that you explicitly approve through `plugin.yaml`. See [Plugin Runtimes](#plugin-runtimes) for details.
++
+ ### CLI plugins
+ 
+ What is the advantage of using a plugin to create `helm` CLI subcommands as opposed to using separate scripts, or tools with their own standalone commands?
+diff --git a/docs/plugins/user/index.md b/docs/plugins/user/index.md
+index 52ef61394524aed90c78e6a039ef1a444389d2f1..673f8af5cec1092f6bc0f14e7286b6a588363847 100644
+--- a/docs/plugins/user/index.md
++++ b/docs/plugins/user/index.md
+@@ -35,6 +35,18 @@ Helm has a built-in command to install plugins that defaults to secure installat
+ 
+ See `helm plugin install --help` for more information.
+ 
++## Migrating from Legacy Plugins
++
++Helm 3 plugins (those without an `apiVersion` field in `plugin.yaml`) are still supported throughout the life of Helm 4, so your existing plugins will continue to work until Helm 5. However, legacy plugins use the subprocess runtime and do not benefit from the Wasm sandbox or the new versioned plugin types.
++
++To migrate a legacy plugin:
++
++1. Check whether the plugin author has published a Helm 4 version of the plugin. If so, uninstall the legacy plugin and install the new version.
++2. If no updated version exists, ask the plugin author to migrate. The [Plugins Developer Guide](/plugins/developer/index.mdx) covers the new `plugin.yaml` fields and the Wasm runtime.
++3. Legacy plugins that use the old downloader mechanism (`protocolCommands`) should be replaced with `getter/v1` plugins, which implement protocol-specific logic by inspecting the download URL.
++
++You can identify legacy plugins in `helm plugin list` by their missing API version.
++
+ ## Listing Installed Plugins
+ 
+ The command to list plugins includes the plugin's name, version, type, API version, provenance, and source.

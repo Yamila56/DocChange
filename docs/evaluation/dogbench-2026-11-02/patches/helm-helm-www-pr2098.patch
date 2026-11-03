@@ -1,0 +1,121 @@
+diff --git a/docs/intro/quickstart.md b/docs/intro/quickstart.md
+index d0b2d97faf76fce0f6ee5b28b3781d829a740e6c..b928ad31e593e4dbec93bf2c03beabf932ef0a07 100644
+--- a/docs/intro/quickstart.md
++++ b/docs/intro/quickstart.md
+@@ -31,38 +31,34 @@ or look at [the official releases page](https://github.com/helm/helm/releases).
+ 
+ For more details, or for other options, see [the installation guide](/intro/install.mdx).
+ 
+-## Initialize a Helm Chart Repository
++## Find a Chart to Install
+ 
+-Once you have Helm ready, you can add a chart repository. Check [Artifact
+-Hub](https://artifacthub.io/packages/search?kind=0) for available Helm chart
+-repositories.
+-
+-```console
+-$ helm repo add bitnami https://charts.bitnami.com/bitnami
+-```
++Once you have Helm ready, you can search for charts to install. Helm supports
++installing charts from both traditional chart repositories and OCI-based
++registries. OCI registries are the recommended way to distribute and install
++charts.
+ 
+-Once this is installed, you will be able to list the charts you can install:
++You can browse [Artifact Hub](https://artifacthub.io/packages/search?kind=0) to
++discover available charts and their sources. Many charts are published to OCI
++registries, which you can search directly with Helm:
+ 
+ ```console
+-$ helm search repo bitnami
+-NAME                             	CHART VERSION	APP VERSION  	DESCRIPTION
+-bitnami/bitnami-common           	0.0.9        	0.0.9        	DEPRECATED Chart with custom templates used in ...
+-bitnami/airflow                  	8.0.2        	2.0.0        	Apache Airflow is a platform to programmaticall...
+-bitnami/apache                   	8.2.3        	2.4.46       	Chart for Apache HTTP Server
+-bitnami/aspnet-core              	1.2.3        	3.1.9        	ASP.NET Core is an open-source framework create...
++$ helm search hub
++URL                                                 	CHART VERSION	APP VERSION	DESCRIPTION
++https://artifacthub.io/packages/helm/...            	...          	...        	...
+ # ... and many more
+ ```
+ 
+ ## Install an Example Chart
+ 
+ To install a chart, you can run the `helm install` command. Helm has several
+-ways to find and install a chart, but the easiest is to use the `bitnami`
+-charts.
++ways to find and install a chart. The recommended approach is to install a
++chart directly from an OCI registry, which does not require adding a chart
++repository first.
+ 
+ ```console
+-$ helm repo update              # Make sure we get the latest list of charts
+-$ helm install bitnami/mysql --generate-name
+-NAME: mysql-1612624192
++$ helm install my-release oci://<registry>/<namespace>/<chart>
++NAME: my-release
+ LAST DEPLOYED: Sat Feb  6 16:09:56 2021
+ NAMESPACE: default
+ STATUS: deployed
+@@ -71,12 +67,22 @@ TEST SUITE: None
+ NOTES: ...
+ ```
+ 
+-In the example above, the `bitnami/mysql` chart was released, and the name of
+-our new release is `mysql-1612624192`.
++In the example above, the chart was pulled from the OCI registry and released
++under the name `my-release`. Replace `<registry>`, `<namespace>`, and `<chart>`
++with the coordinates of the chart you want to install.
+ 
+-You get a simple idea of the features of this MySQL chart by running `helm show
+-chart bitnami/mysql`. Or you could run `helm show all bitnami/mysql` to get all
+-information about the chart.
++You can inspect a chart before installing it by running `helm show chart
++oci://<registry>/<namespace>/<chart>`. Or you could run `helm show all
++oci://<registry>/<namespace>/<chart>` to get all information about the chart.
++
++If a chart is only available from a traditional chart repository, you can add
++that repository and install from it instead:
++
++```console
++$ helm repo add <repo-name> <repo-url>
++$ helm repo update              # Make sure we get the latest list of charts
++$ helm install <repo-name>/<chart> --generate-name
++```
+ 
+ Whenever you install a chart, a new release is created. So one chart can be
+ installed multiple times into the same cluster. And each can be independently
+@@ -91,8 +97,8 @@ It's easy to see what has been released using Helm:
+ 
+ ```console
+ $ helm list
+-NAME            	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART      	APP VERSION
+-mysql-1612624192	default  	1       	2021-02-06 16:09:56.283059 +0100 CET	deployed	mysql-8.3.0	8.0.23
++NAME      	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART      	APP VERSION
++my-release	default  	1       	2021-02-06 16:09:56.283059 +0100 CET	deployed	<chart>    	<version>
+ ```
+ 
+ The `helm list` (or `helm ls`) function will show you a list of all deployed releases.
+@@ -102,18 +108,18 @@ The `helm list` (or `helm ls`) function will show you a list of all deployed rel
+ To uninstall a release, use the `helm uninstall` command:
+ 
+ ```console
+-$ helm uninstall mysql-1612624192
+-release "mysql-1612624192" uninstalled
++$ helm uninstall my-release
++release "my-release" uninstalled
+ ```
+ 
+-This will uninstall `mysql-1612624192` from Kubernetes, which will remove all
++This will uninstall `my-release` from Kubernetes, which will remove all
+ resources associated with the release as well as the release history.
+ 
+ If the flag `--keep-history` is provided, release history will be kept. You will
+ be able to request information about that release:
+ 
+ ```console
+-$ helm status mysql-1612624192
++$ helm status my-release
+ Status: UNINSTALLED
+ ...
+ ```

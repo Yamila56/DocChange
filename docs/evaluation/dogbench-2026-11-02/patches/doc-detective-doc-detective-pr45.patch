@@ -1,0 +1,15 @@
+diff --git a/README.md b/README.md
+index 40a133416a0c8cdfb84c19e0997c72bce4b354fa..44c8350291f79643ee21ff6665ecd1d16cdbb357 100644
+--- a/README.md
++++ b/README.md
+@@ -51,7 +51,9 @@ To customize your test, file type, and directory options, create a [`config.json
+ npm run runTests -- --config ./samples/config.json
+ ```
+ 
+-You can override `config.json` options with command-line arguments. For example, to run tests in a file named `tests.spec.json` in the `samples` directory, run the following command:
++If a `.doc-detective.json` file exists in the current working directory, Doc Detective loads it automatically as the default configuration, so you don't need to pass `--config` for that file.
++
++You can override configuration options with command-line arguments. For example, to run tests in a file named `tests.spec.json` in the `samples` directory, run the following command:
+ 
+ ```bash
+ npm run runTests -- --config ./samples/config.json --input ./samples/tests.spec.json

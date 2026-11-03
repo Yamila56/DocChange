@@ -1,0 +1,176 @@
+﻿instance_id,source_url,expected_outcome,status,decision,decision_correct,score,blocking_p0,api_requests,reserved_model_turns,error
+Azure-azure-service-operator-pr4003,https://github.com/Azure/azure-service-operator/pull/4003,patch,completed,patch,True,0.0,C1,11,11,
+Azure-azure-service-operator-pr4196,https://github.com/Azure/azure-service-operator/pull/4196,abstain,error,,False,0.0,,16,16,Original per-task model-call budget exhausted
+Azure-azure-service-operator-pr4202,https://github.com/Azure/azure-service-operator/pull/4202,patch,completed,patch,True,15.0,C1;C2;C4,11,11,
+Azure-azure-service-operator-pr4394,https://github.com/Azure/azure-service-operator/pull/4394,abstain,completed,abstain,True,100.0,,7,7,
+Azure-azure-service-operator-pr5490,https://github.com/Azure/azure-service-operator/pull/5490,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+MaterializeInc-materialize-pr36075,https://github.com/MaterializeInc/materialize/pull/36075,abstain,completed,abstain,True,100.0,,8,9,
+MaterializeInc-materialize-pr36328,https://github.com/MaterializeInc/materialize/pull/36328,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+MaterializeInc-materialize-pr36618,https://github.com/MaterializeInc/materialize/pull/36618,patch,completed,patch,True,60.0,C1,8,8,
+MaterializeInc-materialize-pr36803,https://github.com/MaterializeInc/materialize/pull/36803,abstain,error,,False,0.0,,16,16,Model-call budget exhausted
+MaterializeInc-materialize-pr37023,https://github.com/MaterializeInc/materialize/pull/37023,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+PostHog-posthog-pr63817,https://github.com/PostHog/posthog/pull/63817,abstain,completed,abstain,True,100.0,,9,9,
+PostHog-posthog-pr63871,https://github.com/PostHog/posthog.com/pull/17672,patch,completed,abstain,False,0.0,,12,12,
+PostHog-posthog-pr63886,https://github.com/PostHog/posthog/pull/63886,abstain,completed,abstain,True,100.0,,12,12,
+PostHog-posthog.com-pr16354,https://github.com/PostHog/posthog.com/pull/16354,patch,completed,abstain,False,0.0,,10,10,
+PostHog-posthog.com-pr16714,https://github.com/PostHog/posthog.com/pull/16714,patch,completed,patch,True,27.3,C1;C6;C7,10,10,
+PostHog-posthog.com-pr16752,https://github.com/PostHog/posthog.com/pull/16752,patch,completed,patch,True,46.2,,5,5,
+PostHog-posthog.com-pr16822,https://github.com/PostHog/posthog.com/pull/16822,patch,completed,patch,True,0.0,C1,11,11,
+PostHog-posthog.com-pr16939,https://github.com/PostHog/posthog.com/pull/16939,patch,completed,patch,True,50.0,C1,14,14,
+PostHog-posthog.com-pr17172,https://github.com/PostHog/posthog.com/pull/17172,patch,completed,patch,True,60.0,C3;C7,12,13,
+PostHog-posthog.com-pr17231,https://github.com/PostHog/posthog.com/pull/17231,patch,completed,patch,True,27.3,,7,7,
+apache-flink-pr27195,https://github.com/apache/flink/pull/27195,patch,completed,patch,True,0.0,C2;C4;C6;C10;C15,9,10,
+apache-flink-pr27325,https://github.com/apache/flink/pull/27325,abstain,completed,abstain,True,100.0,,14,15,
+apache-flink-pr27345,https://github.com/apache/flink/pull/27345,abstain,completed,abstain,True,100.0,,14,14,
+apache-flink-pr28212,https://github.com/apache/flink/pull/28212,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+apache-flink-pr28237,https://github.com/apache/flink/pull/28237,patch,completed,patch,True,0.0,C1;C4;C5;C16,16,16,
+apache-iceberg-pr15566,https://github.com/apache/iceberg/pull/15566,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+apache-iceberg-pr15634,https://github.com/apache/iceberg/pull/15634,abstain,error,,False,0.0,,16,16,Model-call budget exhausted
+apache-iceberg-pr15667,https://github.com/apache/iceberg/pull/15667,abstain,error,,False,0.0,,16,16,Model-call budget exhausted
+apache-iceberg-pr15814,https://github.com/apache/iceberg/pull/15814,patch,completed,patch,True,9.1,C1;C2;C4;C5;C6;C7;C8;C9,16,16,
+apache-iceberg-pr16241,https://github.com/apache/iceberg/pull/16241,abstain,completed,patch,False,0.0,,12,12,
+astral-sh-ruff-pr21369,https://github.com/astral-sh/ruff/pull/21369,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+astral-sh-ruff-pr22119,https://github.com/astral-sh/ruff/pull/22119,patch,completed,patch,True,37.5,,9,9,
+bentoml-bentoml-pr5465,https://github.com/bentoml/bentoml/pull/5465,patch,completed,patch,True,11.8,C5;C9;C11,15,15,
+bentoml-bentoml-pr5518,https://github.com/bentoml/bentoml/pull/5518,patch,completed,patch,True,33.3,C1,11,11,
+celery-celery-pr10135,https://github.com/celery/celery/pull/10135,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+celery-celery-pr10150,https://github.com/celery/celery/pull/10150,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+celery-celery-pr10174,https://github.com/celery/celery/pull/10174,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+celery-celery-pr10206,https://github.com/celery/celery/pull/10206,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+celery-celery-pr10238,https://github.com/celery/celery/pull/10238,patch,completed,patch,True,16.7,C4,7,7,
+celery-celery-pr9879,https://github.com/celery/celery/pull/9879,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+dagworks-inc-hamilton-pr1445,https://github.com/dagworks-inc/hamilton/pull/1445,patch,completed,patch,True,30.0,C1;C3;C5;C8,14,14,
+dlt-hub-dlt-pr2500,https://github.com/dlt-hub/dlt/pull/2500,patch,completed,patch,True,38.1,C4,13,14,
+dlt-hub-dlt-pr2836,https://github.com/dlt-hub/dlt/pull/2836,patch,completed,patch,True,30.8,C2;C5;C6,16,16,
+dlt-hub-dlt-pr2965,https://github.com/dlt-hub/dlt/pull/2965,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+doc-detective-common-pr112,https://github.com/doc-detective/common/pull/112,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+doc-detective-common-pr63,https://github.com/doc-detective/common/pull/63,patch,completed,patch,True,29.4,C1,10,10,
+doc-detective-common-pr65,https://github.com/doc-detective/common/pull/65,abstain,completed,patch,False,0.0,,11,11,
+doc-detective-common-pr78,https://github.com/doc-detective/common/pull/78,patch,completed,patch,True,7.1,C1,11,11,
+doc-detective-doc-detective-pr146,https://github.com/doc-detective/doc-detective/pull/146,patch,completed,patch,True,60.0,C1,6,6,
+doc-detective-doc-detective-pr21,https://github.com/doc-detective/doc-detective/pull/21,patch,completed,patch,True,100.0,,12,12,
+doc-detective-doc-detective-pr238,https://github.com/doc-detective/doc-detective/pull/238,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+doc-detective-doc-detective-pr244,https://github.com/doc-detective/doc-detective/pull/246,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+doc-detective-doc-detective-pr296,https://github.com/doc-detective/doc-detective/pull/296,patch,completed,patch,True,53.3,,8,8,
+doc-detective-doc-detective-pr352,https://github.com/doc-detective/doc-detective/pull/352,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+doc-detective-doc-detective-pr357,https://github.com/doc-detective/doc-detective/pull/358,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+doc-detective-doc-detective-pr45,https://github.com/doc-detective/doc-detective/pull/45,patch,completed,patch,True,45.5,,6,6,
+doc-detective-doc-detective-pr66,https://github.com/doc-detective/doc-detective/pull/66,patch,completed,patch,True,0.0,,8,8,
+doc-detective-doc-detective.github.io-pr112,https://github.com/doc-detective/doc-detective.github.io/pull/112,patch,completed,patch,True,53.3,C2;C4,11,11,
+finos-rune-dsl-pr1246,https://github.com/finos/rune-dsl/pull/1246,patch,completed,patch,True,60.0,C4;C5,11,11,
+finos-rune-dsl-pr1258,https://github.com/finos/rune-dsl/pull/1258,patch,completed,abstain,False,0.0,,16,16,
+finos-rune-dsl-pr473,https://github.com/finos/rune-dsl/pull/473,abstain,completed,patch,False,0.0,,7,7,
+finos-rune-dsl-pr520,https://github.com/finos/rune-dsl/pull/520,abstain,completed,abstain,True,100.0,,15,15,
+helm-helm-pr13604,https://github.com/helm/helm/pull/13604,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+helm-helm-pr13655,https://github.com/helm/helm/pull/13655,patch,completed,patch,True,45.5,C1;C3,8,8,
+helm-helm-pr30984,https://github.com/helm/helm/pull/30984,abstain,completed,abstain,True,100.0,,4,4,
+helm-helm-pr31011,https://github.com/helm/helm/pull/31011,abstain,completed,abstain,True,100.0,,13,13,
+helm-helm-pr31030,https://github.com/helm/helm/pull/31030,abstain,error,,False,0.0,,16,16,Model-call budget exhausted
+helm-helm-pr31034,https://github.com/helm/helm/pull/31034,abstain,completed,patch,False,0.0,,9,9,
+helm-helm-pr31057,https://github.com/helm/helm/pull/31057,abstain,completed,abstain,True,100.0,,6,6,
+helm-helm-pr31376,https://github.com/helm/helm/pull/31376,abstain,completed,abstain,True,100.0,,6,6,
+helm-helm-pr31462,https://github.com/helm/helm/pull/31462,abstain,completed,abstain,True,100.0,,6,6,
+helm-helm-pr31491,https://github.com/helm/helm/pull/31491,abstain,completed,patch,False,0.0,,9,9,
+helm-helm-www-issue1889,https://github.com/helm/helm-www/issues/1889,abstain,completed,patch,False,0.0,,16,16,
+helm-helm-www-pr1734,https://github.com/helm/helm-www/pull/1734,patch,completed,patch,True,30.8,C1,7,7,
+helm-helm-www-pr1898,https://github.com/helm/helm-www/pull/1898,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+helm-helm-www-pr1926,https://github.com/helm/helm-www/pull/1926,patch,completed,abstain,False,0.0,,6,6,
+helm-helm-www-pr2045,https://github.com/helm/helm-www/pull/2045,abstain,completed,abstain,True,100.0,,6,6,
+helm-helm-www-pr2056,https://github.com/helm/helm-www/pull/2056,patch,completed,abstain,False,0.0,,5,5,
+helm-helm-www-pr2098,https://github.com/helm/helm-www/pull/2098,patch,completed,patch,True,13.3,C1;C6;C7;C14,6,6,
+huggingface-peft-pr1550,https://github.com/huggingface/peft/pull/1550,patch,completed,patch,True,57.1,,13,13,
+huggingface-peft-pr2525,https://github.com/huggingface/peft/pull/2525,abstain,error,,False,0.0,,16,16,Model-call budget exhausted
+huggingface-peft-pr2763,https://github.com/huggingface/peft/pull/2763,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+huggingface-peft-pr2953,https://github.com/huggingface/peft/pull/2953,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+iterorganization-IMAS-Core-pr48,https://github.com/iterorganization/IMAS-Core/pull/48,patch,completed,patch,True,37.5,,10,10,
+iterorganization-IMAS-Core-pr49,https://github.com/iterorganization/IMAS-Core/pull/49,abstain,completed,patch,False,0.0,,6,6,
+iterorganization-IMAS-Core-pr52,https://github.com/iterorganization/IMAS-Core/pull/52,abstain,completed,abstain,True,100.0,,6,6,
+iterorganization-IMAS-Core-pr65,https://github.com/iterorganization/IMAS-Core/pull/65,patch,completed,abstain,False,0.0,,8,8,
+jj-vcs-jj-pr7479,https://github.com/jj-vcs/jj/pull/7479,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+jj-vcs-jj-pr7537,https://github.com/jj-vcs/jj/pull/7537,abstain,completed,abstain,True,100.0,,7,8,
+jj-vcs-jj-pr8297,https://github.com/jj-vcs/jj/pull/8297,patch,completed,patch,True,55.6,C1;C4;C5,15,15,
+jj-vcs-jj-pr9085,https://github.com/jj-vcs/jj/pull/9085,abstain,completed,abstain,True,100.0,,2,2,
+jj-vcs-jj-pr9347,https://github.com/jj-vcs/jj/pull/9347,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+kubernetes-sigs-kro-pr108,https://github.com/kubernetes-sigs/kro/pull/108,patch,completed,patch,True,8.3,C1;C2;C3;C5,11,12,
+kubernetes-sigs-kro-pr1106,https://github.com/kubernetes-sigs/kro/pull/1106,abstain,completed,abstain,True,100.0,,4,4,
+kubernetes-sigs-kro-pr1110,https://github.com/kubernetes-sigs/kro/pull/1110,patch,completed,patch,True,17.6,,10,10,
+lancedb-lancedb-pr2845,https://github.com/lancedb/lancedb/pull/2845,patch,completed,patch,True,4.3,C1;C2;C3;C4;C6;C7;C8;C9,9,9,
+lancedb-lancedb-pr2887,https://github.com/lancedb/lancedb/pull/2887,patch,completed,abstain,False,0.0,,9,9,
+litestar-org-litestar-pr4506,https://github.com/litestar-org/litestar/pull/4506,patch,completed,patch,True,18.8,C4;C11,13,13,
+mautic-developer-documentation-new-pr525,https://github.com/mautic/developer-documentation-new/pull/525,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+mautic-mautic-pr15476,https://github.com/mautic/mautic/pull/15476,abstain,completed,abstain,True,100.0,,8,8,
+mautic-mautic-pr15508,https://github.com/mautic/user-documentation/pull/819,patch,completed,patch,True,15.4,C5;C6;C13,8,8,
+mautic-mautic-pr15719,https://github.com/mautic/mautic/pull/15719,abstain,completed,abstain,True,100.0,,5,5,
+mautic-mautic-pr15954,https://github.com/mautic/user-documentation/pull/807,patch,completed,abstain,False,0.0,,7,7,
+mautic-mautic-pr16101,https://github.com/mautic/mautic/pull/16101,abstain,completed,abstain,True,100.0,,5,5,
+mautic-mautic-pr16173,https://github.com/mautic/developer-documentation-new/pull/518,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+mautic-mautic-pr16264,https://github.com/mautic/mautic/pull/16264,abstain,completed,abstain,True,100.0,,2,2,
+mautic-user-documentation-pr162,https://github.com/mautic/user-documentation/pull/162,patch,completed,abstain,False,0.0,,5,6,
+mautic-user-documentation-pr174,https://github.com/mautic/mautic/pull/11613,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+mautic-user-documentation-pr297,https://github.com/mautic/user-documentation/pull/297,patch,completed,patch,True,60.0,,7,8,
+mautic-user-documentation-pr302,https://github.com/mautic/user-documentation/pull/302,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+mautic-user-documentation-pr358,https://github.com/mautic/user-documentation/pull/358,patch,completed,patch,True,70.0,,11,13,
+mautic-user-documentation-pr651,https://github.com/mautic/user-documentation/pull/651,patch,completed,patch,True,25.0,C1;C4,5,7,
+mautic-user-documentation-pr699,https://github.com/mautic/user-documentation/pull/699,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+mautic-user-documentation-pr701,https://github.com/mautic/user-documentation/pull/701,patch,completed,patch,True,0.0,C1,5,7,
+mautic-user-documentation-pr705,https://github.com/mautic/user-documentation/pull/705,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+mautic-user-documentation-pr723,https://github.com/mautic/user-documentation/pull/723,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+mautic-user-documentation-pr727,https://github.com/mautic/user-documentation/pull/727,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+mautic-user-documentation-pr741,https://github.com/mautic/user-documentation/pull/741,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+microsoft-DeepSpeed-pr5338,https://github.com/deepspeedai/DeepSpeed/pull/5338,abstain,completed,abstain,True,100.0,,15,15,
+microsoft-DeepSpeed-pr5827,https://github.com/deepspeedai/DeepSpeed/pull/5827,patch,completed,patch,True,13.3,C2;C3;C4;C5;C8,14,15,
+microsoft-DeepSpeed-pr7515,https://github.com/deepspeedai/DeepSpeed/pull/7515,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+microsoft-DeepSpeed-pr7992,https://github.com/deepspeedai/DeepSpeed/pull/7992,patch,completed,patch,True,60.0,C6,16,16,
+openbao-openbao-pr2353,https://github.com/openbao/openbao/pull/2353,abstain,completed,abstain,True,100.0,,7,8,
+openbao-openbao-pr3176,https://github.com/openbao/openbao/pull/3176,patch,completed,patch,True,22.2,C1,8,10,
+openbao-openbao-pr3224,https://github.com/openbao/openbao/pull/3224,abstain,error,,False,0.0,,14,16,Model-call budget exhausted
+opencost-opencost-pr3722,https://github.com/opencost/opencost/pull/3722,abstain,completed,abstain,True,100.0,,12,14,
+opencost-opencost-pr3783,https://github.com/opencost/opencost/pull/3783,abstain,completed,abstain,True,100.0,,2,4,
+opencost-opencost-website-pr102--code-pr1842,https://github.com/opencost/opencost-website/pull/102,patch,completed,patch,True,10.5,C1;C4;C5;C6;C7,13,15,
+opencost-opencost-website-pr135,https://github.com/opencost/opencost-website/pull/135,patch,completed,patch,True,23.1,C1;C3;C10,6,8,
+openfga-openfga-pr3016,https://github.com/openfga/openfga/pull/3016,abstain,error,,False,0.0,,14,16,Model-call budget exhausted
+openfga-openfga-pr3035,https://github.com/openfga/openfga/pull/3035,abstain,completed,patch,False,0.0,,11,12,
+openfga-openfga-pr3149,https://github.com/openfga/openfga/pull/3149,abstain,completed,patch,False,0.0,,7,8,
+openfga-openfga.dev-pr264,https://github.com/openfga/openfga.dev/pull/264,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+openfga-openfga.dev-pr314,https://github.com/openfga/openfga.dev/pull/314,patch,completed,patch,True,6.2,C1;C5;C6;C11;C13,9,10,
+openfga-openfga.dev-pr355,https://github.com/openfga/openfga.dev/pull/355,patch,completed,patch,True,73.3,,9,10,
+pantsbuild-pants-pr22034,https://github.com/pantsbuild/pants/pull/22034,patch,completed,patch,True,50.0,C2;C5;C7,7,8,
+pantsbuild-pants-pr23052,https://github.com/pantsbuild/pants/pull/23052,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+pantsbuild-pants-pr23187,https://github.com/pantsbuild/pants/pull/23187,abstain,completed,abstain,True,100.0,,5,7,
+pantsbuild-pants-pr23219,https://github.com/pantsbuild/pants/pull/23219,patch,completed,patch,True,30.8,C1;C2;C5,10,12,
+pantsbuild-pants-pr23320,https://github.com/pantsbuild/pants/pull/23320,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+pantsbuild-pants-pr23400,https://github.com/pantsbuild/pants/pull/23400,abstain,completed,patch,False,0.0,,7,9,
+prefecthq-prefect-pr19580,https://github.com/prefecthq/prefect/pull/19580,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+prefix-dev-pixi-pr4915,https://github.com/prefix-dev/pixi/pull/4915,abstain,completed,abstain,True,100.0,,5,7,
+prefix-dev-pixi-pr5485,https://github.com/prefix-dev/pixi/pull/5485,patch,completed,patch,True,15.4,,8,10,
+prefix-dev-pixi-pr5840,https://github.com/prefix-dev/pixi/pull/5840,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+prefix-dev-pixi-pr5916,https://github.com/prefix-dev/pixi/pull/5916,abstain,completed,abstain,True,100.0,,6,7,
+pydantic-pydantic-pr12518,https://github.com/pydantic/pydantic/pull/12518,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+pydantic-pydantic-pr12572,https://github.com/pydantic/pydantic/pull/12572,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+python-mypy-pr20007,https://github.com/python/mypy/pull/20007,patch,completed,patch,True,57.1,C1,6,7,
+python-mypy-pr20635,https://github.com/python/mypy/pull/20635,abstain,completed,abstain,True,100.0,,5,7,
+python-mypy-pr21304,https://github.com/python/mypy/pull/21304,abstain,error,,False,0.0,,15,16,Model-call budget exhausted
+python-mypy-pr21382,https://github.com/python/mypy/pull/21382,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+python-mypy-pr21387,https://github.com/python/mypy/pull/21387,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+rilldata-rill-pr9315,https://github.com/rilldata/rill/pull/9315,abstain,completed,abstain,True,100.0,,12,14,
+rilldata-rill-pr9451,https://github.com/rilldata/rill/pull/9451,abstain,error,,False,0.0,,14,16,Model-call budget exhausted
+scverse-anndata-pr1162,https://github.com/scverse/anndata/pull/1162,patch,completed,patch,True,40.0,C1;C5;C6,10,12,
+scverse-anndata-pr2290,https://github.com/scverse/anndata/pull/2290,patch,error,,False,0.0,,14,16,Model-call budget exhausted
+scverse-scanpy-pr3191,https://github.com/scverse/scanpy/pull/3191,abstain,completed,abstain,True,100.0,,4,6,
+scverse-scanpy-pr4100,https://github.com/scverse/scanpy/pull/4100,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+strawberry-graphql-strawberry-pr4059,https://github.com/strawberry-graphql/strawberry/pull/4059,patch,completed,patch,True,14.3,C1,13,14,
+strawberry-graphql-strawberry-pr4320,https://github.com/strawberry-graphql/strawberry/pull/4320,patch,completed,patch,True,40.0,C15,7,7,
+strawberry-graphql-strawberry-pr4342,https://github.com/strawberry-graphql/strawberry/pull/4342,patch,completed,patch,True,37.5,C6,9,9,
+tiangolo-fastapi-pr14262,https://github.com/tiangolo/fastapi/pull/14262,patch,completed,patch,True,37.5,C1;C4;C6,13,13,
+tiangolo-fastapi-pr14487,https://github.com/tiangolo/fastapi/pull/14487,patch,completed,patch,True,15.4,C1;C3;C4;C5;C7,7,7,
+tiangolo-fastapi-pr14681,https://github.com/tiangolo/fastapi/pull/14681,patch,error,,False,0.0,,15,16,Original per-task model-call budget exhausted
+tiangolo-fastapi-pr14978,https://github.com/tiangolo/fastapi/pull/14978,patch,completed,patch,True,50.0,C3,14,15,
+tiangolo-fastapi-pr15022,https://github.com/fastapi/fastapi/pull/15022,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+trinodb-trino-pr28937,https://github.com/trinodb/trino/pull/28937,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+trinodb-trino-pr29039,https://github.com/trinodb/trino/pull/29039,patch,completed,patch,True,40.0,C2;C4;C6,7,8,
+trinodb-trino-pr29900,https://github.com/trinodb/trino/pull/29900,abstain,error,,False,0.0,,15,16,Model-call budget exhausted
+vllm-project-vllm-pr43603,https://github.com/vllm-project/vllm/pull/43603,patch,error,,False,0.0,,15,16,Model-call budget exhausted
+vllm-project-vllm-pr43805,https://github.com/vllm-project/vllm/pull/43805,patch,completed,patch,True,8.3,,5,6,
+vllm-project-vllm-pr45003,https://github.com/vllm-project/vllm/pull/45003,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+volcengine-verl-pr5186,https://github.com/volcengine/verl/pull/5186,patch,error,,False,0.0,,16,16,Model-call budget exhausted
+volcengine-verl-pr6086,https://github.com/volcengine/verl/pull/6086,patch,error,,False,0.0,,16,16,Model-call budget exhausted

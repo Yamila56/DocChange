@@ -1,0 +1,55 @@
+diff --git a/docs/docs/kubernetes/index.mdx b/docs/docs/kubernetes/index.mdx
+index f683fa5297f8aa65ce0481bb37a0029689163598..2b56b65d8871c0c12011453d5bb2f4cff3e59486 100644
+--- a/docs/docs/kubernetes/index.mdx
++++ b/docs/docs/kubernetes/index.mdx
+@@ -31,6 +31,50 @@ The Kubernetes backend adds [`k8s_source`](../../reference/targets/k8s_source.md
+ [`k8s_sources`](../../reference/targets/k8s_sources.mdx) target types for Kubernetes object
+ files.
+ 
++### Generating Kubernetes manifests from Python format strings
++
++You can also generate Kubernetes sources from a Python format string template. Activate the
++experimental backend in `pants.toml`:
++
++```toml title="pants.toml"
++[GLOBAL]
++backend_packages = [
++  ...
++  "pants.backend.experimental.codegen.python_format_string",
++  "pants.backend.experimental.codegen.python_format_string.k8s",
++]
++```
++
++This adds the [`python_format_string`](../../reference/targets/python_format_string.mdx) and
++[`python_format_strings`](../../reference/targets/python_format_strings.mdx) target types. A
++`python_format_string` target takes a single source file and a required `values` mapping of
++strings, and renders the file using Python's `str.format` substitution:
++
++```yaml title="src/k8s/deployment.yaml"
++kind: Deployment
++metadata:
++  name: my-app
++spec:
++  template:
++    spec:
++      containers:
++        - name: my-app
++          image: my-image:{VERSION}
++```
++
++```python title="src/k8s/BUILD"
++python_format_string(
++    name="deployment",
++    source="deployment.yaml",
++    values={"VERSION": "1.2.3"},
++)
++```
++
++The rendered output is written to a generated file (by default `deployment.rendered`), which can
++then be consumed by other Kubernetes targets such as `k8s_bundle`. The `values` field is required;
++omitting it is an error. Each target must have exactly one source file, and every placeholder in the
++template must have a corresponding key in `values`.
++
+ For example, create a file `src/k8s/webpages.yaml`:
+ 
+ ```yaml title="src/k8s/webpages.yaml"

@@ -1,3 +1,4 @@
+import asyncio
 import copy
 import difflib
 import posixpath
@@ -128,6 +129,22 @@ def broken_links(documents):
     return sorted(broken)
 
 
+def search_chunks(chunks, query, exact):
+    """Compute against a detached revision snapshot, without holding a SQL session."""
+    if not chunks or not query.strip():
+        return []
+    if exact:
+        return [c for c in chunks if query in c["quote"]]
+    index = DocumentRetriever([c["id"] for c in chunks], [c["quote"] for c in chunks])
+    by_id = {c["id"]: c for c in chunks}
+    terms = set(tokens(query))
+    return [
+        by_id[key]
+        for key in index.rank(query, len(chunks))
+        if terms & set(tokens(by_id[key]["quote"]))
+    ][:6]
+
+
 class DocumentService:
     @staticmethod
     def validate_contract(documents, contract):
@@ -227,19 +244,9 @@ class DocumentService:
 
     async def search(self, owner, wid, number, query, *, exact=False):
         snapshot = await self.get(owner, wid, number)
-        chunks = snapshot["index"]["chunks"]
-        if not chunks or not query.strip():
-            return []
-        if exact:
-            hits = [c for c in chunks if query in c["quote"]]
-        else:
-            index = DocumentRetriever([c["id"] for c in chunks], [c["quote"] for c in chunks])
-            by_id = {c["id"]: c for c in chunks}
-            hits = [
-                by_id[key]
-                for key in index.rank(query, len(chunks))
-                if set(tokens(query)) & set(tokens(by_id[key]["quote"]))
-            ][:6]
+        # get() closes its session before CPU work. Keep the event loop available
+        # for task submissions, model I/O and worker heartbeats during retrieval.
+        hits = await asyncio.to_thread(search_chunks, snapshot["index"]["chunks"], query, exact)
         return [{**c, "version": f"{wid}@{number}"} for c in hits]
 
     async def prepare(self, lease, state, edits, evidence, summary):
@@ -289,9 +296,17 @@ class DocumentService:
                 "created_paths": sorted(set(candidate) - set(base["documents"])),
                 "deleted_paths": sorted(set(base["documents"]) - set(candidate)),
                 "preserved_paths": sorted(set(candidate) - set(diffs)),
-                "replacement_occurrences": sum(e["count"] for e in edits),
+                "replacement_occurrences": sum(
+                    e.get("count", 1) for e in edits if e.get("operation", "replace") == "replace"
+                ),
                 "contract": {
-                    k: cfg.get(k) for k in ("editable_paths", "required_absent", "required_present")
+                    k: cfg.get(k)
+                    for k in (
+                        "editable_paths",
+                        "creatable_paths",
+                        "required_absent",
+                        "required_present",
+                    )
                 },
             },
             "documents": candidate,

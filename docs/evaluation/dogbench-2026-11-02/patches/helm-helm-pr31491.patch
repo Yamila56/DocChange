@@ -1,0 +1,21 @@
+diff --git a/docs/plugins/overview.md b/docs/plugins/overview.md
+index fef32cd8114f928eb918b4c8be90ac601a208e4a..b4fbd5ae3cb8cebf361e958af750873fe2ae8456 100644
+--- a/docs/plugins/overview.md
++++ b/docs/plugins/overview.md
+@@ -79,7 +79,7 @@ The `plugin.yaml` file is required for a plugin. It is a YAML file containing me
+ ```yaml
+ apiVersion: REQUIRED - The Plugin API version. Must be "v1"
+ type: REQUIRED - The versioned Plugin Type. Can be "cli/v1", "getter/v1", or "postrenderer/v1"
+-name: REQUIRED - The name of the plugin
++name: REQUIRED - The name of the plugin. Must contain only a-z, A-Z, 0-9, _ and -
+ version: REQUIRED - The version of the plugin
+ runtime: REQUIRED - The runtime for the plugin. Can be "subprocess" or "extism/v1" (Wasm)
+ sourceURL: OPTIONAL - A URL pointing to the source code for your plugin
+@@ -88,6 +88,7 @@ runtimeConfig: DEPENDS ON RUNTIME
+ ```
+ 
+ - The `config` field is for [Plugin Type Configuration](#plugin-type-configuration), with a structure that differs per [Plugin Type](#plugin-types) as defined by the `type` field.
++- For `apiVersion: v1` plugins, `plugin.yaml` is parsed strictly: unknown or misspelled fields (for example `Name` instead of `name`) cause an error instead of being silently ignored. Legacy plugins (without `apiVersion`) are still parsed leniently for backwards compatibility.
+ - The `runtimeConfig` field is for [Runtime Configuration](#runtime-configuration), with a structure that differs per [Runtime](#plugin-runtimes) as defined by the `runtime` field.
+ - 💡 While the `sourceURL` field is optional, plugin authors are strongly encouraged to point to the plugin source code because it helps plugin users understand what the code does, and contribute to the plugin if it accepts open source contributions.
+ 

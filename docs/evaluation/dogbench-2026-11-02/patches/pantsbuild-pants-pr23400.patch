@@ -1,0 +1,39 @@
+diff --git a/docs/docs/writing-plugins/the-rules-api/processes.mdx b/docs/docs/writing-plugins/the-rules-api/processes.mdx
+index bf848a5823a7b8bc6a6f6592542ad791ff14b0eb..fcbb22b8b545d5ccc6ba8df64437caf242e8c24e 100644
+--- a/docs/docs/writing-plugins/the-rules-api/processes.mdx
++++ b/docs/docs/writing-plugins/the-rules-api/processes.mdx
+@@ -99,6 +99,34 @@ async def demo(...) -> Foo:
+ `ProcessCacheScope` supports other options as well, including `ALWAYS`.
+ :::
+ 
++## `CompositeProcess`
++
++Sometimes you need to run multiple commands in a single `Process` invocation, for example to ensure that a setup step and a subsequent step share the same sandbox (which matters in the presence of remote caching or remote execution). `CompositeProcess` composes multiple `Subprocess` instances into a single `Process`, executed sequentially via a Bash script. Execution stops on the first non-zero exit code.
++
++```python
++from pants.engine.composite_process import CompositeProcess, Subprocess
++from pants.engine.process import ProcessResult
++from pants.engine.rules import rule
++
++@rule
++async def demo(...) -> Foo:
++    result: ProcessResult = await execute_process_or_raise(**implicitly(
++        CompositeProcess(
++            [
++                Subprocess(argv=["/bin/echo", "first step"]),
++                Subprocess(command="echo second step"),
++            ],
++            description="Run two steps in one Process.",
++        )
++    ))
++```
++
++Each `Subprocess` accepts either a pre-joined `command: str` or an `argv: Iterable[str]`, but not both. It also accepts the same per-subprocess fields as `Process`: `input_digest`, `immutable_input_digests`, `env`, `append_only_caches`, `output_files`, and `output_directories`.
++
++When the `CompositeProcess` is converted to a `Process`, the input digests of all subprocesses are merged, and the output files, output directories, environment variables, and append-only caches are combined. If two subprocesses set the same environment variable, immutable input digest path, or append-only cache name to different values, an error is raised.
++
++`CompositeProcess` also supports the process-level fields `description`, `level`, `use_nailgun`, `working_directory`, `timeout_seconds`, `jdk_home`, `execution_slot_variable`, `concurrency_available`, `concurrency`, `cache_scope`, `remote_cache_speculation_delay_millis`, and `attempt`. Use `prepend_subprocesses()` and `append_subprocesses()` to add steps, and `CompositeProcess.from_process()` to wrap an existing `Process`.
++
+ ## `InteractiveProcess`
+ 
+ `InteractiveProcess` is similar to Python's `subprocess.run()`. The process will run in the foreground, optionally with access to the workspace.

@@ -15,8 +15,12 @@ class DocumentRetriever:
         self.identifiers = list(identifiers)
         self.lexical = BM25Okapi([tokens(text) or ["_"] for text in texts])
 
-    def rank(self, query, limit=1000):
-        scores = self.lexical.get_scores(tokens(query))
+    def rank(self, query, limit=1000, *, require_match=False):
+        terms = tokens(query)
+        scores = self.lexical.get_scores(terms)
         # Stable ties follow corpus input order, never gold relevance labels.
-        order = np.argsort(-scores, kind="stable")[:limit]
+        order = np.argsort(-scores, kind="stable")
+        if require_match:
+            order = [i for i in order if any(t in self.lexical.doc_freqs[int(i)] for t in terms)]
+        order = order[:limit]
         return {self.identifiers[int(i)]: float(scores[i]) for i in order}

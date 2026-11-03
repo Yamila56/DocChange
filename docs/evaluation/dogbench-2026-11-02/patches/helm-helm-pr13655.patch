@@ -1,0 +1,31 @@
+diff --git a/docs/chart_template_guide/values_files.mdx b/docs/chart_template_guide/values_files.mdx
+index ef1435b61bcd263a960ad7c6076c9afa2d91c764..2f9a4cd94fb91e8367df7988e193c521c392bf61 100644
+--- a/docs/chart_template_guide/values_files.mdx
++++ b/docs/chart_template_guide/values_files.mdx
+@@ -24,7 +24,25 @@ can be overridden by a parent chart's `values.yaml`, which can in turn be
+ overridden by a user-supplied values file, which can in turn be overridden by
+ `--set` parameters.
+ 
+-Values files are plain YAML files. Let's edit `mychart/values.yaml` and then
++Values files are plain YAML files. A single values file may contain more than
++one YAML document (separated by `---`). When it does, the documents are merged
++in order, exactly as if each document had been passed as a separate `-f` file:
++later documents take precedence over earlier ones for overlapping keys.
++
++For example, `helm install -f many.yaml ./mychart` with a `many.yaml` like this:
++
++```yaml
++---
++replicas: 1
++---
++replicas: 2
++```
++
++is equivalent to `helm install -f a.yaml -f b.yaml ./mychart`, where `a.yaml`
++sets `replicas: 1` and `b.yaml` sets `replicas: 2`. The resulting value of
++`replicas` is `2`.
++
++Let's edit `mychart/values.yaml` and then
+ edit our ConfigMap template.
+ 
+ Removing the defaults in `values.yaml`, we'll set just one parameter:

@@ -40,6 +40,12 @@ def atomic(path, value):
 
 
 async def main(args):
+    if args.workers < 1 or args.model_limit < 1:
+        raise ValueError("workers and model-limit must be positive")
+    if args.api_only_symlinks:
+        from scripts.dogbench_compat import install_api_only_symlink_policy
+
+        install_api_only_symlink_policy()
     os.environ.pop("GH_TOKEN", None)
     os.environ.pop("GITHUB_TOKEN", None)
     items_path = ROOT / ".cache/benchmarks/dogbench-data/items.jsonl"
@@ -52,15 +58,24 @@ async def main(args):
         Path(__file__),
         ROOT / "scripts/evaluate_models.py",
     ]
+    if args.subscription:
+        sources += [
+            ROOT / "scripts/codex_repository_gateway.py",
+            ROOT / "scripts/score_dogbench.py",
+            ROOT / "scripts/judge_windows_bridge.py",
+            ROOT / "scripts/run_benchmark_linux.py",
+        ]
     plan = {
         "protocol": "docchange-api-only-repository-adapter-v1",
         "dataset_sha256": hashlib.sha256(items_path.read_bytes()).hexdigest(),
         "items": [i["instance_id"] for i in items],
-        "model": "deepseek-flash",
-        "model_limit": 16,
+        "model": args.model,
+        "model_limit": args.model_limit,
         "task_timeout_seconds": 900,
-        "max_requests": 2800,
-        "cap_cny": 15,
+        "max_requests": len(items) * args.model_limit if args.subscription else 2800,
+        "cap_cny": None if args.subscription else args.cap_cny,
+        "billing": "Codex subscription; cost unknown" if args.subscription else "DeepSeek API",
+        "cache_hit_rate_cny_per_million": 0.04 if args.cache_aware else None,
         "source_sha256": {
             str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources
         },
@@ -77,18 +92,28 @@ async def main(args):
             target = out / "source" / p.relative_to(ROOT)
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(p.read_bytes())
-    budget = EvaluationBudget(out / "budget.sqlite", 2800, 15, 0)
+    budget = (
+        None
+        if args.subscription
+        else EvaluationBudget(
+            out / "budget.sqlite",
+            2800,
+            args.cap_cny,
+            0,
+            cache_hit_rate=0.04 if args.cache_aware else None,
+        )
+    )
     trace_audit.PRIMARY_AGENT_TRACE_NAMES.add("docchange.events.jsonl")
     semaphore = asyncio.Semaphore(args.workers)
     settings = Settings(
         provider="deepseek",
-        model="deepseek-flash",
+        model=args.model,
         model_base_url="https://api.deepseek.com",
         allow_paid_model=True,
         model_max_output_tokens=4096,
         model_timeout_seconds=85,
     )
-    if not settings.model_api_key:
+    if not settings.model_api_key and not args.subscription:
         raise RuntimeError("Local .env must contain the configured provider key")
 
     async def one(item, prepared):
@@ -105,10 +130,35 @@ async def main(args):
                 "strict_context_eligible": prepared.get("strict_context_eligible", True),
                 "context_findings": prepared.get("context_findings", []),
             }
-            gateway = RepositoryGateway(settings)
+            if args.subscription:
+                from scripts.codex_repository_gateway import CodexRepositoryGateway
+
+                gateway = CodexRepositoryGateway(settings)
+            else:
+                gateway = RepositoryGateway(settings)
             engine, sessions = make_database(f"sqlite+aiosqlite:///{folder / 'runs.sqlite'}")
             try:
                 workspace = Path(prepared["path"])
+                if args.prune_candidates:
+                    import subprocess
+
+                    if not workspace.resolve().is_relative_to(
+                        (args.prepared / "sealed/workspaces").resolve()
+                    ):
+                        raise ValueError("Only anonymous benchmark workspaces may be pruned")
+                    for name in ("docs", "code"):
+                        root = workspace / name
+                        if root.exists():
+                            clean = subprocess.run(
+                                ["git", "-C", str(root), "status", "--porcelain"],
+                                capture_output=True,
+                                check=True,
+                            )
+                            if clean.stdout.strip():
+                                raise ValueError("Benchmark working tree changed; preserved")
+                            subprocess.run(
+                                ["git", "-C", str(root), "gc", "--prune=now", "--quiet"], check=True
+                            )
                 # Verification runs before exporting any candidate Git object.
                 await asyncio.to_thread(
                     verify_attestation, args.prepared / "sealed", Path(prepared["attestation"])
@@ -128,7 +178,7 @@ async def main(args):
                     "provider": "deepseek",
                     "model": settings.model,
                     "domain": "repository",
-                    "model_limit": 16,
+                    "model_limit": args.model_limit,
                     "active_budget_ms": 900000,
                 }
                 rid = (
@@ -141,7 +191,12 @@ async def main(args):
                     )
                 )["run_id"]
                 lease = await store.claim(rid, "dogbench-docchange", lease_seconds=180)
-                wrapped = RecordedGateway(gateway, budget, folder / "model-calls.jsonl")
+                if args.subscription:
+                    from scripts.codex_repository_gateway import SubscriptionRecordedGateway
+
+                    wrapped = SubscriptionRecordedGateway(gateway, folder / "model-calls.jsonl")
+                else:
+                    wrapped = RecordedGateway(gateway, budget, folder / "model-calls.jsonl")
                 runtime = RepositoryRuntime(
                     store, wrapped, environment, folder / "docchange.events.jsonl"
                 )
@@ -223,7 +278,9 @@ async def main(args):
             "finished": len(results),
             "awaiting_preparation": len(pending),
             "completed": sum(r["status"] == "completed" for r in results),
-            "budget": budget.summary(),
+            "budget": budget.summary()
+            if budget is not None
+            else {"billing": "Codex subscription", "monetary_cost_cny": None},
         }
         atomic(out / "summary.json", public)
         predictions = [
@@ -249,5 +306,12 @@ if __name__ == "__main__":
     parser.add_argument("--output", type=Path, default=Path(".cache/evals/dogbench-20261102"))
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--limit", type=int, default=0)
+    parser.add_argument("--cap-cny", type=float, default=15)
+    parser.add_argument("--model", default="deepseek-flash")
+    parser.add_argument("--model-limit", type=int, default=16)
+    parser.add_argument("--subscription", action="store_true")
+    parser.add_argument("--cache-aware", action="store_true")
+    parser.add_argument("--api-only-symlinks", action="store_true")
+    parser.add_argument("--prune-candidates", action="store_true")
     parser.add_argument("--wait-preparation", action="store_true")
     asyncio.run(main(parser.parse_args()))

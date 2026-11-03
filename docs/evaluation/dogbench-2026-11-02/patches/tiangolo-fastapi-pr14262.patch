@@ -1,0 +1,54 @@
+diff --git a/docs/en/docs/advanced/advanced-dependencies.md b/docs/en/docs/advanced/advanced-dependencies.md
+index e0404b389f9eee6fca988463e48de9e72511553d..a02b72427ec492004bc90ebfe40678c688edb7c8 100644
+--- a/docs/en/docs/advanced/advanced-dependencies.md
++++ b/docs/en/docs/advanced/advanced-dependencies.md
+@@ -122,9 +122,47 @@ If you have this specific use case using SQLModel (or SQLAlchemy), you could exp
+ 
+ That way the session would release the database connection, so other requests could use it.
+ 
+-If you have a different use case that needs to exit early from a dependency with `yield`, please create a <a href="https://github.com/fastapi/fastapi/discussions/new?category=questions" class="external-link" target="_blank">GitHub Discussion Question</a> with your specific use case and why you would benefit from having early closing for dependencies with `yield`.
++If you have a different use case that needs to exit early from a dependency with `yield`, you can now opt in to early closing with the `scope` parameter, see below.
+ 
+-If there are compelling use cases for early closing in dependencies with `yield`, I would consider adding a new way to opt in to early closing.
++### Dependencies with `yield` and `scope`, Technical Details { #dependencies-with-yield-and-scope-technical-details }
++
++You can control when the exit code (the code after `yield`) of a dependency with `yield` is executed using the `scope` parameter of `Depends()`.
++
++It accepts two values:
++
++* `"function"`: the dependency starts before the *path operation function* and its exit code runs after the *path operation function* returns, but **before** the response is sent to the client. The dependency runs **around** the *path operation function*.
++* `"request"`: the dependency starts before the *path operation function* (the same as with `"function"`), but its exit code runs **after** the response has been fully sent to the client. The dependency runs **around** the whole request and response cycle.
++
++If you don't set `scope`, the default behavior is `"request"`, the exit code runs after the response is sent.
++
++For example, to close a database session as soon as the *path operation function* finishes, before the response is sent:
++
++```Python
++from typing import Annotated
++
++from fastapi import Depends, FastAPI
++
++app = FastAPI()
++
++
++def get_db():
++    db = "database session"
++    try:
++        yield db
++    finally:
++        print("closing database session")
++
++
++@app.get("/items/")
++def read_items(db: Annotated[str, Depends(get_db, scope="function")]):
++    return {"db": db}
++```
++
++/// note
++
++A dependency with `scope="request"` cannot depend on a dependency with `scope="function"`, as the narrower-scoped dependency would be closed before the wider-scoped one finishes. If you do this, **FastAPI** raises a `DependencyScopeError` when the application is defined (at route registration time).
++
++///
+ 
+ ### Dependencies with `yield` and `except`, Technical Details { #dependencies-with-yield-and-except-technical-details }
+ 

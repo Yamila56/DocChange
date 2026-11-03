@@ -1,0 +1,36 @@
+diff --git a/docs/userguide/routing.rst b/docs/userguide/routing.rst
+index f88d64b0f29530ec7ad078927d1391eb8add756b..65666683d1887c5dbf4c4e28bb7acdac3ed87b48 100644
+--- a/docs/userguide/routing.rst
++++ b/docs/userguide/routing.rst
+@@ -251,6 +251,17 @@ A default priority for all tasks can also be specified using the
+ 
+     app.conf.task_default_priority = 5
+ 
++With RabbitMQ, higher priority values indicate higher priority: a task with
++priority ``9`` is delivered before a task with priority ``0``. This follows
++the AMQP specification, where higher numbers indicate higher priority.
++
++.. note::
++
++    Priority ordering is broker-specific. RabbitMQ (and other AMQP brokers)
++    treat higher numbers as higher priority, while some other transports
++    (such as Redis, see below) treat lower numbers as higher priority.
++    Always check the documentation for the broker you're using.
++
+ .. _amqp-primer:
+ 
+ 
+@@ -276,6 +287,13 @@ This means that even though there are 10 (0-9) priority levels, these are
+ consolidated into 4 levels by default to save resources. This means that a
+ queue named celery will really be split into 4 queues.
+ 
++.. note::
++
++    Unlike RabbitMQ, the Redis transport treats **lower** priority values as
++    **higher** priority: a task with priority ``0`` is processed before a task
++    with priority ``9``. This is the opposite of the AMQP/RabbitMQ convention,
++    so take care when switching brokers.
++
+ The highest priority queue will be named celery, and the other queues will
+ have a separator (by default `\x06\x16`) and their priority number appended to
+ the queue name.

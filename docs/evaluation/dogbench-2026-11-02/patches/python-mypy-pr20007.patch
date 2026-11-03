@@ -1,0 +1,33 @@
+diff --git a/docs/source/stubtest.rst b/docs/source/stubtest.rst
+index 59889252f0569aeef34d029687cc5800d25709b0..62a5dcffba495a3fedd6ffc10c1b71fba174aa4a 100644
+--- a/docs/source/stubtest.rst
++++ b/docs/source/stubtest.rst
+@@ -123,7 +123,13 @@ The rest of this section documents the command line interface of stubtest.
+     support regular expressions.
+ 
+     The presence of an entry in the allowlist means stubtest will not generate
+-    any errors for the corresponding definition.
++    any errors for the corresponding definition. In other words, an allowlist
++    entry records an expected discrepancy between the stubs and the runtime
++    implementation: stubtest has found a difference, and the allowlist says
++    that this difference is acceptable (for example, because it is a known
++    limitation of runtime introspection or only occurs on some platforms).
++    Allowlist entries are not a way to silence errors that stubtest does not
++    actually produce -- see :option:`--ignore-unused-allowlist` below.
+ 
+ .. option:: --generate-allowlist
+ 
+@@ -137,7 +143,12 @@ The rest of this section documents the command line interface of stubtest.
+     Ignore unused allowlist entries
+ 
+     Without this option enabled, the default is for stubtest to complain if an
+-    allowlist entry is not necessary for stubtest to pass successfully.
++    allowlist entry is not necessary for stubtest to pass successfully. An
++    entry is considered unused when it does not match any error that stubtest
++    would otherwise report, i.e. when the corresponding discrepancy no longer
++    exists (for instance, because the stubs or the implementation were fixed).
++    Such entries should normally be removed from the allowlist, so that the
++    allowlist keeps documenting only the discrepancies that are still expected.
+ 
+     Note if an allowlist entry is a regex that matches the empty string,
+     stubtest will never consider it unused. For example, to get

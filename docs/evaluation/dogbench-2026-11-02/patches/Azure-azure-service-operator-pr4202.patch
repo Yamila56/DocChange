@@ -1,0 +1,124 @@
+diff --git a/docs/hugo/content/guide/diagnosing-problems.md b/docs/hugo/content/guide/diagnosing-problems.md
+index 1d73c129780a17752eabbbcd01cf5d353c0b8c6d..3780b4887c362411959bd6897786ac611ad9b25a 100644
+--- a/docs/hugo/content/guide/diagnosing-problems.md
++++ b/docs/hugo/content/guide/diagnosing-problems.md
+@@ -26,6 +26,15 @@ Events:
+   ...
+ ```
+ 
++### ASO controller pod fails to start when installed with Argo CD
++
++If you install ASO with Argo CD and the controller pod never becomes ready, check whether the
++`azureserviceoperator-manager-role` ClusterRole exists in the cluster. If it's missing, Argo CD was likely
++pointed at the chart source directory in the ASO git repository rather than at the Helm chart repository.
++The generated templates (including the ClusterRole) are only present in the packaged Helm chart.
++
++See [Installing with Argo CD](../installing-from-helm/#installing-with-argo-cd) for the correct configuration.
++
+ ## Problems with resources
+ 
+ ### Resource with no Ready condition set
+diff --git a/docs/hugo/content/guide/frequently-asked-questions.md b/docs/hugo/content/guide/frequently-asked-questions.md
+index 85fd06e4dc166079e630812405f276456010daa2..aef69295ccc71409d24d2345b87bf65b2284d930 100644
+--- a/docs/hugo/content/guide/frequently-asked-questions.md
++++ b/docs/hugo/content/guide/frequently-asked-questions.md
+@@ -54,6 +54,28 @@ There's also a proposal for [more general upstream support](https://github.com/k
+ 
+ See [best practices]( {{< relref "best-practices" >}} ).
+ 
++### Should I run ASO on a specific node pool in AKS?
++
++ASO doesn't set any AKS-specific node affinity by default, because ASO is supported on many kinds of Kubernetes
++clusters, not just AKS. If you want to keep ASO off your user node pools (or on your system node pool), you can
++configure this yourself with a `preferredDuringSchedulingIgnoredDuringExecution` node affinity in the Helm values.
++For example, to prefer scheduling on AKS system node pools:
++
++```yaml
++affinity:
++  nodeAffinity:
++    preferredDuringSchedulingIgnoredDuringExecution:
++    - weight: 100
++      preference:
++        matchExpressions:
++        - key: kubernetes.azure.com/mode
++          operator: In
++          values:
++          - system
++```
++
++Using `preferred` rather than `required` keeps ASO schedulable on clusters that don't have this label.
++
+ ### Can I run ASO in active-active mode?
+ 
+ This is where two different ASO instances manage the same resource in Azure.
+@@ -73,6 +95,30 @@ Yes! We strongly recommend using something like [fluxcd](https://fluxcd.io/) or
+ If using argocd, make sure to **avoid** the `SyncPolicy Replace=true`, as that removes finalizers and annotations added by the operator whenever resources are re-applied.
+ ASO relies on the finalizer and annotations it adds being left alone to function properly. If they are unexpectedly removed the operator may not behave as expected.
+ 
++### How do I install ASO with Argo CD?
++
++Point Argo CD at the ASO Helm chart repository rather than at the chart source directory in the git repository.
++For example:
++
++```yaml
++  source:
++    repoURL: https://raw.githubusercontent.com/Azure/azure-service-operator/main/v2/charts
++    targetRevision: v2.8.0
++    chart: azure-service-operator
++    helm:
++```
++
++Using the git source directory instead will miss generated templates such as the
++`azureserviceoperator-manager-role` ClusterRole, and the ASO pod will fail to start. See
++[Installing with Argo CD]({{< relref "installing-from-helm#installing-with-argo-cd" >}}) for details.
++
++### How do I pass data between ASO resources?
++
++ASO resources can reference each other directly, so you usually don't need to copy values around by hand.
++Use the `operatorSpec` of a resource to export values (such as an ID, endpoint, or key) into a ConfigMap or
++Secret, and then reference those values from other resources. See
++[ConfigMaps]({{< relref "configmaps" >}}) and [Secrets]({{< relref "secrets" >}}) for details.
++
+ ### What's the difference between ASO and Crossplane.io?
+ 
+ There are a lot of similarities between ASO and Crossplane. They do similar things and have similar audiences. You can see some of this discussed [here](https://github.com/Azure/azure-service-operator/issues/1190).
+diff --git a/docs/hugo/content/guide/installing-from-helm.md b/docs/hugo/content/guide/installing-from-helm.md
+index 3483e8d783ab737108717445461a40d13bfb4c42..51d4b8b348d8825b9445bf0e5202d7b731c7a508 100644
+--- a/docs/hugo/content/guide/installing-from-helm.md
++++ b/docs/hugo/content/guide/installing-from-helm.md
+@@ -6,4 +6,32 @@ weight: -5
+ Helm is the preferred way to install and manage Azure Service Operator.
+ 
+ See the instructions [on our main page](../../#installation) for how to install 
+-ASO with Helm.
+\ No newline at end of file
++ASO with Helm.
++
++## Installing with Argo CD
++
++When installing ASO with [Argo CD](https://argo-cd.readthedocs.io/en/stable/), make sure to point Argo CD at the
++Helm chart repository rather than at the chart source directory in the ASO git repository. Argo CD renders the
++chart from the repository (the packaged `.tgz`), which includes all generated templates such as the
++`azureserviceoperator-manager-role` ClusterRole. Pointing Argo CD at the `v2/charts/azure-service-operator`
++directory in the git repository instead will miss those generated templates, and the ASO pod will fail to start.
++
++An example Argo CD `Application`:
++
++```yaml
++apiVersion: argoproj.io/v1alpha1
++kind: Application
++spec:
++  source:
++    repoURL: https://raw.githubusercontent.com/Azure/azure-service-operator/main/v2/charts
++    targetRevision: v2.8.0
++    chart: azure-service-operator
++    helm:
++      releaseName: aso2
++      valuesObject:
++        installCRDs: true
++        crdPattern: 'containerregistry.azure.com/*'
++```
++
++Note that the Helm chart for a given release is published to the chart repository shortly _after_ the release
++tag is created, so the chart version may not exist in the repository at the exact moment the tag is cut.
+\ No newline at end of file

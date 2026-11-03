@@ -1,0 +1,58 @@
+diff --git a/docs/extensions/pydantic-error-extension.md b/docs/extensions/pydantic-error-extension.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..d1478749c2048a437f1f57bab98a499857d457ad
+--- /dev/null
++++ b/docs/extensions/pydantic-error-extension.md
+@@ -0,0 +1,52 @@
++---
++title: Pydantic Error Extension
++summary: Add structured Pydantic validation error details to GraphQL errors.
++tags: pydantic, errors
++---
++
++# `PydanticErrorExtension`
++
++This extension enriches GraphQL errors caused by a Pydantic `ValidationError`
++with structured details. After an operation executes, any error whose original
++error is a Pydantic `ValidationError` gets its `extensions` field populated with
++a `validation_errors` list. Each entry contains:
++
++- `field`: the dot-joined location path of the failing field
++- `message`: the validation message from Pydantic
++
++<Note>
++
++The extension is a no-op when Pydantic is not installed.
++
++</Note>
++
++## Usage example:
++
++```python
++import strawberry
++from strawberry.extensions import PydanticErrorExtension
++
++schema = strawberry.Schema(
++    query=Query,
++    mutation=Mutation,
++    extensions=[PydanticErrorExtension],
++)
++```
++
++When a mutation raises a Pydantic `ValidationError`, the resulting GraphQL error
++will include the structured details, for example:
++
++```json
++{
++  "errors": [
++    {
++      "message": "...",
++      "extensions": {
++        "validation_errors": [
++          { "field": "age", "message": "Input should be greater than 18" }
++        ]
++      }
++    }
++  ]
++}
++```

@@ -1,0 +1,14 @@
+diff --git a/vscode-plugin/CHANGELOG.md b/vscode-plugin/CHANGELOG.md
+index 6cd5aa99812a1e5eac0b78e8e791b486dc57f7d6..750d223d1766563dd84ca3945fce08d7c80d8c14 100644
+--- a/vscode-plugin/CHANGELOG.md
++++ b/vscode-plugin/CHANGELOG.md
+@@ -6,4 +6,6 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how
+ 
+ ## [Unreleased]
+ 
+-- Initial release
+\ No newline at end of file
++- Initial release
++- Added semantic tokens support to the language server, providing richer syntax highlighting for Rosetta files (including built-in types, enumerations and data types)
++- Added a bundled TextMate grammar for baseline syntax highlighting
+\ No newline at end of file

@@ -1,0 +1,20 @@
+diff --git a/docs/source/user_guide/configuration.rst b/docs/source/user_guide/configuration.rst
+index 97186c06f6c14dbed5b08a6c433e10dca222d17c..2f0a95d026ec0f13e93e03462ef1dbf7466b3d1a 100644
+--- a/docs/source/user_guide/configuration.rst
++++ b/docs/source/user_guide/configuration.rst
+@@ -116,6 +116,15 @@ Backend specific environment variables
+     version of the Data Dictionary (previously set by the `ids_path`, which
+     is now internally handled by the backend).
+ 
++    This variable must be set when using the MDSplus backend: opening a pulse
++    file or creating a new pulse file fails if it is unset or empty, and the
++    resulting error message indicates that ``MDSPLUS_MODELS_PATH`` must point
++    to the MDSplus models directory, for example:
++
++    .. code-block:: bash
++
++        export MDSPLUS_MODELS_PATH=/path/to/models/mdsplus
++
+ 
+ UDA client configuration to reach the server at ITER
+ ----------------------------------------------------

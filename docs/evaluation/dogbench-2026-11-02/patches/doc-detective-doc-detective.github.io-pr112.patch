@@ -1,0 +1,70 @@
+diff --git a/docs/get-started/installation/index.mdx b/docs/get-started/installation/index.mdx
+index 57abb53fe5350ad9572ce69a17fe0b4e511bb1cf..f993a568a085ddcda7d2f0be02f747de67da7cd2 100644
+--- a/docs/get-started/installation/index.mdx
++++ b/docs/get-started/installation/index.mdx
+@@ -7,7 +7,9 @@ import CodeBlock from '@theme/CodeBlock';
+ 
+ # Installation
+ 
+-Downloading and running Doc Detective is straightforward. Follow these steps to install Doc Detective and run your first test:
++Downloading and running Doc Detective is straightforward. You can install Doc Detective with npm or run it in a Docker container. Follow these steps to install Doc Detective and run your first test:
++
++## Install with npm
+ 
+ 1. Install prerequisites:
+ 
+@@ -48,6 +50,40 @@ You should see output in the terminal indicating the progress and results of the
+ 
+ [![Sample test screenshot](./example.png)](./example.png)
+ 
++## Run with Docker
++
++If you don't have Node.js installed or you have heightened security requirements, you can run Doc Detective in a Docker container instead of installing it with npm. The Docker image is in alpha and isn't ready for production use.
++
++1. Install prerequisites:
++
++    - [Docker](https://docs.docker.com/get-docker/)
++
++2. In a terminal, pull the Doc Detective Docker image:
++
++    ```bash
++    docker pull docdetective/doc-detective
++    ```
++
++3. Save the same _sample.spec.json_ file from the previous section to your current directory.
++
++4. Run a test, mounting your current directory into the container so Doc Detective can read your test file and write results back to your machine:
++
++    ```bash
++    docker run --rm -v "$(pwd)":/app docdetective/doc-detective --input sample.spec.json
++    ```
++
++    On Windows, replace `$(pwd)` with `%cd%`.
++
++Congratulations! You've run your first test with Doc Detective in Docker. :tada:
++
++Results are saved in a `testResults-<timestamp>.json` file in your current directory (configurable with the `--output` option), and this test saves a screenshot to example.png.
++
++:::note
++
++The Docker image is in alpha. For more information, see the [`docker-image` repository](https://github.com/doc-detective/docker-image).
++
++:::
++
+ ## Next steps
+ 
+ Next up, take a look at some of the [concepts](/docs/get-started/concepts) native to Doc Detective, check out some of the guided [tutorials](/docs/category/tutorials), or explore how to write [tests](/docs/get-started/tests) and [actions](/docs/category/actions) to automate your documentation testing.
+\ No newline at end of file
+diff --git a/docs/get-started/intro.md b/docs/get-started/intro.md
+index 73b8451073e82ebd7eb2f317ed695788d0afe6c0..e5c89412a2e2bff9d8e50d3fb193d70dade522ef 100644
+--- a/docs/get-started/intro.md
++++ b/docs/get-started/intro.md
+@@ -11,7 +11,7 @@ Validate your content with Doc Detective:
+ npx doc-detective
+ ```
+ 
+-Want to use the Docker image? [Check it out](https://github.com/doc-detective/docker-image).
++Want to use the Docker image? See [Run with Docker](/docs/get-started/installation#run-with-docker).
+ 
+ See the [Installation](/docs/get-started/installation) guide to get started. Come chat on [Discord](https://discord.gg/uAfSjVH7yr)!
+ 

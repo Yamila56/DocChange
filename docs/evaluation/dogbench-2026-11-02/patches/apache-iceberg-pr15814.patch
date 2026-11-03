@@ -1,0 +1,31 @@
+diff --git a/docs/docs/evolution.md b/docs/docs/evolution.md
+index 437234ec3756f8384ee041065528763be3e0c01e..0e67c9bcdb58d3de6c81a97384b5f605bb553e72 100644
+--- a/docs/docs/evolution.md
++++ b/docs/docs/evolution.md
+@@ -52,6 +52,26 @@ Iceberg uses unique IDs to track each column in a table. When you add a column,
+ * Formats that track columns by name can inadvertently un-delete a column if a name is reused, which violates #1.
+ * Formats that track columns by position cannot delete columns without changing the names that are used for each column, which violates #2.
+ 
++### Hive Metastore compatibility
++
++When a table is registered in a Hive Metastore (HMS), the HMS table definition stores the column names and types
++separately from the Iceberg metadata. Some schema-evolution operations can therefore leave the HMS definition out of
++sync with the Iceberg schema, which can cause failures or incorrect results when the table is read through Hive or
++another engine that relies on the HMS definition.
++
++Operations that can be affected include:
++
++* **Rename** -- renaming a column or nested field changes the name in the Iceberg schema, but the HMS definition may
++  still reference the old name.
++* **Drop** -- dropping a column removes it from the Iceberg schema, but the HMS definition may still list it.
++* **Reorder** -- changing the order of columns may not be reflected in the HMS definition.
++
++To avoid these issues, keep the HMS definition in sync with the Iceberg schema. When using Hive, perform schema
++changes through Hive commands so that both definitions are updated together (see [Hive](hive.md#schema-evolution)).
++When schema changes are made by another engine, verify that the HMS definition reflects the new schema before reading
++the table through Hive. If the definitions diverge, the table may need to be re-registered or the HMS definition
++updated to match the Iceberg schema.
++
+ ## Partition evolution
+ 
+ Iceberg table partitioning can be updated in an existing table because queries do not reference partition values directly.

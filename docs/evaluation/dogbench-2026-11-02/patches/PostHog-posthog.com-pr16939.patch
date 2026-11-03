@@ -1,0 +1,48 @@
+diff --git a/contents/docs/cdp/sources/index.mdx b/contents/docs/cdp/sources/index.mdx
+index 95516a7e1b0f5830eecb12209f32f4c6850eaaf3..cb440048b82417e526058f73793cecc5e3463d84 100644
+--- a/contents/docs/cdp/sources/index.mdx
++++ b/contents/docs/cdp/sources/index.mdx
+@@ -82,6 +82,10 @@ Once the first incremental sync completes, the primary key columns are locked an
+ 
+ PostHog displays a warning if your selected primary key columns are nullable, since null values can cause deduplication issues.
+ 
++### Selecting columns
++
++For some sources, including Postgres, you can choose which columns to sync for each table. All columns are synced by default. Primary key columns and the active incremental field are always included, and disabled columns are hidden from the table in PostHog. See the [Postgres source docs](/docs/cdp/sources/postgres#selecting-columns-to-sync) for details.
++
+ ### Append only
+ 
+ Append only does what it says on the tin: append rows to your table.
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index 22e644116364371aa2da26fef681f819812b0d66..382619d0e0635e39659be4211f78d70aa72b2925 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -21,7 +21,7 @@ To link Postgres:
+    - **Database:** The name of the database you want like `analytics_db`.
+    - **User:** The username with the necessary permissions to access the database.
+    - **Password:** The password for the user.
+-   - **Schema:** The schema for your database where your tables are located. The default is `public`.
++   - **Schema:** The schema for your database where your tables are located. The default is `public`. This is optional – if you leave it blank, PostHog discovers tables across all non-system schemas, and tables with the same name in different schemas are tracked separately.
+ 4. If you need to connect through an SSH tunnel, enable and configure it (optional):
+    - **Tunnel host:** The hostname of your SSH server.
+    - **Tunnel port:** The port your SSH server is listening on.
+@@ -33,6 +33,19 @@ To link Postgres:
+ 
+ The data warehouse then starts syncing your Postgres data. You can see details and progress in the [sources tab](https://app.posthog.com/data-management/sources).
+ 
++## Selecting columns to sync
++
++By default, PostHog syncs every column of each table you import. To keep columns out of PostHog – for example, to avoid syncing PII – you can choose which columns to sync:
++
++- **During setup:** On the **Select tables to import** step, click **Columns** on a table and check the columns you want.
++- **After setup:** On the source's **Schemas** tab, click **Columns** on a table, or open the table's configuration page and use the **Columns** section.
++
++Primary key columns and the active incremental field are always synced, even if you don't select them, because they're needed to deduplicate and resume syncs. If you select no columns, only those required columns are synced.
++
++Disabled columns are hidden from the table in PostHog, so queries against it won't see them. Previously synced data for a disabled column stays in storage, so re-enabling the column makes it available again after the next sync.
++
++If you add columns to a table that already has synced data and uses incremental, append-only, or CDC sync, PostHog asks whether to sync forward only (older rows keep nulls for the new columns) or run a full resync now.
++
+ ## Configuration
+ 
+ <SourceParameters />

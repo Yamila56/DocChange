@@ -1,0 +1,38 @@
+diff --git a/website/docs/modelling-components/expressions.mdx b/website/docs/modelling-components/expressions.mdx
+index e559251f57c82f9a424bc7f66f8bec5138dbc54c..b5924a27440b8b2acd8baf6866559ef81e036b9f 100644
+--- a/website/docs/modelling-components/expressions.mdx
++++ b/website/docs/modelling-components/expressions.mdx
+@@ -188,6 +188,24 @@ Use deep path operator `->>` to access common attributes across all options of a
+ With a choice type called `Vehicle`, each of its options exposing an attribute `vehicleId`, this identifier can be accessed directly using `vehicle ->> vehicleId`.
+ 
+ 
++### 2.3 Narrowing with `as`
++The `as` operator narrows a choice or data-typed expression to a more specific type.
++
++**Syntax**
++`<expression> as <TypeName>`
++
++When applied to a **choice** type, `as` navigates the chain of option attributes to reach the named option, mirroring the path traversal performed by a `switch` case. When applied to a **data** type, it casts to a named subtype.
++
++**Example:** Narrow a `Vehicle` choice to its `PetrolCar` option and access an attribute of that option.
++```haskell
++vehicle as PetrolCar -> fuelCapacity
++```
++
++The `as` operator has the same precedence as the path (`->`) operator and is left-associative, so `foo -> bar as Qux -> attr` parses as `((foo -> bar) as Qux) -> attr`.
++
++The target of `as` must be either a direct option of the choice type or a recognized subtype of the data type, and the expression being narrowed must be of a compatible choice or data type. Otherwise the expression is flagged as invalid.
++
++
+ ## 3. Operators
+ Rune provides a set of operators that let you combine expressions into more complex logic. These operators mirror the basics found in most programming languages:
+ 1. Conditional statements: `if, then, else`
+@@ -473,7 +491,7 @@ Rune evaluates expressions in a fixed order, from highest to lowest priority:
+ 2. Brackets: e.g. `(1+2)`
+ 3. if-then-else: e.g. `if (1=2) then 3`
+ 4. Constructor expressions: e.g `MyType {attr1: "value 1"}`
+-5. Unary operators: `>, ->>, exists, is absent, only-element, flatten, distinct, reverse, first, last, sum, one-of, choice, to-string, to-number, to-int, to-time, to-enum, to-date, to-date-time, to-zoned-date-time, switch, sort, min, max, reduce, filter, map, extract, with-meta`
++5. Unary operators: `>, ->>, as, exists, is absent, only-element, flatten, distinct, reverse, first, last, sum, one-of, choice, to-string, to-number, to-int, to-time, to-enum, to-date, to-date-time, to-zoned-date-time, switch, sort, min, max, reduce, filter, map, extract, with-meta`
+ 6. Binary operators:  `contains, disjoint, default, join`
+ 7. Multiplicative operators: `*, /`
+ 8. Additive operators: `+, -`

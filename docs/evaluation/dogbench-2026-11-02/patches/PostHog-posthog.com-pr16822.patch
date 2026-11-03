@@ -1,0 +1,30 @@
+diff --git a/contents/docs/experiments/exposures.mdx b/contents/docs/experiments/exposures.mdx
+index 052a3980166fd73d93a2c7b9bb8ed67d2a18e899..54e98acb6ec252be67d1e8d123e3a0ae23633e1b 100644
+--- a/contents/docs/experiments/exposures.mdx
++++ b/contents/docs/experiments/exposures.mdx
+@@ -86,10 +86,24 @@ To configure a custom exposure event:
+ If you're using PostHog's SDKs and feature flags, variant tracking is handled automatically. However, if you're using custom exposure events or your own feature flag system, you need to ensure the correct properties are set:
+ 
+ - **Standard PostHog flags**: The SDK automatically populates `$feature_flag_response` in `$feature_flag_called` events
+-- **Custom exposure events**: You must manually include `$feature/<flag-key>` property with the variant value
++- **Custom exposure events**: You must manually include the `$feature/<flag-key>` property with the variant value
+ 
+ For example, if your flag key is "new-checkout" and you're using a custom "viewed_checkout" event, that event must include the property `$feature/new-checkout` with values like "control" or "test".
+ 
++If you're using an external feature flag system (such as LaunchDarkly, Statsig, or your own in-house service), PostHog can't see your flag evaluations automatically. You need to send a `$feature_flag_called` event yourself whenever you evaluate the flag, including both of these properties:
++
++- `$feature_flag`: the key of the feature flag in your experiment
++- `$feature_flag_response`: the variant the user was assigned to (e.g., "control" or "test")
++
++```js-web
++posthog.capture('$feature_flag_called', {
++    '$feature_flag': 'new-checkout',
++    '$feature_flag_response': 'test'
++})
++```
++
++Send this event at the moment the user is exposed to the experiment, and make sure it fires before any metric events you want to attribute to the experiment. See [running experiments without feature flags](/docs/experiments/running-experiments-without-feature-flags) for full examples in every SDK.
++
+ </CalloutBox>
+ 
+ ## Handling multiple exposures

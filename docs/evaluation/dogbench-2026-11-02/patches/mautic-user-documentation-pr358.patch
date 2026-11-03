@@ -1,0 +1,23 @@
+diff --git a/docs/configuration/cron_jobs.rst b/docs/configuration/cron_jobs.rst
+index 239378b45357ea9052d27f5f2eec1f29da0b343b..bc9f72a78771bb4ad9a1525c771d855de9ec1c7d 100644
+--- a/docs/configuration/cron_jobs.rst
++++ b/docs/configuration/cron_jobs.rst
+@@ -116,7 +116,17 @@ If the system configuration is queueing Emails, a cron job processes them.
+ 
+ .. code-block:: php
+ 
+-    php /path/to/mautic/bin/console messenger:consume email
++    php /path/to/mautic/bin/console messenger:consume email --time-limit=900 --memory-limit=512M
++
++The ``messenger:consume`` command runs as a long-lived worker process. Without limits, it stays alive indefinitely and its memory usage grows over time, which can eventually exhaust the server's memory. Always set a time limit and/or a memory limit so the worker exits cleanly and the next scheduled run starts a fresh process.
++
++- ``--time-limit=SECONDS`` stops the worker after the given number of seconds. Choose a value shorter than the interval between cron runs, for example ``900`` for a job that runs every 15 minutes.
++- ``--memory-limit=SIZE`` stops the worker once it exceeds the given memory usage, for example ``512M``.
++- ``--limit=N`` stops the worker after processing ``N`` messages.
++
++.. note::
++
++    If you run ``messenger:consume`` without any of these limits, the process may never terminate and can consume an increasing amount of memory until the server runs out of resources.
+ 
+ .. vale off
+ 

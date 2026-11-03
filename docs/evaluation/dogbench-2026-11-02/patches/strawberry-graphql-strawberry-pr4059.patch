@@ -1,0 +1,40 @@
+diff --git a/docs/types/resolvers.md b/docs/types/resolvers.md
+index eb69e360c561761b3283b6d907a621ae33f28f8d..b8be3ffa172c73fbdaf7bbcce033dded22524445 100644
+--- a/docs/types/resolvers.md
++++ b/docs/types/resolvers.md
+@@ -190,6 +190,35 @@ class Query:
+     ) -> str: ...
+ ```
+ 
++### Annotated Fields
++
++Field configuration, such as a custom name, description or deprecation reason,
++can also be added to a field by embedding a `strawberry.field` instance inside
++an [typing.Annotated](https://docs.python.org/3/library/typing.html#typing.Annotated)
++type hint:
++
++```python
++from typing import Annotated
++import strawberry
++
++
++@strawberry.type
++class Query:
++    name: Annotated[str, strawberry.field(description="The name of the user")]
++    age: Annotated[int, strawberry.field(name="yearsOld")]
++```
++
++This is equivalent to assigning a `strawberry.field` to the attribute, but keeps
++the field definition in the type annotation. Any default value set on the
++attribute is used when the `strawberry.field` does not define one.
++
++<Note>
++
++Only one `strawberry.field` may be used per `Annotated` annotation. Using more
++than one raises a `MultipleStrawberryFieldsError`.
++
++</Note>
++
+ ## Accessing execution information
+ 
+ Sometimes it is useful to access the information for the current execution

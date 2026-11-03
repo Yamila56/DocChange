@@ -1,0 +1,19 @@
+diff --git a/docs/source/user_guide/installation.rst b/docs/source/user_guide/installation.rst
+index dc2f77bdb5e5a405f09266b3dbd2f97e53d6012b..827e0ba50fdf386a6a2ecb028ac004b569f2a3a7 100644
+--- a/docs/source/user_guide/installation.rst
++++ b/docs/source/user_guide/installation.rst
+@@ -219,9 +219,11 @@ Configuration options
+     -   ``AL_BACKEND_MDSPLUS``, allowed values ``ON`` or ``OFF`` *(default)*.
+         Enable/disable the MDSplus backend.
+ 
+-        -   ``AL_BUILD_MDSPLUS_MODELS``, allowed values ``ON`` *(default)* or ``OFF``,
+-            only available when the MDSplus backend is enabled. Enable building MDSplus
+-            models for the selected Data Dictionary version.
++        -   ``AL_BUILD_MDSPLUS_MODELS``, allowed values ``ON`` or ``OFF``. Enable
++            building MDSplus models for the selected Data Dictionary version. The
++            default follows ``AL_BACKEND_MDSPLUS``: ``ON`` when the MDSplus backend is
++            enabled, ``OFF`` otherwise. You can explicitly set it to ``ON`` or ``OFF``
++            regardless of the backend setting.
+ 
+     -   ``AL_BACKEND_UDA``, allowed values ``ON`` or ``OFF`` *(default)*. Enable/disable
+         the UDA backend.

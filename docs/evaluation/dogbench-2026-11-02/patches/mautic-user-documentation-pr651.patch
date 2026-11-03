@@ -1,0 +1,22 @@
+diff --git a/docs/points/points.rst b/docs/points/points.rst
+index 39e6e5573c0e116875e99dc64d3de7b31aec6fb0..520157a83bed4c31c1a718b267f2aa0a93d54a59 100644
+--- a/docs/points/points.rst
++++ b/docs/points/points.rst
+@@ -15,7 +15,7 @@ Point Actions are those times when a Contact receives a change in their Point to
+ 
+ To add a new action:
+ 
+-1. Click **Points > Point Actions > + New**  - located in the top right corner.
++1. Click **Points > Manage Actions > + New**  - located in the top right corner.
+ 
+ .. image:: images/points-action.png
+     :alt: Screenshot of Points action
+@@ -28,7 +28,7 @@ To add a new action:
+ 
+    * **Change Points (+/-)** - The value change to set for the action. The ``+`` isn't necessary when adding Points. When subtracting Points, add the ``-`` symbol.
+ 
+-   * **Actions taken by User** - This is the behavior or action the Contact must complete to trigger the action.
++   * **Actions taken by Contact** - This is the behavior or action the Contact must complete to trigger the action.
+ 
+ 3. On the right side is more information:
+ 

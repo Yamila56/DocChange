@@ -32,8 +32,9 @@ def canonical(value):
 
 
 class EvaluationBudget:
-    def __init__(self, path, max_calls, cap_cny, carry_cny):
+    def __init__(self, path, max_calls, cap_cny, carry_cny, cache_hit_rate=None):
         self.path = path
+        self.cache_hit_rate = cache_hit_rate
         self.max_calls, self.cap, self.carry = (
             max_calls,
             Decimal(str(cap_cny)),
@@ -45,14 +46,15 @@ class EvaluationBudget:
                 "(id INTEGER PRIMARY KEY, model TEXT, reserve TEXT, settled TEXT, usage TEXT)"
             )
             db.execute("CREATE TABLE IF NOT EXISTS config (value TEXT NOT NULL)")
-            config = canonical(
-                {
-                    "max_calls": max_calls,
-                    "cap": str(self.cap),
-                    "carry": str(self.carry),
-                    "tariff": TARIFF,
-                }
-            )
+            configuration = {
+                "max_calls": max_calls,
+                "cap": str(self.cap),
+                "carry": str(self.carry),
+                "tariff": TARIFF,
+            }
+            if cache_hit_rate is not None:
+                configuration["cache_hit_rate"] = str(cache_hit_rate)
+            config = canonical(configuration)
             existing = db.execute("SELECT value FROM config").fetchone()
             if existing and existing[0] != config:
                 raise ValueError("Existing evaluation budget configuration is immutable")
@@ -86,7 +88,17 @@ class EvaluationBudget:
                 "SELECT model,settled,usage FROM attempts WHERE id=?", (identifier,)
             ).fetchone()
             rates = TARIFF[model]
-            cost = str((Decimal(counts[0]) * rates[0] + Decimal(counts[1]) * rates[1]) / 1_000_000)
+            hit = usage.get("prompt_cache_hit_tokens", 0)
+            hit = hit if type(hit) is int and 0 <= hit <= counts[0] else 0
+            discount = (
+                (Decimal(hit) * (Decimal(rates[0]) - Decimal(str(self.cache_hit_rate))))
+                if self.cache_hit_rate is not None
+                else 0
+            )
+            cost = str(
+                (Decimal(counts[0]) * rates[0] + Decimal(counts[1]) * rates[1] - discount)
+                / 1_000_000
+            )
             serialized = canonical(usage)
             if old_cost is not None and (old_cost, old_usage) != (cost, serialized):
                 raise ValueError("Cannot replace settled usage")
@@ -129,13 +141,27 @@ class EvaluationBudget:
 class RecordedGateway:
     def __init__(self, inner, budget, path):
         self.inner, self.budget, self.path = inner, budget, path
+        self.prepared = None
 
-    async def request(self, phase, context):
+    def preflight(self, phase, context):
         payload = self.inner.build_payload(phase, context)
         encoded = canonical(payload).encode("utf-8")
         identifier = self.budget.reserve(
             self.inner.settings.model, len(encoded), payload["max_tokens"]
         )
+        self.prepared = (hashlib.sha256(encoded).hexdigest(), identifier)
+
+    async def request(self, phase, context):
+        payload = self.inner.build_payload(phase, context)
+        encoded = canonical(payload).encode("utf-8")
+        fingerprint = hashlib.sha256(encoded).hexdigest()
+        if self.prepared and self.prepared[0] == fingerprint:
+            identifier = self.prepared[1]
+            self.prepared = None
+        else:
+            identifier = self.budget.reserve(
+                self.inner.settings.model, len(encoded), payload["max_tokens"]
+            )
         record = {
             "attempt_id": identifier,
             "phase": phase,

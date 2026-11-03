@@ -1,0 +1,15 @@
+diff --git a/docs/usage/templating.rst b/docs/usage/templating.rst
+index 1f60b53ad0ea2ccf2402942445627be7a514e9c0..568f12f553965bfe51fb02dda7af4adbe5eddb89 100644
+--- a/docs/usage/templating.rst
++++ b/docs/usage/templating.rst
+@@ -375,6 +375,10 @@ Built-in callables
+     matches :meth:`route_reverse <litestar.app.Litestar.route_reverse>` behaviour. More details about route handler indexing
+     can be found :ref:`here <usage/routing/handlers:route handler indexing>`.
+ 
++    The first argument can be either the handler's name as a string or the
++    :class:`~litestar.handlers.base.BaseRouteHandler` instance itself. When a handler object is passed, its
++    registered name is resolved automatically, so you do not need to know or hard-code the handler's string name.
++
+ ``csrf_token``
+     This function returns the request's unique :ref:`CSRF token <usage/middleware/builtin-middleware:csrf>` You can use this
+     if you wish to insert the ``csrf_token`` into non-HTML based templates, or insert it into HTML templates not using a hidden input field but

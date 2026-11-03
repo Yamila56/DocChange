@@ -1,0 +1,71 @@
+diff --git a/docs/integrations/prometheus.md b/docs/integrations/prometheus.md
+index 55cd59f6f5ccc8c4dae36104ead2bfa896bf6fe7..bf9d5a1ae61d171da070bc956bc9d8cf8cdccecf 100644
+--- a/docs/integrations/prometheus.md
++++ b/docs/integrations/prometheus.md
+@@ -51,6 +51,66 @@ __Monthly cost of currently provisioned nodes__
+ sum(node_total_hourly_cost) * 730
+ ```
+ 
++## Historical cluster workload costs
++
++The queries above estimate costs from the current allocation and pricing metrics. To calculate historical costs that match the numbers shown in the OpenCost UI (and to graph them in tools such as Grafana), query the allocation metrics that OpenCost records over time. These metrics are emitted with the `container_cpu_allocation`, `container_memory_allocation_bytes`, and related series, and are aggregated per workload using the `namespace`, `pod`, and `container` labels.
++
++__Hourly cost of a workload over a time range__
++
++Use a range query (for example in Grafana, set the query type to `Range`) and adjust the `namespace` and `pod` matchers to the workload you want to inspect:
++
++```
++sum(
++  (
++    container_cpu_allocation{namespace="default"}
++      * on(instance) group_left() node_cpu_hourly_cost
++    + container_memory_allocation_bytes{namespace="default"} / 1024 / 1024 / 1024
++      * on(instance) group_left() node_ram_hourly_cost
++  )
++) by (namespace, pod)
++```
++
++__Total cost of a workload over a time range__
++
++To get the total cost for a window rather than an hourly rate, wrap the hourly query in `sum_over_time` and multiply by the scrape interval in hours. For a 1 minute scrape interval this is `1/60`:
++
++```
++sum_over_time(
++  (
++    sum(
++      container_cpu_allocation{namespace="default"}
++        * on(instance) group_left() node_cpu_hourly_cost
++      + container_memory_allocation_bytes{namespace="default"} / 1024 / 1024 / 1024
++        * on(instance) group_left() node_ram_hourly_cost
++    ) by (namespace, pod)
++  )[1h:1m]
++) * (1 / 60)
++```
++
++__Daily cost of a workload over the last 30 days__
++
++```
++sum(
++  increase(
++    (
++      container_cpu_allocation{namespace="default"}
++        * on(instance) group_left() node_cpu_hourly_cost
++      + container_memory_allocation_bytes{namespace="default"} / 1024 / 1024 / 1024
++        * on(instance) group_left() node_ram_hourly_cost
++    )[30d:1m]
++  )
++) by (namespace, pod) / 24
++```
++
++> **Note**: Historical queries depend on Prometheus retaining the OpenCost metrics for the requested time range. Adjust your Prometheus retention settings if you need to query further back than the default window. Because these queries use the same allocation and pricing metrics that the OpenCost UI uses, the results should be comparable to the UI when the same time range and aggregation are used.
++
++### Using these queries in Grafana
++
++1. Add your Prometheus data source to Grafana.
++2. Create a new panel and select the Prometheus data source.
++3. Paste one of the queries above, set the query type to `Range`, and choose the time range you want to visualize.
++4. Use the `namespace` and `pod` labels returned by the query to group or filter the series (for example with a Grafana variable or the `Legend` field).
++
+ 
+ ## Available Metrics
+ 

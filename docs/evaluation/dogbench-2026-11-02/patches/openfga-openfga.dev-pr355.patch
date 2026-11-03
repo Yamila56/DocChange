@@ -1,0 +1,96 @@
+diff --git a/docs/content/getting-started/setup-openfga.mdx b/docs/content/getting-started/setup-openfga.mdx
+index 9fbfe646d0949ac019869ec9d13926225c453d80..75842a18b0f238f26bfea02dc330f00333965379 100644
+--- a/docs/content/getting-started/setup-openfga.mdx
++++ b/docs/content/getting-started/setup-openfga.mdx
+@@ -220,12 +220,88 @@ Note that the MySQL datastore has stricter limits for the max length of some fie
+ 
+ ### Configuring Authentication
+ 
+-You can configure authentication in your OpenFGA server in two ways: no authentication (the default) or pre-shared key authentication.
++You can configure authentication in your OpenFGA server in three ways: no authentication (the default), pre-shared key authentication, or OIDC authentication.
+ 
+-If using **Pre-shared key authentication**, you will configure OpenFGA with a secret key and your application calling OpenFGA will have to set an `Authorization: Bearer <YOUR-KEY-HERE>` header. You can configure multiple keys.
++#### Pre-shared Key Authentication
++
++With **pre-shared key authentication**, you configure OpenFGA with one or more secret keys, and every client calling OpenFGA must send one of those keys in an `Authorization: Bearer <YOUR-KEY-HERE>` header. Requests that omit the header or send an unknown key are rejected with an HTTP `401 Unauthorized` response.
++
++You can configure the keys in your `config.yaml`:
++
++```yaml
++authn:
++  method: preshared
++  preshared:
++    keys: ["key1", "key2"]
++```
++
++Or with environment variables (which take priority over the configuration file):
++
++```shell
++docker run -p 8080:8080 -p 8081:8081 openfga/openfga run \
++    --authn-method preshared \
++    --authn-preshared-keys "key1,key2"
++```
++
++```shell
++# Equivalent using environment variables
++docker run -p 8080:8080 -p 8081:8081 \
++    -e OPENFGA_AUTHN_METHOD=preshared \
++    -e OPENFGA_AUTHN_PRESHARED_KEYS="key1,key2" \
++    openfga/openfga run
++```
++
++:::caution Warning
++If you configure pre-shared keys but still receive `401 Unauthorized` responses, verify that:
++- the `authn.method` is set to `preshared` (setting only the keys is not enough),
++- the client sends the key as `Authorization: Bearer <key>` (not as a query parameter or custom header),
++- the key sent by the client exactly matches one of the configured keys, and
++- environment variables are prefixed with `OPENFGA_` and use the correct name (e.g. `OPENFGA_AUTHN_PRESHARED_KEYS`).
++:::
++
++#### OIDC Authentication
++
++With **OIDC authentication**, OpenFGA validates the bearer token sent by the client against an OIDC issuer. Clients obtain a token from the issuer and send it as `Authorization: Bearer <token>`.
++
++```yaml
++authn:
++  method: oidc
++  oidc:
++    issuer: https://issuer.example.com
++    audience: https://api.example.com
++```
++
++Or with environment variables:
++
++```shell
++docker run -p 8080:8080 -p 8081:8081 \
++    -e OPENFGA_AUTHN_METHOD=oidc \
++    -e OPENFGA_AUTHN_OIDC_ISSUER=https://issuer.example.com \
++    -e OPENFGA_AUTHN_OIDC_AUDIENCE=https://api.example.com \
++    openfga/openfga run
++```
++
++:::caution Warning
++If you are going to use either authentication method in production, you should enable TLS in your OpenFGA server.
++:::
++
++#### Configuring TLS
++
++TLS is configured with the `--http-tls-cert`, `--http-tls-key`, `--grpc-tls-cert`, and `--grpc-tls-key` flags (or the corresponding `OPENFGA_HTTP_TLS_CERT`, `OPENFGA_HTTP_TLS_KEY`, `OPENFGA_GRPC_TLS_CERT`, and `OPENFGA_GRPC_TLS_KEY` environment variables).
++
++Paths are resolved relative to the working directory of the OpenFGA process. When running in Docker, the files must exist **inside the container**, so mount them into the container and reference the mounted path:
++
++```shell
++docker run -p 8080:8080 -p 8081:8081 \
++    -v "$PWD/certs:/certs" \
++    -e OPENFGA_HTTP_TLS_ENABLED=true \
++    -e OPENFGA_HTTP_TLS_CERT=/certs/server.crt \
++    -e OPENFGA_HTTP_TLS_KEY=/certs/server.key \
++    openfga/openfga run
++```
+ 
+ :::caution Warning
+-If you are going to use this setup in production, you should enable TLS in your OpenFGA server.
++A missing-file error when configuring TLS usually means the path is not visible to the OpenFGA process. Confirm the certificate and key files exist at the configured path inside the container (or on the host when running the binary directly) and that the path is absolute or relative to the process working directory.
+ :::
+ 
+ ### Playground

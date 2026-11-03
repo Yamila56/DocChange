@@ -1,0 +1,13 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 8c5183d6015b9d9af088d13cc9a3bfc013086e5a..abd3775edaff058ef0c9f300d2f35f2f8dc8f8d2 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
+ Try to keep listed changes to a concise bulleted list of simple explanations of changes. Aim for the amount of information needed so that readers can understand where they would look in the codebase to investigate the changes' implementation, or where they would look in the documentation to understand how to make use of the change in practice - better yet, link directly to the docs and provide detailed information there. Only elaborate if doing so is required to avoid breaking changes or experimental features from ruining someone's day.
+ 
+ ## [Unreleased]
++### Added
++- Added a structured warning log emitted when a Check request for a userset user returns `false` and the request shape matches a known v1→v2 resolution divergence (self-referential usersets, alias usersets, computed usersets targeting the same object, and tuple-to-userset usersets). The log includes the store ID, model ID, request ID, and a `reason` field identifying the detected scenario, helping operators spot potential breaking changes when adopting the experimental `weighted_graph_check` algorithm.
+ 
+ ## [1.18.0] - 2026-06-16
+ ### Fixed

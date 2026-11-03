@@ -1,0 +1,30 @@
+diff --git a/docs/git-compatibility.md b/docs/git-compatibility.md
+index e58a58180bfb315cdc76ae6edd5f5a94b927988a..27e0941aa12defc52bf3aea43de473be43765023 100644
+--- a/docs/git-compatibility.md
++++ b/docs/git-compatibility.md
+@@ -234,15 +234,16 @@ in `.jj/store/extra/`).
+ 
+ Commits with conflicts cannot be represented in Git. They appear in the Git
+ commit as root directories called`.jjconflict-base-*/` and
+-`.jjconflict-side-*/`. Note that the purpose of this representation is only to
+-prevent GC of the relevant trees; the authoritative information is in the
+-Git-external storage mentioned in the paragraph above. As long as you use `jj`
+-commands to work with them, you won't notice those paths. If, on the other hand,
+-you use e.g. `git switch` to check one of them out, you will see those
+-directories in your working copy. If you then run e.g. `jj status`, the
+-resulting snapshot will contain those directories, making it look like they
+-replaced all the other paths in your repo. You will probably want to run
+-`jj abandon` to get back to the state with the unresolved conflicts.
++`.jjconflict-side-*/`, alongside the regular files from one side of the
++conflict and a `JJ-CONFLICT-README` file. Note that the purpose of this
++representation is only to prevent GC of the relevant trees; the authoritative
++information is in the Git-external storage mentioned in the paragraph above. As
++long as you use `jj` commands to work with them, you won't notice those paths.
++If, on the other hand, you use e.g. `git switch` to check one of them out, you
++will see those directories in your working copy. If you then run e.g. `jj
++status`, `jj` will warn that the `.jjconflict` files should not be present and
++suggest running `jj abandon` to discard the working-copy changes and get back
++to the state with the unresolved conflicts.
+ 
+ Change IDs are stored in git commit headers as reverse hex encodings. This is
+ a non-standard header and is not preserved by all `git` tooling. For example,

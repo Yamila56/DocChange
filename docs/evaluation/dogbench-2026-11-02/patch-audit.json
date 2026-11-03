@@ -1,0 +1,834 @@
+{
+  "patches": 73,
+  "apply_check_passed": 73,
+  "worktrees_clean": 73,
+  "documentation_paths_only": 73,
+  "model_calls": 0,
+  "semantic_correctness_checked": false,
+  "results": [
+    {
+      "instance_id": "dlt-hub-dlt-pr2836",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/website/docs/dlt-ecosystem/destinations/iceberg.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "apache-iceberg-pr16241",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/docs/spark-configuration.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16714",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "strawberry-graphql-strawberry-pr4342",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/extensions/pydantic-error-extension.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "huggingface-peft-pr1550",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/source/accelerate/deepspeed.md",
+        "docs/source/accelerate/fsdp.md",
+        "examples/sft/README.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-doc-detective.github.io-pr112",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/get-started/installation/index.mdx",
+        "docs/get-started/intro.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "pantsbuild-pants-pr22034",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/docs/kubernetes/index.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "openbao-openbao-pr3176",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "website/content/docs/install.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16752",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/product-analytics/subscriptions.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "tiangolo-fastapi-pr14262",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/en/docs/advanced/advanced-dependencies.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "finos-rune-dsl-pr1246",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "website/docs/modelling-components/expressions.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "astral-sh-ruff-pr22119",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/formatter.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16822",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/experiments/exposures.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "tiangolo-fastapi-pr14487",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/en/docs/tutorial/handling-errors.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "pantsbuild-pants-pr23219",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/docs/python/goals/test.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-common-pr63",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/references/schemas/httpRequest.md",
+        "docs/references/schemas/openApi.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "bentoml-bentoml-pr5465",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/source/build-with-bentoml/observability/metrics.rst",
+        "docs/source/build-with-bentoml/services.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr17231",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/_snippets/path-cleaning.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16939",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/cdp/sources/index.mdx",
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "finos-rune-dsl-pr473",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "vscode-plugin/CHANGELOG.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-common-pr65",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/references/schemas/arazzo.md",
+        "docs/references/schemas/config.md",
+        "docs/references/schemas/specification.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "bentoml-bentoml-pr5518",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/source/build-with-bentoml/runtime-environment.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "apache-flink-pr27195",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/content/docs/dev/datastream/operators/asyncio.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr17172",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "tiangolo-fastapi-pr14978",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/en/docs/advanced/index.md",
+        "docs/en/docs/advanced/strict-content-type.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "iterorganization-IMAS-Core-pr48",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/source/user_guide/installation.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "pantsbuild-pants-pr23400",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/docs/writing-plugins/the-rules-api/processes.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "opencost-opencost-website-pr102--code-pr1842",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/azure-prices.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-common-pr78",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/references/schemas/context.md",
+        "docs/references/schemas/find.md",
+        "docs/references/schemas/runCode.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "microsoft-DeepSpeed-pr5827",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/_tutorials/accelerator-setup.md",
+        "docs/_tutorials/getting-started.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4003",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/hugo/content/contributing/running-a-development-version.md",
+        "docs/hugo/content/contributing/testing.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "iterorganization-IMAS-Core-pr49",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/source/user_guide/configuration.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "opencost-opencost-website-pr135",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/integrations/prometheus.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr146",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "README.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "helm-helm-www-issue1889",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/plugins/developer/tutorial-cli-plugin.mdx",
+        "docs/plugins/developer/tutorial-postrenderer-plugin.mdx",
+        "docs/plugins/overview.md",
+        "docs/plugins/user/index.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr21",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "reference/schemas/saveScreenshot.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36618",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "doc/user/content/self-managed-deployments/upgrading/_index.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "trinodb-trino-pr29039",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/src/main/sphinx/client/client-protocol.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "prefix-dev-pixi-pr5485",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/workspace/environment.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr297",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/getting_started/how_to_install_mautic.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "kubernetes-sigs-kro-pr1110",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "website/docs/docs/overview.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "apache-flink-pr28237",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/content/docs/connectors/table/overview.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "scverse-anndata-pr1162",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/fileformat-prose.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "openfga-openfga-pr3035",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "CHANGELOG.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "lancedb-lancedb-pr2845",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "java/README.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "celery-celery-pr10238",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/userguide/routing.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr296",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/fern/pages/docs/get-started/ci.mdx",
+        "docs/fern/pages/docs/get-started/integrations.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "openfga-openfga-pr3149",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "CHANGELOG.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "vllm-project-vllm-pr43805",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/features/speculative_decoding/extract_hidden_states.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "jj-vcs-jj-pr8297",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/git-compatibility.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr358",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/configuration/cron_jobs.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "litestar-org-litestar-pr4506",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/usage/templating.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4202",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/hugo/content/guide/diagnosing-problems.md",
+        "docs/hugo/content/guide/frequently-asked-questions.md",
+        "docs/hugo/content/guide/installing-from-helm.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr651",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/points/points.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "openfga-openfga.dev-pr314",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/content/getting-started/running-in-production.mdx",
+        "docs/content/getting-started/setup-openfga.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2500",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/website/docs/dlt-ecosystem/transformations/index.md",
+        "docs/website/docs/general-usage/customising-pipelines/transforming_data.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "strawberry-graphql-strawberry-pr4059",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/types/resolvers.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "python-mypy-pr20007",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/source/stubtest.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr45",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "README.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "openfga-openfga.dev-pr355",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/content/getting-started/setup-openfga.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "apache-iceberg-pr15814",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/docs/evolution.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "kubernetes-sigs-kro-pr108",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "website/docs/docs/getting-started/02-deploy-a-resource-group.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr701",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/contacts/tags.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "strawberry-graphql-strawberry-pr4320",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/guides/convert-to-dictionary.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "helm-helm-www-pr2098",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/intro/quickstart.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr66",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "reference/schemas/config.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "mautic-mautic-pr15508",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/authentication/authentication.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "helm-helm-pr31034",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/helm/helm.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "helm-helm-pr31491",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/plugins/overview.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "helm-helm-pr13655",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/chart_template_guide/values_files.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "helm-helm-www-pr1734",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/topics/advanced.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "dagworks-inc-hamilton-pr1445",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/concepts/visualization.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "microsoft-DeepSpeed-pr7992",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/code-docs/source/training.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    }
+  ]
+}

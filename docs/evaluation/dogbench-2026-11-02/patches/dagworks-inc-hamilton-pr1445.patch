@@ -1,0 +1,28 @@
+diff --git a/docs/concepts/visualization.rst b/docs/concepts/visualization.rst
+index 407e7c6f35eae02c26e0babbabdd73228b3343be..29ab832abfb311dfa9c5c213323b4c5e97276016 100644
+--- a/docs/concepts/visualization.rst
++++ b/docs/concepts/visualization.rst
+@@ -173,6 +173,23 @@ Apply custom style
+ 
+ By default, each node is labeled with name and type, and stylized (shape, color, outline, etc.). By passing a function to the parameter ``custom_style_function``, you can customize the node style based on its attributes. This pairs nicely with the ``@tag`` function modifier (learn more :ref:`tag-decorators`)
+ 
++.. _display-name-tag:
++
++Set a human-readable node label
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++By default, a node is labeled with its Python function name. If you want a human-readable label in the rendered graph without renaming the function, add the ``display_name`` tag with the ``@tag`` function modifier:
++
++.. code-block:: python
++
++    from hamilton.function_modifiers import tag
++
++    @tag(display_name="Total Revenue")
++    def total_revenue(...) -> float:
++        ...
++
++The label resolution order is: an explicitly supplied ``name`` parameter (used internally, e.g. for materializers) takes precedence, then the ``display_name`` tag value, then the node's Python identifier. This applies to node labels and to the rows of the input nodes table. If ``display_name`` is a list, its first element is used (an empty list falls back to the node name). Display names are HTML-escaped before being embedded in the label, so special characters such as ``<``, ``>``, ``&``, and quotes render correctly.
++
+ Your own custom style function must:
+ 
+ 1. Use only keyword arguments, taking in ``node`` and ``node_class``.

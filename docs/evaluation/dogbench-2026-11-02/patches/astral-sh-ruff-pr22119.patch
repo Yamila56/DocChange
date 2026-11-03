@@ -1,0 +1,18 @@
+diff --git a/docs/formatter.md b/docs/formatter.md
+index 5be91545d1de5209f2ebcdf5b84b7052b75b610d..082dee7157ea5fade529809f9379da13e6d92b6e 100644
+--- a/docs/formatter.md
++++ b/docs/formatter.md
+@@ -284,6 +284,13 @@ def test(a, b, c, d, e, f) -> int: # fmt: skip
+     pass
+ ```
+ 
++When a `# fmt: skip` comment appears at the end of a line that contains multiple
++semicolon-separated statements, the entire physical line is preserved verbatim:
++
++```python
++a = 1; b = 2; c = 3  # fmt: skip
++```
++
+ As such, adding an `# fmt: skip` comment at the end of an expression will have no effect. In
+ the following example, the list entry `'1'` will be formatted, despite the `# fmt: skip`:
+ 

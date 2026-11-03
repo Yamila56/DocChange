@@ -1,0 +1,117 @@
+diff --git a/docs/_tutorials/accelerator-setup.md b/docs/_tutorials/accelerator-setup.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..cfd35298bbccee2009778ec52f348b8e588d6f88
+--- /dev/null
++++ b/docs/_tutorials/accelerator-setup.md
+@@ -0,0 +1,99 @@
++---
++title: "Accelerator Setup Guide"
++tags: getting-started
++---
++
++# Contents
++- [Contents](#contents)
++- [Introduction](#introduction)
++- [CPU](#cpu)
++- [Intel XPU](#intel-xpu)
++- [Adding support for other accelerators](#adding-support-for-other-accelerators)
++
++# Introduction
++DeepSpeed can run on a variety of Deep Learning accelerators through the [DeepSpeed Accelerator Abstraction Interface](/tutorials/accelerator-abstraction-interface/). This guide collects the environment setup steps needed to run DeepSpeed on each supported accelerator type. Each accelerator has its own section below; new accelerator types can be added as additional sections following the same structure.
++
++In general, the recommended order is to install the accelerator-specific dependencies (for example, the accelerator extension and its communication library) **before** installing DeepSpeed, since DeepSpeed installation is accelerator related.
++
++# CPU
++DeepSpeed supports using the CPU as an accelerator. A DeepSpeed model written against the DeepSpeed Accelerator Abstraction Interface can run on CPU without changes to the model code. DeepSpeed decides whether _Intel Extension for PyTorch_ is installed in the environment; if this package is installed, DeepSpeed will use CPU as the accelerator, otherwise CUDA device will be used as the accelerator.
++
++To run a DeepSpeed model on CPU, use the following steps to prepare the environment:
++
++```
++python -m pip install intel_extension_for_pytorch
++python -m pip install oneccl_bind_pt -f https://developer.intel.com/ipex-whl-stable-cpu
++git clone https://github.com/oneapi-src/oneCCL
++cd oneCCL
++mkdir build
++cd build
++cmake ..
++make
++make install
++```
++
++Before running a CPU workload, source the oneCCL environment variables:
++
++```
++source <path-to-oneCCL>/build/_install/env/setvars.sh
++```
++
++After the environment is prepared, launch DeepSpeed inference with the following command:
++
++```
++deepspeed --bind_cores_to_rank <deepspeed-model-script>
++```
++
++This command launches a number of workers equal to the number of CPU sockets on the system. Currently DeepSpeed supports running inference models with AutoTP on top of CPU. The argument `--bind_cores_to_rank` distributes CPU cores on the system evenly among workers, allowing each worker to run on a dedicated set of CPU cores.
++
++On a CPU system there might be daemon processes that periodically activate and increase the variance of each worker. One practice is to leave a couple of cores for daemon processes using the `--bind_core_list` argument:
++
++```
++deepspeed --bind_cores_to_rank --bind_core_list 0-51,56-107 <deepspeed-model-script>
++```
++
++The command above leaves 4 cores on each socket to daemon processes (assuming two sockets, each with 56 cores).
++
++You can also set an arbitrary number of workers. Unlike GPU, CPU cores on a host can be further divided into subgroups. When this number is not set, DeepSpeed detects the number of NUMA nodes on the system and launches one worker for each NUMA node:
++
++```
++deepspeed --num_accelerators 4 --bind_cores_to_rank <deepspeed-model-script>
++```
++
++Launching a DeepSpeed model on multiple CPU nodes is similar to other accelerators. Specify `impi` as the launcher and `--bind_cores_to_rank` for better core binding. Also specify the `slots` number according to the number of CPU sockets in the host file:
++
++```
++# hostfile content should follow the format
++# worker-1-hostname slots=<#sockets>
++# worker-2-hostname slots=<#sockets>
++# ...
++
++deepspeed --hostfile=<hostfile> --bind_cores_to_rank --launcher impi --master_addr <master-ip> <deepspeed-model-script>
++```
++
++# Intel XPU
++DeepSpeed supports running on Intel XPU (Intel data center GPUs) through the _Intel Extension for DeepSpeed_. DeepSpeed checks whether the extension is installed in the environment to decide whether to use the accelerator backend provided by that extension.
++
++To run a DeepSpeed model on Intel XPU:
++
++1. Install _Intel Extension for DeepSpeed_ following the instructions in the [intel-extension-for-deepspeed repository](https://github.com/intel/intel-extension-for-deepspeed/).
++2. Install DeepSpeed in the same environment.
++3. Run your model as usual; DeepSpeed will detect the installed extension and use the XPU accelerator backend.
++
++`CUDA_Accelerator` is the default accelerator in DeepSpeed. If no other DeepSpeed accelerator extension is installed, `CUDA_Accelerator` will be used.
++
++When running a model on different accelerators in a cloud environment, the recommended practice is to provision an environment for each accelerator in a different env with tools such as _anaconda/miniconda/virtualenv_, and load the appropriate env when running models on each accelerator.
++
++Note that different accelerators may have different 'flavor' of float16 or bfloat16. It is recommended to make the model configurable for both float16 and bfloat16, so that model code does not need to be changed when running on different accelerators.
++
++# Adding support for other accelerators
++Support for a new accelerator type can be added by implementing a DeepSpeed accelerator extension. An accelerator extension contains:
++1. An `XYZ_Accelerator(DeepSpeedAccelerator)` class definition, where 'XYZ' is the accelerator name, such as 'XPU' or 'CPU'. This class implements `class DeepSpeedAccelerator` and will be returned by `get_accelerator()` in DeepSpeed.
++2. Op builders following the [intel-extension-for-deepspeed op_builder directory](https://github.com/intel/intel-extension-for-deepspeed/tree/main/intel_extension_for_deepspeed/op_builder). All op builders need to inherit `deepspeed.ops.op_builder.builder.OpBuilder` directly or indirectly. A common practice is to implement a base op builder (SYCLOpBuilder in the case of Intel Extension for DeepSpeed) and inherit this base op builder instead.
++3. Op kernels as in the [intel-extension-for-deepspeed csrc directory](https://github.com/intel/intel-extension-for-deepspeed/tree/main/intel_extension_for_deepspeed/op_builder/csrc).
++
++An extension does not have to implement all op builders under [DeepSpeed op_builder](https://github.com/microsoft/DeepSpeed/tree/master/op_builder) at once. A missing op builder usually means a certain DeepSpeed functionality cannot be used for that accelerator, but models that do not use that functionality can still run.
++
++When the accelerator extension is installed in the environment, it can be used by either explicitly calling `deepspeed.accelerator.set_accelerator(XYZ_Accelerator())` following the example in [real_accelerator.py](https://github.com/microsoft/DeepSpeed/blob/master/accelerator/real_accelerator.py), or by adding implicit detection code in `get_accelerator` in the same file.
++
++For more details on writing accelerator-agnostic models and implementing accelerator extensions, see the [DeepSpeed Accelerator Abstraction Interface](/tutorials/accelerator-abstraction-interface/) tutorial.
+diff --git a/docs/_tutorials/getting-started.md b/docs/_tutorials/getting-started.md
+index f9a4cfdc68b49dcf0e5304e3a3955270c54bb557..df24aeece042d6ea6720216c5b25be9755f9d32d 100644
+--- a/docs/_tutorials/getting-started.md
++++ b/docs/_tutorials/getting-started.md
+@@ -11,6 +11,7 @@ tags: getting-started
+ * To get started with DeepSpeed on AzureML, please see the [AzureML Examples GitHub](https://github.com/Azure/azureml-examples/tree/main/cli/jobs/deepspeed)
+ * DeepSpeed has direct integrations with [HuggingFace Transformers](https://github.com/huggingface/transformers) and [PyTorch Lightning](https://github.com/PyTorchLightning/pytorch-lightning). HuggingFace Transformers users can now easily accelerate their models with DeepSpeed through a simple ``--deepspeed`` flag + config file [See more details](https://huggingface.co/docs/transformers/main_classes/deepspeed). PyTorch Lightning provides easy access to DeepSpeed through the Lightning Trainer [See more details](https://pytorch-lightning.readthedocs.io/en/stable/advanced/multi_gpu.html?highlight=deepspeed#deepspeed).
+ * DeepSpeed on AMD can be used via our [ROCm images](https://hub.docker.com/r/deepspeed/rocm501/tags), e.g., `docker pull deepspeed/rocm501:ds060_pytorch110`.
++* To run DeepSpeed on CPU or Intel XPU accelerators, see the [Accelerator Setup Guide](/tutorials/accelerator-setup/).
+ 
+ 
+ 

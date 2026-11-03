@@ -9,6 +9,21 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 linux_root = "/mnt/" + root.drive[0].lower() + root.as_posix()[2:]
 environment = os.environ.copy()
+for name in ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "NO_PROXY"):
+    if environment.get(name):
+        environment["DOCCHANGE_NATIVE_" + name] = environment[name]
+        environment["WSLENV"] = ":".join(
+            filter(None, (environment.get("WSLENV"), "DOCCHANGE_NATIVE_" + name))
+        )
+binary = shutil.which("codex")
+if binary:
+    environment["DOCCHANGE_CODEX_BINARY"] = binary
+    environment["DOCCHANGE_CODEX_HOME"] = str(Path.home() / ".codex")
+    environment["WSLENV"] = ":".join(
+        filter(
+            None, (environment.get("WSLENV"), "DOCCHANGE_CODEX_BINARY/p", "DOCCHANGE_CODEX_HOME")
+        )
+    )
 if len(sys.argv) > 1 and Path(sys.argv[1]).name == "prepare_dogbench.py":
     gh = shutil.which("gh") or str(
         Path(environment["LOCALAPPDATA"]) / "Programs/GitHubCLI/2.103.3/bin/gh.exe"
