@@ -70,7 +70,9 @@ pnpm --dir frontend build
 
 首版2026-10-29本地全套：157 passed / 16 skipped（依赖服务用例等），不是本轮全套成绩。首版源码commit `4d6c36d` 的远程CI中 unit、frontend、mysql 三个job均通过，见 [历史 GitHub Actions](https://github.com/Yamila56/DocChange/actions/runs/40873084174)；后续提交的验证以各自Actions为准。
 
-当前小文档索引同步构建后随版本发布，未接Dense/Rerank；首版单Agent。文档域MySQL/Redis实机联调、真实Docker文档检查与生产认证尚待补充，不以历史电商测试替代。
+V0.2提交 `e517753` 的[远程CI](https://github.com/Yamila56/DocChange/actions/runs/41576363937)已全部通过：unit **165 passed / 16 skipped**，MySQL配置任务 **174 passed / 7 skipped**，前端构建成功。两套测试不相加，跳过项不算服务实机通过。
+
+当前小文档索引同步构建后随版本发布，未接Dense/Rerank；保持单Agent。文档用例已纳入本轮MySQL配置CI；Redis文档端到端联调、真实Docker文档检查与生产认证尚待补充。
 
 ## 开发验证
 

@@ -26,6 +26,8 @@ Python、FastAPI、Pydantic、SQLAlchemy、MySQL / SQLite、Redis Streams、BM25
 
 本轮小改动后定向工程回归 **35 passed / 2 skipped**，其中新增检索阻塞时事件循环与数据库仍可服务的并发检查；这是工程回归，不是额外37个模型评测任务。新策略尚无完整公开同集复测，不宣称 Agent 得分提升。
 
+提交 `e517753` 的[远程CI](https://github.com/Yamila56/DocChange/actions/runs/41576363937)已通过：unit任务165通过/16跳过，MySQL配置任务174通过/7跳过，前端构建成功。这是包含历史域与文档域的工程测试，不是全部文档模型任务，也不把两套通过数相加。
+
 ## 最有说服力的演示顺序
 
 导入技术文档和只读变更依据 → 提交跨文档更新任务并取得 run_id → 查看检索/工具时间线和 ChangeSet 影响清单 → 审核差异及引用 → 批准发布 R2 → 回看 R1 → 演示旧提案因基准版本过期被拒绝。

@@ -1,12 +1,14 @@
 # ShopResolve 进度与续接记录
 
+2026-11-03 V0.2本轮已完成并推送：代码/工件提交`c2886cd`，简历排版提交`e517753`，已推私有`Yamila56/DocChange`的main；远端再次回读PRIVATE。本轮Actions run `41576363937`对应`e517753399213ff45158873ac56b95431a51c4b2`，unit/frontend/mysql三任务均成功：unit165 passed/16 skipped、28.40秒，MySQL配置任务174 passed/7 skipped、66.40秒；不是两套成绩相加，不代表Redis或Docker文档端到端通过。Ruff与前端构建亦在同次CI通过。110份本轮文件及未推送历史共132个blob做本地凭据扫描无发现；73份Git patch逐一与JSON预测及评分hash一致，35个本地文档链接有效。旧自建评测的未跟踪草稿没有纳入本版，未删除；`.env`、缓存、下载仓库、数据库不上传。本条替代下面“待提交/待CI”状态。仅剩本记录的文档提交，不再改代码或追加模型调用。
+
 2026-11-03（最新授权：有限修改、突出已有后端与评测，不再扩建）：保持自研单Agent/FastAPI/SQL/Redis/React架构，不启动新的完整模型批次。保留公开基线175题综合25.6094、SciFact300与SCIDOCS1000完整结果；不能把两个检索集都称为高分，不能删掉低分伪造总成绩。新增`docs/RESUME-DOCCHANGE.md`和`docs/RELEASE-v0.2.0.md`，更新README、使用说明、设计18和基线后的修正说明，以“受控文档变更工作台”定位，强调版本审核、恢复和异步任务。
 
 已有异步能力经代码核实：任务API返回202；SQL Outbox→Redis Streams→Worker、异步模型/SQL/Redis和独立Worker心跳已存在。一进程Worker逐项处理，可多进程消费；UI当前轮询，不冒充流式UI或吞吐实测。本轮仅将工作台BM25/精确扫描在数据库会话关闭后交给`asyncio.to_thread`，保留原排序、精确扫描语义与Revision发布，不新增异步索引服务。新增并发回归验证检索线程被控制阻塞时事件循环仍可完成数据库读取。
 
 本轮定向回归实际35 passed/2 skipped、30.26秒，JUnit `docs/evaluation/docchange-v02-final-2026-11-03.xml`；Ruff check/format通过。仓库批读、定位读取、阅读清单、草稿复核、零匹配无证据处理及预算preflight修复纳入本版；没有公开同集复测，因此没有新Agent提升数字。此前strong-v2试运行因零匹配缺失evidence_id停止，已修复且回归覆盖，不能当作完整175对照；Windows/WSL中未发现仍运行的evaluate_dogbench。Codex适配接口已联通但仅为实验入口，订阅费用未知，计划/summary已避免显示伪造0元预算。
 
-导出器改为按预测原文写UTF-8字节，`.gitattributes`让评测patch不被换行转换；待提交73份patch逐一与评分绑定hash核验。私有远端回读仍PRIVATE。本轮后续仅做工件完整性、提交/推送和远程CI，实际提交与CI结果另补，不把尚未完成写为成功。未充值、租卡、运行新训练或追加模型评测。
+导出器改为按预测原文写UTF-8字节，`.gitattributes`让评测patch不被换行转换；73份patch逐一与评分绑定hash核验通过。私有远端回读仍PRIVATE。实际提交与CI结果见顶部最新记录。未充值、租卡、运行新训练或追加模型评测。
 
 2026-11-03（用户新授权继续改进，尚未交付）：旧 Flash 175题最终评分已完成并导出 `docs/evaluation/dogbench-2026-11-02/`（逐题CSV、73补丁、完整裁判、requests usage、metadata）。综合25.6094，Q16.3073，弃答recall59.6154，决策94/175，113终态（73patch40abstain）/62轮次失败；73/73原生patch可应用且未改工作树，63对应需改、57部分/全部有分、15无P0、一个rubric100仅拼写更正，不能宣传73或57个完全正确。检索SciFact300/SCIDOCS1000完整指标已在JSON、汇总CSV；人读基线报告 `docs/evaluation/docchange-public-2026-11-02.md` 已写。原始context95通过80被标记，兼容准入、17符号链接工具隔离及3旧仓库ID绑定均披露。1979 API请求+101未发API的预留，cache-aware峰值费用上界9.5917元（不是账单），接口2次另计。
 
