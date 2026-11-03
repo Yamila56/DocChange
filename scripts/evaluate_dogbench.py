@@ -17,11 +17,14 @@ from uuid import uuid4
 from scripts.evaluate_models import EvaluationBudget, RecordedGateway
 from shopresolve.config import Settings
 from shopresolve.db import make_database
+from shopresolve.documents.model_profile import PRO_MODEL, cache_hit_rate
 from shopresolve.documents.repository import (
+    RepositoryDecision,
     RepositoryEnvironment,
     RepositoryGateway,
     RepositoryRuntime,
 )
+from shopresolve.documents.repository_search import encoder_for
 from shopresolve.models import Base
 from shopresolve.runstore import RunStore
 
@@ -42,6 +45,11 @@ def atomic(path, value):
 async def main(args):
     if args.workers < 1 or args.model_limit < 1:
         raise ValueError("workers and model-limit must be positive")
+    if args.retrieval_provider == "CUDAExecutionProvider":
+        import onnxruntime as ort
+
+        if args.cuda_dll_dir:
+            ort.preload_dlls(directory=str(args.cuda_dll_dir))
     if args.api_only_symlinks:
         from scripts.dogbench_compat import install_api_only_symlink_policy
 
@@ -57,6 +65,7 @@ async def main(args):
     sources = list((ROOT / "src/shopresolve/documents").glob("*.py")) + [
         Path(__file__),
         ROOT / "scripts/evaluate_models.py",
+        ROOT / "scripts/verify_repository_input.py",
     ]
     if args.subscription:
         sources += [
@@ -75,7 +84,11 @@ async def main(args):
         "max_requests": len(items) * args.model_limit if args.subscription else 2800,
         "cap_cny": None if args.subscription else args.cap_cny,
         "billing": "Codex subscription; cost unknown" if args.subscription else "DeepSeek API",
-        "cache_hit_rate_cny_per_million": 0.04 if args.cache_aware else None,
+        "cache_hit_rate_cny_per_million": cache_hit_rate(args.model) if args.cache_aware else None,
+        "retrieval_mode": args.retrieval_mode,
+        "repository_policy": "coverage-v1",
+        "retrieval_provider": args.retrieval_provider,
+        "thinking": "enabled/high" if args.model == PRO_MODEL else "disabled",
         "source_sha256": {
             str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sources
         },
@@ -100,18 +113,20 @@ async def main(args):
             2800,
             args.cap_cny,
             0,
-            cache_hit_rate=0.04 if args.cache_aware else None,
+            cache_hit_rate=cache_hit_rate(args.model) if args.cache_aware else None,
         )
     )
     trace_audit.PRIMARY_AGENT_TRACE_NAMES.add("docchange.events.jsonl")
     semaphore = asyncio.Semaphore(args.workers)
+    budget_exhausted = asyncio.Event()
     settings = Settings(
         provider="deepseek",
         model=args.model,
         model_base_url="https://api.deepseek.com",
         allow_paid_model=True,
-        model_max_output_tokens=4096,
-        model_timeout_seconds=85,
+        model_max_output_tokens=8192 if args.model == PRO_MODEL else 4096,
+        model_timeout_seconds=120 if args.model == PRO_MODEL else 85,
+        model_max_input_bytes=120000,
     )
     if not settings.model_api_key and not args.subscription:
         raise RuntimeError("Local .env must contain the configured provider key")
@@ -124,6 +139,8 @@ async def main(args):
         if result_path.exists():
             return json.loads(result_path.read_text())
         async with semaphore:
+            if budget_exhausted.is_set():
+                return None
             start = time.perf_counter()
             row = {
                 "instance_id": key,
@@ -138,7 +155,12 @@ async def main(args):
                 gateway = RepositoryGateway(settings)
             engine, sessions = make_database(f"sqlite+aiosqlite:///{folder / 'runs.sqlite'}")
             try:
-                workspace = Path(prepared["path"])
+                native_windows = os.name == "nt" and prepared["path"].startswith("/")
+                workspace = (
+                    Path("//wsl.localhost/Ubuntu" + prepared["path"])
+                    if native_windows
+                    else Path(prepared["path"])
+                )
                 if args.prune_candidates:
                     import subprocess
 
@@ -160,37 +182,86 @@ async def main(args):
                                 ["git", "-C", str(root), "gc", "--prune=now", "--quiet"], check=True
                             )
                 # Verification runs before exporting any candidate Git object.
-                await asyncio.to_thread(
-                    verify_attestation, args.prepared / "sealed", Path(prepared["attestation"])
-                )
                 prompt = (workspace / "TASK.md").read_bytes()
-                await asyncio.to_thread(verify_research_workspace, item, workspace, prompt)
+                if native_windows:
+                    command = [
+                        "wsl",
+                        "-d",
+                        "Ubuntu",
+                        "--cd",
+                        "/mnt/" + ROOT.drive[0].lower() + ROOT.as_posix()[2:],
+                        "--",
+                        ".venv-bench-linux/bin/python",
+                        "-m",
+                        "scripts.verify_repository_input",
+                        key,
+                    ]
+                    verified = await asyncio.to_thread(
+                        subprocess.run, command, capture_output=True, check=True
+                    )
+                    attestation = json.loads(verified.stdout.decode("utf-8"))
+                    if (
+                        not attestation["ok"]
+                        or attestation["prompt_sha256"] != hashlib.sha256(prompt).hexdigest()
+                    ):
+                        raise ValueError(
+                            "Verified Linux prompt differs from native candidate input"
+                        )
+                else:
+                    await asyncio.to_thread(
+                        verify_attestation, args.prepared / "sealed", Path(prepared["attestation"])
+                    )
+                    await asyncio.to_thread(verify_research_workspace, item, workspace, prompt)
+                encoder = (
+                    encoder_for(".cache/models", args.retrieval_provider)
+                    if args.retrieval_mode != "section_bm25"
+                    else None
+                )
                 environment = RepositoryEnvironment(
                     workspace / "docs",
                     workspace / "code" if prepared["has_code"] else None,
                     folder / "controller",
+                    retrieval_mode=args.retrieval_mode,
+                    encoder=encoder,
                 )
+                await asyncio.to_thread(
+                    environment.execute, RepositoryDecision(kind="search", query="documentation")
+                )
+                environment.evidence.clear()
+                environment.read_paths.clear()
+                environment.observed_spans.clear()
                 async with engine.begin() as connection:
                     await connection.run_sync(Base.metadata.create_all)
                 store = RunStore(sessions)
-                conversation = await store.conversation("benchmark", str(uuid4()))
                 cfg = {
                     "provider": "deepseek",
                     "model": settings.model,
                     "domain": "repository",
+                    "repository_policy": "coverage-v1",
                     "model_limit": args.model_limit,
+                    "model_timeout_seconds": settings.model_timeout_seconds,
                     "active_budget_ms": 900000,
                 }
-                rid = (
-                    await store.submit(
-                        "benchmark",
-                        conversation["id"],
-                        {"text": prompt.decode(), "client_message_id": str(uuid4())},
-                        str(uuid4()),
-                        cfg,
-                    )
-                )["run_id"]
+                execution_path = folder / "execution.json"
+                if execution_path.exists():
+                    rid = json.loads(execution_path.read_text())["run_id"]
+                else:
+                    conversation = await store.conversation("benchmark", str(uuid4()))
+                    rid = (
+                        await store.submit(
+                            "benchmark",
+                            conversation["id"],
+                            {"text": prompt.decode(), "client_message_id": str(uuid4())},
+                            str(uuid4()),
+                            cfg,
+                        )
+                    )["run_id"]
+                    atomic(execution_path, {"run_id": rid, "config": cfg})
                 lease = await store.claim(rid, "dogbench-docchange", lease_seconds=180)
+                if lease is None:
+                    raise RuntimeError(
+                        "Persisted run is still leased or terminal; do not regenerate it"
+                    )
                 if args.subscription:
                     from scripts.codex_repository_gateway import SubscriptionRecordedGateway
 
@@ -224,15 +295,23 @@ async def main(args):
                     row.pop("decision", None)
                     row.pop("patch", None)
             except Exception as exc:
-                row.update(
-                    status="timeout" if isinstance(exc, TimeoutError) else "error",
-                    error_type=type(exc).__name__,
-                    error=str(exc)[:1600],
-                )
+                if getattr(exc, "code", None) == "EVALUATION_BUDGET":
+                    # Account limits are an incomplete experiment, not an agent failure.
+                    budget_exhausted.set()
+                    row.update(status="deferred", error="Existing-balance evaluation cap reached")
+                else:
+                    row.update(
+                        status="timeout" if isinstance(exc, TimeoutError) else "error",
+                        error_type=type(exc).__name__,
+                        error=str(exc)[:1600],
+                    )
             finally:
                 await gateway.aclose()
                 await engine.dispose()
             row["latency_ms"] = (time.perf_counter() - start) * 1000
+            if row["status"] == "deferred":
+                atomic(folder / "deferred.json", row)
+                return None
             atomic(result_path, row)
             print(
                 json.dumps({k: row.get(k) for k in ("instance_id", "status", "decision", "error")}),
@@ -267,7 +346,9 @@ async def main(args):
         if running:
             done, _ = await asyncio.wait(running, timeout=5, return_when=asyncio.FIRST_COMPLETED)
             for task in done:
-                results.append(task.result())
+                result = task.result()
+                if result is not None:
+                    results.append(result)
                 del running[task]
         elif pending and not args.wait_preparation:
             raise RuntimeError("Preparation missing; run preparation or use --wait-preparation")
@@ -278,6 +359,8 @@ async def main(args):
             "finished": len(results),
             "awaiting_preparation": len(pending),
             "completed": sum(r["status"] == "completed" for r in results),
+            "budget_exhausted": budget_exhausted.is_set(),
+            "complete": len(results) == len(items),
             "budget": budget.summary()
             if budget is not None
             else {"billing": "Codex subscription", "monetary_cost_cny": None},
@@ -307,8 +390,17 @@ if __name__ == "__main__":
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--limit", type=int, default=0)
     parser.add_argument("--cap-cny", type=float, default=15)
-    parser.add_argument("--model", default="deepseek-flash")
+    parser.add_argument("--model", default=PRO_MODEL)
+    parser.add_argument(
+        "--retrieval-mode", choices=["section_bm25", "dense", "hybrid"], default="hybrid"
+    )
     parser.add_argument("--model-limit", type=int, default=16)
+    parser.add_argument(
+        "--retrieval-provider",
+        choices=["CPUExecutionProvider", "CUDAExecutionProvider"],
+        default="CPUExecutionProvider",
+    )
+    parser.add_argument("--cuda-dll-dir", type=Path)
     parser.add_argument("--subscription", action="store_true")
     parser.add_argument("--cache-aware", action="store_true")
     parser.add_argument("--api-only-symlinks", action="store_true")

@@ -1,7 +1,8 @@
 """One-command local workbench. Durable DB polling is the Redis-free demo mode.
 
 Production-style Redis worker/dispatcher entrypoints remain shopresolve.cli.
-No .env changes and no paid requests; existing CLI services use configured MySQL/Redis.
+The default demo makes no paid requests; --remote explicitly opts into Pro.
+No .env changes; existing CLI services use configured MySQL/Redis.
 """
 
 import argparse
@@ -15,6 +16,7 @@ from sqlalchemy import select
 from shopresolve.api import create_app
 from shopresolve.config import Settings
 from shopresolve.db import make_database
+from shopresolve.documents.model_profile import pro_settings
 from shopresolve.documents.models import Workspace  # noqa: F401
 from shopresolve.documents.runtime import DocumentDemoGateway, DocumentRuntime
 from shopresolve.models import Base, Run
@@ -54,20 +56,18 @@ def main():
             from scripts.evaluate_models import EvaluationBudget, RecordedGateway
         else:
             from evaluate_models import EvaluationBudget, RecordedGateway
-        settings = Settings(
+        settings = pro_settings(
             database_url=settings.database_url,
             enable_demo=True,
             demo_code=settings.demo_code,
-            provider="deepseek",
-            model="deepseek-flash",
-            model_base_url="https://api.deepseek.com",
-            allow_paid_model=True,
             document_retrieval_mode=args.retrieval_mode,
             model_cache_dir=configured.model_cache_dir,
         )
         inner = DocumentGateway(settings)
-        budget = EvaluationBudget(folder / "interactive-budget.sqlite", 20, 0.5, 0)
-        gateway = RecordedGateway(inner, budget, folder / "interactive-calls.jsonl")
+        budget = EvaluationBudget(
+            folder / "interactive-pro-budget.sqlite", 20, 2, 0, cache_hit_rate=0.30
+        )
+        gateway = RecordedGateway(inner, budget, folder / "interactive-pro-calls.jsonl")
     engine, sessions = make_database(settings.database_url)
     store = RunStore(sessions)
 
@@ -84,7 +84,10 @@ def main():
                 lease = await store.claim(rid, "local-docchange", lease_seconds=180)
                 if lease:
                     state, _, _ = await store.load(lease)
-                    if state["config"]["provider"] != settings.provider:
+                    if (
+                        state["config"]["provider"] != settings.provider
+                        or state["config"]["model"] != settings.model
+                    ):
                         await store.finish(
                             lease, state, "FAILED", "UNRESOLVED", "PROVIDER_CONFIG_CHANGED"
                         )
@@ -110,7 +113,7 @@ def main():
                 await inner.aclose()
 
     app.router.lifespan_context = lifespan
-    mode = "DeepSeek: persistent 20 requests / 0.5 CNY cap" if args.remote else "free demo"
+    mode = "DeepSeek Pro high: persistent 20 requests / 2 CNY cap" if args.remote else "free demo"
     print(f"DocChange http://127.0.0.1:{args.port} | alice / docs-local-2026 | {mode}")
     uvicorn.run(app, host="127.0.0.1", port=args.port, log_level="warning")
 

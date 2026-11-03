@@ -1,5 +1,6 @@
 """Pinned, local-only ONNX models for optional document retrieval."""
 
+import hashlib
 import json
 from pathlib import Path
 
@@ -37,6 +38,9 @@ class _Session:
 
         spec, path = model_path(kind, cache_dir)
         self.name = spec["model"]
+        self.cache_signature = hashlib.sha256(
+            (json.dumps(spec, sort_keys=True) + ort.__version__ + provider).encode()
+        ).hexdigest()
         options = ort.SessionOptions()
         options.log_severity_level = 3
         options.intra_op_num_threads = threads
@@ -66,10 +70,14 @@ class _Session:
 
 
 class DocumentEncoder(_Session):
-    def __init__(self, cache_dir=".cache/models", threads=4, provider="CPUExecutionProvider"):
+    def __init__(
+        self, cache_dir=".cache/models", threads=4, provider="CPUExecutionProvider", batch_size=8
+    ):
         super().__init__("encoder", cache_dir, threads, provider)
+        self.document_batch_size = batch_size
 
-    def documents(self, texts, batch_size=8):
+    def documents(self, texts, batch_size=None):
+        batch_size = batch_size or self.document_batch_size
         batches = []
         for start in range(0, len(texts), batch_size):
             # BGE uses the first (CLS) token, not mean pooling.

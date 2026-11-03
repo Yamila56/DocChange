@@ -10,6 +10,7 @@ from shopresolve.agent.gateway import CompatibleJsonGateway, ModelReply
 from shopresolve.errors import DomainError
 from shopresolve.service import digest
 
+from .model_profile import configure_document_payload
 from .service import DocumentService
 
 
@@ -110,9 +111,7 @@ class DocumentGateway(CompatibleJsonGateway):
                 {"role": "user", "content": content},
             ],
         }
-        if self.settings.provider == "deepseek":
-            payload["thinking"] = {"type": "disabled"}
-        return payload
+        return configure_document_payload(payload, self.settings)
 
 
 class DocumentDemoGateway:
@@ -246,6 +245,8 @@ class DocumentRuntime:
                         "messages": state["messages"][-4:],
                         "error": state.get("doc_error"),
                     }
+                    if hasattr(self.gateway, "preflight"):
+                        self.gateway.preflight("DOCUMENT", context)
                     seq = await self.store.reserve_model(
                         lease, "DOCUMENT", digest(context), config["model_limit"]
                     )

@@ -1,0 +1,40 @@
+{
+  "configured_model": "deepseek-v4-pro",
+  "thinking": "enabled/high",
+  "model_listed": true,
+  "account_available": true,
+  "can_cover_contract_reserve": true,
+  "maximum_requests": 1,
+  "estimated_cap_cny": "0.75",
+  "scope": "API/schema compatibility only; not a task-quality benchmark",
+  "schema_valid": true,
+  "returned_model": "deepseek-v4-pro",
+  "decision_kind": "list",
+  "usage": {
+    "prompt_tokens": 1687,
+    "completion_tokens": 93,
+    "total_tokens": 1780,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 57
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 1687
+  },
+  "budget": {
+    "by_model": {
+      "deepseek-v4-pro": {
+        "calls": 1,
+        "unknown_usage": 0,
+        "estimated_cny": "0.017694",
+        "input_tokens": 1687,
+        "output_tokens": 93
+      }
+    },
+    "carry_cny": "0",
+    "estimated_total_with_carry_cny": "0.017694",
+    "cap_cny": "0.75"
+  }
+}

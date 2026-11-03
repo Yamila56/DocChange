@@ -7,17 +7,20 @@ working-tree application or automatic publication is performed by the agent.
 import argparse
 import asyncio
 import json
+import time
 from pathlib import Path
 from uuid import uuid4
 
 from scripts.evaluate_models import EvaluationBudget, RecordedGateway
-from shopresolve.config import Settings
 from shopresolve.db import make_database
+from shopresolve.documents.model_profile import pro_settings
 from shopresolve.documents.repository import (
+    RepositoryDecision,
     RepositoryEnvironment,
     RepositoryGateway,
     RepositoryRuntime,
 )
+from shopresolve.documents.repository_search import encoder_for
 from shopresolve.models import Base
 from shopresolve.runstore import RunStore
 
@@ -31,22 +34,60 @@ async def main(args):
         raise ValueError("Provide a nonempty task under 24KB")
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
-    settings = Settings(
-        provider="deepseek",
-        model="deepseek-flash",
-        model_base_url="https://api.deepseek.com",
-        allow_paid_model=True,
-        model_timeout_seconds=85,
-    )
+    settings = pro_settings()
     if not settings.model_api_key:
         raise RuntimeError("Configure the local provider key in .env")
-    ledger = Path(".cache/docchange/repository-budget.sqlite")
+    ledger = Path(".cache/docchange/repository-pro-budget.sqlite")
     ledger.parent.mkdir(parents=True, exist_ok=True)
-    budget = EvaluationBudget(ledger, 100, 2, 0)
+    budget = EvaluationBudget(ledger, 100, 2, 0, cache_hit_rate=0.30)
     gateway = RepositoryGateway(settings)
     wrapped = RecordedGateway(gateway, budget, output / "model-calls.jsonl")
     engine, sessions = make_database(f"sqlite+aiosqlite:///{output / 'runs.sqlite'}")
     try:
+        # Build reusable local indexes before accepting a run or paying for a model
+        # decision. Cold repository indexing must not consume a worker lease.
+        if args.cuda_dll_dir:
+            import onnxruntime as ort
+
+            ort.preload_dlls(directory=str(args.cuda_dll_dir))
+        encoder = (
+            encoder_for(settings.model_cache_dir, args.retrieval_provider)
+            if args.retrieval_mode != "section_bm25"
+            else None
+        )
+        env = RepositoryEnvironment(
+            docs,
+            args.code_root,
+            output / "controller",
+            retrieval_mode=args.retrieval_mode,
+            encoder=encoder,
+            model_cache_dir=settings.model_cache_dir,
+        )
+        started = time.perf_counter()
+        print("Preparing authorized repository index before model execution...", flush=True)
+        await asyncio.to_thread(
+            env.execute,
+            RepositoryDecision(
+                kind="search", query="documentation", retrieval_mode=args.retrieval_mode
+            ),
+        )
+        # Warmup observations were never delivered to the agent and cannot authorize edits.
+        env.evidence.clear()
+        env.read_paths.clear()
+        env.observed_spans.clear()
+        (output / "preparation.json").write_text(
+            json.dumps(
+                {
+                    "ready": True,
+                    "seconds": time.perf_counter() - started,
+                    "retrieval_mode": args.retrieval_mode,
+                    "generative_api_requests": 0,
+                    "warmup_grants_edit_authority": False,
+                },
+                indent=2,
+            ),
+            encoding="utf-8",
+        )
         async with engine.begin() as conn:
             await conn.run_sync(Base.metadata.create_all)
         store = RunStore(sessions)
@@ -55,7 +96,9 @@ async def main(args):
             "provider": "deepseek",
             "model": settings.model,
             "domain": "repository",
+            "repository_policy": "coverage-v1",
             "model_limit": 16,
+            "model_timeout_seconds": settings.model_timeout_seconds,
             "active_budget_ms": 900000,
         }
         rid = (
@@ -68,7 +111,6 @@ async def main(args):
             )
         )["run_id"]
         lease = await store.claim(rid, "local-repository", lease_seconds=180)
-        env = RepositoryEnvironment(docs, args.code_root, output / "controller")
         async with asyncio.timeout(900):
             result = await RepositoryRuntime(
                 store, wrapped, env, output / "docchange.events.jsonl"
@@ -99,6 +141,15 @@ if __name__ == "__main__":
     parser.add_argument("--docs-root", type=Path, required=True)
     parser.add_argument("--code-root", type=Path)
     parser.add_argument("--task-file", type=Path, required=True)
+    parser.add_argument(
+        "--retrieval-mode", choices=["section_bm25", "dense", "hybrid"], default="hybrid"
+    )
+    parser.add_argument(
+        "--retrieval-provider",
+        default="CPUExecutionProvider",
+        choices=["CPUExecutionProvider", "CUDAExecutionProvider"],
+    )
+    parser.add_argument("--cuda-dll-dir", type=Path)
     parser.add_argument(
         "--output", type=Path, default=Path(".cache/docchange/repository") / str(uuid4())
     )
