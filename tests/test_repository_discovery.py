@@ -2,6 +2,7 @@ from uuid import uuid4
 
 import numpy as np
 import pytest
+from sqlalchemy import update
 
 from shopresolve.agent.gateway import ModelReply
 from shopresolve.documents.repository import (
@@ -11,6 +12,7 @@ from shopresolve.documents.repository import (
 )
 from shopresolve.documents.repository_search import RepositorySearch, sections
 from shopresolve.errors import DomainError
+from shopresolve.models import Run
 from shopresolve.runstore import RunStore
 from tests.test_document_repository import git
 
@@ -201,6 +203,9 @@ async def test_cached_search_restores_ranges_after_fault_before_checkpoint(
         )
     store.save_tool = original
     clock.value += 181
+    # MySQL uses database time; expire the isolated test run without changing production clocks.
+    async with sessions.begin() as session:
+        await session.execute(update(Run).where(Run.id == response["run_id"]).values(lease_until=0))
     new_lease = await store.claim(response["run_id"], "recovered", lease_seconds=180)
     restored = RepositoryEnvironment(root, None, tmp_path / "new-controller")
     result = await RepositoryRuntime(store, gateway, restored, tmp_path / "trace.jsonl").run(
