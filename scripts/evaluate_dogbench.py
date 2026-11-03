@@ -162,8 +162,6 @@ async def main(args):
                     else Path(prepared["path"])
                 )
                 if args.prune_candidates:
-                    import subprocess
-
                     if not workspace.resolve().is_relative_to(
                         (args.prepared / "sealed/workspaces").resolve()
                     ):
