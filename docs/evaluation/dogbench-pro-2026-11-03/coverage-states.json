@@ -1,0 +1,2599 @@
+[
+  {
+    "instance_id": "Azure-azure-service-operator-pr4003",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "req_docs_ci_workload_identity",
+        "description": "Inspect and update user-facing CI/integration/release workflow documentation that references AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, or service-principal-based authentication. Document that pipelines now use GITHUB_ACTIONS/workload identity and no longer require those secrets.",
+        "evidence_ids": [
+          "adf6bb34de34fcd6e4add1d5",
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      },
+      {
+        "id": "req_docs_identity_api",
+        "description": "Inspect identity package API documentation for NewCredentialProvider and the four credential constructors. Document the new TokenCredentialProvider interface and CredentialProviderOptions.TokenProvider override, including default behavior when TokenProvider is nil.",
+        "evidence_ids": [
+          "adf6bb34de34fcd6e4add1d5",
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      },
+      {
+        "id": "req_docs_ci_pool_infra",
+        "description": "Inspect CI pool infrastructure and setup documentation. Update for the new Bicep-managed user-assigned managed identity, subscription-scoped role assignment, and max agent pool size increase from 4 to 8.",
+        "evidence_ids": [
+          "adf6bb34de34fcd6e4add1d5",
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      },
+      {
+        "id": "req_docs_wi_setup_script",
+        "description": "Inspect managed identity/federated identity setup and AKS creation documentation. Update shell-based MI/FIC setup references to the Python equivalent with retry/backoff, AKS OIDC issuer enablement, and persisting issuer URL to disk.",
+        "evidence_ids": [
+          "adf6bb34de34fcd6e4add1d5",
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      },
+      {
+        "id": "req_docs_multitenant_test",
+        "description": "Inspect multi-tenant integration test documentation. Update from environment-variable-supplied client secrets to dynamically provisioned managed identities with federated credentials and reading the OIDC issuer from a local file.",
+        "evidence_ids": [
+          "adf6bb34de34fcd6e4add1d5",
+          "c7cb55d9e9a4952bdb585aa2"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=170, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.3.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr4196",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "ra_naming_conv_20200801preview",
+        "description": "Document that RoleAssignment in API version 2020-08-01-preview supports operatorSpec.namingConvention with values stable (default deterministic UUID) or random (new random UUID), and that this operator-only setting is not sent to Azure.",
+        "evidence_ids": [
+          "4cd1925e4967bfecd2d7155c",
+          "62bceeea022f4fceb5e9b179"
+        ]
+      },
+      {
+        "id": "ra_naming_conv_20220401",
+        "description": "Document that RoleAssignment in API version 2022-04-01 supports operatorSpec.namingConvention with values stable (default deterministic UUID) or random (new random UUID), and that this operator-only setting is not sent to Azure.",
+        "evidence_ids": [
+          "4cd1925e4967bfecd2d7155c",
+          "62bceeea022f4fceb5e9b179"
+        ]
+      },
+      {
+        "id": "rd_naming_conv_20220401",
+        "description": "Document that RoleDefinition in API version 2022-04-01 supports operatorSpec.namingConvention with values stable (default deterministic UUID) or random (new random UUID), and that this operator-only setting is not sent to Azure.",
+        "evidence_ids": [
+          "4cd1925e4967bfecd2d7155c",
+          "62bceeea022f4fceb5e9b179"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr4202",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "REQ-AKS-AFFINITY",
+        "description": "Improve AKS installation guidance so users can find how to schedule ASO on AKS system node pools, using preferred node affinity to avoid user pools while remaining compatible with other clusters. Issue #3828 concluded documentation should make this easier to find rather than adding AKS-specific affinity by default.",
+        "evidence_ids": [
+          "28550ea6f14f2c2a025ca8a6",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "REQ-ARGOCD-HELM",
+        "description": "Document diagnosing and fixing Argo CD Helm installation problems: when Argo CD is pointed at the Git repository path, generated Helm templates such as ClusterRole azureserviceoperator-manager-role are missing; users should configure the Helm chart repo URL and chart name instead of the Git source path.",
+        "evidence_ids": [
+          "28550ea6f14f2c2a025ca8a6",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "REQ-ASO-PASSING-DATA",
+        "description": "Check and improve documentation for passing data between ASO resources, such as using exported values or ARM references, and add guidance if missing or hard to find.",
+        "evidence_ids": [
+          "28550ea6f14f2c2a025ca8a6"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.3.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=130, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr4394",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Check whether user-facing documentation references the old web ARM type names such as ServerFarm_Spec_ARM, ServerFarm_Status_ARM, Site_Spec_ARM, or Site_Status_ARM, and update any references to the new arm package suffix-less names.",
+        "evidence_ids": [
+          "603fca58a0c3520f09be3a82",
+          "fb68ba23baaf2267cf718a20"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Check whether user-facing documentation describes the generated Go API package structure or ARM type naming convention for web resources, and update it to reflect the dedicated arm sub-package.",
+        "evidence_ids": [
+          "603fca58a0c3520f09be3a82"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check whether any user-facing reference, migration, or example content uses the removed autogenerated deep-copy functions or otherwise depends on the previous root-package location of web ARM types.",
+        "evidence_ids": [
+          "603fca58a0c3520f09be3a82",
+          "fb68ba23baaf2267cf718a20"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Action is not valid in PLAN",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "Azure-azure-service-operator-pr5490",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new aso.parseResourceId CEL function and its returned ResourceID fields.",
+        "evidence_ids": [
+          "45fc1f6d1733b967ae290212",
+          "3ddf2097bd0e94fd783a9331"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the new native CEL types ResourceID and ResourceType registered in the CEL environment.",
+        "evidence_ids": [
+          "45fc1f6d1733b967ae290212"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document how to use aso.parseResourceId in SecretExpressions, including the ASO-created identity credential-from workflow.",
+        "evidence_ids": [
+          "45fc1f6d1733b967ae290212"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36075",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "REQ-1",
+        "description": "Search the documentation workspace for any user-facing references to generic timestamp-related types such as TimestampContext<T>, TimestampDetermination<T>, TimestampExplanation<T>, InMemoryTimestampOracle<T, N>, or Session<T> that would need to change after the generic parameter is removed.",
+        "evidence_ids": [
+          "e780fabea44bec4e6dab6b9f",
+          "25d485acd8c1663c58042c66"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "description": "Inspect reference, setup, examples, and migration documentation for type signatures or code snippets involving mz_repr::Timestamp generic parameters, TimestampManipulation bounds, NowFn, or the Session type to determine whether the refactor exposes any changed public API.",
+        "evidence_ids": [
+          "e780fabea44bec4e6dab6b9f",
+          "25d485acd8c1663c58042c66"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "description": "Verify whether the removal of the generic type parameter from timestamp-related types changes any externally documented behavior, configuration option, default, or public Rust/API contract, as opposed to an internal-only refactor.",
+        "evidence_ids": [
+          "e780fabea44bec4e6dab6b9f",
+          "25d485acd8c1663c58042c66"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "description": "If no documented user-facing surface references the removed generic parameter or changed type signatures, conclude that no documentation changes are needed.",
+        "evidence_ids": [
+          "e780fabea44bec4e6dab6b9f",
+          "25d485acd8c1663c58042c66"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "REQ-1",
+          "status": "no_change",
+          "evidence_ids": [
+            "e780fabea44bec4e6dab6b9f",
+            "25d485acd8c1663c58042c66",
+            "223b80d02a6504931a658f93",
+            "37b435f99611a2343ed83e99"
+          ],
+          "reason": "Search of user-facing docs found no visible references to TimestampContext<T>, TimestampDetermination<T>, TimestampExplanation<T>, InMemoryTimestampOracle<T, N>, or Session<T>. Only developer-generated source-linked docs mention them, and those are not user-facing."
+        },
+        {
+          "requirement_id": "REQ-2",
+          "status": "no_change",
+          "evidence_ids": [
+            "4bc3a63d2be7e432d0775c08",
+            "daf47343d9faceef531842e2",
+            "fc625754bb890c56e1983d87",
+            "0affa241c81cbac5137afe4a"
+          ],
+          "reason": "The inspected user-facing reference/setup/examples do not contain type signatures or code snippets involving mz_repr::Timestamp generics, TimestampManipulation bounds, NowFn, or the changed Session API; the generated developer docs are internal artifacts and not part of user-facing documentation."
+        },
+        {
+          "requirement_id": "REQ-3",
+          "status": "no_change",
+          "evidence_ids": [
+            "e780fabea44bec4e6dab6b9f",
+            "25d485acd8c1663c58042c66"
+          ],
+          "reason": "The diff is purely a Rust type-level refactor; no SQL behavior, configuration option, default, or public Rust API contract is changed. Behavioral semantics are explicitly unchanged."
+        },
+        {
+          "requirement_id": "REQ-4",
+          "status": "no_change",
+          "evidence_ids": [
+            "e780fabea44bec4e6dab6b9f",
+            "4bc3a63d2be7e432d0775c08",
+            "223b80d02a6504931a658f93",
+            "37b435f99611a2343ed83e99"
+          ],
+          "reason": "Because no documented user-facing surface references the removed generic parameter or altered signatures, no documentation changes are needed."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "NO_DOC_CHANGES_NEEDED: internal-only Rust refactor with no user-facing documentation impact.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": "Action is not valid in PLAN",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36328",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new SQL isolation level syntax `bounded staleness <duration>` in the appropriate user-facing SQL reference, including accepted duration syntax and read-only restrictions.",
+        "evidence_ids": [
+          "02b6183a84e85c8178ce1846",
+          "90b6896ee8f383a6284f735c"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the new feature flag `enable_bounded_staleness_isolation` that gates the isolation level, including its effect when disabled.",
+        "evidence_ids": [
+          "02b6183a84e85c8178ce1846",
+          "90b6896ee8f383a6284f735c"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Update documentation for the `transaction_isolation` session variable to include the new accepted value and its interaction with `real_time_recency`.",
+        "evidence_ids": [
+          "02b6183a84e85c8178ce1846",
+          "90b6896ee8f383a6284f735c"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document the new bounded-staleness error conditions and SQLSTATEs: `BoundedStalenessExceeded` (40001), `BoundedStalenessReadOnly`, `BoundedStalenessRealTimeRecencyConflict`, and `BoundedStalenessTimelineUnsupported`.",
+        "evidence_ids": [
+          "02b6183a84e85c8178ce1846",
+          "90b6896ee8f383a6284f735c"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Document the bounded-staleness restriction that sessions using this level cannot perform writes and queries cannot touch non-wall-clock timelines.",
+        "evidence_ids": [
+          "02b6183a84e85c8178ce1846",
+          "90b6896ee8f383a6284f735c"
+        ]
+      },
+      {
+        "id": "R6",
+        "description": "Document the new histogram metric `mz_timestamp_difference_for_bounded_staleness_ms` and what it measures for queries served under bounded staleness.",
+        "evidence_ids": [
+          "02b6183a84e85c8178ce1846",
+          "90b6896ee8f383a6284f735c"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36618",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Determine whether any user-facing documentation describes how orchestratord derives balancerd/console image refs from the Materialize resource spec, and update it to mention that downstream resources now track active_environmentd_image_ref (last completed rollout image with spec fallback).",
+        "evidence_ids": [
+          "882cca1ae1d394f5515bc120",
+          "0e4017eecba4ff3ee4213602"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Check upgrade/rollback and custom-resource reference docs for requestRollout and environmentdImageRef guidance; add a note if users could cancel an upgrade by reverting only requestRollout and expect downstream resources to remain aligned with the running environmentd.",
+        "evidence_ids": [
+          "882cca1ae1d394f5515bc120",
+          "0e4017eecba4ff3ee4213602"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check whether nightly CI workflow documentation is user-facing and whether adding orchestratord-revert-rollout requires documentation changes; likely no user-facing edit unless pipeline lists are documented.",
+        "evidence_ids": [
+          "882cca1ae1d394f5515bc120"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr36803",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "check_cli_docs",
+        "description": "Inspect user-facing documentation for the workload anonymization CLI (bin/mz-workload-anonymize / mz_workload_anonymize.py) and update any content describing regex-based rewriting, default overwrite behavior, or redaction semantics to reflect the new AST-based parser, explicit output requirement, and two redaction levels.",
+        "evidence_ids": [
+          "9ccf047b292dd665eef0cbbc",
+          "cf021879546624de70f8cbf0"
+        ]
+      },
+      {
+        "id": "check_replay_docs",
+        "description": "Check workload replay documentation for how redacted query parameters and SQL literals are replayed; update guides or references if they currently imply redacted values are replayed as strings rather than bound as NULL.",
+        "evidence_ids": [
+          "9ccf047b292dd665eef0cbbc",
+          "cf021879546624de70f8cbf0"
+        ]
+      },
+      {
+        "id": "check_install_build_docs",
+        "description": "Review installation, development, or testing documentation for any statement that the mz-sql-anonymize helper is optional or skipped when absent; update to mention the helper is built automatically for tests and required by the Python anonymizer, including MZ_SQL_ANONYMIZE_BIN override if documented.",
+        "evidence_ids": [
+          "9ccf047b292dd665eef0cbbc",
+          "cf021879546624de70f8cbf0"
+        ]
+      },
+      {
+        "id": "check_reference_surfaces",
+        "description": "Search reference and configuration docs for workload capture/replay options affected by the change, such as collect mode, allowlists, deterministic HMAC mapping, and safe redaction of typed option strings like connection hosts, usernames, and sink topics, to ensure user-facing reference content matches the new behavior.",
+        "evidence_ids": [
+          "9ccf047b292dd665eef0cbbc",
+          "cf021879546624de70f8cbf0"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nlimit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=146, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "MaterializeInc-materialize-pr37023",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "DOC_PG_LOGICAL_REPLICA_SETUP",
+        "description": "Add user-facing documentation for standing up a dedicated PostgreSQL replica using native logical replication, including required PostgreSQL settings and publication/subscription creation steps.",
+        "evidence_ids": [
+          "2b9330117ba5674430b77761",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "DOC_PG_SOURCE_POINT_AT_REPLICA",
+        "description": "Document how to point a Materialize PostgreSQL source at the dedicated logical replica instead of the production primary, including connection details and any source configuration changes.",
+        "evidence_ids": [
+          "2b9330117ba5674430b77761",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "DOC_SURFACE_CHECK_PG_SOURCE",
+        "description": "Inspect all PostgreSQL source user-facing documentation surfaces, including reference, setup, examples, and migration notes, to identify where the replica guidance should be placed.",
+        "evidence_ids": [
+          "2b9330117ba5674430b77761"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "4 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.3.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "PostHog-posthog-pr63817",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "REQ_DOC_NEW_ENDPOINT",
+        "description": "Document the new reverse-lookup endpoint GET /api/projects/{team_id}/signals/scout/runs/{run_id}/emissions/reports/, including its response shape and the null-report cases.",
+        "evidence_ids": [
+          "c8ae09732b0ffd799a4848d5",
+          "58fa01e2cf311224f03e5c71"
+        ]
+      },
+      {
+        "id": "REQ_DOC_RESPONSE_SERIALIZERS",
+        "description": "Document the new serializer response fields: ScoutEmissionReportLinkSerializer with finding_id, source_id, report; LinkedSignalReportSerializer with id, title, status.",
+        "evidence_ids": [
+          "c8ae09732b0ffd799a4848d5",
+          "58fa01e2cf311224f03e5c71"
+        ]
+      },
+      {
+        "id": "REQ_DOC_AUTH_SCOPES",
+        "description": "Document that the new scout emission reports endpoint requires both signal_scout:read and task:read scopes.",
+        "evidence_ids": [
+          "c8ae09732b0ffd799a4848d5",
+          "58fa01e2cf311224f03e5c71"
+        ]
+      },
+      {
+        "id": "REQ_DOC_NULL_BEHAVIOR",
+        "description": "Explain the best-effort semantics: report is null when a finding has not grouped into a report, was deduplicated away, or its signal was deleted.",
+        "evidence_ids": [
+          "c8ae09732b0ffd799a4848d5",
+          "58fa01e2cf311224f03e5c71"
+        ]
+      },
+      {
+        "id": "REQ_DOC_MCP_TOOL",
+        "description": "Check whether the newly registered MCP tool, disabled by default, needs any user-facing tool catalog or configuration documentation update.",
+        "evidence_ids": [
+          "c8ae09732b0ffd799a4848d5",
+          "58fa01e2cf311224f03e5c71"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "REQ_DOC_NEW_ENDPOINT",
+          "status": "no_change",
+          "evidence_ids": [
+            "c8ae09732b0ffd799a4848d5",
+            "58fa01e2cf311224f03e5c71",
+            "57b96323e8f67687155c2527",
+            "497c6376b03bff08794ea736",
+            "6c1ed959ff49dfc651a5dd9b"
+          ],
+          "reason": "The candidate searched the documentation workspace for the new endpoint path and related terms and found no user-facing API reference, setup, example, or migration page that documents SignalScoutRunViewSet or scout run endpoints. Since no existing page covers this endpoint, there is no documentation to update."
+        },
+        {
+          "requirement_id": "REQ_DOC_RESPONSE_SERIALIZERS",
+          "status": "no_change",
+          "evidence_ids": [
+            "c8ae09732b0ffd799a4848d5",
+            "58fa01e2cf311224f03e5c71",
+            "57b96323e8f67687155c2527",
+            "497c6376b03bff08794ea736"
+          ],
+          "reason": "The new serializer fields are part of the same undocumented endpoint response shape. The candidate found no existing documentation page or API reference describing ScoutEmissionReportLinkSerializer or LinkedSignalReportSerializer, so no documentation edit is necessary."
+        },
+        {
+          "requirement_id": "REQ_DOC_AUTH_SCOPES",
+          "status": "no_change",
+          "evidence_ids": [
+            "c8ae09732b0ffd799a4848d5",
+            "58fa01e2cf311224f03e5c71",
+            "a072e8530c7daac5027e022d"
+          ],
+          "reason": "The workspace does not contain user-facing documentation for the new endpoint's required scopes. The provisioning scopes page examined by the candidate lists unrelated integration scopes and does not document signal_scout:read or task:read, so no existing scope documentation needs to change for this endpoint."
+        },
+        {
+          "requirement_id": "REQ_DOC_NULL_BEHAVIOR",
+          "status": "no_change",
+          "evidence_ids": [
+            "c8ae09732b0ffd799a4848d5",
+            "58fa01e2cf311224f03e5c71",
+            "57b96323e8f67687155c2527"
+          ],
+          "reason": "The null-report best-effort semantics are response behavior for the new undocumented endpoint. The candidate found no user-facing Scout or Inbox report documentation that explains the reverse link, so there is no page to update with this behavior."
+        },
+        {
+          "requirement_id": "REQ_DOC_MCP_TOOL",
+          "status": "no_change",
+          "evidence_ids": [
+            "c8ae09732b0ffd799a4848d5",
+            "58fa01e2cf311224f03e5c71",
+            "6c1ed959ff49dfc651a5dd9b"
+          ],
+          "reason": "The MCP tool registration is added but disabled by default and is not exposed in the user-facing MCP tool catalog or configuration documentation. No documentation update is required for a disabled internal tool."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "The candidate's abstain decision is accepted. The new reverse-lookup endpoint and associated serializers are not represented in the existing user-facing documentation workspace, and the disabled MCP registration does not require documentation changes.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Review every requirement exactly once",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog-pr63871",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "DOC_INTEGRATIONS_LANDING",
+        "description": "Document the new linkable /integrations/:slug landing pages for Slack, GitHub, GitLab, Jira, and Linear, including the connect flow, success state, and NotFound behavior for unrecognized slugs.",
+        "evidence_ids": [
+          "be009ac094ce904859e01be2",
+          "9ea2f666d4a36a18562a839f"
+        ]
+      },
+      {
+        "id": "DOC_INTEGRATION_REGISTRY",
+        "description": "Check whether existing user-facing integration documentation or setup guides should reference the centralized integration definitions or new landing page URLs instead of buried settings sections.",
+        "evidence_ids": [
+          "be009ac094ce904859e01be2",
+          "9ea2f666d4a36a18562a839f"
+        ]
+      },
+      {
+        "id": "DOC_INTEGRATION_EVENT",
+        "description": "Determine whether the new integration_connect_clicked event or its payload fields need to be documented in analytics/event dictionaries or integration analytics references.",
+        "evidence_ids": [
+          "be009ac094ce904859e01be2",
+          "9ea2f666d4a36a18562a839f"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "PostHog-posthog-pr63886",
+    "generation_status": "error",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1_auth_scope_flag",
+        "description": "User-facing API/security docs must explain that MCP analytics feedback and missing-capability submission endpoints are no longer staff/admin/INTERNAL-only; they are gated by the mcp-analytics feature flag and use the mcp_analytics API scope with write for create actions and read for list actions.",
+        "evidence_ids": [
+          "d0b6dfd9a0f7cdfc8cc29fef"
+        ]
+      },
+      {
+        "id": "R2_new_mcp_tools",
+        "description": "Document the two newly enabled MCP tools: mcp-feedback-submit and mcp-missing-capability-report, including their purpose, required mcp_analytics:write scope, and the same mcp-analytics feature-flag gate.",
+        "evidence_ids": [
+          "d0b6dfd9a0f7cdfc8cc29fef"
+        ]
+      },
+      {
+        "id": "R3_feature_flag",
+        "description": "Any feature-flag or access-control reference should document the mcp-analytics flag as the customer-facing gate for MCP analytics feature access, replacing guidance that implies staff-only access.",
+        "evidence_ids": [
+          "d0b6dfd9a0f7cdfc8cc29fef"
+        ]
+      },
+      {
+        "id": "R4_agent_skills",
+        "description": "If the docs describe or list MCP analytics agent skills, update the newly added skills for tool quality, sessions, and intent clusters, including their frontmatter/tool references if user-visible.",
+        "evidence_ids": [
+          "d0b6dfd9a0f7cdfc8cc29fef"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "3 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=130, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16354",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new external data schema field initial_sync_complete and that it is set to True after the first successful pipeline run.",
+        "evidence_ids": [
+          "e232992e90e282d48f77c3dc",
+          "3c1ff4dc312967909b488b95"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the webhook S3 ingestion path introduced for inbound webhooks, including WebhookSourceManager reading Parquet files from S3 and Stripe routing through this path when the feature flag is enabled.",
+        "evidence_ids": [
+          "e232992e90e282d48f77c3dc",
+          "3c1ff4dc312967909b488b95"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document that source items callables may now return either synchronous or asynchronous iterables, and that async_iterate passes async iterables through directly while offloading synchronous iteration to a thread pool.",
+        "evidence_ids": [
+          "e232992e90e282d48f77c3dc",
+          "3c1ff4dc312967909b488b95"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document the new reset_pipeline field on SourceInputs and that it is forwarded through the import activity into the pipeline.",
+        "evidence_ids": [
+          "e232992e90e282d48f77c3dc",
+          "3c1ff4dc312967909b488b95"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Document the new abstract method get_webhook_source_manager on WebhookSource for developers implementing webhook sources.",
+        "evidence_ids": [
+          "e232992e90e282d48f77c3dc",
+          "3c1ff4dc312967909b488b95"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "no_change",
+          "evidence_ids": [
+            "152e2975391fd02e32e6bc52",
+            "6f0647d82f934e1a40a5f6a1",
+            "7c5c83449633a681cfcbb741"
+          ],
+          "reason": "initial_sync_complete is an internal ExternalDataSchema model field not referenced in user-facing documentation. Existing source syncing docs describe sync status, frequency, and last run without exposing this backend state, so preserving current documentation is appropriate."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "no_change",
+          "evidence_ids": [
+            "152e2975391fd02e32e6bc52",
+            "7c5c83449633a681cfcbb741"
+          ],
+          "reason": "The webhook S3 ingestion path, WebhookSourceManager, and Stripe feature-flag routing are backend transport/implementation details. Existing incoming webhook documentation already covers user-visible webhook source setup and behavior without exposing these internals."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "no_change",
+          "evidence_ids": [
+            "175150a768469c9d6d19a28f",
+            "36b823371e0cf36f8eb362ea"
+          ],
+          "reason": "Changes to source items callable return types and async_iterate are internal pipeline implementation details. No user-facing documentation references these types or iteration behavior."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "no_change",
+          "evidence_ids": [
+            "175150a768469c9d6d19a28f",
+            "36b823371e0cf36f8eb362ea"
+          ],
+          "reason": "reset_pipeline is an internal SourceInputs field forwarded through import activity code. It is not exposed in user-facing source setup or syncing documentation, so no documentation change is needed."
+        },
+        {
+          "requirement_id": "R5",
+          "status": "no_change",
+          "evidence_ids": [
+            "e232992e90e282d48f77c3dc"
+          ],
+          "reason": "get_webhook_source_manager is an abstract method for developers implementing webhook sources, not a user-facing feature. User-facing docs do not document source class internals, so preserving documentation is justified."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "No user-facing documentation update is required. The changes affect internal data-import pipeline fields/helpers and the webhook S3 transport mechanism; existing incoming webhook and source syncing docs cover user-visible setup without these implementation details.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16714",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Inspect existing documentation for Postgres change data capture prerequisites, replication slots, publications, table modes, WAL lag, and failure conditions.",
+        "evidence_ids": [
+          "5173cf25c2470640b63edba5"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Determine whether the user-facing documentation must be updated to accurately describe Postgres CDC database-level mechanisms, table modes, and WAL lag-related failure behavior.",
+        "evidence_ids": [
+          "20faf5132bd5393903a2a4e5",
+          "5173cf25c2470640b63edba5"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "1a466b60512946a8002c26df",
+            "e5432479bbf89dedb96a8d4b"
+          ],
+          "reason": "The candidate demonstrates inspection of the existing Postgres source documentation and adds a Change data capture section covering the requested topics."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "5173cf25c2470640b63edba5",
+            "20faf5132bd5393903a2a4e5"
+          ],
+          "reason": "The inserted section accurately describes replication slots, publications, differing table sync modes, and WAL lag-related failure behavior, so the user-facing documentation update is warranted and present."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Action is not valid in PLAN",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16752",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new boolean enabled field on the Subscription model and REST API serializer, including default true, pause delivery without deletion, auto-disable behavior, and re-enable validation.",
+        "evidence_ids": [
+          "201574a30c8737bf33e01d61",
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the subscription auto-disable subsystem: permanently invalid delivery targets (missing Slack integration or unsupported target_type) set enabled=false, write an activity record, and email the subscription owner.",
+        "evidence_ids": [
+          "201574a30c8737bf33e01d61",
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the Temporal workflow change that adds validate_subscription_for_delivery and short-circuits disabled subscriptions before delivery, including any abort/result behavior visible to users.",
+        "evidence_ids": [
+          "201574a30c8737bf33e01d61",
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document the frontend subscription toggle in list/detail views, including pause/resume behavior, toast confirmations, helper treatment of null/undefined as enabled, and the new Kea logic actions.",
+        "evidence_ids": [
+          "201574a30c8737bf33e01d61",
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Verify and update generated or referenced API schema artifacts (OpenAPI, Zod validators, MCP tool schemas) if user-facing docs cover subscription schemas or generated fields.",
+        "evidence_ids": [
+          "201574a30c8737bf33e01d61",
+          "3209b5e0a86ec08a0bb7cb3d"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "0638f4c559a6ef0547577b49",
+            "9019d1f1fb5aa3f152b355de",
+            "201574a30c8737bf33e01d61"
+          ],
+          "reason": "The candidate adds a list-view option and new Pausing/resuming and Automatic disabling sections that document the enabled field's default true behavior, pause without deletion, auto-disable on invalid targets, and re-enable validation."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "9019d1f1fb5aa3f152b355de",
+            "201574a30c8737bf33e01d61",
+            "3209b5e0a86ec08a0bb7cb3d"
+          ],
+          "reason": "The Automatic disabling section documents permanent invalid delivery targets such as missing Slack integration or unsupported target type, and states the subscription is disabled, an activity entry is logged, and the owner is emailed."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "covered",
+          "evidence_ids": [
+            "9019d1f1fb5aa3f152b355de",
+            "201574a30c8737bf33e01d61"
+          ],
+          "reason": "The candidate documents the user-visible Temporal workflow behavior: disabled subscriptions are skipped by scheduled deliveries, which reflects the validate_subscription_for_delivery short-circuit."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "covered",
+          "evidence_ids": [
+            "0638f4c559a6ef0547577b49",
+            "9019d1f1fb5aa3f152b355de",
+            "201574a30c8737bf33e01d61"
+          ],
+          "reason": "The candidate documents the user-facing toggle in list/detail views and its pause/resume behavior. Internal implementation details such as Kea logic actions and the null/undefined helper are not appropriate for user-facing documentation."
+        },
+        {
+          "requirement_id": "R5",
+          "status": "no_change",
+          "evidence_ids": [
+            "0638f4c559a6ef0547577b49"
+          ],
+          "reason": "The existing user-facing subscriptions documentation does not cover generated API schema artifacts such as OpenAPI, Zod validators, or MCP tool schemas, so no documentation update is needed for those generated artifacts."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nlimit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=150, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16822",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Locate all documentation pages covering PostHog experiments that use an external feature flag system and their exposure tracking configuration.",
+        "evidence_ids": [
+          "20ae5e589b320036cb62259e",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Identify the currently documented configuration steps or API details for enabling exposure tracking with external feature flags.",
+        "evidence_ids": [
+          "20ae5e589b320036cb62259e"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Correct the user-facing documentation so the exposure tracking instructions match the intended behavior for external feature flag systems.",
+        "evidence_ids": [
+          "20ae5e589b320036cb62259e",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=267, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=207, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr16939",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "postgres-column-selection",
+        "description": "Document that Postgres data warehouse imports and direct queries now support per-table source column selection. All columns remain the default, primary-key columns and the active incremental field are retained automatically, and the selection applies to regular, partitioned, and CDC ingestion. Disabled columns are hidden from queryable table schemas.",
+        "evidence_ids": [
+          "4b42b0d2d88943d0293b05d6",
+          "b0df96dc6b44e3fbb3752bf0"
+        ]
+      },
+      {
+        "id": "postgres-multi-schema-import",
+        "description": "Document that Postgres warehouse sources can now operate without a configured default schema and track tables by source schema and table name. Existing unqualified tables are migrated to qualified names while preserving their existing stored data location, allowing same-named tables from different schemas to coexist.",
+        "evidence_ids": [
+          "4b42b0d2d88943d0293b05d6",
+          "b0df96dc6b44e3fbb3752bf0"
+        ]
+      },
+      {
+        "id": "external-data-schema-api-fields",
+        "description": "Document the new ExternalDataSchema user-facing fields: enabled_columns for user-selected source columns and available_columns for column metadata. Also note that the bulk schema update payload includes enabled_columns.",
+        "evidence_ids": [
+          "4b42b0d2d88943d0293b05d6",
+          "b0df96dc6b44e3fbb3752bf0"
+        ]
+      },
+      {
+        "id": "postgres-column-selection-ui",
+        "description": "Document the user-facing column selection surfaces: the new-source wizard, source schemas tab, and schema configuration sidebar with the Columns picker, including the sync-forward-only vs full-resync prompt when adding columns to previously synced schemas.",
+        "evidence_ids": [
+          "4b42b0d2d88943d0293b05d6",
+          "b0df96dc6b44e3fbb3752bf0"
+        ]
+      },
+      {
+        "id": "postgres-warehouse-migration-notes",
+        "description": "Document migration behavior for existing Postgres warehouse sources when multi-schema support is introduced, especially that legacy unqualified schema names transition to qualified names while preserving DataWarehouseTable links and stored data locations.",
+        "evidence_ids": [
+          "4b42b0d2d88943d0293b05d6",
+          "b0df96dc6b44e3fbb3752bf0"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr17172",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Inspect user-facing data warehouse docs for source creation/configuration to add guidance on enabling, disabling, and updating CDC after source creation.",
+        "evidence_ids": [
+          "81caa0b6d21b4470b09b208e",
+          "787128a6f36eba3daf7250a3"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document CDC management modes: PostHog-managed vs self-managed, including resource ownership and setup requirements.",
+        "evidence_ids": [
+          "81caa0b6d21b4470b09b208e",
+          "787128a6f36eba3daf7250a3"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check API/reference docs for ExternalDataSource actions and add the new CDC lifecycle actions if the reference is user-facing.",
+        "evidence_ids": [
+          "81caa0b6d21b4470b09b208e",
+          "787128a6f36eba3daf7250a3"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Verify whether CDC setup/schema documentation must mention that changing a CDC table primary key is blocked after data sync, and that discovered tables persist detected primary keys.",
+        "evidence_ids": [
+          "81caa0b6d21b4470b09b208e",
+          "787128a6f36eba3daf7250a3"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Assess whether the schema-qualified table name decoder fix requires any documentation update, such as a note about multiple schemas sharing table names.",
+        "evidence_ids": [
+          "81caa0b6d21b4470b09b208e",
+          "787128a6f36eba3daf7250a3"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "PostHog-posthog.com-pr17231",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Search the documentation for existing user-facing references to path cleaning, funnel breakdowns, and normalize URL to determine whether funnel support needs to be documented or updated.",
+        "evidence_ids": [
+          "d3c7ac975f5899188418624d",
+          "d98e939a9af40a202d30b221"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "If documentation currently implies path cleaning is unavailable in funnels or only mentions associated Trend/Path surfaces, update the relevant instructions or reference notes to include funnel event breakdown path cleaning.",
+        "evidence_ids": [
+          "d3c7ac975f5899188418624d",
+          "d98e939a9af40a202d30b221"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check setup, examples, migration, and reference documentation for public options affected by the new breakdown_path_cleaning field and get_breakdown_expr ValueError behavior.",
+        "evidence_ids": [
+          "d3c7ac975f5899188418624d",
+          "d98e939a9af40a202d30b221"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "no_change",
+          "evidence_ids": [
+            "2032bb4e59764570f9b9762b",
+            "ef617b638ec896d17dd34cfc"
+          ],
+          "reason": "The provided documentation search sources identify the path-cleaning snippet as the existing user-facing statement about where path cleaning applies. The search requirement itself does not require a separate documentation edit."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "ef617b638ec896d17dd34cfc",
+            "2032bb4e59764570f9b9762b",
+            "d98e939a9af40a202d30b221"
+          ],
+          "reason": "The candidate edits contents/docs/_snippets/path-cleaning.mdx to update the previously trends-only sentence and include funnel event breakdown support for path properties."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "no_change",
+          "evidence_ids": [
+            "1382582aaa7b49fda45d23ad",
+            "41b1de8e4f1c9fea979b1e61",
+            "578b82a5d78c2fd3ef7750e9"
+          ],
+          "reason": "No provided setup, migration, or API reference documentation exposes breakdown_path_cleaning or get_breakdown_expr as user-facing options. The ValueError is an internal utility guard and the session-recording change is an internal SQL snapshot, neither requiring user documentation updates."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "The candidate makes the minimal correct update to the canonical path-cleaning snippet, adding funnel event breakdown support while preserving the surrounding content. No other user-facing documentation changes appear necessary.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": "Covered requirement has no associated edit",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-flink-pr27195",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the three newly added built-in async retry predicate helpers: empty_result_predicate, has_exception_predicate, and exception_type_predicate, including their signatures and import path from pyflink.datastream.async_retry_predicates.",
+        "evidence_ids": [
+          "c2f6cfc39046c068ad4d4845",
+          "fdc6bbabfbe6e3aa3d0542f0"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Update any PyFlink DataStream documentation that demonstrates implementing custom AsyncRetryPredicate or AsyncRetryStrategy subclasses to account for the now explicitly enforced abstract methods and instantiation-time TypeError for incomplete subclasses.",
+        "evidence_ids": [
+          "c2f6cfc39046c068ad4d4845",
+          "fdc6bbabfbe6e3aa3d0542f0"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Ensure API reference or module index documentation lists the new pyflink.datastream.async_retry_predicates module and its public predicate functions where appropriate.",
+        "evidence_ids": [
+          "c2f6cfc39046c068ad4d4845",
+          "fdc6bbabfbe6e3aa3d0542f0"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.3.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "apache-flink-pr27325",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "check_sql_builtin_docs",
+        "description": "Inspect user-facing SQL built-in aggregate function documentation for STDDEV_POP, STDDEV_SAMP, VAR_POP, and VAR_SAMP to determine whether the change from naive sum-of-squares variance computation to Welford's algorithm requires documentation updates.",
+        "evidence_ids": [
+          "de90f290d4c6ad02de58edad",
+          "af50d1a1a14605c48f6e47a4"
+        ]
+      },
+      {
+        "id": "check_python_table_api_docs",
+        "description": "Inspect Python Table API aggregate function documentation and generated references for any public mention of variance/standard deviation implementation details that may be affected by the new WelfordM2AggFunction.",
+        "evidence_ids": [
+          "de90f290d4c6ad02de58edad",
+          "af50d1a1a14605c48f6e47a4"
+        ]
+      },
+      {
+        "id": "check_release_migration",
+        "description": "Inspect release notes or migration guides for behavior changes around variance, standard deviation, or hash aggregation compatibility resulting from the Welford M2 aggregate introduction.",
+        "evidence_ids": [
+          "de90f290d4c6ad02de58edad",
+          "af50d1a1a14605c48f6e47a4"
+        ]
+      },
+      {
+        "id": "check_internal_only",
+        "description": "Confirm whether the new internal built-in function $WELFORD_M2$1 and rewrite rule are purely internal planner/runtime changes with no public option, SQL signature, or documented behavior change requiring user-facing documentation.",
+        "evidence_ids": [
+          "de90f290d4c6ad02de58edad",
+          "af50d1a1a14605c48f6e47a4"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "check_sql_builtin_docs",
+          "status": "no_change",
+          "evidence_ids": [
+            "fd2a09c92f4f27f6267cfe18",
+            "53c3c6b62f8994f633af4687",
+            "af50d1a1a14605c48f6e47a4"
+          ],
+          "reason": "User-facing SQL built-in function documentation does not describe the underlying variance formula; available sources show only reserved-keyword/overview mentions, and the rewrite is internal. No SQL built-in doc edit is required."
+        },
+        {
+          "requirement_id": "check_python_table_api_docs",
+          "status": "no_change",
+          "evidence_ids": [
+            "de6fc5cb7854525bd8f7c06b",
+            "af50d1a1a14605c48f6e47a4"
+          ],
+          "reason": "Python Table API docs only list public expression methods; the added WelfordM2AggFunction is decorated @Internal and is not exposed. No Python API doc change is required."
+        },
+        {
+          "requirement_id": "check_release_migration",
+          "status": "no_change",
+          "evidence_ids": [
+            "af50d1a1a14605c48f6e47a4"
+          ],
+          "reason": "The change is an internal implementation optimization with no public option, SQL signature, or documented behavior change; the edge-case fix is an internal bug correction. No release-note or migration doc update is required."
+        },
+        {
+          "requirement_id": "check_internal_only",
+          "status": "no_change",
+          "evidence_ids": [
+            "af50d1a1a14605c48f6e47a4"
+          ],
+          "reason": "The new function is marked internal, runtime-provided, named $WELFORD_M2$1, and only used by the planner rewrite rule. No user-facing documentation is affected."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "NO_DOC_CHANGES_NEEDED: The change is an internal aggregate reduction optimization for variance/standard deviation functions using the internal $WELFORD_M2$1 function. Existing user-facing SQL, Python Table API, and release documentation do not describe the old or new implementation formula, and the new function is not publicly exposed.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "apache-flink-pr27345",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Check whether the new public/experimental AbstractStreamOperator.OutputAdjustment interface and its factory methods (noAdjustment, delayedWatermarkOutput) require new user-facing documentation for custom operator developers.",
+        "evidence_ids": [
+          "bf0d13a61bb74d4ffeda0fb9",
+          "0c55aec00e5744b2f16aa740"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Check whether user-facing documentation describes interruptible timers configuration or operator support, and whether the interval join opt-in via RichFunction.useInterruptibleTimers() should be mentioned.",
+        "evidence_ids": [
+          "bf0d13a61bb74d4ffeda0fb9",
+          "0c55aec00e5744b2f16aa740"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check whether existing documentation for interval join or delayed watermark emission references the previous processWatermark override implementation and needs to be updated for the new OutputAdjustment.delayedWatermarkOutput path.",
+        "evidence_ids": [
+          "bf0d13a61bb74d4ffeda0fb9",
+          "0c55aec00e5744b2f16aa740"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Check whether the new constructor overloads for AbstractUdfStreamOperator and KeyedCoProcessOperator that accept OutputAdjustment affect any documented public operator extension surface.",
+        "evidence_ids": [
+          "bf0d13a61bb74d4ffeda0fb9",
+          "0c55aec00e5744b2f16aa740"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nlimit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "apache-flink-pr28212",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Inspect user-facing documentation for mentions of ProcessTableFunctionTestHarness and update any relevant reference, setup, example, or migration content to reflect that the test harness now supports stateful process table functions, including scalar, ListView, MapView, and structured-type state.",
+        "evidence_ids": [
+          "f8a5508d33fae5153d707cc2",
+          "f56356bdfd58e93e7954c02d"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=180, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=180, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "apache-flink-pr28237",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Locate existing user-facing documentation for sink primary keys, upsert keys, and conflict handling when updating table sinks.",
+        "evidence_ids": [
+          "7e214eda905c421c1b5524b8"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the behavior when an updating sink table uses a different upsert key than the table primary key and multiple input records can target the same sink row, including how primary-key conflicts are handled.",
+        "evidence_ids": [
+          "7e214eda905c421c1b5524b8",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "apache-iceberg-pr15566",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "REQ-1",
+        "description": "Document the new Flink write options `expire-snapshots.enabled` and `delete-orphan-files.enabled`, and the renamed `rewrite-data-files.enabled` option with `compaction-enabled` retained as a deprecated alias.",
+        "evidence_ids": [
+          "e05734553dbe41acd500e962",
+          "41fa723af0ae31244f362ac1"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "description": "Document the new `ExpireSnapshotsConfig` and `DeleteOrphanFilesConfig` configuration classes and their typed accessors for scheduling, batching, retention, prefix mismatch mode, equal-scheme mappings, and related parameters.",
+        "evidence_ids": [
+          "e05734553dbe41acd500e962",
+          "41fa723af0ae31244f362ac1"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "description": "Document the new `config(...)` builder methods on `ExpireSnapshots.Builder` and `DeleteOrphanFiles.Builder`, and the new bulk `add(Collection<MaintenanceTaskBuilder<?>>)` overload on `TableMaintenance.Builder`.",
+        "evidence_ids": [
+          "e05734553dbe41acd500e962",
+          "41fa723af0ae31244f362ac1"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "description": "Document the changed default value for orphan-file deletion `usePrefixListing` from `false` to `true`.",
+        "evidence_ids": [
+          "e05734553dbe41acd500e962",
+          "41fa723af0ae31244f362ac1"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "description": "Update IcebergSink/sink builder documentation to describe registering multiple maintenance tasks through the builder rather than a single internal `compactMode` flag.",
+        "evidence_ids": [
+          "e05734553dbe41acd500e962",
+          "41fa723af0ae31244f362ac1"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "description": "Add or update migration notes for Flink sink configuration changes, especially the deprecated `compaction-enabled` key and the new `rewrite-data-files.enabled` key.",
+        "evidence_ids": [
+          "e05734553dbe41acd500e962",
+          "41fa723af0ae31244f362ac1"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "apache-iceberg-pr15634",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that format version 4 writes data and delete manifests as Parquet files by default, while format versions 1 through 3 continue to use Avro.",
+        "evidence_ids": [
+          "7f343b5c1224115fa273815b",
+          "9c02398b655df741a525a31e"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that format version 4 manifest readers and writers support both Avro and Parquet when the format is explicitly selected.",
+        "evidence_ids": [
+          "7f343b5c1224115fa273815b",
+          "9c02398b655df741a525a31e"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Identify and update any user-facing configuration, table property, or public API documentation related to manifest file format selection for format version 4.",
+        "evidence_ids": [
+          "7f343b5c1224115fa273815b",
+          "9c02398b655df741a525a31e"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Review format version and manifest documentation for statements that imply all manifests are Avro or that v4 manifests are not Parquet, and correct them.",
+        "evidence_ids": [
+          "7f343b5c1224115fa273815b",
+          "9c02398b655df741a525a31e"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "3 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=130, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=150, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "apache-iceberg-pr15667",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Update Flink SQL/write option documentation to describe the new EXPIRE_SNAPSHOTS_ENABLE and DELETE_ORPHAN_FILES_ENABLE options, their table property keys, default false values, and that compaction-enabled is now a deprecated alias for the rewrite-data-files.enabled key.",
+        "evidence_ids": [
+          "f00bbb22296e5a1c2a476df7",
+          "fab5cd8187988217b1520463"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Update Flink sink configuration docs to rename/explain the replacement of the sink-level compactMode flag with tableMaintenanceEnabled, and clarify that compaction can still be enabled through the existing compaction option.",
+        "evidence_ids": [
+          "f00bbb22296e5a1c2a476df7",
+          "fab5cd8187988217b1520463"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the new DeleteOrphanFiles and ExpireSnapshots configuration classes and their table property options, including schedule interval, min age, delete batch size, prefix listing default true, equal schemes/authorities, location, planning worker pool size, and prefix mismatch mode.",
+        "evidence_ids": [
+          "f00bbb22296e5a1c2a476df7",
+          "fab5cd8187988217b1520463"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document the new factory methods createExpireSnapshotsConfig() and createDeleteOrphanFilesConfig() on FlinkMaintenanceConfig, the new config(...) builder methods on ExpireSnapshots.Builder and DeleteOrphanFiles.Builder, and the bulk add(Collection<MaintenanceTaskBuilder<?>>) method on TableMaintenance.Builder.",
+        "evidence_ids": [
+          "f00bbb22296e5a1c2a476df7",
+          "fab5cd8187988217b1520463"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Update Flink maintenance task examples or migration notes to show combining snapshot expiration, orphan-file deletion, and compaction through the sink builder, and to reflect the changed default usePrefixListing from false to true.",
+        "evidence_ids": [
+          "f00bbb22296e5a1c2a476df7",
+          "fab5cd8187988217b1520463"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=130, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "apache-iceberg-pr15814",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "hms_compat_schema_evolution",
+        "description": "Document the Hive Metastore compatibility issue that can affect Iceberg schema-evolution operations.",
+        "evidence_ids": [
+          "5ed1fd0f28c04da0c14b2aac",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "apache-iceberg-pr16241",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the Spark write option 'shred-variants' that controls variant shredding for Parquet writes, including that shredding is disabled by default and write-option precedence over session configuration and table properties.",
+        "evidence_ids": [
+          "3bb4b1c91a9876a40bd26e15",
+          "9b7439bce7947d07f7bd29d5"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the Spark write option 'variant-inference-buffer-size' that controls how many rows are buffered before inferring the shredded variant schema, including its default value and precedence.",
+        "evidence_ids": [
+          "3bb4b1c91a9876a40bd26e15",
+          "9b7439bce7947d07f7bd29d5"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document the Spark SQL session configurations 'spark.sql.iceberg.shred-variants' and 'spark.sql.iceberg.variant-inference-buffer-size'.",
+        "evidence_ids": [
+          "3bb4b1c91a9876a40bd26e15",
+          "9b7439bce7947d07f7bd29d5"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document the Parquet table properties used by Spark writes for enabling variant shredding and configuring the variant inference buffer size.",
+        "evidence_ids": [
+          "3bb4b1c91a9876a40bd26e15",
+          "9b7439bce7947d07f7bd29d5"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Update Spark and Parquet user-facing write documentation to explain variant shredding behavior, buffered schema inference, and when users should configure it.",
+        "evidence_ids": [
+          "3bb4b1c91a9876a40bd26e15",
+          "9b7439bce7947d07f7bd29d5"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "no_change",
+          "evidence_ids": [
+            "95c032860e88191912026e2a",
+            "4f05d248ec6cc1982e7b9fa4"
+          ],
+          "reason": "The Spark write options table already documents 'shred-variants' with default false and states that it overrides the table's write.parquet.shred-variants property. The surrounding Spark configuration precedence documentation establishes per-write option precedence. No documentation change is warranted."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "no_change",
+          "evidence_ids": [
+            "95c032860e88191912026e2a"
+          ],
+          "reason": "The Spark write options table already documents 'variant-inference-buffer-size' with default 100 and states that it overrides the table's write.parquet.variant-inference-buffer-size property."
+        },
+        {
+          "requirement_id": "R3",
+          "status": "no_change",
+          "evidence_ids": [
+            "4f05d248ec6cc1982e7b9fa4",
+            "99139f7d75e835018308bdde"
+          ],
+          "reason": "The Spark SQL options table already contains the new session settings; the provided excerpt confirms spark.sql.iceberg.variant-inference-buffer-size, and the same page includes spark.sql.iceberg.shred-variants alongside the other session options."
+        },
+        {
+          "requirement_id": "R4",
+          "status": "no_change",
+          "evidence_ids": [
+            "5e1f75ae0b9a7eb5bf689168"
+          ],
+          "reason": "The general configuration documentation already documents write.parquet.shred-variants with default false and write.parquet.variant-inference-buffer-size with default 100."
+        },
+        {
+          "requirement_id": "R5",
+          "status": "no_change",
+          "evidence_ids": [
+            "5e1f75ae0b9a7eb5bf689168",
+            "95c032860e88191912026e2a",
+            "4f05d248ec6cc1982e7b9fa4"
+          ],
+          "reason": "The existing user-facing configuration tables explain the behavior concisely: enabling shredding writes variant columns with shredded Parquet encoding for improved query performance, and the buffer size controls how many rows are buffered for schema inference. This is sufficient for the configuration-driven change; no additional prose is required."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "Reviewed candidate abstention: no documentation changes are needed. Existing Spark and Parquet configuration docs already cover the new write options, session settings, and table properties with correct defaults and descriptions.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "astral-sh-ruff-pr21369",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "doc_preview_flag",
+        "description": "Add or update documentation for the new preview-only formatter behavior that splits fluent call chains before the first call/subscript (likely exposed as a preview option named fluent_layout_split_first_call).",
+        "evidence_ids": [
+          "bc708aca65b1e83da8ec00a7",
+          "9331b22b2cde70c1f74e07db"
+        ]
+      },
+      {
+        "id": "doc_formatter_settings",
+        "description": "Update any formatter settings/reference page that lists preview flags or preview style changes so the new first-call fluent chain split is documented alongside existing preview behaviors.",
+        "evidence_ids": [
+          "bc708aca65b1e83da8ec00a7",
+          "9331b22b2cde70c1f74e07db"
+        ]
+      },
+      {
+        "id": "doc_examples_or_release",
+        "description": "Check and update user-facing examples, preview notes, or release notes that mention fluent call chain formatting in preview mode, to reflect stable output unchanged and preview output breaking before the root call.",
+        "evidence_ids": [
+          "bc708aca65b1e83da8ec00a7",
+          "9331b22b2cde70c1f74e07db"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nlimit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "bentoml-bentoml-pr5465",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "custom_command_proxy",
+        "description": "Update any custom-command service documentation to state that services declaring a custom command are now served through an in-process reverse proxy mounted as the service app, rather than a dedicated worker subprocess/socket. Document the expected health endpoint and that the command must start an HTTP server on the configured proxy_port.",
+        "evidence_ids": [
+          "48a34336024b0f364785c9ba"
+        ]
+      },
+      {
+        "id": "proxy_port_config",
+        "description": "Document the new integer http.proxy_port configuration field, defaulting to 8000, which controls the port the custom-command subprocess is expected to bind.",
+        "evidence_ids": [
+          "48a34336024b0f364785c9ba"
+        ]
+      },
+      {
+        "id": "metrics_hook",
+        "description": "Document the new __metrics__ service method hook: when defined on a service class, it receives raw Prometheus metrics text and returns a modified string to inject additional metric lines into the /metrics response.",
+        "evidence_ids": [
+          "48a34336024b0f364785c9ba"
+        ]
+      },
+      {
+        "id": "metrics_route_change",
+        "description": "Check whether user-facing docs describe /metrics as middleware-level inline handling; if so, update to reflect the conditionally registered named metrics route.",
+        "evidence_ids": [
+          "48a34336024b0f364785c9ba"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=438, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "bentoml-bentoml-pr5518",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Check the public API/reference documentation for the BentoML SDK Image class and add `build_include_paths` field and `build_include(*file_paths)` method, including chaining behavior and that paths are relative to the bento context root.",
+        "evidence_ids": [
+          "20b50fadea699d7562093385",
+          "335b4fd7d7bed9ba6dc25046"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Check user guides, setup pages, and examples that show building images via Python code; add or update examples/notes for using Image.build_include to include custom build-context files.",
+        "evidence_ids": [
+          "20b50fadea699d7562093385",
+          "335b4fd7d7bed9ba6dc25046"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Search documentation for user-visible wheel path references such as /env/python/wheels, src/wheels, wheels, and local wheel link behavior; update only if the revised wheel handling changes user-facing behavior.",
+        "evidence_ids": [
+          "20b50fadea699d7562093385",
+          "335b4fd7d7bed9ba6dc25046"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Check for release notes, migration notes, or upgrade guides where a user-facing bullet or note about the new build_include support should be added if such documentation is conventionally maintained.",
+        "evidence_ids": [
+          "20b50fadea699d7562093385",
+          "335b4fd7d7bed9ba6dc25046"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=130, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "celery-celery-pr10135",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new database backend setting `database_engine_callback` in the configuration/settings reference, including its type and purpose.",
+        "evidence_ids": [
+          "7b4c9d7fb39a9be506d6c087",
+          "998598b419dc5e4bc261c828"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that `DatabaseBackend` now accepts an `engine_callback` constructor keyword argument, and that this keyword argument takes precedence over the `database_engine_callback` application configuration value.",
+        "evidence_ids": [
+          "7b4c9d7fb39a9be506d6c087",
+          "998598b419dc5e4bc261c828"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document that `engine_callback` may be supplied as either a Python callable or a dotted import path string, and that a resolved non-callable value raises `ImproperlyConfigured`.",
+        "evidence_ids": [
+          "7b4c9d7fb39a9be506d6c087",
+          "998598b419dc5e4bc261c828"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Document that the callback is invoked with the newly created SQLAlchemy engine in both pooled and `NullPool` engine creation paths, and is reapplied when an engine is recreated after fork or invalidation.",
+        "evidence_ids": [
+          "7b4c9d7fb39a9be506d6c087",
+          "998598b419dc5e4bc261c828"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Document the callback timing relative to result table creation so users can safely configure connection-level event listeners or pragmas before tables are created.",
+        "evidence_ids": [
+          "7b4c9d7fb39a9be506d6c087",
+          "998598b419dc5e4bc261c828"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Action is not valid in PLAN",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "celery-celery-pr10150",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "docs_config_split_ack_settings",
+        "description": "Update the configuration reference to document the deprecated task_acks_on_failure_or_timeout setting and the new task_acks_on_failure and task_acks_on_timeout application settings, including defaults and fallback behavior.",
+        "evidence_ids": [
+          "8dffe5f9125fd30decf424e3",
+          "6150d3db9abb3778483a96ae"
+        ]
+      },
+      {
+        "id": "docs_task_reference_attrs",
+        "description": "Update the task/API reference for the split Task attributes acks_on_failure and acks_on_timeout, and add the deprecation note for acks_on_failure_or_timeout.",
+        "evidence_ids": [
+          "8dffe5f9125fd30decf424e3",
+          "6150d3db9abb3778483a96ae"
+        ]
+      },
+      {
+        "id": "docs_acks_late_behavior",
+        "description": "Update acks_late/acknowledgement documentation to explain that failure and timeout acknowledgement are now controlled independently, including the new timeout false requeue behavior.",
+        "evidence_ids": [
+          "8dffe5f9125fd30decf424e3",
+          "6150d3db9abb3778483a96ae"
+        ]
+      },
+      {
+        "id": "docs_migration_deprecation",
+        "description": "Add or update migration/deprecation notes for replacing task_acks_on_failure_or_timeout with task_acks_on_failure and task_acks_on_timeout, scheduled for removal in 7.0.",
+        "evidence_ids": [
+          "8dffe5f9125fd30decf424e3",
+          "6150d3db9abb3778483a96ae"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "3 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "celery-celery-pr10174",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "doc_broker_pool_acquire_timeout_config",
+        "description": "Document the new broker_pool_acquire_timeout configuration option (float, default None) and its effect on connection/producer pool acquisition, including the OperationalError raised on timeout.",
+        "evidence_ids": [
+          "eb351e162df1e3839a0d0b85"
+        ]
+      },
+      {
+        "id": "doc_native_delayed_delivery_eta_now",
+        "description": "Document that native delayed delivery now only consults quorum queue detection when eta/countdown is actually provided, and that an eta resolving to now with countdown 0 no longer triggers delayed exchange routing.",
+        "evidence_ids": [
+          "eb351e162df1e3839a0d0b85"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "doc_broker_pool_acquire_timeout_config",
+          "status": "covered",
+          "evidence_ids": [
+            "fc15429eca981d4867943c08",
+            "4928045653d24a26e7cc55f1",
+            "eb351e162df1e3839a0d0b85"
+          ],
+          "reason": "The candidate inserts BROKER_POOL_ACQUIRE_TIMEOUT into the old-settings mapping and adds a broker_pool_acquire_timeout section with default None, pool-acquisition timeout semantics, OperationalError on timeout, and None meaning wait forever. This documents the user-visible behavior of the new option."
+        },
+        {
+          "requirement_id": "doc_native_delayed_delivery_eta_now",
+          "status": "covered",
+          "evidence_ids": [
+            "2af886f4b5946d4e094aed3e",
+            "eb351e162df1e3839a0d0b85"
+          ],
+          "reason": "The RabbitMQ Native Delayed Delivery section now states quorum queue detection is only performed when eta/countdown is provided, and that eta resolving to the current time routes normally without using the delayed exchange, matching the corrected routing logic."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "celery-celery-pr10206",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document that celery.app.task.Context now exposes explicit time_limit and soft_time_limit class-level attributes, defaulting to None, and that Context.update() unpacks a timelimit value into those attributes.",
+        "evidence_ids": [
+          "4f8adaa0a6d9f71e202610aa",
+          "357ead016cf5f8607549a678"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that Task now binds task_time_limit and task_soft_time_limit app configuration values to Task.time_limit and Task.soft_time_limit, and that the dispatched request dict always includes a timelimit entry so request.time_limit and request.soft_time_limit are populated.",
+        "evidence_ids": [
+          "4f8adaa0a6d9f71e202610aa",
+          "357ead016cf5f8607549a678"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Review and update reference documentation, configuration reference, and setup/usage examples that describe task time limits, soft time limits, apply_async overrides, or request context fields to reflect the new first-class Context attributes and propagation behavior.",
+        "evidence_ids": [
+          "4f8adaa0a6d9f71e202610aa",
+          "357ead016cf5f8607549a678"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Ensure user-facing examples correctly show None when no limits are configured, values supplied via apply_async, and values declared at task class level are exposed on task.request.time_limit and task.request.soft_time_limit.",
+        "evidence_ids": [
+          "4f8adaa0a6d9f71e202610aa",
+          "357ead016cf5f8607549a678"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "celery-celery-pr10238",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R-priority-broker-semantics",
+        "description": "Document that task priority ordering is broker-specific: RabbitMQ treats higher numeric priorities as higher priority, Redis treats lower numeric priorities as higher priority, and Beanstalk also treats lower priorities as more urgent.",
+        "evidence_ids": [
+          "b756bd04d92fc1035f7a2509",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "R-priority-docstrings",
+        "description": "Update user-facing task priority references/docstrings so they no longer imply a single universal interpretation such as merely 'a number between 0 and 9' without broker-specific caveats.",
+        "evidence_ids": [
+          "b756bd04d92fc1035f7a2509",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": null,
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "celery-celery-pr9879",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Update Redis backend configuration/reference documentation to describe the new redis_backend_credential_provider option, including accepted values: a dotted-string class path or a direct redis.CredentialProvider subclass instance.",
+        "evidence_ids": [
+          "55012db16bf77f50401ddb94",
+          "1a4cff753ef8c74f87ba2b05"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Update Redis backend connection URL documentation to describe the credential_provider query parameter and its resolution behavior.",
+        "evidence_ids": [
+          "55012db16bf77f50401ddb94",
+          "1a4cff753ef8c74f87ba2b05"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document that when a credential provider is active, username and password connection parameters are automatically removed, and invalid string paths or non-CredentialProvider objects raise ImportError or ValueError respectively.",
+        "evidence_ids": [
+          "55012db16bf77f50401ddb94",
+          "1a4cff753ef8c74f87ba2b05"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "dagworks-inc-hamilton-pr1445",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document graphviz node label resolution using the display_name tag: explicit name parameter first, then display_name tag, then node Python identifier; list-valued display_name uses first element, empty list falls back to node name; resolved display names are HTML-escaped.",
+        "evidence_ids": [
+          "284b68ef511fa7a79b30b0f6",
+          "e7831dc81446049f327f5ea7"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Update graphviz visualization documentation to show users how to apply @tag(display_name=\"...\") and mention special-character escaping and backward-compatible fallback when no display_name is present.",
+        "evidence_ids": [
+          "284b68ef511fa7a79b30b0f6",
+          "e7831dc81446049f327f5ea7"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "R1",
+          "status": "covered",
+          "evidence_ids": [
+            "7a3429b73890c39466e7da84",
+            "e7831dc81446049f327f5ea7"
+          ],
+          "reason": "The candidate patch adds a 'Display names' subsection to docs/concepts/visualization.rst that documents node label resolution precedence, list-valued display_name handling, empty-list fallback, and HTML escaping. This directly matches the implementation changes in hamilton/graph.py."
+        },
+        {
+          "requirement_id": "R2",
+          "status": "covered",
+          "evidence_ids": [
+            "7a3429b73890c39466e7da84",
+            "e7831dc81446049f327f5ea7"
+          ],
+          "reason": "The added subsection shows a @tag(display_name=\"...\") example, explains regular string tag use, and mentions special-character escaping and fallback behavior when no display_name tag is present."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "The candidate documentation patch is accurate and sufficient for the display_name visualization feature.",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": "Action is not valid in PLAN",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "dlt-hub-dlt-pr2500",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "doc_add_map",
+        "description": "Document dlt's add_map capability for transforming data during ingestion, including any reference/setup/example coverage needed for users to understand and use add_map.",
+        "evidence_ids": [
+          "8520d56200d9d8c8b1befed2",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "Cite sources and explain no-change",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "dlt-hub-dlt-pr2836",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "iceberg-s3tables-rest",
+        "description": "Document configuring dlt's Iceberg destination with the S3 Tables REST catalog: an S3 Table bucket URL, warehouse ARN arn:aws:s3tables:<region>:<account-id>:bucket/<bucket>, endpoint https://s3tables.<region>.amazonaws.com/iceberg, and SigV4 service s3tables.",
+        "evidence_ids": [
+          "fe90524260c12a22b6e840ab",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "iceberg-glue-rest-s3tables",
+        "description": "Document configuring dlt's Iceberg destination with the Glue REST catalog using an S3 Table bucket: an S3 Table bucket URL, warehouse identifier <account-id>:s3tablescatalog/<bucket>, endpoint https://glue.<region>.amazonaws.com/iceberg, and SigV4 service glue, with IAM, Glue, and Lake Formation prepared for S3 Tables.",
+        "evidence_ids": [
+          "fe90524260c12a22b6e840ab",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "iceberg-glue-direct",
+        "description": "Document configuring the direct Glue catalog path for dlt's Iceberg destination: use the Glue Data Catalog with a regular S3 bucket and require IAM access to both the bucket and catalog.",
+        "evidence_ids": [
+          "fe90524260c12a22b6e840ab",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "iceberg-aws-setup-surfaces",
+        "description": "Ensure relevant Iceberg destination reference, setup, and example documentation surfaces include the three AWS catalog setups and note the new S3 Table bucket support instead of requiring a custom PyIceberg destination.",
+        "evidence_ids": [
+          "fe90524260c12a22b6e840ab",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nlimit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=140, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "dlt-hub-dlt-pr2965",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Update the CLI reference for `dlt pipeline show` to document that it now launches the new pipeline dashboard by default and that the legacy Streamlit app is available via the `--streamlit` flag; the previous `--dashboard` flag is removed.",
+        "evidence_ids": [
+          "637fd6c56a4333eb8e91ed42",
+          "711b7b3396bd79be2106cb0d"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Update the CLI reference for the dedicated `dlt dashboard` command to document its newly enabled status and the `--pipelines-dir` and `--edit` options.",
+        "evidence_ids": [
+          "637fd6c56a4333eb8e91ed42",
+          "711b7b3396bd79be2106cb0d"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Update the dashboard user guide or documentation page to cover the expanded dashboard capabilities: selecting among pipeline schemas, inspecting schema-specific data and row counts, viewing source/resource state, remote state, run failures, refreshed pipeline data, and local locations; DuckDB Ibis connections are opened read-only.",
+        "evidence_ids": [
+          "637fd6c56a4333eb8e91ed42",
+          "711b7b3396bd79be2106cb0d"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Update API reference documentation for `Dataset.ibis()` to include the new `read_only` argument, if the method signature is documented.",
+        "evidence_ids": [
+          "637fd6c56a4333eb8e91ed42",
+          "711b7b3396bd79be2106cb0d"
+        ]
+      },
+      {
+        "id": "R5",
+        "description": "Update migration or upgrade notes, if present, to document the breaking CLI changes: `dlt pipeline show` now defaults to the dashboard, `--dashboard` becomes `--streamlit`, and the dedicated `dlt dashboard` command accepts new options.",
+        "evidence_ids": [
+          "637fd6c56a4333eb8e91ed42",
+          "711b7b3396bd79be2106cb0d"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=130, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "doc-detective-common-pr112",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "resolved-test-metadata-docs",
+        "description": "Update user-facing schema/reference documentation to describe new resolved test metadata: configPath, specPath, runtime environment details, resolved execution contexts, and loaded/resolved OpenAPI definitions. Test records may contain either original steps or resolved contexts.",
+        "evidence_ids": [
+          "b1a1697c61ea6329e392354d",
+          "149241e100a723c02e8bb595"
+        ]
+      },
+      {
+        "id": "release-publishing-workflow-docs",
+        "description": "Update release/publishing documentation to state that publishing now runs the build and test suite across Node.js 18, 20, 22, and 24 on Linux, Windows, and macOS before publishing version 3.0.4.",
+        "evidence_ids": [
+          "b1a1697c61ea6329e392354d",
+          "149241e100a723c02e8bb595"
+        ]
+      },
+      {
+        "id": "npm-build-script-docs",
+        "description": "Update any documentation that references documented npm scripts or build/test workflow because package.json now defines a build script and postbuild test hook, replacing the previous test:full flow.",
+        "evidence_ids": [
+          "149241e100a723c02e8bb595"
+        ]
+      },
+      {
+        "id": "openapi-definition-schema-docs",
+        "description": "Update any schema/output documentation for OpenAPI handling to mention the new read-only definition object loaded from descriptionPath, where this is user-visible output rather than internal schema implementation.",
+        "evidence_ids": [
+          "149241e100a723c02e8bb595"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "3 validation errors for RepositoryDecision\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.3.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "doc-detective-common-pr63",
+    "generation_status": "error",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "REQ_OPENAPI_SCHEMA",
+        "description": "Document the new openApi schema object that can be referenced at the config, spec, test, and step levels, including supported properties such as server, validateAgainstSchema, useExample, mockResponse, descriptionPath, and operationId.",
+        "evidence_ids": [
+          "de09913d06be1813c826b5aa",
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      },
+      {
+        "id": "REQ_HTTPREQUEST_OPENAPI",
+        "description": "Document that an httpRequest step now accepts either a direct url or an openApi block containing descriptionPath and operationId, making url optional when openApi is provided.",
+        "evidence_ids": [
+          "de09913d06be1813c826b5aa",
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      },
+      {
+        "id": "REQ_READFILE",
+        "description": "Document the new public readFile function, including local and remote HTTP/HTTPS file reading, JSON/YAML parsing, raw fallback for other formats, and null on error.",
+        "evidence_ids": [
+          "de09913d06be1813c826b5aa",
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      },
+      {
+        "id": "REQ_VALIDATE_CHANGES",
+        "description": "Document validate function changes: addDefaults parameter, improved error messages with instance path and parameter details, and structured error when a requested schema key is not found.",
+        "evidence_ids": [
+          "de09913d06be1813c826b5aa",
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      },
+      {
+        "id": "REQ_PATH_RESOLUTION",
+        "description": "Document path resolution behavior that skips a defined set of user-configurable spec properties such as request and response data, headers, and params to avoid unintended value resolution.",
+        "evidence_ids": [
+          "de09913d06be1813c826b5aa",
+          "aaa5fcee6d58a95368e3b394"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.3.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "doc-detective-common-pr65",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "doc_arazzo_config",
+        "description": "Document the new top-level `arazzo` array in the config schema, including that each configuration-level Arazzo entry requires `name` and `descriptionPath`, and that `workflowId` and `inputs` are not permitted there.",
+        "evidence_ids": [
+          "68bbd7a6a8e61d41ca90f2b0",
+          "dc7b398b7c5b3625890e6c49"
+        ]
+      },
+      {
+        "id": "doc_arazzo_spec_tests",
+        "description": "Document that the spec schema test items union now accepts Arazzo workflow references via `anyOf`, allowing test-level Arazzo entries with `name`, `descriptionPath`, `workflowId`, and/or `inputs`.",
+        "evidence_ids": [
+          "68bbd7a6a8e61d41ca90f2b0",
+          "dc7b398b7c5b3625890e6c49"
+        ]
+      },
+      {
+        "id": "doc_arazzo_schema_reference",
+        "description": "Update user-facing schema reference or documentation that lists available schemas and their fields to include the new Arazzo description schema and its properties/examples.",
+        "evidence_ids": [
+          "68bbd7a6a8e61d41ca90f2b0",
+          "dc7b398b7c5b3625890e6c49"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "1 validation error for RepositoryDecision\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=126, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "doc-detective-common-pr78",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new runCode action schema: language (optional, defaults to shell), code string, optional args array, workingDirectory, expected exitCodes, and output matcher; include runCode as a valid test step type.",
+        "evidence_ids": [
+          "88c28542be73ff9bc539b5fc",
+          "0bbf3d086b08a193e5c78fd3"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document the new browser application context integer options viewport_width and viewport_height, including that they override existing width and height fields.",
+        "evidence_ids": [
+          "88c28542be73ff9bc539b5fc",
+          "0bbf3d086b08a193e5c78fd3"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Document that the find action click field now accepts either a boolean or an object with button restricted to left, right, or middle.",
+        "evidence_ids": [
+          "88c28542be73ff9bc539b5fc",
+          "0bbf3d086b08a193e5c78fd3"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "4 validation errors for RepositoryDecision\nreads.0.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.3.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=200, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr146",
+    "generation_status": "completed",
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "input_multi",
+        "description": "Document that the --input/-i CLI option now accepts comma-separated values, splits them into an array, resolves each non-URL entry to an absolute path via path.resolve, leaves http(s) URLs unchanged, and sets config.input to an array.",
+        "evidence_ids": [
+          "a223df69e67b9775c935664d",
+          "054364ca5e8d233aa4e01149"
+        ]
+      },
+      {
+        "id": "input_examples",
+        "description": "Update any user-facing examples, README usage snippets, or CLI reference surfaces that currently show --input/-i accepting only one path so they reflect the new comma-separated multi-file behavior.",
+        "evidence_ids": [
+          "a223df69e67b9775c935664d",
+          "054364ca5e8d233aa4e01149"
+        ]
+      },
+      {
+        "id": "config_read_internal_or_surface",
+        "description": "Inspect documentation for any public mention of setConfig positional arguments or config-file read behavior; if setConfig is documented as a user-facing API, update it for the destructured object parameter { configPath, args } and the new internal read/error-return behavior.",
+        "evidence_ids": [
+          "a223df69e67b9775c935664d",
+          "054364ca5e8d233aa4e01149"
+        ]
+      }
+    ],
+    "review": {
+      "ready": true,
+      "coverage": [
+        {
+          "requirement_id": "input_multi",
+          "status": "covered",
+          "evidence_ids": [
+            "83947a141fd31cb0bc72bf17",
+            "262186c941b467003b2963f9",
+            "a223df69e67b9775c935664d",
+            "054364ca5e8d233aa4e01149"
+          ],
+          "reason": "The README edit now documents that --input accepts one or more comma-separated entries, trims each item, passes http(s) URLs through unchanged, resolves other paths with path.resolve, and sets config.input to an array. This matches the implemented behavior in src/utils.js."
+        },
+        {
+          "requirement_id": "input_examples",
+          "status": "covered",
+          "evidence_ids": [
+            "83947a141fd31cb0bc72bf17",
+            "262186c941b467003b2963f9",
+            "a223df69e67b9775c935664d",
+            "054364ca5e8d233aa4e01149"
+          ],
+          "reason": "The existing single-path usage sentence was updated to describe multiple test files, and a new command example using a comma-separated list was added."
+        },
+        {
+          "requirement_id": "config_read_internal_or_surface",
+          "status": "no_change",
+          "evidence_ids": [
+            "83947a141fd31cb0bc72bf17",
+            "262186c941b467003b2963f9",
+            "a223df69e67b9775c935664d",
+            "054364ca5e8d233aa4e01149"
+          ],
+          "reason": "The available documentation sources do not reference setConfig as a public or user-facing API, nor do they describe its positional arguments or config-file read behavior. Therefore the conditional documentation update for setConfig is not triggered."
+        }
+      ],
+      "new_requirements": [],
+      "unsupported_claims": [],
+      "reason": "",
+      "assessment": "Model review with deterministic reference checks; not human approval"
+    },
+    "repairs": 1,
+    "last_protocol_error": "Resolved requirements need supporting evidence",
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr21",
+    "generation_status": "timeout",
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "doc-screenshot-directory-param",
+        "description": "Update the saveScreenshot action reference and any configuration docs to document the new `directory` parameter, including its purpose, syntax, and an example showing capture output saved to a configured directory.",
+        "evidence_ids": [
+          "7c6ae06c41e6927ad8b953f8",
+          "a2fd3525e06f40545a6fff85"
+        ]
+      },
+      {
+        "id": "doc-image-detection-pattern",
+        "description": "Document the new `Image` named configuration pattern and its auto-detection behavior for the `saveScreenshot` action, including how markdown image syntax is matched and how regex capture is wired to the screenshot action parameters.",
+        "evidence_ids": [
+          "7c6ae06c41e6927ad8b953f8",
+          "a2fd3525e06f40545a6fff85"
+        ]
+      },
+      {
+        "id": "doc-sample-config-image-pattern",
+        "description": "Update user-facing sample configuration or examples to include the new Image detection pattern and saveScreenshot `directory` parameter if the documentation workspace mirrors `samples/config.json` or provides equivalent examples.",
+        "evidence_ids": [
+          "7c6ae06c41e6927ad8b953f8",
+          "a2fd3525e06f40545a6fff85"
+        ]
+      },
+      {
+        "id": "doc-version-release-note",
+        "description": "Add or refresh version 2.4.0 release notes, migration notes, or supported dependency version documentation if the docs track package versions or dependency ranges.",
+        "evidence_ids": [
+          "7c6ae06c41e6927ad8b953f8",
+          "a2fd3525e06f40545a6fff85"
+        ]
+      }
+    ],
+    "review": null,
+    "repairs": 0,
+    "last_protocol_error": "2 validation errors for RepositoryDecision\nreads.1.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal\nreads.2.limit\n  Input should be less than or equal to 120 [type=less_than_equal, input_value=160, input_type=int]\n    For further information visit https://errors.pydantic.dev/2.14/v/less_than_equal",
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "astral-sh-ruff-pr22119",
+    "generation_status": "unfinished_at_user_scope_stop",
+    "model_turns": 10,
+    "phase": "REVIEW",
+    "requirements": [
+      {
+        "id": "fmt_skip_semicolon_line",
+        "description": "Document that when a `fmt: skip` comment is on a line containing multiple semicolon-separated statements, the formatter preserves the entire physical line verbatim instead of only the final logical statement.",
+        "evidence_ids": [
+          "e49215b3cc475a56a2e106a3",
+          "616f536f9b2e0d23a77b4e44"
+        ]
+      },
+      {
+        "id": "fmt_skip_range_full_suite",
+        "description": "Document that range formatting formats the entire suite if the requested range intersects any statement belonging to a skip-annotated logical line, so skip range boundaries are computed correctly.",
+        "evidence_ids": [
+          "e49215b3cc475a56a2e106a3",
+          "616f536f9b2e0d23a77b4e44"
+        ]
+      },
+      {
+        "id": "fmt_skip_decorator",
+        "description": "Document that a decorator node with a trailing `fmt: skip` comment is emitted verbatim, extending skip-comment awareness to decorators.",
+        "evidence_ids": [
+          "e49215b3cc475a56a2e106a3",
+          "616f536f9b2e0d23a77b4e44"
+        ]
+      }
+    ],
+    "review": null,
+    "candidate_exists": true
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr238",
+    "generation_status": "unfinished_at_user_scope_stop",
+    "model_turns": 16,
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "heretto_user_docs",
+        "description": "Verify whether existing user-facing documentation covers Heretto CMS content loading, including heretto:// source entries, required HERETTO_ORG_ID/HERETTO_USERNAME/HERETTO_TOKEN variables, and the new publish-poll-download lifecycle.",
+        "evidence_ids": [
+          "7590876c9c96b29aa454ff25",
+          "9bf525735fc9803504af8129"
+        ]
+      },
+      {
+        "id": "heretto_reference_api",
+        "description": "Verify whether API/reference documentation should list the newly exported Heretto utilities and configurable constants such as createAuthHeader, getBaseUrl, validateDitamapInAssets, createApiClient, createRestApiClient, findScenario, triggerPublishingJob, getJobStatus, pollJobStatus, downloadAndExtractOutput, loadHerettoContent, polling interval, and timeout constants.",
+        "evidence_ids": [
+          "7590876c9c96b29aa454ff25",
+          "9bf525735fc9803504af8129"
+        ]
+      },
+      {
+        "id": "ci_heretto_secrets_docs",
+        "description": "Verify whether setup/CI documentation needs to explain that Heretto secrets are injected only on main branch or manual workflow_dispatch runs and are otherwise cleared.",
+        "evidence_ids": [
+          "7590876c9c96b29aa454ff25",
+          "9bf525735fc9803504af8129"
+        ]
+      },
+      {
+        "id": "heretto_resolver_migration",
+        "description": "Verify whether migration notes or existing documentation reference an external resolver module for heretto:// content that should now be described as handled directly in the core test-detection pipeline.",
+        "evidence_ids": [
+          "7590876c9c96b29aa454ff25",
+          "9bf525735fc9803504af8129"
+        ]
+      },
+      {
+        "id": "heretto_examples_tests",
+        "description": "Verify whether examples, setup guides, or test documentation should mention local Heretto server behavior at localhost:8092 or updated fixtures, only if those are user-facing surfaces.",
+        "evidence_ids": [
+          "7590876c9c96b29aa454ff25",
+          "9bf525735fc9803504af8129"
+        ]
+      }
+    ],
+    "review": null,
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr244",
+    "generation_status": "unfinished_at_user_scope_stop",
+    "model_turns": 9,
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Inspect user-facing checkLink documentation and update it if it states or implies that HTTP error responses always fail. The code now routes a returned error response status code through the configured statusCodes check, allowing an accepted non-2xx status code to PASS.",
+        "evidence_ids": [
+          "92ac4d63ad8e885badf13ba6",
+          "a79d644fab5ede135ee8de25"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Inspect reference, setup, examples, and migration documentation for checkLink/httpRequest statusCodes and error-handling descriptions to ensure accepted non-2xx status codes and invalid/unresolvable URL behavior are accurately documented.",
+        "evidence_ids": [
+          "92ac4d63ad8e885badf13ba6",
+          "a79d644fab5ede135ee8de25"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Determine whether any user-facing documentation update is needed at all, as opposed to this being a test-only/internal behavior fix; avoid changing unrelated text.",
+        "evidence_ids": [
+          "a79d644fab5ede135ee8de25"
+        ]
+      }
+    ],
+    "review": null,
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr296",
+    "generation_status": "unfinished_at_user_scope_stop",
+    "model_turns": 6,
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document how Doc Detective works with GitHub Actions to detect documentation test failures.",
+        "evidence_ids": [
+          "f9e819e4d2245913cc2a2c74",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document how Doc Detective works with AI integrations to obtain AI analysis of potential documentation test fixes.",
+        "evidence_ids": [
+          "f9e819e4d2245913cc2a2c74",
+          "20faf5132bd5393903a2a4e5"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Check all user-facing documentation surfaces, including reference, setup, examples, and migration notes, for required updates related to GitHub Actions and AI integration workflows.",
+        "evidence_ids": [
+          "f9e819e4d2245913cc2a2c74"
+        ]
+      }
+    ],
+    "review": null,
+    "candidate_exists": false
+  },
+  {
+    "instance_id": "doc-detective-doc-detective-pr352",
+    "generation_status": "unfinished_at_user_scope_stop",
+    "model_turns": 2,
+    "phase": "EXECUTE",
+    "requirements": [
+      {
+        "id": "R1",
+        "description": "Document the new runBrowserScript browser step, including both the simple string form and the detailed object form with required script, positional args, output substring/regex assertion, timeout, and snapshot persistence options.",
+        "evidence_ids": [
+          "3346b594af8af0366bd77960",
+          "36377a60b404c05d2c1f42a2"
+        ]
+      },
+      {
+        "id": "R2",
+        "description": "Document that runBrowserScript captures the evaluated JavaScript return value as outputs.result and supports existing step-level variables plumbing such as $$result.",
+        "evidence_ids": [
+          "3346b594af8af0366bd77960",
+          "36377a60b404c05d2c1f42a2"
+        ]
+      },
+      {
+        "id": "R3",
+        "description": "Update the browser-required or browser-dependent step documentation and any canonical browser step list references to include runBrowserScript, reflecting that it requires an active browser page and triggers browser runtime setup.",
+        "evidence_ids": [
+          "3346b594af8af0366bd77960",
+          "36377a60b404c05d2c1f42a2"
+        ]
+      },
+      {
+        "id": "R4",
+        "description": "Update reference or schema-derived user-facing docs for step type runBrowserScript, including allowed fields, defaults, unsafe behavior, and failure modes such as execution, validation, timeout, assertion, and persistence failures.",
+        "evidence_ids": [
+          "3346b594af8af0366bd77960",
+          "36377a60b404c05d2c1f42a2"
+        ]
+      }
+    ],
+    "review": null,
+    "candidate_exists": false
+  }
+]

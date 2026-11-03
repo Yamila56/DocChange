@@ -49,7 +49,9 @@ pnpm --dir frontend build
 
 创建示例工作区 → 提交默认迁移任务 → 查看两篇文档diff → 批准并发布 → 切换R1/R2查看正文。
 
-真实模型需在本地 `.env` 保存 `SHOPRESOLVE_MODEL_API_KEY`，再显式执行 `python -m scripts.run_docchange --remote`（使用项目虚拟环境）。交互模式有持久20请求/预估0.5元预算；不会自动充值或重置。详细配置见[使用说明](docs/DOCCHANGE.md)。
+真实模型需在本地`.env`保存`SHOPRESOLVE_MODEL_API_KEY`，再显式执行`python -m scripts.run_docchange --remote`。当前默认 **DeepSeek Pro / thinking high**，使用独立的持久20请求/峰值预估2元账本；不会自动充值或重置。详细配置见[使用说明](docs/DOCCHANGE.md)。
+
+仓库Agent新增**章节＋标题上下文、BM25/Dense混合、多查询证据片段和逐文件定位批读**；精确字符范围保护未观察内容。实现与论文取舍见[复核说明](docs/design/20-Repository检索与Pro实施复核.md)。新检索诊断与旧175项Agent内容评分分别报告。
 
 ## 已实现与证据
 
@@ -221,3 +223,9 @@ MySQL 测试只允许重建专用 shopresolve_test。新环境需先在本项目
 docs/design 的 10/11/13/14 为架构与实施规范；docs/adr 为取舍，PROGRESS 为续接入口，SECURITY 为边界。参考 Pi、mini-SWE-agent、SWE-agent 和公开 Harness 经验；没有复制私有 Claude Code 源码，也没有官方 τ-bench 分数。
 
 .env、.venv、模型缓存、上传和沙箱 workspace 不提交 Git。只管理本项目，父目录中的证件、成绩单和申请文件不属于仓库。GitHub 先私有，完成审核后才考虑公开；目前尚未推送。
+
+### 覆盖驱动仓库维护
+
+仓库CLI和最终公开候选已接入带来源的维护要求、逐编辑证据关联、独立上下文复核及最多一轮定向修补；保持原审批和持久执行架构。网页小文档快照使用原DocumentRuntime。设计与边界见[最终范围](docs/design/22-覆盖驱动仓库维护最终方案.md)。
+
+完整123题仓库定位诊断已完成，其中110题有适用路径标签：混合Recall@10 **69.10%**，文件BM25 **60.88%**；13题无标签不计零分。见[五方法完整对照](docs/evaluation/repository-localization-2026-11-03.md)。Pro本轮按用户要求以49项结束任务收尾，126项未完成；已导出全部已有评分和补丁，不报告新的175项综合分。详见[最终报告](docs/evaluation/docchange-final-2026-11-03.md)，旧Flash完整基线保留。

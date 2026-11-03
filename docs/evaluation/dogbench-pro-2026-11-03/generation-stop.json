@@ -1,0 +1,12 @@
+{
+  "scope": "Historical pause before corrected continuation; not final batch status",
+  "superseded_by": "billing-correction.json",
+  "record": {
+    "timestamp": "2026-11-03T12:16:24.000463+00:00",
+    "reason": "Authorized budget exhausted; remaining preparation work canceled",
+    "api_log_idle_seconds_before_stop": 402.4,
+    "finished_tasks_retained": 29,
+    "missing_tasks_not_zeroed": 146,
+    "new_evaluation_started": false
+  }
+}

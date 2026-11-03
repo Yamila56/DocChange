@@ -1,0 +1,25 @@
+{
+  "items": [
+    {
+      "id": "MaterializeInc-materialize-pr36075",
+      "reason": "Reviewer failed before a review request; resume same candidate",
+      "retained_model_calls": 9
+    },
+    {
+      "id": "MaterializeInc-materialize-pr37023",
+      "reason": "Input verification failed before model execution",
+      "retained_model_calls": 0
+    },
+    {
+      "id": "PostHog-posthog-pr63871",
+      "reason": "Input verification failed before model execution",
+      "retained_model_calls": 0
+    },
+    {
+      "id": "astral-sh-ruff-pr22119",
+      "reason": "Interrupted task re-verification encountered generated unreachable Git objects; clean HEAD/tree unchanged; resume original checkpoint",
+      "retained_model_calls": 10
+    }
+  ],
+  "semantic_decisions_regenerated": false
+}

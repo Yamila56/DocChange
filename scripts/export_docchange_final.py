@@ -27,6 +27,14 @@ def main(args):
         for s in (batch / "predictions.jsonl").read_text(encoding="utf-8").splitlines()
         if s
     ]
+    empty_errors = []
+    for prediction in predictions:
+        if prediction["status"] in {"error", "timeout", "invalid"} and not prediction.get("error"):
+            empty_errors.append(prediction["instance_id"])
+            # Match score_dogbench's schema-only normalization; no decision/score changes.
+            prediction["error"] = (
+                "Transport failure with an empty exception message; see original trace"
+            )
     ids = [r["instance_id"] for r in predictions]
     assert len(ids) == len(set(ids)) and set(ids) <= set(plan["items"])
     scores = (
@@ -37,6 +45,8 @@ def main(args):
     patch_dir.mkdir(exist_ok=True)
     draft_dir = out / "unreviewed-drafts"
     draft_dir.mkdir(exist_ok=True)
+    rejected_dir = out / "rejected-drafts"
+    rejected_dir.mkdir(exist_ok=True)
     rows, policy, calls = [], [], []
     for prediction in predictions:
         key = prediction["instance_id"]
@@ -59,6 +69,13 @@ def main(args):
         candidate = state.get("repository_candidate", {})
         if candidate.get("patch") and not prediction.get("patch"):
             (draft_dir / (key + ".patch")).write_bytes(candidate["patch"].encode("utf-8"))
+        backup = folder / "runs.before-reviewer-fix.sqlite"
+        if backup.exists():
+            with sqlite3.connect(backup) as db:
+                saved = db.execute("SELECT state FROM runs").fetchone()
+            prior = json.loads(saved[0]).get("repository_candidate", {}) if saved else {}
+            if prior.get("patch") and prior["patch"] != prediction.get("patch"):
+                (rejected_dir / (key + ".patch")).write_bytes(prior["patch"].encode("utf-8"))
         if (folder / "model-calls.jsonl").exists():
             calls.extend(
                 json.loads(s)
@@ -84,6 +101,7 @@ def main(args):
         policy.append(
             {
                 "instance_id": key,
+                "generation_status": prediction["status"],
                 "phase": state.get("repository_policy_phase"),
                 "requirements": state.get("repository_requirements", []),
                 "review": state.get("repository_review"),
@@ -98,6 +116,32 @@ def main(args):
         f = folder / "model-calls.jsonl"
         if folder.name not in finished and f.exists():
             calls.extend(json.loads(s) for s in f.read_text(encoding="utf-8").splitlines() if s)
+        database = folder / "runs.sqlite"
+        if folder.name not in finished and database.exists():
+            with sqlite3.connect(database) as db:
+                saved = db.execute("SELECT state,model_calls FROM runs").fetchone()
+            if saved:
+                state = json.loads(saved[0])
+                candidate = state.get("repository_candidate", {})
+                if candidate.get("patch"):
+                    (draft_dir / (folder.name + ".patch")).write_bytes(
+                        candidate["patch"].encode("utf-8")
+                    )
+                policy.append(
+                    {
+                        "instance_id": folder.name,
+                        "generation_status": (
+                            "unfinished_at_user_scope_stop"
+                            if (batch / "user-scope-stop.json").exists()
+                            else "deferred"
+                        ),
+                        "model_turns": saved[1],
+                        "phase": state.get("repository_policy_phase"),
+                        "requirements": state.get("repository_requirements", []),
+                        "review": state.get("repository_review"),
+                        "candidate_exists": bool(candidate),
+                    }
+                )
     budget = generation["budget"]
     summary = {
         "expected_tasks": len(plan["items"]),
@@ -111,12 +155,14 @@ def main(args):
         "returned_models": dict(Counter(c.get("provider_model", "unknown") for c in calls)),
         "phase_calls": dict(Counter(c["phase"] for c in calls)),
         "unreviewed_drafts": len(list(draft_dir.glob("*.patch"))),
+        "historical_rejected_drafts": len(list(rejected_dir.glob("*.patch"))),
+        "empty_error_messages_normalized": empty_errors,
         "notes": [
             "API-only adapter; not the upstream native Docker/CLI leaderboard lane",
             "Public development cohort; not independent held-out generalization",
             "Deferred tasks are missing, not synthetic zero-score predictions",
             "All already-finished decisions and failures retained; no best-of reruns",
-            "Peak-price estimated costs include unknown-usage reserves; not an invoice",
+            "Reported cost estimates include unknown-usage reserves; not an invoice",
             "Model, tools and policy changed jointly; no isolated causal ablation claim",
         ],
     }
@@ -132,9 +178,23 @@ def main(args):
         )
     if (batch / "source-repair-amendment.json").exists():
         dump(out / "source-repair-amendment.json", read(batch / "source-repair-amendment.json"))
-    for name in ("engineering-recovery.json", "workspace-repair-audit.json"):
+    for name in (
+        "engineering-recovery.json",
+        "workspace-repair-audit.json",
+        "billing-correction.json",
+        "user-scope-stop.json",
+    ):
         if (batch / name).exists():
             dump(out / name, read(batch / name))
+    if (batch / "generation-stop.json").exists():
+        stop = read(batch / "generation-stop.json")
+        if (batch / "billing-correction.json").exists():
+            stop = {
+                "scope": "Historical pause before corrected continuation; not final batch status",
+                "superseded_by": "billing-correction.json",
+                "record": stop,
+            }
+        dump(out / "generation-stop.json", stop)
     (out / "predictions.jsonl").write_text(
         "".join(json.dumps(p, ensure_ascii=False) + "\n" for p in predictions), encoding="utf-8"
     )

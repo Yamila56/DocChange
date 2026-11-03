@@ -1,0 +1,16 @@
+{
+  "source_ledger_sha256": "e9934b5b9407bf93ff973418863292a116f3c3da6ca2eff20363e460d86f1e32",
+  "legacy_attempts_retained": 413,
+  "legacy_request_window_utc": [
+    "2026-11-03T11:01:23+00:00",
+    "2026-11-03T12:09:41.618948+00:00"
+  ],
+  "official_pricing": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+  "legacy_peak_estimate_cny": "59.0805576",
+  "legacy_corrected_upper_cny": "29.5402788",
+  "additional_prepaid_funded_cap_cny": "39",
+  "effective_total_upper_cap_cny": "68.5402788",
+  "authorization": "User approved prepaid balance use until alert; no recharge",
+  "candidate_payload_and_turn_limits_unchanged": true,
+  "historical_settled_records_rewritten": false
+}

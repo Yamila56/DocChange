@@ -1,0 +1,15 @@
+{
+  "scope": "Reviewer skips path strings in list results; controller accepts exact audited source amendment. No model/prompt/retrieval/turn-limit change.",
+  "files": {
+    "src\\shopresolve\\documents\\repository.py": {
+      "before_sha256": "2ead7fea7d88729fc66436ba93fcc6856367b4b28d547ac7fefd4180153ad046",
+      "after_sha256": "54242622023db83dda60f7806f5aec4b6adb8b973c57bb60f169b93448d3e315"
+    },
+    "scripts\\evaluate_dogbench.py": {
+      "before_sha256": "e40c29af60e6da4d9b26bb29147d8e6736a12555a96c6f6b8a28504e1185515a",
+      "after_sha256": "b2d041e741341d6a5e028f64a31a495d8d95d2c654bc1b26fc0d264577ce4522"
+    }
+  },
+  "previous_plan_retained": true,
+  "prior_api_attempts_retained": true
+}

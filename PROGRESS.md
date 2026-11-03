@@ -1,4 +1,54 @@
+2026-11-03 最终范围变更并收尾（取代下方继续175/旧29题状态）：用户明确要求约50项即可导出并尽快推送GitHub，不再继续剩余模型任务。实际保留49/175已结束任务，126项缺失；全部49项按原官方规则评分，返回6份最终补丁、5份不修改，决定正确10/49，执行失败38。composite仍None，不将阶段子集称为新175全量。旧完整Flash与1300查询检索结果原样保留。停止时在途任务维持缺失，不补零或重做已完成决定；费用/usage只保留原记录，不再调整资金保护文件。最终报告、简历和全部工件已更新；私有GitHub提交/CI以最新git和Actions为准。不继续后训练或额外功能。
+
+2026-11-03 费用错误已更正、恢复全量任务（替代下方“结束”状态）。用户指出官网仍近40余额，已查官方：工作日9-12/14-18峰价，其余半价。本批413次请求的验证时间窗为北京时间19:01–20:09，全部空闲；旧59.0805576是错误用于停机的峰值保守数，正确已知费用19.3976388，含未知预留上界29.5402788。旧budget.sqlite不改写，复制到budget-offpeak.sqlite保留413条ID/usage；仅显示/控制按半价。用户最新授权“余额提醒之前可以一直”，由用户设置提醒；已按现有预付资金增加39元可用续跑额度，不自动充值、不再以旧60元峰值估算挡住任务。billing-correction.json保存来源、窗口、金额与授权；私人精确余额只在ignored private-balance-snapshot.json，不上传。
+
+已启动scripts.resume_offpeak_dogbench，exec session22216；固定候选模型/Prompt/检索/每题16轮不变，29项所有已完成/失败决定不重生成。新增UsageCapturingGateway仅保留异常响应中的usage以正确记账，不改变解析和模型输入。11项计费专项通过；计费脚本只允许整个120秒超时窗口为空闲时段，避免跨峰期仍半价。新摘要含known_usage_cost和unknown_reserve分别列示，内部仍peak-equivalent单位，禁止把数据库原数当实际CNY。已开始第414+条请求，按新口径继续146项。
+
+最终发布刚才被链接检查拦住，尚未push错误的“29题最终报告”。已核实Materialize36075历史候选实际为abstain，先前草稿中“修改候选改为弃答”是错误推断，已改为复核后继续执行并正确弃答；不存在rejected-draft补丁，artifact-validation计数已改0，断链已删除。下方旧29题关闭描述为历史阶段，待完整生成/评分后重写最终摘要。当前所有final文档/导出都unstaged保留，不得误推成全量完成；源码remote27fd441此前CI全绿。剩余工作：等session22216，官方评分续跑、重新导出/最终报告/简历/commit/push。不要重跑已完成语义决定，不追加后训练。
+
+2026-11-03 本轮最终模型评测已停止，不再发模型/训练/检索调参。60元累计预估上限触发；最终账本59.0805576元含22未知usage预留，不是实际扣费。413次模型预留与SQL各Run计数总和一致，410条回执（3次控制器中断无完整回执）。29/175项结束并按官方规则评分：19需改/10无需改，8项最终决定（3patch/5abstain），21执行失败（15轮次耗尽/3多JSON/1截断/2超时），7/29决定正确，3patch15/53.8/20分，2份无P0但均非全部要求满足。146项缺失，composite=None；旧175 Flash25.61保留，不可替换或补齐新Pro。已有调用中所有带model字段的378条均Pro，未用Flash。
+
+预算已阻止新任务，调用日志静止超过6分钟后停止余下无付费准备（目标PID33496/34848）；session49440不再运行。generation-stop.json与同账本审计保留。仅对已有29个result文件汇总，不把缺项变成0；未重新生成语义结果。官方29项全部取得评分，judge目录 `.cache/evals/dogbench-coverage-pro-judgments-20261103`。公开导出docs/evaluation/dogbench-pro-2026-11-03，最终人读报告docchange-final-2026-11-03.md；全费用/失败/源码修复/输入校验/覆盖状态/三份canonical补丁均保留。旧2次0API启动故障另存缓存不计入模型任务。
+
+当前源码e0e0194/27fd441已PRIVATE push，对应CI41628284339/41631329012均SUCCESS（unit181/16，MySQL190/7，frontend成功）；导出小修复与最终报告/README/简历尚待最后commit/push和必要CI确认。不得宣称全量Pro完成或整体质量提升。仓库定位123全完成，110适用标签R@10混合69.10 vs文件BM2560.88、Hit81.82；科学IR1300全量原报告保留。当前工作仅剩发布检查、最终push/CI与向用户如实交付，不再追加评测，也不继续后训练。
+
+2026-11-03 19:36进度：最新源码/测试e0e0194已push PRIVATE GitHub，Actions41628284339全部SUCCESS（首次41627711281的MySQL失败是恢复测试模拟时间问题，已仅修测试；不得误称首次全绿）。本地真实专项17通过、全套此前181/16；当前CI提供最终跨平台验证。GC/完整attestation校验session69037已正常退出0，175/175检查完成，workspace-repair-audit.json保存HEAD/tree不变审计；仅匿名cache清理不可达候选对象，未改用户文件。
+
+当前正式Pro累计60元批次继续运行：session49440，进程父33496/实际34848，batch `.cache/evals/dogbench-coverage-pro-frozen-20261103`。已完成6→7项（失败保留），累计API约140次、峰值含未知预留估算约23元；运行中summary最准。不要重复启动模型或改candidate源码。仍须等待完成175或60元cap、再正式score/export、最终README/简历/报告和docs push。原175 Flash25.61依然唯一完整维护综合分；新Pro不能冒称全量。
+
+后续执行：官方评分 `python -m scripts.score_dogbench --predictions <batch>/predictions.jsonl --output .cache/evals/dogbench-coverage-pro-judgments-20261103 --workers 4`，既有3条失败零分已评分（无新judge请求）。export脚本scripts/export_docchange_final.py保留所有predictions/完整评分/coverage状态、费用、未完成ID，canonical补丁写bytes避免Windows换行，另存未复核草稿。导出要同时复制source-repair-amendment、engineering-recovery和workspace-repair-audit以说明缺陷恢复。README/简历仍未提交的最新修改待结果后改为真实完成状态。不能删低分或用旧Flash填新Pro缺题。若cap先到，report composite必须None并说明未完成，不再自动请求增加预算。
+
+2026-11-03 19:30工程缺陷修复与续跑：正式Pro运行出现Reviewer对list返回的字符串调用.get的确定性错误，及旧候选Git对象导致匿名输入校验失败。已停原budget续跑session4877（仅杀本批明确PID16132/15872），未改变检索/Prompt/模型/轮次策略；修复仅Reviewer筛掉非dict项，新增list→read→draft→review回归，两分支均通过。新定向17 passed/20.89秒，Ruff通过。源码d1574de已push PRIVATE GitHub，Actions41627711281正在运行；报告尚未最终完成。
+
+预算仍累计60上限，旧59+次尝试/未知usage保留同一账本。`.cache/evals/dogbench-coverage-pro-frozen-20261103/source-repair-amendment.json`精确记录repository.py和评测控制器两个文件before/after哈希，原plan不覆盖。只恢复1项Reviewer在发出review请求前异常的同一候选（模型次数保留）与2项0模型调用的准备失败；原结果改名before-*留存，工程恢复清单在engineering-recovery.json。所有真正完成语义决定、轮次耗尽与截断失败不重生成。
+
+Linux离线清理/校验匿名评测cache正在session69037进行，40/175已核对；严格限定prepared/sealed/workspaces，只清理Git不可达候选对象，HEAD/树/源文件不变，逐项原始attestation重验。当前前40准备已通过，后续大队列预清理领先模型执行。已重新启动同账本续跑，新的exec session见最近工具返回；原session18675与4877均不再运行。不能只信旧完整175分数，仍须等待新生成与官方评分。
+
+2026-11-03 费用授权更新：用户已明确同意“允许最多60元，我去补足余额”。官方只读账户预检现可覆盖剩余授权上限，未打印余额，未自动充值。新控制器scripts/resume_authorized_pro_budget.py仅用于显式调整同一本账本上限，写入amendment审计；原冻结plan/候选哈希和每题16轮保持不变，已有完成/失败结果不重生成。当前原10.9批还在收尾，须待session18675退出后再启动该控制器，避免并发修改账本。
+
+首批复杂Azure任务已出现真实模型轮次耗尽、输出截断以及读取参数超限，均保留，不挑选重跑。原2次Windows导入故障启动为0模型调用；与正式55+次Pro调用分开。不能称新架构已经改善内容质量，更不能用检索分替换补丁评分。继续跑同一冻结候选至175完成或累计60元费用边界；若费用边界先到，缺题保留未完成，不伪造综合分。
+
+2026-11-03 最终范围已实施，用户要求本轮做完后不再增加功能。最新冻结源码93a3493，核心策略b8220be：Repository CLI/DoGBench启用coverage-v1，PLAN→EXECUTE→独立REVIEW→最多一轮定向修补；要求带来源、逐edit绑定要求与证据，补丁和弃答均复核，未通过不发布。网页小快照仍走DocumentRuntime，不冒称所有入口共用新策略。保持后端/队列/版本审批架构。设计22与仓库定位人读报告已提交；123定位全部完成，110有标签/102有既有标签，hybrid R@10 69.1046% vs fileBM25 60.8838%，Hit@10 81.8182% vs72.7273%，全方法保留。
+
+本地全套181 passed/16 skipped，151.34秒（docchange-coverage-local-2026-11-03.xml），新策略/仓库/Pro定向17 passed，Ruff全仓通过；未执行新Docker/Redis文档实机验收。相邻范围测试的root/read错位已修复。原37项报告早于最后变更，不作为最终全套。
+
+Windows新控制器首两次启动因subprocess局部/全局导入错误在模型执行前失败，缓存final/release保留，均0次API预留，不当作Agent成绩；已修复导入并以UTF8模式启动正式批次。当前正式运行`.cache/evals/dogbench-coverage-pro-frozen-20261103`，exec session18675，Windows本机CUDA1.23.2+既有DLL，读取WSL匿名快照，验证通过Linux只读桥执行。模型仅Pro/high；所有阶段合计16轮，任务900秒。策略已冻结，不按分数重选输出或继续改策略。175项结果未完成，原Flash25.61/100保留。
+
+已有余额cap记录仅ignored `.cache/evals/final-account-preflight.json`，当前账本10.90CNY预估上限。已异步询问用户是否允许累计60元并自行补足官方余额（不自动充值、不索取Key）；未收到答复前不得提高。预算不足项deferred，不写Agent失败、不伪造全量分数。工程已支持保存run_id/Checkpoint恢复，但当前预算配置不可静默提高，若用户补充授权须记录预算续跑来源与冻结候选哈希，避免重生成已完成结果。
+
+源码仅本地commit，尚未push本轮。用户授权最终push至PRIVATE Yamila56/DocChange；当前远程仍02d5726。待生成/评分、报告/简历、密钥检查与GitHub CI完成；若余额阻塞继续完成可独立的交付并如实报告。已剔除旧自建3脚本的staging但保留工作区草稿，不git add -A。仍不可上传父目录私人材料/.env/cache/DB/完整下载仓库。后训练项目不继续。
+
 # ShopResolve 进度与续接记录
+
+2026-11-03（新主任务进行中：吸收架构建议、Repository检索升级、后续改用Pro）：已完整读取用户引用的“分析文档Agent架构”讨论，核实工作台Dense与Repository文件BM25路径割裂。开始时tracked工作树干净、无旧评测进程，未发现半写源码。新代码新增`repository_search.py`：标题/路径上下文章节、section_bm25/dense/hybrid、多查询RRF、内容寻址向量缓存；Repository搜索直接给原文/行号/evidence，read_many支持逐文件锚点。替换全部位置须落在当前仍一致的已观察字符范围，删除须完整观察；范围随checkpoint保存并能从缓存工具结果恢复。RepoRuntime提供确定性diff摘要和独立心跳；不把摘要当语义真值。结构化coverage plan、逐edit证据映射、独立语义review仍未实现，不能宣称本轮已完成。
+
+新文档远程/仓库CLI/候选评测默认`deepseek-v4-pro` thinking/high、8192总输出token、120秒请求、120KB输入上限。新独立Pro账本：工作台20请求/峰值预估2元，仓库CLI100请求/2元；旧Flash账本与基线保留不重置。Pro缓存价改为0.30元/百万（非Flash的0.04）。真实Pro协议验收仅1次，返回Pro且Schema有效，57个reasoning tokens，usage已知、峰值估算0.017694元；记录`docs/evaluation/pro-contract-2026-11-03.json`，不是新任务成功率。没有再调用Flash、充值或租卡。真实密钥及余额不打印不上传。
+
+本轮最终定向回归37 passed/30.22秒（`repository-discovery-pro-2026-11-03.xml`），包括缓存搜索落盘后/checkpoint前故障恢复、范围还原且不重跑搜索；不是新37个LLM任务或OS级kill全矩阵。Ruff全仓与格式通过。Python113/JSON45的读入语法检查时未发现残缺文件；旧自建评测未跟踪草稿未纳入新评测。新设计20/21记录建议采用范围和ICLR2024 RAPTOR、ICLR2025 CDE、ACL2026 Findings Agentic-R及A-RAG预印本的具体取舍，不宣称复现论文。
+
+正在运行完整DoGBench公开dev中123个patch-needed任务的独立“人类变更路径定位”诊断，5方案file_bm25/section_bm25/dense/hybrid/hybrid_diff；生成器只收原文与context/diff查询，`docs.paths`只在评分端读取。全路径/既有路径分母分开；这是定位代理，不是canonical rubric或175项Agent综合分。GPU正式批次`.cache/evals/repository-retrieval-b32-20261103`，session21246，输出目标`docs/evaluation/repository-retrieval-2026-11-03.json`，逐任务缓存可恢复。第一批`.cache/evals/repository-retrieval-20261103`只完成2项后为本机吞吐调整批大小而停止；旧记录保留，不纳入全量分数。相同模型/runtime/provider的内容向量缓存复用；32批与8批同图、无标签调参，单次长输入吞吐预试2.46秒→2.336秒，仅资源诊断，不宣传系统加速比例。正式结果当前未全量完成，不先报质量提升；首个超大Azure快照51940章节，冷编码较慢，后续相同章节复用缓存。勿在运行中编辑`evaluate_repository_retrieval.py`、`repository_search.py`、`retriever.py`、`neural.py`或模型锁，防止冻结源漂移。仅Pro入口、文档、测试等独立修改可继续。
+
+仓库CLI现会先离线准备本地索引再创建run/领取租约和请求模型；预热观察清空，不授予模型修改权限，冷建索引不消耗付费模型轮次。仍需等待123定位诊断完整完成、检查报告/标签局限、源码提交及远程CI，再推完整工件。暂不启动Pro整批175，原25.61基线不改写；不继续后训练项目。父目录私人材料、.env、缓存、完整下载仓库均不可上传。
 
 2026-11-03 检索全量复测完成（替代下方进行中状态）：正式CUDA批次session23808已正常退出0，完整SCIDOCS1000/SciFact300四组（BM25、Dense、RRF、RRF+top20重排），BM25全部质量指标精确复现旧结果。Dense两套均最佳：SCIDOCS R@10 15.4283%→22.9417%（+7.5133pp，相对+48.70%），nDCG@10 14.9529%→21.7119%，Hit@10 47.8%→62.6%；SciFact R@5 81.5389%、R@10 77.5667%→87.4222%（+9.8556pp）、nDCG@10 74.0391%。RRF与重排未优于Dense，完整保留，不继续按test分数换模型调参。
 

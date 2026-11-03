@@ -1,0 +1,11 @@
+{
+  "authorized_total_cny": "60",
+  "initial_cap_cny": "10.9",
+  "timestamp": "2026-11-03T11:14:12.576661+00:00",
+  "plan_sha256": "e69f4c8872950d0544ebf95eee5fd6039aff7d7465eb2f7e2843937dc35f91ad",
+  "prior_config_sha256": "9454df0ba5993d2952f8129a6b1992a267abe60b286bc9146a01c0673957d9d8",
+  "retained_attempts": 59,
+  "candidate_source_unchanged": true,
+  "completed_results_regenerated": false,
+  "authorization": "User approved 60 CNY total; no automatic recharge"
+}

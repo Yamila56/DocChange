@@ -38,9 +38,9 @@ Key 只配置在本地 `.env` 的 `SHOPRESOLVE_MODEL_API_KEY`，不要放入命�
 .venv\Scripts\python.exe scripts/run_benchmark_linux.py -m scripts.evaluate_dogbench --wait-preparation --output .cache/evals/new-dogbench-batch
 ```
 
-该命令会真实付费：Flash 非思考、温度0、每题16轮、每响应4096 token、每题900秒，总预算15元保守估算/最多2800请求。首次读取源文件哈希与配置，后续同目录必须匹配；已完成结果不重复调用。它只加载 task 与匿名快照，评分的 outcome/rubric 由另一进程持有。
+当前命令默认真实付费的`deepseek-v4-pro`、thinking/high、Repository章节混合检索：每题16轮，每响应8192 token含思考，每题900秒。总预算15元是预估防护上限，不保证覆盖175个Pro任务；最终批次按用户要求以约50项收尾：49/175项有结果，126项缺失；见最终报告，不得当作全量完成。需要先准备本地向量模型。首次冻结源哈希与配置，后续同目录必须匹配；已完成结果不重复调用。候选不读取outcome/rubric。Pro缓存价为0.30元/百万，高峰未命中输入9元/百万、输出27元/百万。
 
-本轮最初网络中断后的恢复采用独立批次，完成的语义决定不重做，未完成项从前批 SQL 检查点导入已读内容与证据。跨批次每题模型调用合计仍限16；最后一次传输结果未知的调用也占次数，不免费重发：
+下面仅记录2026-11-02旧Flash基线的恢复流程，不是当前Pro运行建议，不应重复已完成批次。旧恢复完成的语义决定不重做，跨批次每题合计限16；结果未知的调用也占次数：
 
 ```powershell
 .venv\Scripts\python.exe scripts/run_benchmark_linux.py -m scripts.continue_dogbench --parent .cache/evals/dogbench-20261102 --output .cache/evals/dogbench-recovery-20261102 --cap-cny 5 --api-only-symlinks
@@ -68,7 +68,9 @@ Key 只配置在本地 `.env` 的 `SHOPRESOLVE_MODEL_API_KEY`，不要放入命�
 .venv\Scripts\python.exe -m scripts.run_repository --docs-root D:\work\project-docs --code-root D:\work\project-code --task-file D:\work\task.txt
 ```
 
-有真实 API 费用，使用独立持久交互账本（累计100请求/2元保守估算）；输出候选 patch、run_id 与日志。候选不自动应用、提交或推送。小型网页工作台仍用 `python -m scripts.run_docchange`；两种入口的存储/审核范围见设计18。
+当前使用Pro/high，有真实API费用，独立账本`.cache/docchange/repository-pro-budget.sqlite`累计100请求/峰值预估2元；旧账本保留。默认章节混合检索，`--retrieval-mode section_bm25|dense|hybrid`可选。大仓库首次向量索引建议使用已配置CUDA的环境，CLI提供`--retrieval-provider CUDAExecutionProvider --cuda-dll-dir 本机DLL目录`；普通CPU默认可运行小仓库。输出候选patch、run_id与日志，不自动应用、提交或推送。
+
+仓库搜索返回路径、标题、行号、匹配词、原文片段和evidence_id；`queries`可包含最多4个查询；`read_many.reads`允许每文件分别指定query/offset/limit。已展示片段可支持编辑，但不能授权未展示范围；删除要求完整读取。
 
 ## 6. 文档语义检索与四组公开复测
 
@@ -101,4 +103,40 @@ $env:PYTHONPATH = (Resolve-Path .cache/ir-cuda-runtime).Path
 
 最后的DLL目录是本机已有带CUDA的PyTorch路径；其他机器须替换为自己的路径并满足CUDA依赖。请求的CUDA Provider不可用时直接报错，不把CPU回退伪装成GPU。若只需要CPU，请省略这段GPU配置。
 
+## 7. Pro协议检查与仓库检索诊断
+
+```powershell
+# 默认仅查询模型和账户可用性，不打印Key或余额。
+.venv\Scripts\python.exe -m scripts.verify_document_pro
+# --execute执行固定日期账本内最多1次Pro协议调用，最多0.75元预估；本机该批已完成。
+```
+
+本轮新增独立的公开仓库定位诊断，使用123个patch-needed任务，比较5个预设方案；不调用生成模型。标签是原数据中的人类修改路径，仅在候选排名生成后进入评分。它不是DoGBench官方综合分，也不以源码变更文件代替文档gold路径。
+
+```powershell
+$env:PYTHONPATH = (Resolve-Path .cache/ir-cuda-runtime).Path
+.venv\Scripts\python.exe -m scripts.evaluate_repository_retrieval --provider CUDAExecutionProvider --embedding-batch-size 32 --cuda-dll-dir D:\conda_envs\torch-ts-py312\Lib\site-packages\torch\lib --cache .cache/evals/repository-retrieval-b32-20261103
+```
+
+本机直接只读访问已准备的WSL匿名Git快照，模型只接收原文与task/diff派生查询。Git blob读取跳过符号链接、非文本和超限文件；原源树不修改。断点落盘，每条排名后独立打分，分别报告全部人类修改路径和当前快照既有路径；新建路径不可被旧快照检索，因此保留两种分母。缓存绑定模型、runtime与provider，并可跨快照复用相同原文章节的向量。
+
 缓存记录冻结源哈希、模型文件哈希、完整输入文本哈希和逐题结果；中断后同配置可恢复。不要编辑候选实现后继续复用旧缓存，旧CPU诊断批次也不能充当正式新模型结果。查询向量在此离线评测中批量生成，排序耗时不包含查询编码；不把它与旧CPU调用延迟直接相比。
+
+
+## 8. 最终覆盖策略与历史续跑命令
+
+仓库入口现启用coverage-v1，所有规划、工具决策与独立复核共用16轮；最多一轮定向修补。实现和未实现边界见[设计22](design/22-覆盖驱动仓库维护最终方案.md)。源码冻结后不按低分重做输出。
+
+本机Windows候选可直接访问已准备的WSL匿名快照，由Linux只读控制器逐题验证输入；CUDA只用于本地检索。启动原生Python须设置`$env:PYTHONUTF8='1'`，并使用第6节的CUDA overlay与DLL配置。预热结果清空，不能授予编辑权限。
+
+本轮已按用户指定范围结束，以下仅保留历史续跑命令，不建议重新启动剩余任务。新的付费批次需另行授权，原进程退出后才可使用续跑控制器。它不充值，不清空旧请求账本，不替换已完成输出，不增加每题轮次；记录初始预算、授权和冻结计划哈希：
+
+```powershell
+$env:PYTHONUTF8='1'
+$env:PYTHONPATH=(Resolve-Path .cache/ir-cuda-runtime).Path
+.venv\Scripts\python.exe -m scripts.resume_authorized_pro_budget --batch .cache/evals/dogbench-coverage-pro-frozen-20261103 --prepared \\wsl.localhost\Ubuntu\home\duyumeng\.cache\docchange\dogbench-prepared --authorized-total-cny 60 --cuda-dll-dir D:\conda_envs\torch-ts-py312\Lib\site-packages\torch\lib
+```
+
+模型预算不足时，未完成项暂不生成prediction；不是把未调用任务算作模型失败。已实际执行的轮次耗尽、协议错误和内容失败全部保留。新完整综合分只能在175项全部执行并取得有效评分后发布。
+
+最终批次已停止，既有账本/结果保留。导出命令：`python -m scripts.export_docchange_final --batch .cache/evals/dogbench-coverage-pro-frozen-20261103 --judgments .cache/evals/dogbench-coverage-pro-judgments-20261103 --output docs/evaluation/dogbench-pro-2026-11-03`。这只读取已保存结果，不发模型请求。

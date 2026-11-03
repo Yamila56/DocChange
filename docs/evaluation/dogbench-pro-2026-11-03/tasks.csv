@@ -1,0 +1,50 @@
+﻿instance_id,status,decision,model_turns,error_type,expected_outcome,decision_correct,score,blocking_p0,latency_ms,error
+Azure-azure-service-operator-pr4003,error,,16,DomainError,patch,False,0.0,,313850.47530000156,Model-call budget exhausted
+Azure-azure-service-operator-pr4196,error,,16,ValueError,abstain,False,0.0,,415757.5785000008,Provider completion is truncated or not a finished JSON decision
+Azure-azure-service-operator-pr4202,error,,16,DomainError,patch,False,0.0,,399843.61329999956,Model-call budget exhausted
+Azure-azure-service-operator-pr4394,error,,10,JSONDecodeError,abstain,False,0.0,,123789.02350000135,Extra data: line 6 column 155 (char 246)
+Azure-azure-service-operator-pr5490,error,,16,DomainError,patch,False,0.0,,354348.56299999956,Model-call budget exhausted
+MaterializeInc-materialize-pr36075,completed,abstain,12,,abstain,True,100.0,,360162.22050000215,
+MaterializeInc-materialize-pr36328,error,,16,DomainError,patch,False,0.0,,275469.28590000246,Model-call budget exhausted
+MaterializeInc-materialize-pr36618,error,,10,JSONDecodeError,patch,False,0.0,,214556.7771999995,Extra data: line 5 column 245 (char 282)
+MaterializeInc-materialize-pr36803,error,,16,DomainError,abstain,False,0.0,,284476.02299999923,Model-call budget exhausted
+MaterializeInc-materialize-pr37023,timeout,,11,TimeoutError,patch,False,0.0,,381987.6560000011,Transport failure with an empty exception message; see original trace
+PostHog-posthog-pr63817,completed,abstain,15,,abstain,True,100.0,,496889.03280000156,
+PostHog-posthog-pr63871,error,,16,DomainError,patch,False,0.0,,378803.38589999883,Model-call budget exhausted
+PostHog-posthog-pr63886,error,,16,DomainError,abstain,False,0.0,,298953.9904999983,Model-call budget exhausted
+PostHog-posthog.com-pr16354,completed,abstain,13,,patch,False,0.0,,434349.24159999716,
+PostHog-posthog.com-pr16714,completed,patch,8,,patch,True,15.0,C1;C5;C6;C7,337515.59909999924,
+PostHog-posthog.com-pr16752,completed,patch,14,,patch,True,53.8,,456214.1658000001,
+PostHog-posthog.com-pr16822,error,,16,DomainError,patch,False,0.0,,387671.29550000024,Model-call budget exhausted
+PostHog-posthog.com-pr16939,error,,16,DomainError,patch,False,0.0,,350229.3511999997,Model-call budget exhausted
+PostHog-posthog.com-pr17172,error,,15,JSONDecodeError,patch,False,0.0,,514873.75599999726,Extra data: line 6 column 305 (char 385)
+PostHog-posthog.com-pr17231,completed,patch,8,,patch,True,20.0,,400282.0232999984,
+apache-flink-pr27195,error,,16,DomainError,patch,False,0.0,,259967.76730000056,Model-call budget exhausted
+apache-flink-pr27325,completed,abstain,12,,abstain,True,100.0,,335945.41110000137,
+apache-flink-pr27345,error,,16,DomainError,abstain,False,0.0,,353552.1251999999,Model-call budget exhausted
+apache-flink-pr28212,timeout,,7,TimeoutError,patch,False,0.0,,961748.8214999975,Transport failure with an empty exception message; see original trace
+apache-flink-pr28237,error,,16,DomainError,patch,False,0.0,,289746.1023999967,Model-call budget exhausted
+apache-iceberg-pr15566,error,,16,DomainError,patch,False,0.0,,189035.56850000314,Model-call budget exhausted
+apache-iceberg-pr15634,error,,16,DomainError,abstain,False,0.0,,81837.86429999964,Model-call budget exhausted
+apache-iceberg-pr15667,error,,16,DomainError,abstain,False,0.0,,309195.5852999999,Model-call budget exhausted
+apache-iceberg-pr15814,error,,16,DomainError,patch,False,0.0,,343806.94220000075,Model-call budget exhausted
+apache-iceberg-pr16241,completed,abstain,6,,abstain,True,100.0,,236590.30859999984,
+astral-sh-ruff-pr21369,error,,16,DomainError,patch,False,0.0,,184428.5802000013,Model-call budget exhausted
+bentoml-bentoml-pr5465,error,,16,DomainError,patch,False,0.0,,11006.550099999004,Model-call budget exhausted
+bentoml-bentoml-pr5518,timeout,,11,TimeoutError,patch,False,0.0,,131260.03910000145,Transport failure with an empty exception message; see original trace
+celery-celery-pr10135,timeout,,12,TimeoutError,patch,False,0.0,,234916.93889999442,Transport failure with an empty exception message; see original trace
+celery-celery-pr10150,error,,16,DomainError,patch,False,0.0,,286730.8241999999,Model-call budget exhausted
+celery-celery-pr10174,completed,patch,8,,patch,True,38.5,C2;C4;C5,382347.5965999969,
+celery-celery-pr10206,timeout,,12,TimeoutError,patch,False,0.0,,358776.506000002,Transport failure with an empty exception message; see original trace
+celery-celery-pr10238,timeout,,10,TimeoutError,patch,False,0.0,,365328.83139999467,Transport failure with an empty exception message; see original trace
+celery-celery-pr9879,timeout,,8,TimeoutError,patch,False,0.0,,251472.68990000157,Transport failure with an empty exception message; see original trace
+dagworks-inc-hamilton-pr1445,completed,patch,9,,patch,True,50.0,C3;C5,386046.46639999555,
+dlt-hub-dlt-pr2500,timeout,,9,TimeoutError,patch,False,0.0,,322883.27270000445,Transport failure with an empty exception message; see original trace
+dlt-hub-dlt-pr2836,timeout,,16,TimeoutError,patch,False,0.0,,416572.1687999976,Transport failure with an empty exception message; see original trace
+dlt-hub-dlt-pr2965,timeout,,14,TimeoutError,patch,False,0.0,,479595.599100001,Transport failure with an empty exception message; see original trace
+doc-detective-common-pr112,error,,16,DomainError,patch,False,0.0,,316628.2793999999,Model-call budget exhausted
+doc-detective-common-pr63,error,,16,DomainError,patch,False,0.0,,241782.67829999822,Model-call budget exhausted
+doc-detective-common-pr65,timeout,,13,TimeoutError,abstain,False,0.0,,402545.43099999864,Transport failure with an empty exception message; see original trace
+doc-detective-common-pr78,timeout,,16,TimeoutError,patch,False,0.0,,379343.6304000061,Transport failure with an empty exception message; see original trace
+doc-detective-doc-detective-pr146,completed,patch,9,,patch,True,50.0,C1;C2,409606.2027000007,
+doc-detective-doc-detective-pr21,timeout,,16,TimeoutError,patch,False,0.0,,447987.2907999961,Transport failure with an empty exception message; see original trace

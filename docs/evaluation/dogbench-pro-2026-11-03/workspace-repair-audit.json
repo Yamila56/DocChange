@@ -1,0 +1,1189 @@
+{
+  "scope": "Anonymous benchmark cache only; source files/HEAD/trees unchanged",
+  "items": [
+    {
+      "instance_id": "Azure-azure-service-operator-pr4003",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4196",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4202",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4394",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr5490",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36075",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36328",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36618",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36803",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr37023",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog-pr63817",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog-pr63871",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog-pr63886",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16354",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16714",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16752",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16822",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16939",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr17172",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr17231",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-flink-pr27195",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-flink-pr27325",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-flink-pr27345",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-flink-pr28212",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-flink-pr28237",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-iceberg-pr15566",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-iceberg-pr15634",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-iceberg-pr15667",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-iceberg-pr15814",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "apache-iceberg-pr16241",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "astral-sh-ruff-pr21369",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "astral-sh-ruff-pr22119",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "bentoml-bentoml-pr5465",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "bentoml-bentoml-pr5518",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "celery-celery-pr10135",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "celery-celery-pr10150",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "celery-celery-pr10174",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "celery-celery-pr10206",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "celery-celery-pr10238",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "celery-celery-pr9879",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "dagworks-inc-hamilton-pr1445",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2500",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2836",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2965",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-common-pr112",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-common-pr63",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-common-pr65",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-common-pr78",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr146",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr21",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr238",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr244",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr296",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr352",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr357",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr45",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr66",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "doc-detective-doc-detective.github.io-pr112",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "finos-rune-dsl-pr1246",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "finos-rune-dsl-pr1258",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "finos-rune-dsl-pr473",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "finos-rune-dsl-pr520",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr13604",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr13655",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr30984",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr31011",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr31030",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr31034",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr31057",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr31376",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr31462",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-pr31491",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-www-issue1889",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-www-pr1734",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-www-pr1898",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-www-pr1926",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-www-pr2045",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-www-pr2056",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "helm-helm-www-pr2098",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "huggingface-peft-pr1550",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "huggingface-peft-pr2525",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "huggingface-peft-pr2763",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "huggingface-peft-pr2953",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "iterorganization-IMAS-Core-pr48",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "iterorganization-IMAS-Core-pr49",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "iterorganization-IMAS-Core-pr52",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "iterorganization-IMAS-Core-pr65",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "jj-vcs-jj-pr7479",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "jj-vcs-jj-pr7537",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "jj-vcs-jj-pr8297",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "jj-vcs-jj-pr9085",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "jj-vcs-jj-pr9347",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "kubernetes-sigs-kro-pr108",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "kubernetes-sigs-kro-pr1106",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "kubernetes-sigs-kro-pr1110",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "lancedb-lancedb-pr2845",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "lancedb-lancedb-pr2887",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "litestar-org-litestar-pr4506",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-developer-documentation-new-pr525",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-mautic-pr15476",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-mautic-pr15508",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-mautic-pr15719",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-mautic-pr15954",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-mautic-pr16101",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-mautic-pr16173",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-mautic-pr16264",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr162",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr174",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr297",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr302",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr358",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr651",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr699",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr701",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr705",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr723",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr727",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "mautic-user-documentation-pr741",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "microsoft-DeepSpeed-pr5338",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "microsoft-DeepSpeed-pr5827",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "microsoft-DeepSpeed-pr7515",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "microsoft-DeepSpeed-pr7992",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "openbao-openbao-pr2353",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "openbao-openbao-pr3176",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "openbao-openbao-pr3224",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "opencost-opencost-pr3722",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "opencost-opencost-pr3783",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "opencost-opencost-website-pr102--code-pr1842",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "opencost-opencost-website-pr135",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "openfga-openfga-pr3016",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "openfga-openfga-pr3035",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "openfga-openfga-pr3149",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "openfga-openfga.dev-pr264",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "openfga-openfga.dev-pr314",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "openfga-openfga.dev-pr355",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "pantsbuild-pants-pr22034",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "pantsbuild-pants-pr23052",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "pantsbuild-pants-pr23187",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "pantsbuild-pants-pr23219",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "pantsbuild-pants-pr23320",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "pantsbuild-pants-pr23400",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "prefecthq-prefect-pr19580",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "prefix-dev-pixi-pr4915",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "prefix-dev-pixi-pr5485",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "prefix-dev-pixi-pr5840",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "prefix-dev-pixi-pr5916",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "pydantic-pydantic-pr12518",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "pydantic-pydantic-pr12572",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "python-mypy-pr20007",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "python-mypy-pr20635",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "python-mypy-pr21304",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "python-mypy-pr21382",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "python-mypy-pr21387",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "rilldata-rill-pr9315",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "rilldata-rill-pr9451",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "scverse-anndata-pr1162",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "scverse-anndata-pr2290",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "scverse-scanpy-pr3191",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "scverse-scanpy-pr4100",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "strawberry-graphql-strawberry-pr4059",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "strawberry-graphql-strawberry-pr4320",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "strawberry-graphql-strawberry-pr4342",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "tiangolo-fastapi-pr14262",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "tiangolo-fastapi-pr14487",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "tiangolo-fastapi-pr14681",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "tiangolo-fastapi-pr14978",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "tiangolo-fastapi-pr15022",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "trinodb-trino-pr28937",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "trinodb-trino-pr29039",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "trinodb-trino-pr29900",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "vllm-project-vllm-pr43603",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "vllm-project-vllm-pr43805",
+      "pruned_generated_objects": [
+        "docs"
+      ],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "vllm-project-vllm-pr45003",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "volcengine-verl-pr5186",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    },
+    {
+      "instance_id": "volcengine-verl-pr6086",
+      "pruned_generated_objects": [],
+      "head_and_tree_unchanged": true,
+      "verified": true
+    }
+  ]
+}

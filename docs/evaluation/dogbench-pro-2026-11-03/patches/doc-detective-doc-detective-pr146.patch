@@ -1,0 +1,24 @@
+diff --git a/README.md b/README.md
+index 884da64bf904535f0e6c81cc25182c467dc8182b..05ce0e7879379f54d7fe5f60083e52e2241c6855 100644
+--- a/README.md
++++ b/README.md
+@@ -43,12 +43,18 @@ To run your tests, use the following command:
+ npx doc-detective
+ ```
+ 
+-By default, Doc Detective scans the current directory for valid tests, but you can specify your test file with the `--input` argument. For example, to run tests in a file named `doc-content-inline-tests.md`, run the following command:
++By default, Doc Detective scans the current directory for valid tests, but you can specify one or more test files with the `--input` argument. Separate multiple paths with commas. `--input` always sets `config.input` to an array: each comma-separated path is trimmed, `http://` and `https://` URLs are passed through unchanged, and all other paths are resolved to absolute paths with `path.resolve`. For example, to run tests in a file named `doc-content-inline-tests.md`, run the following command:
+ 
+ ```bash
+ npx doc-detective --input doc-content-inline-tests.md
+ ```
+ 
++To run tests in multiple files, pass a comma-separated list:
++
++```bash
++npx doc-detective --input doc-content-inline-tests.md,another-test.md
++```
++
+ To customize your test, file type, and directory options, create a `.doc-detective.json` [config](https://doc-detective.com/docs/references/schemas/config.html) file. If a `.doc-detective.json` file exists in the directory when you run the comment, Doc Detective loads the config. Otherwise, you can specify a config path with the `--config` argument.
+ 
+ ```bash

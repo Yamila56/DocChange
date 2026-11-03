@@ -1,0 +1,6 @@
+{
+  "finished_result_files": 49,
+  "provider_balance_error_seen": false,
+  "scope": "User requested approximately 50 ended tasks and prompt export; stopped at 49 to avoid another long task",
+  "stopped_at_utc": "2026-11-03T13:19:16.0140257Z"
+}

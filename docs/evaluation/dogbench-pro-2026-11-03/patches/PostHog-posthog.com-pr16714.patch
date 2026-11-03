@@ -1,0 +1,22 @@
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index 0c82621568d86c7145da4288c5c07f03ef10aa40..6d0a5f2a38652323eaa35e7060c6845655ea2b78 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -33,6 +33,17 @@ To link Postgres:
+ 
+ The data warehouse then starts syncing your Postgres data. You can see details and progress in the [sources tab](https://app.posthog.com/data-management/sources).
+ 
++## Change data capture
++
++Postgres change data capture (CDC) uses logical replication to stream row-level changes to PostHog. This relies on two database-level objects:
++
++- A **replication slot**, which retains write-ahead log (WAL) changes until PostHog consumes them.
++- A **publication**, which identifies the tables included in logical replication.
++
++The database user must have privileges to create and use replication slots and publications. Tables can use different sync modes, and CDC behavior applies only to tables configured for CDC sync.
++
++Replication slots retain WAL data until consumed, so an inactive or slow CDC sync can cause WAL lag. Excessive WAL lag can delay or interrupt CDC sync and may also increase disk usage on your database.
++
+ ## Configuration
+ 
+ <SourceParameters />

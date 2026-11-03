@@ -1,0 +1,36 @@
+diff --git a/contents/docs/product-analytics/subscriptions.mdx b/contents/docs/product-analytics/subscriptions.mdx
+index adcb5095f61aa8e0cdaab105736e1c5251bd8ae5..883cd3070b16517c6c5f306b9b9219fbb1b3900a 100644
+--- a/contents/docs/product-analytics/subscriptions.mdx
++++ b/contents/docs/product-analytics/subscriptions.mdx
+@@ -47,6 +47,7 @@ From here you can:
+ - **Filter** by delivery channel (email, Slack, or webhook) and creator
+ - **Sort** by creation date, next delivery date, title, or creator
+ - **Edit** a subscription by navigating to its source insight or dashboard
++- **Pause or resume** a subscription with the enabled toggle in the list or detail view
+ - **Test delivery** to immediately send a subscription without waiting for the next scheduled delivery
+ - **Delete** subscriptions with an undo option
+ 
+@@ -143,8 +144,22 @@ Each subscription displays its next scheduled delivery date, so you can see exac
+ 
+ When editing a subscription, a preview of the next delivery date appears below the scheduling options so you can verify your configuration before saving.
+ 
++## Pausing and resuming subscriptions
++
++Each subscription has an **enabled** toggle. By default, new subscriptions are enabled. Turning the toggle off pauses delivery without deleting the subscription, so you can keep the configuration and re-enable it later.
++
++When you re-enable a subscription, PostHog immediately schedules a confirmation delivery and resets the next delivery date. If the delivery target is still invalid, PostHog blocks re-enabling until the underlying issue is fixed.
++
++## Automatic disabling for invalid delivery targets
++
++If a subscription's delivery target becomes permanently invalid — for example, the Slack integration used by the subscription is removed, or the target type is not supported — PostHog automatically disables the subscription, logs an activity entry, and sends an email notification to the subscription owner.
++
++Disabled subscriptions are skipped by scheduled deliveries. To resume delivery, fix the underlying issue (for example, reconnect Slack or change the subscription target), then re-enable the subscription.
++
+ ## Testing subscriptions
+ 
+-You can manually trigger a test delivery for any subscription. Click the **...** menu on a subscription in the list and select **Test delivery**. This immediately sends the subscription content to the configured target (email or Slack channel) without waiting for the next scheduled delivery.
++You can manually trigger a test delivery for any enabled subscription. Click the **...** menu on a subscription in the list and select **Test delivery**. This immediately sends the subscription content to the configured target (email or Slack channel) without waiting for the next scheduled delivery.
++
++If a subscription is disabled, test delivery returns an error. Re-enable the subscription before sending a test delivery.
+ 
+ This is useful for verifying that the subscription is configured correctly and the content looks as expected.

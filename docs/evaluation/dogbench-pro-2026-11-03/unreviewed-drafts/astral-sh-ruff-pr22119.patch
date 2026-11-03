@@ -1,0 +1,27 @@
+diff --git a/docs/formatter.md b/docs/formatter.md
+index 5be91545d1de5209f2ebcdf5b84b7052b75b610d..036d4112d67a593cf0fbc8b99089cab0a46a5bb5 100644
+--- a/docs/formatter.md
++++ b/docs/formatter.md
+@@ -266,7 +266,9 @@ Like Black, Ruff will _also_ recognize [YAPF](https://github.com/google/yapf)'s
+ comments, which are treated equivalently to `# fmt: off` and `# fmt: on`, respectively.
+ 
+ `# fmt: skip` comments suppress formatting for a preceding statement, case header, decorator,
+-function definition, or class definition:
++function definition, or class definition. When a `# fmt: skip` comment is on a line that
++contains multiple semicolon-separated statements, Ruff preserves the entire physical line verbatim,
++including the semicolons and surrounding whitespace.
+ 
+ ```python
+ if True:
+@@ -309,6 +311,11 @@ a = call(
+ )  # fmt: skip
+ ```
+ 
++When formatting a selected range that overlaps any statement on a logical line with a `# fmt: skip`
++comment, Ruff formats the entire enclosing suite instead of only the selected range. This ensures
++that skip boundaries are computed correctly, including for lines that contain multiple
++semicolon-separated statements.
++
+ ## Conflicting lint rules
+ 
+ Ruff's formatter is designed to be used alongside the linter. However, the linter includes

@@ -1,0 +1,25 @@
+{
+  "official_prediction_validator": true,
+  "prediction_count": 49,
+  "missing_count": 126,
+  "complete": false,
+  "canonical_patch_hashes_verified": 6,
+  "retained_rejected_drafts": 0,
+  "selected_scope": "User-requested approximately 50 ended tasks; all finished successes and failures retained",
+  "validation": {
+    "schema_version": "dogbench-predictions-v1",
+    "valid": true,
+    "predictions": 49,
+    "items": 175,
+    "missing": 126,
+    "statuses": {
+      "completed": 11,
+      "error": 25,
+      "timeout": 13
+    },
+    "decisions": {
+      "abstain": 5,
+      "patch": 6
+    }
+  }
+}

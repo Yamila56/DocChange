@@ -1,0 +1,29 @@
+diff --git a/docs/concepts/visualization.rst b/docs/concepts/visualization.rst
+index 407e7c6f35eae02c26e0babbabdd73228b3343be..76aa98c4a4bed476ac8ad004ae03e17ad4c3e49b 100644
+--- a/docs/concepts/visualization.rst
++++ b/docs/concepts/visualization.rst
+@@ -166,6 +166,24 @@ Configure your visualization
+ 
+ All of the above visualization functions share parameters to customize the visualization (e.g., hide legend, hide inputs). Learn more by reviewing the API reference for `Driver.display_all_functions() <https://hamilton.apache.org/reference/drivers/Driver/#hamilton.driver.Driver.display_all_functions>`_; parameters should apply to all other visualizations.
+ 
++Display names
++~~~~~~~~~~~~~
++
++By default, each node is labeled with its name and type. You can substitute a human-readable display name by adding a ``display_name`` tag to the function:
++
++.. code-block:: python
++
++    from hamilton.function_modifiers import tag
++
++    @tag(display_name="My Custom Display Name")
++    def node_with_display_name(input_a: int) -> int:
++        """A node with a custom display name for visualization."""
++        return input_a + 1
++
++    dr.display_all_functions()
++
++For nodes, label resolution uses an explicitly supplied name parameter first, then the ``display_name`` tag value, then the node's Python identifier. Input/dependency labels use the ``display_name`` tag when present and otherwise fall back to the node identifier. If ``display_name`` is a list, the first element is used; an empty list falls back to the node name. The resolved label is HTML-escaped before it is included in the Graphviz output, so special characters such as ``<``, ``>``, ``&``, and quotes render correctly.
++
+ .. _custom-visualization-style:
+ 
+ Apply custom style

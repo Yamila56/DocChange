@@ -34,7 +34,9 @@
 .\.venv\Scripts\python.exe -m scripts.run_docchange --remote
 ```
 
-使用官方 deepseek-flash、非思考模式。工作台任务文本由模型理解，演示替换字段不作为自动执行指令。每个本地交互预算账本最多20请求/保守预估0.5元，重启不重置；存于 `.cache/docchange/interactive-budget.sqlite`。未知响应保留预留，不修改.env、不充值。这是应用侧预估限制，不是官方账户扣费硬限制。已完成的验收批次使用另一本账，不与交互模式混算。
+当前使用官方`deepseek-v4-pro`、thinking/high，每响应最多8192 token（包含思考与最终JSON）。工作台任务文本由模型理解，演示替换字段不作为自动执行指令。新Pro交互账本最多20请求/峰值预估2元，重启不重置；存于`.cache/docchange/interactive-pro-budget.sqlite`。旧Flash账本保留。未知响应保留预留，不修改.env、不充值；费用是应用侧估算，不是供应商硬扣费上限。
+
+Pro真实接口及新Schema已验收：[记录](evaluation/pro-contract-2026-11-03.json)。仓库CLI同样默认Pro，并支持章节词法/向量/混合检索、带证据片段、多查询和独立定位批读，详见[实施复核](design/20-Repository检索与Pro实施复核.md)。
 
 ## 当前架构
 
@@ -87,3 +89,6 @@ ChangeSet 记录基准版本、候选内容、差异、索引、引用和payload
 ## 后训练还差什么
 
 WorkflowRepair已有小型确定性环境，不是训练就绪版本。下一步依次完成正式任务生成与分组划分、可信verifier审查、verl工具/奖励适配与小型rollout、SFT/GRPO、验证集选checkpoint与对照测试。先完成文档应用收尾，再启动这些工作；不会仅租一张卡就自动获得可信研究结果。
+
+
+本轮代码与评测已结束，边界见[最终交付报告](evaluation/docchange-final-2026-11-03.md)。Pro本批按用户要求以约50项收尾，实际49/175项有结果，其余126项未完成；全部已有结果已评分，没有新的175项全量综合分。不再启动剩余模型任务。

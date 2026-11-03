@@ -1,5 +1,7 @@
 # DocChange 面试核对与项目边界
 
+2026-11-03最终工程版与Pro阶段评测见[最终报告](evaluation/docchange-final-2026-11-03.md)：49/175项结束，126项缺失，全部已有结果完成评分；6份最终补丁保留，新全量综合分未定义，不能宣称整体提升。仓库策略已新增来源要求、逐edit关联和独立上下文复核；网页小文档集仍走原DocumentRuntime。
+
 最新简历见[RESUME-DOCCHANGE.md](RESUME-DOCCHANGE.md)，最新检索量化见[全量改进报告](evaluation/docchange-retrieval-improvement-2026-11-03.md)。下方保留原项目口径和基线限制，供面试核对，不作为简历正文。
 
 ## 基线版项目描述存档（最新简历见 RESUME-DOCCHANGE.md）
