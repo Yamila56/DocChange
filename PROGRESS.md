@@ -1,5 +1,11 @@
 # ShopResolve 进度与续接记录
 
+2026-11-03 检索全量复测完成（替代下方进行中状态）：正式CUDA批次session23808已正常退出0，完整SCIDOCS1000/SciFact300四组（BM25、Dense、RRF、RRF+top20重排），BM25全部质量指标精确复现旧结果。Dense两套均最佳：SCIDOCS R@10 15.4283%→22.9417%（+7.5133pp，相对+48.70%），nDCG@10 14.9529%→21.7119%，Hit@10 47.8%→62.6%；SciFact R@5 81.5389%、R@10 77.5667%→87.4222%（+9.8556pp）、nDCG@10 74.0391%。RRF与重排未优于Dense，完整保留，不继续按test分数换模型调参。
+
+配对bootstrap2000次/seed20261103：SCIDOCS R@10提升95%区间[6.4516,8.5735]pp，352提升/565持平/83退步；SciFact区间[5.7883,14.4561]pp，43/247/10。SCIDOCS Dense独有相关前10命中518，BM25独有148，共有614；有互补但固定融合未胜出。正式结果、所有K/逐题数据、模型/源哈希在`docs/evaluation/public-ir-v03-2026-11-03/`；人读报告`docchange-retrieval-improvement-2026-11-03.md`。新简历/首页精选有证据的改进，旧弱分和退步保留完整报告；另存`docs/INTERVIEW-DOCCHANGE.md`供边界核对。DoGBench175未重跑，不宣称其生成质量改善。
+
+检索代码已提交并推私有main：`6a82b0053f99f39d0179af60e546e9210305a5a6`，Actions `41579224498` unit/frontend/mysql全部成功：168 passed/16 skipped、17.70秒；MySQL配置任务177 passed/7 skipped、68.17秒。真实CPU ONNX工作台HTTP查询200、任务提交202、后台引用返回SUCCEEDED的冒烟已完成（demo控制器，不算LLM质量），17项相关回归通过。本次文档提交收录完整报告、简历与15份更新工件；1300×4逐题汇总、冻结源hash核验通过，59个本地链接有效，待发布内容未发现本地密钥。不再改实现或新增评测。本轮无生成API、充值、租卡、训练；GPU推理进程正常退出，末次回读GPU占用0MiB。最终文档提交与推送以本仓git记录和origin/main为准，保持PRIVATE。
+
 2026-11-03（用户新授权：要求真实改善并复测低分检索，进行中）：新增可选文档语义检索，保持原FastAPI/SQL/Redis/Harness结构和默认BM25。工作台可选dense/hybrid/hybrid_rerank；BGE-base-en-v1.5 FP32 ONNX、RRF k60、MiniLM-L6交叉编码器top20，模型仓库revision见`evals/document-retrieval-models.lock.json`。原owner/revision读取、精确扫描、审批发布不变；语义索引为有界进程缓存，按owner/工作区/revision/内容隔离，计算在线程内。新增检索/语义/发布相关回归17 passed、17.63秒，报告`docs/evaluation/docchange-retrieval-regression-2026-11-03.xml`。
 
 正在跑完整SCIDOCS1000+SciFact300、BM25/dense/hybrid/hybrid_rerank四组，脚本`scripts/evaluate_document_hybrid.py`。使用原题、原文档、原qrels、原K/TREC scorer；要求BM25精确重现旧分。没有删难题、扩大K后替换同名指标或用mock冒充成绩。当前GPU批次`.cache/evals/public-ir-v03-cuda-20261103`、session23808，编码/逐题结果断点落盘，源哈希已冻结，不要在运行中改neural/retriever/service或评测器。尚无完整新成绩，不能先宣传提升。

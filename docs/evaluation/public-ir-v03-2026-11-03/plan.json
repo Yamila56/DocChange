@@ -1,0 +1,89 @@
+{
+  "datasets": [
+    "scidocs",
+    "scifact"
+  ],
+  "modes": [
+    "bm25",
+    "dense",
+    "hybrid",
+    "hybrid_rerank"
+  ],
+  "rrf_k": 60,
+  "candidates_per_branch": 1000,
+  "rerank_top_k": 20,
+  "document_units": "Original title + abstract, no relevance filtering or chunk expansion",
+  "query_prefix": "Represent this sentence for searching relevant passages: ",
+  "embedding_max_tokens": 512,
+  "model_lock": {
+    "encoder": {
+      "model": "BAAI/bge-base-en-v1.5",
+      "repository": "Xenova/bge-base-en-v1.5",
+      "revision": "4d6cd88e18e51a5e020c2c305726d76ada9c03cf",
+      "model_file": "onnx/model.onnx",
+      "license": "MIT"
+    },
+    "reranker": {
+      "model": "Xenova/ms-marco-MiniLM-L-6-v2",
+      "repository": "Xenova/ms-marco-MiniLM-L-6-v2",
+      "revision": "a09144355adeed5f58c8ed011d209bf8ee5a1fec",
+      "model_file": "onnx/model.onnx",
+      "license": "Apache-2.0"
+    }
+  },
+  "model_files": {
+    "encoder": {
+      "model": "BAAI/bge-base-en-v1.5",
+      "repository": "Xenova/bge-base-en-v1.5",
+      "revision": "4d6cd88e18e51a5e020c2c305726d76ada9c03cf",
+      "model_file": "onnx/model.onnx",
+      "license": "MIT",
+      "files": {
+        "config.json": "d83c21fa7366994560727112ef0a31d8a2ec1c280c2a3e66326fdb877f64c91e",
+        "special_tokens_map.json": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+        "tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+        "tokenizer_config.json": "9261e7d79b44c8195c1cada2b453e55b00aeb81e907a6664974b4d7776172ab3",
+        "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "onnx\\model.onnx": "9bc579acdba21c253c62a9bf866891355a63ffa3442b52c8a37d75b2ccb91848"
+      }
+    },
+    "reranker": {
+      "model": "Xenova/ms-marco-MiniLM-L-6-v2",
+      "repository": "Xenova/ms-marco-MiniLM-L-6-v2",
+      "revision": "a09144355adeed5f58c8ed011d209bf8ee5a1fec",
+      "model_file": "onnx/model.onnx",
+      "license": "Apache-2.0",
+      "files": {
+        "config.json": "d827779a72d27ae68cf878a6fc2e954542663fe21ca515d9f4783fc96be2d37e",
+        "special_tokens_map.json": "b6d346be366a7d1d48332dbc9fdf3bf8960b5d879522b7799ddba59e76237ee3",
+        "tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+        "tokenizer_config.json": "0b29c7bfc889e53b36d9dd3e686dd4300f6525110eaa98c76a5dafceb2029f53",
+        "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3",
+        "onnx\\model.onnx": "c623d0bcb99f4622beb413eaef00cfbe5db20df9f1dd982da4b4f26022881870"
+      }
+    }
+  },
+  "source_sha256": {
+    "scripts\\evaluate_document_hybrid.py": "24dc3d6f4a291834e4b3fe64598f04153f575a93a45747ac3feccdc338819bbc",
+    "scripts\\evaluate_public_ir.py": "9f3c6cd50aa5e50cd567e2e1c59adc9854c2fe0623c2a23de85b483f7fa1b17c",
+    "evals\\document-retrieval-models.lock.json": "6d443d67096a6953077960f7fcd1943afad1a9a217d292cb45cfb752155f4b50",
+    "src\\shopresolve\\documents\\retriever.py": "ea069b054d8c182cfb8da15c8209b7400e38944c23a29b27b209c92d83e51f45",
+    "src\\shopresolve\\documents\\neural.py": "50402cc20f6be009f3640df5b9614737a25d55ab306b0e3416d61a4fc7ebf948",
+    "src\\shopresolve\\documents\\service.py": "bd257b309d79f9316f05a93357e7a7c0f3cfba26403ae2579bedb61b806ada63"
+  },
+  "packages": {
+    "fastembed": "0.9.1",
+    "onnxruntime": "1.31.1",
+    "numpy": "2.5.4",
+    "pytrec-eval-terrier": "0.5.11",
+    "onnxruntime-gpu": "1.23.2"
+  },
+  "provider": "CUDAExecutionProvider",
+  "loaded_onnxruntime_version": "1.23.2",
+  "billing": "Local ONNX; no generative model or paid API",
+  "encoder_batch_size": 8,
+  "threads": 4,
+  "rerank_batch_size": 8,
+  "selection": "Four predefined variants; no qrels-based parameter search. Test sets previously inspected: descriptive system comparison, not an unseen holdout.",
+  "hardware": "NVIDIA GeForce RTX 4050 Laptop GPU / 6 GiB"
+}

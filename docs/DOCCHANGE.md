@@ -48,7 +48,9 @@ React → FastAPI → MySQL/SQLite + Outbox → Redis Streams → Worker
 
 `run_docchange` 是免基础设施的本地入口，使用同一个 RunStore/DocumentRuntime，通过持久数据库轮询领取任务，未使用 Redis。现有 `shopresolve.cli worker/dispatcher` 已按 domain 路由文档任务，可使用原 MySQL/Redis 配置；首次需运行 `alembic upgrade head` 增加文档表。两种运行方式分别标明，不把本地轮询演示称为 Redis 实测。
 
-工作区按 owner 隔离。每个任务绑定不可变 revision。快照保存正文与分段索引，校验 source_hash；新候选完整构建后在短事务中发布。当前索引为小型工作区同步构建的 BM25，不是异步索引服务；没有接入 Dense/Rerank。精确扫描枚举全部标识符，top-k检索不承担全量替换。
+工作区按 owner 隔离。每个任务绑定不可变 revision。快照保存正文与分段索引，校验 source_hash；新候选完整构建后在短事务中发布。基础索引为小型工作区同步构建的BM25；可选Dense/RRF/Rerank由授权快照派生并在进程内有界缓存，不是独立异步索引服务。精确扫描枚举全部标识符，top-k检索不承担全量替换。
+
+2026-11-03新增英文语义模式：安装`.[dev,retrieval]`后执行`python -m scripts.prepare_document_models`，再使用`python -m scripts.run_docchange --retrieval-mode dense`。固定BGE-base-en-v1.5权重，CPU本地推理；`hybrid`与`hybrid_rerank`为对照可选项。完整1300条公开查询复测中Dense在两套数据的Recall@10均最佳：[结果与差异分析](evaluation/docchange-retrieval-improvement-2026-11-03.md)。
 
 异步任务已经实现：提交返回HTTP202与run_id，后台执行而不占住原请求；模型、SQL、Redis为异步I/O，Redis Worker独立心跳。文档检索在读取快照并关闭数据库会话后经线程计算，保持事件循环可服务。一进程Worker顺序消费，可多进程部署；本地轮询模式与Redis模式分别说明，未作吞吐量或高并发提升声明。
 

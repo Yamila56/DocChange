@@ -1,0 +1,771 @@
+{
+  "bootstrap": {
+    "replicates": 2000,
+    "seed": 20261103,
+    "unit": "paired query"
+  },
+  "scope": "Descriptive comparison on previously inspected public test sets",
+  "datasets": {
+    "scidocs": {
+      "queries": 1000,
+      "variants": {
+        "bm25": {
+          "recip_rank": 0.27996402910330664,
+          "P_1": 0.183,
+          "P_3": 0.13366666666666666,
+          "P_5": 0.1082,
+          "P_10": 0.0762,
+          "P_100": 0.01658,
+          "P_1000": 0.002686,
+          "recall_1": 0.037283333333333335,
+          "recall_3": 0.08138333333333334,
+          "recall_5": 0.10948333333333334,
+          "recall_10": 0.15428333333333333,
+          "recall_100": 0.3372,
+          "recall_1000": 0.5455666666666666,
+          "ndcg_cut_1": 0.183,
+          "ndcg_cut_3": 0.14489403413681923,
+          "ndcg_cut_5": 0.12516190022224086,
+          "ndcg_cut_10": 0.1495285106788312,
+          "ndcg_cut_100": 0.2121412204007322,
+          "ndcg_cut_1000": 0.25498570856915903,
+          "map_cut_1": 0.037283333333333335,
+          "map_cut_3": 0.064425,
+          "map_cut_5": 0.0754575,
+          "map_cut_10": 0.08690125,
+          "map_cut_100": 0.10188076155465713,
+          "map_cut_1000": 0.10401341947156456,
+          "hit_1": 0.183,
+          "hit_3": 0.315,
+          "hit_5": 0.379,
+          "hit_10": 0.478
+        },
+        "dense": {
+          "recip_rank": 0.37045803176899067,
+          "P_1": 0.242,
+          "P_3": 0.19666666666666666,
+          "P_5": 0.1588,
+          "P_10": 0.11320000000000001,
+          "P_100": 0.02441,
+          "P_1000": 0.003858,
+          "recall_1": 0.04903333333333334,
+          "recall_3": 0.11953333333333334,
+          "recall_5": 0.16088333333333335,
+          "recall_10": 0.22941666666666669,
+          "recall_100": 0.49563333333333337,
+          "recall_1000": 0.7825833333333333,
+          "ndcg_cut_1": 0.242,
+          "ndcg_cut_3": 0.20707836178068267,
+          "ndcg_cut_5": 0.1795959621739885,
+          "ndcg_cut_10": 0.21711919042263111,
+          "ndcg_cut_100": 0.3069056878838663,
+          "ndcg_cut_1000": 0.3661244784192388,
+          "map_cut_1": 0.04903333333333334,
+          "map_cut_3": 0.09393333333333334,
+          "map_cut_5": 0.11229833333333333,
+          "map_cut_10": 0.13181660714285715,
+          "map_cut_100": 0.15485381543927593,
+          "map_cut_1000": 0.15856088759712833,
+          "hit_1": 0.242,
+          "hit_3": 0.43,
+          "hit_5": 0.513,
+          "hit_10": 0.626
+        },
+        "hybrid": {
+          "recip_rank": 0.3509968804334778,
+          "P_1": 0.233,
+          "P_3": 0.18166666666666667,
+          "P_5": 0.1434,
+          "P_10": 0.1012,
+          "P_100": 0.02318,
+          "P_1000": 0.003684,
+          "recall_1": 0.04733333333333334,
+          "recall_3": 0.11048333333333334,
+          "recall_5": 0.14518333333333333,
+          "recall_10": 0.20503333333333335,
+          "recall_100": 0.4709666666666667,
+          "recall_1000": 0.7477166666666667,
+          "ndcg_cut_1": 0.233,
+          "ndcg_cut_3": 0.1931789852189785,
+          "ndcg_cut_5": 0.1648711029303347,
+          "ndcg_cut_10": 0.19738035178086347,
+          "ndcg_cut_100": 0.28770160337180384,
+          "ndcg_cut_1000": 0.34456590214820654,
+          "map_cut_1": 0.04733333333333334,
+          "map_cut_3": 0.08685,
+          "map_cut_5": 0.10237500000000001,
+          "map_cut_10": 0.11881168650793651,
+          "map_cut_100": 0.14138280624004992,
+          "map_cut_1000": 0.1447699036788378,
+          "hit_1": 0.232,
+          "hit_3": 0.408,
+          "hit_5": 0.471,
+          "hit_10": 0.573
+        },
+        "hybrid_rerank": {
+          "recip_rank": 0.3192062601375252,
+          "P_1": 0.206,
+          "P_3": 0.15066666666666667,
+          "P_5": 0.12380000000000001,
+          "P_10": 0.0951,
+          "P_100": 0.02319,
+          "P_1000": 0.003684,
+          "recall_1": 0.041883333333333335,
+          "recall_3": 0.09158333333333334,
+          "recall_5": 0.12561666666666668,
+          "recall_10": 0.19276666666666667,
+          "recall_100": 0.4711666666666667,
+          "recall_1000": 0.7477166666666667,
+          "ndcg_cut_1": 0.206,
+          "ndcg_cut_3": 0.16281032993125158,
+          "ndcg_cut_5": 0.14230634844619247,
+          "ndcg_cut_10": 0.17878602189091325,
+          "ndcg_cut_100": 0.27456548536859776,
+          "ndcg_cut_1000": 0.33138168136356383,
+          "map_cut_1": 0.041883333333333335,
+          "map_cut_3": 0.07225,
+          "map_cut_5": 0.08637666666666667,
+          "map_cut_10": 0.10361222222222222,
+          "map_cut_100": 0.12818656880044654,
+          "map_cut_1000": 0.13157256056922792,
+          "hit_1": 0.206,
+          "hit_3": 0.355,
+          "hit_5": 0.431,
+          "hit_10": 0.558
+        }
+      },
+      "paired_differences": {
+        "dense": {
+          "recall_5": {
+            "delta": 0.05140000000000001,
+            "bootstrap_95": [
+              0.04259875,
+              0.06090249999999998
+            ],
+            "wins": 271,
+            "ties": 648,
+            "losses": 81
+          },
+          "recall_10": {
+            "delta": 0.07513333333333334,
+            "bootstrap_95": [
+              0.06451583333333333,
+              0.08573458333333332
+            ],
+            "wins": 352,
+            "ties": 565,
+            "losses": 83
+          },
+          "ndcg_cut_10": {
+            "delta": 0.06759067974379991,
+            "bootstrap_95": [
+              0.05772513109638024,
+              0.07768207367097851
+            ],
+            "wins": 456,
+            "ties": 380,
+            "losses": 164
+          },
+          "hit_10": {
+            "delta": 0.148,
+            "bootstrap_95": [
+              0.121,
+              0.177
+            ],
+            "wins": 194,
+            "ties": 760,
+            "losses": 46
+          }
+        },
+        "hybrid": {
+          "recall_5": {
+            "delta": 0.0357,
+            "bootstrap_95": [
+              0.029498749999999997,
+              0.04250125
+            ],
+            "wins": 194,
+            "ties": 771,
+            "losses": 35
+          },
+          "recall_10": {
+            "delta": 0.05075,
+            "bootstrap_95": [
+              0.0435,
+              0.05825249999999999
+            ],
+            "wins": 251,
+            "ties": 711,
+            "losses": 38
+          },
+          "ndcg_cut_10": {
+            "delta": 0.04785184110203225,
+            "bootstrap_95": [
+              0.041400311700152195,
+              0.054444954864025216
+            ],
+            "wins": 413,
+            "ties": 490,
+            "losses": 97
+          },
+          "hit_10": {
+            "delta": 0.095,
+            "bootstrap_95": [
+              0.074,
+              0.117
+            ],
+            "wins": 116,
+            "ties": 863,
+            "losses": 21
+          }
+        },
+        "hybrid_rerank": {
+          "recall_5": {
+            "delta": 0.016133333333333333,
+            "bootstrap_95": [
+              0.009483333333333335,
+              0.023184583333333328
+            ],
+            "wins": 163,
+            "ties": 743,
+            "losses": 94
+          },
+          "recall_10": {
+            "delta": 0.038483333333333335,
+            "bootstrap_95": [
+              0.0308,
+              0.046133749999999994
+            ],
+            "wins": 228,
+            "ties": 705,
+            "losses": 67
+          },
+          "ndcg_cut_10": {
+            "delta": 0.02925751121208204,
+            "bootstrap_95": [
+              0.022552771282247898,
+              0.036284725919723454
+            ],
+            "wins": 343,
+            "ties": 473,
+            "losses": 184
+          },
+          "hit_10": {
+            "delta": 0.08,
+            "bootstrap_95": [
+              0.058,
+              0.104
+            ],
+            "wins": 114,
+            "ties": 852,
+            "losses": 34
+          }
+        }
+      },
+      "complementarity": {
+        "bm25_only_relevant_at10": 148,
+        "dense_only_relevant_at10": 518,
+        "shared_relevant_at10": 614,
+        "queries_dense_adds_relevant_at10": 396
+      },
+      "dense_gain_examples": [
+        {
+          "qid": "a6cc38100e4e5a679d920f2fe427d604557b6237",
+          "query": "Measurement of eye size illusion caused by eyeliner, mascara, and eye shadow.",
+          "relevant_documents": 5,
+          "relevant_hits_at10": {
+            "bm25": [],
+            "dense": [
+              "548e23658e3c0ab9f38b640dd79315a59988636c",
+              "67a9f3a16b78d574d8ed24708f4991bad36cc26d",
+              "b58ac39705ba8b6df6c87e7f662d4041eeb032b6",
+              "db249d07cea3efb8ef4456b616698d5d1242b075"
+            ],
+            "hybrid": [],
+            "hybrid_rerank": []
+          },
+          "dense_recall10_delta": 0.8
+        },
+        {
+          "qid": "7db20fcc1d71edc32c365f145148d24b9f1427a5",
+          "query": "A proposal of LDMOS using Deep Trench poly field plate",
+          "relevant_documents": 5,
+          "relevant_hits_at10": {
+            "bm25": [],
+            "dense": [
+              "3f203c85493bce692da54648ef3f015db956a924",
+              "ad3324136e70d546e2744bda4e2b14e6b5311c55",
+              "d0a5e8fd8ca4537e6c0b76e90ae32f86de3cb0fc",
+              "f1aa9bbf85aa1a0b3255b38032c08781f491f4d3"
+            ],
+            "hybrid": [
+              "3f203c85493bce692da54648ef3f015db956a924",
+              "ad3324136e70d546e2744bda4e2b14e6b5311c55"
+            ],
+            "hybrid_rerank": [
+              "3f203c85493bce692da54648ef3f015db956a924",
+              "ad3324136e70d546e2744bda4e2b14e6b5311c55",
+              "f1aa9bbf85aa1a0b3255b38032c08781f491f4d3"
+            ]
+          },
+          "dense_recall10_delta": 0.8
+        },
+        {
+          "qid": "3d50160aaf1de051a05aa03350bf5ac492053663",
+          "query": "Cyclostationary Feature Detection in Cognitive Radio using Different Modulation Schemes",
+          "relevant_documents": 5,
+          "relevant_hits_at10": {
+            "bm25": [
+              "d2922d338fb2284bc9c16e8d597cedfbd3015f91"
+            ],
+            "dense": [
+              "504939c784878906c8f9fbd41783e3bbce4e8e4b",
+              "a1ac1c423afa2a19bcadc886382df67713028e53",
+              "d2922d338fb2284bc9c16e8d597cedfbd3015f91",
+              "e739f103622722c55ecb40151ffc93b88d27b09a",
+              "ff0473637a6b2fcd753a477d361b30547c3bbcd9"
+            ],
+            "hybrid": [
+              "504939c784878906c8f9fbd41783e3bbce4e8e4b",
+              "d2922d338fb2284bc9c16e8d597cedfbd3015f91",
+              "e739f103622722c55ecb40151ffc93b88d27b09a",
+              "ff0473637a6b2fcd753a477d361b30547c3bbcd9"
+            ],
+            "hybrid_rerank": [
+              "a1ac1c423afa2a19bcadc886382df67713028e53",
+              "d2922d338fb2284bc9c16e8d597cedfbd3015f91",
+              "e739f103622722c55ecb40151ffc93b88d27b09a"
+            ]
+          },
+          "dense_recall10_delta": 0.8
+        }
+      ],
+      "dense_loss_examples": [
+        {
+          "qid": "fcd16bfffd4131b2f41f90b4c832415aea55038b",
+          "query": "Auto-Conditioned Recurrent Networks for Extended Complex Human Motion Synthesis",
+          "relevant_documents": 5,
+          "relevant_hits_at10": {
+            "bm25": [
+              "12dd078034f72e4ebd9dfd9f80010d2ae7aaa337",
+              "26d4ab9b60b91bb610202b58fa1766951fedb9e9",
+              "652d159bf64a70194127722d19841daa99a69b64"
+            ],
+            "dense": [],
+            "hybrid": [
+              "652d159bf64a70194127722d19841daa99a69b64"
+            ],
+            "hybrid_rerank": [
+              "26d4ab9b60b91bb610202b58fa1766951fedb9e9",
+              "652d159bf64a70194127722d19841daa99a69b64"
+            ]
+          },
+          "dense_recall10_delta": -0.6
+        },
+        {
+          "qid": "2094f315289ccf9b676e0790fb3dd1bc4acad98c",
+          "query": "Introducing MVTec ITODD — A Dataset for 3D Object Recognition in Industry",
+          "relevant_documents": 5,
+          "relevant_hits_at10": {
+            "bm25": [
+              "9bc8aaaf23e2578c47d5d297d1e1cbb5b067ca3a",
+              "dbd66f601b325404ff3cdd7b9a1a282b2da26445"
+            ],
+            "dense": [],
+            "hybrid": [
+              "9bc8aaaf23e2578c47d5d297d1e1cbb5b067ca3a"
+            ],
+            "hybrid_rerank": [
+              "dbd66f601b325404ff3cdd7b9a1a282b2da26445"
+            ]
+          },
+          "dense_recall10_delta": -0.4
+        },
+        {
+          "qid": "5358924a48392d24e28afe850fa6849eaa1665d9",
+          "query": "Argumentative Zoning for Improved Citation Indexing",
+          "relevant_documents": 5,
+          "relevant_hits_at10": {
+            "bm25": [
+              "19b6df414753a81e2fbb1030ddd983210ea4ec80",
+              "56d36c2535c867613997688f649cf0461171dbe8"
+            ],
+            "dense": [],
+            "hybrid": [
+              "56d36c2535c867613997688f649cf0461171dbe8"
+            ],
+            "hybrid_rerank": [
+              "56d36c2535c867613997688f649cf0461171dbe8"
+            ]
+          },
+          "dense_recall10_delta": -0.4
+        }
+      ]
+    },
+    "scifact": {
+      "queries": 300,
+      "variants": {
+        "bm25": {
+          "recip_rank": 0.6233970707175261,
+          "P_1": 0.5233333333333333,
+          "P_3": 0.23777777777777775,
+          "P_5": 0.15733333333333335,
+          "P_10": 0.08533333333333334,
+          "P_100": 0.0098,
+          "P_1000": 0.0010833333333333333,
+          "recall_1": 0.5075,
+          "recall_3": 0.6733333333333333,
+          "recall_5": 0.7267777777777777,
+          "recall_10": 0.7756666666666666,
+          "recall_100": 0.8730555555555556,
+          "recall_1000": 0.955,
+          "ndcg_cut_1": 0.5233333333333333,
+          "ndcg_cut_3": 0.6121374942650113,
+          "ndcg_cut_5": 0.6352417227117545,
+          "ndcg_cut_10": 0.6522849449944165,
+          "ndcg_cut_100": 0.6757756925665531,
+          "ndcg_cut_1000": 0.686460346752031,
+          "map_cut_1": 0.5075,
+          "map_cut_3": 0.5852777777777778,
+          "map_cut_5": 0.5987722222222223,
+          "map_cut_10": 0.6071134920634921,
+          "map_cut_100": 0.6130595332746026,
+          "map_cut_1000": 0.6134945922025558,
+          "hit_1": 0.5233333333333333,
+          "hit_3": 0.6933333333333334,
+          "hit_5": 0.7533333333333333,
+          "hit_10": 0.7966666666666666
+        },
+        "dense": {
+          "recip_rank": 0.7072447644176504,
+          "P_1": 0.6166666666666667,
+          "P_3": 0.2711111111111111,
+          "P_5": 0.182,
+          "P_10": 0.09866666666666667,
+          "P_100": 0.010966666666666666,
+          "P_1000": 0.0011266666666666667,
+          "recall_1": 0.5859444444444445,
+          "recall_3": 0.7421666666666666,
+          "recall_5": 0.8153888888888889,
+          "recall_10": 0.8742222222222222,
+          "recall_100": 0.9666666666666667,
+          "recall_1000": 0.9966666666666667,
+          "ndcg_cut_1": 0.6166666666666667,
+          "ndcg_cut_3": 0.6896715881771984,
+          "ndcg_cut_5": 0.7196907483671824,
+          "ndcg_cut_10": 0.7403912879186789,
+          "ndcg_cut_100": 0.7610642081846114,
+          "ndcg_cut_1000": 0.7648161248693394,
+          "map_cut_1": 0.5859444444444445,
+          "map_cut_3": 0.6622962962962963,
+          "map_cut_5": 0.6829296296296297,
+          "map_cut_10": 0.6929613756613756,
+          "map_cut_100": 0.6978425201372732,
+          "map_cut_1000": 0.6979769253956453,
+          "hit_1": 0.6166666666666667,
+          "hit_3": 0.7633333333333333,
+          "hit_5": 0.83,
+          "hit_10": 0.8833333333333333
+        },
+        "hybrid": {
+          "recip_rank": 0.6902006587798427,
+          "P_1": 0.5933333333333334,
+          "P_3": 0.26111111111111107,
+          "P_5": 0.1706666666666667,
+          "P_10": 0.09366666666666668,
+          "P_100": 0.010966666666666666,
+          "P_1000": 0.0011266666666666667,
+          "recall_1": 0.5681666666666667,
+          "recall_3": 0.7298333333333333,
+          "recall_5": 0.7805,
+          "recall_10": 0.8388888888888889,
+          "recall_100": 0.9693333333333334,
+          "recall_1000": 0.9966666666666667,
+          "ndcg_cut_1": 0.5933333333333334,
+          "ndcg_cut_3": 0.6752903220231268,
+          "ndcg_cut_5": 0.696455235420829,
+          "ndcg_cut_10": 0.7170891458579739,
+          "ndcg_cut_100": 0.7466480221440174,
+          "ndcg_cut_1000": 0.7502545598374121,
+          "map_cut_1": 0.5681666666666667,
+          "map_cut_3": 0.6487222222222222,
+          "map_cut_5": 0.6624444444444444,
+          "map_cut_10": 0.6722055555555555,
+          "map_cut_100": 0.6793357608583965,
+          "map_cut_1000": 0.67949859703085,
+          "hit_1": 0.59,
+          "hit_3": 0.75,
+          "hit_5": 0.8,
+          "hit_10": 0.8566666666666667
+        },
+        "hybrid_rerank": {
+          "recip_rank": 0.6693271714106264,
+          "P_1": 0.58,
+          "P_3": 0.25,
+          "P_5": 0.16533333333333333,
+          "P_10": 0.09266666666666667,
+          "P_100": 0.010966666666666666,
+          "P_1000": 0.0011266666666666667,
+          "recall_1": 0.5536111111111112,
+          "recall_3": 0.6957777777777778,
+          "recall_5": 0.7507222222222222,
+          "recall_10": 0.8312777777777778,
+          "recall_100": 0.9693333333333334,
+          "recall_1000": 0.9966666666666667,
+          "ndcg_cut_1": 0.58,
+          "ndcg_cut_3": 0.645637738636092,
+          "ndcg_cut_5": 0.6683846805347564,
+          "ndcg_cut_10": 0.6958680449904358,
+          "ndcg_cut_100": 0.7277017245869347,
+          "ndcg_cut_1000": 0.7313087971420895,
+          "map_cut_1": 0.5536111111111112,
+          "map_cut_3": 0.618462962962963,
+          "map_cut_5": 0.6335101851851852,
+          "map_cut_10": 0.6464430555555556,
+          "map_cut_100": 0.6542570828618213,
+          "map_cut_1000": 0.6544200422173247,
+          "hit_1": 0.58,
+          "hit_3": 0.7233333333333334,
+          "hit_5": 0.7733333333333333,
+          "hit_10": 0.8466666666666667
+        }
+      },
+      "paired_differences": {
+        "dense": {
+          "recall_5": {
+            "delta": 0.08861111111111111,
+            "bootstrap_95": [
+              0.04360972222222222,
+              0.13533749999999997
+            ],
+            "wins": 47,
+            "ties": 237,
+            "losses": 16
+          },
+          "recall_10": {
+            "delta": 0.09855555555555556,
+            "bootstrap_95": [
+              0.057883333333333335,
+              0.14456111111111108
+            ],
+            "wins": 43,
+            "ties": 247,
+            "losses": 10
+          },
+          "ndcg_cut_10": {
+            "delta": 0.08810634292426248,
+            "bootstrap_95": [
+              0.05289832566390197,
+              0.12657926628208493
+            ],
+            "wins": 98,
+            "ties": 160,
+            "losses": 42
+          },
+          "hit_10": {
+            "delta": 0.08666666666666667,
+            "bootstrap_95": [
+              0.04666666666666667,
+              0.13333333333333333
+            ],
+            "wins": 36,
+            "ties": 254,
+            "losses": 10
+          }
+        },
+        "hybrid": {
+          "recall_5": {
+            "delta": 0.05372222222222223,
+            "bootstrap_95": [
+              0.020487500000000002,
+              0.08967361111111107
+            ],
+            "wins": 28,
+            "ties": 264,
+            "losses": 8
+          },
+          "recall_10": {
+            "delta": 0.06322222222222224,
+            "bootstrap_95": [
+              0.03249861111111111,
+              0.09544722222222221
+            ],
+            "wins": 26,
+            "ties": 271,
+            "losses": 3
+          },
+          "ndcg_cut_10": {
+            "delta": 0.06480420086355745,
+            "bootstrap_95": [
+              0.04195264183668959,
+              0.08774872575832027
+            ],
+            "wins": 84,
+            "ties": 198,
+            "losses": 18
+          },
+          "hit_10": {
+            "delta": 0.06,
+            "bootstrap_95": [
+              0.03,
+              0.09333333333333334
+            ],
+            "wins": 21,
+            "ties": 276,
+            "losses": 3
+          }
+        },
+        "hybrid_rerank": {
+          "recall_5": {
+            "delta": 0.023944444444444445,
+            "bootstrap_95": [
+              -0.016343055555555555,
+              0.06434027777777775
+            ],
+            "wins": 29,
+            "ties": 253,
+            "losses": 18
+          },
+          "recall_10": {
+            "delta": 0.05561111111111111,
+            "bootstrap_95": [
+              0.019831944444444447,
+              0.09216666666666666
+            ],
+            "wins": 30,
+            "ties": 261,
+            "losses": 9
+          },
+          "ndcg_cut_10": {
+            "delta": 0.043583099996019316,
+            "bootstrap_95": [
+              0.011281402755325777,
+              0.07478465256142637
+            ],
+            "wins": 69,
+            "ties": 184,
+            "losses": 47
+          },
+          "hit_10": {
+            "delta": 0.05,
+            "bootstrap_95": [
+              0.013333333333333334,
+              0.08666666666666667
+            ],
+            "wins": 23,
+            "ties": 269,
+            "losses": 8
+          }
+        }
+      },
+      "complementarity": {
+        "bm25_only_relevant_at10": 11,
+        "dense_only_relevant_at10": 51,
+        "shared_relevant_at10": 245,
+        "queries_dense_adds_relevant_at10": 44
+      },
+      "dense_gain_examples": [
+        {
+          "qid": "914",
+          "query": "PPAR-RXRs can be activated by PPAR ligands.",
+          "relevant_documents": 1,
+          "relevant_hits_at10": {
+            "bm25": [],
+            "dense": [
+              "3203590"
+            ],
+            "hybrid": [],
+            "hybrid_rerank": []
+          },
+          "dense_recall10_delta": 1.0
+        },
+        {
+          "qid": "913",
+          "query": "PPAR-RXRs are inhibited by PPAR ligands.",
+          "relevant_documents": 1,
+          "relevant_hits_at10": {
+            "bm25": [],
+            "dense": [
+              "3203590"
+            ],
+            "hybrid": [],
+            "hybrid_rerank": []
+          },
+          "dense_recall10_delta": 1.0
+        },
+        {
+          "qid": "831",
+          "query": "NF2 (Merlin) prevents phosphorylation and subsequent cytoplasmic sequestration of YAP in Drosophila.",
+          "relevant_documents": 1,
+          "relevant_hits_at10": {
+            "bm25": [],
+            "dense": [
+              "1897324"
+            ],
+            "hybrid": [
+              "1897324"
+            ],
+            "hybrid_rerank": []
+          },
+          "dense_recall10_delta": 1.0
+        }
+      ],
+      "dense_loss_examples": [
+        {
+          "qid": "1024",
+          "query": "Recurrent mutations occur frequently within CTCF anchor sites adjacent to oncogenes.",
+          "relevant_documents": 1,
+          "relevant_hits_at10": {
+            "bm25": [
+              "5373138"
+            ],
+            "dense": [],
+            "hybrid": [
+              "5373138"
+            ],
+            "hybrid_rerank": [
+              "5373138"
+            ]
+          },
+          "dense_recall10_delta": -1.0
+        },
+        {
+          "qid": "1179",
+          "query": "The PRR MDA5 has a central DExD/H RNA helices domain.",
+          "relevant_documents": 1,
+          "relevant_hits_at10": {
+            "bm25": [
+              "31272411"
+            ],
+            "dense": [],
+            "hybrid": [
+              "31272411"
+            ],
+            "hybrid_rerank": [
+              "31272411"
+            ]
+          },
+          "dense_recall10_delta": -1.0
+        },
+        {
+          "qid": "1272",
+          "query": "The single flash-evoked ERG b-wave is generated by activity of ON-bipolar cells.",
+          "relevant_documents": 1,
+          "relevant_hits_at10": {
+            "bm25": [
+              "17081238"
+            ],
+            "dense": [],
+            "hybrid": [
+              "17081238"
+            ],
+            "hybrid_rerank": [
+              "17081238"
+            ]
+          },
+          "dense_recall10_delta": -1.0
+        }
+      ]
+    }
+  }
+}

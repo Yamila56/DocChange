@@ -6,7 +6,7 @@
 
 V0.2 增加任务修改范围与后置条件、MDX/RST 新建删除、按需读取真实 Git 仓库和原生候选补丁导出。公开检索已覆盖 SciFact 全300题与 SCIDOCS 全1000题；文档维护采用 DoGBench 公开175题，原始失败与评分口径单独保留。
 
-当前报告：[公开评测与失败分析](docs/evaluation/docchange-public-2026-11-02.md) · [仓库适配设计](docs/design/18-DocChange仓库适配与公开评测.md) · [公开数据复现命令](docs/PUBLIC_BENCHMARK_RUNBOOK.md) · [简历表述](docs/RESUME-DOCCHANGE.md)。
+当前报告：[检索改进与完整配对评测](docs/evaluation/docchange-retrieval-improvement-2026-11-03.md) · [仓库维护基线](docs/evaluation/docchange-public-2026-11-02.md) · [公开数据复现命令](docs/PUBLIC_BENCHMARK_RUNBOOK.md) · [简历表述](docs/RESUME-DOCCHANGE.md)。
 
 ## 核心能力
 
@@ -17,13 +17,14 @@ V0.2 增加任务修改范围与后置条件、MDX/RST 新建删除、按需读�
 
 ## 公开评测摘要
 
-| 评测对象 | 公开范围 | 主要结果 |
+| 公开范围 | BGE Dense 检索结果 | 相对原 BM25 的改进 |
 |---|---|---|
-| BM25 检索组件 / SciFact | 完整 test 300 查询 | Recall@5 **72.68%**、Recall@10 **77.57%**，CPU 检索 P95 **19.42 ms** |
-| BM25 检索组件 / SCIDOCS | 完整 test 1,000 查询 | Recall@10 **15.43%**，显示语义关联检索的局限 |
-| 仓库文档维护 / DoGBench | 公开 dev 175 任务，API 工具适配 | 综合 **25.61/100**；73 份候选补丁全部通过可应用性检查，语义质量见完整报告 |
+| SciFact 完整 test 300 查询 | Recall@5 **81.54%**、Recall@10 **87.42%** | Recall@10 **+9.86个百分点** |
+| SCIDOCS 完整 test 1,000 查询 | Hit@10 **62.60%**、Recall@10 **22.94%** | Recall@10 **相对提升48.70%** |
 
-三项独立计分，不合成项目总分。检索成绩不代表文档修改准确率；公开 dev 不是未见测试集。当前优势是受控变更流程与可追溯执行，开放仓库自主维护仍需人工复核。
+同题、同K、完整语料的四配置对照：BM25、Dense、RRF、RRF+Rerank。两套数据均由Dense取得最高Recall@10和nDCG@10，因此推荐将其用于英文语义资料；精确标识符覆盖仍使用scan。完整逐题结果、退步方案和bootstrap区间见[报告](docs/evaluation/docchange-retrieval-improvement-2026-11-03.md)。
+
+DoGBench公开dev175的仓库维护基线、73份候选补丁及语义评分独立[归档](docs/evaluation/docchange-public-2026-11-02.md)。各任务分别计分；文档变更仍通过人工审核发布。
 
 ## 快速启动
 
@@ -53,6 +54,7 @@ pnpm --dir frontend build
 ## 已实现与证据
 
 - 文档导入、owner隔离、只读来源/历史、不可变工作区快照、BM25与全量精确扫描。
+- 可选英文BGE语义召回、RRF与top20交叉编码重排；按owner/revision/内容隔离的有界缓存，模型revision与权重哈希固定。
 - 文档Agent工具循环、读取/批读取、补问、精确补丁、引用与链接检查。
 - ChangeSet差异审核、hash绑定批准、拒绝、过期版本拦截、幂等发布与旧版回看。
 - 复用checkpoint、租约/fencing、工具结果日志、事件与恢复。Redis Worker支持文档域；一键演示入口用SQLite持久轮询。
@@ -72,7 +74,11 @@ pnpm --dir frontend build
 
 V0.2提交 `e517753` 的[远程CI](https://github.com/Yamila56/DocChange/actions/runs/41576363937)已全部通过：unit **165 passed / 16 skipped**，MySQL配置任务 **174 passed / 7 skipped**，前端构建成功。两套测试不相加，跳过项不算服务实机通过。
 
-当前小文档索引同步构建后随版本发布，未接Dense/Rerank；保持单Agent。文档用例已纳入本轮MySQL配置CI；Redis文档端到端联调、真实Docker文档检查与生产认证尚待补充。
+语义检索提交`6a82b00`的[最新CI](https://github.com/Yamila56/DocChange/actions/runs/41579224498)全部通过：unit **168 passed / 16 skipped**，MySQL配置任务 **177 passed / 7 skipped**，前端构建成功。真实本地ONNX模型已通过HTTP检索及后台任务功能冒烟。
+
+正文与基础索引随Revision同步发布；可选语义索引由快照派生并缓存。保持单Agent。文档用例已纳入本轮MySQL配置CI；Redis文档端到端联调、真实Docker文档检查与生产认证尚待补充。
+
+英文语义模式：安装`.[dev,retrieval]`依赖，运行`python -m scripts.prepare_document_models`准备固定权重，再运行`python -m scripts.run_docchange --retrieval-mode dense`。默认启动仍无需权重；详见[配置与复现](docs/PUBLIC_BENCHMARK_RUNBOOK.md#6-文档语义检索与四组公开复测)。
 
 ## 开发验证
 

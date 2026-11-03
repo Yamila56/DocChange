@@ -1,5 +1,7 @@
 # DocChange V0.2.0
 
+2026-11-03后续检索优化已完成：新增可选BGE Dense/RRF/Rerank，完整复测SCIDOCS1000和SciFact300，Dense相对BM25的Recall@10分别提升48.70%（相对）与9.86个百分点。最新能力、CI与完整结果见[改进报告](evaluation/docchange-retrieval-improvement-2026-11-03.md)；下方保留本版最初基线交付记录。
+
 2026-11-03。定位为受控文档变更工作台，保留 FastAPI / SQL / Redis Streams / React / 自研单 Agent Harness 架构。
 
 ## 本版内容

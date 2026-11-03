@@ -69,3 +69,36 @@ Key 只配置在本地 `.env` 的 `SHOPRESOLVE_MODEL_API_KEY`，不要放入命�
 ```
 
 有真实 API 费用，使用独立持久交互账本（累计100请求/2元保守估算）；输出候选 patch、run_id 与日志。候选不自动应用、提交或推送。小型网页工作台仍用 `python -m scripts.run_docchange`；两种入口的存储/审核范围见设计18。
+
+## 6. 文档语义检索与四组公开复测
+
+此部分使用本地检索模型，不调用 DeepSeek 或生成模型，也不租卡。模型为英文 BGE-base-en-v1.5 和 MiniLM-L6 重排器，仓库revision固定在`evals/document-retrieval-models.lock.json`；首次准备后应用仅从本地读取。
+
+```powershell
+.venv\Scripts\python.exe -m pip install -c requirements-dev.lock -e ".[dev,retrieval,benchmark]"
+.venv\Scripts\python.exe -m scripts.prepare_document_models
+.venv\Scripts\python.exe -m scripts.smoke_document_semantic
+.venv\Scripts\python.exe -m scripts.run_docchange --retrieval-mode hybrid
+```
+
+默认工作台仍是BM25；新模式为`dense`、`hybrid`和`hybrid_rerank`。可在本地`.env`配置`SHOPRESOLVE_DOCUMENT_RETRIEVAL_MODE`供正式API读取，一键本地入口用上述命令行参数。任务绑定模式，精确scan仍走全量字面匹配。CPU冷启动需要生成当前快照向量，之后复用按owner/revision隔离的有界缓存；这里没有在线吞吐保证。英文模型成绩不代替中文资料评测。
+
+完整CPU复现（BGE-base全语料编码较慢，使用新的输出和缓存路径）：
+
+```powershell
+.venv\Scripts\python.exe -m scripts.evaluate_document_hybrid --cache .cache/evals/new-ir-cpu-batch --output docs/evaluation/new-ir-cpu-batch
+.venv\Scripts\python.exe -m scripts.summarize_document_hybrid --cache .cache/evals/new-ir-cpu-batch --results docs/evaluation/new-ir-cpu-batch
+```
+
+本机正式批次使用RTX4050 6GB加速，固定四组BM25/Dense/RRF/RRF+top20重排、SCIDOCS1000和SciFact300；CUDA ONNX Runtime 1.23.2安装到ignored`.cache/ir-cuda-runtime`，通过该进程的`PYTHONPATH`加载，CUDA/cuDNN DLL只读使用已有PyTorch环境。原`.venv`和全局CUDA没有修改。已验证命令：
+
+```powershell
+# 安装时将TEMP/TMP和pip缓存放到本仓有空间的D盘目录。
+.venv\Scripts\python.exe -m pip install --target .cache/ir-cuda-runtime --no-deps onnxruntime-gpu==1.23.2
+$env:PYTHONPATH = (Resolve-Path .cache/ir-cuda-runtime).Path
+.venv\Scripts\python.exe -m scripts.evaluate_document_hybrid --provider CUDAExecutionProvider --cuda-dll-dir D:\conda_envs\torch-ts-py312\Lib\site-packages\torch\lib --cache .cache/evals/public-ir-v03-cuda-20261103
+```
+
+最后的DLL目录是本机已有带CUDA的PyTorch路径；其他机器须替换为自己的路径并满足CUDA依赖。请求的CUDA Provider不可用时直接报错，不把CPU回退伪装成GPU。若只需要CPU，请省略这段GPU配置。
+
+缓存记录冻结源哈希、模型文件哈希、完整输入文本哈希和逐题结果；中断后同配置可恢复。不要编辑候选实现后继续复用旧缓存，旧CPU诊断批次也不能充当正式新模型结果。查询向量在此离线评测中批量生成，排序耗时不包含查询编码；不把它与旧CPU调用延迟直接相比。
