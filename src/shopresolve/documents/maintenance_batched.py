@@ -3,7 +3,12 @@
 from shopresolve.errors import DomainError
 
 from .maintenance import NoChangeDecision
-from .maintenance_batched_protocol import BATCHED_MODEL_LIMIT, PROTOCOLS, RESEARCH_LIMIT
+from .maintenance_batched_protocol import (
+    BATCHED_MODEL_LIMIT,
+    BATCHED_PHASE_PREFIX,
+    PROTOCOLS,
+    RESEARCH_LIMIT,
+)
 from .maintenance_research import execute_research, intent_signature, normalize_questions
 from .maintenance_runtime import CANDIDATE_ERRORS, MaintenanceRuntime
 
@@ -11,7 +16,7 @@ from .maintenance_runtime import CANDIDATE_ERRORS, MaintenanceRuntime
 class BatchedResearchRuntime(MaintenanceRuntime):
     initial_phase = "REASON"
     protocol_version = "maintenance-batched-react-v1"
-    phase_prefix = "MAINTENANCE_BATCHED_"
+    phase_prefix = BATCHED_PHASE_PREFIX
     uses_batched_control = True
 
     def _protocol(self, phase):

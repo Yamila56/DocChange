@@ -12,6 +12,7 @@ from .model_profile import configure_document_payload
 from .runtime import Edit
 
 BATCHED_POLICY = "batched-react-v1"
+BATCHED_PHASE_PREFIX = "MAINTENANCE_B_"
 TASKGRAPH_POLICIES = ("taskgraph-v2", BATCHED_POLICY)
 BATCHED_MODEL_LIMIT = 10
 RESEARCH_LIMIT = 3
@@ -141,7 +142,7 @@ INSTRUCTIONS = {
 
 
 def build_batched_payload(settings, phase, context):
-    role = phase.removeprefix("MAINTENANCE_BATCHED_")
+    role = phase.removeprefix(BATCHED_PHASE_PREFIX)
     data = context.copy()
     selective_thinking = data.pop("selective_thinking", False)
     schema = json.dumps(PROTOCOLS[role].json_schema(), separators=(",", ":"))

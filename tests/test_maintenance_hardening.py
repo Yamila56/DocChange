@@ -360,7 +360,7 @@ async def test_restored_deadline_cannot_grant_a_fresh_execution_window(
     state, _, _ = await store.load(lease)
     state["maintenance"] = {
         "protocol_version": "maintenance-v2h1",
-        "deadline_unix": time.time() - 1,
+        "deadline_unix_ms": time.time_ns() // 1000000 - 1000,
     }
     await store.save(lease, state)
     gateway = MaintenanceGateway()

@@ -4,9 +4,13 @@ import pytest
 
 from shopresolve.agent.gateway import ModelReply
 from shopresolve.config import Settings
-from shopresolve.documents.maintenance_batched_protocol import BATCHED_POLICY, build_batched_payload
+from shopresolve.documents.maintenance_batched_protocol import (
+    BATCHED_PHASE_PREFIX,
+    BATCHED_POLICY,
+    build_batched_payload,
+)
 from shopresolve.documents.repository import RepositoryEnvironment, RepositoryRuntime
-from shopresolve.models import Run
+from shopresolve.models import ModelStep, Run
 from shopresolve.runstore import RunStore
 from tests.test_document_repository import git, repository  # noqa: F401
 from tests.test_maintenance_taskgraph import submit
@@ -237,9 +241,11 @@ def test_selective_thinking_is_explicit_and_challenges_yield_to_context_budget()
         ("EDIT", "disabled"),
         ("REPAIR", "disabled"),
     ]:
+        phase = BATCHED_PHASE_PREFIX + role
+        assert len(phase) <= ModelStep.__table__.c.phase.type.length
         payload = build_batched_payload(
             settings,
-            "MAINTENANCE_BATCHED_" + role,
+            phase,
             {
                 "selective_thinking": True,
                 "evidence": [{"content": "keep"}],
