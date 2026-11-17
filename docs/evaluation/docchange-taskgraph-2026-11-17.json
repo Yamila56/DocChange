@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-17",
+  "policy": "taskgraph-v2",
+  "scope": "engineering validation with scripted model replies; not a public model benchmark",
+  "generative_api_requests": 0,
+  "training_runs": 0,
+  "checks": [
+    {
+      "scope": "full local regression before final boundary checks",
+      "tests": 220,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 16
+    },
+    {
+      "scope": "final taskgraph and legacy repository compatibility",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "scripted_happy_path_model_calls": 3,
+  "scripted_single_repair_model_calls": 5,
+  "automatic_discovery_charges_model_decisions": false,
+  "source_sha256": {
+    "src/shopresolve/documents/maintenance.py": "5cdf15b73307372829283cd7228900fbbdde2005cfd54f527884b6af460c10e2",
+    "src/shopresolve/documents/maintenance_discovery.py": "65c6b879f1cf64773624dc74eeb02ab7f5b6f90b8077b2427649d3feadd4ed32",
+    "src/shopresolve/documents/maintenance_runtime.py": "97e6d3cd8aa9a11404f625438c71d89e39553fd5beef753987c46d43e9f0f5f2",
+    "src/shopresolve/documents/repository.py": "2faf276b2510b78db91aee31a2d8052f4c2ce7ed7042c51dab159a09b6f491ce",
+    "scripts/run_repository.py": "9591d4947e5d9e5fd08e09ac7eb13e41dff4deafc9890e26e089d45edae98652",
+    "scripts/evaluate_dogbench.py": "bb3fee46bf06a645fb4e8dc9e6cd1d4f8b1b2c8b525544717ab38ce68d849a5a",
+    "tests/test_maintenance_taskgraph.py": "7ce35a13ec0d13a92eb1f8e290fdfebc1b20a0ce8ae48195841f771339164a8d"
+  },
+  "public_metrics_changed": false,
+  "upstream_design_reference": "https://github.com/qiqihezh/deepresearch-agent/blob/3c59892d459c95a747166cd3c9573093c0794109/src/planner/dag.py",
+  "copies_upstream_runtime": false
+}

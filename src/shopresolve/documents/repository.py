@@ -68,6 +68,10 @@ class RepositoryDecision(BaseModel):
 
 class RepositoryGateway(CompatibleJsonGateway):
     def build_payload(self, phase, context):
+        if phase.startswith("MAINTENANCE_"):
+            from .maintenance_runtime import build_maintenance_payload
+
+            return build_maintenance_payload(self.settings, phase, context)
         system = (
             "You are DocChange, a documentation maintenance agent. Follow the user's task. "
             "Return ONE JSON RepositoryDecision. Tools: list(root,path prefix,offset,limit), "
@@ -571,6 +575,12 @@ class RepositoryRuntime:
 
     async def _run(self, lease, task_prompt):
         state, calls, _ = await self.store.load(lease)
+        if state["config"].get("repository_policy") == "taskgraph-v2":
+            from .maintenance_runtime import MaintenanceRuntime
+
+            return await MaintenanceRuntime(
+                self.store, self.gateway, self.environment, self.trace
+            ).run(lease, task_prompt)
         policy_enabled = state["config"].get("repository_policy") == "coverage-v1"
         state.setdefault("repository_observations", [])
         self.environment.read_paths.update(state.get("repository_read_paths", []))

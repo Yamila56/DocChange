@@ -21,7 +21,7 @@ from shopresolve.documents.repository import (
     RepositoryRuntime,
 )
 from shopresolve.documents.repository_search import encoder_for
-from shopresolve.models import Base
+from shopresolve.models import Base, Run
 from shopresolve.runstore import RunStore
 
 
@@ -96,7 +96,7 @@ async def main(args):
             "provider": "deepseek",
             "model": settings.model,
             "domain": "repository",
-            "repository_policy": "coverage-v1",
+            "repository_policy": args.policy,
             "model_limit": 16,
             "model_timeout_seconds": settings.model_timeout_seconds,
             "active_budget_ms": 900000,
@@ -125,6 +125,13 @@ async def main(args):
             ),
             encoding="utf-8",
         )
+        if args.policy == "taskgraph-v2":
+            async with sessions() as session:
+                saved = await session.get(Run, rid)
+                maintenance = saved.state["maintenance"]
+            (output / "maintenance-graph.json").write_text(
+                json.dumps(maintenance["graph"], ensure_ascii=False, indent=2), encoding="utf-8"
+            )
         print(
             json.dumps(
                 {"run_id": rid, "decision": result["decision"], "output": str(output)},
@@ -138,6 +145,7 @@ async def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+    parser.add_argument("--policy", choices=["coverage-v1", "taskgraph-v2"], default="taskgraph-v2")
     parser.add_argument("--docs-root", type=Path, required=True)
     parser.add_argument("--code-root", type=Path)
     parser.add_argument("--task-file", type=Path, required=True)

@@ -18,6 +18,8 @@ flowchart LR
 
 任务、证据和编辑操作建立显式关联。Git适配器按需读取仓库并导出候选补丁；工作台通过Revision与ChangeSet保存文档历史和发布记录。
 
+仓库Agent新增`taskgraph-v2`：Planner生成带查询与依赖的维护计划，运行时自动搜索/批读，再进行覆盖判断、候选编辑和结构化复核；最多一次限定需求/路径的修补。任务、原文证据、覆盖格、编辑及复核可导出为关系图。实现范围与借鉴来源见[任务图设计](docs/design/23-TaskGraph与证据关系维护策略.md)，本轮[工程验收](docs/evaluation/docchange-taskgraph-2026-11-17.md)与历史模型成绩分别记录。
+
 ## 系统设计
 
 - 单智能体Runtime/Harness：结构化工具调用、参数校验、调用预算、持久checkpoint与工具回执。

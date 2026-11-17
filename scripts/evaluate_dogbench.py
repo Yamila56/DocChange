@@ -106,7 +106,7 @@ async def main(args):
         "billing": "Codex subscription; cost unknown" if args.subscription else "DeepSeek API",
         "cache_hit_rate_cny_per_million": cache_hit_rate(args.model) if args.cache_aware else None,
         "retrieval_mode": args.retrieval_mode,
-        "repository_policy": "coverage-v1",
+        "repository_policy": getattr(args, "repository_policy", "coverage-v1"),
         "retrieval_provider": args.retrieval_provider,
         "thinking": "enabled/high" if args.model == PRO_MODEL else "disabled",
         "source_sha256": {
@@ -275,7 +275,7 @@ async def main(args):
                     "provider": "deepseek",
                     "model": settings.model,
                     "domain": "repository",
-                    "repository_policy": "coverage-v1",
+                    "repository_policy": getattr(args, "repository_policy", "coverage-v1"),
                     "model_limit": args.model_limit,
                     "model_timeout_seconds": settings.model_timeout_seconds,
                     "active_budget_ms": task_timeout * 1000,
@@ -433,6 +433,9 @@ if __name__ == "__main__":
         "--retrieval-mode", choices=["section_bm25", "dense", "hybrid"], default="hybrid"
     )
     parser.add_argument("--model-limit", type=int, default=16)
+    parser.add_argument(
+        "--repository-policy", choices=["coverage-v1", "taskgraph-v2"], default="coverage-v1"
+    )
     parser.add_argument("--task-timeout-seconds", type=int, default=900)
     parser.add_argument("--request-timeout-seconds", type=int)
     parser.add_argument("--cohort-predictions", type=Path)

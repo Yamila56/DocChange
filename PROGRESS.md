@@ -1,3 +1,5 @@
+2026-11-17 TaskGraph融合改进已实现，待最终提交/推送：新taskgraph-v2独立接在RepositoryRuntime的既有RunStore/租约/回执上；PLAN一次给出影响假设与查询DAG，自动发现不消耗模型决策，结构化覆盖/编辑/独立复核，最多一次限定需求与路径的修补；Requirement/Evidence/Coverage/Edit/Review关系随检查点保存并可由CLI导出。run_repository默认v2，可显式coverage-v1；DoGBench默认旧策略，仅新增显式切换参数。网页DocumentRuntime、后端、检索、全部历史成绩不改。借鉴DeepResearch分层DAG模式，未复制其运行时。全套本地204通过/16跳过，最后边界调整后新旧仓库定向20通过；Ruff通过。新策略没有模型benchmark收益数字，本轮0付费生成、0训练、不租卡。新评测和设计报告见docs/evaluation/docchange-taskgraph-2026-11-17及design/23。待发布检查、私有main推送和实际CI。GitHub CLI独立登录已失效，但现有Git凭据有效，.cache/read_docchange_ci.py仅用同一Git认证读取本仓CI，不保存或输出Token。旧未跟踪评测草稿保留且不纳入提交。
+
 2026-11-17 README对外展示修订：重写项目定位、工作流程、系统设计、公开评测与本地启动入口，移除首页中的私人预算、交接与过时状态。仅文档编辑，未运行模型或重新执行应用测试；提交前检查Markdown链接和git diff。
 
 2026-11-04 Flash延时配置固定49题复测已完成：49/49结束并评分，正常返回25项、执行失败24项、最终补丁24份。原Pro同题正常11、失败38、补丁6。检索/Agent策略不变；Flash非思考、32轮、请求180秒、单题1800秒、8并发，属于联合配置比较，不声称模型单因素提升或175题全量。完整报告、原始预测、评分、补丁和配对数据独立导出，旧结果不覆盖。Key/余额/SQL不上传。后续仅发布检查、私有GitHub推送和CI，不追加功能或训练。
