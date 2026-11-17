@@ -98,9 +98,16 @@ class MaintenanceRuntime:
 
     async def run(self, lease, task_prompt):
         state, _, _ = await self.store.load(lease)
-        seconds = state["config"].get("active_budget_ms", 1800000) / 1000
-        self.deadline = state.get("maintenance", {}).get("deadline_unix", time.time() + seconds)
-        remaining = self.deadline - time.time()
+        saved = state.get("maintenance", {})
+        self.deadline_ms = saved.get("deadline_unix_ms")
+        if self.deadline_ms is None:
+            # Explicit compatibility for the pre-integer pilot, without resetting time.
+            self.deadline_ms = (
+                round(saved["deadline_unix"] * 1000)
+                if "deadline_unix" in saved
+                else time.time_ns() // 1000000 + state["config"].get("active_budget_ms", 1800000)
+            )
+        remaining = (self.deadline_ms - time.time_ns() // 1000000) / 1000
         if remaining <= 0:
             await self.store.finish(lease, state, "FAILED", "UNRESOLVED", "TIME_BUDGET")
             raise DomainError("TIME_BUDGET", "Persisted maintenance deadline has expired")
@@ -126,7 +133,8 @@ class MaintenanceRuntime:
                     "CHECKPOINT_INVALID", "Maintenance protocol changed; use a new run"
                 )
             # A worker restart never grants a new task execution window.
-            self.data.setdefault("deadline_unix", self.deadline)
+            self.data.pop("deadline_unix", None)
+            self.data["deadline_unix_ms"] = self.deadline_ms
             if "snapshot" not in self.data:
                 self.data["snapshot"] = await self._snapshot()
                 summary = await asyncio.to_thread(self.env.implementation_summary)
@@ -149,13 +157,15 @@ class MaintenanceRuntime:
                 await self.store.heartbeat(lease, seconds=180)
                 phase = self.data["phase"]
                 if phase == "DISCOVER":
-                    started = time.perf_counter()
+                    started = time.perf_counter_ns()
                     self.data["discovery"] = await discover(
                         self.data["tasks"],
                         self._discovery_tool,
                         self.env.files,
                     )
-                    self.data["discovery_elapsed_ms"] = (time.perf_counter() - started) * 1000
+                    self.data["discovery_elapsed_ms"] = (
+                        time.perf_counter_ns() - started
+                    ) // 1000000
                     # No later stage searches in this frozen policy. Keep receipts
                     # and evidence, but release potentially huge implementation indices.
                     self.env.indices.clear()
@@ -363,7 +373,7 @@ class MaintenanceRuntime:
         return phase_protocol(phase).validate_python(self.state["pending"]["response"]), step
 
     async def _tool(self, step, key, arguments, local, task_id=None):
-        started = time.perf_counter()
+        started = time.perf_counter_ns()
         action = RepositoryDecision.model_validate(arguments)
         identity, cached = await self.store.invocation(
             self.lease, step, key, action.kind, action.model_dump()
@@ -398,7 +408,7 @@ class MaintenanceRuntime:
         self.data.setdefault("tool_metrics", {})[key] = {
             "kind": action.kind,
             "root": action.root,
-            "elapsed_ms": (time.perf_counter() - started) * 1000,
+            "elapsed_ms": (time.perf_counter_ns() - started) // 1000000,
             "cache_hit": cached is not None,
         }
         return result
@@ -410,9 +420,9 @@ class MaintenanceRuntime:
         local.indices = dict(self.env.indices)
         key = "discover:" + task_id + ":" + digest(arguments)[:16]
         if arguments["kind"] == "search":
-            started = time.perf_counter()
+            started = time.perf_counter_ns()
             async with self.search_locks[arguments.get("root", "docs")]:
-                waited_ms = (time.perf_counter() - started) * 1000
+                waited_ms = (time.perf_counter_ns() - started) // 1000000
                 local.indices = dict(self.env.indices)
                 result = await self._tool(self.data["plan_step"], key, arguments, local, task_id)
                 self.env.indices.update(local.indices)

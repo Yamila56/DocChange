@@ -214,6 +214,9 @@ async def test_taskgraph_happy_path_uses_three_model_calls_and_persists_graph(
     async with commerce[1]() as session:
         saved = await session.get(Run, rid)
         data = saved.state["maintenance"]
+        assert isinstance(data["deadline_unix_ms"], int) and "deadline_unix" not in data
+        assert isinstance(data["discovery_elapsed_ms"], int)
+        assert all(isinstance(t["elapsed_ms"], int) for t in data["tool_metrics"].values())
         assert data["phase"] == "FINALIZE" and data["discovery"]["R1"]["status"] == "evidence_found"
         assert {n["type"] for n in data["graph"]["nodes"]} == {
             "requirement",
