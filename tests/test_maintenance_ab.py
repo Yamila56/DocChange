@@ -4,6 +4,7 @@ import sqlite3
 import pytest
 
 from scripts.analyze_maintenance_ab import (
+    compare_configurations,
     failure_classification,
     latency_comparison,
     metrics,
@@ -12,6 +13,34 @@ from scripts.analyze_maintenance_ab import (
     task_measurements,
 )
 from scripts.dogbench_outcomes import official_prediction, runtime_result
+
+
+def test_matched_budget_rejects_confounded_runs():
+    old = {
+        "repository_policy": "coverage-v1",
+        "model_limit": 10,
+        "dataset_sha256": "data",
+        "cohort_ids_sha256": "cohort",
+        "model": "deepseek-flash",
+        "thinking": "disabled",
+        "workers": 8,
+        "retrieval_mode": "hybrid",
+        "retrieval_provider": "CUDAExecutionProvider",
+        "request_timeout_seconds": 180,
+        "task_timeout_seconds": 1800,
+        "score_contract": "official",
+        "billing": "DeepSeek API",
+        "cap_cny": 15,
+        "source_sha256": {"file": "hash"},
+        "implementation_index_io": "WSL",
+    }
+    new = {**old, "repository_policy": "batched-react-v1", "effective_model_limit": 10}
+    assert compare_configurations(old, new, "matched-budget")["matched_decision_budget"]
+    with pytest.raises(ValueError, match="coverage-v1@10"):
+        compare_configurations({**old, "model_limit": 32}, new, "matched-budget")
+    for key in ("retrieval_mode", "implementation_index_io", "source_sha256", "workers"):
+        with pytest.raises(ValueError, match=key):
+            compare_configurations(old, {**new, key: "different"}, "matched-budget")
 
 
 def row(**overrides):
@@ -142,3 +171,10 @@ def test_tool_counts_exclude_plan_and_review_roles_and_support_zero_api_calls(tm
     result = task_measurements(tmp_path, "case", row())
     assert result["operational_tool_calls"] == 3
     assert result["model_decisions"] == 0 and result["api_receipt_records"] == 0
+    (folder / "model-calls.jsonl").write_text(
+        '{"usage":{"prompt_tokens":120,"completion_tokens":30}}\n{"error_type":"Timeout"}\n',
+        encoding="utf-8",
+    )
+    result = task_measurements(tmp_path, "case", row())
+    assert result["api_receipt_records"] == 2 and result["receipts_with_usage"] == 1
+    assert result["reported_input_tokens"] == 120 and result["reported_output_tokens"] == 30

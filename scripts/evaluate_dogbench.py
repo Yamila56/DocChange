@@ -23,7 +23,8 @@ from shopresolve.db import make_database
 from shopresolve.documents.maintenance_batched_protocol import (
     BATCHED_MODEL_LIMIT,
     BATCHED_POLICY,
-    RESEARCH_LIMIT,
+    PRE_EDIT_RESEARCH_LIMIT,
+    REVIEW_RESEARCH_LIMIT,
     TASKGRAPH_POLICIES,
 )
 from shopresolve.documents.model_profile import PRO_MODEL, cache_hit_rate
@@ -48,6 +49,9 @@ from dogbench.verify import verify_attestation  # noqa: E402
 async def main(args):
     policy = getattr(args, "repository_policy", "coverage-v1")
     batched_thinking = getattr(args, "batched_thinking", False)
+    use_wsl_index = os.name == "nt" and (
+        policy in TASKGRAPH_POLICIES or getattr(args, "wsl_index_io", False)
+    )
     if batched_thinking and (policy != BATCHED_POLICY or args.subscription):
         raise ValueError("--batched-thinking requires the batched policy with DeepSeek API")
     if args.workers < 1 or args.model_limit < 1:
@@ -112,6 +116,7 @@ async def main(args):
         "items": [i["instance_id"] for i in items],
         "model": args.model,
         "model_limit": args.model_limit,
+        "workers": args.workers,
         "task_timeout_seconds": task_timeout,
         "max_requests": len(items) * args.model_limit if args.subscription else 2800,
         "cap_cny": None if args.subscription else args.cap_cny,
@@ -130,10 +135,12 @@ async def main(args):
     }
     if policy == BATCHED_POLICY:
         plan["effective_model_limit"] = min(args.model_limit, BATCHED_MODEL_LIMIT)
-        plan["research_round_limit"] = RESEARCH_LIMIT
+        plan["research_round_limit"] = PRE_EDIT_RESEARCH_LIMIT + REVIEW_RESEARCH_LIMIT
+        plan["pre_edit_research_limit"] = PRE_EDIT_RESEARCH_LIMIT
+        plan["review_research_limit"] = REVIEW_RESEARCH_LIMIT
         if batched_thinking:
             plan["thinking"] = "reason/verify high, edit/repair disabled"
-    if os.name == "nt" and policy in TASKGRAPH_POLICIES:
+    if use_wsl_index:
         plan["implementation_index_io"] = "WSL-local reader for verified Linux workspaces"
     if cohort:
         plan["cohort_ids_sha256"] = hashlib.sha256(
@@ -143,6 +150,8 @@ async def main(args):
         plan["request_timeout_seconds"] = request_timeout
     if getattr(args, "capture_error_usage", False):
         plan["capture_error_usage"] = True
+    if args.api_only_symlinks:
+        plan["api_only_symlinks"] = True
     if (out / "plan.json").exists():
         previous = json.loads((out / "plan.json").read_text())
         if previous != plan and (out / "source-repair-amendment.json").exists():
@@ -274,7 +283,7 @@ async def main(args):
                 )
                 environment_type = RepositoryEnvironment
                 environment_options = {}
-                if native_windows and policy in TASKGRAPH_POLICIES:
+                if native_windows and use_wsl_index:
                     from scripts.repository_index_bridge import WslRepositoryEnvironment
 
                     environment_type = WslRepositoryEnvironment
@@ -470,6 +479,9 @@ if __name__ == "__main__":
     parser.add_argument("--request-timeout-seconds", type=int)
     parser.add_argument("--cohort-predictions", type=Path)
     parser.add_argument("--capture-error-usage", action="store_true")
+    parser.add_argument(
+        "--wsl-index-io", action="store_true", help="Use the same WSL index reader for coverage-v1"
+    )
     parser.add_argument(
         "--retrieval-provider",
         choices=["CPUExecutionProvider", "CUDAExecutionProvider"],

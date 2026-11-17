@@ -8,6 +8,7 @@ from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
 from shopresolve.errors import DomainError
 
 from .maintenance import UnresolvedDecision
+from .maintenance_evidence import anchor_edit_evidence, compact_nonanchored
 from .model_profile import configure_document_payload
 from .runtime import Edit
 
@@ -15,7 +16,8 @@ BATCHED_POLICY = "batched-react-v1"
 BATCHED_PHASE_PREFIX = "MAINTENANCE_B_"
 TASKGRAPH_POLICIES = ("taskgraph-v2", BATCHED_POLICY)
 BATCHED_MODEL_LIMIT = 10
-RESEARCH_LIMIT = 3
+PRE_EDIT_RESEARCH_LIMIT = 3
+REVIEW_RESEARCH_LIMIT = 1
 
 
 class ResearchQuestion(BaseModel):
@@ -43,7 +45,8 @@ class DeliveryTarget(BaseModel):
 class ReadyToEdit(BaseModel):
     model_config = ConfigDict(extra="forbid")
     kind: Literal["ready_to_edit"]
-    targets: list[DeliveryTarget] = Field(min_length=1, max_length=8)
+    targets: list[DeliveryTarget] = Field(max_length=8)
+    retire_targets: list[DeliveryTarget] = Field(default_factory=list, max_length=8)
 
 
 class NoChange(BaseModel):
@@ -63,6 +66,14 @@ class Draft(BaseModel):
     model_config = ConfigDict(extra="forbid")
     kind: Literal["propose"]
     edits: list[BoundEdit] = Field(min_length=1, max_length=30)
+    text: str = Field(min_length=1, max_length=2400)
+
+
+class RevisionDraft(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    kind: Literal["revise"]
+    replace_edit_ids: list[str] = Field(default_factory=list, max_length=30)
+    edits: list[BoundEdit] = Field(max_length=30)
     text: str = Field(min_length=1, max_length=2400)
 
 
@@ -98,6 +109,9 @@ PROTOCOLS = {
         ]
     ),
     "EDIT": TypeAdapter(Annotated[Draft | UnresolvedDecision, Field(discriminator="kind")]),
+    "REVISE": TypeAdapter(
+        Annotated[RevisionDraft | UnresolvedDecision, Field(discriminator="kind")]
+    ),
     "VERIFY": TypeAdapter(
         Annotated[
             ApprovedReview | RepairReview | Investigate | UnresolvedDecision,
@@ -113,9 +127,11 @@ INSTRUCTIONS = {
         "batches. Each question has a root and focused queries and/or exact tracked paths. "
         "Avoid repeating an earlier query/path; use an exact anchor to revisit a different range. "
         "On the first turn investigate. After observation, use ready_to_edit for the material "
-        "changes you can substantiate. Include all material affected surfaces in these targets; "
+        "changes you can substantiate. With a current patch, return only new or changed targets; "
+        "existing targets stay unless named in retire_targets with new evidence and a reason. "
         "investigation questions are hypotheses and are not delivery targets. Use no_change only "
         "if observed material establishes internal-only impact or docs already cover the change. "
+        "Cite both implementation/code and documentation for no_change. "
         "Absence of a search hit is not evidence for no-change. If a material gap remains and "
         "another research round is possible, investigate. Otherwise return unresolved. "
     ),
@@ -125,6 +141,12 @@ INSTRUCTIONS = {
         "with exactly one target the runtime can infer that binding. Keep unrelated content. "
         "Use unresolved if a correct patch is not supported. "
     ),
+    "REVISE": (
+        "Continue the current draft. Return new edits only. The runtime preserves all existing "
+        "edits unless their IDs are in replace_edit_ids. Only list an ID to remove or replace "
+        "an edit when the review or new evidence justifies it. Include citations for each new "
+        "edit. Ensure shared bindings for all retained targets remain covered. "
+    ),
     "VERIFY": (
         "Independently compare the original task, implementation, candidate and source ranges. "
         "Challenge evidence is selected separately from candidate citations to expose omissions. "
@@ -132,6 +154,8 @@ INSTRUCTIONS = {
         "candidate, explain gaps with investigate or unresolved; do not treat lack of evidence as "
         "support. Use local_repair for patch defects that can be fixed with existing evidence, "
         "naming target ID and exact affected path. Use investigate for a concrete missing source. "
+        "Packed sources show exact excerpts and the original locator; investigate if the "
+        "provided excerpts do not support a conclusion. "
     ),
     "REPAIR": (
         "Return only replacement edits within the provided requirement/path scope. The runtime "
@@ -190,6 +214,16 @@ def build_batched_payload(settings, phase, context):
     while not fits() and data.get("challenge_evidence"):
         data["challenge_evidence"] = data["challenge_evidence"][:-1]
         payload["messages"][1]["content"] = user_content()
+    if role in {"VERIFY", "REPAIR"} and not fits():
+        edits = data.get("candidate", {}).get("edits", [])
+        original = [anchor_edit_evidence(view, edits) for view in data.get("evidence", [])]
+        data["evidence"] = original
+        payload["messages"][1]["content"] = user_content()
+        for size in (4800, 1600, 800):
+            if fits():
+                break
+            data["evidence"] = [compact_nonanchored(view, size) for view in original]
+            payload["messages"][1]["content"] = user_content()
     if not fits():
         raise DomainError("CONTEXT_LIMIT", "Batched documentation context exceeds input budget")
     return payload

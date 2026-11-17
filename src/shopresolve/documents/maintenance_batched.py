@@ -6,16 +6,18 @@ from .maintenance import NoChangeDecision
 from .maintenance_batched_protocol import (
     BATCHED_MODEL_LIMIT,
     BATCHED_PHASE_PREFIX,
+    PRE_EDIT_RESEARCH_LIMIT,
     PROTOCOLS,
-    RESEARCH_LIMIT,
+    REVIEW_RESEARCH_LIMIT,
 )
+from .maintenance_evidence import draft_view, edit_identity, review_evidence
 from .maintenance_research import execute_research, intent_signature, normalize_questions
 from .maintenance_runtime import CANDIDATE_ERRORS, MaintenanceRuntime
 
 
 class BatchedResearchRuntime(MaintenanceRuntime):
     initial_phase = "REASON"
-    protocol_version = "maintenance-batched-react-v1"
+    protocol_version = "maintenance-batched-react-v2"
     phase_prefix = BATCHED_PHASE_PREFIX
     uses_batched_control = True
 
@@ -60,12 +62,14 @@ class BatchedResearchRuntime(MaintenanceRuntime):
                     await self._no_change(action, step)
                     await self._transition(phase, "VERIFY")
                 else:
+                    previous_targets = self.data["tasks"]
                     self.data["tasks"] = self._targets(action)
-                    if "candidate" in self.data:
-                        self.data["previous_candidate"] = self.data.pop("candidate")
-                    await self._transition(phase, "EDIT")
-            elif phase in {"EDIT", "REPAIR"}:
-                await self._propose(action, step, repair=phase == "REPAIR")
+                    revise = self.data.get("candidate", {}).get("decision") == "patch"
+                    if revise:
+                        self.data["revision_existing_targets"] = previous_targets
+                    await self._transition(phase, "REVISE" if revise else "EDIT")
+            elif phase in {"EDIT", "REVISE", "REPAIR"}:
+                await self._propose(action, step, phase=phase)
                 await self._transition(phase, "VERIFY")
             elif phase == "VERIFY":
                 self.data["review"] = action.model_dump()
@@ -87,10 +91,18 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             await self._protocol_feedback(phase, exc)
         return None
 
+    def _research_budget(self, phase):
+        review = phase == "VERIFY" or bool(self.data.get("candidate"))
+        bucket = "review" if review else "pre_edit"
+        limit = REVIEW_RESEARCH_LIMIT if review else PRE_EDIT_RESEARCH_LIMIT
+        used = sum(r["budget"] == bucket for r in self.data.get("research_history", []))
+        return bucket, max(0, limit - used)
+
     async def _schedule_research(self, phase, action, step):
         history = self.data.get("research_history", [])
-        if len(history) >= RESEARCH_LIMIT:
-            return await self._unresolved("RESEARCH_BUDGET", "Research rounds exhausted")
+        bucket, remaining = self._research_budget(phase)
+        if not remaining:
+            return await self._unresolved("RESEARCH_BUDGET", f"{bucket} research rounds exhausted")
         questions = normalize_questions(action.questions, self.env.tracked, self.env.roots)
         signature = intent_signature(questions)
         if any(r["signature"] == signature for r in history):
@@ -101,6 +113,7 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             "signature": signature,
             "questions": questions,
             "trigger": phase,
+            "budget": bucket,
             "prior_evidence_ids": sorted(self.data["evidence"]),
         }
         self.data["plan_step"] = step
@@ -126,7 +139,9 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             {
                 "signature": scheduled["signature"],
                 "trigger": scheduled["trigger"],
+                "budget": scheduled["budget"],
                 "branches": branches,
+                "new_evidence_ids": sorted(new_ids),
                 "new_evidence_count": len(new_ids),
                 "new_path_count": len(new_paths),
             }
@@ -143,18 +158,46 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             raise DomainError("UNBOUND_EDIT", "Delivery targets need unique IDs")
         if any(set(t.evidence_ids) - self.data["evidence"].keys() for t in targets):
             raise DomainError("UNKNOWN_EVIDENCE", "Delivery targets must cite known sources")
-        return [
-            {**target.model_dump(), "dependencies": [], "surfaces": ["change"]}
-            for target in targets
-        ]
+        keep = self.data.get("candidate", {}).get("decision") == "patch"
+        existing = {t["id"]: t for t in self.data["tasks"]} if keep else {}
+        retired = {t.id for t in action.retire_targets}
+        new_ids = set(self.data["research_history"][-1]["new_evidence_ids"])
+        if retired - existing.keys() or retired & {t.id for t in targets}:
+            raise DomainError("UNBOUND_EDIT", "Retire only existing, unreplaced delivery targets")
+        for target in action.retire_targets:
+            refs = set(target.evidence_ids)
+            if not refs <= self.data["evidence"].keys() or not refs & new_ids:
+                raise DomainError(
+                    "MISSING_EVIDENCE", "Retiring a target needs fresh observed evidence"
+                )
+        merged = {rid: target for rid, target in existing.items() if rid not in retired}
+        merged.update(
+            {t.id: {**t.model_dump(), "dependencies": [], "surfaces": ["change"]} for t in targets}
+        )
+        if not 1 <= len(merged) <= 8:
+            raise DomainError(
+                "UNBOUND_EDIT", "A patch needs one to eight material delivery targets"
+            )
+        return list(merged.values())
 
     async def _no_change(self, action, step):
         sources = self.data["evidence"]
         if not set(action.evidence_ids) <= sources.keys():
             raise DomainError("UNKNOWN_EVIDENCE", "No-change cites unknown sources")
         docs = [sources[e]["path"] for e in action.evidence_ids if sources[e].get("root") == "docs"]
-        if not docs:
-            raise DomainError("MISSING_EVIDENCE", "No-change needs observed documentation")
+        implementation = any(
+            source.get("root") == "code"
+            or (
+                source.get("source_type") == "implementation"
+                and source["content"].get("has_implementation")
+                and bool(source["content"].get("diff_excerpt", "").strip())
+            )
+            for source in (sources[e] for e in action.evidence_ids)
+        )
+        if not docs or not implementation:
+            raise DomainError(
+                "MISSING_EVIDENCE", "No-change requires implementation and documentation sources"
+            )
         self.data["tasks"] = [
             {
                 "id": "no-change",
@@ -194,8 +237,21 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             repair=False,
         )
 
-    def _scope(self):
+    def _defect_scope(self):
         return {(d["requirement_id"], d["path"]) for d in self.data["review"]["defects"]}
+
+    @staticmethod
+    def _edit_pairs(edit):
+        return {(rid, edit["path"]) for rid in edit["requirement_ids"]}
+
+    def _scope(self):
+        defects = self._defect_scope()
+        scope = set(defects)
+        for edit in self.data["candidate"]["edits"]:
+            pairs = self._edit_pairs(edit)
+            if pairs & defects:
+                scope.update(pairs)
+        return scope
 
     def _validate_local_scope(self, action):
         candidate = self.data["candidate"]
@@ -210,7 +266,7 @@ class BatchedResearchRuntime(MaintenanceRuntime):
                 "INVALID_REVIEW", "Local repair requires a known target and observed path"
             )
 
-    async def _propose(self, action, step, *, repair):
+    async def _propose(self, action, step, *, phase):
         targets = {t["id"]: t for t in self.data["tasks"]}
         edits = []
         for raw in action.edits:
@@ -222,24 +278,41 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             if not edit["evidence_ids"]:
                 raise DomainError("MISSING_EVIDENCE", "Each edit needs explicit source citations")
             edits.append(edit)
-        if repair:
+        if phase == "REVISE":
+            previous = self.data["candidate"]["edits"]
+            replace = set(action.replace_edit_ids)
+            if replace - {edit_identity(e) for e in previous}:
+                raise DomainError("REPAIR_SCOPE", "Revision names an unknown current edit ID")
+            if any(
+                set(e["requirement_ids"]) - targets.keys() and edit_identity(e) not in replace
+                for e in previous
+            ):
+                raise DomainError(
+                    "REPAIR_SCOPE", "Explicitly replace edits attached to retired targets"
+                )
+            edits = self._merge_edits(previous, edits, lambda edit: edit_identity(edit) in replace)
+        if phase == "REPAIR":
             scope = self._scope()
+            defects = self._defect_scope()
 
-            def scoped(edit):
-                return all((rid, edit["path"]) in scope for rid in edit["requirement_ids"])
+            def affected(edit):
+                return bool(self._edit_pairs(edit) & defects)
 
-            if any(not scoped(e) for e in edits):
+            if any(not affected(e) or not self._edit_pairs(e) <= scope for e in edits):
                 raise DomainError("REPAIR_SCOPE", "Repair exceeded the permitted target/path scope")
-            replacements = {}
-            for edit in edits:
-                replacements.setdefault(edit["path"], []).append(edit)
-            edits = []
-            for previous in self.data["candidate"]["edits"]:
-                if scoped(previous):
-                    edits.extend(replacements.pop(previous["path"], []))
-                else:
-                    edits.append(previous)
-            edits.extend(edit for group in replacements.values() for edit in group)
+            previous = self.data["candidate"]["edits"]
+            for shared in previous:
+                bindings = set(shared["requirement_ids"])
+                if (
+                    len(bindings) > 1
+                    and affected(shared)
+                    and not any(
+                        edit["path"] == shared["path"] and bindings <= set(edit["requirement_ids"])
+                        for edit in edits
+                    )
+                ):
+                    raise DomainError("REPAIR_SCOPE", "Replace a shared edit with all its bindings")
+            edits = self._merge_edits(previous, edits, affected)
         coverage = []
         for rid, target in targets.items():
             bound = [e for e in edits if rid in e["requirement_ids"]]
@@ -285,6 +358,20 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             "evidence_ids": sorted(cited),
         }
 
+    @staticmethod
+    def _merge_edits(previous, new, replaced):
+        replacements = {}
+        for edit in new:
+            replacements.setdefault(edit["path"], []).append(edit)
+        edits = []
+        for edit in previous:
+            if replaced(edit):
+                edits.extend(replacements.pop(edit["path"], []))
+            else:
+                edits.append(edit)
+        edits.extend(edit for group in replacements.values() for edit in group)
+        return edits
+
     def _ranked_evidence(self):
         branches = [
             q for r in reversed(self.data.get("research_history", [])) for q in r["branches"]
@@ -307,8 +394,7 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             "implementation_evidence_id": self.data["implementation_id"],
             "available_roots": [root for root, path in self.env.roots.items() if path],
             "selective_thinking": self.state["config"].get("batched_thinking", False),
-            "remaining_research_rounds": RESEARCH_LIMIT
-            - len(self.data.get("research_history", [])),
+            "remaining_research_rounds": self._research_budget(phase)[1],
             "targets": self.data["tasks"],
         }
         if feedback := self.data.get("protocol_feedback", {}).get(phase):
@@ -343,8 +429,8 @@ class BatchedResearchRuntime(MaintenanceRuntime):
         if phase in {"VERIFY", "REPAIR"}:
             candidate = self.data["candidate"]
             required = self._candidate_evidence_ids(candidate)
-            context["candidate"] = candidate
-            context["evidence"] = [sources[e] for e in sorted(required) if sources[e].get("root")]
+            context["candidate"] = draft_view(candidate)
+            context["evidence"] = review_evidence(sources, required)
             others = [e for e in ranked if e not in required]
             if phase == "VERIFY":
                 paths = {(sources[e].get("root"), sources[e].get("path")) for e in required}
@@ -370,6 +456,15 @@ class BatchedResearchRuntime(MaintenanceRuntime):
                 if sources[ref].get("root")
             ]
             context["evidence"] = excerpts(list(dict.fromkeys([*preferred, *ranked])), 16, 2400)
+            if candidate := self.data.get("candidate"):
+                context["current_candidate"] = draft_view(candidate)
+                context["existing_targets"] = self.data.get(
+                    "revision_existing_targets", self.data["tasks"]
+                )
+                if self.data.get("review", {}).get("kind") == "investigate":
+                    context["review_requested_research"] = self.data["review"]["questions"]
+                recent = set(self.data["research_history"][-1]["new_evidence_ids"])
+                context["new_evidence"] = excerpts([e for e in ranked if e in recent], 8, 1800)
         return context
 
     def _graph(self):

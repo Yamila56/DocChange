@@ -4,9 +4,40 @@
 
 普通仓库入口默认 `--policy batched-react-v1`，可显式选择 `taskgraph-v2` 或 `coverage-v1`。批量 ReAct 和静态 TaskGraph 运行后可导出 `maintenance-graph.json`，补丁经人工审查。
 
-新增基准策略参数 `--repository-policy batched-react-v1`，使用独立输出目录。开发对照使用 `--model deepseek-flash --model-limit 32`，计划同时保存运行时实际生效的十次决策上限和三轮调查上限。`--batched-thinking` 用于单独的模型设置对照。设计和评分边界见[批量 ReAct 架构](design/25-Batched-ReAct仓库维护架构.md)。
+基准使用 `--repository-policy batched-react-v1`。冻结计划记录十次模型决策的实际硬上限、初稿前三轮调查及复核专用的一轮补查。`--batched-thinking` 用于独立模型设置对照。设计见[批量 ReAct 架构](design/25-Batched-ReAct仓库维护架构.md)。
 
 所有命令在仓库根目录运行。缓存、数据、原仓库、调用日志和预算 SQLite 都在 ignored 路径；不提交 Key 或下载的完整仓库。不要删除账本以绕过限额。
+
+## 批量 ReAct 的固定 49 题对照
+
+| 比较 | 旧组 | 新组 | 要回答的问题 |
+| --- | --- | --- | --- |
+| `historical-system` | 已归档的 Flash `coverage-v1@32` | Flash `batched-react-v1@10` | 新系统在较低的决策上限下交付了什么，实际调用和时延是多少 |
+| `matched-budget` | 本提交的 Flash `coverage-v1@10` | 同一批 `batched-react-v1@10` | 在同一决策上限下，两套执行策略的完成率、正确性、质量和实际调用量有何差异 |
+
+以下 Windows 命令使用前文准备的封存工作区；`$prepared` 为本机 WSL 路径，`$cudaDllDir` 为本机 CUDA DLL 路径，`$batchCap` 为每批的费用上限。每组使用独立目录和账本。对照使用同一源码、Flash 非思考、混合检索、相同 CUDA provider、WSL 读取方式、8 任务并发、180 秒请求和 1,800 秒任务超时。不传 `--batched-thinking`。两组时延记录缓存状态和中断情况。
+
+```powershell
+$common = @('--prepared', $prepared, '--model', 'deepseek-flash', '--model-limit', '10',
+    '--cohort-predictions', 'docs/evaluation/dogbench-flash-long-2026-11-04/predictions.jsonl',
+    '--workers', '8', '--request-timeout-seconds', '180', '--task-timeout-seconds', '1800',
+    '--retrieval-mode', 'hybrid', '--retrieval-provider', 'CUDAExecutionProvider',
+    '--cuda-dll-dir', $cudaDllDir, '--wsl-index-io', '--capture-error-usage',
+    '--api-only-symlinks', '--cache-aware', '--cap-cny', $batchCap)
+foreach ($policy in @('coverage-v1', 'batched-react-v1')) {
+    $batch = ".cache/evals/dogbench-$policy-10"
+    .venv\Scripts\python.exe -m scripts.evaluate_dogbench @common --repository-policy $policy --output $batch
+    if ($LASTEXITCODE -ne 0) { throw "Candidate generation failed for $policy" }
+    .venv\Scripts\python.exe -m scripts.score_dogbench --predictions "$batch/predictions.jsonl" --output "$batch-judgments" --model gpt-5.6-terra --workers 4
+    if ($LASTEXITCODE -ne 0) { throw "Scoring failed for $policy" }
+}
+.venv\Scripts\python.exe -m scripts.analyze_maintenance_ab --comparison matched-budget `
+    --old-batch .cache/evals/dogbench-coverage-v1-10 --old-judgments .cache/evals/dogbench-coverage-v1-10-judgments `
+    --new-batch .cache/evals/dogbench-batched-react-v1-10 --new-judgments .cache/evals/dogbench-batched-react-v1-10-judgments `
+    --output .cache/evals/dogbench-matched-10-report
+```
+
+历史对照用 `--comparison historical-system`，将旧组与评分目录指向 `dogbench-flash-long-20261104` 和 `dogbench-flash-long-judgments-20261104`。两份报告使用不同输出目录。历史版本的实现、预算和索引读取方式不同，适用于整体对照。同预算对照比较整套编排策略，尚不能把变化归因于某个单独模块。两组都完整评分后再汇总 49 题，保留未解项和官方计分口径。
 
 ## 1. 数据与组件检索
 

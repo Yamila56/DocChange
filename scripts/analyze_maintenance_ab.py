@@ -94,6 +94,14 @@ def task_measurements(batch, key, score):
         if receipts.exists()
         else []
     )
+    usage = [
+        entry["usage"]
+        for entry in calls
+        if isinstance(entry.get("usage"), dict)
+        and all(
+            type(entry["usage"].get(name)) is int for name in ("prompt_tokens", "completion_tokens")
+        )
+    ]
     data = state.get("maintenance", {})
     candidate = data.get("candidate") or state.get("repository_candidate", {})
     review = data.get("review") or state.get("repository_review", {})
@@ -104,6 +112,9 @@ def task_measurements(batch, key, score):
         "terminal_reason_code": result.get("reason_code"),
         "model_decisions": model_calls,
         "api_receipt_records": len(calls),
+        "receipts_with_usage": len(usage),
+        "reported_input_tokens": sum(entry["prompt_tokens"] for entry in usage),
+        "reported_output_tokens": sum(entry["completion_tokens"] for entry in usage),
         "operational_tool_calls": sum(tools.values()),
         "tool_counts": dict(tools),
         "observed_doc_paths": sorted(observed),
@@ -158,6 +169,9 @@ def metrics(rows):
         "mean_task_wall_ms": fmean(latencies) if latencies else None,
         "median_task_wall_ms": median(latencies) if latencies else None,
         "total_api_receipt_records": sum(r["api_receipt_records"] for r in rows),
+        "receipts_with_usage": sum(r.get("receipts_with_usage", 0) for r in rows),
+        "reported_input_tokens": sum(r.get("reported_input_tokens", 0) for r in rows),
+        "reported_output_tokens": sum(r.get("reported_output_tokens", 0) for r in rows),
         "total_protocol_corrections": sum(
             sum(r.get("protocol_retries", {}).values()) for r in rows
         ),
@@ -336,10 +350,74 @@ def prepare_drafts(batch, output):
     )
 
 
+def compare_configurations(old, new, comparison):
+    old_limit = old.get("effective_model_limit", old["model_limit"])
+    new_limit = new.get("effective_model_limit", new["model_limit"])
+    matched = comparison == "matched-budget"
+    if matched:
+        if (old["repository_policy"], new["repository_policy"], old_limit, new_limit) != (
+            "coverage-v1",
+            "batched-react-v1",
+            10,
+            10,
+        ):
+            raise ValueError(
+                "Matched-budget comparison needs coverage-v1@10 and batched-react-v1@10"
+            )
+        controls = (
+            "dataset_sha256",
+            "cohort_ids_sha256",
+            "model",
+            "thinking",
+            "workers",
+            "retrieval_mode",
+            "retrieval_provider",
+            "request_timeout_seconds",
+            "task_timeout_seconds",
+            "score_contract",
+            "billing",
+            "cap_cny",
+        )
+        different = [
+            key for key in controls if key not in old or key not in new or old[key] != new[key]
+        ]
+        different.extend(
+            key
+            for key in (
+                "implementation_index_io",
+                "capture_error_usage",
+                "source_sha256",
+                "api_only_symlinks",
+                "max_requests",
+                "cache_hit_rate_cny_per_million",
+            )
+            if old.get(key) != new.get(key)
+        )
+        if different:
+            raise ValueError("Matched-budget controls differ: " + ", ".join(different))
+    return {
+        "comparison": comparison,
+        "matched_decision_budget": matched,
+        "old_effective_model_limit": old_limit,
+        "new_effective_model_limit": new_limit,
+        "old_policy": old.get("repository_policy"),
+        "new_policy": new.get("repository_policy"),
+        "historical_baseline": not matched,
+    }
+
+
 def main(args):
     if args.prepare_drafts:
         prepare_drafts(args.new_batch, args.output / "diagnostic-drafts.jsonl")
         return
+    comparison = compare_configurations(
+        read(args.old_batch / "plan.json"), read(args.new_batch / "plan.json"), args.comparison
+    )
+    if comparison["matched_decision_budget"]:
+        old_judge = read(args.old_judgments / "report.json").get("judge_configuration")
+        new_judge = read(args.new_judgments / "report.json").get("judge_configuration")
+        if not old_judge or old_judge != new_judge:
+            raise ValueError("Matched-budget runs require the same judge configuration")
     first = load_cohort(args.old_batch, args.old_judgments)
     second = load_cohort(args.new_batch, args.new_judgments)
     pairs = paired_counts(first, second)
@@ -411,6 +489,7 @@ def main(args):
                 "Unique persisted list/search/read/read_many/propose invocations; "
                 "excludes plan/review/abstain role actions"
             ),
+            "reported_tokens": "Provider usage receipts only; missing usage remains unknown",
             "correct_decisions": (
                 "Correct edit/no-change direction, not full patch semantic correctness"
             ),
@@ -419,7 +498,7 @@ def main(args):
                 "A/B semantic attribution may remain unresolved"
             ),
         },
-        "historical_baseline": True,
+        **comparison,
         "new_official_175_composite": None,
     }
     args.output.mkdir(parents=True, exist_ok=True)
@@ -447,6 +526,9 @@ def main(args):
                         "mergeable",
                         "model_decisions",
                         "api_receipt_records",
+                        "receipts_with_usage",
+                        "reported_input_tokens",
+                        "reported_output_tokens",
                         "operational_tool_calls",
                         "phase",
                     )
@@ -473,6 +555,9 @@ def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--comparison", choices=["historical-system", "matched-budget"], default="historical-system"
+    )
     parser.add_argument(
         "--old-batch", type=Path, default=Path(".cache/evals/dogbench-flash-long-20261104")
     )

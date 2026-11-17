@@ -9,6 +9,7 @@ from shopresolve.documents.maintenance_batched_protocol import (
     BATCHED_POLICY,
     build_batched_payload,
 )
+from shopresolve.documents.maintenance_evidence import review_evidence
 from shopresolve.documents.repository import RepositoryEnvironment, RepositoryRuntime
 from shopresolve.models import ModelStep, Run
 from shopresolve.runstore import RunStore
@@ -33,7 +34,9 @@ async def test_reviewer_research_can_add_a_material_change_without_releasing_dra
     root, _ = repository
     migration = root / "migration.md"
     migration.write_text("# Migration\nDefault timeout was 30.\n", encoding="utf-8")
-    git(root, "add", "migration.md")
+    (root / "faq.md").write_text("Timeout FAQ\n", encoding="utf-8")
+    (root / "examples.md").write_text("# Examples\nUse timeout 30.\n", encoding="utf-8")
+    git(root, "add", "migration.md", "faq.md", "examples.md")
     git(
         root,
         "-c",
@@ -46,11 +49,12 @@ async def test_reviewer_research_can_add_a_material_change_without_releasing_dra
     )
     env = RepositoryEnvironment(root, None, tmp_path / "controller", retrieval_mode="section_bm25")
     store = RunStore(commerce[1])
-    rid, lease = await submit(store, policy=BATCHED_POLICY)
+    rid, lease = await submit(store, policy=BATCHED_POLICY, model_limit=10)
 
     class Gateway:
         discovered = False
         phases = []
+        initial_edit = None
 
         async def request(self, phase, context):
             phase = phase.rsplit("_", 1)[-1]
@@ -61,6 +65,10 @@ async def test_reviewer_research_can_add_a_material_change_without_releasing_dra
                     {"kind": "investigate", "questions": [question("guide.mdx", "obsolete.rst")]}
                 )
             if phase == "REASON":
+                rounds = len(context["research_history"])
+                if rounds in {1, 2}:
+                    path = "faq.md" if rounds == 1 else "examples.md"
+                    return ModelReply({"kind": "investigate", "questions": [question(path)]})
                 self.discovered = "migration.md" in refs
                 targets = [
                     {
@@ -70,13 +78,16 @@ async def test_reviewer_research_can_add_a_material_change_without_releasing_dra
                     }
                 ]
                 if self.discovered:
-                    targets.append(
+                    assert rounds == 4 and context["remaining_research_rounds"] == 0
+                    assert context["current_candidate"]["edits"][0]["edit_id"] == self.initial_edit
+                    assert context["existing_targets"][0]["id"] == "guide"
+                    targets = [
                         {
                             "id": "migration",
                             "description": "Update migration timeout",
                             "evidence_ids": [refs["migration.md"]],
                         }
-                    )
+                    ]
                 return ModelReply({"kind": "ready_to_edit", "targets": targets})
             if phase == "EDIT":
                 edits = [
@@ -88,21 +99,32 @@ async def test_reviewer_research_can_add_a_material_change_without_releasing_dra
                         "evidence_ids": [refs["guide.mdx"]],
                     }
                 ]
-                if self.discovered:
-                    edits.append(
-                        {
-                            "path": "migration.md",
-                            "old": "was 30",
-                            "new": "is 60",
-                            "requirement_ids": ["migration"],
-                            "evidence_ids": [refs["migration.md"]],
-                        }
-                    )
+                assert not self.discovered
                 return ModelReply(
                     {"kind": "propose", "text": "Synchronize timeout", "edits": edits}
                 )
+            if phase == "REVISE":
+                assert context["current_candidate"]["edits"][0]["edit_id"] == self.initial_edit
+                assert "migration.md" in {e["path"] for e in context["new_evidence"]}
+                return ModelReply(
+                    {
+                        "kind": "revise",
+                        "text": "Add omitted migration edit",
+                        "edits": [
+                            {
+                                "path": "migration.md",
+                                "old": "was 30",
+                                "new": "is 60",
+                                "requirement_ids": ["migration"],
+                                "evidence_ids": [refs["migration.md"]],
+                            }
+                        ],
+                    }
+                )
             assert "obsolete.rst" in {e["path"] for e in context["challenge_evidence"]}
             if not self.discovered:
+                assert context["remaining_research_rounds"] == 1
+                self.initial_edit = context["candidate"]["edits"][0]["edit_id"]
                 assert (await store.get("alice", rid))["status"] == "RUNNING"
                 return ModelReply({"kind": "investigate", "questions": [question("migration.md")]})
             return ModelReply({"kind": "pass"})
@@ -116,13 +138,14 @@ async def test_reviewer_research_can_add_a_material_change_without_releasing_dra
         "migration.md",
     ]
     assert git(root, "status", "--porcelain") == b""
-    assert gateway.phases == ["REASON", "REASON", "EDIT", "VERIFY", "REASON", "EDIT", "VERIFY"]
+    assert gateway.phases == ["REASON"] * 4 + ["EDIT", "VERIFY", "REASON", "REVISE", "VERIFY"]
+    assert result["patch"].count("+Timeout: 60") == 1
     async with commerce[1]() as session:
         run = await session.get(Run, rid)
         assert run.status == "WAITING_APPROVAL"
         state = run.state["maintenance"]
-        assert [r["trigger"] for r in state["research_history"]] == ["REASON", "VERIFY"]
-        assert state["research_history"][1]["new_path_count"] == 1
+        assert [r["trigger"] for r in state["research_history"]] == ["REASON"] * 3 + ["VERIFY"]
+        assert state["research_history"][3]["new_path_count"] == 1
         assert any(n["type"] == "research_question" for n in state["graph"]["nodes"])
 
 
@@ -146,8 +169,71 @@ async def test_repeat_intent_stops_without_another_tool_batch(repository, commer
 
 
 @pytest.mark.asyncio
-@pytest.mark.parametrize("out_of_scope", [False, True])
-async def test_local_repair_preserves_other_targets(repository, commerce, tmp_path, out_of_scope):  # noqa: F811
+@pytest.mark.parametrize("cite_code", [False, True])
+async def test_no_change_requires_observed_implementation_and_documentation(
+    repository,  # noqa: F811
+    commerce,
+    tmp_path,
+    cite_code,
+):
+    root, _ = repository
+    env = RepositoryEnvironment(root, root, tmp_path / "controller")
+    store = RunStore(commerce[1])
+    _, lease = await submit(store, policy=BATCHED_POLICY)
+
+    class Gateway:
+        async def request(self, phase, context):
+            if phase.endswith("VERIFY"):
+                assert cite_code
+                assert {source["root"] for source in context["evidence"]} == {"code", "docs"}
+                return ModelReply({"kind": "pass"})
+            if not context["research_history"]:
+                return ModelReply(
+                    {
+                        "kind": "investigate",
+                        "questions": [
+                            question("guide.mdx"),
+                            {
+                                "question": "Check implementation",
+                                "root": "code",
+                                "paths": ["server.py"],
+                            },
+                        ],
+                    }
+                )
+            refs = sources(context)
+            return ModelReply(
+                {
+                    "kind": "no_change",
+                    "impact": "internal_only",
+                    "text": "No change to the exposed timeout",
+                    "evidence_ids": [
+                        refs["guide.mdx"],
+                        refs["server.py"] if cite_code else context["implementation_evidence_id"],
+                    ],
+                }
+            )
+
+    result = await RepositoryRuntime(store, Gateway(), env, tmp_path / "events.jsonl").run(
+        lease, "Confirm public timeout stays the same"
+    )
+    assert result["decision"] == ("abstain" if cite_code else "unresolved")
+    if not cite_code:
+        assert result["reason_code"] == "MISSING_EVIDENCE"
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize(
+    ("shared", "repair"),
+    [(False, "valid"), (False, "out_of_scope"), (True, "valid"), (True, "partial")],
+)
+async def test_local_repair_preserves_other_targets(
+    repository,  # noqa: F811
+    commerce,
+    tmp_path,
+    shared,
+    repair,
+):
     _, env = repository
     store = RunStore(commerce[1])
     rid, lease = await submit(store, policy=BATCHED_POLICY)
@@ -167,24 +253,30 @@ async def test_local_repair_preserves_other_targets(repository, commerce, tmp_pa
                     {"kind": "investigate", "questions": [question("guide.mdx", "obsolete.rst")]}
                 )
             if role == "REASON":
-                return ModelReply(
-                    {
-                        "kind": "ready_to_edit",
-                        "targets": [
-                            {
-                                "id": rid,
-                                "description": "Update " + path,
-                                "evidence_ids": [refs[path]],
-                            }
-                            for rid, path, _, _ in edits
-                        ],
-                    }
-                )
+                targets = [
+                    {"id": rid, "description": "Update " + path, "evidence_ids": [refs[path]]}
+                    for rid, path, _, _ in edits
+                ]
+                if shared:
+                    targets.append(
+                        {
+                            "id": "api",
+                            "description": "Synchronize the API timeout",
+                            "evidence_ids": [refs["guide.mdx"]],
+                        }
+                    )
+                return ModelReply({"kind": "ready_to_edit", "targets": targets})
             if role in {"EDIT", "REPAIR"}:
                 changes = edits
                 if role == "REPAIR":
                     self.repaired = True
-                    changes = [edits[1] if out_of_scope else (*edits[0][:3], "Timeout: 90")]
+                    if shared:
+                        assert ("api", "guide.mdx") in context["scope"]
+                    changes = [
+                        edits[1] if repair == "out_of_scope" else (*edits[0][:3], "Timeout: 90")
+                    ]
+                elif shared:
+                    changes = [*edits, ("api", "guide.mdx", "# Guide", "# Public guide")]
                 return ModelReply(
                     {
                         "kind": "repair" if role == "REPAIR" else "propose",
@@ -194,7 +286,11 @@ async def test_local_repair_preserves_other_targets(repository, commerce, tmp_pa
                                 "path": path,
                                 "old": old,
                                 "new": new,
-                                "requirement_ids": [rid],
+                                "requirement_ids": [rid, "api"]
+                                if shared
+                                and rid == "guide"
+                                and (role == "EDIT" or repair != "partial")
+                                else [rid],
                                 "evidence_ids": [refs[path]],
                             }
                             for rid, path, old, new in changes
@@ -219,12 +315,14 @@ async def test_local_repair_preserves_other_targets(repository, commerce, tmp_pa
     result = await RepositoryRuntime(store, Gateway(), env, tmp_path / "events.jsonl").run(
         lease, "Synchronize documentation"
     )
-    if out_of_scope:
+    if repair != "valid":
         assert result["decision"] == "unresolved" and result["reason_code"] == "REPAIR_SCOPE"
         assert "patch" not in result
     else:
         assert result["changed_paths"] == ["guide.mdx", "obsolete.rst"]
         assert "+Timeout: 90" in result["patch"] and "+Legacy guide" in result["patch"]
+        if shared:
+            assert "+# Public guide" in result["patch"]
 
 
 def test_selective_thinking_is_explicit_and_challenges_yield_to_context_budget():
@@ -239,6 +337,7 @@ def test_selective_thinking_is_explicit_and_challenges_yield_to_context_budget()
         ("REASON", "enabled"),
         ("VERIFY", "enabled"),
         ("EDIT", "disabled"),
+        ("REVISE", "disabled"),
         ("REPAIR", "disabled"),
     ]:
         phase = BATCHED_PHASE_PREFIX + role
@@ -256,3 +355,51 @@ def test_selective_thinking_is_explicit_and_challenges_yield_to_context_budget()
         assert payload["max_tokens"] == (8192 if expected == "enabled" else 4096)
         data = json.loads(payload["messages"][1]["content"])
         assert data["evidence"] == [{"content": "keep"}] and data["challenge_evidence"] == []
+
+
+def test_review_packs_exact_anchored_spans_and_keeps_all_cited_locators():
+    text = "a" * 6000 + "Timeout: 30" + "z" * 6000
+    metadata = {"revision": "rev", "content_hash": "original-hash", "start_char": 100}
+    docs = {
+        **metadata,
+        "evidence_id": "D",
+        "root": "docs",
+        "path": "guide.mdx",
+        "content": text,
+        "end_char": 100 + len(text),
+    }
+    code = {
+        **metadata,
+        "evidence_id": "C",
+        "root": "code",
+        "path": "server.py",
+        "content": "c" * 12000,
+        "end_char": 12100,
+    }
+    evidence = review_evidence({"D": docs, "C": code}, {"C", "D"})
+    context = {
+        "evidence": evidence,
+        "candidate": {
+            "edits": [
+                {"path": docs["path"], "old": "Timeout: 30", "evidence_ids": ["D", "C"]},
+            ]
+        },
+        "challenge_evidence": [{"content": "x" * 20000}],
+    }
+    settings = Settings(_env_file=None, model_max_input_bytes=8000)
+    payload = build_batched_payload(settings, BATCHED_PHASE_PREFIX + "VERIFY", context)
+    packed = json.loads(payload["messages"][1]["content"])
+    assert packed["challenge_evidence"] == []
+    assert [view["evidence_id"] for view in packed["evidence"]] == ["C", "D"]
+    code_excerpt, docs_excerpt = packed["evidence"]
+    assert code_excerpt["view"] == "partial_excerpt"
+    assert docs_excerpt["view"] == "edit_anchored_excerpt"
+    assert "Timeout: 30" in docs_excerpt["spans"][0]["content"]
+    for excerpt, source in zip(packed["evidence"], (code, docs), strict=True):
+        assert excerpt["content_hash"] == source["content_hash"]
+        for span in excerpt["spans"]:
+            assert (
+                span["content"]
+                == source["content"][span["start_char"] - 100 : span["end_char"] - 100]
+            )
+    assert all(view["view"] == "full" for view in evidence)
