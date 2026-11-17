@@ -70,8 +70,6 @@ class PlanDecision(BaseModel):
 
 class EditDecision(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    kind: Literal["propose", "no_change"]
-    edits: list[MaintenanceEdit] = Field(max_length=30)
     coverage: list[CoverageCell] = Field(min_length=1, max_length=72)
     evidence_ids: list[str] = Field(min_length=1, max_length=30)
     text: str = Field(min_length=1, max_length=4000)
@@ -80,9 +78,17 @@ class EditDecision(BaseModel):
     def check_candidate(self):
         if not self.text.strip():
             raise ValueError("Provide a nonempty candidate justification")
-        if (self.kind == "propose") != bool(self.edits):
-            raise ValueError("propose requires edits; no_change requires an empty edits list")
         return self
+
+
+class ProposeDecision(EditDecision):
+    kind: Literal["propose"]
+    edits: list[MaintenanceEdit] = Field(min_length=1, max_length=30)
+
+
+class NoChangeDecision(EditDecision):
+    kind: Literal["no_change"]
+    edits: list[MaintenanceEdit] = Field(max_length=0)
 
 
 class UnresolvedDecision(BaseModel):
@@ -94,18 +100,20 @@ class UnresolvedDecision(BaseModel):
 class ReviewDecision(BaseModel):
     model_config = ConfigDict(extra="forbid")
     kind: Literal["review"]
-    ready: bool
-    defects: list[MaintenanceDefect] = Field(max_length=24)
 
-    @model_validator(mode="after")
-    def check_verdict(self):
-        if self.ready == bool(self.defects):
-            raise ValueError("ready=true requires no defects; ready=false requires defects")
-        return self
+
+class ReadyReviewDecision(ReviewDecision):
+    ready: Literal[True]
+    defects: list[MaintenanceDefect] = Field(max_length=0)
+
+
+class DefectReviewDecision(ReviewDecision):
+    ready: Literal[False]
+    defects: list[MaintenanceDefect] = Field(min_length=1, max_length=24)
 
 
 EDIT_PROTOCOL = TypeAdapter(
-    Annotated[EditDecision | UnresolvedDecision, Field(discriminator="kind")]
+    Annotated[ProposeDecision | NoChangeDecision | UnresolvedDecision, Field(discriminator="kind")]
 )
 
 
@@ -116,7 +124,7 @@ def phase_protocol(phase):
     if phase in {"EDIT", "REPAIR"}:
         return EDIT_PROTOCOL
     if phase == "VERIFY":
-        return TypeAdapter(ReviewDecision)
+        return TypeAdapter(ReadyReviewDecision | DefectReviewDecision)
     raise DomainError("POLICY_PHASE", "Unknown maintenance decision phase")
 
 

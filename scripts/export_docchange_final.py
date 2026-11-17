@@ -93,6 +93,7 @@ def main(args):
                     "protocol_feedback",
                     "discovery_elapsed_ms",
                     "search_wait_ms",
+                    "index_slot_wait_ms",
                     "tool_metrics",
                 )
             }

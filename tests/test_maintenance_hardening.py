@@ -39,6 +39,12 @@ def test_stage_schemas_reject_cross_phase_fields_and_missing_metadata():
         payload = build_maintenance_payload(settings, "MAINTENANCE_" + phase, {})
         schema = payload["messages"][0]["content"].split("Schema: ")[1]
         assert expected in schema and forbidden not in schema
+    definitions = phase_protocol("EDIT").json_schema()["$defs"]
+    assert definitions["ProposeDecision"]["properties"]["edits"]["minItems"] == 1
+    assert definitions["NoChangeDecision"]["properties"]["edits"]["maxItems"] == 0
+    definitions = phase_protocol("VERIFY").json_schema()["$defs"]
+    assert definitions["DefectReviewDecision"]["properties"]["defects"]["minItems"] == 1
+    assert definitions["ReadyReviewDecision"]["properties"]["defects"]["maxItems"] == 0
     with pytest.raises(ValidationError):
         phase_protocol("EDIT").validate_python({"kind": "propose", "edits": []})
     for ready, defects in [
@@ -185,6 +191,73 @@ async def test_different_roots_can_search_concurrently_without_duplicate_root_in
     release.set()
     await asyncio.gather(*jobs)
     assert env.indices == {"docs": "docs", "code": "code"}
+
+
+@pytest.mark.asyncio
+async def test_cold_implementation_indexing_is_bounded_across_runs():
+    entered, release, docs_done = asyncio.Event(), asyncio.Event(), asyncio.Event()
+    active, maximum = 0, 0
+
+    async def tool(step, key, arguments, local, task_id):
+        nonlocal active, maximum
+        if arguments["root"] == "docs":
+            docs_done.set()
+            return {}
+        active += 1
+        maximum = max(active, maximum)
+        if active == 2:
+            entered.set()
+        await release.wait()
+        local.indices["code"] = object()
+        active -= 1
+        return {}
+
+    runtimes = []
+    for _ in range(4):
+        env = SimpleNamespace(roots={"docs": None, "code": None}, indices={})
+        runtime = MaintenanceRuntime(None, None, env, None)
+        runtime.data = {"plan_step": 1}
+        runtime._tool = tool
+        runtimes.append(runtime)
+    jobs = [
+        asyncio.create_task(r._discovery_tool("R1", {"kind": "search", "root": "code"}))
+        for r in runtimes[:3]
+    ]
+    await asyncio.wait_for(entered.wait(), 2)
+    await runtimes[3]._discovery_tool("R1", {"kind": "search", "root": "docs"})
+    assert docs_done.is_set() and active == 2
+    release.set()
+    await asyncio.gather(*jobs)
+    assert maximum == 2
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("task_sources_only", [False, True])
+async def test_policy_source_ids_are_adapted_to_observed_git_evidence(
+    maintenance_repository,  # noqa: F811
+    commerce,
+    tmp_path,
+    task_sources_only,  # noqa: F811
+):
+    _, env = maintenance_repository
+    store = RunStore(commerce[1])
+    rid, lease = await submit(store)
+
+    class SourceGateway(MaintenanceGateway):
+        async def request(self, phase, context):
+            reply = await super().request(phase, context)
+            if phase == "MAINTENANCE_EDIT":
+                sources = [context["task_evidence_id"], context["implementation_evidence_id"]]
+                reply.output["evidence_ids"] = sources + (
+                    [] if task_sources_only else reply.output["evidence_ids"]
+                )
+            return reply
+
+    result = await RepositoryRuntime(store, SourceGateway(), env, tmp_path / "trace.jsonl").run(
+        lease, "Update timeout"
+    )
+    assert result["decision"] == "patch"
+    assert (await store.get("alice", rid))["model_calls"] == 3
 
 
 @pytest.mark.asyncio

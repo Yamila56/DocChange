@@ -5,6 +5,7 @@ import pytest
 
 from scripts.analyze_maintenance_ab import (
     failure_classification,
+    latency_comparison,
     metrics,
     paired_bootstrap,
     paired_counts,
@@ -86,6 +87,28 @@ def test_rejection_is_not_automatically_classified_as_wrong():
 def test_official_p0_failure_after_ready_review_is_visible():
     assessment = failure_classification(row())
     assert assessment["primary"] == "D" and "E" in assessment["secondary"]
+
+
+def test_editor_unresolved_is_not_misreported_as_runtime_failure():
+    assessment = failure_classification(
+        row(
+            status="error",
+            phase="EDIT",
+            last_model_output={"kind": "unresolved"},
+            execution_error="The available sources cannot establish the requested behavior",
+        )
+    )
+    assert assessment["primary"] == "C"
+
+
+def test_interrupted_latency_does_not_remove_quality_tasks_or_claim_cohort_speedup():
+    old = {"a": {"latency_ms": 10}, "b": {"latency_ms": 20}}
+    new = {"a": {"latency_ms": 1000}, "b": {"latency_ms": 30}}
+    result = latency_comparison(old, new, ["a"])
+    assert not result["full_cohort_latency_comparable"]
+    assert result["quality_metrics_still_include_all_tasks"]
+    assert result["uninterrupted_paired_subset_tasks"] == 1
+    assert result["old_mean_wall_ms"] == 20 and result["new_mean_wall_ms"] == 30
 
 
 def test_tool_counts_exclude_plan_and_review_roles_and_support_zero_api_calls(tmp_path):

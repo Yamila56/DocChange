@@ -2,9 +2,22 @@
 
 import asyncio
 from fnmatch import fnmatchcase
+from weakref import WeakValueDictionary
 
 from .maintenance import task_layers
 from .service import EDITABLE_SUFFIXES
+
+_INDEX_SLOTS = WeakValueDictionary()
+
+
+def implementation_index_slots():
+    """Bound cold code indexing across runs in one worker process, per event loop."""
+    loop = asyncio.get_running_loop()
+    slots = _INDEX_SLOTS.get(loop)
+    if slots is None:
+        slots = asyncio.Semaphore(2)
+        _INDEX_SLOTS[loop] = slots
+    return slots
 
 
 async def discover(tasks, execute, available_paths, concurrency=3):

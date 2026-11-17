@@ -17,7 +17,7 @@ from .maintenance import (
     validate_cells,
     validate_maintenance_plan,
 )
-from .maintenance_discovery import discover
+from .maintenance_discovery import discover, implementation_index_slots
 from .model_profile import configure_document_payload
 from .repository import RepositoryDecision
 
@@ -41,7 +41,10 @@ def build_maintenance_payload(settings, phase, context):
             "Discovery searches and reads automatically; do not output tool actions. "
         ),
         "EDIT": (
-            "kind=propose with ALL final edits, per-edit requirement_ids/evidence_ids, "
+            "Choose exactly one: kind=propose for actual edits (at least one); "
+            "kind=no_change for a supported decision to leave documentation unchanged (edits=[]); "
+            "kind=unresolved when required facts are missing. "
+            "For propose include ALL final edits, per-edit requirement_ids/evidence_ids, "
             "proposal evidence_ids, text and coverage. Each task/surface needs one coverage cell "
             "{requirement_id,surface,status:edit_required|no_change_supported|unresolved,paths,"
             "evidence_ids,reason}. Edits use exact old/new strings, count, operation "
@@ -120,7 +123,7 @@ class MaintenanceRuntime:
         self.data = self.state.setdefault(
             "maintenance",
             {
-                "protocol_version": "maintenance-v2h1",
+                "protocol_version": "maintenance-v2h2",
                 "phase": "PLAN",
                 "repairs": 0,
                 "evidence": {},
@@ -128,7 +131,7 @@ class MaintenanceRuntime:
             },
         )
         try:
-            if self.data.get("protocol_version") != "maintenance-v2h1":
+            if self.data.get("protocol_version") != "maintenance-v2h2":
                 raise DomainError(
                     "CHECKPOINT_INVALID", "Maintenance protocol changed; use a new run"
                 )
@@ -424,7 +427,19 @@ class MaintenanceRuntime:
             async with self.search_locks[arguments.get("root", "docs")]:
                 waited_ms = (time.perf_counter_ns() - started) // 1000000
                 local.indices = dict(self.env.indices)
-                result = await self._tool(self.data["plan_step"], key, arguments, local, task_id)
+                if arguments.get("root") == "code" and "code" not in self.env.indices:
+                    queued = time.perf_counter_ns()
+                    async with implementation_index_slots():
+                        self.data.setdefault("index_slot_wait_ms", {})[key] = (
+                            time.perf_counter_ns() - queued
+                        ) // 1000000
+                        result = await self._tool(
+                            self.data["plan_step"], key, arguments, local, task_id
+                        )
+                else:
+                    result = await self._tool(
+                        self.data["plan_step"], key, arguments, local, task_id
+                    )
                 self.env.indices.update(local.indices)
                 self.data.setdefault("search_wait_ms", {})[key] = waited_ms
                 return result
@@ -445,13 +460,24 @@ class MaintenanceRuntime:
         validate_cells(action, self.data["tasks"], self.data["evidence"])
         if action.kind == "propose":
             require_edit_bindings(action, self.data["tasks"], known)
+            # The policy can cite task/diff sources, while the low-level Git tool
+            # accepts only observed repository ranges. Keep full provenance above;
+            # adapt verified repository citations instead of passing incompatible IDs.
+            cited = set(action.evidence_ids)
+            cited.update(e for edit in action.edits for e in edit.evidence_ids)
+            cited.update(e for cell in action.coverage for e in cell.evidence_ids)
+            repository_ids = sorted(e for e in cited if self.data["evidence"][e].get("root"))
+            if not repository_ids:
+                raise DomainError("MISSING_EVIDENCE", "Proposal requires repository observations")
             result = await self._tool(
                 step,
                 "candidate",
                 {
                     "kind": "propose",
                     "edits": [e.model_dump() for e in action.edits],
-                    "evidence_ids": action.evidence_ids,
+                    # This gate accepts at most 30 references. Full per-edit,
+                    # coverage and policy provenance stays on the candidate.
+                    "evidence_ids": repository_ids[:30],
                     "text": action.text,
                 },
                 self.env,

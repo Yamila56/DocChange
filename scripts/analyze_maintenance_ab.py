@@ -69,7 +69,7 @@ def task_measurements(batch, key, score):
                     "SELECT response FROM model_steps WHERE response IS NOT NULL "
                     "ORDER BY seq DESC LIMIT 1"
                 ).fetchone()
-                last_output = json.loads(saved[0]) if saved else {}
+                last_output = (json.loads(saved[0]) or {}) if saved else {}
             for name, encoded in db.execute("SELECT name,result FROM tool_invocations"):
                 if name in OPERATIONAL_TOOLS:
                     tools[name] += 1
@@ -106,7 +106,7 @@ def task_measurements(batch, key, score):
         "observed_doc_paths": sorted(observed),
         "read_doc_paths": sorted(read_paths),
         "execution_error_type": result.get("error_type"),
-        "execution_error": result.get("error", ""),
+        "execution_error": result.get("error") or "",
         "phase": data.get("phase", state.get("repository_policy_phase")),
         "repair_rounds": data.get("repairs", state.get("repository_repairs", 0)),
         "plan": data.get("tasks", state.get("repository_requirements", [])),
@@ -183,8 +183,11 @@ def failure_classification(row, diagnostic=None):
             or "Coverage review failed after repair" in error
         ):
             primary, reason = "F", "Review remained unresolved after the allowed repair"
-        elif "Repair may only" in error:
+        elif "Repair may only" in error or "Repair must preserve" in error:
             primary, reason = "F", "Repair exceeded the permitted requirement/path scope"
+        elif row.get("last_model_output", {}).get("kind") == "unresolved":
+            primary = "F" if phase == "REPAIR" else "C"
+            reason = "Editor explicitly returned unresolved; A/B semantic cause needs evidence"
         elif "INVALID_PLAN" in error or (phase == "PLAN" and "dependency" in error.lower()):
             primary, reason = (
                 "A",
@@ -252,6 +255,26 @@ def paired_bootstrap(first, second, seed=20261117, samples=5000):
         "resamples": samples,
         "unit": "paired task",
         "causal_interpretation": False,
+    }
+
+
+def latency_comparison(first, second, interrupted):
+    if first.keys() != second.keys():
+        raise ValueError("Latency comparison requires the same cohort")
+    eligible = sorted(set(first) - set(interrupted))
+    selected = [
+        k
+        for k in eligible
+        if first[k].get("latency_ms") is not None and second[k].get("latency_ms") is not None
+    ]
+    return {
+        "full_cohort_latency_comparable": not bool(interrupted),
+        "interrupted_new_task_ids": sorted(interrupted),
+        "quality_metrics_still_include_all_tasks": True,
+        "uninterrupted_paired_subset_tasks": len(selected),
+        "old_mean_wall_ms": fmean(first[k]["latency_ms"] for k in selected) if selected else None,
+        "new_mean_wall_ms": fmean(second[k]["latency_ms"] for k in selected) if selected else None,
+        "caution": "Historical timing; interrupted tasks remain in all quality denominators",
     }
 
 
@@ -337,10 +360,17 @@ def main(args):
             assessment["path_diagnostic_note"] = (
                 "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
             )
+    recovery = args.new_batch / "engineering-recovery.json"
+    interrupted = (
+        [r["instance_id"] for r in read(recovery).get("interrupted_runs", [])]
+        if recovery.exists()
+        else []
+    )
     result = {
         "cohort": 49,
         "old": metrics(list(first.values())),
         "new": metrics(list(second.values())),
+        "latency_comparison": latency_comparison(first, second, interrupted),
         "paired": pairs,
         "paired_by_outcome": {
             outcome: paired_counts(
