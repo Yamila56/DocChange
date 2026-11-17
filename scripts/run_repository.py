@@ -13,6 +13,7 @@ from uuid import uuid4
 
 from scripts.evaluate_models import EvaluationBudget, RecordedGateway
 from shopresolve.db import make_database
+from shopresolve.documents.maintenance_batched_protocol import BATCHED_POLICY, TASKGRAPH_POLICIES
 from shopresolve.documents.model_profile import pro_settings
 from shopresolve.documents.repository import (
     RepositoryDecision,
@@ -26,6 +27,8 @@ from shopresolve.runstore import RunStore
 
 
 async def main(args):
+    if args.batched_thinking and args.policy != BATCHED_POLICY:
+        raise ValueError("--batched-thinking requires --policy batched-react-v1")
     docs = args.docs_root.resolve()
     if not (docs / ".git").exists():
         raise ValueError("--docs-root must be an existing Git checkout")
@@ -101,6 +104,8 @@ async def main(args):
             "model_timeout_seconds": settings.model_timeout_seconds,
             "active_budget_ms": 900000,
         }
+        if args.policy == BATCHED_POLICY:
+            cfg["batched_thinking"] = args.batched_thinking
         rid = (
             await store.submit(
                 "local-owner",
@@ -125,7 +130,7 @@ async def main(args):
             ),
             encoding="utf-8",
         )
-        if args.policy == "taskgraph-v2":
+        if args.policy in TASKGRAPH_POLICIES:
             async with sessions() as session:
                 saved = await session.get(Run, rid)
                 maintenance = saved.state["maintenance"]
@@ -145,7 +150,10 @@ async def main(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--policy", choices=["coverage-v1", "taskgraph-v2"], default="taskgraph-v2")
+    parser.add_argument(
+        "--policy", choices=("coverage-v1", *TASKGRAPH_POLICIES), default=BATCHED_POLICY
+    )
+    parser.add_argument("--batched-thinking", action="store_true")
     parser.add_argument("--docs-root", type=Path, required=True)
     parser.add_argument("--code-root", type=Path)
     parser.add_argument("--task-file", type=Path, required=True)

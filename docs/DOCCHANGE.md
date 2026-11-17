@@ -1,6 +1,6 @@
 # DocChange：版本化文档工作台
 
-2026-11-17仓库策略更新：独立Git入口默认`taskgraph-v2`，自动执行计划内搜索/读取并导出`maintenance-graph.json`；网页小文档集的DocumentRuntime和审批发布流程保持原方式。详见[任务图与证据关系](design/23-TaskGraph与证据关系维护策略.md)。
+2026-11-18 仓库策略更新。独立 Git CLI 默认采用 `batched-react-v1`。模型按新证据决定下一批调查，运行时生成证据关系图和待审补丁。旧仓库策略可用 `--policy taskgraph-v2` 选择。详见[批量 ReAct 架构](design/25-Batched-ReAct仓库维护架构.md)。
 
 2026-10-29，首版本地应用。复用 ShopResolve 的任务持久化、租约、检查点、调用日志、审批与队列基础，新增文档领域。旧业务在 `/commerce`，原数据保留。WorkflowRepair 本轮未继续改动。
 

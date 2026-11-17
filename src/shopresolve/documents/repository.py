@@ -8,6 +8,7 @@ import asyncio
 import json
 import os
 import subprocess
+import tempfile
 import threading
 from contextlib import suppress
 from pathlib import Path, PurePosixPath
@@ -515,8 +516,25 @@ class RepositoryEnvironment:
     def export_patch(self, base, candidate):
         root = self.roots["docs"]
         self.controller.mkdir(parents=True, exist_ok=True)
-        index = (self.controller / "candidate.index").resolve()
-        environment = {**os.environ, "GIT_INDEX_FILE": str(index)}
+        source_objects = (
+            self._git(root, "rev-parse", "--path-format=absolute", "--git-path", "objects")
+            .decode()
+            .strip()
+        )
+        with tempfile.TemporaryDirectory(prefix="candidate-", dir=self.controller) as scratch:
+            objects = Path(scratch) / "objects"
+            objects.mkdir()
+            environment = {
+                **os.environ,
+                "GIT_INDEX_FILE": str(Path(scratch).resolve() / "index"),
+                "GIT_OBJECT_DIRECTORY": str(objects.resolve()),
+                "GIT_ALTERNATE_OBJECT_DIRECTORIES": source_objects,
+            }
+            patch = self._stage_patch(root, base, candidate, environment)
+        self._git(root, "apply", "--check", "-", data=patch.encode())
+        return patch
+
+    def _stage_patch(self, root, base, candidate, environment):
         self._git(root, "read-tree", "HEAD", env=environment)
         for path in sorted(set(base) | set(candidate)):
             if path not in candidate:
@@ -546,11 +564,9 @@ class RepositoryEnvironment:
                     path,
                     env=environment,
                 )
-        patch = self._git(
+        return self._git(
             root, "diff", "--cached", "--binary", "--full-index", env=environment
         ).decode()
-        self._git(root, "apply", "--check", "-", data=patch.encode())
-        return patch
 
 
 class RepositoryRuntime:
@@ -591,6 +607,12 @@ class RepositoryRuntime:
 
     async def _run(self, lease, task_prompt):
         state, calls, _ = await self.store.load(lease)
+        if state["config"].get("repository_policy") == "batched-react-v1":
+            from .maintenance_batched import BatchedResearchRuntime
+
+            return await BatchedResearchRuntime(
+                self.store, self.gateway, self.environment, self.trace
+            ).run(lease, task_prompt)
         if state["config"].get("repository_policy") == "taskgraph-v2":
             from .maintenance_runtime import MaintenanceRuntime
 

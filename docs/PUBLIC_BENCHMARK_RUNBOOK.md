@@ -2,7 +2,9 @@
 
 2026-11-17新增仓库策略`taskgraph-v2`，实现见[任务图设计](design/23-TaskGraph与证据关系维护策略.md)及[阶段协议修复](design/24-TaskGraph阶段协议与运行稳定性.md)。历史评测默认仍为coverage-v1。同题对照需额外传`--repository-policy taskgraph-v2`并使用新输出目录；原试跑停止后，修复版以独立批次冻结，不合并试跑结果。
 
-普通仓库入口新增`--policy taskgraph-v2`（默认），旧策略用`--policy coverage-v1`。新策略成功运行后除`candidate.patch`、`result.json`外，还导出`maintenance-graph.json`；候选仅供人工审查，不自动应用或推送到来源仓库。
+普通仓库入口默认 `--policy batched-react-v1`，可显式选择 `taskgraph-v2` 或 `coverage-v1`。批量 ReAct 和静态 TaskGraph 运行后可导出 `maintenance-graph.json`，补丁经人工审查。
+
+新增基准策略参数 `--repository-policy batched-react-v1`，使用独立输出目录。开发对照使用 `--model deepseek-flash --model-limit 32`，计划同时保存运行时实际生效的十次决策上限和三轮调查上限。`--batched-thinking` 用于单独的模型设置对照。设计和评分边界见[批量 ReAct 架构](design/25-Batched-ReAct仓库维护架构.md)。
 
 所有命令在仓库根目录运行。缓存、数据、原仓库、调用日志和预算 SQLite 都在 ignored 路径；不提交 Key 或下载的完整仓库。不要删除账本以绕过限额。
 

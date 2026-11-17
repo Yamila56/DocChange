@@ -20,6 +20,8 @@ flowchart LR
 
 仓库Agent新增`taskgraph-v2`：Planner生成带查询与依赖的维护计划，运行时自动搜索/批读，再进行覆盖判断、候选编辑和结构化复核；最多一次限定需求/路径的修补。任务、原文证据、覆盖格、编辑及复核可导出为关系图。实现范围与借鉴来源见[任务图设计](docs/design/23-TaskGraph与证据关系维护策略.md)，本轮[工程验收](docs/evaluation/docchange-taskgraph-2026-11-17.md)与历史模型成绩分别记录。
 
+仓库 CLI 现默认使用 `batched-react-v1`。模型按批次提出调查问题，运行时搜索和批读，之后由模型根据新观察决定补查、编辑或结束。候选经过独立复核和 Git 校验后交由人工审批。见[现行仓库架构](docs/design/25-Batched-ReAct仓库维护架构.md)。
+
 阶段使用独立输出协议，格式纠错计入原模型预算；搜索按根目录隔离锁，SQLite 短事务、心跳异常及恢复截止时间经过专项检查。图用于证据溯源与审计。[协议与稳定性边界](docs/design/24-TaskGraph阶段协议与运行稳定性.md)及[本轮检查记录](docs/evaluation/taskgraph-hardening-2026-11-17.md)。
 
 ## 系统设计

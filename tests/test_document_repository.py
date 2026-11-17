@@ -42,6 +42,7 @@ def repository(tmp_path):
 
 def test_staged_create_replace_delete_patch_does_not_mutate_source(repository):
     root, env = repository
+    initial_objects = git(root, "fsck", "--unreachable", "--no-reflogs")
     evidence = []
     for path in ("guide.mdx", "obsolete.rst"):
         result = env.execute(RepositoryDecision(kind="read", path=path))
@@ -59,6 +60,7 @@ def test_staged_create_replace_delete_patch_does_not_mutate_source(repository):
     )
     assert "new file mode" in result["patch"] and "deleted file mode" in result["patch"]
     assert not git(root, "status", "--porcelain")
+    assert git(root, "fsck", "--unreachable", "--no-reflogs") == initial_objects
     assert "Timeout: 30" in (root / "guide.mdx").read_text()
     applied = subprocess.run(
         ["git", "-C", str(root), "apply", "-"], input=result["patch"].encode(), capture_output=True

@@ -239,7 +239,7 @@ class MaintenanceGateway:
         return ModelReply(output)
 
 
-async def submit(store):
+async def submit(store, policy="taskgraph-v2", model_limit=8):
     conversation = await store.conversation("alice", str(uuid4()))
     run = await store.submit(
         "alice",
@@ -249,8 +249,8 @@ async def submit(store):
         {
             "provider": "demo",
             "domain": "repository",
-            "repository_policy": "taskgraph-v2",
-            "model_limit": 8,
+            "repository_policy": policy,
+            "model_limit": model_limit,
         },
     )
     return run["run_id"], await store.claim(run["run_id"], "maintenance-test", lease_seconds=180)

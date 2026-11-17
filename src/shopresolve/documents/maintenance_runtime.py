@@ -38,6 +38,10 @@ CANDIDATE_ERRORS = {
 
 
 def build_maintenance_payload(settings, phase, context):
+    if phase.startswith("MAINTENANCE_BATCHED_"):
+        from .maintenance_batched_protocol import build_batched_payload
+
+        return build_batched_payload(settings, phase, context)
     role = phase.removeprefix("MAINTENANCE_")
     system = (
         "You maintain documentation from a change request and authorized implementation. "
@@ -114,6 +118,11 @@ def build_maintenance_payload(settings, phase, context):
 
 
 class MaintenanceRuntime:
+    initial_phase = "PLAN"
+    protocol_version = PROTOCOL_VERSION
+    phase_prefix = "MAINTENANCE_"
+    uses_batched_control = False
+
     def __init__(self, store, gateway, environment, trace):
         self.store, self.gateway, self.env, self.trace = store, gateway, environment, trace
         # One initializer/inference user per shared root. Docs and code may overlap;
@@ -146,15 +155,15 @@ class MaintenanceRuntime:
         self.data = self.state.setdefault(
             "maintenance",
             {
-                "protocol_version": PROTOCOL_VERSION,
-                "phase": "PLAN",
+                "protocol_version": self.protocol_version,
+                "phase": self.initial_phase,
                 "repairs": 0,
                 "evidence": {},
                 "tasks": [],
             },
         )
         try:
-            if self.data.get("protocol_version") != PROTOCOL_VERSION:
+            if self.data.get("protocol_version") != self.protocol_version:
                 raise DomainError(
                     "CHECKPOINT_INVALID", "Maintenance protocol changed; use a new run"
                 )
@@ -214,6 +223,11 @@ class MaintenanceRuntime:
                         self.state["answer"] = candidate["reason"]
                         await self.store.finish(lease, self.state, "SUCCEEDED", "DECLINED", None)
                     return {k: v for k, v in candidate.items() if k not in {"edits", "coverage"}}
+                if self.uses_batched_control:
+                    terminal = await self._advance_batched(phase, task_prompt)
+                    if terminal is not None:
+                        return terminal
+                    continue
                 action, step = await self._decision(phase, task_prompt)
                 if phase == "PLAN":
                     if action.kind != "plan":
@@ -299,12 +313,7 @@ class MaintenanceRuntime:
                 raise
             self.state["pending"] = None
             self.state["answer"] = str(exc)[:1000]
-            self.data["graph"] = evidence_graph(
-                self.data["tasks"],
-                self.data["evidence"],
-                self.data.get("candidate"),
-                self.data.get("review"),
-            )
+            self.data["graph"] = self._graph()
             await self.store.finish(
                 lease, self.state, "FAILED", "UNRESOLVED", getattr(exc, "code", type(exc).__name__)
             )
@@ -320,12 +329,7 @@ class MaintenanceRuntime:
         self.data["terminal"] = terminal
         self.state["pending"] = None
         self.state["answer"] = reason
-        self.data["graph"] = evidence_graph(
-            self.data["tasks"],
-            self.data["evidence"],
-            self.data.get("candidate"),
-            self.data.get("review"),
-        )
+        self.data["graph"] = self._graph()
         await self.store.finish(self.lease, self.state, "SUCCEEDED", "UNRESOLVED", code)
         return terminal
 
@@ -338,13 +342,16 @@ class MaintenanceRuntime:
             if path
         }
 
-    async def _save(self):
-        self.data["graph"] = evidence_graph(
+    def _graph(self):
+        return evidence_graph(
             self.data["tasks"],
             self.data["evidence"],
             self.data.get("candidate"),
             self.data.get("review"),
         )
+
+    async def _save(self):
+        self.data["graph"] = self._graph()
         await self.store.save(
             self.lease, self.state, kind="maintenance." + self.data["phase"].lower()
         )
@@ -439,24 +446,25 @@ class MaintenanceRuntime:
 
     async def _decision_once(self, phase, prompt):
         context = self._context(phase, prompt)
+        provider_phase = self.phase_prefix + phase
         pending = self.state.get("pending")
         if pending:
-            if pending["phase"] != "MAINTENANCE_" + phase:
+            if pending["phase"] != provider_phase:
                 raise DomainError("CHECKPOINT_INVALID", "Pending maintenance phase differs")
             step = pending["step"]
         else:
             if hasattr(self.gateway, "preflight"):
-                self.gateway.preflight("MAINTENANCE_" + phase, context)
+                self.gateway.preflight(provider_phase, context)
             step = await self.store.reserve_model(
                 self.lease,
-                "MAINTENANCE_" + phase,
+                provider_phase,
                 digest(context),
-                self.state["config"]["model_limit"],
+                self._model_limit(),
             )
             self.calls += 1
             try:
                 async with asyncio.timeout(self.state["config"].get("model_timeout_seconds", 120)):
-                    reply = await self.gateway.request("MAINTENANCE_" + phase, context)
+                    reply = await self.gateway.request(provider_phase, context)
                 self.state = await self.store.save_decision(
                     self.lease, self.state, step, reply.output, reply.usage
                 )
@@ -464,7 +472,13 @@ class MaintenanceRuntime:
             except (Exception, asyncio.CancelledError) as exc:
                 await self.store.model_failed(self.lease, step, 0, type(exc).__name__)
                 raise
-        return phase_protocol(phase).validate_python(self.state["pending"]["response"]), step
+        return self._protocol(phase).validate_python(self.state["pending"]["response"]), step
+
+    def _protocol(self, phase):
+        return phase_protocol(phase)
+
+    def _model_limit(self):
+        return self.state["config"]["model_limit"]
 
     async def _tool(self, step, key, arguments, local, task_id=None):
         started = time.perf_counter_ns()
@@ -491,8 +505,11 @@ class MaintenanceRuntime:
             )
             if task_id:
                 retrieved_for.add(task_id)
+            metadata = dict(item)
+            if self.uses_batched_control and "score" in metadata:
+                metadata["score"] = str(metadata["score"])
             self.data["evidence"][item["evidence_id"]] = {
-                **item,
+                **metadata,
                 "source_type": "repository",
                 "content_hash": digest(item["content"]),
                 "revision": self.data["snapshot"][item["root"]],
@@ -554,20 +571,9 @@ class MaintenanceRuntime:
             repository_ids = sorted(e for e in cited if self.data["evidence"][e].get("root"))
             if not repository_ids:
                 raise DomainError("MISSING_EVIDENCE", "Proposal requires repository observations")
-            result = await self._tool(
-                step,
-                "candidate",
-                {
-                    "kind": "propose",
-                    "edits": [e.model_dump() for e in action.edits],
-                    # This gate accepts at most 30 references. Full per-edit,
-                    # coverage and policy provenance stays on the candidate.
-                    "evidence_ids": repository_ids[:30],
-                    "text": action.text,
-                },
-                self.env,
+            candidate = await self._draft_patch(
+                step, [e.model_dump() for e in action.edits], repository_ids, action.text
             )
-            candidate = {"decision": "patch", **{k: v for k, v in result.items() if k != "status"}}
         else:
             impact = self._validate_no_change(action)
             candidate = {
@@ -584,6 +590,15 @@ class MaintenanceRuntime:
             "evidence_ids": action.evidence_ids,
             "coverage": [c.model_dump() for c in action.coverage],
         }
+
+    async def _draft_patch(self, step, edits, repository_ids, text):
+        result = await self._tool(
+            step,
+            "candidate",
+            {"kind": "propose", "edits": edits, "evidence_ids": repository_ids[:30], "text": text},
+            self.env,
+        )
+        return {"decision": "patch", **{k: v for k, v in result.items() if k != "status"}}
 
     def _validate_review(self, action):
         if action.kind != "review":

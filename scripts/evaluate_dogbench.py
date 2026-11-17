@@ -20,6 +20,12 @@ from scripts.dogbench_outcomes import official_prediction, runtime_result
 from scripts.evaluate_models import EvaluationBudget, RecordedGateway
 from shopresolve.config import Settings
 from shopresolve.db import make_database
+from shopresolve.documents.maintenance_batched_protocol import (
+    BATCHED_MODEL_LIMIT,
+    BATCHED_POLICY,
+    RESEARCH_LIMIT,
+    TASKGRAPH_POLICIES,
+)
 from shopresolve.documents.model_profile import PRO_MODEL, cache_hit_rate
 from shopresolve.documents.repository import (
     RepositoryDecision,
@@ -40,6 +46,10 @@ from dogbench.verify import verify_attestation  # noqa: E402
 
 
 async def main(args):
+    policy = getattr(args, "repository_policy", "coverage-v1")
+    batched_thinking = getattr(args, "batched_thinking", False)
+    if batched_thinking and (policy != BATCHED_POLICY or args.subscription):
+        raise ValueError("--batched-thinking requires the batched policy with DeepSeek API")
     if args.workers < 1 or args.model_limit < 1:
         raise ValueError("workers and model-limit must be positive")
     task_timeout = getattr(args, "task_timeout_seconds", 900)
@@ -108,7 +118,7 @@ async def main(args):
         "billing": "Codex subscription; cost unknown" if args.subscription else "DeepSeek API",
         "cache_hit_rate_cny_per_million": cache_hit_rate(args.model) if args.cache_aware else None,
         "retrieval_mode": args.retrieval_mode,
-        "repository_policy": getattr(args, "repository_policy", "coverage-v1"),
+        "repository_policy": policy,
         "retrieval_provider": args.retrieval_provider,
         "thinking": "enabled/high" if args.model == PRO_MODEL else "disabled",
         "source_sha256": {
@@ -118,7 +128,12 @@ async def main(args):
         "preparation": "Exact released prompts/trees; original prose overlap findings retained",
         "score_contract": "Unmodified official rubrics, evidence validator and numeric scorer",
     }
-    if os.name == "nt" and plan["repository_policy"] == "taskgraph-v2":
+    if policy == BATCHED_POLICY:
+        plan["effective_model_limit"] = min(args.model_limit, BATCHED_MODEL_LIMIT)
+        plan["research_round_limit"] = RESEARCH_LIMIT
+        if batched_thinking:
+            plan["thinking"] = "reason/verify high, edit/repair disabled"
+    if os.name == "nt" and policy in TASKGRAPH_POLICIES:
         plan["implementation_index_io"] = "WSL-local reader for verified Linux workspaces"
     if cohort:
         plan["cohort_ids_sha256"] = hashlib.sha256(
@@ -163,7 +178,7 @@ async def main(args):
         model=args.model,
         model_base_url="https://api.deepseek.com",
         allow_paid_model=True,
-        model_max_output_tokens=8192 if args.model == PRO_MODEL else 4096,
+        model_max_output_tokens=8192 if args.model == PRO_MODEL or batched_thinking else 4096,
         model_timeout_seconds=request_timeout,
         model_max_input_bytes=120000,
     )
@@ -259,7 +274,7 @@ async def main(args):
                 )
                 environment_type = RepositoryEnvironment
                 environment_options = {}
-                if native_windows and plan["repository_policy"] == "taskgraph-v2":
+                if native_windows and policy in TASKGRAPH_POLICIES:
                     from scripts.repository_index_bridge import WslRepositoryEnvironment
 
                     environment_type = WslRepositoryEnvironment
@@ -288,11 +303,13 @@ async def main(args):
                     "provider": "deepseek",
                     "model": settings.model,
                     "domain": "repository",
-                    "repository_policy": getattr(args, "repository_policy", "coverage-v1"),
+                    "repository_policy": policy,
                     "model_limit": args.model_limit,
                     "model_timeout_seconds": settings.model_timeout_seconds,
                     "active_budget_ms": task_timeout * 1000,
                 }
+                if policy == BATCHED_POLICY:
+                    cfg["batched_thinking"] = batched_thinking
                 execution_path = folder / "execution.json"
                 if execution_path.exists():
                     rid = json.loads(execution_path.read_text())["run_id"]
@@ -446,8 +463,9 @@ if __name__ == "__main__":
     )
     parser.add_argument("--model-limit", type=int, default=16)
     parser.add_argument(
-        "--repository-policy", choices=["coverage-v1", "taskgraph-v2"], default="coverage-v1"
+        "--repository-policy", choices=("coverage-v1", *TASKGRAPH_POLICIES), default="coverage-v1"
     )
+    parser.add_argument("--batched-thinking", action="store_true")
     parser.add_argument("--task-timeout-seconds", type=int, default=900)
     parser.add_argument("--request-timeout-seconds", type=int)
     parser.add_argument("--cohort-predictions", type=Path)

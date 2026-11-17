@@ -86,6 +86,7 @@ def main(args):
                     "tasks",
                     "impact",
                     "discovery",
+                    "research_history",
                     "review",
                     "repairs",
                     "snapshot",
@@ -216,7 +217,7 @@ def main(args):
             (
                 "Historical paired cohort; orchestration/protocol/harness changed. "
                 "Same requested model/retrieval settings do not pin server-side weights."
-                if plan.get("repository_policy") == "taskgraph-v2"
+                if plan.get("repository_policy") in {"taskgraph-v2", "batched-react-v1"}
                 else "Model, tools and policy changed jointly; no isolated causal ablation claim"
             ),
         ],

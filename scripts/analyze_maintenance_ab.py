@@ -119,6 +119,7 @@ def task_measurements(batch, key, score):
         "review": review,
         "protocol_retries": data.get("protocol_retries", {}),
         "discovery_elapsed_ms": data.get("discovery_elapsed_ms"),
+        "research_rounds": len(data.get("research_history", [])),
         "tool_metrics": data.get("tool_metrics", {}),
         "last_model_output": last_output,
         "latency_ms": result.get("latency_ms"),
@@ -140,6 +141,7 @@ def metrics(rows):
         "execution_failures": sum(r["status"] != "completed" for r in rows),
         "runtime_unresolved": sum(r.get("runtime_decision") == "unresolved" for r in rows),
         "runtime_errors": sum(r.get("runtime_status", r["status"]) != "completed" for r in rows),
+        "mean_research_rounds": fmean(r.get("research_rounds", 0) for r in rows),
         "decision_accuracy": sum(r["decision_correct"] for r in rows) / n,
         "patch_recall": fmean(r["decision_correct"] for r in patches) if patches else None,
         "no_change_recall": fmean(r["decision_correct"] for r in no_changes)
@@ -178,7 +180,7 @@ def failure_classification(row, diagnostic=None):
     status, phase = row["status"], row["phase"]
     primary, secondary, reason = None, [], "Direction correct; no blocking P0"
     if row.get("runtime_decision") == "unresolved":
-        primary = "F" if phase in {"VERIFY", "REPAIR"} else "C"
+        primary = "F" if phase in {"VERIFY", "REPAIR"} else "B" if phase == "RESEARCH" else "C"
         reason = "Unresolved decision: " + str(row.get("terminal_reason_code"))
     elif status != "completed":
         primary, reason = (
@@ -226,11 +228,12 @@ def failure_classification(row, diagnostic=None):
             "D",
             "Delivered patch has documented quality gaps under the official rubric",
         )
-    if row["blocking_p0"] and row["review"].get("ready"):
+    review_passed = row["review"].get("ready") or row["review"].get("kind") == "pass"
+    if row["blocking_p0"] and review_passed:
         secondary.append("E")
     if (
         diagnostic
-        and not row["review"].get("ready")
+        and not review_passed
         and diagnostic.get("mergeable")
         and diagnostic.get("overall") == 100
     ):
@@ -438,6 +441,7 @@ def main(args):
                         "runtime_status",
                         "runtime_decision",
                         "terminal_reason_code",
+                        "research_rounds",
                         "decision_correct",
                         "overall",
                         "mergeable",
