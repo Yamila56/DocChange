@@ -1,6 +1,6 @@
 # 公开评测复现
 
-2026-11-17新增仓库策略`taskgraph-v2`，实现见[任务图设计](design/23-TaskGraph与证据关系维护策略.md)。历史评测默认仍为coverage-v1。未来同题对照需额外传`--repository-policy taskgraph-v2`并使用新输出目录；本轮未启动付费A/B。
+2026-11-17新增仓库策略`taskgraph-v2`，实现见[任务图设计](design/23-TaskGraph与证据关系维护策略.md)及[阶段协议修复](design/24-TaskGraph阶段协议与运行稳定性.md)。历史评测默认仍为coverage-v1。同题对照需额外传`--repository-policy taskgraph-v2`并使用新输出目录；原试跑停止后，修复版以独立批次冻结，不合并试跑结果。
 
 普通仓库入口新增`--policy taskgraph-v2`（默认），旧策略用`--policy coverage-v1`。新策略成功运行后除`candidate.patch`、`result.json`外，还导出`maintenance-graph.json`；候选仅供人工审查，不自动应用或推送到来源仓库。
 

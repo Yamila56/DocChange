@@ -7,6 +7,7 @@ import asyncio
 import hashlib
 import json
 import random
+import sqlite3
 import time
 from collections.abc import Callable
 from functools import wraps
@@ -46,7 +47,11 @@ def retry_local_transaction(method):
                 return await method(*args, **kwargs)
             except OperationalError as exc:
                 code = exc.orig.args[0] if exc.orig.args else None
-                if code not in {1205, 1213} or attempt == 2:
+                sqlite_busy = (
+                    isinstance(exc.orig, sqlite3.Error)
+                    and getattr(exc.orig, "sqlite_errorcode", 0) & 255 == sqlite3.SQLITE_BUSY
+                )
+                if (code not in {1205, 1213} and not sqlite_busy) or attempt == 2:
                     raise
                 await asyncio.sleep(0.02 * (2**attempt) + random.uniform(0, 0.02))
         raise AssertionError("unreachable")

@@ -312,11 +312,13 @@ class RunStore:
             run = await require_lease(session, lease, self.clock)
             return copy.deepcopy(run.state), run.model_calls, run.active_ms
 
+    @retry_local_transaction
     async def heartbeat(self, lease, seconds=30):
         async with self.sessions.begin() as session:
             run = await require_lease(session, lease, self.clock)
             run.lease_until = await db_now(session, self.clock) + seconds
 
+    @retry_local_transaction
     async def save(self, lease, state, *, kind="step.observed", payload=None, elapsed_ms=0):
         async with self.sessions.begin() as session:
             run = await require_lease(session, lease, self.clock)
@@ -324,6 +326,7 @@ class RunStore:
             run.active_ms += elapsed_ms
             append_event(session, run, kind, payload or {}, await db_now(session, self.clock))
 
+    @retry_local_transaction
     async def reserve_model(self, lease, phase, context_hash, model_limit):
         async with self.sessions.begin() as session:
             run = await require_lease(session, lease, self.clock)
@@ -346,6 +349,7 @@ class RunStore:
             )
             return seq
 
+    @retry_local_transaction
     async def save_decision(self, lease, state, seq, response, usage=None, elapsed_ms=0):
         async with self.sessions.begin() as session:
             run = await require_lease(session, lease, self.clock)
@@ -365,6 +369,7 @@ class RunStore:
             )
             return state
 
+    @retry_local_transaction
     async def model_failed(self, lease, seq, elapsed_ms, error_type):
         async with self.sessions.begin() as session:
             run = await require_lease(session, lease, self.clock)
@@ -379,6 +384,7 @@ class RunStore:
                 await db_now(session, self.clock),
             )
 
+    @retry_local_transaction
     async def invocation(self, lease, step, call_id, name, arguments):
         identifier = f"{lease.run_id}:{step}:{call_id}"
         if len(identifier) > 100:
@@ -402,6 +408,7 @@ class RunStore:
             )
             return identifier, None
 
+    @retry_local_transaction
     async def save_tool(self, lease, identifier, result):
         async with self.sessions.begin() as session:
             run = await require_lease(session, lease, self.clock)
@@ -418,6 +425,7 @@ class RunStore:
                 await db_now(session, self.clock),
             )
 
+    @retry_local_transaction
     async def pause(self, lease, state, status):
         if status not in WAITING:
             raise ValueError("Not a waiting status")
@@ -489,6 +497,7 @@ class RunStore:
             now,
         )
 
+    @retry_local_transaction
     async def finish(self, lease, state, status, outcome, reason):
         async with self.sessions.begin() as session:
             run = await require_lease(session, lease, self.clock)

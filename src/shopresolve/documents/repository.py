@@ -8,6 +8,7 @@ import asyncio
 import json
 import os
 import subprocess
+import threading
 from contextlib import suppress
 from pathlib import Path, PurePosixPath
 from typing import Literal
@@ -251,6 +252,7 @@ class RepositoryEnvironment:
             model_cache_dir,
         )
         self.indices = {}
+        self.cancel_event = threading.Event()
         self.vector_cache_dir = vector_cache_dir
         self.files = {}
         self.tracked = {}
@@ -273,6 +275,8 @@ class RepositoryEnvironment:
         return result.stdout
 
     def _file(self, root, path):
+        if self.cancel_event.is_set():
+            raise DomainError("TOOL_CANCELLED", "Repository execution was cancelled")
         base = self.roots[root]
         if base is None or not valid_path(path) or path not in self.tracked[root]:
             raise DomainError("INVALID_PATH", "Use an available root and relative path")
@@ -373,6 +377,8 @@ class RepositoryEnvironment:
             if root not in self.indices:
                 paths, texts = [], []
                 for name in self.files[root]:
+                    if self.cancel_event.is_set():
+                        raise DomainError("TOOL_CANCELLED", "Repository indexing was cancelled")
                     if (
                         root == "docs"
                         and PurePosixPath(name).suffix.lower() not in EDITABLE_SUFFIXES
@@ -555,19 +561,29 @@ class RepositoryRuntime:
 
     async def run(self, lease, task_prompt):
         task = asyncio.current_task()
+        heartbeat_error = None
 
         async def heartbeat():
+            nonlocal heartbeat_error
             while True:
                 await asyncio.sleep(45)
                 try:
                     await self.store.heartbeat(lease, seconds=180)
-                except Exception:
+                except Exception as exc:
+                    heartbeat_error = type(exc).__name__
                     task.cancel()
                     return
 
         beat = asyncio.create_task(heartbeat())
         try:
             return await self._run(lease, task_prompt)
+        except asyncio.CancelledError as exc:
+            self.environment.cancel_event.set()
+            if heartbeat_error is not None:
+                raise DomainError(
+                    "LEASE_HEARTBEAT", "Lease heartbeat failed: " + heartbeat_error
+                ) from exc
+            raise
         finally:
             beat.cancel()
             with suppress(asyncio.CancelledError):

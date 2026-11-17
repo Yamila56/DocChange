@@ -66,7 +66,46 @@ def main(args):
             assert artifact in (data, data.replace(b"\n", b"\r\n"))
             if scored_hash := by_id.get(key, {}).get("patch_sha256"):
                 assert hashlib.sha256(data).hexdigest() == scored_hash
-        candidate = state.get("repository_candidate", {})
+        maintenance = state.get("maintenance", {})
+        candidate = maintenance.get("candidate") or state.get("repository_candidate", {})
+        if maintenance:
+            # Public diagnostics retain provenance, not full source/task text.
+            graph = json.loads(json.dumps(maintenance.get("graph", {})))
+            for node in graph.get("nodes", []):
+                if node.get("type") == "evidence" and "content" in node:
+                    content = node.pop("content")
+                    node["exported_content_sha256"] = hashlib.sha256(
+                        json.dumps(content, ensure_ascii=False, sort_keys=True).encode()
+                    ).hexdigest()
+                    node["source_content_omitted_from_public_export"] = True
+            diagnostic = {
+                k: maintenance.get(k)
+                for k in (
+                    "protocol_version",
+                    "phase",
+                    "tasks",
+                    "impact",
+                    "discovery",
+                    "review",
+                    "repairs",
+                    "snapshot",
+                    "protocol_retries",
+                    "protocol_feedback",
+                    "discovery_elapsed_ms",
+                    "search_wait_ms",
+                    "tool_metrics",
+                )
+            }
+            diagnostic["coverage"] = candidate.get("coverage", [])
+            diagnostic["graph"] = graph
+            diagnostic["candidate_patch_sha256"] = (
+                hashlib.sha256(candidate["patch"].encode()).hexdigest()
+                if candidate.get("patch")
+                else None
+            )
+            directory = out / "maintenance-states"
+            directory.mkdir(exist_ok=True)
+            dump(directory / (key + ".json"), diagnostic)
         if candidate.get("patch") and not prediction.get("patch"):
             (draft_dir / (key + ".patch")).write_bytes(candidate["patch"].encode("utf-8"))
         backup = folder / "runs.before-reviewer-fix.sqlite"
@@ -108,6 +147,10 @@ def main(args):
                 "repairs": state.get("repository_repairs", 0),
                 "last_protocol_error": state.get("repository_policy_error"),
                 "candidate_exists": bool(state.get("repository_candidate")),
+                "maintenance_phase": maintenance.get("phase"),
+                "maintenance_diagnostic": (
+                    "maintenance-states/" + key + ".json" if maintenance else None
+                ),
             }
         )
     # Include calls from incomplete tasks too; never hide their spend.
@@ -163,7 +206,12 @@ def main(args):
             "Deferred tasks are missing, not synthetic zero-score predictions",
             "All already-finished decisions and failures retained; no best-of reruns",
             "Reported cost estimates include unknown-usage reserves; not an invoice",
-            "Model, tools and policy changed jointly; no isolated causal ablation claim",
+            (
+                "Historical paired cohort; orchestration/protocol/harness changed. "
+                "Same requested model/retrieval settings do not pin server-side weights."
+                if plan.get("repository_policy") == "taskgraph-v2"
+                else "Model, tools and policy changed jointly; no isolated causal ablation claim"
+            ),
         ],
     }
     dump(out / "generation-plan.json", plan)
@@ -183,6 +231,8 @@ def main(args):
         "workspace-repair-audit.json",
         "billing-correction.json",
         "user-scope-stop.json",
+        "ab-protocol.json",
+        "controller-recovery.json",
     ):
         if (batch / name).exists():
             dump(out / name, read(batch / name))

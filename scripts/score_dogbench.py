@@ -17,18 +17,13 @@ import tempfile
 from pathlib import Path
 from uuid import uuid4
 
+from scripts.atomic_report import atomic
+
 ROOT = Path(__file__).resolve().parents[1]
 UPSTREAM = ROOT / ".cache/upstream/dogbench"
 sys.path.insert(0, str(UPSTREAM))
 from dogbench import judge  # noqa: E402
 from dogbench.reporting import build_report  # noqa: E402
-
-
-def atomic(path, value):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(".tmp")
-    tmp.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding="utf-8")
-    tmp.replace(path)
 
 
 def readonly_judge(prompt, schema, output, log, model):

@@ -15,6 +15,7 @@ import time
 from pathlib import Path
 from uuid import uuid4
 
+from scripts.atomic_report import atomic, atomic_text
 from scripts.evaluate_models import EvaluationBudget, RecordedGateway
 from shopresolve.config import Settings
 from shopresolve.db import make_database
@@ -35,12 +36,6 @@ sys.path.insert(0, str(UPSTREAM))
 from dogbench import trace_audit  # noqa: E402
 from dogbench.research_inputs import verify_research_workspace  # noqa: E402
 from dogbench.verify import verify_attestation  # noqa: E402
-
-
-def atomic(path, value):
-    temporary = path.with_suffix(".tmp")
-    temporary.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding="utf-8")
-    temporary.replace(path)
 
 
 async def main(args):
@@ -83,6 +78,10 @@ async def main(args):
     sources = list((ROOT / "src/shopresolve/documents").glob("*.py")) + [
         Path(__file__),
         ROOT / "scripts/evaluate_models.py",
+        ROOT / "scripts/atomic_report.py",
+        ROOT / "src/shopresolve/db.py",
+        ROOT / "src/shopresolve/runstore.py",
+        ROOT / "src/shopresolve/service.py",
         ROOT / "scripts/verify_repository_input.py",
     ]
     if getattr(args, "capture_error_usage", False):
@@ -412,9 +411,7 @@ async def main(args):
             }
             for row in results
         ]
-        (out / "predictions.jsonl").write_text(
-            "".join(json.dumps(p) + "\n" for p in predictions), encoding="utf-8"
-        )
+        atomic_text(out / "predictions.jsonl", "".join(json.dumps(p) + "\n" for p in predictions))
     report = {"plan": plan, "summary": public, "results": results}
     atomic(out / "results.json", report)
 

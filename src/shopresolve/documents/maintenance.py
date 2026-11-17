@@ -4,9 +4,9 @@ Inspired by DeepResearch's layered DAG scheduling, implemented for DocChange's
 existing receipt/checkpoint contract; no upstream runtime code is imported.
 """
 
-from typing import Literal
+from typing import Annotated, Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, TypeAdapter, model_validator
 
 from shopresolve.errors import DomainError
 from shopresolve.service import digest
@@ -61,17 +61,63 @@ class MaintenanceDefect(BaseModel):
     reason: str = Field(min_length=1, max_length=1600)
 
 
-class MaintenanceDecision(BaseModel):
+class PlanDecision(BaseModel):
     model_config = ConfigDict(extra="forbid")
-    kind: Literal["plan", "propose", "no_change", "unresolved", "review"]
-    impact: ImpactAssessment | None = None
-    tasks: list[MaintenanceTask] = Field(default_factory=list, max_length=12)
-    edits: list[MaintenanceEdit] = Field(default_factory=list, max_length=30)
-    coverage: list[CoverageCell] = Field(default_factory=list, max_length=72)
-    evidence_ids: list[str] = Field(default_factory=list, max_length=30)
-    defects: list[MaintenanceDefect] = Field(default_factory=list, max_length=24)
-    ready: bool = False
-    text: str = Field(default="", max_length=4000)
+    kind: Literal["plan"]
+    impact: ImpactAssessment
+    tasks: list[MaintenanceTask] = Field(min_length=1, max_length=12)
+
+
+class EditDecision(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    kind: Literal["propose", "no_change"]
+    edits: list[MaintenanceEdit] = Field(max_length=30)
+    coverage: list[CoverageCell] = Field(min_length=1, max_length=72)
+    evidence_ids: list[str] = Field(min_length=1, max_length=30)
+    text: str = Field(min_length=1, max_length=4000)
+
+    @model_validator(mode="after")
+    def check_candidate(self):
+        if not self.text.strip():
+            raise ValueError("Provide a nonempty candidate justification")
+        if (self.kind == "propose") != bool(self.edits):
+            raise ValueError("propose requires edits; no_change requires an empty edits list")
+        return self
+
+
+class UnresolvedDecision(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    kind: Literal["unresolved"]
+    text: str = Field(min_length=1, max_length=4000)
+
+
+class ReviewDecision(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    kind: Literal["review"]
+    ready: bool
+    defects: list[MaintenanceDefect] = Field(max_length=24)
+
+    @model_validator(mode="after")
+    def check_verdict(self):
+        if self.ready == bool(self.defects):
+            raise ValueError("ready=true requires no defects; ready=false requires defects")
+        return self
+
+
+EDIT_PROTOCOL = TypeAdapter(
+    Annotated[EditDecision | UnresolvedDecision, Field(discriminator="kind")]
+)
+
+
+def phase_protocol(phase):
+    phase = phase.removeprefix("MAINTENANCE_")
+    if phase == "PLAN":
+        return TypeAdapter(PlanDecision)
+    if phase in {"EDIT", "REPAIR"}:
+        return EDIT_PROTOCOL
+    if phase == "VERIFY":
+        return TypeAdapter(ReviewDecision)
+    raise DomainError("POLICY_PHASE", "Unknown maintenance decision phase")
 
 
 def task_layers(tasks):
