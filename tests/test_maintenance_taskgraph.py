@@ -217,24 +217,26 @@ class MaintenanceGateway:
                     "evidence_ids": [evidence],
                 }
             )
-        return ModelReply(
-            {
-                "kind": "no_change" if self.no_change else "propose",
-                "edits": edits,
-                "evidence_ids": [evidence],
-                "text": "Supported maintenance decision",
-                "coverage": [
-                    {
-                        "requirement_id": "R1",
-                        "surface": "reference",
-                        "status": "no_change_supported" if self.no_change else "edit_required",
-                        "paths": ["guide.mdx"],
-                        "evidence_ids": [evidence],
-                        "reason": "Observed documentation supports the decision",
-                    }
-                ],
-            }
-        )
+        output = {
+            "kind": "no_change" if self.no_change else "propose",
+            "edits": edits,
+            "evidence_ids": [evidence],
+            "text": "Supported maintenance decision",
+            "coverage": [
+                {
+                    "requirement_id": "R1",
+                    "surface": "reference",
+                    "status": "no_change_supported" if self.no_change else "edit_required",
+                    "paths": ["guide.mdx"],
+                    "evidence_ids": [evidence],
+                    "reason": "Observed documentation supports the decision",
+                }
+            ],
+        }
+        if phase == "MAINTENANCE_REPAIR":
+            output.update(kind="repair", decision="no_change" if self.no_change else "patch")
+            output.pop("evidence_ids")
+        return ModelReply(output)
 
 
 async def submit(store):
@@ -315,20 +317,63 @@ async def test_no_change_is_supported_or_fails_unresolved(
         tmp_path / "trace.jsonl",
     )
     if expected:
-        with pytest.raises(DomainError) as error:
-            await runtime.run(lease, "Check timeout without changes")
-        assert error.value.code == expected
+        result = await runtime.run(lease, "Check timeout without changes")
+        assert result["decision"] == "unresolved" and result["reason_code"] == expected
     else:
         result = await runtime.run(lease, "Check timeout without changes")
         assert result["decision"] == "abstain" and result["semantic_decision"] == "no_change"
     run = await store.get("alice", rid)
-    assert run["status"] == ("FAILED" if expected else "SUCCEEDED")
+    assert run["status"] == "SUCCEEDED"
+    assert run["outcome"] == ("UNRESOLVED" if expected else "DECLINED")
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("scenario", ["unresolved", "updated_impact", "coverage_missing"])
+async def test_semantic_stop_and_impact_after_discovery(
+    maintenance_repository,
+    commerce,
+    tmp_path,
+    scenario,  # noqa: F811
+):
+    _, env = maintenance_repository
+    store = RunStore(commerce[1])
+    rid, lease = await submit(store)
+
+    class Gateway(MaintenanceGateway):
+        async def request(self, phase, context):
+            reply = await super().request(phase, context)
+            if phase == "MAINTENANCE_PLAN" and scenario == "coverage_missing":
+                reply.output["tasks"][0]["surfaces"].append("migration")
+            if phase == "MAINTENANCE_EDIT" and scenario == "unresolved":
+                return ModelReply({"kind": "unresolved", "text": "Missing version history"})
+            if phase == "MAINTENANCE_EDIT" and scenario == "updated_impact":
+                reply.output["impact"] = {
+                    "kind": "internal_only",
+                    "evidence_ids": reply.output["evidence_ids"],
+                    "reason": "Only internal timekeeping is affected",
+                }
+            return reply
+
+    gateway = Gateway(no_change=True, uncertain=True)
+    result = await RepositoryRuntime(store, gateway, env, tmp_path / "trace.jsonl").run(
+        lease, "Check timeout"
+    )
+    if scenario == "updated_impact":
+        assert result["decision"] == "abstain"
+        assert result["impact_assessment"]["kind"] == "internal_only"
+    else:
+        assert result["decision"] == "unresolved" and "patch" not in result
+        assert result["reason_code"] == (
+            "MODEL_UNRESOLVED" if scenario == "unresolved" else "INCOMPLETE_COVERAGE"
+        )
+        assert gateway.phases.count("MAINTENANCE_EDIT") == (1 if scenario == "unresolved" else 2)
+    assert (await store.get("alice", rid))["status"] == "SUCCEEDED"
 
 
 @pytest.mark.asyncio
 @pytest.mark.parametrize(
     "reject,extra_edit,expected",
-    [(1, False, None), (2, False, "COVERAGE_UNRESOLVED"), (1, True, "REPAIR_SCOPE")],
+    [(1, False, None), (2, False, "UNRESOLVED_AFTER_REVIEW"), (1, True, "REPAIR_SCOPE")],
 )
 async def test_one_structured_repair_and_path_scope(
     maintenance_repository,
@@ -343,13 +388,10 @@ async def test_one_structured_repair_and_path_scope(
     rid, lease = await submit(store)
     gateway = MaintenanceGateway(reject=reject, extra_edit=extra_edit)
     runtime = RepositoryRuntime(store, gateway, env, tmp_path / "trace.jsonl")
-    if expected:
-        with pytest.raises(DomainError) as error:
-            await runtime.run(lease, "Update timeout")
-        assert error.value.code == expected
-    else:
-        await runtime.run(lease, "Update timeout")
-    assert gateway.phases.count("MAINTENANCE_REPAIR") == 1
+    result = await runtime.run(lease, "Update timeout")
+    assert result["decision"] == ("unresolved" if expected else "patch")
+    assert result.get("reason_code") == expected
+    assert gateway.phases.count("MAINTENANCE_REPAIR") == (2 if extra_edit else 1)
     assert (await store.get("alice", rid))["model_calls"] <= 5
 
 

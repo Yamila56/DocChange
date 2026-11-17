@@ -128,6 +128,9 @@ def main(args):
                 "instance_id": key,
                 "status": prediction["status"],
                 "decision": prediction.get("decision"),
+                "runtime_status": result["status"],
+                "runtime_decision": result.get("decision"),
+                "terminal_reason_code": result.get("reason_code"),
                 "model_turns": used,
                 "error_type": result.get("error_type"),
                 "expected_outcome": scored.get("expected_outcome"),
@@ -193,6 +196,9 @@ def main(args):
         "generation_complete": len(predictions) == len(plan["items"]),
         "missing_generation_ids": sorted(set(plan["items"]) - finished),
         "outcomes": dict(Counter(str((r["status"], r.get("decision"))) for r in predictions)),
+        "runtime_outcomes": dict(
+            Counter(str((r["runtime_status"], r.get("runtime_decision"))) for r in rows)
+        ),
         "scoring": scores["summary"] if scores else None,
         "budget": budget,
         "actual_api_log_records": len(calls),

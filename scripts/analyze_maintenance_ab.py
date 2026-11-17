@@ -99,6 +99,9 @@ def task_measurements(batch, key, score):
     review = data.get("review") or state.get("repository_review", {})
     return {
         **score,
+        "runtime_status": result["status"],
+        "runtime_decision": result.get("decision"),
+        "terminal_reason_code": result.get("reason_code"),
         "model_decisions": model_calls,
         "api_receipt_records": len(calls),
         "operational_tool_calls": sum(tools.values()),
@@ -135,6 +138,8 @@ def metrics(rows):
         "no_change": len(no_changes),
         "completion_rate": sum(r["status"] == "completed" for r in rows) / n,
         "execution_failures": sum(r["status"] != "completed" for r in rows),
+        "runtime_unresolved": sum(r.get("runtime_decision") == "unresolved" for r in rows),
+        "runtime_errors": sum(r.get("runtime_status", r["status"]) != "completed" for r in rows),
         "decision_accuracy": sum(r["decision_correct"] for r in rows) / n,
         "patch_recall": fmean(r["decision_correct"] for r in patches) if patches else None,
         "no_change_recall": fmean(r["decision_correct"] for r in no_changes)
@@ -172,7 +177,10 @@ def failure_classification(row, diagnostic=None):
     error = row["execution_error"]
     status, phase = row["status"], row["phase"]
     primary, secondary, reason = None, [], "Direction correct; no blocking P0"
-    if status != "completed":
+    if row.get("runtime_decision") == "unresolved":
+        primary = "F" if phase in {"VERIFY", "REPAIR"} else "C"
+        reason = "Unresolved decision: " + str(row.get("terminal_reason_code"))
+    elif status != "completed":
         primary, reason = (
             "G",
             "Runtime/protocol/budget failure: "
@@ -427,6 +435,9 @@ def main(args):
                     for field in (
                         "status",
                         "decision",
+                        "runtime_status",
+                        "runtime_decision",
+                        "terminal_reason_code",
                         "decision_correct",
                         "overall",
                         "mergeable",

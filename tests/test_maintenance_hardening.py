@@ -89,16 +89,16 @@ def test_repair_scope_checks_every_requirement_and_preserves_other_cells(alter_u
     }
     runtime = MaintenanceRuntime(None, None, None, None)
     runtime.data = {
-        "candidate": {"edits": [previous], "coverage": [cell, other]},
+        "candidate": {"edits": [previous], "coverage": [cell, other], "evidence_ids": ["observed"]},
         "review": {
             "defects": [{"requirement_id": "R1", "surface": "reference", "path": "guide.md"}]
         },
     }
     action = phase_protocol("REPAIR").validate_python(
         {
-            "kind": "propose",
+            "kind": "repair",
+            "decision": "patch",
             "text": "Fix timeout",
-            "evidence_ids": ["observed"],
             "edits": [
                 previous
                 if alter_unrelated_cell
@@ -113,8 +113,29 @@ def test_repair_scope_checks_every_requirement_and_preserves_other_cells(alter_u
         }
     )
     with pytest.raises(DomainError) as error:
-        runtime._repair_scope(action)
+        runtime._merge_repair(action)
     assert error.value.code == "REPAIR_SCOPE"
+    legal = action.model_copy(
+        update={
+            "edits": [
+                phase_protocol("EDIT")
+                .validate_python(
+                    {
+                        "kind": "propose",
+                        "edits": [{**previous, "new": "75"}],
+                        "coverage": [cell],
+                        "text": "Update timeout",
+                        "evidence_ids": ["observed"],
+                    }
+                )
+                .edits[0]
+            ],
+            "coverage": [],
+        }
+    )
+    merged = runtime._merge_repair(legal)
+    assert merged.edits[0].new == "75"
+    assert merged.coverage[1].model_dump() == other
 
 
 @pytest.mark.asyncio

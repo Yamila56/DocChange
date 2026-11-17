@@ -89,12 +89,23 @@ class ProposeDecision(EditDecision):
 class NoChangeDecision(EditDecision):
     kind: Literal["no_change"]
     edits: list[MaintenanceEdit] = Field(max_length=0)
+    impact: ImpactAssessment | None = None
 
 
 class UnresolvedDecision(BaseModel):
     model_config = ConfigDict(extra="forbid")
     kind: Literal["unresolved"]
     text: str = Field(min_length=1, max_length=4000)
+
+
+class RepairDecision(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    kind: Literal["repair"]
+    decision: Literal["patch", "no_change"]
+    edits: list[MaintenanceEdit] = Field(max_length=30)
+    coverage: list[CoverageCell] = Field(max_length=72)
+    text: str = Field(min_length=1, max_length=4000)
+    impact: ImpactAssessment | None = None
 
 
 class ReviewDecision(BaseModel):
@@ -115,14 +126,19 @@ class DefectReviewDecision(ReviewDecision):
 EDIT_PROTOCOL = TypeAdapter(
     Annotated[ProposeDecision | NoChangeDecision | UnresolvedDecision, Field(discriminator="kind")]
 )
+REPAIR_PROTOCOL = TypeAdapter(
+    Annotated[RepairDecision | UnresolvedDecision, Field(discriminator="kind")]
+)
 
 
 def phase_protocol(phase):
     phase = phase.removeprefix("MAINTENANCE_")
     if phase == "PLAN":
         return TypeAdapter(PlanDecision)
-    if phase in {"EDIT", "REPAIR"}:
+    if phase == "EDIT":
         return EDIT_PROTOCOL
+    if phase == "REPAIR":
+        return REPAIR_PROTOCOL
     if phase == "VERIFY":
         return TypeAdapter(ReadyReviewDecision | DefectReviewDecision)
     raise DomainError("POLICY_PHASE", "Unknown maintenance decision phase")
@@ -182,8 +198,6 @@ def validate_cells(action, tasks, evidence):
             for edit in action.edits
         ):
             raise DomainError("UNBOUND_EDIT", "Edit-required cell needs an associated path/edit")
-    if any(cell.status == "unresolved" for cell in action.coverage):
-        raise DomainError("COVERAGE_UNRESOLVED", "Missing evidence is unresolved, not no-change")
     for edit in action.edits:
         cited = [observed[key] for key in edit.evidence_ids if key in observed]
         if not cited or (

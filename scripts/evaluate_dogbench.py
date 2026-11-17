@@ -16,6 +16,7 @@ from pathlib import Path
 from uuid import uuid4
 
 from scripts.atomic_report import atomic, atomic_text
+from scripts.dogbench_outcomes import official_prediction, runtime_result
 from scripts.evaluate_models import EvaluationBudget, RecordedGateway
 from shopresolve.config import Settings
 from shopresolve.db import make_database
@@ -79,6 +80,7 @@ async def main(args):
         Path(__file__),
         ROOT / "scripts/evaluate_models.py",
         ROOT / "scripts/atomic_report.py",
+        ROOT / "scripts/dogbench_outcomes.py",
         ROOT / "src/shopresolve/db.py",
         ROOT / "src/shopresolve/runstore.py",
         ROOT / "src/shopresolve/service.py",
@@ -322,7 +324,7 @@ async def main(args):
                 )
                 async with asyncio.timeout(task_timeout):
                     decision = await runtime.run(lease, prompt.decode())
-                row.update(status="completed", **decision)
+                row.update(runtime_result(decision))
                 row["run"] = await store.get("benchmark", rid)
                 if row.get("patch"):
                     (folder / "candidate.patch").write_text(row["patch"], encoding="utf-8")
@@ -408,6 +410,14 @@ async def main(args):
             "finished": len(results),
             "awaiting_preparation": len(pending),
             "completed": sum(r["status"] == "completed" for r in results),
+            "delivered": sum(
+                r["status"] == "completed" and r.get("decision") in {"patch", "abstain"}
+                for r in results
+            ),
+            "unresolved": sum(
+                r["status"] == "completed" and r.get("decision") == "unresolved" for r in results
+            ),
+            "execution_errors": sum(r["status"] != "completed" for r in results),
             "budget_exhausted": budget_exhausted.is_set(),
             "complete": len(results) == len(items),
             "budget": budget.summary()
@@ -415,14 +425,7 @@ async def main(args):
             else {"billing": "Codex subscription", "monetary_cost_cny": None},
         }
         atomic(out / "summary.json", public)
-        predictions = [
-            {
-                k: v
-                for k, v in row.items()
-                if k in {"instance_id", "status", "decision", "patch", "error"}
-            }
-            for row in results
-        ]
+        predictions = [official_prediction(row) for row in results]
         atomic_text(out / "predictions.jsonl", "".join(json.dumps(p) + "\n" for p in predictions))
     report = {"plan": plan, "summary": public, "results": results}
     atomic(out / "results.json", report)

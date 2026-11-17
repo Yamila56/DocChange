@@ -12,6 +12,9 @@ from shopresolve.service import digest
 
 from .coverage import require_edit_bindings
 from .maintenance import (
+    MaintenanceEdit,
+    NoChangeDecision,
+    ProposeDecision,
     evidence_graph,
     phase_protocol,
     validate_cells,
@@ -20,6 +23,18 @@ from .maintenance import (
 from .maintenance_discovery import discover, implementation_index_slots
 from .model_profile import configure_document_payload
 from .repository import RepositoryDecision
+
+PROTOCOL_VERSION = "maintenance-v2h4"
+CANDIDATE_ERRORS = {
+    "UNKNOWN_EVIDENCE",
+    "INCOMPLETE_COVERAGE",
+    "MISSING_EVIDENCE",
+    "UNBOUND_EDIT",
+    "EVIDENCE_REQUIRED",
+    "UNOBSERVED_EDIT",
+    "REPAIR_SCOPE",
+    "UNSUPPORTED_ABSTENTION",
+}
 
 
 def build_maintenance_payload(settings, phase, context):
@@ -49,10 +64,12 @@ def build_maintenance_payload(settings, phase, context):
             "{requirement_id,surface,status:edit_required|no_change_supported|unresolved,paths,"
             "evidence_ids,reason}. Edits use exact old/new strings, count, operation "
             "replace/create/delete."
-            " Only documentation is writable. A no_change requires definite impact assessment "
-            "(internal-only, or public change already fully documented) "
-            "and all cells supported by repository evidence; return edits=[] for no_change. "
-            "unresolved requires only kind and text and is a valid failure outcome. "
+            " Only documentation is writable. no_change requires repository evidence for all "
+            "cells and a reason explaining why the observed behavior needs no documentation "
+            "change. If the plan impact is uncertain, provide an updated impact assessment "
+            "citing repository evidence that makes it definite. "
+            "If a specific surface remains uncertain, use an unresolved coverage cell. "
+            "Return kind=unresolved with text when no grounded candidate is possible. "
         ),
         "VERIFY": (
             "kind=review, ready and defects=[{kind,requirement_id,"
@@ -63,9 +80,15 @@ def build_maintenance_payload(settings, phase, context):
             "publishes documents. Return no author/edit/impact fields. "
         ),
     }
-    instructions["REPAIR"] = instructions["EDIT"] + (
-        "Repair may change only reviewer-identified requirements/paths, including coverage cells; "
-        "preserve unrelated edits and cells. No new tasks, searches or evidence may be invented. "
+    instructions["REPAIR"] = (
+        "Return kind=repair with decision=patch or no_change, text, edits and coverage. "
+        "Scope lists the editable paths by "
+        "requirement and the coverage cells allowed to change. Return the complete replacement "
+        "for edits inside that scope; an empty list removes those edits. The runtime will keep "
+        "every edit outside that scope. Return only changed coverage cells inside scope; omitted "
+        "cells stay as they were. Use exact old/new strings and cite observed evidence. "
+        "If supplied evidence is insufficient, return kind=unresolved with text. "
+        "Do not invent tasks, tool actions or evidence. "
     )
     schema = phase_protocol(phase).json_schema()
     system += instructions[role] + "Schema: " + json.dumps(schema)
@@ -123,7 +146,7 @@ class MaintenanceRuntime:
         self.data = self.state.setdefault(
             "maintenance",
             {
-                "protocol_version": "maintenance-v2h3",
+                "protocol_version": PROTOCOL_VERSION,
                 "phase": "PLAN",
                 "repairs": 0,
                 "evidence": {},
@@ -131,7 +154,7 @@ class MaintenanceRuntime:
             },
         )
         try:
-            if self.data.get("protocol_version") != "maintenance-v2h3":
+            if self.data.get("protocol_version") != PROTOCOL_VERSION:
                 raise DomainError(
                     "CHECKPOINT_INVALID", "Maintenance protocol changed; use a new run"
                 )
@@ -207,18 +230,15 @@ class MaintenanceRuntime:
                     self.data["plan_step"] = step
                     self.data["phase"] = "DISCOVER"
                 elif phase in {"EDIT", "REPAIR"}:
+                    if action.kind == "unresolved":
+                        return await self._unresolved("MODEL_UNRESOLVED", action.text)
                     try:
                         await self._candidate(action, step, repair=phase == "REPAIR")
                     except DomainError as exc:
-                        if exc.code not in {
-                            "UNKNOWN_EVIDENCE",
-                            "INCOMPLETE_COVERAGE",
-                            "MISSING_EVIDENCE",
-                            "UNBOUND_EDIT",
-                            "EVIDENCE_REQUIRED",
-                            "UNOBSERVED_EDIT",
-                        }:
+                        if exc.code not in CANDIDATE_ERRORS:
                             raise
+                        if self.data.get("protocol_retries", {}).get(phase, 0):
+                            return await self._unresolved(exc.code, str(exc))
                         await self._protocol_feedback(phase, exc)
                         continue
                     self.data["phase"] = "VERIFY"
@@ -230,15 +250,43 @@ class MaintenanceRuntime:
                             raise
                         await self._protocol_feedback(phase, exc)
                         continue
-                    self.data["review"] = action.model_dump()
-                    if action.ready and not action.defects:
+                    review = action.model_dump()
+                    if review["ready"]:
+                        unknown = [
+                            c
+                            for c in self.data["candidate"]["coverage"]
+                            if c["status"] == "unresolved"
+                        ]
+                        if unknown:
+                            review = {
+                                "kind": "review",
+                                "ready": False,
+                                "defects": [
+                                    {
+                                        "kind": "IncompleteCoverage",
+                                        "requirement_id": c["requirement_id"],
+                                        "surface": c["surface"],
+                                        "path": "",
+                                        "reason": c["reason"],
+                                    }
+                                    for c in unknown
+                                ],
+                            }
+                    self.data["review"] = review
+                    if review["ready"]:
                         self.data["phase"] = "FINALIZE"
-                    elif self.data["repairs"] == 0 and action.defects:
+                    elif self.data["repairs"] == 0:
+                        if self._requires_unobserved_path():
+                            return await self._unresolved(
+                                "NEW_EVIDENCE_REQUIRED",
+                                "Review requires a path outside observed evidence",
+                            )
                         self.data["repairs"] = 1
                         self.data["phase"] = "REPAIR"
                     else:
-                        raise DomainError(
-                            "COVERAGE_UNRESOLVED", "Structured review remains unresolved"
+                        return await self._unresolved(
+                            "UNRESOLVED_AFTER_REVIEW",
+                            "Structured review rejected the repaired candidate",
                         )
                 self.state["pending"] = None
                 self.data.get("protocol_feedback", {}).pop(phase, None)
@@ -261,6 +309,25 @@ class MaintenanceRuntime:
                 lease, self.state, "FAILED", "UNRESOLVED", getattr(exc, "code", type(exc).__name__)
             )
             raise
+
+    async def _unresolved(self, code, reason):
+        terminal = {
+            "decision": "unresolved",
+            "reason_code": code,
+            "reason": reason,
+            "terminal_phase": self.data["phase"],
+        }
+        self.data["terminal"] = terminal
+        self.state["pending"] = None
+        self.state["answer"] = reason
+        self.data["graph"] = evidence_graph(
+            self.data["tasks"],
+            self.data["evidence"],
+            self.data.get("candidate"),
+            self.data.get("review"),
+        )
+        await self.store.finish(self.lease, self.state, "SUCCEEDED", "UNRESOLVED", code)
+        return terminal
 
     async def _snapshot(self):
         return {
@@ -297,14 +364,34 @@ class MaintenanceRuntime:
         evidence = self.data["evidence"]
         if phase in {"VERIFY", "REPAIR"}:
             candidate = self.data["candidate"]
-            required = set(candidate.get("evidence_ids", []))
-            required.update(e for cell in candidate["coverage"] for e in cell["evidence_ids"])
-            required.update(e for edit in candidate["edits"] for e in edit["evidence_ids"])
+            required = self._candidate_evidence_ids(candidate)
             # Cited evidence stays whole. Oversized input fails explicitly at the gateway.
             context["evidence"] = [evidence[key] for key in sorted(required)]
             context["candidate"] = candidate
             if phase == "REPAIR":
                 context["defects"] = self.data["review"]["defects"]
+                cells, paths = self._repair_scope()
+                context["scope"] = {
+                    "cells": sorted(cells),
+                    "paths_by_requirement": {
+                        rid: sorted(values) for rid, values in sorted(paths.items())
+                    },
+                }
+                # A reviewer may reject an edit for neglecting a source already in discovery.
+                extra = dict.fromkeys(
+                    e
+                    for rid in paths
+                    for e in self.data["discovery"][rid].get("evidence_ids", [])
+                    if e not in required and evidence[e].get("path") in paths[rid]
+                )
+                context["evidence"].extend(
+                    {
+                        **evidence[e],
+                        "content": evidence[e]["content"][:1800],
+                        "excerpt_truncated": len(evidence[e]["content"]) > 1800,
+                    }
+                    for e in list(extra)[:6]
+                )
         else:
             selected = []
             for task in self.data["tasks"]:
@@ -450,17 +537,11 @@ class MaintenanceRuntime:
         return await self._tool(self.data["plan_step"], key, arguments, local, task_id)
 
     async def _candidate(self, action, step, repair):
-        if action.kind == "unresolved":
-            raise DomainError("COVERAGE_UNRESOLVED", action.text or "Insufficient evidence")
-        if action.kind not in {"propose", "no_change"} or not action.text.strip():
-            raise DomainError(
-                "POLICY_PHASE", "Provide a justified candidate or unresolved decision"
-            )
+        if repair:
+            action = self._merge_repair(action)
         known = set(self.data["evidence"])
         if not action.evidence_ids or not set(action.evidence_ids) <= known:
             raise DomainError("UNKNOWN_EVIDENCE", "Candidate needs known source references")
-        if repair:
-            self._repair_scope(action)
         validate_cells(action, self.data["tasks"], self.data["evidence"])
         if action.kind == "propose":
             require_edit_bindings(action, self.data["tasks"], known)
@@ -486,20 +567,14 @@ class MaintenanceRuntime:
                 },
                 self.env,
             )
-            candidate = {"decision": "patch", **result}
+            candidate = {"decision": "patch", **{k: v for k, v in result.items() if k != "status"}}
         else:
-            if (
-                self.data["impact"]["kind"] == "uncertain"
-                or action.edits
-                or any(c.status != "no_change_supported" for c in action.coverage)
-            ):
-                raise DomainError(
-                    "UNSUPPORTED_ABSTENTION", "No-change needs definite impact and supported cells"
-                )
+            impact = self._validate_no_change(action)
             candidate = {
                 "decision": "abstain",
                 "reason": action.text,
                 "semantic_decision": "no_change",
+                "impact_assessment": impact,
             }
         if repair:
             self.data["previous_candidate"] = self.data["candidate"]
@@ -519,10 +594,43 @@ class MaintenanceRuntime:
                 "INVALID_REVIEW", "Defects must identify a planned requirement/surface"
             )
 
-    def _repair_scope(self, action):
-        previous = self.data["candidate"]["edits"]
-        proposed = [e.model_dump() for e in action.edits]
+    def _candidate_evidence_ids(self, candidate):
+        required = set(candidate.get("evidence_ids", []))
+        required.update(e for cell in candidate["coverage"] for e in cell["evidence_ids"])
+        required.update(e for edit in candidate["edits"] for e in edit["evidence_ids"])
+        required.update(candidate.get("impact_assessment", {}).get("evidence_ids", []))
+        return required
+
+    def _validate_no_change(self, action):
+        evidence = self.data["evidence"]
+        impact = self.data["impact"]
+        if action.impact is not None:
+            impact = action.impact.model_dump()
+            ids = impact["evidence_ids"]
+            if not set(ids) <= evidence.keys() or not any(evidence[e].get("root") for e in ids):
+                raise DomainError(
+                    "MISSING_EVIDENCE", "Updated impact needs observed repository evidence"
+                )
+        if impact["kind"] == "uncertain" or any(
+            cell.status != "no_change_supported" for cell in action.coverage
+        ):
+            raise DomainError(
+                "UNSUPPORTED_ABSTENTION", "No-change needs definite impact and supported cells"
+            )
+        return impact
+
+    def _requires_unobserved_path(self):
+        observed = self.env.read_paths
+        return any(
+            d["kind"] == "MissingEvidence"
+            and d["path"] in self.env.tracked["docs"]
+            and d["path"] not in observed
+            for d in self.data["review"]["defects"]
+        )
+
+    def _repair_scope(self):
         defects = self.data["review"]["defects"]
+        candidate = self.data["candidate"]
         allowed = {}
         for defect in defects:
             rid = defect["requirement_id"]
@@ -531,36 +639,102 @@ class MaintenanceRuntime:
                 if defect["path"]
                 else {
                     p["path"]
-                    for p in self.data["discovery"][rid]["candidate_paths"]
+                    for p in self.data["discovery"].get(rid, {}).get("candidate_paths", [])
                     if p["root"] == "docs"
+                }
+                | {e["path"] for e in candidate["edits"] if rid in e["requirement_ids"]}
+                | {
+                    p
+                    for c in candidate["coverage"]
+                    if (c["requirement_id"], c["surface"]) == (rid, defect["surface"])
+                    for p in c["paths"]
                 }
             )
             allowed.setdefault(rid, set()).update(paths)
-        for edit in [e for e in proposed if e not in previous] + [
-            e for e in previous if e not in proposed
-        ]:
-            if not all(edit["path"] in allowed.get(rid, set()) for rid in edit["requirement_ids"]):
-                raise DomainError(
-                    "REPAIR_SCOPE", "Repair may only alter reviewer-identified requirements/paths"
-                )
         cells = {(d["requirement_id"], d["surface"]) for d in defects}
-        previous_cells = {
-            (c["requirement_id"], c["surface"]): c for c in self.data["candidate"]["coverage"]
-        }
+        return cells, allowed
+
+    def _merge_repair(self, action):
+        cells, allowed = self._repair_scope()
+        candidate = self.data["candidate"]
+
+        def editable(edit):
+            return all(edit["path"] in allowed.get(rid, set()) for rid in edit["requirement_ids"])
+
+        proposed = [edit.model_dump() for edit in action.edits]
+        if any(not editable(edit) for edit in proposed):
+            raise DomainError("REPAIR_SCOPE", "Repair edits must target reviewer-identified paths")
+        # Keep the order of existing edits. Place each scoped replacement at the
+        # first previous edit on its path, so unaffected edits keep their order.
+        replacements = {}
+        for edit in proposed:
+            replacements.setdefault(edit["path"], []).append(edit)
+        merged_edits = []
+        for edit in candidate["edits"]:
+            if editable(edit):
+                merged_edits.extend(replacements.pop(edit["path"], []))
+            else:
+                merged_edits.append(edit)
+        merged_edits.extend(edit for group in replacements.values() for edit in group)
+        previous_cells = {(c["requirement_id"], c["surface"]): c for c in candidate["coverage"]}
+        changed = set()
         for cell in action.coverage:
             key = (cell.requirement_id, cell.surface)
-            if key not in cells and previous_cells.get(key) != cell.model_dump():
-                raise DomainError("REPAIR_SCOPE", "Repair must preserve unrelated coverage cells")
+            if key not in cells or key in changed or set(cell.paths) - allowed[key[0]]:
+                raise DomainError(
+                    "REPAIR_SCOPE", "Repair cells must match defects and allowed paths"
+                )
+            changed.add(key)
+            previous_cells[key] = cell.model_dump()
+        sources = list(
+            dict.fromkeys(
+                e
+                for item in [*merged_edits, *previous_cells.values()]
+                for e in item["evidence_ids"]
+            )
+        )
+        if (action.decision == "patch") != bool(merged_edits):
+            raise DomainError("UNBOUND_EDIT", "Repair decision must match the merged edits")
+        if action.decision == "patch" and action.impact is not None:
+            raise DomainError("REPAIR_SCOPE", "An impact update is only used for no-change")
+        fields = {
+            "kind": "propose" if merged_edits else "no_change",
+            "edits": merged_edits,
+            "coverage": list(previous_cells.values()),
+            "evidence_ids": sources[:30] or candidate["evidence_ids"],
+            "text": action.text,
+        }
+        if merged_edits:
+            return ProposeDecision.model_validate(fields)
+        fields["impact"] = action.impact or candidate.get("impact_assessment")
+        return NoChangeDecision.model_validate(fields)
 
     async def _check_sources(self):
         if self.data["snapshot"] != await self._snapshot():
             raise DomainError("VERSION_CONFLICT", "Repository HEAD changed before finalization")
-        for item in self.data["evidence"].values():
-            if not item.get("root"):
-                continue
-            path = self.env._file(item["root"], item["path"])
-            text = await asyncio.to_thread(path.read_text, encoding="utf-8")
-            if text[item["start_char"] : item["end_char"]] != item["content"]:
-                raise DomainError(
-                    "VERSION_CONFLICT", "Observed evidence changed before finalization"
-                )
+        await asyncio.to_thread(self._check_source_contents)
+
+    def _check_source_contents(self):
+        candidate = self.data["candidate"]
+        texts = {}
+
+        def read(root, path):
+            if (root, path) not in texts:
+                texts[root, path] = self.env._file(root, path).read_text(encoding="utf-8")
+            return texts[root, path]
+
+        for key in sorted(self._candidate_evidence_ids(candidate)):
+            item = self.data["evidence"][key]
+            if item.get("root"):
+                text = read(item["root"], item["path"])
+                if text[item["start_char"] : item["end_char"]] != item["content"]:
+                    raise DomainError(
+                        "VERSION_CONFLICT", "Cited evidence changed before finalization"
+                    )
+        for raw in candidate["edits"]:
+            edit = MaintenanceEdit.model_validate(raw)
+            if edit.operation == "create":
+                if (self.env.roots["docs"] / edit.path).exists():
+                    raise DomainError("VERSION_CONFLICT", "Proposed new file now exists")
+            else:
+                self.env.require_observed(edit, read("docs", edit.path))

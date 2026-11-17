@@ -11,6 +11,7 @@ from scripts.analyze_maintenance_ab import (
     paired_counts,
     task_measurements,
 )
+from scripts.dogbench_outcomes import official_prediction, runtime_result
 
 
 def row(**overrides):
@@ -32,6 +33,23 @@ def row(**overrides):
         "discovery": {},
         **overrides,
     }
+
+
+def test_final_receipt_status_and_unresolved_scoring_translation():
+    result = runtime_result({"status": "ok", "decision": "patch", "patch": "diff"})
+    assert result == {"status": "completed", "decision": "patch", "patch": "diff"}
+    unresolved = official_prediction(
+        {
+            "instance_id": "case",
+            "status": "completed",
+            "decision": "unresolved",
+            "reason": "Evidence missing",
+            "reason_code": "MODEL_UNRESOLVED",
+            "terminal_phase": "EDIT",
+        }
+    )
+    assert unresolved["status"] == "error" and "decision" not in unresolved
+    assert unresolved["agent"]["semantic_decision"] == "unresolved"
 
 
 def test_completion_is_not_correctness_and_failures_stay_in_quality_denominator():
