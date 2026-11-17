@@ -30,9 +30,25 @@
     "src/shopresolve/documents/repository.py": "2faf276b2510b78db91aee31a2d8052f4c2ce7ed7042c51dab159a09b6f491ce",
     "scripts/run_repository.py": "9591d4947e5d9e5fd08e09ac7eb13e41dff4deafc9890e26e089d45edae98652",
     "scripts/evaluate_dogbench.py": "bb3fee46bf06a645fb4e8dc9e6cd1d4f8b1b2c8b525544717ab38ce68d849a5a",
-    "tests/test_maintenance_taskgraph.py": "7ce35a13ec0d13a92eb1f8e290fdfebc1b20a0ce8ae48195841f771339164a8d"
+    "tests/test_maintenance_taskgraph.py": "517d10c928ad3578a44f3b0657c9fcfe7d90a0af956eef4627a52b82f63748d7"
   },
   "public_metrics_changed": false,
   "upstream_design_reference": "https://github.com/qiqihezh/deepresearch-agent/blob/3c59892d459c95a747166cd3c9573093c0794109/src/planner/dag.py",
-  "copies_upstream_runtime": false
+  "copies_upstream_runtime": false,
+  "source_hash_format": "Committed Git blob bytes, normalized by repository attributes",
+  "runtime_commit": "ac0ff0ca406fabef9fc394c307eb24b85764dec3",
+  "ci": {
+    "url": "https://github.com/Yamila56/DocChange/actions/runs/44083612897",
+    "conclusion": "success",
+    "runtime_commit": "ac0ff0ca406fabef9fc394c307eb24b85764dec3",
+    "jobs": {
+      "unit": "success",
+      "frontend": "success",
+      "mysql": "success"
+    },
+    "pytest_log_summary": [
+      "unit\tRun pytest -q\t2026-11-17T12:30:19.1585090Z 204 passed, 16 skipped in 18.86s",
+      "mysql\tRun pytest -q\t2026-11-17T12:31:31.8371752Z 213 passed, 7 skipped in 79.79s (0:01:19)"
+    ]
+  }
 }

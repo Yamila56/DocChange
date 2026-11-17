@@ -24,3 +24,6 @@
 没有新模型质量、成功率、成本、P95或并发吞吐改善数字。自动发现读取有资源上限，不能证明已完整检索；独立上下文复核也可能遗漏事实。新策略对DoGBench的收益仍需同题对照。
 
 既有SciFact300、SCIDOCS1000、仓库定位与旧Pro/Flash结果继续按原协议解释，不因代码更新改成新策略成绩。[实现与来源边界](../design/23-TaskGraph与证据关系维护策略.md)。
+
+
+最终源码提交`ac0ff0c`的[GitHub CI](https://github.com/Yamila56/DocChange/actions/runs/44083612897)已全部通过：unit、MySQL及前端构建成功。源码哈希按Git提交对象字节核验，避免本机CRLF与提交LF差异；文档收尾提交不改变被测源码。

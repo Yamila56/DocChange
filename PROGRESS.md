@@ -1,3 +1,5 @@
+2026-11-17 TaskGraph融合改进已完成并推送PRIVATE GitHub：源码ac0ff0c，Actions44083612897全部SUCCESS（unit/MySQL/frontend）。12项新策略验收，全套本地204通过/16跳过，最终新旧仓库定向20通过；CI对最终源码重新完成全套验证。机器报告源码哈希以已提交Git对象字节为准，修正测试文件本机CRLF/提交LF造成的hash差异。设计23、工程验收、简历与入口文档已提交；本轮0生成API、0训练，不继续扩展功能或跑付费A/B。最后仅文档收尾提交，不重复跑已通过的CI；以最新origin/main为准。
+
 2026-11-17 TaskGraph融合改进已实现，待最终提交/推送：新taskgraph-v2独立接在RepositoryRuntime的既有RunStore/租约/回执上；PLAN一次给出影响假设与查询DAG，自动发现不消耗模型决策，结构化覆盖/编辑/独立复核，最多一次限定需求与路径的修补；Requirement/Evidence/Coverage/Edit/Review关系随检查点保存并可由CLI导出。run_repository默认v2，可显式coverage-v1；DoGBench默认旧策略，仅新增显式切换参数。网页DocumentRuntime、后端、检索、全部历史成绩不改。借鉴DeepResearch分层DAG模式，未复制其运行时。全套本地204通过/16跳过，最后边界调整后新旧仓库定向20通过；Ruff通过。新策略没有模型benchmark收益数字，本轮0付费生成、0训练、不租卡。新评测和设计报告见docs/evaluation/docchange-taskgraph-2026-11-17及design/23。待发布检查、私有main推送和实际CI。GitHub CLI独立登录已失效，但现有Git凭据有效，.cache/read_docchange_ci.py仅用同一Git认证读取本仓CI，不保存或输出Token。旧未跟踪评测草稿保留且不纳入提交。
 
 2026-11-17 README对外展示修订：重写项目定位、工作流程、系统设计、公开评测与本地启动入口，移除首页中的私人预算、交接与过时状态。仅文档编辑，未运行模型或重新执行应用测试；提交前检查Markdown链接和git diff。
