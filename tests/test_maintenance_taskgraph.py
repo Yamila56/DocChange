@@ -74,6 +74,66 @@ async def test_discovery_uses_bounded_parallel_layers_without_model_decisions():
     assert all(row["status"] == "unresolved" for row in result.values())
 
 
+@pytest.mark.asyncio
+async def test_discovery_keeps_rank_and_reads_a_valid_exact_hint_within_the_two_path_limit():
+    doc_hits = [
+        {"path": path, "evidence_id": key, "content": key, "start_line": line}
+        for path, key, line in [
+            ("docs/overview.md", "ff-top", 20),
+            ("docs/config.md", "00-second", 8),
+            ("docs/overview.md", "11-other-section", 50),
+        ]
+    ]
+    reads = []
+
+    async def execute(_key, args):
+        if args["kind"] == "search":
+            return {
+                "results": doc_hits
+                if args["root"] == "docs"
+                else [{"path": "impl.py", "evidence_id": "bb-code", "content": "implementation"}]
+            }
+        reads.append(args)
+        return {
+            "files": [
+                {"evidence_id": "read-" + r["path"], "content": r["path"]} for r in args["reads"]
+            ]
+        }
+
+    task = {
+        "id": "R1",
+        "dependencies": [],
+        "queries": ["auth"],
+        "code_queries": ["auth"],
+        "path_hints": ["docs/*.md", "docs/auth.md", "../private.md"],
+    }
+    paths = {"docs": ["docs/config.md", "docs/auth.md", "docs/overview.md"]}
+    result = (await discover([task], execute, paths))["R1"]
+    assert reads[0]["reads"] == [
+        {"path": "docs/overview.md", "offset": 15, "limit": 120},
+        {"path": "docs/auth.md", "offset": 0, "limit": 120},
+    ]
+    assert result["evidence_ids"][:3] == ["ff-top", "00-second", "11-other-section"]
+    assert result["editor_evidence_ids"] == [
+        "read-docs/overview.md",
+        "read-docs/auth.md",
+        "ff-top",
+        "bb-code",
+    ]
+    runtime = MaintenanceRuntime(None, None, None, None)
+    runtime.data = {
+        "task_id": "t",
+        "implementation_id": "i",
+        "implementation": {},
+        "tasks": [task],
+        "discovery": {"R1": result},
+        "evidence": {key: {"evidence_id": key, "content": key} for key in result["evidence_ids"]},
+    }
+    assert [e["evidence_id"] for e in runtime._context("EDIT", "auth")["evidence"]] == (
+        result["editor_evidence_ids"]
+    )
+
+
 class MaintenanceGateway:
     def __init__(
         self, *, no_change=False, uncertain=False, missing=False, reject=0, extra_edit=False

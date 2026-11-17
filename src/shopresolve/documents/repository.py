@@ -289,6 +289,18 @@ class RepositoryEnvironment:
             raise DomainError("READ_LIMIT", "Text file missing or larger than 4MiB")
         return candidate
 
+    def index_documents(self, root):
+        for name in self.files[root]:
+            if self.cancel_event.is_set():
+                raise DomainError("TOOL_CANCELLED", "Repository indexing was cancelled")
+            if root == "docs" and PurePosixPath(name).suffix.lower() not in EDITABLE_SUFFIXES:
+                continue
+            try:
+                content = self._file(root, name).read_text(encoding="utf-8")
+            except (DomainError, UnicodeError):
+                continue
+            yield name, content
+
     def execute(self, action):
         root, path = action.root, action.path
         if action.kind == "read_many":
@@ -375,28 +387,16 @@ class RepositoryEnvironment:
             if any(not q.strip() or len(q) > 2000 for q in queries):
                 raise DomainError("INVALID_QUERY", "Provide one to four nonempty bounded queries")
             if root not in self.indices:
-                paths, texts = [], []
-                for name in self.files[root]:
-                    if self.cancel_event.is_set():
-                        raise DomainError("TOOL_CANCELLED", "Repository indexing was cancelled")
-                    if (
-                        root == "docs"
-                        and PurePosixPath(name).suffix.lower() not in EDITABLE_SUFFIXES
-                    ):
-                        continue
-                    try:
-                        content = self._file(root, name).read_text(encoding="utf-8")
-                    except (DomainError, UnicodeError):
-                        continue
-                    paths.append(name)
-                    texts.append(name + "\n" + content)
-                if not paths:
+                documents = dict(self.index_documents(root))
+                if not documents:
                     return {"results": []}
                 if self.retrieval_mode == "file_bm25":
-                    self.indices[root] = DocumentRetriever(paths, texts)
+                    self.indices[root] = DocumentRetriever(
+                        list(documents), [p + "\n" + text for p, text in documents.items()]
+                    )
                 else:
                     self.indices[root] = RepositorySearch(
-                        {p: text[len(p) + 1 :] for p, text in zip(paths, texts, strict=True)},
+                        documents,
                         encoder=self.encoder,
                         cache_dir=self.vector_cache_dir,
                     )

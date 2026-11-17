@@ -123,7 +123,7 @@ class MaintenanceRuntime:
         self.data = self.state.setdefault(
             "maintenance",
             {
-                "protocol_version": "maintenance-v2h2",
+                "protocol_version": "maintenance-v2h3",
                 "phase": "PLAN",
                 "repairs": 0,
                 "evidence": {},
@@ -131,7 +131,7 @@ class MaintenanceRuntime:
             },
         )
         try:
-            if self.data.get("protocol_version") != "maintenance-v2h2":
+            if self.data.get("protocol_version") != "maintenance-v2h3":
                 raise DomainError(
                     "CHECKPOINT_INVALID", "Maintenance protocol changed; use a new run"
                 )
@@ -308,7 +308,11 @@ class MaintenanceRuntime:
         else:
             selected = []
             for task in self.data["tasks"]:
-                keys = self.data.get("discovery", {}).get(task["id"], {}).get("evidence_ids", [])
+                keys = (
+                    self.data.get("discovery", {})
+                    .get(task["id"], {})
+                    .get("editor_evidence_ids", [])
+                )
                 # Task-balanced excerpts, explicitly marked; complete sources remain persisted.
                 for key in keys[:4]:
                     item = evidence[key]

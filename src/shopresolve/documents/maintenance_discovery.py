@@ -20,6 +20,36 @@ def implementation_index_slots():
     return slots
 
 
+def read_targets(hits, paths=(), hints=()):
+    ranked = {}
+    for hit in hits:
+        ranked.setdefault(hit["path"], max(0, hit.get("start_line", 1) - 5))
+    # Keep one retrieval slot and reserve the other for the best valid hint.
+    # Exact paths beat globs. Within a glob, prefer the highest-ranked match.
+    available = sorted(path for path in paths if path.lower().endswith(tuple(EDITABLE_SUFFIXES)))
+    known = set(available)
+    exact = [hint for hint in hints if hint in known]
+    hinted = [
+        path
+        for hint in hints
+        for path in dict.fromkeys([*ranked, *available])
+        if path in known and fnmatchcase(path, hint)
+    ]
+    first = next(iter(ranked), None)
+    hint_order = [*exact, *hinted]
+    preferred = next(iter(hint_order), None)
+    order = list(dict.fromkeys(path for path in (first, preferred, *ranked, *hint_order) if path))
+    return {path: ranked.get(path, 0) for path in order[:2]}
+
+
+def evidence_ids(items):
+    return list(
+        dict.fromkeys(
+            item["evidence_id"] for item in items if item.get("evidence_id") and item.get("content")
+        )
+    )
+
+
 async def discover(tasks, execute, available_paths, concurrency=3):
     semaphore = asyncio.Semaphore(concurrency)
     by_id = {task["id"]: task for task in tasks}
@@ -27,7 +57,7 @@ async def discover(tasks, execute, available_paths, concurrency=3):
 
     async def one(task):
         async with semaphore:
-            observations, paths = [], []
+            observations, paths, editor_order = [], [], {}
             roots = [("docs", task["queries"]), ("code", task["code_queries"])]
             for root, queries in roots:
                 if not queries:
@@ -36,25 +66,12 @@ async def discover(tasks, execute, available_paths, concurrency=3):
                     task["id"], {"kind": "search", "root": root, "queries": queries}
                 )
                 hits = result.get("results", [])
-                observations.extend(
-                    item for item in hits if item.get("evidence_id") and item.get("content")
+                selected = (
+                    read_targets(hits, available_paths["docs"], task["path_hints"])
+                    if root == "docs"
+                    else read_targets(hits)
                 )
-                # Rank hits first; hints can add known tracked documentation paths.
-                candidates = [
-                    (item["path"], max(0, item.get("start_line", 1) - 5)) for item in hits
-                ]
-                if root == "docs":
-                    candidates.extend(
-                        (path, 0)
-                        for path in available_paths["docs"]
-                        if any(fnmatchcase(path, hint) for hint in task["path_hints"])
-                        and any(path.lower().endswith(s) for s in EDITABLE_SUFFIXES)
-                    )
-                selected = {}
-                for path, offset in candidates:
-                    selected.setdefault(path, offset)
-                    if len(selected) == 2:
-                        break
+                files = []
                 if selected:
                     read = await execute(
                         task["id"],
@@ -67,15 +84,20 @@ async def discover(tasks, execute, available_paths, concurrency=3):
                             ],
                         },
                     )
-                    observations.extend(
-                        item
-                        for item in read.get("files", [])
-                        if item.get("evidence_id") and item.get("content")
-                    )
+                    files = read.get("files", [])
                     paths.extend({"root": root, "path": path} for path in selected)
+                observations.extend([*hits, *files])
+                editor_order[root] = evidence_ids(
+                    [*files, *hits] if root == "docs" else [*hits, *files]
+                )
+            docs, code = editor_order.get("docs", []), editor_order.get("code", [])
+            # Retain room for implementation evidence when both roots were searched.
+            editor = list(dict.fromkeys([*docs[:3], *code[:1], *docs[3:], *code[1:]]))[:4]
+            observed = evidence_ids(observations)
             return task["id"], {
-                "status": "evidence_found" if observations else "unresolved",
-                "evidence_ids": sorted({item["evidence_id"] for item in observations}),
+                "status": "evidence_found" if observed else "unresolved",
+                "evidence_ids": observed,
+                "editor_evidence_ids": editor,
                 "candidate_paths": paths,
                 "search_complete": True,
                 "exhaustive_repository_coverage": False,

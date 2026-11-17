@@ -83,6 +83,7 @@ async def main(args):
         ROOT / "src/shopresolve/runstore.py",
         ROOT / "src/shopresolve/service.py",
         ROOT / "scripts/verify_repository_input.py",
+        ROOT / "scripts/repository_index_bridge.py",
     ]
     if getattr(args, "capture_error_usage", False):
         sources.append(ROOT / "scripts/resume_offpeak_dogbench.py")
@@ -115,6 +116,8 @@ async def main(args):
         "preparation": "Exact released prompts/trees; original prose overlap findings retained",
         "score_contract": "Unmodified official rubrics, evidence validator and numeric scorer",
     }
+    if os.name == "nt" and plan["repository_policy"] == "taskgraph-v2":
+        plan["implementation_index_io"] = "WSL-local reader for verified Linux workspaces"
     if cohort:
         plan["cohort_ids_sha256"] = hashlib.sha256(
             json.dumps(sorted(ids), separators=(",", ":")).encode()
@@ -221,7 +224,7 @@ async def main(args):
                 # Verification runs before exporting any candidate Git object.
                 prompt = (workspace / "TASK.md").read_bytes()
                 if native_windows:
-                    command = [
+                    wsl_command = [
                         "wsl",
                         "-d",
                         "Ubuntu",
@@ -229,10 +232,8 @@ async def main(args):
                         "/mnt/" + ROOT.drive[0].lower() + ROOT.as_posix()[2:],
                         "--",
                         ".venv-bench-linux/bin/python",
-                        "-m",
-                        "scripts.verify_repository_input",
-                        key,
                     ]
+                    command = [*wsl_command, "-m", "scripts.verify_repository_input", key]
                     verified = await asyncio.to_thread(
                         subprocess.run, command, capture_output=True, check=True
                     )
@@ -254,12 +255,23 @@ async def main(args):
                     if args.retrieval_mode != "section_bm25"
                     else None
                 )
-                environment = RepositoryEnvironment(
+                environment_type = RepositoryEnvironment
+                environment_options = {}
+                if native_windows and plan["repository_policy"] == "taskgraph-v2":
+                    from scripts.repository_index_bridge import WslRepositoryEnvironment
+
+                    environment_type = WslRepositoryEnvironment
+                    environment_options = {
+                        "wsl_command": wsl_command,
+                        "workspace": prepared["path"],
+                    }
+                environment = environment_type(
                     workspace / "docs",
                     workspace / "code" if prepared["has_code"] else None,
                     folder / "controller",
                     retrieval_mode=args.retrieval_mode,
                     encoder=encoder,
+                    **environment_options,
                 )
                 await asyncio.to_thread(
                     environment.execute, RepositoryDecision(kind="search", query="documentation")
