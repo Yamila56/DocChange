@@ -1,0 +1,2731 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "redis-cred-provider-setting",
+      "description": "Add a new `redis_backend_credential_provider` setting entry in the Redis result backend section of docs/userguide/configuration.rst (near redis_backend_health_check_interval / redis_backend_use_ssl). Document that it accepts a dotted-string class path to a `redis.CredentialProvider` subclass (resolved and instantiated at connection setup) or a direct `CredentialProvider` instance; when active, `username` and `password` are removed from connection params; invalid values raise ValueError (and unresolvable paths raise ImportError).",
+      "evidence_ids": [
+        "55012db16bf77f50401ddb94",
+        "90267280d00111c4c8f15581",
+        "3b457d045ef6980202d6372e"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "redis-url-cred-provider",
+      "description": "Document the `credential_provider` URL query parameter in the Redis result backend URL fields section of docs/userguide/configuration.rst (where username/password/host/port/db are listed), noting it accepts a dotted class path to a `redis.CredentialProvider` subclass and that username/password are dropped when it is set.",
+      "evidence_ids": [
+        "55012db16bf77f50401ddb94",
+        "a016ffdc13502859eec3c599",
+        "3b457d045ef6980202d6372e"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "9145583ccb8d5be89c87619546142af1a90c3386732e3c0f139a0fcc2e5c8027",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where are Redis backend configuration options documented, and is there a list of redis_* settings that should include redis_backend_credential_provider?",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ],
+          "paths": [
+            "docs/userguide/configuration.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a1ec0a94796916d10c8f5dc0",
+            "143a5a8dec2a030b473b24f1",
+            "6878deb778a1878db574cb5a",
+            "90267280d00111c4c8f15581",
+            "ed948878093dbf4634abdd9d",
+            "722f16118ea67da7e1dda68b",
+            "a8a26c376c0946766fd6a592",
+            "9bc4ecb3fb575ad2485361f0",
+            "f8a8ca78a9ead8d2c7fcf5cc",
+            "86c7855252355c9b5c04e237",
+            "08dc186772f1a295cf2bad45",
+            "634cb583b820fe792c0c781f",
+            "6bfba3b0314071ae59e3ddcb",
+            "1fa51a8d2a5e993c80d0f946"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "90267280d00111c4c8f15581",
+              "score": "0.04507857733664185"
+            },
+            {
+              "rank": 2,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "ed948878093dbf4634abdd9d",
+              "score": "0.043488777089783284"
+            },
+            {
+              "rank": 3,
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "evidence_id": "6878deb778a1878db574cb5a",
+              "score": "0.043157782288217074"
+            },
+            {
+              "rank": 4,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "722f16118ea67da7e1dda68b",
+              "score": "0.043076103680908986"
+            },
+            {
+              "rank": 5,
+              "path": "Changelog.rst",
+              "evidence_id": "a8a26c376c0946766fd6a592",
+              "score": "0.03545634920634921"
+            },
+            {
+              "rank": 6,
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "evidence_id": "9bc4ecb3fb575ad2485361f0",
+              "score": "0.03325796374995459"
+            },
+            {
+              "rank": 7,
+              "path": ".github/ISSUE_TEMPLATE/Documentation-Bug-Report.md",
+              "evidence_id": "f8a8ca78a9ead8d2c7fcf5cc",
+              "score": "0.031190892899312952"
+            },
+            {
+              "rank": 8,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "86c7855252355c9b5c04e237",
+              "score": "0.03107448107448107"
+            },
+            {
+              "rank": 9,
+              "path": "docs/history/whatsnew-5.1.rst",
+              "evidence_id": "08dc186772f1a295cf2bad45",
+              "score": "0.030803699033207232"
+            },
+            {
+              "rank": 10,
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "evidence_id": "634cb583b820fe792c0c781f",
+              "score": "0.030657679738562094"
+            },
+            {
+              "rank": 11,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "6bfba3b0314071ae59e3ddcb",
+              "score": "0.02950973759005327"
+            },
+            {
+              "rank": 12,
+              "path": ".github/ISSUE_TEMPLATE/Documentation-Bug-Report.md",
+              "evidence_id": "1fa51a8d2a5e993c80d0f946",
+              "score": "0.029158404191469298"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 4147
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "start": 39,
+              "end": 159,
+              "total_lines": 166
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "start": 0,
+              "end": 4,
+              "total_lines": 4
+            }
+          ],
+          "read_evidence_ids": [
+            "a1ec0a94796916d10c8f5dc0",
+            "143a5a8dec2a030b473b24f1",
+            "6878deb778a1878db574cb5a"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "How are Redis backend connection URL query parameters documented, to add credential_provider query param?",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ],
+          "paths": [
+            "docs/userguide/configuration.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "offset": 17,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1256,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "offset": 315,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "53ba160d88c7053643cdd6de",
+            "a016ffdc13502859eec3c599",
+            "f289e7ad0b22e4ec250ceffd",
+            "75947c3c81c2198d51574670",
+            "eea9dc5fd4d4b7b3718946d3",
+            "5666ea7add3704c76f66d66f",
+            "634cb583b820fe792c0c781f",
+            "6e9135f30c31f38b475ec37e",
+            "410ee26cf9a5f6b6f594617f",
+            "2c53a4bdb15626544258ca65",
+            "4ceedbe5b6ac7a7b925280cf",
+            "5718e5dcecc857b74a049fd2",
+            "6bfba3b0314071ae59e3ddcb",
+            "2381163c647ba42bbd39963c",
+            "febbb461f27ea150654f310e"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "evidence_id": "75947c3c81c2198d51574670",
+              "score": "0.047162673392181595"
+            },
+            {
+              "rank": 2,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "eea9dc5fd4d4b7b3718946d3",
+              "score": "0.0428317532315308"
+            },
+            {
+              "rank": 3,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "5666ea7add3704c76f66d66f",
+              "score": "0.04207164601000217"
+            },
+            {
+              "rank": 4,
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "evidence_id": "634cb583b820fe792c0c781f",
+              "score": "0.04000486495083593"
+            },
+            {
+              "rank": 5,
+              "path": "docs/history/whatsnew-5.0.rst",
+              "evidence_id": "6e9135f30c31f38b475ec37e",
+              "score": "0.038613505747126436"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/changelog-5.5.rst",
+              "evidence_id": "410ee26cf9a5f6b6f594617f",
+              "score": "0.03847123142897791"
+            },
+            {
+              "rank": 7,
+              "path": "docs/getting-started/backends-and-brokers/index.rst",
+              "evidence_id": "2c53a4bdb15626544258ca65",
+              "score": "0.037380637380637384"
+            },
+            {
+              "rank": 8,
+              "path": "docs/history/whatsnew-5.1.rst",
+              "evidence_id": "4ceedbe5b6ac7a7b925280cf",
+              "score": "0.03711313374950972"
+            },
+            {
+              "rank": 9,
+              "path": "docs/history/whatsnew-4.1.rst",
+              "evidence_id": "5718e5dcecc857b74a049fd2",
+              "score": "0.036434382143337364"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "6bfba3b0314071ae59e3ddcb",
+              "score": "0.03604851536598965"
+            },
+            {
+              "rank": 11,
+              "path": "docs/getting-started/first-steps-with-celery.rst",
+              "evidence_id": "2381163c647ba42bbd39963c",
+              "score": "0.033603029312411464"
+            },
+            {
+              "rank": 12,
+              "path": "docs/history/whatsnew-5.1.rst",
+              "evidence_id": "febbb461f27ea150654f310e",
+              "score": "0.03298136645962733"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "start": 17,
+              "end": 137,
+              "total_lines": 287
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 1256,
+              "end": 1376,
+              "total_lines": 4147
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "start": 315,
+              "end": 326,
+              "total_lines": 326
+            }
+          ],
+          "read_evidence_ids": [
+            "53ba160d88c7053643cdd6de",
+            "a016ffdc13502859eec3c599",
+            "f289e7ad0b22e4ec250ceffd"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "08dc186772f1a295cf2bad45",
+        "143a5a8dec2a030b473b24f1",
+        "1fa51a8d2a5e993c80d0f946",
+        "2381163c647ba42bbd39963c",
+        "2c53a4bdb15626544258ca65",
+        "410ee26cf9a5f6b6f594617f",
+        "4ceedbe5b6ac7a7b925280cf",
+        "53ba160d88c7053643cdd6de",
+        "5666ea7add3704c76f66d66f",
+        "5718e5dcecc857b74a049fd2",
+        "634cb583b820fe792c0c781f",
+        "6878deb778a1878db574cb5a",
+        "6bfba3b0314071ae59e3ddcb",
+        "6e9135f30c31f38b475ec37e",
+        "722f16118ea67da7e1dda68b",
+        "75947c3c81c2198d51574670",
+        "86c7855252355c9b5c04e237",
+        "90267280d00111c4c8f15581",
+        "9bc4ecb3fb575ad2485361f0",
+        "a016ffdc13502859eec3c599",
+        "a1ec0a94796916d10c8f5dc0",
+        "a8a26c376c0946766fd6a592",
+        "ed948878093dbf4634abdd9d",
+        "eea9dc5fd4d4b7b3718946d3",
+        "f289e7ad0b22e4ec250ceffd",
+        "f8a8ca78a9ead8d2c7fcf5cc",
+        "febbb461f27ea150654f310e"
+      ],
+      "new_evidence_count": 27,
+      "new_path_count": 13
+    },
+    {
+      "signature": "f6dcdb7498386544a5b6809ce5582f98c574e18d69fed24d120ded59592f119f",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "What is the exact structure and surrounding content of the Redis backend settings section in configuration.rst (redis_backend_health_check_interval, redis_backend_use_ssl, redis_max_connections) so a new redis_backend_credential_provider setting entry can be placed correctly?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/userguide/configuration.rst"
+          ],
+          "anchor": "redis_backend_use_ssl",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "redis_backend_use_ssl",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "8122d3a496398063e2ce036b"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 111,
+              "end": 231,
+              "total_lines": 4147
+            }
+          ],
+          "read_evidence_ids": [
+            "8122d3a496398063e2ce036b"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the Redis backend URL query-parameter documentation (fields list, TLS query params) provide a place to document the credential_provider query parameter?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/userguide/configuration.rst"
+          ],
+          "anchor": "The fields of the URL are defined as follows",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "The fields of the URL are defined as follows",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "3b457d045ef6980202d6372e"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 1267,
+              "end": 1387,
+              "total_lines": 4147
+            }
+          ],
+          "read_evidence_ids": [
+            "3b457d045ef6980202d6372e"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Is there a Changelog or whatsnew section for the current unreleased version where a new feature like redis_backend_credential_provider should be noted?",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "Changelog.rst",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+              "offset": 73,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-5.6.rst",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d12430f6ef1564575be95e1b",
+            "a927f1eca8f986e6b1b62aaf",
+            "339e04bd5e1eef433605b10d",
+            "8b06a9aa16940ecce9ed6353",
+            "6f83d29d16adab13c7ba62c1",
+            "8ab7d9c4268617c2524e739b",
+            "a61bd9b01209af7e83abb6d8",
+            "fc07d774f86960c052694903",
+            "cacfc1685376551af97d4957",
+            "53a745cbdd12feed73bf65d0",
+            "710c42e3636589cbf5bbbf6e",
+            "b6a100ad92dae87763c5e519",
+            "995482e71fabf6e0447e2be7",
+            "ef85c1efa2ab0e22e24d1eb7",
+            "87042715d55f4c7a34af3074"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "Changelog.rst",
+              "evidence_id": "8b06a9aa16940ecce9ed6353",
+              "score": "0.02293197632049387"
+            },
+            {
+              "rank": 2,
+              "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+              "evidence_id": "6f83d29d16adab13c7ba62c1",
+              "score": "0.022241380252852074"
+            },
+            {
+              "rank": 3,
+              "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+              "evidence_id": "8ab7d9c4268617c2524e739b",
+              "score": "0.02183918627023345"
+            },
+            {
+              "rank": 4,
+              "path": "docs/history/changelog-5.6.rst",
+              "evidence_id": "a61bd9b01209af7e83abb6d8",
+              "score": "0.021369433877825018"
+            },
+            {
+              "rank": 5,
+              "path": "docs/history/changelog-5.6.rst",
+              "evidence_id": "fc07d774f86960c052694903",
+              "score": "0.020516850008730575"
+            },
+            {
+              "rank": 6,
+              "path": ".github/ISSUE_TEMPLATE/Patch-Version-Release-Checklist.md",
+              "evidence_id": "cacfc1685376551af97d4957",
+              "score": "0.020327474009765107"
+            },
+            {
+              "rank": 7,
+              "path": "docs/history/changelog-5.0.rst",
+              "evidence_id": "53a745cbdd12feed73bf65d0",
+              "score": "0.019921436588103254"
+            },
+            {
+              "rank": 8,
+              "path": "docs/history/changelog-2.5.rst",
+              "evidence_id": "710c42e3636589cbf5bbbf6e",
+              "score": "0.019380448318804484"
+            },
+            {
+              "rank": 9,
+              "path": ".github/ISSUE_TEMPLATE/Patch-Version-Release-Checklist.md",
+              "evidence_id": "b6a100ad92dae87763c5e519",
+              "score": "0.01936159126670617"
+            },
+            {
+              "rank": 10,
+              "path": "Changelog.rst",
+              "evidence_id": "995482e71fabf6e0447e2be7",
+              "score": "0.018218260141198997"
+            },
+            {
+              "rank": 11,
+              "path": "docs/history/whatsnew-5.6.rst",
+              "evidence_id": "ef85c1efa2ab0e22e24d1eb7",
+              "score": "0.017399478840254643"
+            },
+            {
+              "rank": 12,
+              "path": "docs/history/index.rst",
+              "evidence_id": "87042715d55f4c7a34af3074",
+              "score": "0.017283950617283952"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "Changelog.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 2752
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+              "start": 73,
+              "end": 136,
+              "total_lines": 136
+            },
+            {
+              "path": "docs/history/changelog-5.6.rst",
+              "start": 0,
+              "end": 69,
+              "total_lines": 69
+            }
+          ],
+          "read_evidence_ids": [
+            "d12430f6ef1564575be95e1b",
+            "a927f1eca8f986e6b1b62aaf",
+            "339e04bd5e1eef433605b10d"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "339e04bd5e1eef433605b10d",
+        "3b457d045ef6980202d6372e",
+        "53a745cbdd12feed73bf65d0",
+        "6f83d29d16adab13c7ba62c1",
+        "710c42e3636589cbf5bbbf6e",
+        "8122d3a496398063e2ce036b",
+        "87042715d55f4c7a34af3074",
+        "8ab7d9c4268617c2524e739b",
+        "8b06a9aa16940ecce9ed6353",
+        "995482e71fabf6e0447e2be7",
+        "a61bd9b01209af7e83abb6d8",
+        "a927f1eca8f986e6b1b62aaf",
+        "b6a100ad92dae87763c5e519",
+        "cacfc1685376551af97d4957",
+        "d12430f6ef1564575be95e1b",
+        "ef85c1efa2ab0e22e24d1eb7",
+        "fc07d774f86960c052694903"
+      ],
+      "new_evidence_count": 17,
+      "new_path_count": 7
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+    "code": "4938224a03b38cc1440dfd8e25418c18ef681185"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:0c8577308a892a1f": 0,
+    "discover:Q1-2:33b886d9396858ba": 137,
+    "discover:Q2-3:0d64e29c9f67adb0": 0
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:0c8577308a892a1f": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 138,
+      "cache_hit": false
+    },
+    "discover:Q1-2:33b886d9396858ba": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 141,
+      "cache_hit": false
+    },
+    "discover:Q1-1:117bf01cda6d1710": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 153,
+      "cache_hit": false
+    },
+    "discover:Q1-2:f1dcc2e435515cde": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 206,
+      "cache_hit": false
+    },
+    "discover:Q2-3:0d64e29c9f67adb0": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 242,
+      "cache_hit": false
+    },
+    "discover:Q2-3:b472984ea3dbe982": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 1231,
+      "cache_hit": false
+    },
+    "discover:Q2-2:fee0491f64b891dc": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 1318,
+      "cache_hit": false
+    },
+    "discover:Q2-1:aa16184dedc5e1aa": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 1429,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2002,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "redis-cred-provider-setting",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/userguide/configuration.rst"
+      ],
+      "evidence_ids": [
+        "90267280d00111c4c8f15581",
+        "3b457d045ef6980202d6372e",
+        "55012db16bf77f50401ddb94"
+      ],
+      "reason": "Add a new `redis_backend_credential_provider` setting entry in the Redis result backend section of docs/userguide/configuration.rst (near redis_backend_health_check_interval / redis_backend_use_ssl). Document that it accepts a dotted-string class path to a `redis.CredentialProvider` subclass (resolved and instantiated at connection setup) or a direct `CredentialProvider` instance; when active, `username` and `password` are removed from connection params; invalid values raise ValueError (and unresolvable paths raise ImportError)."
+    },
+    {
+      "requirement_id": "redis-url-cred-provider",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/userguide/configuration.rst"
+      ],
+      "evidence_ids": [
+        "a016ffdc13502859eec3c599",
+        "3b457d045ef6980202d6372e",
+        "55012db16bf77f50401ddb94"
+      ],
+      "reason": "Document the `credential_provider` URL query parameter in the Redis result backend URL fields section of docs/userguide/configuration.rst (where username/password/host/port/db are listed), noting it accepts a dotted class path to a `redis.CredentialProvider` subclass and that username/password are dropped when it is set."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:08dc186772f1a295cf2bad45",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.1.rst",
+        "heading": "Support Redis `health_check_interval`",
+        "start_line": 418,
+        "end_line": 425,
+        "start_char": 13481,
+        "end_char": 13699,
+        "score": "0.030803699033207232",
+        "root": "docs",
+        "matched_terms": [
+          "redis_backend_health_check_interval"
+        ],
+        "evidence_id": "08dc186772f1a295cf2bad45",
+        "source_type": "repository",
+        "content_hash": "95fb8e167e5e19eb2c3326d03dff129c8793f7dafebd9e3fcd35140e51f120d3",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "95fb8e167e5e19eb2c3326d03dff129c8793f7dafebd9e3fcd35140e51f120d3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:143a5a8dec2a030b473b24f1",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "start_line": 40,
+        "total_lines": 166,
+        "start_char": 1876,
+        "end_char": 5435,
+        "evidence_id": "143a5a8dec2a030b473b24f1",
+        "truncated": false,
+        "next_offset": 159,
+        "source_type": "repository",
+        "content_hash": "b1f103e4cdf7bfc056d67acf20ccf08ecbcb55e23a5615e15186acbad1582514",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b1f103e4cdf7bfc056d67acf20ccf08ecbcb55e23a5615e15186acbad1582514",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a4cff753ef8c74f87ba2b05",
+        "type": "evidence",
+        "evidence_id": "1a4cff753ef8c74f87ba2b05",
+        "source_type": "task",
+        "exported_content_sha256": "87b3020973e353540f0deaab881e768675953a6fbb696945853c78f7df9744f6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1fa51a8d2a5e993c80d0f946",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Documentation-Bug-Report.md",
+        "heading": "Checklist > Related Issues and Possible Duplicates > Related Issues",
+        "start_line": 41,
+        "end_line": 44,
+        "start_char": 1563,
+        "end_char": 1592,
+        "score": "0.029158404191469298",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "1fa51a8d2a5e993c80d0f946",
+        "source_type": "repository",
+        "content_hash": "cf4ff437032eb99323395ed9bb55c9c826758d787053255792f66ddfc202d83d",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "cf4ff437032eb99323395ed9bb55c9c826758d787053255792f66ddfc202d83d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2381163c647ba42bbd39963c",
+        "type": "evidence",
+        "path": "docs/getting-started/first-steps-with-celery.rst",
+        "heading": "Redis",
+        "start_line": 79,
+        "end_line": 94,
+        "start_char": 2338,
+        "end_char": 2683,
+        "score": "0.033603029312411464",
+        "root": "docs",
+        "matched_terms": [
+          "redis"
+        ],
+        "evidence_id": "2381163c647ba42bbd39963c",
+        "source_type": "repository",
+        "content_hash": "e6de6cda0e43d9b836acfab9230d4d664189f970850508b5065f27a40c8a339d",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e6de6cda0e43d9b836acfab9230d4d664189f970850508b5065f27a40c8a339d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2c53a4bdb15626544258ca65",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/index.rst",
+        "heading": "Redis",
+        "start_line": 69,
+        "end_line": 79,
+        "start_char": 2267,
+        "end_char": 2824,
+        "score": "0.037380637380637384",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "redis"
+        ],
+        "evidence_id": "2c53a4bdb15626544258ca65",
+        "source_type": "repository",
+        "content_hash": "1c84ac0de2bd073ea145327f9e3d90c13e1b4624f4b4641b949405ac5c27ed44",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1c84ac0de2bd073ea145327f9e3d90c13e1b4624f4b4641b949405ac5c27ed44",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:339e04bd5e1eef433605b10d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-5.6.rst",
+        "start_line": 1,
+        "total_lines": 69,
+        "start_char": 0,
+        "end_char": 3216,
+        "evidence_id": "339e04bd5e1eef433605b10d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "4731655f3feae177eda68b468640a97fe306e57c0cd6503d8b3fc13d78af2798",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "Changelog.rst",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+              "offset": 73,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-5.6.rst",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "4731655f3feae177eda68b468640a97fe306e57c0cd6503d8b3fc13d78af2798",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3b457d045ef6980202d6372e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 1268,
+        "total_lines": 4147,
+        "start_char": 39239,
+        "end_char": 42622,
+        "evidence_id": "3b457d045ef6980202d6372e",
+        "truncated": false,
+        "next_offset": 1387,
+        "source_type": "repository",
+        "content_hash": "08827cd9295bbcb6c3413e4b0b75e634561d3ae0a58b3e1dea2abc06a8fc5e62",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "The fields of the URL are defined as follows",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "08827cd9295bbcb6c3413e4b0b75e634561d3ae0a58b3e1dea2abc06a8fc5e62",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:410ee26cf9a5f6b6f594617f",
+        "type": "evidence",
+        "path": "docs/history/changelog-5.5.rst",
+        "heading": "Redis Broker Stability Improvements",
+        "start_line": 88,
+        "end_line": 102,
+        "start_char": 2370,
+        "end_char": 3036,
+        "score": "0.03847123142897791",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "connection",
+          "redis"
+        ],
+        "evidence_id": "410ee26cf9a5f6b6f594617f",
+        "source_type": "repository",
+        "content_hash": "57c132fbeeb2daaadcc72789efa6b2d3684f1f6413b648817fe1f043259cfe17",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "57c132fbeeb2daaadcc72789efa6b2d3684f1f6413b648817fe1f043259cfe17",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4ceedbe5b6ac7a7b925280cf",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.1.rst",
+        "heading": "Support for Redis username authentication",
+        "start_line": 347,
+        "end_line": 354,
+        "start_char": 10941,
+        "end_char": 11244,
+        "score": "0.03711313374950972",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "redis"
+        ],
+        "evidence_id": "4ceedbe5b6ac7a7b925280cf",
+        "source_type": "repository",
+        "content_hash": "7352e42453d7b76c1a628f1dc378f9f722bcfcd7dae9b616a831be89aaad9c82",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7352e42453d7b76c1a628f1dc378f9f722bcfcd7dae9b616a831be89aaad9c82",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:53a745cbdd12feed73bf65d0",
+        "type": "evidence",
+        "path": "docs/history/changelog-5.0.rst",
+        "heading": "Change history",
+        "start_line": 2,
+        "end_line": 10,
+        "start_char": 17,
+        "end_char": 225,
+        "score": "0.019921436588103254",
+        "root": "docs",
+        "matched_terms": [
+          "5",
+          "6",
+          "whatsnew"
+        ],
+        "evidence_id": "53a745cbdd12feed73bf65d0",
+        "source_type": "repository",
+        "content_hash": "3e2ec6a6101c3dcca8cdc39566449cc360d0dad1ba897f775637dfc58b96bb26",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "3e2ec6a6101c3dcca8cdc39566449cc360d0dad1ba897f775637dfc58b96bb26",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:53ba160d88c7053643cdd6de",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/getting-started/backends-and-brokers/redis.rst",
+        "start_line": 18,
+        "total_lines": 287,
+        "start_char": 327,
+        "end_char": 3676,
+        "evidence_id": "53ba160d88c7053643cdd6de",
+        "truncated": false,
+        "next_offset": 137,
+        "source_type": "repository",
+        "content_hash": "72f70826d1bf93943338528129146213fe2ca3e9512d1a387f0f7cd9da753240",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "offset": 17,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1256,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "offset": 315,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "72f70826d1bf93943338528129146213fe2ca3e9512d1a387f0f7cd9da753240",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:55012db16bf77f50401ddb94",
+        "type": "evidence",
+        "evidence_id": "55012db16bf77f50401ddb94",
+        "source_type": "implementation",
+        "exported_content_sha256": "2c5aeb1812048fda7e37d537a20ac6b219837f5915b8ea03dc028efd7bb5b07e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5666ea7add3704c76f66d66f",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "Example configuration",
+        "start_line": 1211,
+        "end_line": 1260,
+        "start_char": 37759,
+        "end_char": 38843,
+        "score": "0.04207164601000217",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "redis",
+          "url"
+        ],
+        "evidence_id": "5666ea7add3704c76f66d66f",
+        "source_type": "repository",
+        "content_hash": "16a9d7605bee68a0f94b268b5521ea1379d50fbd7d1b3a92d59d8eaf06c7285a",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "16a9d7605bee68a0f94b268b5521ea1379d50fbd7d1b3a92d59d8eaf06c7285a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5718e5dcecc857b74a049fd2",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.1.rst",
+        "heading": "Redis",
+        "start_line": 225,
+        "end_line": 240,
+        "start_char": 7341,
+        "end_char": 7742,
+        "score": "0.036434382143337364",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "redis"
+        ],
+        "evidence_id": "5718e5dcecc857b74a049fd2",
+        "source_type": "repository",
+        "content_hash": "9fcc2972c4a6f9757998df86c265ed63cf6d8695d24d2f73f807ac4d2e911056",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9fcc2972c4a6f9757998df86c265ed63cf6d8695d24d2f73f807ac4d2e911056",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:634cb583b820fe792c0c781f",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/redis.rst",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 33,
+        "score": "0.04000486495083593",
+        "root": "docs",
+        "matched_terms": [
+          "redis"
+        ],
+        "evidence_id": "634cb583b820fe792c0c781f",
+        "source_type": "repository",
+        "content_hash": "6cacfdd343f002b6053c1cc8fa9e390df0f886f6d24c061a3e1856e5e8f0b36c",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6cacfdd343f002b6053c1cc8fa9e390df0f886f6d24c061a3e1856e5e8f0b36c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6878deb778a1878db574cb5a",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE.md",
+        "start_line": 1,
+        "total_lines": 4,
+        "start_char": 0,
+        "end_char": 139,
+        "evidence_id": "6878deb778a1878db574cb5a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5f46b005c3ca4d0a8a4c0987a8407b5d36ce534786453a153c7e803b178861fe",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5f46b005c3ca4d0a8a4c0987a8407b5d36ce534786453a153c7e803b178861fe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6bfba3b0314071ae59e3ddcb",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.3.rst",
+        "heading": "Redis Result Backend Support for SSL URIs",
+        "start_line": 366,
+        "end_line": 394,
+        "start_char": 11670,
+        "end_char": 12545,
+        "score": "0.03604851536598965",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "parameters",
+          "redis"
+        ],
+        "evidence_id": "6bfba3b0314071ae59e3ddcb",
+        "source_type": "repository",
+        "content_hash": "4b702aefe553d400525bf6eda540705f4966980adab5bc73ec9f188cfa890d07",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4b702aefe553d400525bf6eda540705f4966980adab5bc73ec9f188cfa890d07",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6e9135f30c31f38b475ec37e",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.0.rst",
+        "heading": "Retry Policy for the Redis Result Backend",
+        "start_line": 320,
+        "end_line": 326,
+        "start_char": 10677,
+        "end_char": 10955,
+        "score": "0.038613505747126436",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "redis"
+        ],
+        "evidence_id": "6e9135f30c31f38b475ec37e",
+        "source_type": "repository",
+        "content_hash": "273b666c2b48a30f9c5c8e9b2a1d596a110fab41474d74ca5fb5d50af9098ae5",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "273b666c2b48a30f9c5c8e9b2a1d596a110fab41474d74ca5fb5d50af9098ae5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6f83d29d16adab13c7ba62c1",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+        "heading": "Potential Release Blockers > 3. Compile Changelog > 3.2 Changelog PR",
+        "start_line": 78,
+        "end_line": 80,
+        "start_char": 4017,
+        "end_char": 4228,
+        "score": "0.022241380252852074",
+        "root": "docs",
+        "matched_terms": [
+          "changelog"
+        ],
+        "evidence_id": "6f83d29d16adab13c7ba62c1",
+        "source_type": "repository",
+        "content_hash": "5547c095ce12a2058938223373dabbad668fdff3db277684a564e3bb9a8e4309",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5547c095ce12a2058938223373dabbad668fdff3db277684a564e3bb9a8e4309",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:710c42e3636589cbf5bbbf6e",
+        "type": "evidence",
+        "path": "docs/history/changelog-2.5.rst",
+        "heading": "2.5.0",
+        "start_line": 206,
+        "end_line": 218,
+        "start_char": 5089,
+        "end_char": 5414,
+        "score": "0.019380448318804484",
+        "root": "docs",
+        "matched_terms": [
+          "5",
+          "changelog",
+          "whatsnew"
+        ],
+        "evidence_id": "710c42e3636589cbf5bbbf6e",
+        "source_type": "repository",
+        "content_hash": "30abc2acafad3f8356b3047aeba792992404a2b14b7db5227076ec77d1d5b647",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "30abc2acafad3f8356b3047aeba792992404a2b14b7db5227076ec77d1d5b647",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:722f16118ea67da7e1dda68b",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 14,
+        "start_char": 0,
+        "end_char": 280,
+        "score": "0.043076103680908986",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "722f16118ea67da7e1dda68b",
+        "source_type": "repository",
+        "content_hash": "9515e981be0b9a3042532f472c95f697979fb20eb432160544ec225850f27d39",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9515e981be0b9a3042532f472c95f697979fb20eb432160544ec225850f27d39",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:75947c3c81c2198d51574670",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/redis.rst",
+        "heading": "Configuration",
+        "start_line": 22,
+        "end_line": 68,
+        "start_char": 398,
+        "end_char": 1652,
+        "score": "0.047162673392181595",
+        "root": "docs",
+        "matched_terms": [
+          "broker_url",
+          "connection",
+          "redis",
+          "url"
+        ],
+        "evidence_id": "75947c3c81c2198d51574670",
+        "source_type": "repository",
+        "content_hash": "579b1bb02a84e2e59d218ab8ffb117c4469caf1a4cd19830c2b6740ee6695e12",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "579b1bb02a84e2e59d218ab8ffb117c4469caf1a4cd19830c2b6740ee6695e12",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8122d3a496398063e2ce036b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 112,
+        "total_lines": 4147,
+        "start_char": 5516,
+        "end_char": 12232,
+        "evidence_id": "8122d3a496398063e2ce036b",
+        "truncated": false,
+        "next_offset": 231,
+        "source_type": "repository",
+        "content_hash": "a61b470fceb17dc1c0e271495d5338509f27279658a7b329c938b10edfe32e53",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "redis_backend_use_ssl",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a61b470fceb17dc1c0e271495d5338509f27279658a7b329c938b10edfe32e53",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:86c7855252355c9b5c04e237",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "Example configuration",
+        "start_line": 1311,
+        "end_line": 1323,
+        "start_char": 40412,
+        "end_char": 40987,
+        "score": "0.03107448107448107",
+        "root": "docs",
+        "matched_terms": [
+          "redis_backend_health_check_interval"
+        ],
+        "evidence_id": "86c7855252355c9b5c04e237",
+        "source_type": "repository",
+        "content_hash": "93a9e32b3cf3ae99ba771f957e156f0e5d5592966af2d913bce4e01bc8a0aacb",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "93a9e32b3cf3ae99ba771f957e156f0e5d5592966af2d913bce4e01bc8a0aacb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:87042715d55f4c7a34af3074",
+        "type": "evidence",
+        "path": "docs/history/index.rst",
+        "heading": "History",
+        "start_line": 4,
+        "end_line": 47,
+        "start_char": 24,
+        "end_char": 780,
+        "score": "0.017283950617283952",
+        "root": "docs",
+        "matched_terms": [
+          "5",
+          "changelog",
+          "whatsnew"
+        ],
+        "evidence_id": "87042715d55f4c7a34af3074",
+        "source_type": "repository",
+        "content_hash": "7bf9de6ccaf27eef8982a7b94878debe20e8e53959073ba549cc361723e51e2f",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "7bf9de6ccaf27eef8982a7b94878debe20e8e53959073ba549cc361723e51e2f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8ab7d9c4268617c2524e739b",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+        "heading": "Potential Release Blockers > 3. Compile Changelog",
+        "start_line": 43,
+        "end_line": 61,
+        "start_char": 2250,
+        "end_char": 3476,
+        "score": "0.02183918627023345",
+        "root": "docs",
+        "matched_terms": [
+          "changelog"
+        ],
+        "evidence_id": "8ab7d9c4268617c2524e739b",
+        "source_type": "repository",
+        "content_hash": "5ccdfc6fddef33eb28454a5f8b0e2061280dcbfb6316852bc507c8d2742fc557",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5ccdfc6fddef33eb28454a5f8b0e2061280dcbfb6316852bc507c8d2742fc557",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8b06a9aa16940ecce9ed6353",
+        "type": "evidence",
+        "path": "Changelog.rst",
+        "heading": "Change history",
+        "start_line": 4,
+        "end_line": 12,
+        "start_char": 33,
+        "end_char": 263,
+        "score": "0.02293197632049387",
+        "root": "docs",
+        "matched_terms": [
+          "5",
+          "6",
+          "whatsnew"
+        ],
+        "evidence_id": "8b06a9aa16940ecce9ed6353",
+        "source_type": "repository",
+        "content_hash": "c6e6c363725545d86529997e2c6b98fd1a631c9c37c58e6a1d35ca8b79e7db52",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "c6e6c363725545d86529997e2c6b98fd1a631c9c37c58e6a1d35ca8b79e7db52",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:90267280d00111c4c8f15581",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``redis_backend_health_check_interval``",
+        "start_line": 1324,
+        "end_line": 1348,
+        "start_char": 40987,
+        "end_char": 41743,
+        "score": "0.04507857733664185",
+        "root": "docs",
+        "matched_terms": [
+          "redis_backend_health_check_interval",
+          "redis_backend_use_ssl"
+        ],
+        "evidence_id": "90267280d00111c4c8f15581",
+        "source_type": "repository",
+        "content_hash": "9d56755938333564414a126d7ac2dacd986ed9ec3e05c4e0cae562d38081f8e9",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9d56755938333564414a126d7ac2dacd986ed9ec3e05c4e0cae562d38081f8e9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:995482e71fabf6e0447e2be7",
+        "type": "evidence",
+        "path": "Changelog.rst",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 33,
+        "score": "0.018218260141198997",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "995482e71fabf6e0447e2be7",
+        "source_type": "repository",
+        "content_hash": "a06205507a836c46d6ee35c4ff7613540f7ce76927addad9b86ea9a77db41321",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "a06205507a836c46d6ee35c4ff7613540f7ce76927addad9b86ea9a77db41321",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9bc4ecb3fb575ad2485361f0",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/redis.rst",
+        "heading": "Connection timeouts",
+        "start_line": 123,
+        "end_line": 140,
+        "start_char": 3252,
+        "end_char": 3700,
+        "score": "0.03325796374995459",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "9bc4ecb3fb575ad2485361f0",
+        "source_type": "repository",
+        "content_hash": "a876b441e9c33aec4cca2e2d0bdc77803007aeca75cf08220507a2da406be4e8",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a876b441e9c33aec4cca2e2d0bdc77803007aeca75cf08220507a2da406be4e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a016ffdc13502859eec3c599",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 1257,
+        "total_lines": 4147,
+        "start_char": 38747,
+        "end_char": 42379,
+        "evidence_id": "a016ffdc13502859eec3c599",
+        "truncated": false,
+        "next_offset": 1376,
+        "source_type": "repository",
+        "content_hash": "d61007000d4ec216d49928c9d1e741adb3bf2487e9c0583739cbe6b4cc665765",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "offset": 17,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1256,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "offset": 315,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d61007000d4ec216d49928c9d1e741adb3bf2487e9c0583739cbe6b4cc665765",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a1ec0a94796916d10c8f5dc0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 1,
+        "total_lines": 4147,
+        "start_char": 0,
+        "end_char": 6154,
+        "evidence_id": "a1ec0a94796916d10c8f5dc0",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "67b78815243a5c08391a785379fc7195b5dc69773a3a28cf99d727c785ce509c",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "67b78815243a5c08391a785379fc7195b5dc69773a3a28cf99d727c785ce509c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a61bd9b01209af7e83abb6d8",
+        "type": "evidence",
+        "path": "docs/history/changelog-5.6.rst",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 37,
+        "score": "0.021369433877825018",
+        "root": "docs",
+        "matched_terms": [
+          "5",
+          "6"
+        ],
+        "evidence_id": "a61bd9b01209af7e83abb6d8",
+        "source_type": "repository",
+        "content_hash": "1d27cb794118598cd1c00724fce310c4b6bc2054e26cc4ab8e9cf785c060e791",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "1d27cb794118598cd1c00724fce310c4b6bc2054e26cc4ab8e9cf785c060e791",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a8a26c376c0946766fd6a592",
+        "type": "evidence",
+        "path": "Changelog.rst",
+        "heading": "Key Highlights",
+        "start_line": 143,
+        "end_line": 180,
+        "start_char": 5223,
+        "end_char": 6825,
+        "score": "0.03545634920634921",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a8a26c376c0946766fd6a592",
+        "source_type": "repository",
+        "content_hash": "857c44374801428373b8f527c72ef25e29cea854f0a8134522a152d0f24293ed",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "857c44374801428373b8f527c72ef25e29cea854f0a8134522a152d0f24293ed",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a927f1eca8f986e6b1b62aaf",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+        "start_line": 74,
+        "total_lines": 136,
+        "start_char": 3879,
+        "end_char": 6640,
+        "evidence_id": "a927f1eca8f986e6b1b62aaf",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "72e3025811a97ef81ef203a24f7cace2d7d3aa862faf4ce2194e618c8f6d1adf",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "Changelog.rst",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+              "offset": 73,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-5.6.rst",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "72e3025811a97ef81ef203a24f7cace2d7d3aa862faf4ce2194e618c8f6d1adf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b6a100ad92dae87763c5e519",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Patch-Version-Release-Checklist.md",
+        "heading": "Release Steps > 3. Compile Changelog",
+        "start_line": 41,
+        "end_line": 59,
+        "start_char": 2220,
+        "end_char": 3446,
+        "score": "0.01936159126670617",
+        "root": "docs",
+        "matched_terms": [
+          "changelog"
+        ],
+        "evidence_id": "b6a100ad92dae87763c5e519",
+        "source_type": "repository",
+        "content_hash": "5ccdfc6fddef33eb28454a5f8b0e2061280dcbfb6316852bc507c8d2742fc557",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5ccdfc6fddef33eb28454a5f8b0e2061280dcbfb6316852bc507c8d2742fc557",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cacfc1685376551af97d4957",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Patch-Version-Release-Checklist.md",
+        "heading": "Release Steps > 3. Compile Changelog > 3.2 Changelog PR",
+        "start_line": 76,
+        "end_line": 78,
+        "start_char": 3987,
+        "end_char": 4198,
+        "score": "0.020327474009765107",
+        "root": "docs",
+        "matched_terms": [
+          "changelog"
+        ],
+        "evidence_id": "cacfc1685376551af97d4957",
+        "source_type": "repository",
+        "content_hash": "5547c095ce12a2058938223373dabbad668fdff3db277684a564e3bb9a8e4309",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5547c095ce12a2058938223373dabbad668fdff3db277684a564e3bb9a8e4309",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d12430f6ef1564575be95e1b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "Changelog.rst",
+        "start_line": 1,
+        "total_lines": 2752,
+        "start_char": 0,
+        "end_char": 4857,
+        "evidence_id": "d12430f6ef1564575be95e1b",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "04b3130d66c3b35fbfcbc0024d6260f70427b47c0feb1cca732b748e31949d19",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "Changelog.rst",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Minor-Version-Release-Checklist.md",
+              "offset": 73,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-5.6.rst",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "04b3130d66c3b35fbfcbc0024d6260f70427b47c0feb1cca732b748e31949d19",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed948878093dbf4634abdd9d",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "Checklist > Optional Debugging Information",
+        "start_line": 44,
+        "end_line": 61,
+        "start_char": 2050,
+        "end_char": 2899,
+        "score": "0.043488777089783284",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ed948878093dbf4634abdd9d",
+        "source_type": "repository",
+        "content_hash": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eea9dc5fd4d4b7b3718946d3",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "Example configuration",
+        "start_line": 1261,
+        "end_line": 1310,
+        "start_char": 38843,
+        "end_char": 40412,
+        "score": "0.0428317532315308",
+        "root": "docs",
+        "matched_terms": [
+          "connection",
+          "parameters",
+          "query",
+          "redis",
+          "string",
+          "url"
+        ],
+        "evidence_id": "eea9dc5fd4d4b7b3718946d3",
+        "source_type": "repository",
+        "content_hash": "c6d71ff7fa766210b7f05220519bc7f44226256344f021c9703f5ff1b9a33b05",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c6d71ff7fa766210b7f05220519bc7f44226256344f021c9703f5ff1b9a33b05",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ef85c1efa2ab0e22e24d1eb7",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.6.rst",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 61,
+        "score": "0.017399478840254643",
+        "root": "docs",
+        "matched_terms": [
+          "5",
+          "6"
+        ],
+        "evidence_id": "ef85c1efa2ab0e22e24d1eb7",
+        "source_type": "repository",
+        "content_hash": "c2be702d5845f57567cde72c3426c84c6449b5c2d469e95142cae3ed1c075fcb",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "c2be702d5845f57567cde72c3426c84c6449b5c2d469e95142cae3ed1c075fcb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f289e7ad0b22e4ec250ceffd",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/whatsnew-5.0.rst",
+        "start_line": 316,
+        "total_lines": 326,
+        "start_char": 10665,
+        "end_char": 10955,
+        "evidence_id": "f289e7ad0b22e4ec250ceffd",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "7a08e3f62b586eab5ccff15a0515188ed9c314ffe96bf30fa62cfddd04f90ac9",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "offset": 17,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1256,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "offset": 315,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7a08e3f62b586eab5ccff15a0515188ed9c314ffe96bf30fa62cfddd04f90ac9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f8a8ca78a9ead8d2c7fcf5cc",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Documentation-Bug-Report.md",
+        "heading": "Checklist",
+        "start_line": 15,
+        "end_line": 28,
+        "start_char": 330,
+        "end_char": 1043,
+        "score": "0.031190892899312952",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "f8a8ca78a9ead8d2c7fcf5cc",
+        "source_type": "repository",
+        "content_hash": "507c3ed7629968fa8165ca47b822c744ac707c26fef9fb2296d54f576467cd93",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis_backend_health_check_interval",
+            "redis_socket_keepalive",
+            "redis_backend_use_ssl"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "507c3ed7629968fa8165ca47b822c744ac707c26fef9fb2296d54f576467cd93",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fc07d774f86960c052694903",
+        "type": "evidence",
+        "path": "docs/history/changelog-5.6.rst",
+        "heading": "Change history",
+        "start_line": 4,
+        "end_line": 12,
+        "start_char": 37,
+        "end_char": 267,
+        "score": "0.020516850008730575",
+        "root": "docs",
+        "matched_terms": [
+          "5",
+          "6",
+          "whatsnew"
+        ],
+        "evidence_id": "fc07d774f86960c052694903",
+        "source_type": "repository",
+        "content_hash": "c6e6c363725545d86529997e2c6b98fd1a631c9c37c58e6a1d35ca8b79e7db52",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "whatsnew-5.6",
+            "Changelog unreleased",
+            "redis_backend_credential_provider"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "c6e6c363725545d86529997e2c6b98fd1a631c9c37c58e6a1d35ca8b79e7db52",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:febbb461f27ea150654f310e",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.1.rst",
+        "heading": "Support Redis Sentinel with SSL",
+        "start_line": 435,
+        "end_line": 439,
+        "start_char": 13970,
+        "end_char": 14119,
+        "score": "0.03298136645962733",
+        "root": "docs",
+        "matched_terms": [
+          "redis"
+        ],
+        "evidence_id": "febbb461f27ea150654f310e",
+        "source_type": "repository",
+        "content_hash": "f40cc8df0f98b1aa9f7353d04fd814199b2a1c8319cf46b5a553e2aadf7d3e13",
+        "revision": "82fc865b2fe5fd06a8a81c6c9ea508dffb5e1e99",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "redis backend URL query parameters",
+            "redis:// connection string",
+            "broker_url redis"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f40cc8df0f98b1aa9f7353d04fd814199b2a1c8319cf46b5a553e2aadf7d3e13",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:redis-cred-provider-setting",
+        "type": "requirement",
+        "description": "Add a new `redis_backend_credential_provider` setting entry in the Redis result backend section of docs/userguide/configuration.rst (near redis_backend_health_check_interval / redis_backend_use_ssl). Document that it accepts a dotted-string class path to a `redis.CredentialProvider` subclass (resolved and instantiated at connection setup) or a direct `CredentialProvider` instance; when active, `username` and `password` are removed from connection params; invalid values raise ValueError (and unresolvable paths raise ImportError)."
+      },
+      {
+        "id": "requirement:redis-url-cred-provider",
+        "type": "requirement",
+        "description": "Document the `credential_provider` URL query parameter in the Redis result backend URL fields section of docs/userguide/configuration.rst (where username/password/host/port/db are listed), noting it accepts a dotted class path to a `redis.CredentialProvider` subclass and that username/password are dropped when it is set."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/userguide/configuration.rst",
+        "hash": "803076ee8ce6713737f674b1d6f97e45dc6fce3bc03d5c53782863880b8fa6c9"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/userguide/configuration.rst",
+        "hash": "eadc2cd9bd0abb01784593f2adba5688be6bc924f725ea8948b2179dd020dc0e"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "redis-cred-provider-setting",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/userguide/configuration.rst"
+        ],
+        "evidence_ids": [
+          "90267280d00111c4c8f15581",
+          "3b457d045ef6980202d6372e",
+          "55012db16bf77f50401ddb94"
+        ],
+        "reason": "Add a new `redis_backend_credential_provider` setting entry in the Redis result backend section of docs/userguide/configuration.rst (near redis_backend_health_check_interval / redis_backend_use_ssl). Document that it accepts a dotted-string class path to a `redis.CredentialProvider` subclass (resolved and instantiated at connection setup) or a direct `CredentialProvider` instance; when active, `username` and `password` are removed from connection params; invalid values raise ValueError (and unresolvable paths raise ImportError)."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "redis-url-cred-provider",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/userguide/configuration.rst"
+        ],
+        "evidence_ids": [
+          "a016ffdc13502859eec3c599",
+          "3b457d045ef6980202d6372e",
+          "55012db16bf77f50401ddb94"
+        ],
+        "reason": "Document the `credential_provider` URL query parameter in the Redis result backend URL fields section of docs/userguide/configuration.rst (where username/password/host/port/db are listed), noting it accepts a dotted class path to a `redis.CredentialProvider` subclass and that username/password are dropped when it is set."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where are Redis backend configuration options documented, and is there a list of redis_* settings that should include redis_backend_credential_provider?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "How are Redis backend connection URL query parameters documented, to add credential_provider query param?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "What is the exact structure and surrounding content of the Redis backend settings section in configuration.rst (redis_backend_health_check_interval, redis_backend_use_ssl, redis_max_connections) so a new redis_backend_credential_provider setting entry can be placed correctly?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the Redis backend URL query-parameter documentation (fields list, TLS query params) provide a place to document the credential_provider query parameter?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Is there a Changelog or whatsnew section for the current unreleased version where a new feature like redis_backend_credential_provider should be noted?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:08dc186772f1a295cf2bad45",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:143a5a8dec2a030b473b24f1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1fa51a8d2a5e993c80d0f946",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2381163c647ba42bbd39963c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2c53a4bdb15626544258ca65",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:339e04bd5e1eef433605b10d",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3b457d045ef6980202d6372e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:410ee26cf9a5f6b6f594617f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ceedbe5b6ac7a7b925280cf",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:53a745cbdd12feed73bf65d0",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:53ba160d88c7053643cdd6de",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5666ea7add3704c76f66d66f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5718e5dcecc857b74a049fd2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:634cb583b820fe792c0c781f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:634cb583b820fe792c0c781f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6878deb778a1878db574cb5a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6bfba3b0314071ae59e3ddcb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6bfba3b0314071ae59e3ddcb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6e9135f30c31f38b475ec37e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6f83d29d16adab13c7ba62c1",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:710c42e3636589cbf5bbbf6e",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:722f16118ea67da7e1dda68b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:75947c3c81c2198d51574670",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8122d3a496398063e2ce036b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:86c7855252355c9b5c04e237",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:87042715d55f4c7a34af3074",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8ab7d9c4268617c2524e739b",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8b06a9aa16940ecce9ed6353",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:90267280d00111c4c8f15581",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:995482e71fabf6e0447e2be7",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9bc4ecb3fb575ad2485361f0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a016ffdc13502859eec3c599",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a1ec0a94796916d10c8f5dc0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a61bd9b01209af7e83abb6d8",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a8a26c376c0946766fd6a592",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a927f1eca8f986e6b1b62aaf",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b6a100ad92dae87763c5e519",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cacfc1685376551af97d4957",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d12430f6ef1564575be95e1b",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed948878093dbf4634abdd9d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eea9dc5fd4d4b7b3718946d3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef85c1efa2ab0e22e24d1eb7",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f289e7ad0b22e4ec250ceffd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f8a8ca78a9ead8d2c7fcf5cc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fc07d774f86960c052694903",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:febbb461f27ea150654f310e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:55012db16bf77f50401ddb94",
+        "to": "requirement:redis-cred-provider-setting",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:90267280d00111c4c8f15581",
+        "to": "requirement:redis-cred-provider-setting",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:3b457d045ef6980202d6372e",
+        "to": "requirement:redis-cred-provider-setting",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:55012db16bf77f50401ddb94",
+        "to": "requirement:redis-url-cred-provider",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:a016ffdc13502859eec3c599",
+        "to": "requirement:redis-url-cred-provider",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:3b457d045ef6980202d6372e",
+        "to": "requirement:redis-url-cred-provider",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:redis-url-cred-provider",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:a016ffdc13502859eec3c599",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3b457d045ef6980202d6372e",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:55012db16bf77f50401ddb94",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:redis-cred-provider-setting",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:90267280d00111c4c8f15581",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3b457d045ef6980202d6372e",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:55012db16bf77f50401ddb94",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:redis-cred-provider-setting",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:90267280d00111c4c8f15581",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3b457d045ef6980202d6372e",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:55012db16bf77f50401ddb94",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:redis-url-cred-provider",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:a016ffdc13502859eec3c599",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3b457d045ef6980202d6372e",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:55012db16bf77f50401ddb94",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "50b9d969a96636a2ecf52dd379589587d2bebbac6eb683915b506ef2609c7b5e"
+}

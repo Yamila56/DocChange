@@ -1,0 +1,2893 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "cel-expressions-parse-resource-id",
+      "description": "In docs/hugo/content/guide/expressions.md, add a section documenting the new ASO-specific CEL function `aso.parseResourceId(string)`. Explain that it parses an ARM resource ID string and returns a `ResourceID` object exposing fields `subscriptionId`, `resourceGroupName`, `provider`, `location`, `name`, a nested `resourceType` object (with `namespace` and `type`), and a recursive `parent` field for hierarchical IDs. Include an example such as `aso.parseResourceId(self.status.id).subscriptionId` and note it is surfaced under the `aso` namespace to avoid collisions with user identifiers.",
+      "evidence_ids": [
+        "3ed00123798f85cf5dd88a0c",
+        "bf8197a3e56eda47bc5440e5",
+        "08ce7ca108af51575beb0955",
+        "633c882dd66446360acefea2",
+        "24b5070a8dc6d3e319bb45a0"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "faq-workload-identity-parse-resource-id",
+      "description": "In docs/hugo/content/guide/frequently-asked-questions.md, extend the workload identity section (injecting ASO-created User Managed Identity details) to mention that `aso.parseResourceId` can be used in `operatorSpec.secretExpressions` to derive the subscription ID (e.g. `aso.parseResourceId(self.status.id).subscriptionId`) alongside `self.status.tenantId` and `self.status.clientId`, enabling a complete workload identity credential secret.",
+      "evidence_ids": [
+        "d73897770ccd2daacbf53f3d",
+        "3ed00123798f85cf5dd88a0c",
+        "bf8197a3e56eda47bc5440e5"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "c47fa2dc5f4bfeb4e2b3132a3da2db41e5057ea56f8eb7d1f6cad6ce88aff63f",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where is the CEL documentation for built-in functions and native types, and does it list existing aso.* functions that a new aso.parseResourceId would need to be added to?",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/hugo/content"
+          ],
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/expressions.md",
+              "offset": 49,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "offset": 80,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "offset": 159,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "21066e145a5cf72689a062c3",
+            "056bec0264dd236fbb870701",
+            "c2b8cb711b9ccc1d14a78224",
+            "0c9cca6ce4e655298d73b18c",
+            "24b5070a8dc6d3e319bb45a0",
+            "caf6dedb803594f8abe27aee",
+            "6a9a1ff0d7c1fc65661ce7a9",
+            "e54474b0f718efd7dfc9488a",
+            "ce3b8ec95d32a20e31844ded",
+            "ec057213dcb26f9512fe78b7",
+            "fceef25b7e1af937055d66d8",
+            "41b59d91788306caa2b1b753",
+            "0efc065be91c02941eca4ce6",
+            "b8d37420fc3e7df8d86f6f5a",
+            "ef8db58f77eaf332f0bac4fd"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/guide/expressions.md",
+              "evidence_id": "0c9cca6ce4e655298d73b18c",
+              "score": "0.04727963886909005"
+            },
+            {
+              "rank": 2,
+              "path": "docs/hugo/content/guide/expressions.md",
+              "evidence_id": "24b5070a8dc6d3e319bb45a0",
+              "score": "0.04669647292598113"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "evidence_id": "caf6dedb803594f8abe27aee",
+              "score": "0.04402277039848197"
+            },
+            {
+              "rank": 4,
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "evidence_id": "6a9a1ff0d7c1fc65661ce7a9",
+              "score": "0.04040020263424519"
+            },
+            {
+              "rank": 5,
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "evidence_id": "e54474b0f718efd7dfc9488a",
+              "score": "0.029520649717735166"
+            },
+            {
+              "rank": 6,
+              "path": "docs/hugo/content/guide/best-practices/security.md",
+              "evidence_id": "ce3b8ec95d32a20e31844ded",
+              "score": "0.024089635854341734"
+            },
+            {
+              "rank": 7,
+              "path": "docs/hugo/content/tools/_index.md",
+              "evidence_id": "ec057213dcb26f9512fe78b7",
+              "score": "0.018733407705565114"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/tools/asoctl.md",
+              "evidence_id": "fceef25b7e1af937055d66d8",
+              "score": "0.017194244604316546"
+            },
+            {
+              "rank": 9,
+              "path": "docs/hugo/content/contributing/generator-overview.md",
+              "evidence_id": "41b59d91788306caa2b1b753",
+              "score": "0.016300692383778438"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/reference/apimanagement/v1api20220801.md",
+              "evidence_id": "0efc065be91c02941eca4ce6",
+              "score": "0.0161310413552566"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/guide/authentication/credential-scope.md",
+              "evidence_id": "b8d37420fc3e7df8d86f6f5a",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 12,
+              "path": "SECURITY.md",
+              "evidence_id": "ef8db58f77eaf332f0bac4fd",
+              "score": "0.015873015873015872"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/guide/expressions.md",
+              "start": 49,
+              "end": 169,
+              "total_lines": 175
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "start": 80,
+              "end": 200,
+              "total_lines": 471
+            },
+            {
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "start": 159,
+              "end": 268,
+              "total_lines": 268
+            }
+          ],
+          "read_evidence_ids": [
+            "21066e145a5cf72689a062c3",
+            "056bec0264dd236fbb870701",
+            "c2b8cb711b9ccc1d14a78224"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "How does the implementation register aso.parseResourceId and the ResourceID/ResourceType native types, and what fields/methods are exposed?",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ],
+          "paths": [
+            "v2/internal/util/cel/resource_id.go",
+            "v2/internal/util/cel/cel.go"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "v2/internal/util/cel/resource_id.go",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "v2/internal/util/cel/cel.go",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "3ed00123798f85cf5dd88a0c",
+            "bba77e6d2a12d110d9f3b94b",
+            "cc8aba1a9248e86f4e01bfe9",
+            "6ea2297e0e82c299357ba3b1",
+            "633c882dd66446360acefea2",
+            "0d95cec381fa6e0c11fd5eee",
+            "38a97aa91bdc71fe8d9f92f2",
+            "3ca0dd93c5c30fa24eca6f7f",
+            "a64fd4336bd4a94963ed479e",
+            "79049011032ed2d672228744",
+            "95e3b7e727954e4c5ae8eb00",
+            "b70d91008941dbbf94833a70",
+            "a8b64645c9c261ba7b34f435",
+            "de77369b1575750dc93a6439"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "v2/internal/metrics/metrics_policy.go",
+              "evidence_id": "cc8aba1a9248e86f4e01bfe9",
+              "score": "0.026013513513513515"
+            },
+            {
+              "rank": 2,
+              "path": "v2/internal/util/cel/resource_id.go",
+              "evidence_id": "6ea2297e0e82c299357ba3b1",
+              "score": "0.024206349206349204"
+            },
+            {
+              "rank": 3,
+              "path": "v2/internal/util/cel/cel_test.go",
+              "evidence_id": "633c882dd66446360acefea2",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 4,
+              "path": "v2/internal/util/cel/resource_id.go",
+              "evidence_id": "0d95cec381fa6e0c11fd5eee",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 5,
+              "path": "v2/api/keyvault/customizations/vault_extensions.go",
+              "evidence_id": "38a97aa91bdc71fe8d9f92f2",
+              "score": "0.01628401798277223"
+            },
+            {
+              "rank": 6,
+              "path": "v2/internal/reconcilers/arm/azure_generic_arm_reconciler_instance.go",
+              "evidence_id": "3ca0dd93c5c30fa24eca6f7f",
+              "score": "0.016281233386496542"
+            },
+            {
+              "rank": 7,
+              "path": "v2/api/dataprotection/v1api20231101/backup_vaults_backup_instance_types_gen.go",
+              "evidence_id": "a64fd4336bd4a94963ed479e",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 8,
+              "path": "v2/internal/util/cel/cel_test.go",
+              "evidence_id": "79049011032ed2d672228744",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 9,
+              "path": "v2/api/dataprotection/v1api20231101/backup_vaults_backup_instance_types_gen.go",
+              "evidence_id": "95e3b7e727954e4c5ae8eb00",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 10,
+              "path": "v2/cmd/asoctl/pkg/importresources/importable_arm_resource.go",
+              "evidence_id": "b70d91008941dbbf94833a70",
+              "score": "0.015625"
+            },
+            {
+              "rank": 11,
+              "path": "v2/api/dataprotection/v1api20231101/storage/backup_vaults_backup_instance_types_gen.go",
+              "evidence_id": "a8b64645c9c261ba7b34f435",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 12,
+              "path": "v2/cmd/asoctl/pkg/importresources/resource_importer.go",
+              "evidence_id": "de77369b1575750dc93a6439",
+              "score": "0.015384615384615385"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "v2/internal/util/cel/resource_id.go",
+              "start": 0,
+              "end": 92,
+              "total_lines": 92
+            },
+            {
+              "path": "v2/internal/util/cel/cel.go",
+              "start": 0,
+              "end": 120,
+              "total_lines": 475
+            }
+          ],
+          "read_evidence_ids": [
+            "3ed00123798f85cf5dd88a0c",
+            "bba77e6d2a12d110d9f3b94b"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Is there existing documentation about SecretExpressions and exporting identity credentials for workload identity that should reference aso.parseResourceId?",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/hugo/content"
+          ],
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "offset": 314,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "40eb9a38d41dc5f4af663a3f",
+            "d73897770ccd2daacbf53f3d",
+            "915217e041132f83d7c2f605",
+            "eaa36c1aa4413206d646cbcc",
+            "05ac26cce016a000d8259407",
+            "d3233e912fa42b89bb423bac",
+            "7239ea580ca0519f926779b0",
+            "416d701e7c51c5efba56f68b",
+            "16d7d1b1d0d7397db9ca2498",
+            "9a1281448857049bdffddcf1",
+            "a0ebb6d75253bc7712558343",
+            "fe8f675509cc6f87819fcf35",
+            "e51b873cb075887353e6b93b",
+            "aa7bb38040ccce2b2be20b7f",
+            "aa7dfe3a3d4153a0c02b24f1"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "evidence_id": "eaa36c1aa4413206d646cbcc",
+              "score": "0.030090338668320206"
+            },
+            {
+              "rank": 2,
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "evidence_id": "05ac26cce016a000d8259407",
+              "score": "0.029386529386529386"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "evidence_id": "d3233e912fa42b89bb423bac",
+              "score": "0.02813852813852814"
+            },
+            {
+              "rank": 4,
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "evidence_id": "7239ea580ca0519f926779b0",
+              "score": "0.0264957264957265"
+            },
+            {
+              "rank": 5,
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "evidence_id": "416d701e7c51c5efba56f68b",
+              "score": "0.023376937984496124"
+            },
+            {
+              "rank": 6,
+              "path": "docs/hugo/content/reference/app/v20240301.md",
+              "evidence_id": "16d7d1b1d0d7397db9ca2498",
+              "score": "0.020174915523752734"
+            },
+            {
+              "rank": 7,
+              "path": "docs/hugo/content/reference/app/v1api20240301.md",
+              "evidence_id": "9a1281448857049bdffddcf1",
+              "score": "0.019710531327366214"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/reference/app/v20250101.md",
+              "evidence_id": "a0ebb6d75253bc7712558343",
+              "score": "0.019306752873563218"
+            },
+            {
+              "rank": 9,
+              "path": "docs/hugo/content/reference/app/v1api20250101.md",
+              "evidence_id": "fe8f675509cc6f87819fcf35",
+              "score": "0.019119092289824"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/getting-started/_index.md",
+              "evidence_id": "e51b873cb075887353e6b93b",
+              "score": "0.01839156229400132"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "evidence_id": "aa7bb38040ccce2b2be20b7f",
+              "score": "0.018000296912114015"
+            },
+            {
+              "rank": 12,
+              "path": "docs/hugo/content/reference/cdn/v1api20230501.md",
+              "evidence_id": "aa7dfe3a3d4153a0c02b24f1",
+              "score": "0.017424242424242425"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "start": 27,
+              "end": 147,
+              "total_lines": 866
+            },
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "start": 314,
+              "end": 386,
+              "total_lines": 386
+            },
+            {
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "start": 39,
+              "end": 159,
+              "total_lines": 268
+            }
+          ],
+          "read_evidence_ids": [
+            "40eb9a38d41dc5f4af663a3f",
+            "d73897770ccd2daacbf53f3d",
+            "915217e041132f83d7c2f605"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "056bec0264dd236fbb870701",
+        "05ac26cce016a000d8259407",
+        "0c9cca6ce4e655298d73b18c",
+        "0d95cec381fa6e0c11fd5eee",
+        "0efc065be91c02941eca4ce6",
+        "16d7d1b1d0d7397db9ca2498",
+        "21066e145a5cf72689a062c3",
+        "24b5070a8dc6d3e319bb45a0",
+        "38a97aa91bdc71fe8d9f92f2",
+        "3ca0dd93c5c30fa24eca6f7f",
+        "3ed00123798f85cf5dd88a0c",
+        "40eb9a38d41dc5f4af663a3f",
+        "416d701e7c51c5efba56f68b",
+        "41b59d91788306caa2b1b753",
+        "633c882dd66446360acefea2",
+        "6a9a1ff0d7c1fc65661ce7a9",
+        "6ea2297e0e82c299357ba3b1",
+        "7239ea580ca0519f926779b0",
+        "79049011032ed2d672228744",
+        "915217e041132f83d7c2f605",
+        "95e3b7e727954e4c5ae8eb00",
+        "9a1281448857049bdffddcf1",
+        "a0ebb6d75253bc7712558343",
+        "a64fd4336bd4a94963ed479e",
+        "a8b64645c9c261ba7b34f435",
+        "aa7bb38040ccce2b2be20b7f",
+        "aa7dfe3a3d4153a0c02b24f1",
+        "b70d91008941dbbf94833a70",
+        "b8d37420fc3e7df8d86f6f5a",
+        "bba77e6d2a12d110d9f3b94b",
+        "c2b8cb711b9ccc1d14a78224",
+        "caf6dedb803594f8abe27aee",
+        "cc8aba1a9248e86f4e01bfe9",
+        "ce3b8ec95d32a20e31844ded",
+        "d3233e912fa42b89bb423bac",
+        "d73897770ccd2daacbf53f3d",
+        "de77369b1575750dc93a6439",
+        "e51b873cb075887353e6b93b",
+        "e54474b0f718efd7dfc9488a",
+        "eaa36c1aa4413206d646cbcc",
+        "ec057213dcb26f9512fe78b7",
+        "ef8db58f77eaf332f0bac4fd",
+        "fceef25b7e1af937055d66d8",
+        "fe8f675509cc6f87819fcf35"
+      ],
+      "new_evidence_count": 44,
+      "new_path_count": 29
+    },
+    {
+      "signature": "54c0af31effc1fad9f410ceb03116149ed2c2c814c7be8ff9676927c760c34a3",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the CEL expressions guide (expressions.md) have a section listing ASO-specific functions or native types where aso.parseResourceId and ResourceID/ResourceType should be documented?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/hugo/content/guide/expressions.md"
+          ],
+          "anchor": "### CEL options, language features, and libraries",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/expressions.md",
+              "query": "### CEL options, language features, and libraries",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "21066e145a5cf72689a062c3"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/guide/expressions.md",
+              "start": 49,
+              "end": 169,
+              "total_lines": 175
+            }
+          ],
+          "read_evidence_ids": [
+            "21066e145a5cf72689a062c3"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "What does the rest of resource_id.go and cel.go show about how the function/types are registered and any documented behavior (error handling, field names)?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "v2/internal/util/cel/resource_id.go",
+            "v2/internal/util/cel/cel.go"
+          ],
+          "anchor": "parseResourceIDFunction",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "v2/internal/util/cel/resource_id.go",
+              "query": "parseResourceIDFunction",
+              "limit": 120
+            },
+            {
+              "path": "v2/internal/util/cel/cel.go",
+              "query": "parseResourceIDFunction",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "bf8197a3e56eda47bc5440e5",
+            "08ce7ca108af51575beb0955"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "v2/internal/util/cel/resource_id.go",
+              "start": 58,
+              "end": 92,
+              "total_lines": 92
+            },
+            {
+              "path": "v2/internal/util/cel/cel.go",
+              "start": 172,
+              "end": 292,
+              "total_lines": 475
+            }
+          ],
+          "read_evidence_ids": [
+            "bf8197a3e56eda47bc5440e5",
+            "08ce7ca108af51575beb0955"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Does the FAQ workload identity section or credential-format doc describe exporting identity details to a secret in a way that should now mention aso.parseResourceId for subscription ID?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/hugo/content/guide/frequently-asked-questions.md"
+          ],
+          "anchor": "When using Workload Identity, how can I easily inject the ASO created User Managed Identity details",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "query": "When using Workload Identity, how can I easily inject the ASO created User Managed Identity details",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d73897770ccd2daacbf53f3d"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "start": 314,
+              "end": 386,
+              "total_lines": 386
+            }
+          ],
+          "read_evidence_ids": [
+            "d73897770ccd2daacbf53f3d"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "08ce7ca108af51575beb0955",
+        "bf8197a3e56eda47bc5440e5"
+      ],
+      "new_evidence_count": 2,
+      "new_path_count": 0
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+    "code": "5bdf828aa0550b331435a20f8346d56c9769e885"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:3abad06c8c610b1e": 0,
+    "discover:Q1-3:b4b4c8861851e19e": 371,
+    "discover:Q1-2:ca37297e1b0feb34": 0
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-2:ca37297e1b0feb34": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:3abad06c8c610b1e": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 372,
+      "cache_hit": false
+    },
+    "discover:Q1-3:b4b4c8861851e19e": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 372,
+      "cache_hit": false
+    },
+    "discover:Q1-2:ca37297e1b0feb34": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 55560,
+      "cache_hit": false
+    },
+    "discover:Q1-2:f7cbbcac75e2102c": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 200,
+      "cache_hit": false
+    },
+    "discover:Q1-1:e1de1af9781878e8": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 310,
+      "cache_hit": false
+    },
+    "discover:Q1-3:15f05732769bde38": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 329,
+      "cache_hit": false
+    },
+    "discover:Q2-3:e699ac265c58cbbc": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 142,
+      "cache_hit": false
+    },
+    "discover:Q2-1:d4bf53f40aa79f7f": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 202,
+      "cache_hit": false
+    },
+    "discover:Q2-2:e06fe317daee2cc7": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 232,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 3063,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "cel-expressions-parse-resource-id",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/hugo/content/guide/expressions.md"
+      ],
+      "evidence_ids": [
+        "3ed00123798f85cf5dd88a0c",
+        "bf8197a3e56eda47bc5440e5",
+        "08ce7ca108af51575beb0955",
+        "633c882dd66446360acefea2",
+        "24b5070a8dc6d3e319bb45a0"
+      ],
+      "reason": "In docs/hugo/content/guide/expressions.md, add a section documenting the new ASO-specific CEL function `aso.parseResourceId(string)`. Explain that it parses an ARM resource ID string and returns a `ResourceID` object exposing fields `subscriptionId`, `resourceGroupName`, `provider`, `location`, `name`, a nested `resourceType` object (with `namespace` and `type`), and a recursive `parent` field for hierarchical IDs. Include an example such as `aso.parseResourceId(self.status.id).subscriptionId` and note it is surfaced under the `aso` namespace to avoid collisions with user identifiers."
+    },
+    {
+      "requirement_id": "faq-workload-identity-parse-resource-id",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/hugo/content/guide/frequently-asked-questions.md"
+      ],
+      "evidence_ids": [
+        "d73897770ccd2daacbf53f3d",
+        "3ed00123798f85cf5dd88a0c",
+        "bf8197a3e56eda47bc5440e5"
+      ],
+      "reason": "In docs/hugo/content/guide/frequently-asked-questions.md, extend the workload identity section (injecting ASO-created User Managed Identity details) to mention that `aso.parseResourceId` can be used in `operatorSpec.secretExpressions` to derive the subscription ID (e.g. `aso.parseResourceId(self.status.id).subscriptionId`) alongside `self.status.tenantId` and `self.status.clientId`, enabling a complete workload identity credential secret."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:056bec0264dd236fbb870701",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+        "start_line": 81,
+        "total_lines": 471,
+        "start_char": 3238,
+        "end_char": 7496,
+        "evidence_id": "056bec0264dd236fbb870701",
+        "truncated": false,
+        "next_offset": 200,
+        "source_type": "repository",
+        "content_hash": "093ba2c20144305ba7f5532b96c4f8b17bb9792a721b944537815cdac4e405d3",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/expressions.md",
+              "offset": 49,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "offset": 80,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "offset": 159,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "093ba2c20144305ba7f5532b96c4f8b17bb9792a721b944537815cdac4e405d3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:05ac26cce016a000d8259407",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/credential-format.md",
+        "heading": "linktitle: Credential Format > Managed Identity (via workload identity) > Prerequisites",
+        "start_line": 32,
+        "end_line": 46,
+        "start_char": 1648,
+        "end_char": 2780,
+        "score": "0.029386529386529386",
+        "root": "docs",
+        "matched_terms": [
+          "export",
+          "identity",
+          "secret",
+          "workload"
+        ],
+        "evidence_id": "05ac26cce016a000d8259407",
+        "source_type": "repository",
+        "content_hash": "1b394044ae866c625769193f6486df2ea4934eca4a825309d0d4d84d9ba293b2",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "1b394044ae866c625769193f6486df2ea4934eca4a825309d0d4d84d9ba293b2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:08ce7ca108af51575beb0955",
+        "type": "evidence",
+        "root": "code",
+        "path": "v2/internal/util/cel/cel.go",
+        "start_line": 173,
+        "total_lines": 475,
+        "start_char": 5786,
+        "end_char": 9961,
+        "evidence_id": "08ce7ca108af51575beb0955",
+        "truncated": false,
+        "next_offset": 292,
+        "source_type": "repository",
+        "content_hash": "b575dd58e5579b26e470d98344f28ab98be88b7baaa59ab4ff6a4565d734622a",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "v2/internal/util/cel/resource_id.go",
+              "query": "parseResourceIDFunction",
+              "limit": 120
+            },
+            {
+              "path": "v2/internal/util/cel/cel.go",
+              "query": "parseResourceIDFunction",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b575dd58e5579b26e470d98344f28ab98be88b7baaa59ab4ff6a4565d734622a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c9cca6ce4e655298d73b18c",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/expressions.md",
+        "heading": "weight: 1 # This is the default weight if you just want to be ordered alphabetically > CEL Expressions in ASO > CEL options, language features, and libraries",
+        "start_line": 54,
+        "end_line": 69,
+        "start_char": 2260,
+        "end_char": 3655,
+        "score": "0.04727963886909005",
+        "root": "docs",
+        "matched_terms": [
+          "cel",
+          "functions",
+          "types"
+        ],
+        "evidence_id": "0c9cca6ce4e655298d73b18c",
+        "source_type": "repository",
+        "content_hash": "6d21afeea3c231c833a998df1f9b661cc24bdd85afffa3c75581f90935395159",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6d21afeea3c231c833a998df1f9b661cc24bdd85afffa3c75581f90935395159",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0d95cec381fa6e0c11fd5eee",
+        "type": "evidence",
+        "path": "v2/internal/util/cel/resource_id.go",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1522,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "resourceid",
+          "resourcetype",
+          "type"
+        ],
+        "evidence_id": "0d95cec381fa6e0c11fd5eee",
+        "source_type": "repository",
+        "content_hash": "7a600bca2524fc2d6dcd6ff09808c3169bef6cc00d8192c91ea525a51c5df3c2",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7a600bca2524fc2d6dcd6ff09808c3169bef6cc00d8192c91ea525a51c5df3c2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0efc065be91c02941eca4ce6",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/apimanagement/v1api20220801.md",
+        "heading": "PolicyFragmentOperatorSpec{#PolicyFragmentOperatorSpec}",
+        "start_line": 2167,
+        "end_line": 2178,
+        "start_char": 786072,
+        "end_char": 787530,
+        "score": "0.0161310413552566",
+        "root": "docs",
+        "matched_terms": [
+          "cel"
+        ],
+        "evidence_id": "0efc065be91c02941eca4ce6",
+        "source_type": "repository",
+        "content_hash": "a40430f035d865af44d4bd9457a14ae01bbe5cd7be164f776f93a361e2c54654",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a40430f035d865af44d4bd9457a14ae01bbe5cd7be164f776f93a361e2c54654",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:16d7d1b1d0d7397db9ca2498",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/app/v20240301.md",
+        "heading": "Secret{#Secret}",
+        "start_line": 1854,
+        "end_line": 1865,
+        "start_char": 299795,
+        "end_char": 301514,
+        "score": "0.020174915523752734",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "secret"
+        ],
+        "evidence_id": "16d7d1b1d0d7397db9ca2498",
+        "source_type": "repository",
+        "content_hash": "c9f87f939cd9c4e2d93357e7535abf1001d9e24c6a0acd291bcb94650c53d2fd",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c9f87f939cd9c4e2d93357e7535abf1001d9e24c6a0acd291bcb94650c53d2fd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:21066e145a5cf72689a062c3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/guide/expressions.md",
+        "start_line": 50,
+        "total_lines": 175,
+        "start_char": 2058,
+        "end_char": 8941,
+        "evidence_id": "21066e145a5cf72689a062c3",
+        "truncated": false,
+        "next_offset": 169,
+        "source_type": "repository",
+        "content_hash": "0346362a7266feb0efb18d3c319a6d8b664845bf3a35daf801b33f97ab03c350",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/expressions.md",
+              "query": "### CEL options, language features, and libraries",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "0346362a7266feb0efb18d3c319a6d8b664845bf3a35daf801b33f97ab03c350",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:24b5070a8dc6d3e319bb45a0",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/expressions.md",
+        "heading": "weight: 1 # This is the default weight if you just want to be ordered alphabetically > CEL Expressions in ASO",
+        "start_line": 7,
+        "end_line": 20,
+        "start_char": 144,
+        "end_char": 856,
+        "score": "0.04669647292598113",
+        "root": "docs",
+        "matched_terms": [
+          "aso",
+          "cel"
+        ],
+        "evidence_id": "24b5070a8dc6d3e319bb45a0",
+        "source_type": "repository",
+        "content_hash": "f3f47c3c54f71b277843732f2c9702ef2bef5e324ad029a63ef3e432bf58b2f6",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f3f47c3c54f71b277843732f2c9702ef2bef5e324ad029a63ef3e432bf58b2f6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:38a97aa91bdc71fe8d9f92f2",
+        "type": "evidence",
+        "path": "v2/api/keyvault/customizations/vault_extensions.go",
+        "heading": "",
+        "start_line": 295,
+        "end_line": 326,
+        "start_char": 9064,
+        "end_char": 9957,
+        "score": "0.01628401798277223",
+        "root": "code",
+        "matched_terms": [
+          "parseresourceid",
+          "resourceid",
+          "type"
+        ],
+        "evidence_id": "38a97aa91bdc71fe8d9f92f2",
+        "source_type": "repository",
+        "content_hash": "d0a448e7dd633f27fed242090200ab14707d1d5f2d9b13b09895f5932665cf4f",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d0a448e7dd633f27fed242090200ab14707d1d5f2d9b13b09895f5932665cf4f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3ca0dd93c5c30fa24eca6f7f",
+        "type": "evidence",
+        "path": "v2/internal/reconcilers/arm/azure_generic_arm_reconciler_instance.go",
+        "heading": "",
+        "start_line": 513,
+        "end_line": 559,
+        "start_char": 19375,
+        "end_char": 21012,
+        "score": "0.016281233386496542",
+        "root": "code",
+        "matched_terms": [
+          "parseresourceid",
+          "resourceid"
+        ],
+        "evidence_id": "3ca0dd93c5c30fa24eca6f7f",
+        "source_type": "repository",
+        "content_hash": "c73161baafb0c72465313e59d5dd98ccd6bee052440a11ab6713be45746db1c8",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c73161baafb0c72465313e59d5dd98ccd6bee052440a11ab6713be45746db1c8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3ddf2097bd0e94fd783a9331",
+        "type": "evidence",
+        "evidence_id": "3ddf2097bd0e94fd783a9331",
+        "source_type": "task",
+        "exported_content_sha256": "841ebe63c75dcf020196ec133f80032b353a9cf8dd870f68d1ae7d8be0a23ec0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3ed00123798f85cf5dd88a0c",
+        "type": "evidence",
+        "root": "code",
+        "path": "v2/internal/util/cel/resource_id.go",
+        "start_line": 1,
+        "total_lines": 92,
+        "start_char": 0,
+        "end_char": 2831,
+        "evidence_id": "3ed00123798f85cf5dd88a0c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9fb7e52b8cf7aa54412f6f1902a4396adbc252f51cce4418330136f650b930a3",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "v2/internal/util/cel/resource_id.go",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "v2/internal/util/cel/cel.go",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9fb7e52b8cf7aa54412f6f1902a4396adbc252f51cce4418330136f650b930a3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:40eb9a38d41dc5f4af663a3f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/guide/authentication/credential-format.md",
+        "start_line": 28,
+        "total_lines": 866,
+        "start_char": 1407,
+        "end_char": 6279,
+        "evidence_id": "40eb9a38d41dc5f4af663a3f",
+        "truncated": false,
+        "next_offset": 147,
+        "source_type": "repository",
+        "content_hash": "76418abf472ce2bfcc368b60f2bfc953cb32df5a3c0e689f22ac679bec6b317f",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "offset": 314,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "76418abf472ce2bfcc368b60f2bfc953cb32df5a3c0e689f22ac679bec6b317f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:416d701e7c51c5efba56f68b",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+        "heading": "weight: 60 > Example: User Assigned Identity Secret Export",
+        "start_line": 44,
+        "end_line": 56,
+        "start_char": 2279,
+        "end_char": 3018,
+        "score": "0.023376937984496124",
+        "root": "docs",
+        "matched_terms": [
+          "export",
+          "identity",
+          "secret"
+        ],
+        "evidence_id": "416d701e7c51c5efba56f68b",
+        "source_type": "repository",
+        "content_hash": "428822c1d02ee1fc7452e6a99c9657d29c4a8ade96cba0927d7988892f2076d7",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "428822c1d02ee1fc7452e6a99c9657d29c4a8ade96cba0927d7988892f2076d7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:41b59d91788306caa2b1b753",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/generator-overview.md",
+        "heading": "title: Code Generator > Code Structure",
+        "start_line": 7,
+        "end_line": 14,
+        "start_char": 246,
+        "end_char": 1863,
+        "score": "0.016300692383778438",
+        "root": "docs",
+        "matched_terms": [
+          "functions",
+          "types"
+        ],
+        "evidence_id": "41b59d91788306caa2b1b753",
+        "source_type": "repository",
+        "content_hash": "8cd6b2d9c4423be7c867b8fed1fff298629cd7bd81e299687b5481553ba1d61e",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "8cd6b2d9c4423be7c867b8fed1fff298629cd7bd81e299687b5481553ba1d61e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:45fc1f6d1733b967ae290212",
+        "type": "evidence",
+        "evidence_id": "45fc1f6d1733b967ae290212",
+        "source_type": "implementation",
+        "exported_content_sha256": "d1d2f2dbf9750faccdd503622efa6a6c949a9563f889f78b2f34d62b3aa5add4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:633c882dd66446360acefea2",
+        "type": "evidence",
+        "path": "v2/internal/util/cel/cel_test.go",
+        "heading": "",
+        "start_line": 374,
+        "end_line": 423,
+        "start_char": 11944,
+        "end_char": 13550,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "parseresourceid",
+          "resourcetype",
+          "type"
+        ],
+        "evidence_id": "633c882dd66446360acefea2",
+        "source_type": "repository",
+        "content_hash": "cfda236d0dfc3193344b6b0bc3644faed766bf40467b6f1f9a80ed8eb2ad4205",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cfda236d0dfc3193344b6b0bc3644faed766bf40467b6f1f9a80ed8eb2ad4205",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6a9a1ff0d7c1fc65661ce7a9",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+        "heading": "title: '2024-07: Dynamic Export to Secret or ConfigMap' > Options > Template Language > Option 2: Google Common Expression Language (CEL)",
+        "start_line": 122,
+        "end_line": 161,
+        "start_char": 5102,
+        "end_char": 6262,
+        "score": "0.04040020263424519",
+        "root": "docs",
+        "matched_terms": [
+          "cel",
+          "functions"
+        ],
+        "evidence_id": "6a9a1ff0d7c1fc65661ce7a9",
+        "source_type": "repository",
+        "content_hash": "05f2797c5d8346053edeaa746e77ecc9a4f493dd195e5bf6fd9661573f280ec3",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "05f2797c5d8346053edeaa746e77ecc9a4f493dd195e5bf6fd9661573f280ec3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6ea2297e0e82c299357ba3b1",
+        "type": "evidence",
+        "path": "v2/internal/util/cel/resource_id.go",
+        "heading": "",
+        "start_line": 51,
+        "end_line": 92,
+        "start_char": 1522,
+        "end_char": 2831,
+        "score": "0.024206349206349204",
+        "root": "code",
+        "matched_terms": [
+          "parseresourceid",
+          "resourceid",
+          "resourcetype",
+          "type"
+        ],
+        "evidence_id": "6ea2297e0e82c299357ba3b1",
+        "source_type": "repository",
+        "content_hash": "79d10d2f8b0cabc57b388e89f62b157eace9e2c57d7b75f9cd375d7bd404bb53",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "79d10d2f8b0cabc57b388e89f62b157eace9e2c57d7b75f9cd375d7bd404bb53",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7239ea580ca0519f926779b0",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+        "heading": "weight: -2 > Other questions > When using Workload Identity, how can I easily inject the ASO created User Managed Identity details onto the service account?",
+        "start_line": 319,
+        "end_line": 359,
+        "start_char": 18086,
+        "end_char": 19696,
+        "score": "0.0264957264957265",
+        "root": "docs",
+        "matched_terms": [
+          "clientid",
+          "identity",
+          "tenantid",
+          "workload"
+        ],
+        "evidence_id": "7239ea580ca0519f926779b0",
+        "source_type": "repository",
+        "content_hash": "ebf07acea98343db5b2c622ecf15cc0f040024d8d59ee74ea477855dbb4da4ad",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ebf07acea98343db5b2c622ecf15cc0f040024d8d59ee74ea477855dbb4da4ad",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:79049011032ed2d672228744",
+        "type": "evidence",
+        "path": "v2/internal/util/cel/cel_test.go",
+        "heading": "",
+        "start_line": 424,
+        "end_line": 473,
+        "start_char": 13550,
+        "end_char": 15168,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "parseresourceid",
+          "resourcetype",
+          "type"
+        ],
+        "evidence_id": "79049011032ed2d672228744",
+        "source_type": "repository",
+        "content_hash": "3bbed7ae5e46f2076ca0a67f8f3d755b7ed4fbdc0633fb01b44efc1ae7b3d962",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3bbed7ae5e46f2076ca0a67f8f3d755b7ed4fbdc0633fb01b44efc1ae7b3d962",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:915217e041132f83d7c2f605",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+        "start_line": 40,
+        "total_lines": 268,
+        "start_char": 2062,
+        "end_char": 5940,
+        "evidence_id": "915217e041132f83d7c2f605",
+        "truncated": false,
+        "next_offset": 159,
+        "source_type": "repository",
+        "content_hash": "dff721a7e857604e763bacc10a6280fbb65d93ad39ee1f1b4c9ad5f5ffd3cf06",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "offset": 314,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "dff721a7e857604e763bacc10a6280fbb65d93ad39ee1f1b4c9ad5f5ffd3cf06",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:95e3b7e727954e4c5ae8eb00",
+        "type": "evidence",
+        "path": "v2/api/dataprotection/v1api20231101/backup_vaults_backup_instance_types_gen.go",
+        "heading": "",
+        "start_line": 2357,
+        "end_line": 2406,
+        "start_char": 86350,
+        "end_char": 87862,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "resourceid",
+          "resourcetype"
+        ],
+        "evidence_id": "95e3b7e727954e4c5ae8eb00",
+        "source_type": "repository",
+        "content_hash": "38ed5371126d9149b0996d241d05a9ee97a3a7747f817df9178fc74dfa45ed52",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "38ed5371126d9149b0996d241d05a9ee97a3a7747f817df9178fc74dfa45ed52",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9a1281448857049bdffddcf1",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/app/v1api20240301.md",
+        "heading": "Secret{#Secret}",
+        "start_line": 1854,
+        "end_line": 1865,
+        "start_char": 299807,
+        "end_char": 301526,
+        "score": "0.019710531327366214",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "secret"
+        ],
+        "evidence_id": "9a1281448857049bdffddcf1",
+        "source_type": "repository",
+        "content_hash": "c9f87f939cd9c4e2d93357e7535abf1001d9e24c6a0acd291bcb94650c53d2fd",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c9f87f939cd9c4e2d93357e7535abf1001d9e24c6a0acd291bcb94650c53d2fd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a0ebb6d75253bc7712558343",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/app/v20250101.md",
+        "heading": "Secret{#Secret}",
+        "start_line": 1955,
+        "end_line": 1966,
+        "start_char": 314531,
+        "end_char": 316250,
+        "score": "0.019306752873563218",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "secret"
+        ],
+        "evidence_id": "a0ebb6d75253bc7712558343",
+        "source_type": "repository",
+        "content_hash": "c9f87f939cd9c4e2d93357e7535abf1001d9e24c6a0acd291bcb94650c53d2fd",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c9f87f939cd9c4e2d93357e7535abf1001d9e24c6a0acd291bcb94650c53d2fd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a64fd4336bd4a94963ed479e",
+        "type": "evidence",
+        "path": "v2/api/dataprotection/v1api20231101/backup_vaults_backup_instance_types_gen.go",
+        "heading": "",
+        "start_line": 2820,
+        "end_line": 2869,
+        "start_char": 102214,
+        "end_char": 103597,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "resourceid",
+          "resourcetype"
+        ],
+        "evidence_id": "a64fd4336bd4a94963ed479e",
+        "source_type": "repository",
+        "content_hash": "6b90eb0c1c6d730a8a3622faa8f45cf67653e9da6bcf1d283eaaf3b15243cd06",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6b90eb0c1c6d730a8a3622faa8f45cf67653e9da6bcf1d283eaaf3b15243cd06",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a8b64645c9c261ba7b34f435",
+        "type": "evidence",
+        "path": "v2/api/dataprotection/v1api20231101/storage/backup_vaults_backup_instance_types_gen.go",
+        "heading": "",
+        "start_line": 303,
+        "end_line": 329,
+        "start_char": 14906,
+        "end_char": 16554,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "resourceid",
+          "resourcetype",
+          "type"
+        ],
+        "evidence_id": "a8b64645c9c261ba7b34f435",
+        "source_type": "repository",
+        "content_hash": "53d9a7e7debbb84d877220780c2ffb9c1795375ee6e632ba73c954d3f44ec78a",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "53d9a7e7debbb84d877220780c2ffb9c1795375ee6e632ba73c954d3f44ec78a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aa7bb38040ccce2b2be20b7f",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+        "heading": "title: '2022-09: Support For Multiple Credentials Under Global Operator' > Steps to support workload identity",
+        "start_line": 123,
+        "end_line": 128,
+        "start_char": 8114,
+        "end_char": 9121,
+        "score": "0.018000296912114015",
+        "root": "docs",
+        "matched_terms": [
+          "clientid",
+          "credential",
+          "identity",
+          "secret",
+          "workload"
+        ],
+        "evidence_id": "aa7bb38040ccce2b2be20b7f",
+        "source_type": "repository",
+        "content_hash": "9c15b29b8cd4516f964f917c6164810075f7c13333a1f2dd774ae7bd3347a69c",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9c15b29b8cd4516f964f917c6164810075f7c13333a1f2dd774ae7bd3347a69c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aa7dfe3a3d4153a0c02b24f1",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/cdn/v1api20230501.md",
+        "heading": "Secret{#Secret} > Secret_Spec {#Secret_Spec}",
+        "start_line": 496,
+        "end_line": 496,
+        "start_char": 118022,
+        "end_char": 118090,
+        "score": "0.017424242424242425",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "aa7dfe3a3d4153a0c02b24f1",
+        "source_type": "repository",
+        "content_hash": "9715f9a71f304ccf6efd965d3d6ff35b0fcb7f17f145f0da37c74b51454bbdd5",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9715f9a71f304ccf6efd965d3d6ff35b0fcb7f17f145f0da37c74b51454bbdd5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b70d91008941dbbf94833a70",
+        "type": "evidence",
+        "path": "v2/cmd/asoctl/pkg/importresources/importable_arm_resource.go",
+        "heading": "",
+        "start_line": 48,
+        "end_line": 97,
+        "start_char": 1625,
+        "end_char": 3105,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "parseresourceid",
+          "resourcetype"
+        ],
+        "evidence_id": "b70d91008941dbbf94833a70",
+        "source_type": "repository",
+        "content_hash": "c66f1ea8f2a3ea682836f833d49246e3d275b0c5724158307bf9938785e722cd",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c66f1ea8f2a3ea682836f833d49246e3d275b0c5724158307bf9938785e722cd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b8d37420fc3e7df8d86f6f5a",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/credential-scope.md",
+        "heading": "linktitle: Credential Scope > Namespace scope",
+        "start_line": 28,
+        "end_line": 32,
+        "start_char": 1371,
+        "end_char": 1636,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "aso",
+          "namespace"
+        ],
+        "evidence_id": "b8d37420fc3e7df8d86f6f5a",
+        "source_type": "repository",
+        "content_hash": "98f2a02f69677ba2aa416aa6728a84430996f3a471cf9067c4fd79afe474855a",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "98f2a02f69677ba2aa416aa6728a84430996f3a471cf9067c4fd79afe474855a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bba77e6d2a12d110d9f3b94b",
+        "type": "evidence",
+        "root": "code",
+        "path": "v2/internal/util/cel/cel.go",
+        "start_line": 1,
+        "total_lines": 475,
+        "start_char": 0,
+        "end_char": 3303,
+        "evidence_id": "bba77e6d2a12d110d9f3b94b",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "5e73257bc7adf0396247dae578e9d26f7d0950b26f37cc34b2e52b8b29a7adab",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "v2/internal/util/cel/resource_id.go",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "v2/internal/util/cel/cel.go",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5e73257bc7adf0396247dae578e9d26f7d0950b26f37cc34b2e52b8b29a7adab",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bf8197a3e56eda47bc5440e5",
+        "type": "evidence",
+        "root": "code",
+        "path": "v2/internal/util/cel/resource_id.go",
+        "start_line": 59,
+        "total_lines": 92,
+        "start_char": 1807,
+        "end_char": 2831,
+        "evidence_id": "bf8197a3e56eda47bc5440e5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "12c348501ac2e7efde0496462d5ee4aa820675da47d50548a31038cc6b71471f",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "v2/internal/util/cel/resource_id.go",
+              "query": "parseResourceIDFunction",
+              "limit": 120
+            },
+            {
+              "path": "v2/internal/util/cel/cel.go",
+              "query": "parseResourceIDFunction",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "12c348501ac2e7efde0496462d5ee4aa820675da47d50548a31038cc6b71471f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c2b8cb711b9ccc1d14a78224",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+        "start_line": 160,
+        "total_lines": 268,
+        "start_char": 5940,
+        "end_char": 9946,
+        "evidence_id": "c2b8cb711b9ccc1d14a78224",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8952992ce97e7bd3c4636d68e473ea8299ef46484fefeccec8a7200c090952f9",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/expressions.md",
+              "offset": 49,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "offset": 80,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+              "offset": 159,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "8952992ce97e7bd3c4636d68e473ea8299ef46484fefeccec8a7200c090952f9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:caf6dedb803594f8abe27aee",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+        "heading": "title: '2024-07: Dynamic Export to Secret or ConfigMap' > Options > Template Language > Option 2: Google Common Expression Language (CEL)",
+        "start_line": 85,
+        "end_line": 121,
+        "start_char": 3487,
+        "end_char": 5102,
+        "score": "0.04402277039848197",
+        "root": "docs",
+        "matched_terms": [
+          "cel",
+          "functions"
+        ],
+        "evidence_id": "caf6dedb803594f8abe27aee",
+        "source_type": "repository",
+        "content_hash": "0632fd6496d3dc23fea356fdc32572bd134bfa574adcb1a2331e0a44a5fc3914",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0632fd6496d3dc23fea356fdc32572bd134bfa574adcb1a2331e0a44a5fc3914",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cc8aba1a9248e86f4e01bfe9",
+        "type": "evidence",
+        "path": "v2/internal/metrics/metrics_policy.go",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1322,
+        "score": "0.026013513513513515",
+        "root": "code",
+        "matched_terms": [
+          "parseresourceid",
+          "resourceid",
+          "resourcetype",
+          "type"
+        ],
+        "evidence_id": "cc8aba1a9248e86f4e01bfe9",
+        "source_type": "repository",
+        "content_hash": "643c370bdc0323a19fe26545daca5f256bff5b12a4adae8803d9076dd2142082",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "643c370bdc0323a19fe26545daca5f256bff5b12a4adae8803d9076dd2142082",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ce3b8ec95d32a20e31844ded",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/best-practices/security.md",
+        "heading": "linktitle: Security > Dos and Don'ts > General guidance",
+        "start_line": 23,
+        "end_line": 42,
+        "start_char": 687,
+        "end_char": 2295,
+        "score": "0.024089635854341734",
+        "root": "docs",
+        "matched_terms": [
+          "aso",
+          "namespace",
+          "types"
+        ],
+        "evidence_id": "ce3b8ec95d32a20e31844ded",
+        "source_type": "repository",
+        "content_hash": "f5d5a171a151940ab22a4cbe976d66491506232f9967d320194e347d99eae78e",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f5d5a171a151940ab22a4cbe976d66491506232f9967d320194e347d99eae78e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d3233e912fa42b89bb423bac",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/credential-format.md",
+        "heading": "linktitle: Credential Format > Managed Identity (via workload identity) > Configure trust",
+        "start_line": 47,
+        "end_line": 86,
+        "start_char": 2780,
+        "end_char": 4411,
+        "score": "0.02813852813852814",
+        "root": "docs",
+        "matched_terms": [
+          "credential",
+          "export",
+          "identity",
+          "workload"
+        ],
+        "evidence_id": "d3233e912fa42b89bb423bac",
+        "source_type": "repository",
+        "content_hash": "7ea14a0d92baf04bed62a78675ac744f4705450ff972a46d85a6a4bbcd37bfa3",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "7ea14a0d92baf04bed62a78675ac744f4705450ff972a46d85a6a4bbcd37bfa3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d73897770ccd2daacbf53f3d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+        "start_line": 315,
+        "total_lines": 386,
+        "start_char": 18050,
+        "end_char": 20552,
+        "evidence_id": "d73897770ccd2daacbf53f3d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "01157a1f1d439b321ece0c5b1ebddd24cbbbb31618ee200e8c81092e8d7aa704",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "query": "When using Workload Identity, how can I easily inject the ASO created User Managed Identity details",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "01157a1f1d439b321ece0c5b1ebddd24cbbbb31618ee200e8c81092e8d7aa704",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:de77369b1575750dc93a6439",
+        "type": "evidence",
+        "path": "v2/cmd/asoctl/pkg/importresources/resource_importer.go",
+        "heading": "",
+        "start_line": 375,
+        "end_line": 406,
+        "start_char": 12175,
+        "end_char": 12845,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "parseresourceid",
+          "resourcetype"
+        ],
+        "evidence_id": "de77369b1575750dc93a6439",
+        "source_type": "repository",
+        "content_hash": "2bbb78838213324c421b0cf2b234d71cc9276a60f6621c755c33a5e72622fd92",
+        "revision": "5bdf828aa0550b331435a20f8346d56c9769e885",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "parseResourceId",
+            "ResourceID ResourceType native type"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2bbb78838213324c421b0cf2b234d71cc9276a60f6621c755c33a5e72622fd92",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e51b873cb075887353e6b93b",
+        "type": "evidence",
+        "path": "docs/hugo/content/getting-started/_index.md",
+        "heading": "description: \"Install and get started with Azure Service Operator\" > Installation > Create a Managed Identity or Service Principal",
+        "start_line": 97,
+        "end_line": 129,
+        "start_char": 4591,
+        "end_char": 6243,
+        "score": "0.01839156229400132",
+        "root": "docs",
+        "matched_terms": [
+          "credential",
+          "export",
+          "identity",
+          "tenantid",
+          "workload"
+        ],
+        "evidence_id": "e51b873cb075887353e6b93b",
+        "source_type": "repository",
+        "content_hash": "b9e9600c994a57808155825a33e86228ecde85ee56b097ac4a6c93eb226b0916",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b9e9600c994a57808155825a33e86228ecde85ee56b097ac4a6c93eb226b0916",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e54474b0f718efd7dfc9488a",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+        "heading": "weight: 60 > Common Patterns > Antipattern 1: Export Status-Based Secrets",
+        "start_line": 164,
+        "end_line": 170,
+        "start_char": 5958,
+        "end_char": 6438,
+        "score": "0.029520649717735166",
+        "root": "docs",
+        "matched_terms": [
+          "cel"
+        ],
+        "evidence_id": "e54474b0f718efd7dfc9488a",
+        "source_type": "repository",
+        "content_hash": "bf59bf53a26f0fa0a4a8cd867a50f0526277db427661cd2dcc88a5ca2019b637",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "bf59bf53a26f0fa0a4a8cd867a50f0526277db427661cd2dcc88a5ca2019b637",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eaa36c1aa4413206d646cbcc",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/extension-points/kubernetes-secret-exporter.md",
+        "heading": "weight: 60 > User Specification of Secrets",
+        "start_line": 171,
+        "end_line": 199,
+        "start_char": 6438,
+        "end_char": 7035,
+        "score": "0.030090338668320206",
+        "root": "docs",
+        "matched_terms": [
+          "clientid",
+          "export",
+          "identity",
+          "secret",
+          "tenantid"
+        ],
+        "evidence_id": "eaa36c1aa4413206d646cbcc",
+        "source_type": "repository",
+        "content_hash": "6228e0ec75f89df748dad7c8186c5acededf7987dfdc2909901c9fff56f95fd6",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6228e0ec75f89df748dad7c8186c5acededf7987dfdc2909901c9fff56f95fd6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ec057213dcb26f9512fe78b7",
+        "type": "evidence",
+        "path": "docs/hugo/content/tools/_index.md",
+        "heading": "description: Additional tooling for Azure Service Operator > asoctl",
+        "start_line": 17,
+        "end_line": 23,
+        "start_char": 297,
+        "end_char": 585,
+        "score": "0.018733407705565114",
+        "root": "docs",
+        "matched_terms": [
+          "aso"
+        ],
+        "evidence_id": "ec057213dcb26f9512fe78b7",
+        "source_type": "repository",
+        "content_hash": "491fb09124a7413b4c853781a1a7ea459b817a16e9bb87310b95917cef816b1d",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "491fb09124a7413b4c853781a1a7ea459b817a16e9bb87310b95917cef816b1d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ef8db58f77eaf332f0bac4fd",
+        "type": "evidence",
+        "path": "SECURITY.md",
+        "heading": "Understanding the Security Model",
+        "start_line": 43,
+        "end_line": 51,
+        "start_char": 2825,
+        "end_char": 3618,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "aso",
+          "namespace"
+        ],
+        "evidence_id": "ef8db58f77eaf332f0bac4fd",
+        "source_type": "repository",
+        "content_hash": "140c3c6315b716207cfd90a113d5445d1d57c4de3fce1ded9344d58dacf46e50",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "140c3c6315b716207cfd90a113d5445d1d57c4de3fce1ded9344d58dacf46e50",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fceef25b7e1af937055d66d8",
+        "type": "evidence",
+        "path": "docs/hugo/content/tools/asoctl.md",
+        "heading": "description: Azure Service Operator Controller",
+        "start_line": 9,
+        "end_line": 34,
+        "start_char": 105,
+        "end_char": 867,
+        "score": "0.017194244604316546",
+        "root": "docs",
+        "matched_terms": [
+          "aso"
+        ],
+        "evidence_id": "fceef25b7e1af937055d66d8",
+        "source_type": "repository",
+        "content_hash": "d2c919724ee1c4050ed781db2223c08a022b923f95f2b1ceadef70222933cd2f",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CEL functions",
+            "aso. namespace CEL",
+            "native types CEL"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d2c919724ee1c4050ed781db2223c08a022b923f95f2b1ceadef70222933cd2f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fe8f675509cc6f87819fcf35",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/app/v1api20250101.md",
+        "heading": "Secret{#Secret}",
+        "start_line": 1955,
+        "end_line": 1966,
+        "start_char": 314543,
+        "end_char": 316262,
+        "score": "0.019119092289824",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "secret"
+        ],
+        "evidence_id": "fe8f675509cc6f87819fcf35",
+        "source_type": "repository",
+        "content_hash": "c9f87f939cd9c4e2d93357e7535abf1001d9e24c6a0acd291bcb94650c53d2fd",
+        "revision": "6325de441356ddf0f202f6b6fc5100a599a558a0",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SecretExpressions",
+            "workload identity credential secret",
+            "export identity clientId tenantId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c9f87f939cd9c4e2d93357e7535abf1001d9e24c6a0acd291bcb94650c53d2fd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:cel-expressions-parse-resource-id",
+        "type": "requirement",
+        "description": "In docs/hugo/content/guide/expressions.md, add a section documenting the new ASO-specific CEL function `aso.parseResourceId(string)`. Explain that it parses an ARM resource ID string and returns a `ResourceID` object exposing fields `subscriptionId`, `resourceGroupName`, `provider`, `location`, `name`, a nested `resourceType` object (with `namespace` and `type`), and a recursive `parent` field for hierarchical IDs. Include an example such as `aso.parseResourceId(self.status.id).subscriptionId` and note it is surfaced under the `aso` namespace to avoid collisions with user identifiers."
+      },
+      {
+        "id": "requirement:faq-workload-identity-parse-resource-id",
+        "type": "requirement",
+        "description": "In docs/hugo/content/guide/frequently-asked-questions.md, extend the workload identity section (injecting ASO-created User Managed Identity details) to mention that `aso.parseResourceId` can be used in `operatorSpec.secretExpressions` to derive the subscription ID (e.g. `aso.parseResourceId(self.status.id).subscriptionId`) alongside `self.status.tenantId` and `self.status.clientId`, enabling a complete workload identity credential secret."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/hugo/content/guide/expressions.md",
+        "hash": "87b4824833d19671dc8b6269fa7994a7415d29470acb99016ea6d81f6508b69d"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+        "hash": "cf2921edbc3aa7659d1c58dd6d00803cdfd1dcd01a91c73d693835cc219e8e91"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "cel-expressions-parse-resource-id",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/hugo/content/guide/expressions.md"
+        ],
+        "evidence_ids": [
+          "3ed00123798f85cf5dd88a0c",
+          "bf8197a3e56eda47bc5440e5",
+          "08ce7ca108af51575beb0955",
+          "633c882dd66446360acefea2",
+          "24b5070a8dc6d3e319bb45a0"
+        ],
+        "reason": "In docs/hugo/content/guide/expressions.md, add a section documenting the new ASO-specific CEL function `aso.parseResourceId(string)`. Explain that it parses an ARM resource ID string and returns a `ResourceID` object exposing fields `subscriptionId`, `resourceGroupName`, `provider`, `location`, `name`, a nested `resourceType` object (with `namespace` and `type`), and a recursive `parent` field for hierarchical IDs. Include an example such as `aso.parseResourceId(self.status.id).subscriptionId` and note it is surfaced under the `aso` namespace to avoid collisions with user identifiers."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "faq-workload-identity-parse-resource-id",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/hugo/content/guide/frequently-asked-questions.md"
+        ],
+        "evidence_ids": [
+          "d73897770ccd2daacbf53f3d",
+          "3ed00123798f85cf5dd88a0c",
+          "bf8197a3e56eda47bc5440e5"
+        ],
+        "reason": "In docs/hugo/content/guide/frequently-asked-questions.md, extend the workload identity section (injecting ASO-created User Managed Identity details) to mention that `aso.parseResourceId` can be used in `operatorSpec.secretExpressions` to derive the subscription ID (e.g. `aso.parseResourceId(self.status.id).subscriptionId`) alongside `self.status.tenantId` and `self.status.clientId`, enabling a complete workload identity credential secret."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where is the CEL documentation for built-in functions and native types, and does it list existing aso.* functions that a new aso.parseResourceId would need to be added to?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "How does the implementation register aso.parseResourceId and the ResourceID/ResourceType native types, and what fields/methods are exposed?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Is there existing documentation about SecretExpressions and exporting identity credentials for workload identity that should reference aso.parseResourceId?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the CEL expressions guide (expressions.md) have a section listing ASO-specific functions or native types where aso.parseResourceId and ResourceID/ResourceType should be documented?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "What does the rest of resource_id.go and cel.go show about how the function/types are registered and any documented behavior (error handling, field names)?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Does the FAQ workload identity section or credential-format doc describe exporting identity details to a secret in a way that should now mention aso.parseResourceId for subscription ID?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:056bec0264dd236fbb870701",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:05ac26cce016a000d8259407",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:08ce7ca108af51575beb0955",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c9cca6ce4e655298d73b18c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d95cec381fa6e0c11fd5eee",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0efc065be91c02941eca4ce6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:16d7d1b1d0d7397db9ca2498",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:21066e145a5cf72689a062c3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:21066e145a5cf72689a062c3",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:24b5070a8dc6d3e319bb45a0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:38a97aa91bdc71fe8d9f92f2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3ca0dd93c5c30fa24eca6f7f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3ed00123798f85cf5dd88a0c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:40eb9a38d41dc5f4af663a3f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:416d701e7c51c5efba56f68b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:41b59d91788306caa2b1b753",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:633c882dd66446360acefea2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6a9a1ff0d7c1fc65661ce7a9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6ea2297e0e82c299357ba3b1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7239ea580ca0519f926779b0",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:79049011032ed2d672228744",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:915217e041132f83d7c2f605",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:95e3b7e727954e4c5ae8eb00",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9a1281448857049bdffddcf1",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a0ebb6d75253bc7712558343",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a64fd4336bd4a94963ed479e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a8b64645c9c261ba7b34f435",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aa7bb38040ccce2b2be20b7f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aa7dfe3a3d4153a0c02b24f1",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b70d91008941dbbf94833a70",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b8d37420fc3e7df8d86f6f5a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bba77e6d2a12d110d9f3b94b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bf8197a3e56eda47bc5440e5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c2b8cb711b9ccc1d14a78224",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:caf6dedb803594f8abe27aee",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cc8aba1a9248e86f4e01bfe9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ce3b8ec95d32a20e31844ded",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d3233e912fa42b89bb423bac",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d73897770ccd2daacbf53f3d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d73897770ccd2daacbf53f3d",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:de77369b1575750dc93a6439",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e51b873cb075887353e6b93b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e54474b0f718efd7dfc9488a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eaa36c1aa4413206d646cbcc",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec057213dcb26f9512fe78b7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef8db58f77eaf332f0bac4fd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fceef25b7e1af937055d66d8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fe8f675509cc6f87819fcf35",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3ed00123798f85cf5dd88a0c",
+        "to": "requirement:cel-expressions-parse-resource-id",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:bf8197a3e56eda47bc5440e5",
+        "to": "requirement:cel-expressions-parse-resource-id",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:08ce7ca108af51575beb0955",
+        "to": "requirement:cel-expressions-parse-resource-id",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:633c882dd66446360acefea2",
+        "to": "requirement:cel-expressions-parse-resource-id",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:24b5070a8dc6d3e319bb45a0",
+        "to": "requirement:cel-expressions-parse-resource-id",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:d73897770ccd2daacbf53f3d",
+        "to": "requirement:faq-workload-identity-parse-resource-id",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:3ed00123798f85cf5dd88a0c",
+        "to": "requirement:faq-workload-identity-parse-resource-id",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:bf8197a3e56eda47bc5440e5",
+        "to": "requirement:faq-workload-identity-parse-resource-id",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:cel-expressions-parse-resource-id",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:3ed00123798f85cf5dd88a0c",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:bf8197a3e56eda47bc5440e5",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:08ce7ca108af51575beb0955",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:633c882dd66446360acefea2",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:24b5070a8dc6d3e319bb45a0",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:faq-workload-identity-parse-resource-id",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:d73897770ccd2daacbf53f3d",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3ed00123798f85cf5dd88a0c",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:bf8197a3e56eda47bc5440e5",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:cel-expressions-parse-resource-id",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:3ed00123798f85cf5dd88a0c",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:bf8197a3e56eda47bc5440e5",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:08ce7ca108af51575beb0955",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:633c882dd66446360acefea2",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:24b5070a8dc6d3e319bb45a0",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:faq-workload-identity-parse-resource-id",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:d73897770ccd2daacbf53f3d",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3ed00123798f85cf5dd88a0c",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:bf8197a3e56eda47bc5440e5",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "1530f1a3bc304388105dfbc582247745ec53784b0fa84c4c90e6044858eb1663"
+}

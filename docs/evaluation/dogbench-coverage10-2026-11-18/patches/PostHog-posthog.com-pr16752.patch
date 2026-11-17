@@ -1,0 +1,45 @@
+diff --git a/contents/docs/product-analytics/subscriptions.mdx b/contents/docs/product-analytics/subscriptions.mdx
+index adcb5095f61aa8e0cdaab105736e1c5251bd8ae5..fb76aae5486c2df63b3a8bfe18a9f85f79b14a99 100644
+--- a/contents/docs/product-analytics/subscriptions.mdx
++++ b/contents/docs/product-analytics/subscriptions.mdx
+@@ -47,6 +47,7 @@ From here you can:
+ - **Filter** by delivery channel (email, Slack, or webhook) and creator
+ - **Sort** by creation date, next delivery date, title, or creator
+ - **Edit** a subscription by navigating to its source insight or dashboard
++- **Pause or resume** a subscription with the toggle in the list, without deleting it
+ - **Test delivery** to immediately send a subscription without waiting for the next scheduled delivery
+ - **Delete** subscriptions with an undo option
+ 
+@@ -143,8 +144,32 @@ Each subscription displays its next scheduled delivery date, so you can see exac
+ 
+ When editing a subscription, a preview of the next delivery date appears below the scheduling options so you can verify your configuration before saving.
+ 
++## Pausing and resuming subscriptions
++
++Each subscription has an **enabled** state. Disabling a subscription pauses delivery without deleting it – the subscription and its configuration are kept, and you can re-enable it at any time. This is different from deleting a subscription, which soft-deletes it.
++
++You can toggle a subscription on or off from the subscriptions list or from the subscription's detail view. A toast confirms the change.
++
++When you re-enable a subscription, PostHog triggers an immediate delivery so you can confirm the fix worked, and resets the next delivery date.
++
++### Automatic disabling
++
++PostHog automatically disables a subscription when its delivery target becomes permanently invalid – for example, when the Slack integration backing a Slack subscription is removed, or when the subscription's delivery channel is not supported. In that case PostHog:
++
++- Sets the subscription to disabled
++- Records the change in the subscription's activity
++- Emails the subscription owner explaining why it was disabled
++
++Transient problems, such as assets temporarily unavailable at delivery time, do not disable the subscription – PostHog retries those automatically.
++
++### Re-enabling a broken subscription
++
++Re-enabling a subscription is rejected if the underlying problem has not been fixed. For example, you must reconnect Slack before re-enabling a Slack subscription whose integration was removed, and unsupported delivery channels cannot be re-enabled. Fix the delivery target first, then enable the subscription again.
++
+ ## Testing subscriptions
+ 
+ You can manually trigger a test delivery for any subscription. Click the **...** menu on a subscription in the list and select **Test delivery**. This immediately sends the subscription content to the configured target (email or Slack channel) without waiting for the next scheduled delivery.
+ 
+ This is useful for verifying that the subscription is configured correctly and the content looks as expected.
++
++Test delivery is not available for disabled subscriptions – re-enable the subscription first.

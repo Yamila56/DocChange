@@ -1,0 +1,1701 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "VERIFY",
+  "tasks": [
+    {
+      "id": "config-database-engine-callback",
+      "description": "Add a new ``database_engine_callback`` setting entry to the database result backend settings section of docs/userguide/configuration.rst (near database_engine_options / database_short_lived_sessions). Document that it accepts a callable or dotted import path, is invoked with the SQLAlchemy engine right after creation (both pooled and NullPool paths), can also be passed as the ``engine_callback`` constructor kwarg (which takes precedence over config), and that a non-callable value raises ``ImproperlyConfigured``. Include a short code example (e.g. registering a ``do_connect`` event listener).",
+      "evidence_ids": [
+        "02fec8ac0fcfde3e4f08490c",
+        "f6939b2f037cf17b6d141779",
+        "3666245bf4f07b5b0efa52e6",
+        "01b69df435cfbcfbec2695af"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "changelog-engine-callback",
+      "description": "Add a Changelog.rst entry under the database backend improvements describing the new ``database_engine_callback`` option, mirroring the existing ``create_tables_at_setup`` entry style, with a short configuration example and a pointer to :ref:`conf-database-result-backend`.",
+      "evidence_ids": [
+        "c60548e70f5c1a63daf66fce",
+        "a0c9e33d538bdb60fefa28a9"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "ca2aaf162ee53a08d0fc976678c5306160183a176bfe6e75f688222b727e7ab0",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where is the database backend configuration documented, including existing options like database_engine_options and database_short_lived_sessions?",
+          "root": "docs",
+          "queries": [
+            "database_engine_options",
+            "database_short_lived_sessions",
+            "database backend configuration"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "Changelog.rst",
+              "offset": 567,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.0.rst",
+              "offset": 488,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1146,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a0c9e33d538bdb60fefa28a9",
+            "ebc2b75f7d8d5e99e5badbe4",
+            "02fec8ac0fcfde3e4f08490c",
+            "c60548e70f5c1a63daf66fce",
+            "998955477c5ecd562a931c14",
+            "f6939b2f037cf17b6d141779",
+            "3b42fa32c43341adb527e2c3",
+            "8fdff09db17f293300c42330",
+            "306d19469f4739733f0fd409",
+            "ed948878093dbf4634abdd9d",
+            "3d82341a619fbc592ed5d407",
+            "9a787deb120b87877b44c79e",
+            "05d57b3fed92c018c5372515",
+            "25963b5d604e8750e1276e42",
+            "6f0f427030660c4cb27343ac"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "Changelog.rst",
+              "evidence_id": "c60548e70f5c1a63daf66fce",
+              "score": "0.04689826302729529"
+            },
+            {
+              "rank": 2,
+              "path": "docs/history/changelog-2.0.rst",
+              "evidence_id": "998955477c5ecd562a931c14",
+              "score": "0.04414311179017061"
+            },
+            {
+              "rank": 3,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "f6939b2f037cf17b6d141779",
+              "score": "0.0424377517722828"
+            },
+            {
+              "rank": 4,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "3b42fa32c43341adb527e2c3",
+              "score": "0.04225774225774226"
+            },
+            {
+              "rank": 5,
+              "path": "docs/history/changelog-5.5.rst",
+              "evidence_id": "8fdff09db17f293300c42330",
+              "score": "0.0369128924978231"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "306d19469f4739733f0fd409",
+              "score": "0.0334968164419922"
+            },
+            {
+              "rank": 7,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "ed948878093dbf4634abdd9d",
+              "score": "0.031895736043707844"
+            },
+            {
+              "rank": 8,
+              "path": "docs/history/changelog-4.0.rst",
+              "evidence_id": "3d82341a619fbc592ed5d407",
+              "score": "0.03177873453102811"
+            },
+            {
+              "rank": 9,
+              "path": "docs/internals/reference/celery.backends.database.session.rst",
+              "evidence_id": "9a787deb120b87877b44c79e",
+              "score": "0.03174913693901036"
+            },
+            {
+              "rank": 10,
+              "path": "docs/faq.rst",
+              "evidence_id": "05d57b3fed92c018c5372515",
+              "score": "0.031643924626380764"
+            },
+            {
+              "rank": 11,
+              "path": "docs/getting-started/backends-and-brokers/index.rst",
+              "evidence_id": "25963b5d604e8750e1276e42",
+              "score": "0.03118224994644804"
+            },
+            {
+              "rank": 12,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "6f0f427030660c4cb27343ac",
+              "score": "0.031173384328724133"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "Changelog.rst",
+              "start": 567,
+              "end": 687,
+              "total_lines": 2991
+            },
+            {
+              "path": "docs/history/changelog-2.0.rst",
+              "start": 488,
+              "end": 608,
+              "total_lines": 1079
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 1146,
+              "end": 1266,
+              "total_lines": 4329
+            }
+          ],
+          "read_evidence_ids": [
+            "a0c9e33d538bdb60fefa28a9",
+            "ebc2b75f7d8d5e99e5badbe4",
+            "02fec8ac0fcfde3e4f08490c"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is there a configuration reference listing all database_* settings that would need the new database_engine_callback entry?",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1035,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "6878deb778a1878db574cb5a",
+            "143a5a8dec2a030b473b24f1",
+            "37f69c7b4f2f35939338a424",
+            "998955477c5ecd562a931c14",
+            "c60548e70f5c1a63daf66fce",
+            "ed948878093dbf4634abdd9d",
+            "3b42fa32c43341adb527e2c3",
+            "722f16118ea67da7e1dda68b",
+            "9167b2e049d2bd0057bd8c4a",
+            "05d57b3fed92c018c5372515",
+            "a25fb716e1c2b09da1f74810",
+            "3d82341a619fbc592ed5d407",
+            "fe1ba296fedf9365c286a4b6",
+            "25963b5d604e8750e1276e42"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/history/changelog-2.0.rst",
+              "evidence_id": "998955477c5ecd562a931c14",
+              "score": "0.04583853930031804"
+            },
+            {
+              "rank": 2,
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "evidence_id": "6878deb778a1878db574cb5a",
+              "score": "0.04511139134089954"
+            },
+            {
+              "rank": 3,
+              "path": "Changelog.rst",
+              "evidence_id": "c60548e70f5c1a63daf66fce",
+              "score": "0.04389799635701275"
+            },
+            {
+              "rank": 4,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "ed948878093dbf4634abdd9d",
+              "score": "0.04232777553673076"
+            },
+            {
+              "rank": 5,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "3b42fa32c43341adb527e2c3",
+              "score": "0.04214340198321892"
+            },
+            {
+              "rank": 6,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "722f16118ea67da7e1dda68b",
+              "score": "0.04161090221570751"
+            },
+            {
+              "rank": 7,
+              "path": "docs/faq.rst",
+              "evidence_id": "9167b2e049d2bd0057bd8c4a",
+              "score": "0.039167797376752606"
+            },
+            {
+              "rank": 8,
+              "path": "docs/faq.rst",
+              "evidence_id": "05d57b3fed92c018c5372515",
+              "score": "0.038549221499881"
+            },
+            {
+              "rank": 9,
+              "path": "docs/django/first-steps-with-django.rst",
+              "evidence_id": "a25fb716e1c2b09da1f74810",
+              "score": "0.03754594029823388"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/changelog-4.0.rst",
+              "evidence_id": "3d82341a619fbc592ed5d407",
+              "score": "0.03724360368195984"
+            },
+            {
+              "rank": 11,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "fe1ba296fedf9365c286a4b6",
+              "score": "0.03556113288320574"
+            },
+            {
+              "rank": 12,
+              "path": "docs/getting-started/backends-and-brokers/index.rst",
+              "evidence_id": "25963b5d604e8750e1276e42",
+              "score": "0.03356786613677501"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "start": 0,
+              "end": 4,
+              "total_lines": 4
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "start": 39,
+              "end": 159,
+              "total_lines": 166
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 1035,
+              "end": 1155,
+              "total_lines": 4329
+            }
+          ],
+          "read_evidence_ids": [
+            "6878deb778a1878db574cb5a",
+            "143a5a8dec2a030b473b24f1",
+            "37f69c7b4f2f35939338a424"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Does the codebase define the database_engine_callback default and how it is consumed, to confirm documented behavior?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "celery/app/defaults.py",
+            "celery/backends/database/__init__.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "celery/app/defaults.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "celery/backends/database/__init__.py",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "01b69df435cfbcfbec2695af",
+            "3666245bf4f07b5b0efa52e6"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "celery/app/defaults.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 446
+            },
+            {
+              "path": "celery/backends/database/__init__.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 251
+            }
+          ],
+          "read_evidence_ids": [
+            "01b69df435cfbcfbec2695af",
+            "3666245bf4f07b5b0efa52e6"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "01b69df435cfbcfbec2695af",
+        "02fec8ac0fcfde3e4f08490c",
+        "05d57b3fed92c018c5372515",
+        "143a5a8dec2a030b473b24f1",
+        "25963b5d604e8750e1276e42",
+        "306d19469f4739733f0fd409",
+        "3666245bf4f07b5b0efa52e6",
+        "37f69c7b4f2f35939338a424",
+        "3b42fa32c43341adb527e2c3",
+        "3d82341a619fbc592ed5d407",
+        "6878deb778a1878db574cb5a",
+        "6f0f427030660c4cb27343ac",
+        "722f16118ea67da7e1dda68b",
+        "8fdff09db17f293300c42330",
+        "9167b2e049d2bd0057bd8c4a",
+        "998955477c5ecd562a931c14",
+        "9a787deb120b87877b44c79e",
+        "a0c9e33d538bdb60fefa28a9",
+        "a25fb716e1c2b09da1f74810",
+        "c60548e70f5c1a63daf66fce",
+        "ebc2b75f7d8d5e99e5badbe4",
+        "ed948878093dbf4634abdd9d",
+        "f6939b2f037cf17b6d141779",
+        "fe1ba296fedf9365c286a4b6"
+      ],
+      "new_evidence_count": 24,
+      "new_path_count": 14
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+    "code": "cc058ebfa38bf3806dd61d14c2fdc0baa19c7775"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:b64d1a0a66da3543": 0,
+    "discover:Q1-2:20c1c868e81805de": 260
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:b64d1a0a66da3543": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 260,
+      "cache_hit": false
+    },
+    "discover:Q1-2:20c1c868e81805de": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 258,
+      "cache_hit": false
+    },
+    "discover:Q1-2:82974f7cc93e1dd1": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 272,
+      "cache_hit": false
+    },
+    "discover:Q1-1:38482466bf5712d2": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 309,
+      "cache_hit": false
+    },
+    "discover:Q1-3:ddbc26d79160fe9a": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 330,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2939,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "config-database-engine-callback",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/userguide/configuration.rst"
+      ],
+      "evidence_ids": [
+        "02fec8ac0fcfde3e4f08490c",
+        "f6939b2f037cf17b6d141779",
+        "3666245bf4f07b5b0efa52e6",
+        "01b69df435cfbcfbec2695af"
+      ],
+      "reason": "Add a new ``database_engine_callback`` setting entry to the database result backend settings section of docs/userguide/configuration.rst (near database_engine_options / database_short_lived_sessions). Document that it accepts a callable or dotted import path, is invoked with the SQLAlchemy engine right after creation (both pooled and NullPool paths), can also be passed as the ``engine_callback`` constructor kwarg (which takes precedence over config), and that a non-callable value raises ``ImproperlyConfigured``. Include a short code example (e.g. registering a ``do_connect`` event listener)."
+    },
+    {
+      "requirement_id": "changelog-engine-callback",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "Changelog.rst"
+      ],
+      "evidence_ids": [
+        "c60548e70f5c1a63daf66fce",
+        "a0c9e33d538bdb60fefa28a9"
+      ],
+      "reason": "Add a Changelog.rst entry under the database backend improvements describing the new ``database_engine_callback`` option, mirroring the existing ``create_tables_at_setup`` entry style, with a short configuration example and a pointer to :ref:`conf-database-result-backend`."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:01b69df435cfbcfbec2695af",
+        "type": "evidence",
+        "root": "code",
+        "path": "celery/app/defaults.py",
+        "start_line": 1,
+        "total_lines": 446,
+        "start_char": 0,
+        "end_char": 3974,
+        "evidence_id": "01b69df435cfbcfbec2695af",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "430e665735b9efae8e36c6cfdcbb0295502f8005708b8ad61af7d32c53655e90",
+        "revision": "cc058ebfa38bf3806dd61d14c2fdc0baa19c7775",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "celery/app/defaults.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "celery/backends/database/__init__.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "430e665735b9efae8e36c6cfdcbb0295502f8005708b8ad61af7d32c53655e90",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:02fec8ac0fcfde3e4f08490c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 1147,
+        "total_lines": 4329,
+        "start_char": 37636,
+        "end_char": 40815,
+        "evidence_id": "02fec8ac0fcfde3e4f08490c",
+        "truncated": false,
+        "next_offset": 1266,
+        "source_type": "repository",
+        "content_hash": "fd39e66e88c0e13e39044db30917fe158430c5329cfc1d8e10476baa60511407",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "Changelog.rst",
+              "offset": 567,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.0.rst",
+              "offset": 488,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1146,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "fd39e66e88c0e13e39044db30917fe158430c5329cfc1d8e10476baa60511407",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:05d57b3fed92c018c5372515",
+        "type": "evidence",
+        "path": "docs/faq.rst",
+        "heading": "What purpose does the database tables created by ``django-celery-results`` have?",
+        "start_line": 945,
+        "end_line": 952,
+        "start_char": 29544,
+        "end_char": 29834,
+        "score": "0.038549221499881",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "05d57b3fed92c018c5372515",
+        "source_type": "repository",
+        "content_hash": "72a9e14aa5eb24e285e15ff675f1dda51e690072ed227b1e4efea3abd3eb66dd",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "72a9e14aa5eb24e285e15ff675f1dda51e690072ed227b1e4efea3abd3eb66dd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:143a5a8dec2a030b473b24f1",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "start_line": 40,
+        "total_lines": 166,
+        "start_char": 1876,
+        "end_char": 5435,
+        "evidence_id": "143a5a8dec2a030b473b24f1",
+        "truncated": false,
+        "next_offset": 159,
+        "source_type": "repository",
+        "content_hash": "b1f103e4cdf7bfc056d67acf20ccf08ecbcb55e23a5615e15186acbad1582514",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1035,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b1f103e4cdf7bfc056d67acf20ccf08ecbcb55e23a5615e15186acbad1582514",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:25963b5d604e8750e1276e42",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/index.rst",
+        "heading": "SQLAlchemy",
+        "start_line": 102,
+        "end_line": 110,
+        "start_char": 3948,
+        "end_char": 4213,
+        "score": "0.03356786613677501",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "25963b5d604e8750e1276e42",
+        "source_type": "repository",
+        "content_hash": "95bb1ea8d0c31dd2f610b7e4b235372bff78d13fca078e72e0c3fa5f97460c57",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "95bb1ea8d0c31dd2f610b7e4b235372bff78d13fca078e72e0c3fa5f97460c57",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:306d19469f4739733f0fd409",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.0.rst",
+        "heading": "Lowercase setting names",
+        "start_line": 450,
+        "end_line": 472,
+        "start_char": 17595,
+        "end_char": 19217,
+        "score": "0.0334968164419922",
+        "root": "docs",
+        "matched_terms": [
+          "database_engine_options",
+          "database_short_lived_sessions"
+        ],
+        "evidence_id": "306d19469f4739733f0fd409",
+        "source_type": "repository",
+        "content_hash": "4d644daffde13e7252431a0f9812c324934aeeee9567033c2aa2fff9e06f2a0e",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_engine_options",
+            "database_short_lived_sessions",
+            "database backend configuration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4d644daffde13e7252431a0f9812c324934aeeee9567033c2aa2fff9e06f2a0e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3666245bf4f07b5b0efa52e6",
+        "type": "evidence",
+        "root": "code",
+        "path": "celery/backends/database/__init__.py",
+        "start_line": 1,
+        "total_lines": 251,
+        "start_char": 0,
+        "end_char": 4117,
+        "evidence_id": "3666245bf4f07b5b0efa52e6",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "9607aa895a50945d2e240a80f4da264aa13c5e7acec2072ceaffb62087a6f4d7",
+        "revision": "cc058ebfa38bf3806dd61d14c2fdc0baa19c7775",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "celery/app/defaults.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "celery/backends/database/__init__.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9607aa895a50945d2e240a80f4da264aa13c5e7acec2072ceaffb62087a6f4d7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:37f69c7b4f2f35939338a424",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 1036,
+        "total_lines": 4329,
+        "start_char": 33903,
+        "end_char": 37869,
+        "evidence_id": "37f69c7b4f2f35939338a424",
+        "truncated": false,
+        "next_offset": 1155,
+        "source_type": "repository",
+        "content_hash": "17714b821df64858bfb7d115356b85da962191cb4d866d731dfe11a278a12ad4",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1035,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "17714b821df64858bfb7d115356b85da962191cb4d866d731dfe11a278a12ad4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3b42fa32c43341adb527e2c3",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``override_backends``",
+        "start_line": 1040,
+        "end_line": 1087,
+        "start_char": 33988,
+        "end_char": 35629,
+        "score": "0.04214340198321892",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "3b42fa32c43341adb527e2c3",
+        "source_type": "repository",
+        "content_hash": "3e3a0baf2ca9675a50241570d9bb4876b370d51810280c6a3e53a1db18c0fb09",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3e3a0baf2ca9675a50241570d9bb4876b370d51810280c6a3e53a1db18c0fb09",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3d82341a619fbc592ed5d407",
+        "type": "evidence",
+        "path": "docs/history/changelog-4.0.rst",
+        "heading": "Important notes",
+        "start_line": 216,
+        "end_line": 231,
+        "start_char": 5845,
+        "end_char": 6424,
+        "score": "0.03724360368195984",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "3d82341a619fbc592ed5d407",
+        "source_type": "repository",
+        "content_hash": "1e0f7ac34fd5cca3f5320913c13611f4fb4a03b3eddaf906b0090b85a0efa6fa",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1e0f7ac34fd5cca3f5320913c13611f4fb4a03b3eddaf906b0090b85a0efa6fa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6878deb778a1878db574cb5a",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE.md",
+        "start_line": 1,
+        "total_lines": 4,
+        "start_char": 0,
+        "end_char": 139,
+        "evidence_id": "6878deb778a1878db574cb5a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5f46b005c3ca4d0a8a4c0987a8407b5d36ce534786453a153c7e803b178861fe",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1035,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5f46b005c3ca4d0a8a4c0987a8407b5d36ce534786453a153c7e803b178861fe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6f0f427030660c4cb27343ac",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.0.rst",
+        "heading": "Deployment",
+        "start_line": 1982,
+        "end_line": 1997,
+        "start_char": 66305,
+        "end_char": 66870,
+        "score": "0.031173384328724133",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "database"
+        ],
+        "evidence_id": "6f0f427030660c4cb27343ac",
+        "source_type": "repository",
+        "content_hash": "078f5f4e44dbc396e2e54295c871747f94d79855ffd38d6824105d750090104a",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_engine_options",
+            "database_short_lived_sessions",
+            "database backend configuration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "078f5f4e44dbc396e2e54295c871747f94d79855ffd38d6824105d750090104a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:722f16118ea67da7e1dda68b",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 14,
+        "start_char": 0,
+        "end_char": 280,
+        "score": "0.04161090221570751",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "722f16118ea67da7e1dda68b",
+        "source_type": "repository",
+        "content_hash": "9515e981be0b9a3042532f472c95f697979fb20eb432160544ec225850f27d39",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9515e981be0b9a3042532f472c95f697979fb20eb432160544ec225850f27d39",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7b4c9d7fb39a9be506d6c087",
+        "type": "evidence",
+        "evidence_id": "7b4c9d7fb39a9be506d6c087",
+        "source_type": "task",
+        "exported_content_sha256": "1efea86e0c40bb7fa1a3953e666d4b77d12e75a2fe53c2df220e57a11d4a7207",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8fdff09db17f293300c42330",
+        "type": "evidence",
+        "path": "docs/history/changelog-5.5.rst",
+        "heading": "Database Backend Improvements",
+        "start_line": 273,
+        "end_line": 296,
+        "start_char": 9217,
+        "end_char": 10068,
+        "score": "0.0369128924978231",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "configuration",
+          "database"
+        ],
+        "evidence_id": "8fdff09db17f293300c42330",
+        "source_type": "repository",
+        "content_hash": "bd96a8e3aa3b5fd22d009d68467a095c21f11c574afec6b939e369206a474199",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_engine_options",
+            "database_short_lived_sessions",
+            "database backend configuration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "bd96a8e3aa3b5fd22d009d68467a095c21f11c574afec6b939e369206a474199",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9167b2e049d2bd0057bd8c4a",
+        "type": "evidence",
+        "path": "docs/faq.rst",
+        "heading": "What purpose does the database tables created by ``django-celery-beat`` have?",
+        "start_line": 935,
+        "end_line": 944,
+        "start_char": 29128,
+        "end_char": 29544,
+        "score": "0.039167797376752606",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "9167b2e049d2bd0057bd8c4a",
+        "source_type": "repository",
+        "content_hash": "f9cbf6d988b4b3588bfc2d04c731205f3bbe6da68a61c6d37777be3eaf061388",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f9cbf6d988b4b3588bfc2d04c731205f3bbe6da68a61c6d37777be3eaf061388",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:998598b419dc5e4bc261c828",
+        "type": "evidence",
+        "evidence_id": "998598b419dc5e4bc261c828",
+        "source_type": "implementation",
+        "exported_content_sha256": "23ab3881b848bec8e70e6c1d0451989ca33e36aa026bfa8da862504d61c327f1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:998955477c5ecd562a931c14",
+        "type": "evidence",
+        "path": "docs/history/changelog-2.0.rst",
+        "heading": "Database result backend",
+        "start_line": 493,
+        "end_line": 542,
+        "start_char": 14862,
+        "end_char": 16438,
+        "score": "0.04583853930031804",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "998955477c5ecd562a931c14",
+        "source_type": "repository",
+        "content_hash": "b00892e409df89d33c896597058078e09da1c9b3563229e74532a79f1e2c0c44",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b00892e409df89d33c896597058078e09da1c9b3563229e74532a79f1e2c0c44",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9a787deb120b87877b44c79e",
+        "type": "evidence",
+        "path": "docs/internals/reference/celery.backends.database.session.rst",
+        "heading": "``celery.backends.database.session``",
+        "start_line": 2,
+        "end_line": 11,
+        "start_char": 41,
+        "end_char": 283,
+        "score": "0.03174913693901036",
+        "root": "docs",
+        "matched_terms": [
+          "database"
+        ],
+        "evidence_id": "9a787deb120b87877b44c79e",
+        "source_type": "repository",
+        "content_hash": "0f18c7d19f7498b6c643f148c6ec76f7f2693ef7cd9935e947c6481fa7859be1",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_engine_options",
+            "database_short_lived_sessions",
+            "database backend configuration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0f18c7d19f7498b6c643f148c6ec76f7f2693ef7cd9935e947c6481fa7859be1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a0c9e33d538bdb60fefa28a9",
+        "type": "evidence",
+        "root": "docs",
+        "path": "Changelog.rst",
+        "start_line": 568,
+        "total_lines": 2991,
+        "start_char": 20171,
+        "end_char": 25892,
+        "evidence_id": "a0c9e33d538bdb60fefa28a9",
+        "truncated": false,
+        "next_offset": 687,
+        "source_type": "repository",
+        "content_hash": "16e6c189c95f6582f12d408443711abed40e03705d99bffc3e15b9636b7305aa",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "Changelog.rst",
+              "offset": 567,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.0.rst",
+              "offset": 488,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1146,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "16e6c189c95f6582f12d408443711abed40e03705d99bffc3e15b9636b7305aa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a25fb716e1c2b09da1f74810",
+        "type": "evidence",
+        "path": "docs/django/first-steps-with-django.rst",
+        "heading": "``django-celery-results`` - Using the Django ORM/Cache as a result backend",
+        "start_line": 284,
+        "end_line": 294,
+        "start_char": 9728,
+        "end_char": 10012,
+        "score": "0.03754594029823388",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a25fb716e1c2b09da1f74810",
+        "source_type": "repository",
+        "content_hash": "c41f3320d117bea70c4b775e63006636aa2e42604c52fc55a935cdf012a9a67e",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c41f3320d117bea70c4b775e63006636aa2e42604c52fc55a935cdf012a9a67e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c60548e70f5c1a63daf66fce",
+        "type": "evidence",
+        "path": "Changelog.rst",
+        "heading": "Database Backend Improvements",
+        "start_line": 572,
+        "end_line": 595,
+        "start_char": 20285,
+        "end_char": 21136,
+        "score": "0.04389799635701275",
+        "root": "docs",
+        "matched_terms": [
+          "database_create_tables_at_setup"
+        ],
+        "evidence_id": "c60548e70f5c1a63daf66fce",
+        "source_type": "repository",
+        "content_hash": "bd96a8e3aa3b5fd22d009d68467a095c21f11c574afec6b939e369206a474199",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "bd96a8e3aa3b5fd22d009d68467a095c21f11c574afec6b939e369206a474199",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ebc2b75f7d8d5e99e5badbe4",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-2.0.rst",
+        "start_line": 489,
+        "total_lines": 1079,
+        "start_char": 14812,
+        "end_char": 18988,
+        "evidence_id": "ebc2b75f7d8d5e99e5badbe4",
+        "truncated": false,
+        "next_offset": 608,
+        "source_type": "repository",
+        "content_hash": "a18294e68c020d14066dc34f2d8c1bb10f1214d6c0ac9145a0d829a53708714c",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "Changelog.rst",
+              "offset": 567,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.0.rst",
+              "offset": 488,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 1146,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a18294e68c020d14066dc34f2d8c1bb10f1214d6c0ac9145a0d829a53708714c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed948878093dbf4634abdd9d",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "Checklist > Optional Debugging Information",
+        "start_line": 44,
+        "end_line": 61,
+        "start_char": 2050,
+        "end_char": 2899,
+        "score": "0.04232777553673076",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ed948878093dbf4634abdd9d",
+        "source_type": "repository",
+        "content_hash": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f6939b2f037cf17b6d141779",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``database_short_lived_sessions``",
+        "start_line": 1151,
+        "end_line": 1183,
+        "start_char": 37767,
+        "end_char": 38876,
+        "score": "0.0424377517722828",
+        "root": "docs",
+        "matched_terms": [
+          "backend",
+          "database",
+          "database_short_lived_sessions"
+        ],
+        "evidence_id": "f6939b2f037cf17b6d141779",
+        "source_type": "repository",
+        "content_hash": "ccf9588a03a7dab2d6bb5a815802f46f79c4118403855f1fd72460e6be85f5fc",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_engine_options",
+            "database_short_lived_sessions",
+            "database backend configuration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ccf9588a03a7dab2d6bb5a815802f46f79c4118403855f1fd72460e6be85f5fc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fe1ba296fedf9365c286a4b6",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``database_create_tables_at_setup``",
+        "start_line": 1111,
+        "end_line": 1150,
+        "start_char": 36444,
+        "end_char": 37767,
+        "score": "0.03556113288320574",
+        "root": "docs",
+        "matched_terms": [
+          "database_create_tables_at_setup"
+        ],
+        "evidence_id": "fe1ba296fedf9365c286a4b6",
+        "source_type": "repository",
+        "content_hash": "62ef1b343e089f694af6d2b1d921a016ab62f032a217573d4016feb55c3885f7",
+        "revision": "11f1e444be9f58ba61d9aefebcd755e3f1fb47c1",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "database_create_tables_at_setup",
+            "database_url",
+            "database_engine_callback"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "62ef1b343e089f694af6d2b1d921a016ab62f032a217573d4016feb55c3885f7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:config-database-engine-callback",
+        "type": "requirement",
+        "description": "Add a new ``database_engine_callback`` setting entry to the database result backend settings section of docs/userguide/configuration.rst (near database_engine_options / database_short_lived_sessions). Document that it accepts a callable or dotted import path, is invoked with the SQLAlchemy engine right after creation (both pooled and NullPool paths), can also be passed as the ``engine_callback`` constructor kwarg (which takes precedence over config), and that a non-callable value raises ``ImproperlyConfigured``. Include a short code example (e.g. registering a ``do_connect`` event listener)."
+      },
+      {
+        "id": "requirement:changelog-engine-callback",
+        "type": "requirement",
+        "description": "Add a Changelog.rst entry under the database backend improvements describing the new ``database_engine_callback`` option, mirroring the existing ``create_tables_at_setup`` entry style, with a short configuration example and a pointer to :ref:`conf-database-result-backend`."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/userguide/configuration.rst",
+        "hash": "a15b073aa469ade005cc5e8ee0daf57319f7e67035252c1a5bf5807514095fd6"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "Changelog.rst",
+        "hash": "39d323445a3abb571d4d87bd187b1316b9ab37969f4cfbad89a14dc6f82859ad"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "config-database-engine-callback",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/userguide/configuration.rst"
+        ],
+        "evidence_ids": [
+          "02fec8ac0fcfde3e4f08490c",
+          "f6939b2f037cf17b6d141779",
+          "3666245bf4f07b5b0efa52e6",
+          "01b69df435cfbcfbec2695af"
+        ],
+        "reason": "Add a new ``database_engine_callback`` setting entry to the database result backend settings section of docs/userguide/configuration.rst (near database_engine_options / database_short_lived_sessions). Document that it accepts a callable or dotted import path, is invoked with the SQLAlchemy engine right after creation (both pooled and NullPool paths), can also be passed as the ``engine_callback`` constructor kwarg (which takes precedence over config), and that a non-callable value raises ``ImproperlyConfigured``. Include a short code example (e.g. registering a ``do_connect`` event listener)."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "changelog-engine-callback",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "Changelog.rst"
+        ],
+        "evidence_ids": [
+          "c60548e70f5c1a63daf66fce",
+          "a0c9e33d538bdb60fefa28a9"
+        ],
+        "reason": "Add a Changelog.rst entry under the database backend improvements describing the new ``database_engine_callback`` option, mirroring the existing ``create_tables_at_setup`` entry style, with a short configuration example and a pointer to :ref:`conf-database-result-backend`."
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where is the database backend configuration documented, including existing options like database_engine_options and database_short_lived_sessions?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is there a configuration reference listing all database_* settings that would need the new database_engine_callback entry?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Does the codebase define the database_engine_callback default and how it is consumed, to confirm documented behavior?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:01b69df435cfbcfbec2695af",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:02fec8ac0fcfde3e4f08490c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:05d57b3fed92c018c5372515",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:05d57b3fed92c018c5372515",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:143a5a8dec2a030b473b24f1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:25963b5d604e8750e1276e42",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:25963b5d604e8750e1276e42",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:306d19469f4739733f0fd409",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3666245bf4f07b5b0efa52e6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:37f69c7b4f2f35939338a424",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3b42fa32c43341adb527e2c3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3b42fa32c43341adb527e2c3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3d82341a619fbc592ed5d407",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3d82341a619fbc592ed5d407",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6878deb778a1878db574cb5a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6f0f427030660c4cb27343ac",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:722f16118ea67da7e1dda68b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8fdff09db17f293300c42330",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9167b2e049d2bd0057bd8c4a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:998955477c5ecd562a931c14",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:998955477c5ecd562a931c14",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9a787deb120b87877b44c79e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a0c9e33d538bdb60fefa28a9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a25fb716e1c2b09da1f74810",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c60548e70f5c1a63daf66fce",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c60548e70f5c1a63daf66fce",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ebc2b75f7d8d5e99e5badbe4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed948878093dbf4634abdd9d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed948878093dbf4634abdd9d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f6939b2f037cf17b6d141779",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fe1ba296fedf9365c286a4b6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:02fec8ac0fcfde3e4f08490c",
+        "to": "requirement:config-database-engine-callback",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:f6939b2f037cf17b6d141779",
+        "to": "requirement:config-database-engine-callback",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:3666245bf4f07b5b0efa52e6",
+        "to": "requirement:config-database-engine-callback",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:01b69df435cfbcfbec2695af",
+        "to": "requirement:config-database-engine-callback",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c60548e70f5c1a63daf66fce",
+        "to": "requirement:changelog-engine-callback",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:a0c9e33d538bdb60fefa28a9",
+        "to": "requirement:changelog-engine-callback",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:config-database-engine-callback",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:02fec8ac0fcfde3e4f08490c",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f6939b2f037cf17b6d141779",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3666245bf4f07b5b0efa52e6",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:01b69df435cfbcfbec2695af",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:changelog-engine-callback",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:c60548e70f5c1a63daf66fce",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:a0c9e33d538bdb60fefa28a9",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:config-database-engine-callback",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:02fec8ac0fcfde3e4f08490c",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f6939b2f037cf17b6d141779",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3666245bf4f07b5b0efa52e6",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:01b69df435cfbcfbec2695af",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:changelog-engine-callback",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:c60548e70f5c1a63daf66fce",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:a0c9e33d538bdb60fefa28a9",
+        "to": "coverage:1",
+        "type": "cited_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "55cb0ca36fb35a91a760da8074a9c8e69a8e4f47dcb105f72ff6914c83d995d5"
+}

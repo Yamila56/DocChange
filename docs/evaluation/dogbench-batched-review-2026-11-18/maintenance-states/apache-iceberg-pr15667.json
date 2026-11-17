@@ -1,0 +1,2383 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "EDIT",
+  "tasks": [
+    {
+      "id": "flink-writes-maintenance-options",
+      "description": "In docs/docs/flink-writes.md, document the sink write options for post-commit table maintenance: the new `flink-maintenance.rewrite.enabled` (with deprecated alias `compaction-enabled`), `flink-maintenance.expire-snapshots.enabled`, and `flink-maintenance.delete-orphan-files.enabled` options, and note that the old `compactMode` flag is replaced by `tableMaintenanceEnabled` and that multiple maintenance tasks can be registered via the IcebergSink builder `maintenance(...)` method.",
+      "evidence_ids": [
+        "2fd6baee699e525c00eb4963",
+        "30fa2bd3ccdb0038d1029580",
+        "f8b5d677d08ab8a19843c36b"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "flink-maintenance-prefix-listing-default",
+      "description": "In docs/docs/flink-maintenance.md, confirm/update the Delete Orphan Files Configuration table so `flink-maintenance.delete-orphan-files.use-prefix-listing` default is documented as `true` (changed from `false`), and ensure the Enable Flags table reflects the new option keys and the deprecated `compaction-enabled` alias.",
+      "evidence_ids": [
+        "4951efdf4b352af05775a1f5",
+        "1e1fec597e60b3cf705a2f7b",
+        "ef36f41ec5899927ec8a40fc"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "10e1d50ce639e901827459721d2209f0596eeeaa25020e0c1edd6259916f2e24",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the Flink docs page document the sink write options (compaction-enabled, compactMode) and post-commit maintenance, and where?",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ],
+          "paths": [
+            "docs/docs/flink-writes.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/docs/flink-writes.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "offset": 411,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 82,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f8b5d677d08ab8a19843c36b",
+            "ef36f41ec5899927ec8a40fc",
+            "cdb51414d09a2b98254f08eb",
+            "1e1fec597e60b3cf705a2f7b",
+            "3eff81db9b9fdc2ee29192be",
+            "460c73f866e693c08fdb02fc",
+            "b8e7d2b88c579c3ebd821366",
+            "45bf944c5a74982234ec4b65",
+            "5d2e2032299790105621db90",
+            "81279990ce9b8d3d006e4aad",
+            "775082d9476c636a190f03d0",
+            "5cb1a6cb49e62699e967d2fe",
+            "bb605fd26cc9e223a69e1474",
+            "a4880ec69a91c10a4dcbd243",
+            "6cfc439f557f370f56c69af6"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/docs/flink-maintenance.md",
+              "evidence_id": "1e1fec597e60b3cf705a2f7b",
+              "score": "0.03245784066679589"
+            },
+            {
+              "rank": 2,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "3eff81db9b9fdc2ee29192be",
+              "score": "0.03142894532674026"
+            },
+            {
+              "rank": 3,
+              "path": "AGENTS.md",
+              "evidence_id": "460c73f866e693c08fdb02fc",
+              "score": "0.030891522270832618"
+            },
+            {
+              "rank": 4,
+              "path": "docs/docs/hive.md",
+              "evidence_id": "b8e7d2b88c579c3ebd821366",
+              "score": "0.030886196246139225"
+            },
+            {
+              "rank": 5,
+              "path": "AGENTS.md",
+              "evidence_id": "45bf944c5a74982234ec4b65",
+              "score": "0.03076386569822452"
+            },
+            {
+              "rank": 6,
+              "path": "docs/docs/flink-maintenance.md",
+              "evidence_id": "5d2e2032299790105621db90",
+              "score": "0.030417840375586855"
+            },
+            {
+              "rank": 7,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "81279990ce9b8d3d006e4aad",
+              "score": "0.030078682114641923"
+            },
+            {
+              "rank": 8,
+              "path": "docker/iceberg-rest-fixture/README.md",
+              "evidence_id": "775082d9476c636a190f03d0",
+              "score": "0.029826216875049147"
+            },
+            {
+              "rank": 9,
+              "path": "docs/docs/spark-structured-streaming.md",
+              "evidence_id": "5cb1a6cb49e62699e967d2fe",
+              "score": "0.029144385026737968"
+            },
+            {
+              "rank": 10,
+              "path": "docs/docs/flink-writes.md",
+              "evidence_id": "bb605fd26cc9e223a69e1474",
+              "score": "0.026096723044397464"
+            },
+            {
+              "rank": 11,
+              "path": "docs/docs/flink-configuration.md",
+              "evidence_id": "a4880ec69a91c10a4dcbd243",
+              "score": "0.02451923076923077"
+            },
+            {
+              "rank": 12,
+              "path": "docs/docs/maintenance.md",
+              "evidence_id": "6cfc439f557f370f56c69af6",
+              "score": "0.022888171125084147"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/docs/flink-writes.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 554
+            },
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "start": 411,
+              "end": 531,
+              "total_lines": 540
+            },
+            {
+              "path": "docs/docs/configuration.md",
+              "start": 82,
+              "end": 195,
+              "total_lines": 265
+            }
+          ],
+          "read_evidence_ids": [
+            "f8b5d677d08ab8a19843c36b",
+            "ef36f41ec5899927ec8a40fc",
+            "cdb51414d09a2b98254f08eb"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is there a Flink maintenance docs page documenting ExpireSnapshots, DeleteOrphanFiles, and their configuration options?",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ],
+          "paths": [
+            "docs/docs/flink-maintenance.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "AGENTS.md",
+              "offset": 70,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/maintenance.md",
+              "offset": 83,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "42e88b2524f2665ee14eea91",
+            "1a6b4620bcd4f4b304ec5fd6",
+            "d0538966c54010b650042c1e",
+            "7ad3c2ae7ab10c77e46c459f",
+            "460c73f866e693c08fdb02fc",
+            "4951efdf4b352af05775a1f5",
+            "6544eca9726ed0d4b327c4d3",
+            "d374b33238e84efd6b499f6c",
+            "85f5f981af5d51e0a2dd0cbf",
+            "756976a8d8df81ae0d5fb561",
+            "4ed3b07a21ddeeb7dc312c7a",
+            "c774edfed79902aad15c5465",
+            "e96580ef60e6b793d1719141",
+            "bed839aeccce404ea615b44c",
+            "f1b57024630c62ccc2b52a87"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "AGENTS.md",
+              "evidence_id": "7ad3c2ae7ab10c77e46c459f",
+              "score": "0.034516346698010535"
+            },
+            {
+              "rank": 2,
+              "path": "AGENTS.md",
+              "evidence_id": "460c73f866e693c08fdb02fc",
+              "score": "0.033605627766715274"
+            },
+            {
+              "rank": 3,
+              "path": "docs/docs/flink-maintenance.md",
+              "evidence_id": "4951efdf4b352af05775a1f5",
+              "score": "0.03323702514713751"
+            },
+            {
+              "rank": 4,
+              "path": "docs/docs/flink-maintenance.md",
+              "evidence_id": "6544eca9726ed0d4b327c4d3",
+              "score": "0.03197694307608101"
+            },
+            {
+              "rank": 5,
+              "path": "docs/docs/maintenance.md",
+              "evidence_id": "d374b33238e84efd6b499f6c",
+              "score": "0.030077683923837768"
+            },
+            {
+              "rank": 6,
+              "path": "docs/docs/spark-procedures.md",
+              "evidence_id": "85f5f981af5d51e0a2dd0cbf",
+              "score": "0.029520490827933545"
+            },
+            {
+              "rank": 7,
+              "path": "docs/docs/spark-procedures.md",
+              "evidence_id": "756976a8d8df81ae0d5fb561",
+              "score": "0.02848781292630613"
+            },
+            {
+              "rank": 8,
+              "path": "site/docs/releases.md",
+              "evidence_id": "4ed3b07a21ddeeb7dc312c7a",
+              "score": "0.027298112173227806"
+            },
+            {
+              "rank": 9,
+              "path": ".baseline/copyright/copyright-header-java.txt",
+              "evidence_id": "c774edfed79902aad15c5465",
+              "score": "0.026023799430069015"
+            },
+            {
+              "rank": 10,
+              "path": ".baseline/copyright/001_apache-2.0.txt",
+              "evidence_id": "e96580ef60e6b793d1719141",
+              "score": "0.02556225294146231"
+            },
+            {
+              "rank": 11,
+              "path": "docs/docs/aws.md",
+              "evidence_id": "bed839aeccce404ea615b44c",
+              "score": "0.025312309265851894"
+            },
+            {
+              "rank": 12,
+              "path": "docs/docs/aws.md",
+              "evidence_id": "f1b57024630c62ccc2b52a87",
+              "score": "0.02463858127448791"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 540
+            },
+            {
+              "path": "AGENTS.md",
+              "start": 70,
+              "end": 172,
+              "total_lines": 172
+            },
+            {
+              "path": "docs/docs/maintenance.md",
+              "start": 83,
+              "end": 160,
+              "total_lines": 160
+            }
+          ],
+          "read_evidence_ids": [
+            "42e88b2524f2665ee14eea91",
+            "1a6b4620bcd4f4b304ec5fd6",
+            "d0538966c54010b650042c1e"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What are the exact new option keys and defaults in FlinkWriteOptions and the config classes?",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ],
+          "paths": [
+            "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "offset": 67,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "740570d1fddd3d609b93fd03",
+            "2fd6baee699e525c00eb4963",
+            "30fa2bd3ccdb0038d1029580",
+            "60b6ce455a6393f71b9447f1",
+            "a88c8bf0a8c67ed8c7fbb2f7",
+            "285f69596825c4df244b0b79",
+            "09c2199fb73c8bf037bdba19",
+            "b931696ee29715d9c9efbf4b",
+            "53410571c55159f85afcdb57",
+            "a93e39cb4099e2ef3dd0b581",
+            "5153be060823b4196f225719",
+            "2437fcca91b2f4e2ca013292",
+            "e12eb67448a9b0f0a18cdacf",
+            "de9b7f135321c89aeaf6cabd"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "evidence_id": "30fa2bd3ccdb0038d1029580",
+              "score": "0.04560453004299346"
+            },
+            {
+              "rank": 2,
+              "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "evidence_id": "60b6ce455a6393f71b9447f1",
+              "score": "0.04491942165325921"
+            },
+            {
+              "rank": 3,
+              "path": "flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "evidence_id": "a88c8bf0a8c67ed8c7fbb2f7",
+              "score": "0.04425465838509317"
+            },
+            {
+              "rank": 4,
+              "path": "flink/v1.20/flink/src/test/java/org/apache/iceberg/flink/sink/TestIcebergSinkTableMaintenance.java",
+              "evidence_id": "285f69596825c4df244b0b79",
+              "score": "0.032552083333333336"
+            },
+            {
+              "rank": 5,
+              "path": "flink/v2.0/flink/src/test/java/org/apache/iceberg/flink/sink/TestIcebergSinkTableMaintenance.java",
+              "evidence_id": "09c2199fb73c8bf037bdba19",
+              "score": "0.03206962088626588"
+            },
+            {
+              "rank": 6,
+              "path": "flink/v2.1/flink/src/test/java/org/apache/iceberg/flink/sink/TestIcebergSinkTableMaintenance.java",
+              "evidence_id": "b931696ee29715d9c9efbf4b",
+              "score": "0.0316017316017316"
+            },
+            {
+              "rank": 7,
+              "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+              "evidence_id": "53410571c55159f85afcdb57",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 8,
+              "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+              "evidence_id": "a93e39cb4099e2ef3dd0b581",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 9,
+              "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+              "evidence_id": "5153be060823b4196f225719",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 10,
+              "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+              "evidence_id": "2437fcca91b2f4e2ca013292",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 11,
+              "path": "flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+              "evidence_id": "e12eb67448a9b0f0a18cdacf",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 12,
+              "path": "flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+              "evidence_id": "de9b7f135321c89aeaf6cabd",
+              "score": "0.015873015873015872"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "start": 0,
+              "end": 108,
+              "total_lines": 108
+            },
+            {
+              "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "start": 67,
+              "end": 108,
+              "total_lines": 108
+            }
+          ],
+          "read_evidence_ids": [
+            "740570d1fddd3d609b93fd03",
+            "2fd6baee699e525c00eb4963"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "09c2199fb73c8bf037bdba19",
+        "1a6b4620bcd4f4b304ec5fd6",
+        "1e1fec597e60b3cf705a2f7b",
+        "2437fcca91b2f4e2ca013292",
+        "285f69596825c4df244b0b79",
+        "2fd6baee699e525c00eb4963",
+        "30fa2bd3ccdb0038d1029580",
+        "3eff81db9b9fdc2ee29192be",
+        "42e88b2524f2665ee14eea91",
+        "45bf944c5a74982234ec4b65",
+        "460c73f866e693c08fdb02fc",
+        "4951efdf4b352af05775a1f5",
+        "4ed3b07a21ddeeb7dc312c7a",
+        "5153be060823b4196f225719",
+        "53410571c55159f85afcdb57",
+        "5cb1a6cb49e62699e967d2fe",
+        "5d2e2032299790105621db90",
+        "60b6ce455a6393f71b9447f1",
+        "6544eca9726ed0d4b327c4d3",
+        "6cfc439f557f370f56c69af6",
+        "740570d1fddd3d609b93fd03",
+        "756976a8d8df81ae0d5fb561",
+        "775082d9476c636a190f03d0",
+        "7ad3c2ae7ab10c77e46c459f",
+        "81279990ce9b8d3d006e4aad",
+        "85f5f981af5d51e0a2dd0cbf",
+        "a4880ec69a91c10a4dcbd243",
+        "a88c8bf0a8c67ed8c7fbb2f7",
+        "a93e39cb4099e2ef3dd0b581",
+        "b8e7d2b88c579c3ebd821366",
+        "b931696ee29715d9c9efbf4b",
+        "bb605fd26cc9e223a69e1474",
+        "bed839aeccce404ea615b44c",
+        "c774edfed79902aad15c5465",
+        "cdb51414d09a2b98254f08eb",
+        "d0538966c54010b650042c1e",
+        "d374b33238e84efd6b499f6c",
+        "de9b7f135321c89aeaf6cabd",
+        "e12eb67448a9b0f0a18cdacf",
+        "e96580ef60e6b793d1719141",
+        "ef36f41ec5899927ec8a40fc",
+        "f1b57024630c62ccc2b52a87",
+        "f8b5d677d08ab8a19843c36b"
+      ],
+      "new_evidence_count": 43,
+      "new_path_count": 23
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "b96d020009d688d05fab8421b0487d13e45308e3",
+    "code": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:360c7ed1e1c0f39f": 0,
+    "discover:Q1-2:34a62b510889aaf1": 237,
+    "discover:Q1-3:ff75002ec7aa10e7": 0
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:ff75002ec7aa10e7": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:360c7ed1e1c0f39f": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 237,
+      "cache_hit": false
+    },
+    "discover:Q1-2:34a62b510889aaf1": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 525,
+      "cache_hit": false
+    },
+    "discover:Q1-3:ff75002ec7aa10e7": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 16080,
+      "cache_hit": false
+    },
+    "discover:Q1-2:4db10829aed8cea4": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 309,
+      "cache_hit": false
+    },
+    "discover:Q1-1:3ec6740920e8bf1e": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 334,
+      "cache_hit": false
+    },
+    "discover:Q1-3:cef062f565674d5f": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 358,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:09c2199fb73c8bf037bdba19",
+        "type": "evidence",
+        "path": "flink/v2.0/flink/src/test/java/org/apache/iceberg/flink/sink/TestIcebergSinkTableMaintenance.java",
+        "heading": "",
+        "start_line": 124,
+        "end_line": 167,
+        "start_char": 4910,
+        "end_char": 6554,
+        "score": "0.03206962088626588",
+        "root": "code",
+        "matched_terms": [
+          "delete_orphan_files_enable",
+          "expire_snapshots_enable",
+          "prefix"
+        ],
+        "evidence_id": "09c2199fb73c8bf037bdba19",
+        "source_type": "repository",
+        "content_hash": "8bd743f241e6edb9fd898f9de02864d657880b1128167e4ef87aa646036a6bd5",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8bd743f241e6edb9fd898f9de02864d657880b1128167e4ef87aa646036a6bd5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a6b4620bcd4f4b304ec5fd6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "AGENTS.md",
+        "start_line": 71,
+        "total_lines": 172,
+        "start_char": 4688,
+        "end_char": 10478,
+        "evidence_id": "1a6b4620bcd4f4b304ec5fd6",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "4b7fa5541df02c774965250e268283f33b4f425c078127c19eeb37480b50d760",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "AGENTS.md",
+              "offset": 70,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/maintenance.md",
+              "offset": 83,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4b7fa5541df02c774965250e268283f33b4f425c078127c19eeb37480b50d760",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1e1fec597e60b3cf705a2f7b",
+        "type": "evidence",
+        "path": "docs/docs/flink-maintenance.md",
+        "heading": "title: \"Flink TableMaintenance\" > Flink Table Maintenance StreamingMode > IcebergSink Maintenance Configuration (SQL) > Enable Flags",
+        "start_line": 416,
+        "end_line": 423,
+        "start_char": 21314,
+        "end_char": 21665,
+        "score": "0.03245784066679589",
+        "root": "docs",
+        "matched_terms": [
+          "compaction",
+          "enabled",
+          "maintenance"
+        ],
+        "evidence_id": "1e1fec597e60b3cf705a2f7b",
+        "source_type": "repository",
+        "content_hash": "e8893e3bbfe8ab27118a48fe5314a1f70ebc3597b4aa0d5670408e7b3a5ffbd8",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e8893e3bbfe8ab27118a48fe5314a1f70ebc3597b4aa0d5670408e7b3a5ffbd8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2437fcca91b2f4e2ca013292",
+        "type": "evidence",
+        "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+        "heading": "",
+        "start_line": 229,
+        "end_line": 265,
+        "start_char": 8264,
+        "end_char": 9503,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "delete_orphan_files_enable"
+        ],
+        "evidence_id": "2437fcca91b2f4e2ca013292",
+        "source_type": "repository",
+        "content_hash": "9f5e4227b63bce893bb18c6d3c853063a06d30cf56ae232a9b882cc52eec6315",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9f5e4227b63bce893bb18c6d3c853063a06d30cf56ae232a9b882cc52eec6315",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:285f69596825c4df244b0b79",
+        "type": "evidence",
+        "path": "flink/v1.20/flink/src/test/java/org/apache/iceberg/flink/sink/TestIcebergSinkTableMaintenance.java",
+        "heading": "",
+        "start_line": 124,
+        "end_line": 167,
+        "start_char": 4910,
+        "end_char": 6554,
+        "score": "0.032552083333333336",
+        "root": "code",
+        "matched_terms": [
+          "delete_orphan_files_enable",
+          "expire_snapshots_enable",
+          "prefix"
+        ],
+        "evidence_id": "285f69596825c4df244b0b79",
+        "source_type": "repository",
+        "content_hash": "8bd743f241e6edb9fd898f9de02864d657880b1128167e4ef87aa646036a6bd5",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8bd743f241e6edb9fd898f9de02864d657880b1128167e4ef87aa646036a6bd5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2fd6baee699e525c00eb4963",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+        "start_line": 68,
+        "total_lines": 108,
+        "start_char": 3081,
+        "end_char": 4906,
+        "evidence_id": "2fd6baee699e525c00eb4963",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "fd853c8a08c57524adad2a768ccb44ccf41e6134b07bd2d19ce7771ab69156b9",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "offset": 67,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "fd853c8a08c57524adad2a768ccb44ccf41e6134b07bd2d19ce7771ab69156b9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:30fa2bd3ccdb0038d1029580",
+        "type": "evidence",
+        "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+        "heading": "",
+        "start_line": 72,
+        "end_line": 107,
+        "start_char": 3299,
+        "end_char": 4904,
+        "score": "0.04560453004299346",
+        "root": "code",
+        "matched_terms": [
+          "delete_orphan_files_enable",
+          "enabled",
+          "expire_snapshots_enable",
+          "prefix"
+        ],
+        "evidence_id": "30fa2bd3ccdb0038d1029580",
+        "source_type": "repository",
+        "content_hash": "871262b5707bf9cdfaacda9cbdd5263c5cfeda944110dc220310e5c7cbf736a2",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "871262b5707bf9cdfaacda9cbdd5263c5cfeda944110dc220310e5c7cbf736a2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3eff81db9b9fdc2ee29192be",
+        "type": "evidence",
+        "path": "docs/docs/configuration.md",
+        "heading": "Configuration > Table properties > Write properties",
+        "start_line": 87,
+        "end_line": 91,
+        "start_char": 17196,
+        "end_char": 18851,
+        "score": "0.03142894532674026",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "3eff81db9b9fdc2ee29192be",
+        "source_type": "repository",
+        "content_hash": "0de67a5a8e7bdc20136f71d0ecce0d9fa4d6f0522a0135b3154cafa8e3541ce3",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0de67a5a8e7bdc20136f71d0ecce0d9fa4d6f0522a0135b3154cafa8e3541ce3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:42e88b2524f2665ee14eea91",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/flink-maintenance.md",
+        "start_line": 1,
+        "total_lines": 540,
+        "start_char": 0,
+        "end_char": 5436,
+        "evidence_id": "42e88b2524f2665ee14eea91",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "17e61042fe05aea27d9faeb92d2504de65f7ea3e84be713be0ff81405103aeba",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "AGENTS.md",
+              "offset": 70,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/maintenance.md",
+              "offset": 83,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "17e61042fe05aea27d9faeb92d2504de65f7ea3e84be713be0ff81405103aeba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:45bf944c5a74982234ec4b65",
+        "type": "evidence",
+        "path": "AGENTS.md",
+        "heading": "Apache Iceberg — Agent Instructions > Design Patterns",
+        "start_line": 47,
+        "end_line": 61,
+        "start_char": 3071,
+        "end_char": 4280,
+        "score": "0.03076386569822452",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "45bf944c5a74982234ec4b65",
+        "source_type": "repository",
+        "content_hash": "dc91ab34cde1b806a7eccb85e5cd06d3f3eb1143fb2985e18d9b76216bf7f58b",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "dc91ab34cde1b806a7eccb85e5cd06d3f3eb1143fb2985e18d9b76216bf7f58b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:460c73f866e693c08fdb02fc",
+        "type": "evidence",
+        "path": "AGENTS.md",
+        "heading": "Apache Iceberg — Agent Instructions > Coding Conventions > Code Placement",
+        "start_line": 93,
+        "end_line": 100,
+        "start_char": 5933,
+        "end_char": 6401,
+        "score": "0.033605627766715274",
+        "root": "docs",
+        "matched_terms": [
+          "use"
+        ],
+        "evidence_id": "460c73f866e693c08fdb02fc",
+        "source_type": "repository",
+        "content_hash": "bc70dd8f3958be3218dddb6bf861ad4f66fc8705500aaf3f6ebb44f0281a983e",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "bc70dd8f3958be3218dddb6bf861ad4f66fc8705500aaf3f6ebb44f0281a983e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4951efdf4b352af05775a1f5",
+        "type": "evidence",
+        "path": "docs/docs/flink-maintenance.md",
+        "heading": "title: \"Flink TableMaintenance\" > Flink Table Maintenance StreamingMode > IcebergSink Maintenance Configuration (SQL) > Delete Orphan Files Configuration",
+        "start_line": 448,
+        "end_line": 461,
+        "start_char": 23387,
+        "end_char": 24581,
+        "score": "0.03323702514713751",
+        "root": "docs",
+        "matched_terms": [
+          "listing",
+          "prefix",
+          "use"
+        ],
+        "evidence_id": "4951efdf4b352af05775a1f5",
+        "source_type": "repository",
+        "content_hash": "063ea9fd8a1c049cd94a6611b46a6c4e0c0c07489b4111be2c5a3a406234fb38",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "063ea9fd8a1c049cd94a6611b46a6c4e0c0c07489b4111be2c5a3a406234fb38",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4ed3b07a21ddeeb7dc312c7a",
+        "type": "evidence",
+        "path": "site/docs/releases.md",
+        "heading": "title: \"Releases\" > Past releases > 1.10.0 release",
+        "start_line": 156,
+        "end_line": 169,
+        "start_char": 12271,
+        "end_char": 13939,
+        "score": "0.027298112173227806",
+        "root": "docs",
+        "matched_terms": [
+          "expiresnapshots",
+          "prefix",
+          "use"
+        ],
+        "evidence_id": "4ed3b07a21ddeeb7dc312c7a",
+        "source_type": "repository",
+        "content_hash": "6e1ef930b0fe94303824804df38df060af30f459ffde93b81cb57d1611baf29c",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6e1ef930b0fe94303824804df38df060af30f459ffde93b81cb57d1611baf29c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5153be060823b4196f225719",
+        "type": "evidence",
+        "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+        "heading": "",
+        "start_line": 181,
+        "end_line": 228,
+        "start_char": 6598,
+        "end_char": 8264,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "expire_snapshots_enable"
+        ],
+        "evidence_id": "5153be060823b4196f225719",
+        "source_type": "repository",
+        "content_hash": "1ac78b48da6713f9d5d19d291ca7e311297f19728da41c3e92d51332861b8581",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "1ac78b48da6713f9d5d19d291ca7e311297f19728da41c3e92d51332861b8581",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:53410571c55159f85afcdb57",
+        "type": "evidence",
+        "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+        "heading": "",
+        "start_line": 181,
+        "end_line": 228,
+        "start_char": 6598,
+        "end_char": 8264,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "expire_snapshots_enable"
+        ],
+        "evidence_id": "53410571c55159f85afcdb57",
+        "source_type": "repository",
+        "content_hash": "1ac78b48da6713f9d5d19d291ca7e311297f19728da41c3e92d51332861b8581",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "1ac78b48da6713f9d5d19d291ca7e311297f19728da41c3e92d51332861b8581",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5cb1a6cb49e62699e967d2fe",
+        "type": "evidence",
+        "path": "docs/docs/spark-structured-streaming.md",
+        "heading": "Spark Structured Streaming > Maintenance for streaming tables > Compacting data files",
+        "start_line": 144,
+        "end_line": 147,
+        "start_char": 7367,
+        "end_char": 7791,
+        "score": "0.029144385026737968",
+        "root": "docs",
+        "matched_terms": [
+          "maintenance"
+        ],
+        "evidence_id": "5cb1a6cb49e62699e967d2fe",
+        "source_type": "repository",
+        "content_hash": "c9a8401d8e914bfe58fcdf715a3cc9105c2a00703439f682fb003a7984632570",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c9a8401d8e914bfe58fcdf715a3cc9105c2a00703439f682fb003a7984632570",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5d2e2032299790105621db90",
+        "type": "evidence",
+        "path": "docs/docs/flink-maintenance.md",
+        "heading": "title: \"Flink TableMaintenance\" > Flink Table Maintenance StreamingMode > Configuration Options > RewriteDataFiles Configuration",
+        "start_line": 212,
+        "end_line": 229,
+        "start_char": 9594,
+        "end_char": 11155,
+        "score": "0.030417840375586855",
+        "root": "docs",
+        "matched_terms": [
+          "compaction"
+        ],
+        "evidence_id": "5d2e2032299790105621db90",
+        "source_type": "repository",
+        "content_hash": "183f0d33360282c0d6165a95e1bb7c1c737a28f2bc4f58a95eebfbc077a10a98",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "183f0d33360282c0d6165a95e1bb7c1c737a28f2bc4f58a95eebfbc077a10a98",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:60b6ce455a6393f71b9447f1",
+        "type": "evidence",
+        "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+        "heading": "",
+        "start_line": 72,
+        "end_line": 107,
+        "start_char": 3299,
+        "end_char": 4904,
+        "score": "0.04491942165325921",
+        "root": "code",
+        "matched_terms": [
+          "delete_orphan_files_enable",
+          "enabled",
+          "expire_snapshots_enable",
+          "prefix"
+        ],
+        "evidence_id": "60b6ce455a6393f71b9447f1",
+        "source_type": "repository",
+        "content_hash": "871262b5707bf9cdfaacda9cbdd5263c5cfeda944110dc220310e5c7cbf736a2",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "871262b5707bf9cdfaacda9cbdd5263c5cfeda944110dc220310e5c7cbf736a2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6544eca9726ed0d4b327c4d3",
+        "type": "evidence",
+        "path": "docs/docs/flink-maintenance.md",
+        "heading": "title: \"Flink TableMaintenance\" > Flink Table Maintenance StreamingMode > Configuration Options > DeleteOrphanFiles Configuration",
+        "start_line": 230,
+        "end_line": 235,
+        "start_char": 11155,
+        "end_char": 12955,
+        "score": "0.03197694307608101",
+        "root": "docs",
+        "matched_terms": [
+          "deleteorphanfiles",
+          "listing",
+          "prefix",
+          "use"
+        ],
+        "evidence_id": "6544eca9726ed0d4b327c4d3",
+        "source_type": "repository",
+        "content_hash": "5c013b17c0a7a967c2a81c226e1e4347fc3e7da9e933a76b0314d9cf0ed9ce9d",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5c013b17c0a7a967c2a81c226e1e4347fc3e7da9e933a76b0314d9cf0ed9ce9d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6cfc439f557f370f56c69af6",
+        "type": "evidence",
+        "path": "docs/docs/maintenance.md",
+        "heading": "Maintenance > Optional Maintenance > Compact data files",
+        "start_line": 121,
+        "end_line": 140,
+        "start_char": 6995,
+        "end_char": 7940,
+        "score": "0.022888171125084147",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "6cfc439f557f370f56c69af6",
+        "source_type": "repository",
+        "content_hash": "d5e24757ba6fce667bc696ade80ce2cdaab707cc7e3a18be62021ef8753ef350",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d5e24757ba6fce667bc696ade80ce2cdaab707cc7e3a18be62021ef8753ef350",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:740570d1fddd3d609b93fd03",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+        "start_line": 1,
+        "total_lines": 108,
+        "start_char": 0,
+        "end_char": 4906,
+        "evidence_id": "740570d1fddd3d609b93fd03",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "0508788c0dd4dbe26098a53645435313ea4720e2fd23317f458eeacf418e0755",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink/v2.0/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+              "offset": 67,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "0508788c0dd4dbe26098a53645435313ea4720e2fd23317f458eeacf418e0755",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:756976a8d8df81ae0d5fb561",
+        "type": "evidence",
+        "path": "docs/docs/spark-procedures.md",
+        "heading": "Spark Procedures > Metadata management > `remove_orphan_files` > Examples",
+        "start_line": 329,
+        "end_line": 366,
+        "start_char": 13619,
+        "end_char": 15247,
+        "score": "0.02848781292630613",
+        "root": "docs",
+        "matched_terms": [
+          "prefix"
+        ],
+        "evidence_id": "756976a8d8df81ae0d5fb561",
+        "source_type": "repository",
+        "content_hash": "f82de4a9ee7e18f1b186f134b13e6058c688dd5a0df8bbb3809817ae6e686e5b",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f82de4a9ee7e18f1b186f134b13e6058c688dd5a0df8bbb3809817ae6e686e5b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:775082d9476c636a190f03d0",
+        "type": "evidence",
+        "path": "docker/iceberg-rest-fixture/README.md",
+        "heading": "Iceberg REST Catalog Adapter Test Fixture > Browse",
+        "start_line": 82,
+        "end_line": 86,
+        "start_char": 6612,
+        "end_char": 6914,
+        "score": "0.029826216875049147",
+        "root": "docs",
+        "matched_terms": [
+          "enabled"
+        ],
+        "evidence_id": "775082d9476c636a190f03d0",
+        "source_type": "repository",
+        "content_hash": "6b4fdbb325becf8737080432e00c4b46650541614f6b04a48318fd20fe80a9e2",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6b4fdbb325becf8737080432e00c4b46650541614f6b04a48318fd20fe80a9e2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7ad3c2ae7ab10c77e46c459f",
+        "type": "evidence",
+        "path": "AGENTS.md",
+        "heading": "Apache Iceberg — Agent Instructions > Coding Conventions > Naming",
+        "start_line": 75,
+        "end_line": 82,
+        "start_char": 4963,
+        "end_char": 5354,
+        "score": "0.034516346698010535",
+        "root": "docs",
+        "matched_terms": [
+          "prefix",
+          "use"
+        ],
+        "evidence_id": "7ad3c2ae7ab10c77e46c459f",
+        "source_type": "repository",
+        "content_hash": "02d4e8694c4f366ca266c42539794f7b9f6e04b1d8ca1c6719533090377a559f",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "02d4e8694c4f366ca266c42539794f7b9f6e04b1d8ca1c6719533090377a559f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:81279990ce9b8d3d006e4aad",
+        "type": "evidence",
+        "path": "docs/docs/configuration.md",
+        "heading": "Configuration > Table properties > Write properties",
+        "start_line": 62,
+        "end_line": 66,
+        "start_char": 8833,
+        "end_char": 10488,
+        "score": "0.030078682114641923",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "81279990ce9b8d3d006e4aad",
+        "source_type": "repository",
+        "content_hash": "d25c7973487424008d6c5405780376202d1a5b534bd7a9218a7ea1e0aa34f17b",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d25c7973487424008d6c5405780376202d1a5b534bd7a9218a7ea1e0aa34f17b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:85f5f981af5d51e0a2dd0cbf",
+        "type": "evidence",
+        "path": "docs/docs/spark-procedures.md",
+        "heading": "Spark Procedures > Metadata management > `remove_orphan_files` > Examples",
+        "start_line": 367,
+        "end_line": 379,
+        "start_char": 15247,
+        "end_char": 15663,
+        "score": "0.029520490827933545",
+        "root": "docs",
+        "matched_terms": [
+          "listing",
+          "prefix"
+        ],
+        "evidence_id": "85f5f981af5d51e0a2dd0cbf",
+        "source_type": "repository",
+        "content_hash": "cd97ae824b886bba475466f3541eff9a1131dde844dd20d4c9df125ed7e1ea5f",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cd97ae824b886bba475466f3541eff9a1131dde844dd20d4c9df125ed7e1ea5f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a4880ec69a91c10a4dcbd243",
+        "type": "evidence",
+        "path": "docs/docs/flink-configuration.md",
+        "heading": "Flink Configuration > Runtime configuration > Write options",
+        "start_line": 154,
+        "end_line": 160,
+        "start_char": 34706,
+        "end_char": 36351,
+        "score": "0.02451923076923077",
+        "root": "docs",
+        "matched_terms": [
+          "enabled"
+        ],
+        "evidence_id": "a4880ec69a91c10a4dcbd243",
+        "source_type": "repository",
+        "content_hash": "d7d3c5158f1c2d3aa98231562be9edd06a104a0567c7ae84e65a1fc9252b91f4",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d7d3c5158f1c2d3aa98231562be9edd06a104a0567c7ae84e65a1fc9252b91f4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a88c8bf0a8c67ed8c7fbb2f7",
+        "type": "evidence",
+        "path": "flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteOptions.java",
+        "heading": "",
+        "start_line": 72,
+        "end_line": 107,
+        "start_char": 3299,
+        "end_char": 4904,
+        "score": "0.04425465838509317",
+        "root": "code",
+        "matched_terms": [
+          "delete_orphan_files_enable",
+          "enabled",
+          "expire_snapshots_enable",
+          "prefix"
+        ],
+        "evidence_id": "a88c8bf0a8c67ed8c7fbb2f7",
+        "source_type": "repository",
+        "content_hash": "871262b5707bf9cdfaacda9cbdd5263c5cfeda944110dc220310e5c7cbf736a2",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "871262b5707bf9cdfaacda9cbdd5263c5cfeda944110dc220310e5c7cbf736a2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a93e39cb4099e2ef3dd0b581",
+        "type": "evidence",
+        "path": "flink/v1.20/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+        "heading": "",
+        "start_line": 229,
+        "end_line": 265,
+        "start_char": 8264,
+        "end_char": 9503,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "delete_orphan_files_enable"
+        ],
+        "evidence_id": "a93e39cb4099e2ef3dd0b581",
+        "source_type": "repository",
+        "content_hash": "9f5e4227b63bce893bb18c6d3c853063a06d30cf56ae232a9b882cc52eec6315",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9f5e4227b63bce893bb18c6d3c853063a06d30cf56ae232a9b882cc52eec6315",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b8e7d2b88c579c3ebd821366",
+        "type": "evidence",
+        "path": "docs/docs/hive.md",
+        "heading": "Hive > DML Commands > Compaction",
+        "start_line": 789,
+        "end_line": 799,
+        "start_char": 31357,
+        "end_char": 31725,
+        "score": "0.030886196246139225",
+        "root": "docs",
+        "matched_terms": [
+          "compaction"
+        ],
+        "evidence_id": "b8e7d2b88c579c3ebd821366",
+        "source_type": "repository",
+        "content_hash": "b64c9eb7341bd157888a8e474612af26030c63db37365dda5f7b5355a9704482",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b64c9eb7341bd157888a8e474612af26030c63db37365dda5f7b5355a9704482",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b931696ee29715d9c9efbf4b",
+        "type": "evidence",
+        "path": "flink/v2.1/flink/src/test/java/org/apache/iceberg/flink/sink/TestIcebergSinkTableMaintenance.java",
+        "heading": "",
+        "start_line": 124,
+        "end_line": 167,
+        "start_char": 4910,
+        "end_char": 6554,
+        "score": "0.0316017316017316",
+        "root": "code",
+        "matched_terms": [
+          "delete_orphan_files_enable",
+          "expire_snapshots_enable",
+          "prefix"
+        ],
+        "evidence_id": "b931696ee29715d9c9efbf4b",
+        "source_type": "repository",
+        "content_hash": "8bd743f241e6edb9fd898f9de02864d657880b1128167e4ef87aa646036a6bd5",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8bd743f241e6edb9fd898f9de02864d657880b1128167e4ef87aa646036a6bd5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bb605fd26cc9e223a69e1474",
+        "type": "evidence",
+        "path": "docs/docs/flink-writes.md",
+        "heading": "Flink Writes > Flink Dynamic Iceberg Sink > Dynamic Routing Configuration",
+        "start_line": 484,
+        "end_line": 490,
+        "start_char": 21587,
+        "end_char": 22289,
+        "score": "0.026096723044397464",
+        "root": "docs",
+        "matched_terms": [
+          "enabled"
+        ],
+        "evidence_id": "bb605fd26cc9e223a69e1474",
+        "source_type": "repository",
+        "content_hash": "2bf04ce1ec05c9cda541c05b23eb0e019c32540dc9c04734b5c1fbe30a4ea333",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "compaction-enabled",
+            "compactMode",
+            "maintenance"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2bf04ce1ec05c9cda541c05b23eb0e019c32540dc9c04734b5c1fbe30a4ea333",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bed839aeccce404ea615b44c",
+        "type": "evidence",
+        "path": "docs/docs/aws.md",
+        "heading": "Iceberg AWS Integrations > S3 FileIO > Object Store File Layout",
+        "start_line": 336,
+        "end_line": 351,
+        "start_char": 22370,
+        "end_char": 23987,
+        "score": "0.025312309265851894",
+        "root": "docs",
+        "matched_terms": [
+          "prefix",
+          "use"
+        ],
+        "evidence_id": "bed839aeccce404ea615b44c",
+        "source_type": "repository",
+        "content_hash": "2afb8d2b7890947e704c6a859b1983c4822cc9207e7cbf20213462b5988bfccc",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2afb8d2b7890947e704c6a859b1983c4822cc9207e7cbf20213462b5988bfccc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c774edfed79902aad15c5465",
+        "type": "evidence",
+        "path": ".baseline/copyright/copyright-header-java.txt",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 18,
+        "start_char": 0,
+        "end_char": 808,
+        "score": "0.026023799430069015",
+        "root": "docs",
+        "matched_terms": [
+          "use"
+        ],
+        "evidence_id": "c774edfed79902aad15c5465",
+        "source_type": "repository",
+        "content_hash": "1af5402e214c2bdb70c2cc7b1324fb8ee7f98e68c78c5cd90bfbbf72b6515666",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1af5402e214c2bdb70c2cc7b1324fb8ee7f98e68c78c5cd90bfbbf72b6515666",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cdb51414d09a2b98254f08eb",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/configuration.md",
+        "start_line": 83,
+        "total_lines": 265,
+        "start_char": 15872,
+        "end_char": 29872,
+        "evidence_id": "cdb51414d09a2b98254f08eb",
+        "truncated": true,
+        "next_offset": 195,
+        "source_type": "repository",
+        "content_hash": "96bad3a9e2f0afe3e6b5ab72ba0c5fb195b742a3e1447c10e6856fc60cde9b17",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/flink-writes.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "offset": 411,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 82,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "96bad3a9e2f0afe3e6b5ab72ba0c5fb195b742a3e1447c10e6856fc60cde9b17",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d0538966c54010b650042c1e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/maintenance.md",
+        "start_line": 84,
+        "total_lines": 160,
+        "start_char": 4616,
+        "end_char": 9058,
+        "evidence_id": "d0538966c54010b650042c1e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d4ed516f8aebb77f90e7b796f7fdd6d163e444e98a6d346cf075d0af821b22e9",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "AGENTS.md",
+              "offset": 70,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/maintenance.md",
+              "offset": 83,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d4ed516f8aebb77f90e7b796f7fdd6d163e444e98a6d346cf075d0af821b22e9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d374b33238e84efd6b499f6c",
+        "type": "evidence",
+        "path": "docs/docs/maintenance.md",
+        "heading": "Maintenance > Recommended Maintenance > Delete orphan files",
+        "start_line": 88,
+        "end_line": 114,
+        "start_char": 5010,
+        "end_char": 6618,
+        "score": "0.030077683923837768",
+        "root": "docs",
+        "matched_terms": [
+          "deleteorphanfiles",
+          "listing",
+          "use"
+        ],
+        "evidence_id": "d374b33238e84efd6b499f6c",
+        "source_type": "repository",
+        "content_hash": "7f5243188b70c6f4fc7b1e18160be071dc60fdde1602e9af3ca7af282d0436d5",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7f5243188b70c6f4fc7b1e18160be071dc60fdde1602e9af3ca7af282d0436d5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:de9b7f135321c89aeaf6cabd",
+        "type": "evidence",
+        "path": "flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+        "heading": "",
+        "start_line": 229,
+        "end_line": 265,
+        "start_char": 8264,
+        "end_char": 9503,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "delete_orphan_files_enable"
+        ],
+        "evidence_id": "de9b7f135321c89aeaf6cabd",
+        "source_type": "repository",
+        "content_hash": "9f5e4227b63bce893bb18c6d3c853063a06d30cf56ae232a9b882cc52eec6315",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9f5e4227b63bce893bb18c6d3c853063a06d30cf56ae232a9b882cc52eec6315",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e12eb67448a9b0f0a18cdacf",
+        "type": "evidence",
+        "path": "flink/v2.1/flink/src/main/java/org/apache/iceberg/flink/FlinkWriteConf.java",
+        "heading": "",
+        "start_line": 181,
+        "end_line": 228,
+        "start_char": 6598,
+        "end_char": 8264,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "expire_snapshots_enable"
+        ],
+        "evidence_id": "e12eb67448a9b0f0a18cdacf",
+        "source_type": "repository",
+        "content_hash": "1ac78b48da6713f9d5d19d291ca7e311297f19728da41c3e92d51332861b8581",
+        "revision": "b408bcd5f07b32094d5e2d1898e3146d5e75b11d",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "EXPIRE_SNAPSHOTS_ENABLE",
+            "DELETE_ORPHAN_FILES_ENABLE",
+            "PREFIX + \"enabled\""
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "1ac78b48da6713f9d5d19d291ca7e311297f19728da41c3e92d51332861b8581",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e96580ef60e6b793d1719141",
+        "type": "evidence",
+        "path": ".baseline/copyright/001_apache-2.0.txt",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 16,
+        "start_char": 0,
+        "end_char": 755,
+        "score": "0.02556225294146231",
+        "root": "docs",
+        "matched_terms": [
+          "use"
+        ],
+        "evidence_id": "e96580ef60e6b793d1719141",
+        "source_type": "repository",
+        "content_hash": "a9f2a039d4c5d974b4cd996c8766411dba19024fc4039bc9c9696320c1bede84",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a9f2a039d4c5d974b4cd996c8766411dba19024fc4039bc9c9696320c1bede84",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ef36f41ec5899927ec8a40fc",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/flink-maintenance.md",
+        "start_line": 412,
+        "total_lines": 540,
+        "start_char": 21160,
+        "end_char": 28107,
+        "evidence_id": "ef36f41ec5899927ec8a40fc",
+        "truncated": false,
+        "next_offset": 531,
+        "source_type": "repository",
+        "content_hash": "6070b33102f56b34e2b6a67fcb284387f23ffe9bbc2cbd10dab516cb3ebcd9c9",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/flink-writes.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "offset": 411,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 82,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6070b33102f56b34e2b6a67fcb284387f23ffe9bbc2cbd10dab516cb3ebcd9c9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f00bbb22296e5a1c2a476df7",
+        "type": "evidence",
+        "evidence_id": "f00bbb22296e5a1c2a476df7",
+        "source_type": "task",
+        "exported_content_sha256": "9ebe8319f5086ead6f8e6ad101bbec0dbcff1769a510c9396e7a398f8b0cdf02",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f1b57024630c62ccc2b52a87",
+        "type": "evidence",
+        "path": "docs/docs/aws.md",
+        "heading": "Iceberg AWS Integrations > Catalogs > Glue Catalog > Table Location",
+        "start_line": 192,
+        "end_line": 226,
+        "start_char": 9668,
+        "end_char": 11015,
+        "score": "0.02463858127448791",
+        "root": "docs",
+        "matched_terms": [
+          "prefix",
+          "use"
+        ],
+        "evidence_id": "f1b57024630c62ccc2b52a87",
+        "source_type": "repository",
+        "content_hash": "ff25c96555b72e2a8ac65f7c9c50d67cacdf0797dd0ce7711369abfd39750b8e",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ExpireSnapshots",
+            "DeleteOrphanFiles",
+            "use-prefix-listing"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ff25c96555b72e2a8ac65f7c9c50d67cacdf0797dd0ce7711369abfd39750b8e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f8b5d677d08ab8a19843c36b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/flink-writes.md",
+        "start_line": 1,
+        "total_lines": 554,
+        "start_char": 0,
+        "end_char": 4831,
+        "evidence_id": "f8b5d677d08ab8a19843c36b",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "7e498593260950d0eade5e384d76a393a4d0c9d38415ab2bcfbee3c2da309170",
+        "revision": "b96d020009d688d05fab8421b0487d13e45308e3",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/flink-writes.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-maintenance.md",
+              "offset": 411,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 82,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7e498593260950d0eade5e384d76a393a4d0c9d38415ab2bcfbee3c2da309170",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fab5cd8187988217b1520463",
+        "type": "evidence",
+        "evidence_id": "fab5cd8187988217b1520463",
+        "source_type": "implementation",
+        "exported_content_sha256": "ed40e7a0d9c88fab2c8c5d5caa5639c10133e14b6cc07cd3580cc23a6c33d7c3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:flink-writes-maintenance-options",
+        "type": "requirement",
+        "description": "In docs/docs/flink-writes.md, document the sink write options for post-commit table maintenance: the new `flink-maintenance.rewrite.enabled` (with deprecated alias `compaction-enabled`), `flink-maintenance.expire-snapshots.enabled`, and `flink-maintenance.delete-orphan-files.enabled` options, and note that the old `compactMode` flag is replaced by `tableMaintenanceEnabled` and that multiple maintenance tasks can be registered via the IcebergSink builder `maintenance(...)` method."
+      },
+      {
+        "id": "requirement:flink-maintenance-prefix-listing-default",
+        "type": "requirement",
+        "description": "In docs/docs/flink-maintenance.md, confirm/update the Delete Orphan Files Configuration table so `flink-maintenance.delete-orphan-files.use-prefix-listing` default is documented as `true` (changed from `false`), and ensure the Enable Flags table reflects the new option keys and the deprecated `compaction-enabled` alias."
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the Flink docs page document the sink write options (compaction-enabled, compactMode) and post-commit maintenance, and where?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is there a Flink maintenance docs page documenting ExpireSnapshots, DeleteOrphanFiles, and their configuration options?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What are the exact new option keys and defaults in FlinkWriteOptions and the config classes?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:09c2199fb73c8bf037bdba19",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a6b4620bcd4f4b304ec5fd6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1e1fec597e60b3cf705a2f7b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2437fcca91b2f4e2ca013292",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:285f69596825c4df244b0b79",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2fd6baee699e525c00eb4963",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:30fa2bd3ccdb0038d1029580",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3eff81db9b9fdc2ee29192be",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:42e88b2524f2665ee14eea91",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:45bf944c5a74982234ec4b65",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:460c73f866e693c08fdb02fc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:460c73f866e693c08fdb02fc",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4951efdf4b352af05775a1f5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ed3b07a21ddeeb7dc312c7a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5153be060823b4196f225719",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:53410571c55159f85afcdb57",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5cb1a6cb49e62699e967d2fe",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d2e2032299790105621db90",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:60b6ce455a6393f71b9447f1",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6544eca9726ed0d4b327c4d3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6cfc439f557f370f56c69af6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:740570d1fddd3d609b93fd03",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:756976a8d8df81ae0d5fb561",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:775082d9476c636a190f03d0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7ad3c2ae7ab10c77e46c459f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:81279990ce9b8d3d006e4aad",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:85f5f981af5d51e0a2dd0cbf",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a4880ec69a91c10a4dcbd243",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a88c8bf0a8c67ed8c7fbb2f7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a93e39cb4099e2ef3dd0b581",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b8e7d2b88c579c3ebd821366",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b931696ee29715d9c9efbf4b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bb605fd26cc9e223a69e1474",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bed839aeccce404ea615b44c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c774edfed79902aad15c5465",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cdb51414d09a2b98254f08eb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d0538966c54010b650042c1e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d374b33238e84efd6b499f6c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:de9b7f135321c89aeaf6cabd",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e12eb67448a9b0f0a18cdacf",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e96580ef60e6b793d1719141",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef36f41ec5899927ec8a40fc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f1b57024630c62ccc2b52a87",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f8b5d677d08ab8a19843c36b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2fd6baee699e525c00eb4963",
+        "to": "requirement:flink-writes-maintenance-options",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:30fa2bd3ccdb0038d1029580",
+        "to": "requirement:flink-writes-maintenance-options",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:f8b5d677d08ab8a19843c36b",
+        "to": "requirement:flink-writes-maintenance-options",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:4951efdf4b352af05775a1f5",
+        "to": "requirement:flink-maintenance-prefix-listing-default",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:1e1fec597e60b3cf705a2f7b",
+        "to": "requirement:flink-maintenance-prefix-listing-default",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:ef36f41ec5899927ec8a40fc",
+        "to": "requirement:flink-maintenance-prefix-listing-default",
+        "type": "motivates"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

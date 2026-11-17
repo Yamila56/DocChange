@@ -1,0 +1,5348 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "isolation-level-reference",
+      "description": "Add a 'Bounded staleness' section to the isolation-level reference: syntax `bounded staleness <duration>` (humantime specs like 5s, 500ms, 1m30s; zero rejected), semantics (freshest timestamp within D of oracle read_ts, no waiting on input frontiers), read-only restriction (writes error), mutual exclusion with real_time_recency, EpochMilliseconds-only timelines, SQLSTATE 40001 error when the bound cannot be met, and the enable_bounded_staleness_isolation feature flag. Also update the 'Isolation levels and query latency' comparison to include it.",
+      "evidence_ids": [
+        "ef3a26d8642af4c726f13d3e",
+        "7d763a8a8204796f54784122",
+        "97608af3f6e99897febf0dfa",
+        "c96b1650252678f37a05691e"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "config-params-table",
+      "description": "Update the `transaction_isolation` row in the headless configuration-parameters table: its 'Accepts values' list currently reads only `serializable`, `strict serializable`; add `bounded staleness <duration>` and note the feature-flag gating.",
+      "evidence_ids": [
+        "19245c93fd4aa285a0719da0"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "set-sql-example",
+      "description": "In the SET SQL reference, extend the 'Set transaction isolation level' example to show `SET transaction_isolation = 'bounded staleness 5s';` alongside the existing serializable example.",
+      "evidence_ids": [
+        "385a997dfb42744126627766",
+        "d073e64e82a2815b8619ec9d"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "8bfc5e2848f91c9fa87e431760417e0e7743a945162bdbef1a773c1659e39dd0",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where does user-facing documentation describe transaction isolation levels (serializable, strict serializable) and how to set transaction_isolation?",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation",
+            "strict serializable isolation level",
+            "serializable isolation"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "doc/user/content/sql/set/",
+            "doc/user/content/"
+          ],
+          "reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "offset": 55,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "offset": 159,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/show.md",
+              "offset": 38,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d073e64e82a2815b8619ec9d",
+            "72a6235cc342ab9aa70c73f5",
+            "7c92df72e5509e5d4e7ea146",
+            "ed3e62bdd09f37f2172a59c2",
+            "7b8db127d3f94363bc2404a2",
+            "d269de2509c36445c7da80be",
+            "6eb54c5dd04a5853bf7a2a42",
+            "7990c868604bfc998447f4b3",
+            "ec0354e839bd7be9a6174168",
+            "2293d7af7351d72fadcc6cf1",
+            "cc9d2fb6aceb88eb72d6f1f9",
+            "0c52374bdcb4b149de9fd551",
+            "fef6c921780dfd294fff51e4",
+            "f7dafc3fd4888c6b276e2c8b",
+            "8cc8f9d2d0d09eb5cb8ca415"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/sql/set.md",
+              "evidence_id": "ed3e62bdd09f37f2172a59c2",
+              "score": "0.04722835723395651"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/reference/isolation-level.md",
+              "evidence_id": "7b8db127d3f94363bc2404a2",
+              "score": "0.047169957774465976"
+            },
+            {
+              "rank": 3,
+              "path": "doc/user/content/sql/show.md",
+              "evidence_id": "d269de2509c36445c7da80be",
+              "score": "0.044723161161517325"
+            },
+            {
+              "rank": 4,
+              "path": "doc/user/content/get-started/_index.md",
+              "evidence_id": "6eb54c5dd04a5853bf7a2a42",
+              "score": "0.044583251360744966"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/content/reference/isolation-level.md",
+              "evidence_id": "7990c868604bfc998447f4b3",
+              "score": "0.042712149489643095"
+            },
+            {
+              "rank": 6,
+              "path": "doc/user/content/headless/configuration-parameters.md",
+              "evidence_id": "ec0354e839bd7be9a6174168",
+              "score": "0.04031770698437365"
+            },
+            {
+              "rank": 7,
+              "path": "doc/developer/design/20230705_v2_txn_management.md",
+              "evidence_id": "2293d7af7351d72fadcc6cf1",
+              "score": "0.03407508909547917"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/design/20251219_zero_downtime_upgrades_physical_isolation_high_availability.md",
+              "evidence_id": "cc9d2fb6aceb88eb72d6f1f9",
+              "score": "0.03273446728088826"
+            },
+            {
+              "rank": 9,
+              "path": "doc/user/content/integrations/sql-clients.md",
+              "evidence_id": "0c52374bdcb4b149de9fd551",
+              "score": "0.03192648059904697"
+            },
+            {
+              "rank": 10,
+              "path": "doc/user/content/sql/create-cluster.md",
+              "evidence_id": "fef6c921780dfd294fff51e4",
+              "score": "0.031648002519428314"
+            },
+            {
+              "rank": 11,
+              "path": "doc/developer/design/20220516_transactional_consistency.md",
+              "evidence_id": "f7dafc3fd4888c6b276e2c8b",
+              "score": "0.030622901094139315"
+            },
+            {
+              "rank": 12,
+              "path": "doc/user/content/concepts/clusters.md",
+              "evidence_id": "8cc8f9d2d0d09eb5cb8ca415",
+              "score": "0.03054290253203589"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "start": 55,
+              "end": 79,
+              "total_lines": 79
+            },
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "start": 159,
+              "end": 195,
+              "total_lines": 195
+            },
+            {
+              "path": "doc/user/content/sql/show.md",
+              "start": 38,
+              "end": 57,
+              "total_lines": 57
+            }
+          ],
+          "read_evidence_ids": [
+            "d073e64e82a2815b8619ec9d",
+            "72a6235cc342ab9aa70c73f5",
+            "7c92df72e5509e5d4e7ea146"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where is real_time_recency documented, since bounded staleness conflicts with it?",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "doc/user/content/"
+          ],
+          "reads": [
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "offset": 117,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/change-data-capture.md",
+              "offset": 52,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage-controller/rtr.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7d763a8a8204796f54784122",
+            "cec100be98f0aac5e4b9e209",
+            "08d427b21460b97c6aa08e67",
+            "dc6256b76432e6e74a2b930a",
+            "e4e568c703b2a638b95f98d0",
+            "ad531a0e5b933e9a9a7e224d",
+            "df40d5a238ca0a6de2b90b31",
+            "28b3b5f46ebb01906606331c",
+            "7ed244b8fcfef6a04e93fccf",
+            "423fac1994308d9b3d1f51c4",
+            "8a0483188d6f561ef89d301e",
+            "df62469a20b25abc0c8b3e76",
+            "0c2c3475502523f83ea3fb0b",
+            "590450ddc74f8e42a4b010cf",
+            "c9d4ddc6169409a6d51b1256"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/reference/isolation-level.md",
+              "evidence_id": "dc6256b76432e6e74a2b930a",
+              "score": "0.03252247488101534"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/reference/isolation-level.md",
+              "evidence_id": "e4e568c703b2a638b95f98d0",
+              "score": "0.032018442622950824"
+            },
+            {
+              "rank": 3,
+              "path": "doc/developer/change-data-capture.md",
+              "evidence_id": "ad531a0e5b933e9a9a7e224d",
+              "score": "0.03149801587301587"
+            },
+            {
+              "rank": 4,
+              "path": "doc/developer/generated/storage-controller/rtr.md",
+              "evidence_id": "df40d5a238ca0a6de2b90b31",
+              "score": "0.030798389007344232"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/content/headless/configuration-parameters.md",
+              "evidence_id": "28b3b5f46ebb01906606331c",
+              "score": "0.029116045245077504"
+            },
+            {
+              "rank": 6,
+              "path": "doc/developer/guide-adapter.md",
+              "evidence_id": "7ed244b8fcfef6a04e93fccf",
+              "score": "0.02813852813852814"
+            },
+            {
+              "rank": 7,
+              "path": "doc/developer/guide-adapter.md",
+              "evidence_id": "423fac1994308d9b3d1f51c4",
+              "score": "0.027730294396961064"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/generated/timely-util/replay.md",
+              "evidence_id": "8a0483188d6f561ef89d301e",
+              "score": "0.026838432635534086"
+            },
+            {
+              "rank": 9,
+              "path": "doc/developer/design/20210714_reclocking.md",
+              "evidence_id": "df62469a20b25abc0c8b3e76",
+              "score": "0.02667140825035562"
+            },
+            {
+              "rank": 10,
+              "path": "doc/developer/design/20210714_reclocking.md",
+              "evidence_id": "0c2c3475502523f83ea3fb0b",
+              "score": "0.026279628993473032"
+            },
+            {
+              "rank": 11,
+              "path": "doc/developer/design/20200520_exactly_once_kafka.md",
+              "evidence_id": "590450ddc74f8e42a4b010cf",
+              "score": "0.026137303556658397"
+            },
+            {
+              "rank": 12,
+              "path": "doc/user/content/transform-data/patterns/durable-subscriptions.md",
+              "evidence_id": "c9d4ddc6169409a6d51b1256",
+              "score": "0.025478740668614087"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "start": 117,
+              "end": 195,
+              "total_lines": 195
+            },
+            {
+              "path": "doc/developer/change-data-capture.md",
+              "start": 52,
+              "end": 83,
+              "total_lines": 83
+            },
+            {
+              "path": "doc/developer/generated/storage-controller/rtr.md",
+              "start": 1,
+              "end": 10,
+              "total_lines": 10
+            }
+          ],
+          "read_evidence_ids": [
+            "7d763a8a8204796f54784122",
+            "cec100be98f0aac5e4b9e209",
+            "08d427b21460b97c6aa08e67"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Where are feature flags documented, to add enable_bounded_staleness_isolation?",
+          "root": "docs",
+          "queries": [
+            "feature flag",
+            "enable_ session variable"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "doc/user/content/sql/system-catalog/",
+            "doc/user/content/"
+          ],
+          "reads": [
+            {
+              "path": "doc/developer/generated/sql/session/vars/definitions.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars/errors.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "cec6a6bd8dda03fdec132f5f",
+            "823ca65720684a0b8c542994",
+            "a21684fa4b076f87c4010faf",
+            "be5920e855529951afbdf843",
+            "e068f2381a0a01929bbe9c9b",
+            "f597cfb3bc088586c01e40f7",
+            "772a84e8cc2d5d8569001fd7",
+            "6223db5135d62269981912a3",
+            "2813cb66538fa2b36336c643",
+            "82cd655c2ac13b8e3e429a1f",
+            "296133434ba58a694060080b",
+            "6d005b809bd6cbf6f0fdec78",
+            "04747aed5ba1ed237f5c11fb",
+            "d6c8543f7183a0bea017169c",
+            "001994c8786fe344460a21fa"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/developer/generated/sql/session/vars/definitions.md",
+              "evidence_id": "be5920e855529951afbdf843",
+              "score": "0.019779742066367192"
+            },
+            {
+              "rank": 2,
+              "path": "doc/developer/generated/sql/session/vars/errors.md",
+              "evidence_id": "e068f2381a0a01929bbe9c9b",
+              "score": "0.017274599694372467"
+            },
+            {
+              "rank": 3,
+              "path": "doc/developer/generated/sql/session/vars.md",
+              "evidence_id": "f597cfb3bc088586c01e40f7",
+              "score": "0.017095509760546433"
+            },
+            {
+              "rank": 4,
+              "path": "doc/developer/design/20230330_recursion_limit.md",
+              "evidence_id": "772a84e8cc2d5d8569001fd7",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 5,
+              "path": "test/feature-flag-consistency/README.md",
+              "evidence_id": "6223db5135d62269981912a3",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 6,
+              "path": "doc/developer/generated/sql/session/vars/_module.md",
+              "evidence_id": "2813cb66538fa2b36336c643",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 7,
+              "path": "test/feature-flag-consistency/README.md",
+              "evidence_id": "82cd655c2ac13b8e3e429a1f",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/design/20260508_restrict_to_user_objects.md",
+              "evidence_id": "296133434ba58a694060080b",
+              "score": "0.015625"
+            },
+            {
+              "rank": 9,
+              "path": "doc/developer/generated/sql/session/hint.md",
+              "evidence_id": "6d005b809bd6cbf6f0fdec78",
+              "score": "0.015579375346516355"
+            },
+            {
+              "rank": 10,
+              "path": "doc/developer/design/20230330_recursion_limit.md",
+              "evidence_id": "04747aed5ba1ed237f5c11fb",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 11,
+              "path": "doc/developer/design/20260311_optimizer_customer_tradeoff.md",
+              "evidence_id": "d6c8543f7183a0bea017169c",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/design/20230421_stabilize_monotonic_select.md",
+              "evidence_id": "001994c8786fe344460a21fa",
+              "score": "0.015151515151515152"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/developer/generated/sql/session/vars/definitions.md",
+              "start": 1,
+              "end": 13,
+              "total_lines": 13
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars/errors.md",
+              "start": 1,
+              "end": 9,
+              "total_lines": 9
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars.md",
+              "start": 1,
+              "end": 13,
+              "total_lines": 13
+            }
+          ],
+          "read_evidence_ids": [
+            "cec6a6bd8dda03fdec132f5f",
+            "823ca65720684a0b8c542994",
+            "a21684fa4b076f87c4010faf"
+          ]
+        },
+        {
+          "id": "Q1-4",
+          "question": "What does the new error variants and SQLSTATE 40001 look like in code, and how are errors documented?",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ],
+          "paths": [
+            "src/adapter/src/error.rs"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "src/adapter/src/error.rs",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+              "offset": 136,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "fa2e9ca28c0df45ad143a8bb",
+            "97608af3f6e99897febf0dfa",
+            "89c90081e5a1c207bee0da8e",
+            "cfc5f324c1641354f38bedea",
+            "522e990f6f3af45946571095",
+            "c7ae987f2a53c41419c5855a",
+            "bc17e210e5b91b38c771dc2e",
+            "59aa05c0f8c0543eec68b1c9",
+            "525b69856f4d58c5c5bbe2e7",
+            "0d8263de6d9dd0d38e304ebe",
+            "2ada896c417fe2d1b6bb5e47",
+            "6c3d5dfe11384a182565b75f",
+            "073e70bb6be2b88be963f704",
+            "529abcf1f524f19020b918f0"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "src/adapter/src/error.rs",
+              "evidence_id": "89c90081e5a1c207bee0da8e",
+              "score": "0.04692742126540875"
+            },
+            {
+              "rank": 2,
+              "path": "src/adapter/src/error.rs",
+              "evidence_id": "cfc5f324c1641354f38bedea",
+              "score": "0.032018442622950824"
+            },
+            {
+              "rank": 3,
+              "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+              "evidence_id": "522e990f6f3af45946571095",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 4,
+              "path": "src/adapter/src/coord/sequencer/inner.rs",
+              "evidence_id": "c7ae987f2a53c41419c5855a",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 5,
+              "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+              "evidence_id": "bc17e210e5b91b38c771dc2e",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 6,
+              "path": "src/adapter/src/coord/sequencer/inner.rs",
+              "evidence_id": "59aa05c0f8c0543eec68b1c9",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 7,
+              "path": "src/adapter/src/coord/sequencer/inner/copy_from.rs",
+              "evidence_id": "525b69856f4d58c5c5bbe2e7",
+              "score": "0.015625"
+            },
+            {
+              "rank": 8,
+              "path": "src/adapter/src/coord/timestamp_selection.rs",
+              "evidence_id": "0d8263de6d9dd0d38e304ebe",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 9,
+              "path": "src/adapter/src/error.rs",
+              "evidence_id": "2ada896c417fe2d1b6bb5e47",
+              "score": "0.031009615384615385"
+            },
+            {
+              "rank": 10,
+              "path": "src/adapter/src/error.rs",
+              "evidence_id": "6c3d5dfe11384a182565b75f",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 11,
+              "path": "src/adapter/src/error.rs",
+              "evidence_id": "073e70bb6be2b88be963f704",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+              "evidence_id": "529abcf1f524f19020b918f0",
+              "score": "0.015384615384615385"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "src/adapter/src/error.rs",
+              "start": 0,
+              "end": 120,
+              "total_lines": 1548
+            },
+            {
+              "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+              "start": 136,
+              "end": 213,
+              "total_lines": 213
+            }
+          ],
+          "read_evidence_ids": [
+            "fa2e9ca28c0df45ad143a8bb",
+            "97608af3f6e99897febf0dfa"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "001994c8786fe344460a21fa",
+        "04747aed5ba1ed237f5c11fb",
+        "073e70bb6be2b88be963f704",
+        "08d427b21460b97c6aa08e67",
+        "0c2c3475502523f83ea3fb0b",
+        "0c52374bdcb4b149de9fd551",
+        "0d8263de6d9dd0d38e304ebe",
+        "2293d7af7351d72fadcc6cf1",
+        "2813cb66538fa2b36336c643",
+        "28b3b5f46ebb01906606331c",
+        "296133434ba58a694060080b",
+        "2ada896c417fe2d1b6bb5e47",
+        "423fac1994308d9b3d1f51c4",
+        "522e990f6f3af45946571095",
+        "525b69856f4d58c5c5bbe2e7",
+        "529abcf1f524f19020b918f0",
+        "590450ddc74f8e42a4b010cf",
+        "59aa05c0f8c0543eec68b1c9",
+        "6223db5135d62269981912a3",
+        "6c3d5dfe11384a182565b75f",
+        "6d005b809bd6cbf6f0fdec78",
+        "6eb54c5dd04a5853bf7a2a42",
+        "72a6235cc342ab9aa70c73f5",
+        "772a84e8cc2d5d8569001fd7",
+        "7990c868604bfc998447f4b3",
+        "7b8db127d3f94363bc2404a2",
+        "7c92df72e5509e5d4e7ea146",
+        "7d763a8a8204796f54784122",
+        "7ed244b8fcfef6a04e93fccf",
+        "823ca65720684a0b8c542994",
+        "82cd655c2ac13b8e3e429a1f",
+        "89c90081e5a1c207bee0da8e",
+        "8a0483188d6f561ef89d301e",
+        "8cc8f9d2d0d09eb5cb8ca415",
+        "97608af3f6e99897febf0dfa",
+        "a21684fa4b076f87c4010faf",
+        "ad531a0e5b933e9a9a7e224d",
+        "bc17e210e5b91b38c771dc2e",
+        "be5920e855529951afbdf843",
+        "c7ae987f2a53c41419c5855a",
+        "c9d4ddc6169409a6d51b1256",
+        "cc9d2fb6aceb88eb72d6f1f9",
+        "cec100be98f0aac5e4b9e209",
+        "cec6a6bd8dda03fdec132f5f",
+        "cfc5f324c1641354f38bedea",
+        "d073e64e82a2815b8619ec9d",
+        "d269de2509c36445c7da80be",
+        "d6c8543f7183a0bea017169c",
+        "dc6256b76432e6e74a2b930a",
+        "df40d5a238ca0a6de2b90b31",
+        "df62469a20b25abc0c8b3e76",
+        "e068f2381a0a01929bbe9c9b",
+        "e4e568c703b2a638b95f98d0",
+        "ec0354e839bd7be9a6174168",
+        "ed3e62bdd09f37f2172a59c2",
+        "f597cfb3bc088586c01e40f7",
+        "f7dafc3fd4888c6b276e2c8b",
+        "fa2e9ca28c0df45ad143a8bb",
+        "fef6c921780dfd294fff51e4"
+      ],
+      "new_evidence_count": 59,
+      "new_path_count": 33
+    },
+    {
+      "signature": "4ff12cbe7e7b26fd5b4629324bee7b86aafb40f2f3c75a6c28b307a1aa213813",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "What does the user-facing isolation-level reference page currently say about available isolation levels, and where would a new 'bounded staleness <duration>' level need to be added?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "doc/user/content/reference/isolation-level.md"
+          ],
+          "anchor": "## Isolation levels and query latency",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "query": "## Isolation levels and query latency",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "ef3a26d8642af4c726f13d3e"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "start": 140,
+              "end": 195,
+              "total_lines": 195
+            }
+          ],
+          "read_evidence_ids": [
+            "ef3a26d8642af4c726f13d3e"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the user-facing SET/SHOW SQL reference enumerate valid transaction_isolation values that must include the new bounded staleness syntax?",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ],
+          "paths": [
+            "doc/user/content/sql/set.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/headless/configuration-parameters.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "385a997dfb42744126627766",
+            "0f7fe60899f47df4a75202d7",
+            "19245c93fd4aa285a0719da0",
+            "ed3e62bdd09f37f2172a59c2",
+            "7b8db127d3f94363bc2404a2",
+            "9dbc83657b180158d44e66fb",
+            "d269de2509c36445c7da80be",
+            "ec0354e839bd7be9a6174168",
+            "0c52374bdcb4b149de9fd551",
+            "6eb54c5dd04a5853bf7a2a42",
+            "2293d7af7351d72fadcc6cf1",
+            "7990c868604bfc998447f4b3",
+            "fd8c2a5a6cf403a12d7c3ea0",
+            "70022fbda5c6620f69c6f36f",
+            "be3f3d2a2b50e3460c002d21"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/sql/set.md",
+              "evidence_id": "ed3e62bdd09f37f2172a59c2",
+              "score": "0.03278688524590164"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/reference/isolation-level.md",
+              "evidence_id": "7b8db127d3f94363bc2404a2",
+              "score": "0.031754032258064516"
+            },
+            {
+              "rank": 3,
+              "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+              "evidence_id": "9dbc83657b180158d44e66fb",
+              "score": "0.031754032258064516"
+            },
+            {
+              "rank": 4,
+              "path": "doc/user/content/sql/show.md",
+              "evidence_id": "d269de2509c36445c7da80be",
+              "score": "0.031746031746031744"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/content/headless/configuration-parameters.md",
+              "evidence_id": "ec0354e839bd7be9a6174168",
+              "score": "0.027651515151515153"
+            },
+            {
+              "rank": 6,
+              "path": "doc/user/content/integrations/sql-clients.md",
+              "evidence_id": "0c52374bdcb4b149de9fd551",
+              "score": "0.025910931174089068"
+            },
+            {
+              "rank": 7,
+              "path": "doc/user/content/get-started/_index.md",
+              "evidence_id": "6eb54c5dd04a5853bf7a2a42",
+              "score": "0.025098039215686277"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/design/20230705_v2_txn_management.md",
+              "evidence_id": "2293d7af7351d72fadcc6cf1",
+              "score": "0.024934585193166076"
+            },
+            {
+              "rank": 9,
+              "path": "doc/user/content/reference/isolation-level.md",
+              "evidence_id": "7990c868604bfc998447f4b3",
+              "score": "0.024098124098124098"
+            },
+            {
+              "rank": 10,
+              "path": "doc/developer/platform/formalism.md",
+              "evidence_id": "fd8c2a5a6cf403a12d7c3ea0",
+              "score": "0.0207597645799893"
+            },
+            {
+              "rank": 11,
+              "path": "doc/developer/design/20230705_v2_txn_management.md",
+              "evidence_id": "70022fbda5c6620f69c6f36f",
+              "score": "0.019221967963386728"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/design/20230720_single_statement_explitic_transaction.md",
+              "evidence_id": "be3f3d2a2b50e3460c002d21",
+              "score": "0.017905405405405406"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "start": 0,
+              "end": 79,
+              "total_lines": 79
+            },
+            {
+              "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+              "start": 67,
+              "end": 150,
+              "total_lines": 1448
+            },
+            {
+              "path": "doc/user/content/headless/configuration-parameters.md",
+              "start": 0,
+              "end": 62,
+              "total_lines": 68
+            }
+          ],
+          "read_evidence_ids": [
+            "385a997dfb42744126627766",
+            "0f7fe60899f47df4a75202d7",
+            "19245c93fd4aa285a0719da0"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Is there a user-facing page documenting feature flags or session variables where enable_bounded_staleness_isolation should be listed?",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": ".agents/skills/README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+              "offset": 109,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/adapter/flags.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "20dc7d489354c57a1c6004da",
+            "bc6531e9b40f2e92064917b2",
+            "94fa1ab785f52e32e3f06a49",
+            "f07f1b471d0766a6a1f7ad24",
+            "f597cfb3bc088586c01e40f7",
+            "089674b6116d59d7c8e0994c",
+            "8f47a896e6d8f6d22e8468c0",
+            "be5920e855529951afbdf843",
+            "e068f2381a0a01929bbe9c9b",
+            "31f1b3e26c75842b57752967",
+            "bfab3c41e15f806fea6e3b18",
+            "2813cb66538fa2b36336c643",
+            "d6c8543f7183a0bea017169c",
+            "e5022599df26874f257dfd70",
+            "bd38288d53ec23ab2fe1fde8"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": ".agents/skills/README.md",
+              "evidence_id": "f07f1b471d0766a6a1f7ad24",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 2,
+              "path": "doc/developer/generated/sql/session/vars.md",
+              "evidence_id": "f597cfb3bc088586c01e40f7",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 3,
+              "path": ".agents/skills/README.md",
+              "evidence_id": "089674b6116d59d7c8e0994c",
+              "score": "0.016350798959494612"
+            },
+            {
+              "rank": 4,
+              "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+              "evidence_id": "8f47a896e6d8f6d22e8468c0",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 5,
+              "path": "doc/developer/generated/sql/session/vars/definitions.md",
+              "evidence_id": "be5920e855529951afbdf843",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 6,
+              "path": "doc/developer/generated/sql/session/vars/errors.md",
+              "evidence_id": "e068f2381a0a01929bbe9c9b",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 7,
+              "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+              "evidence_id": "31f1b3e26c75842b57752967",
+              "score": "0.015625"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/generated/adapter/flags.md",
+              "evidence_id": "bfab3c41e15f806fea6e3b18",
+              "score": "0.015625"
+            },
+            {
+              "rank": 9,
+              "path": "doc/developer/generated/sql/session/vars/_module.md",
+              "evidence_id": "2813cb66538fa2b36336c643",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 10,
+              "path": "doc/developer/design/20260311_optimizer_customer_tradeoff.md",
+              "evidence_id": "d6c8543f7183a0bea017169c",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 11,
+              "path": "doc/user/content/integrations/cli/reference/profile.md",
+              "evidence_id": "e5022599df26874f257dfd70",
+              "score": "0.014925373134328358"
+            },
+            {
+              "rank": 12,
+              "path": ".agents/skills/mz-benchmark/SKILL.md",
+              "evidence_id": "bd38288d53ec23ab2fe1fde8",
+              "score": "0.014798607189911538"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": ".agents/skills/README.md",
+              "start": 0,
+              "end": 47,
+              "total_lines": 47
+            },
+            {
+              "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+              "start": 109,
+              "end": 198,
+              "total_lines": 198
+            },
+            {
+              "path": "doc/developer/generated/adapter/flags.md",
+              "start": 1,
+              "end": 10,
+              "total_lines": 10
+            }
+          ],
+          "read_evidence_ids": [
+            "20dc7d489354c57a1c6004da",
+            "bc6531e9b40f2e92064917b2",
+            "94fa1ab785f52e32e3f06a49"
+          ]
+        },
+        {
+          "id": "Q2-4",
+          "question": "How does the code parse and render the bounded staleness isolation level value (syntax, duration format, zero rejection) so docs match implementation?",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ],
+          "paths": [
+            "src/sql/src/session/vars/value.rs"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "src/sql/src/session/vars/value.rs",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/guide-adapter.md",
+              "offset": 94,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "b508a9425f876eb619441b3f",
+            "c96b1650252678f37a05691e",
+            "58242cbce89f5286b32c1aed",
+            "de0846e2ca33a7f9574fb8d1",
+            "11b2e40d8c34b040ccb1d3c0",
+            "4e708ebec40d90d61c7f5296",
+            "143c3f7c37cccd4991fa018a",
+            "a48ae5f36a6ff27762ba7094",
+            "377556482dd648c28b2f8962",
+            "cfaf1428e7c45df6b7e7466d",
+            "e4060d2e6bf8ad201ff3671c",
+            "5f01f7e60739677d17a96db2",
+            "42f52473bd0dae46d030b6bb",
+            "6587acce4c68ba42be46cf50"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "src/sql/src/session/vars/value.rs",
+              "evidence_id": "58242cbce89f5286b32c1aed",
+              "score": "0.030536130536130537"
+            },
+            {
+              "rank": 2,
+              "path": "src/sql/src/session/vars/value.rs",
+              "evidence_id": "de0846e2ca33a7f9574fb8d1",
+              "score": "0.02938045560996381"
+            },
+            {
+              "rank": 3,
+              "path": "doc/developer/guide-adapter.md",
+              "evidence_id": "11b2e40d8c34b040ccb1d3c0",
+              "score": "0.023714891361950187"
+            },
+            {
+              "rank": 4,
+              "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+              "evidence_id": "4e708ebec40d90d61c7f5296",
+              "score": "0.023506603659275413"
+            },
+            {
+              "rank": 5,
+              "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+              "evidence_id": "143c3f7c37cccd4991fa018a",
+              "score": "0.023376937984496124"
+            },
+            {
+              "rank": 6,
+              "path": "src/adapter/src/coord/timestamp_selection.rs",
+              "evidence_id": "a48ae5f36a6ff27762ba7094",
+              "score": "0.021532091097308487"
+            },
+            {
+              "rank": 7,
+              "path": "src/sql/src/plan/statement/scl.rs",
+              "evidence_id": "377556482dd648c28b2f8962",
+              "score": "0.020410065237651445"
+            },
+            {
+              "rank": 8,
+              "path": "src/adapter/src/coord/timestamp_selection.rs",
+              "evidence_id": "cfaf1428e7c45df6b7e7466d",
+              "score": "0.01986930413281526"
+            },
+            {
+              "rank": 9,
+              "path": "test/testdrive/bounded-staleness.td",
+              "evidence_id": "e4060d2e6bf8ad201ff3671c",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 10,
+              "path": "test/testdrive/bounded-staleness.td",
+              "evidence_id": "5f01f7e60739677d17a96db2",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 11,
+              "path": "test/sqllogictest/bounded_staleness.slt",
+              "evidence_id": "42f52473bd0dae46d030b6bb",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 12,
+              "path": "src/adapter/src/frontend_peek.rs",
+              "evidence_id": "6587acce4c68ba42be46cf50",
+              "score": "0.014925373134328358"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "src/sql/src/session/vars/value.rs",
+              "start": 0,
+              "end": 120,
+              "total_lines": 1425
+            },
+            {
+              "path": "doc/developer/guide-adapter.md",
+              "start": 94,
+              "end": 150,
+              "total_lines": 150
+            }
+          ],
+          "read_evidence_ids": [
+            "b508a9425f876eb619441b3f",
+            "c96b1650252678f37a05691e"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "089674b6116d59d7c8e0994c",
+        "0f7fe60899f47df4a75202d7",
+        "11b2e40d8c34b040ccb1d3c0",
+        "143c3f7c37cccd4991fa018a",
+        "19245c93fd4aa285a0719da0",
+        "20dc7d489354c57a1c6004da",
+        "31f1b3e26c75842b57752967",
+        "377556482dd648c28b2f8962",
+        "385a997dfb42744126627766",
+        "42f52473bd0dae46d030b6bb",
+        "4e708ebec40d90d61c7f5296",
+        "58242cbce89f5286b32c1aed",
+        "5f01f7e60739677d17a96db2",
+        "6587acce4c68ba42be46cf50",
+        "70022fbda5c6620f69c6f36f",
+        "8f47a896e6d8f6d22e8468c0",
+        "94fa1ab785f52e32e3f06a49",
+        "9dbc83657b180158d44e66fb",
+        "a48ae5f36a6ff27762ba7094",
+        "b508a9425f876eb619441b3f",
+        "bc6531e9b40f2e92064917b2",
+        "bd38288d53ec23ab2fe1fde8",
+        "be3f3d2a2b50e3460c002d21",
+        "bfab3c41e15f806fea6e3b18",
+        "c96b1650252678f37a05691e",
+        "cfaf1428e7c45df6b7e7466d",
+        "de0846e2ca33a7f9574fb8d1",
+        "e4060d2e6bf8ad201ff3671c",
+        "e5022599df26874f257dfd70",
+        "ef3a26d8642af4c726f13d3e",
+        "f07f1b471d0766a6a1f7ad24",
+        "fd8c2a5a6cf403a12d7c3ea0"
+      ],
+      "new_evidence_count": 32,
+      "new_path_count": 14
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+    "code": "2d01f76ba4cd06328776861fb2312bf99129fc3b"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:0496817e79089271": 0,
+    "discover:Q1-2:0b1276c48379a2b8": 188,
+    "discover:Q1-3:297f1e09da93f9e4": 319,
+    "discover:Q1-4:a231533b0aeca4a7": 0,
+    "discover:Q2-4:b53ec243611a8874": 0,
+    "discover:Q2-2:d50dbdbbab37659b": 0,
+    "discover:Q2-3:f73cda4e4b7da82f": 496
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-4:a231533b0aeca4a7": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:0496817e79089271": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 188,
+      "cache_hit": false
+    },
+    "discover:Q1-2:0b1276c48379a2b8": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 130,
+      "cache_hit": false
+    },
+    "discover:Q1-3:297f1e09da93f9e4": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 140,
+      "cache_hit": false
+    },
+    "discover:Q1-4:a231533b0aeca4a7": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 21963,
+      "cache_hit": false
+    },
+    "discover:Q1-2:ac58377939dbf103": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 202,
+      "cache_hit": false
+    },
+    "discover:Q1-3:780f01e9e00e6072": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 259,
+      "cache_hit": false
+    },
+    "discover:Q1-1:6c149ff7e116192a": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 280,
+      "cache_hit": false
+    },
+    "discover:Q1-4:ddf5c2d3f898aaf3": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 308,
+      "cache_hit": false
+    },
+    "discover:Q2-4:b53ec243611a8874": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 351,
+      "cache_hit": false
+    },
+    "discover:Q2-2:d50dbdbbab37659b": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 497,
+      "cache_hit": false
+    },
+    "discover:Q2-3:f73cda4e4b7da82f": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 218,
+      "cache_hit": false
+    },
+    "discover:Q2-1:f83b27599be1f584": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 170,
+      "cache_hit": false
+    },
+    "discover:Q2-3:fc889efda011e833": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 258,
+      "cache_hit": false
+    },
+    "discover:Q2-2:87a1cd61ab58397c": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 302,
+      "cache_hit": false
+    },
+    "discover:Q2-4:ec56c5aa162165bc": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 207,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2606,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "isolation-level-reference",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "doc/user/content/reference/isolation-level.md"
+      ],
+      "evidence_ids": [
+        "ef3a26d8642af4c726f13d3e",
+        "7d763a8a8204796f54784122",
+        "97608af3f6e99897febf0dfa",
+        "c96b1650252678f37a05691e"
+      ],
+      "reason": "Add a 'Bounded staleness' section to the isolation-level reference: syntax `bounded staleness <duration>` (humantime specs like 5s, 500ms, 1m30s; zero rejected), semantics (freshest timestamp within D of oracle read_ts, no waiting on input frontiers), read-only restriction (writes error), mutual exclusion with real_time_recency, EpochMilliseconds-only timelines, SQLSTATE 40001 error when the bound cannot be met, and the enable_bounded_staleness_isolation feature flag. Also update the 'Isolation levels and query latency' comparison to include it."
+    },
+    {
+      "requirement_id": "config-params-table",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "doc/user/content/headless/configuration-parameters.md"
+      ],
+      "evidence_ids": [
+        "19245c93fd4aa285a0719da0"
+      ],
+      "reason": "Update the `transaction_isolation` row in the headless configuration-parameters table: its 'Accepts values' list currently reads only `serializable`, `strict serializable`; add `bounded staleness <duration>` and note the feature-flag gating."
+    },
+    {
+      "requirement_id": "set-sql-example",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "doc/user/content/sql/set.md"
+      ],
+      "evidence_ids": [
+        "385a997dfb42744126627766",
+        "d073e64e82a2815b8619ec9d"
+      ],
+      "reason": "In the SET SQL reference, extend the 'Set transaction isolation level' example to show `SET transaction_isolation = 'bounded staleness 5s';` alongside the existing serializable example."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:001994c8786fe344460a21fa",
+        "type": "evidence",
+        "path": "doc/developer/design/20230421_stabilize_monotonic_select.md",
+        "heading": "Motivation",
+        "start_line": 23,
+        "end_line": 23,
+        "start_char": 3276,
+        "end_char": 3334,
+        "score": "0.015151515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "flag"
+        ],
+        "evidence_id": "001994c8786fe344460a21fa",
+        "source_type": "repository",
+        "content_hash": "9dc9ab17fa1759eb5661cf84c673dceb12fe5dedb01cfe37f5838f4f5d155f22",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "feature flag",
+            "enable_ session variable"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9dc9ab17fa1759eb5661cf84c673dceb12fe5dedb01cfe37f5838f4f5d155f22",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:02b6183a84e85c8178ce1846",
+        "type": "evidence",
+        "evidence_id": "02b6183a84e85c8178ce1846",
+        "source_type": "task",
+        "exported_content_sha256": "9eec152cee745f44a36d539332a87fad11404446fc08379a02538ce69083118b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:04747aed5ba1ed237f5c11fb",
+        "type": "evidence",
+        "path": "doc/developer/design/20230330_recursion_limit.md",
+        "heading": "Alternatives > Where to set the option? > System / session variable",
+        "start_line": 110,
+        "end_line": 118,
+        "start_char": 14447,
+        "end_char": 16247,
+        "score": "0.015384615384615385",
+        "root": "docs",
+        "matched_terms": [
+          "session",
+          "variable"
+        ],
+        "evidence_id": "04747aed5ba1ed237f5c11fb",
+        "source_type": "repository",
+        "content_hash": "99fe3503a69a9ab8f05097c9ec580858961c3dfce64d1c9df50b13b9ae1571b9",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "feature flag",
+            "enable_ session variable"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "99fe3503a69a9ab8f05097c9ec580858961c3dfce64d1c9df50b13b9ae1571b9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:073e70bb6be2b88be963f704",
+        "type": "evidence",
+        "path": "src/adapter/src/error.rs",
+        "heading": "",
+        "start_line": 928,
+        "end_line": 964,
+        "start_char": 45575,
+        "end_char": 47191,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessrealtimerecencyconflict"
+        ],
+        "evidence_id": "073e70bb6be2b88be963f704",
+        "source_type": "repository",
+        "content_hash": "17b4d87c4f9aa31ffe10fddc3229eb49f37791e5c91ee908cba66a97a70d7b4d",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "17b4d87c4f9aa31ffe10fddc3229eb49f37791e5c91ee908cba66a97a70d7b4d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:089674b6116d59d7c8e0994c",
+        "type": "evidence",
+        "path": ".agents/skills/README.md",
+        "heading": "Agent Skills for Materialize > Performance",
+        "start_line": 24,
+        "end_line": 31,
+        "start_char": 1744,
+        "end_char": 2351,
+        "score": "0.016350798959494612",
+        "root": "docs",
+        "matched_terms": [
+          "feature"
+        ],
+        "evidence_id": "089674b6116d59d7c8e0994c",
+        "source_type": "repository",
+        "content_hash": "eb3276db6a607cf4e2c7203473a24d82fd49d49e58d89302acff8495928ae540",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "eb3276db6a607cf4e2c7203473a24d82fd49d49e58d89302acff8495928ae540",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:08d427b21460b97c6aa08e67",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/storage-controller/rtr.md",
+        "start_line": 2,
+        "total_lines": 10,
+        "start_char": 4,
+        "end_char": 580,
+        "evidence_id": "08d427b21460b97c6aa08e67",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "f58e6d97f7df7ecf106709422b0a349dba841eba90648edccb1cd6e234fc235f",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "offset": 117,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/change-data-capture.md",
+              "offset": 52,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage-controller/rtr.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f58e6d97f7df7ecf106709422b0a349dba841eba90648edccb1cd6e234fc235f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c2c3475502523f83ea3fb0b",
+        "type": "evidence",
+        "path": "doc/developer/design/20210714_reclocking.md",
+        "heading": "Reclocking > Practical Addendum",
+        "start_line": 103,
+        "end_line": 120,
+        "start_char": 6648,
+        "end_char": 8308,
+        "score": "0.026279628993473032",
+        "root": "docs",
+        "matched_terms": [
+          "time"
+        ],
+        "evidence_id": "0c2c3475502523f83ea3fb0b",
+        "source_type": "repository",
+        "content_hash": "f5cd1474952092ad98a9dda813fe8128a67bbcc00446419b2485a78f7eb382c8",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f5cd1474952092ad98a9dda813fe8128a67bbcc00446419b2485a78f7eb382c8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c52374bdcb4b149de9fd551",
+        "type": "evidence",
+        "path": "doc/user/content/integrations/sql-clients.md",
+        "heading": "name: \"SQL clients\" > Connection parameters > Runtime connection parameters",
+        "start_line": 37,
+        "end_line": 68,
+        "start_char": 1131,
+        "end_char": 2416,
+        "score": "0.025910931174089068",
+        "root": "docs",
+        "matched_terms": [
+          "set",
+          "transaction_isolation"
+        ],
+        "evidence_id": "0c52374bdcb4b149de9fd551",
+        "source_type": "repository",
+        "content_hash": "a6b54732153022cdfdd1b3f4bd6e04444c85da0c0d9a4c9d2456eedec92795ed",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "a6b54732153022cdfdd1b3f4bd6e04444c85da0c0d9a4c9d2456eedec92795ed",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0d8263de6d9dd0d38e304ebe",
+        "type": "evidence",
+        "path": "src/adapter/src/coord/timestamp_selection.rs",
+        "heading": "",
+        "start_line": 460,
+        "end_line": 496,
+        "start_char": 21058,
+        "end_char": 22732,
+        "score": "0.014705882352941176",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessexceeded"
+        ],
+        "evidence_id": "0d8263de6d9dd0d38e304ebe",
+        "source_type": "repository",
+        "content_hash": "0b9733f914c96d3a382c7b37b97df2a8e97ae04ea3d6508c918e1a2f17d8e7dc",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "0b9733f914c96d3a382c7b37b97df2a8e97ae04ea3d6508c918e1a2f17d8e7dc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0f7fe60899f47df4a75202d7",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+        "start_line": 68,
+        "total_lines": 1448,
+        "start_char": 3695,
+        "end_char": 17695,
+        "evidence_id": "0f7fe60899f47df4a75202d7",
+        "truncated": true,
+        "next_offset": 150,
+        "source_type": "repository",
+        "content_hash": "9232d6d1a0d61ce60c775809f42b2c9e8f4ccca89ad48dfe11b12c285ed9d578",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/headless/configuration-parameters.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9232d6d1a0d61ce60c775809f42b2c9e8f4ccca89ad48dfe11b12c285ed9d578",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:11b2e40d8c34b040ccb1d3c0",
+        "type": "evidence",
+        "path": "doc/developer/guide-adapter.md",
+        "heading": "Adapter Guide > Correctness Invariants > Bounded staleness must anchor against the oracle, not wall clock",
+        "start_line": 99,
+        "end_line": 120,
+        "start_char": 4834,
+        "end_char": 5981,
+        "score": "0.023714891361950187",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "boundedstaleness",
+          "staleness"
+        ],
+        "evidence_id": "11b2e40d8c34b040ccb1d3c0",
+        "source_type": "repository",
+        "content_hash": "9523b346ef05034d0af4dfbd3cbad268a17767822669b6e8013806100fbbade4",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "9523b346ef05034d0af4dfbd3cbad268a17767822669b6e8013806100fbbade4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:143c3f7c37cccd4991fa018a",
+        "type": "evidence",
+        "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+        "heading": "Bounded staleness isolation > Alternatives > Two session variables instead of a parameterised isolation level",
+        "start_line": 182,
+        "end_line": 187,
+        "start_char": 12106,
+        "end_char": 12403,
+        "score": "0.023376937984496124",
+        "root": "code",
+        "matched_terms": [
+          "boundedstaleness"
+        ],
+        "evidence_id": "143c3f7c37cccd4991fa018a",
+        "source_type": "repository",
+        "content_hash": "e4c00be20014abb1d84fef2c291ec8b94e3e8466039d714d0e3b183c2b940421",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "e4c00be20014abb1d84fef2c291ec8b94e3e8466039d714d0e3b183c2b940421",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:19245c93fd4aa285a0719da0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/headless/configuration-parameters.md",
+        "start_line": 1,
+        "total_lines": 68,
+        "start_char": 0,
+        "end_char": 14000,
+        "evidence_id": "19245c93fd4aa285a0719da0",
+        "truncated": true,
+        "next_offset": 62,
+        "source_type": "repository",
+        "content_hash": "2e981a8c366b59ba850eda03e6665b39bf182a94b54814b461eac97fcca6f114",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/headless/configuration-parameters.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2e981a8c366b59ba850eda03e6665b39bf182a94b54814b461eac97fcca6f114",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20dc7d489354c57a1c6004da",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".agents/skills/README.md",
+        "start_line": 1,
+        "total_lines": 47,
+        "start_char": 0,
+        "end_char": 3397,
+        "evidence_id": "20dc7d489354c57a1c6004da",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "06de83e3f35ea735ffbe46c6e7d430845942c50b3928734cd59451d6a859b833",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": ".agents/skills/README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+              "offset": 109,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/adapter/flags.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "06de83e3f35ea735ffbe46c6e7d430845942c50b3928734cd59451d6a859b833",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2293d7af7351d72fadcc6cf1",
+        "type": "evidence",
+        "path": "doc/developer/design/20230705_v2_txn_management.md",
+        "heading": "Platform V2: Txn Management > Goals",
+        "start_line": 9,
+        "end_line": 42,
+        "start_char": 252,
+        "end_char": 1375,
+        "score": "0.024934585193166076",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "2293d7af7351d72fadcc6cf1",
+        "source_type": "repository",
+        "content_hash": "9c328785b79f1e62d19b9e60ff1a7f03432716798433544da2173e3433070046",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9c328785b79f1e62d19b9e60ff1a7f03432716798433544da2173e3433070046",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2813cb66538fa2b36336c643",
+        "type": "evidence",
+        "path": "doc/developer/generated/sql/session/vars/_module.md",
+        "heading": "mz-sql::session::vars",
+        "start_line": 6,
+        "end_line": 12,
+        "start_char": 66,
+        "end_char": 921,
+        "score": "0.015384615384615385",
+        "root": "docs",
+        "matched_terms": [
+          "session",
+          "variables"
+        ],
+        "evidence_id": "2813cb66538fa2b36336c643",
+        "source_type": "repository",
+        "content_hash": "79cbf4e074932531bc0c1ab3b15f129ed3c5c39a7315b1c52ce2fd926feb0e82",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "79cbf4e074932531bc0c1ab3b15f129ed3c5c39a7315b1c52ce2fd926feb0e82",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:28b3b5f46ebb01906606331c",
+        "type": "evidence",
+        "path": "doc/user/content/headless/configuration-parameters.md",
+        "heading": "headless: true > Other configuration parameters",
+        "start_line": 55,
+        "end_line": 60,
+        "start_char": 11628,
+        "end_char": 13369,
+        "score": "0.029116045245077504",
+        "root": "docs",
+        "matched_terms": [
+          "real",
+          "real_time_recency",
+          "recency",
+          "time"
+        ],
+        "evidence_id": "28b3b5f46ebb01906606331c",
+        "source_type": "repository",
+        "content_hash": "b41f2582832e3d99da265d232a81f57520aeec6db9eede08252d3d2b37f72a9c",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b41f2582832e3d99da265d232a81f57520aeec6db9eede08252d3d2b37f72a9c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:296133434ba58a694060080b",
+        "type": "evidence",
+        "path": "doc/developer/design/20260508_restrict_to_user_objects.md",
+        "heading": "`restrict_to_user_objects` session variable for MCP agent isolation > Solution Proposal > Variable administration",
+        "start_line": 31,
+        "end_line": 52,
+        "start_char": 2378,
+        "end_char": 3601,
+        "score": "0.015625",
+        "root": "docs",
+        "matched_terms": [
+          "session",
+          "variable"
+        ],
+        "evidence_id": "296133434ba58a694060080b",
+        "source_type": "repository",
+        "content_hash": "8b1ecd049fce2e37a068f68e5de2a15cdf7004d2f35e3448992ac97ceef4e26e",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "feature flag",
+            "enable_ session variable"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8b1ecd049fce2e37a068f68e5de2a15cdf7004d2f35e3448992ac97ceef4e26e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2ada896c417fe2d1b6bb5e47",
+        "type": "evidence",
+        "path": "src/adapter/src/error.rs",
+        "heading": "",
+        "start_line": 277,
+        "end_line": 315,
+        "start_char": 11342,
+        "end_char": 12958,
+        "score": "0.031009615384615385",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessreadonly",
+          "boundedstalenessrealtimerecencyconflict"
+        ],
+        "evidence_id": "2ada896c417fe2d1b6bb5e47",
+        "source_type": "repository",
+        "content_hash": "093ff4fe861ae4633232662300b6301c3683662ace1c0e70697cfc65ce833cf8",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "093ff4fe861ae4633232662300b6301c3683662ace1c0e70697cfc65ce833cf8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:31f1b3e26c75842b57752967",
+        "type": "evidence",
+        "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+        "heading": "Bounded Input Reliance > Implementation of Additional Goals > Implementation of: Restart sources with up-to-date _timestamp resumption frontiers_",
+        "start_line": 161,
+        "end_line": 167,
+        "start_char": 8759,
+        "end_char": 9384,
+        "score": "0.015625",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "31f1b3e26c75842b57752967",
+        "source_type": "repository",
+        "content_hash": "465f38fcca8e15d9da14cbae72c428ff69fa6d587093c5d953d31cef60f63965",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "465f38fcca8e15d9da14cbae72c428ff69fa6d587093c5d953d31cef60f63965",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:377556482dd648c28b2f8962",
+        "type": "evidence",
+        "path": "src/sql/src/plan/statement/scl.rs",
+        "heading": "",
+        "start_line": 42,
+        "end_line": 84,
+        "start_char": 1627,
+        "end_char": 3266,
+        "score": "0.020410065237651445",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "boundedstaleness",
+          "staleness"
+        ],
+        "evidence_id": "377556482dd648c28b2f8962",
+        "source_type": "repository",
+        "content_hash": "74ac274584a78dce5e10700cbf18ba646ae618332c89016ea26e72f2f0da417c",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "74ac274584a78dce5e10700cbf18ba646ae618332c89016ea26e72f2f0da417c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:385a997dfb42744126627766",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/sql/set.md",
+        "start_line": 1,
+        "total_lines": 79,
+        "start_char": 0,
+        "end_char": 1957,
+        "evidence_id": "385a997dfb42744126627766",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "fb9e455dc73083dbdf280a1544d99d6ba1cf1edef94febccab20dbc8643521c6",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/headless/configuration-parameters.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "fb9e455dc73083dbdf280a1544d99d6ba1cf1edef94febccab20dbc8643521c6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:423fac1994308d9b3d1f51c4",
+        "type": "evidence",
+        "path": "doc/developer/guide-adapter.md",
+        "heading": "Adapter Guide > Correctness Invariants > Timestamp selection must respect real-time bounds",
+        "start_line": 14,
+        "end_line": 34,
+        "start_char": 332,
+        "end_char": 1316,
+        "score": "0.027730294396961064",
+        "root": "docs",
+        "matched_terms": [
+          "real",
+          "time"
+        ],
+        "evidence_id": "423fac1994308d9b3d1f51c4",
+        "source_type": "repository",
+        "content_hash": "3f0d5ff8bef7d66c50d33970cd2579d701feef38c3625616c45a76d71eac90b3",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3f0d5ff8bef7d66c50d33970cd2579d701feef38c3625616c45a76d71eac90b3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:42f52473bd0dae46d030b6bb",
+        "type": "evidence",
+        "path": "test/sqllogictest/bounded_staleness.slt",
+        "heading": "SHOW transaction_isolation",
+        "start_line": 27,
+        "end_line": 41,
+        "start_char": 731,
+        "end_char": 961,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "staleness"
+        ],
+        "evidence_id": "42f52473bd0dae46d030b6bb",
+        "source_type": "repository",
+        "content_hash": "b18aeb63ed95ea334715692f1424e92ef6d5ea19ae0fec914e34edfaaf17054d",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "b18aeb63ed95ea334715692f1424e92ef6d5ea19ae0fec914e34edfaaf17054d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4e708ebec40d90d61c7f5296",
+        "type": "evidence",
+        "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+        "heading": "Bounded staleness isolation > Solution proposal > Timestamp selection",
+        "start_line": 86,
+        "end_line": 101,
+        "start_char": 5317,
+        "end_char": 6573,
+        "score": "0.023506603659275413",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "boundedstaleness",
+          "staleness"
+        ],
+        "evidence_id": "4e708ebec40d90d61c7f5296",
+        "source_type": "repository",
+        "content_hash": "7a9cfaae3d64545fd43bdd925291cc8d32083e482dca72faa29d42846aa55101",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "7a9cfaae3d64545fd43bdd925291cc8d32083e482dca72faa29d42846aa55101",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:522e990f6f3af45946571095",
+        "type": "evidence",
+        "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+        "heading": "Bounded staleness isolation > Solution proposal > File map",
+        "start_line": 141,
+        "end_line": 150,
+        "start_char": 9032,
+        "end_char": 9831,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessexceeded"
+        ],
+        "evidence_id": "522e990f6f3af45946571095",
+        "source_type": "repository",
+        "content_hash": "4830fceee59abf167c311305c9623b2c79ff56a6364106dd67fa9ed478559881",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "4830fceee59abf167c311305c9623b2c79ff56a6364106dd67fa9ed478559881",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:525b69856f4d58c5c5bbe2e7",
+        "type": "evidence",
+        "path": "src/adapter/src/coord/sequencer/inner/copy_from.rs",
+        "heading": "",
+        "start_line": 43,
+        "end_line": 92,
+        "start_char": 1649,
+        "end_char": 3263,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessreadonly"
+        ],
+        "evidence_id": "525b69856f4d58c5c5bbe2e7",
+        "source_type": "repository",
+        "content_hash": "ed406189a6a363b0c2721de42cf5383b66a1f40e33b5d0a835894d3d1c2bf5fc",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "ed406189a6a363b0c2721de42cf5383b66a1f40e33b5d0a835894d3d1c2bf5fc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:529abcf1f524f19020b918f0",
+        "type": "evidence",
+        "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+        "heading": "Bounded staleness isolation > Solution proposal > Feasibility check and error path",
+        "start_line": 102,
+        "end_line": 117,
+        "start_char": 6573,
+        "end_char": 7372,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessexceeded"
+        ],
+        "evidence_id": "529abcf1f524f19020b918f0",
+        "source_type": "repository",
+        "content_hash": "13bda83ab224da4f78cb61713f63a97225dcf262f2ecb6ac42af0adf25fd1fea",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "13bda83ab224da4f78cb61713f63a97225dcf262f2ecb6ac42af0adf25fd1fea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:58242cbce89f5286b32c1aed",
+        "type": "evidence",
+        "path": "src/sql/src/session/vars/value.rs",
+        "heading": "",
+        "start_line": 1383,
+        "end_line": 1424,
+        "start_char": 45564,
+        "end_char": 47165,
+        "score": "0.030536130536130537",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "boundedstaleness",
+          "staleness"
+        ],
+        "evidence_id": "58242cbce89f5286b32c1aed",
+        "source_type": "repository",
+        "content_hash": "ce3d4f4d4234ea3145c8ac0409bf2e2d95fb9b0caee015946a85b986bf27b5fa",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "ce3d4f4d4234ea3145c8ac0409bf2e2d95fb9b0caee015946a85b986bf27b5fa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:590450ddc74f8e42a4b010cf",
+        "type": "evidence",
+        "path": "doc/developer/design/20200520_exactly_once_kafka.md",
+        "heading": "Goals:",
+        "start_line": 7,
+        "end_line": 13,
+        "start_char": 663,
+        "end_char": 1212,
+        "score": "0.026137303556658397",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "590450ddc74f8e42a4b010cf",
+        "source_type": "repository",
+        "content_hash": "43ba553966c41012f73d0901e4721d3caafc501ab5e9f21f14725f014ef25352",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "43ba553966c41012f73d0901e4721d3caafc501ab5e9f21f14725f014ef25352",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:59aa05c0f8c0543eec68b1c9",
+        "type": "evidence",
+        "path": "src/adapter/src/coord/sequencer/inner.rs",
+        "heading": "",
+        "start_line": 2621,
+        "end_line": 2670,
+        "start_char": 105506,
+        "end_char": 107109,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessreadonly"
+        ],
+        "evidence_id": "59aa05c0f8c0543eec68b1c9",
+        "source_type": "repository",
+        "content_hash": "241dae2ea364485063e8246d6987426581b8f69e9fced876b07936dec2c9e97b",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "241dae2ea364485063e8246d6987426581b8f69e9fced876b07936dec2c9e97b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5f01f7e60739677d17a96db2",
+        "type": "evidence",
+        "path": "test/testdrive/bounded-staleness.td",
+        "heading": "advances past the insert before we switch to bounded staleness. Under bounded",
+        "start_line": 19,
+        "end_line": 19,
+        "start_char": 747,
+        "end_char": 827,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "staleness"
+        ],
+        "evidence_id": "5f01f7e60739677d17a96db2",
+        "source_type": "repository",
+        "content_hash": "76c38de3e53a461a63a4afab1295db39accba676c221031fdb8bee0a49492ee8",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "76c38de3e53a461a63a4afab1295db39accba676c221031fdb8bee0a49492ee8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6223db5135d62269981912a3",
+        "type": "evidence",
+        "path": "test/feature-flag-consistency/README.md",
+        "heading": "Feature Flag consistency tests",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 34,
+        "score": "0.01639344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "flag"
+        ],
+        "evidence_id": "6223db5135d62269981912a3",
+        "source_type": "repository",
+        "content_hash": "f7e6879914a8315f3a3edaef8f060be5c8744e631ff15c040aa95a2a8553690e",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "feature flag",
+            "enable_ session variable"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f7e6879914a8315f3a3edaef8f060be5c8744e631ff15c040aa95a2a8553690e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6587acce4c68ba42be46cf50",
+        "type": "evidence",
+        "path": "src/adapter/src/frontend_peek.rs",
+        "heading": "",
+        "start_line": 1542,
+        "end_line": 1576,
+        "start_char": 70339,
+        "end_char": 71939,
+        "score": "0.014925373134328358",
+        "root": "code",
+        "matched_terms": [
+          "boundedstaleness"
+        ],
+        "evidence_id": "6587acce4c68ba42be46cf50",
+        "source_type": "repository",
+        "content_hash": "5f335a12ba6fee2a23083a4543ed814506a7beb1bae1e6214793f1b6837e2d4a",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "5f335a12ba6fee2a23083a4543ed814506a7beb1bae1e6214793f1b6837e2d4a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6c3d5dfe11384a182565b75f",
+        "type": "evidence",
+        "path": "src/adapter/src/error.rs",
+        "heading": "",
+        "start_line": 630,
+        "end_line": 667,
+        "start_char": 27677,
+        "end_char": 29278,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessexceeded"
+        ],
+        "evidence_id": "6c3d5dfe11384a182565b75f",
+        "source_type": "repository",
+        "content_hash": "d3b32586468fe7ab348441ed1d75e3c1b90d60b79121c828916f4f15626b943a",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "d3b32586468fe7ab348441ed1d75e3c1b90d60b79121c828916f4f15626b943a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6d005b809bd6cbf6f0fdec78",
+        "type": "evidence",
+        "path": "doc/developer/generated/sql/session/hint.md",
+        "heading": "mz-sql::session::hint",
+        "start_line": 6,
+        "end_line": 9,
+        "start_char": 66,
+        "end_char": 456,
+        "score": "0.015579375346516355",
+        "root": "docs",
+        "matched_terms": [
+          "session",
+          "variable"
+        ],
+        "evidence_id": "6d005b809bd6cbf6f0fdec78",
+        "source_type": "repository",
+        "content_hash": "0f6734af8949c4fa8daee58a00a87d215ed8cb13f11b80411fbee7848afeab3d",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "feature flag",
+            "enable_ session variable"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "0f6734af8949c4fa8daee58a00a87d215ed8cb13f11b80411fbee7848afeab3d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6eb54c5dd04a5853bf7a2a42",
+        "type": "evidence",
+        "path": "doc/user/content/get-started/_index.md",
+        "heading": "weight: 5 > Key features > Strong consistency guarantees",
+        "start_line": 79,
+        "end_line": 88,
+        "start_char": 3097,
+        "end_char": 3699,
+        "score": "0.025098039215686277",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "6eb54c5dd04a5853bf7a2a42",
+        "source_type": "repository",
+        "content_hash": "755610c3180d08e549c52194871e0f5de90311ba0809d70ac5c088c77b110eb3",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "755610c3180d08e549c52194871e0f5de90311ba0809d70ac5c088c77b110eb3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:70022fbda5c6620f69c6f36f",
+        "type": "evidence",
+        "path": "doc/developer/design/20230705_v2_txn_management.md",
+        "heading": "Platform V2: Txn Management > Overview",
+        "start_line": 90,
+        "end_line": 138,
+        "start_char": 3808,
+        "end_char": 5258,
+        "score": "0.019221967963386728",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "70022fbda5c6620f69c6f36f",
+        "source_type": "repository",
+        "content_hash": "9ea4a85d5cdc95a8896bdb97eee10465a4a2dd8bd820e0b60bdeb611cc9ee601",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9ea4a85d5cdc95a8896bdb97eee10465a4a2dd8bd820e0b60bdeb611cc9ee601",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:72a6235cc342ab9aa70c73f5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/reference/isolation-level.md",
+        "start_line": 160,
+        "total_lines": 195,
+        "start_char": 8392,
+        "end_char": 9442,
+        "evidence_id": "72a6235cc342ab9aa70c73f5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9fb3061620f98cca0c0c9639115e3198afdfe7121cf56703529b7e3ab4b5e0f8",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "offset": 55,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "offset": 159,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/show.md",
+              "offset": 38,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9fb3061620f98cca0c0c9639115e3198afdfe7121cf56703529b7e3ab4b5e0f8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:772a84e8cc2d5d8569001fd7",
+        "type": "evidence",
+        "path": "doc/developer/design/20230330_recursion_limit.md",
+        "heading": "Alternatives > Where to set the option? > System / session variable",
+        "start_line": 119,
+        "end_line": 121,
+        "start_char": 16389,
+        "end_char": 16521,
+        "score": "0.01639344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "session"
+        ],
+        "evidence_id": "772a84e8cc2d5d8569001fd7",
+        "source_type": "repository",
+        "content_hash": "7da6edee5e7d4c4072a50788f1c996d21b2c173fe33bbdd70bd90e417d482494",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "feature flag",
+            "enable_ session variable"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "7da6edee5e7d4c4072a50788f1c996d21b2c173fe33bbdd70bd90e417d482494",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7990c868604bfc998447f4b3",
+        "type": "evidence",
+        "path": "doc/user/content/reference/isolation-level.md",
+        "heading": "weight: 150 > Serializable",
+        "start_line": 29,
+        "end_line": 52,
+        "start_char": 957,
+        "end_char": 2610,
+        "score": "0.024098124098124098",
+        "root": "docs",
+        "matched_terms": [
+          "set"
+        ],
+        "evidence_id": "7990c868604bfc998447f4b3",
+        "source_type": "repository",
+        "content_hash": "6ef67c753ccfda25012aec10a6735fc10d3e3f6093a25c7ac61446f96a3bfd3f",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6ef67c753ccfda25012aec10a6735fc10d3e3f6093a25c7ac61446f96a3bfd3f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7b8db127d3f94363bc2404a2",
+        "type": "evidence",
+        "path": "doc/user/content/reference/isolation-level.md",
+        "heading": "weight: 150 > Setting isolation level",
+        "start_line": 164,
+        "end_line": 188,
+        "start_char": 8595,
+        "end_char": 9155,
+        "score": "0.031754032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "set",
+          "transaction_isolation"
+        ],
+        "evidence_id": "7b8db127d3f94363bc2404a2",
+        "source_type": "repository",
+        "content_hash": "75a28caf337040c3f6db67108dddbaf272ccafa4a4c00bbaa9ef9545d961b2fd",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "75a28caf337040c3f6db67108dddbaf272ccafa4a4c00bbaa9ef9545d961b2fd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7c92df72e5509e5d4e7ea146",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/sql/show.md",
+        "start_line": 39,
+        "total_lines": 57,
+        "start_char": 672,
+        "end_char": 913,
+        "evidence_id": "7c92df72e5509e5d4e7ea146",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "981d4f60588b7bba0dddeb4557dd1b11f1138cb3eddff4241c5a0fd4face1818",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "offset": 55,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "offset": 159,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/show.md",
+              "offset": 38,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "981d4f60588b7bba0dddeb4557dd1b11f1138cb3eddff4241c5a0fd4face1818",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7d763a8a8204796f54784122",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/reference/isolation-level.md",
+        "start_line": 118,
+        "total_lines": 195,
+        "start_char": 6057,
+        "end_char": 9442,
+        "evidence_id": "7d763a8a8204796f54784122",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d08763de9a03eb1037927d7f3fc5a06c583ec726d4feefc94b469516814730ea",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "offset": 117,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/change-data-capture.md",
+              "offset": 52,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage-controller/rtr.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d08763de9a03eb1037927d7f3fc5a06c583ec726d4feefc94b469516814730ea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7ed244b8fcfef6a04e93fccf",
+        "type": "evidence",
+        "path": "doc/developer/guide-adapter.md",
+        "heading": "Adapter Guide > Correctness Invariants > Timestamp selection must respect real-time bounds > Why caching an oracle result is not correct",
+        "start_line": 44,
+        "end_line": 68,
+        "start_char": 1815,
+        "end_char": 3298,
+        "score": "0.02813852813852814",
+        "root": "docs",
+        "matched_terms": [
+          "real",
+          "time"
+        ],
+        "evidence_id": "7ed244b8fcfef6a04e93fccf",
+        "source_type": "repository",
+        "content_hash": "0e071c4591ddb08837ff787d10a42ae1dcfdecf2b31d6a88b2c0e89f71c8fa33",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0e071c4591ddb08837ff787d10a42ae1dcfdecf2b31d6a88b2c0e89f71c8fa33",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:823ca65720684a0b8c542994",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/sql/session/vars/errors.md",
+        "start_line": 2,
+        "total_lines": 9,
+        "start_char": 4,
+        "end_char": 410,
+        "evidence_id": "823ca65720684a0b8c542994",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "39abb326dcbd72181933fcf46c96922ecbbca18deccaf720ee7e0a24dba36411",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/generated/sql/session/vars/definitions.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars/errors.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "39abb326dcbd72181933fcf46c96922ecbbca18deccaf720ee7e0a24dba36411",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:82cd655c2ac13b8e3e429a1f",
+        "type": "evidence",
+        "path": "test/feature-flag-consistency/README.md",
+        "heading": "Feature Flag consistency tests > Overview",
+        "start_line": 3,
+        "end_line": 6,
+        "start_char": 34,
+        "end_char": 149,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "flag"
+        ],
+        "evidence_id": "82cd655c2ac13b8e3e429a1f",
+        "source_type": "repository",
+        "content_hash": "0c67fd2095a9f2793fe7d67d746d2332984d56acdcdae48a3282567bff95bf82",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "feature flag",
+            "enable_ session variable"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "0c67fd2095a9f2793fe7d67d746d2332984d56acdcdae48a3282567bff95bf82",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:89c90081e5a1c207bee0da8e",
+        "type": "evidence",
+        "path": "src/adapter/src/error.rs",
+        "heading": "",
+        "start_line": 1340,
+        "end_line": 1380,
+        "start_char": 63576,
+        "end_char": 65223,
+        "score": "0.04692742126540875",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessexceeded",
+          "boundedstalenessreadonly",
+          "boundedstalenessrealtimerecencyconflict"
+        ],
+        "evidence_id": "89c90081e5a1c207bee0da8e",
+        "source_type": "repository",
+        "content_hash": "fd7e37279a53c73d1ba8bf51ff106ee7ebc2bd945e1ad6d745f48e6b6b97f105",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "fd7e37279a53c73d1ba8bf51ff106ee7ebc2bd945e1ad6d745f48e6b6b97f105",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8a0483188d6f561ef89d301e",
+        "type": "evidence",
+        "path": "doc/developer/generated/timely-util/replay.md",
+        "heading": "timely-util::replay",
+        "start_line": 6,
+        "end_line": 9,
+        "start_char": 68,
+        "end_char": 492,
+        "score": "0.026838432635534086",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "8a0483188d6f561ef89d301e",
+        "source_type": "repository",
+        "content_hash": "b5a27a312d4cc51403ab9fc9d9d97ffa3d603b828b9e57dda6b34175573be18f",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b5a27a312d4cc51403ab9fc9d9d97ffa3d603b828b9e57dda6b34175573be18f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8cc8f9d2d0d09eb5cb8ca415",
+        "type": "evidence",
+        "path": "doc/user/content/concepts/clusters.md",
+        "heading": "- /get-started/key-concepts/#clusters > Resource isolation",
+        "start_line": 28,
+        "end_line": 37,
+        "start_char": 720,
+        "end_char": 1164,
+        "score": "0.03054290253203589",
+        "root": "docs",
+        "matched_terms": [
+          "isolation"
+        ],
+        "evidence_id": "8cc8f9d2d0d09eb5cb8ca415",
+        "source_type": "repository",
+        "content_hash": "f6181ae6c8e3331e08bb7589b6df7e387cc46aad40d5dcba2016e9b549d012ec",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation",
+            "strict serializable isolation level",
+            "serializable isolation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f6181ae6c8e3331e08bb7589b6df7e387cc46aad40d5dcba2016e9b549d012ec",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8f47a896e6d8f6d22e8468c0",
+        "type": "evidence",
+        "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+        "heading": "Bounded Input Reliance > Implementation",
+        "start_line": 114,
+        "end_line": 136,
+        "start_char": 6437,
+        "end_char": 7433,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "8f47a896e6d8f6d22e8468c0",
+        "source_type": "repository",
+        "content_hash": "70f651eb7c00bd4b1f667f5a65edbc8f9a8b08065d0f1c7a08f213e1883a7ae1",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "70f651eb7c00bd4b1f667f5a65edbc8f9a8b08065d0f1c7a08f213e1883a7ae1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:90b6896ee8f383a6284f735c",
+        "type": "evidence",
+        "evidence_id": "90b6896ee8f383a6284f735c",
+        "source_type": "implementation",
+        "exported_content_sha256": "78f63c773d8f2fa2527aaaa272b1180174e917b482edb538bdc2909e8f459d04",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:94fa1ab785f52e32e3f06a49",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/adapter/flags.md",
+        "start_line": 2,
+        "total_lines": 10,
+        "start_char": 4,
+        "end_char": 596,
+        "evidence_id": "94fa1ab785f52e32e3f06a49",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "4c82e3b97a4799865867ae80a92d84b37cb95b4eaaf0d2d717e7ecb55caedd1a",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": ".agents/skills/README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+              "offset": 109,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/adapter/flags.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "4c82e3b97a4799865867ae80a92d84b37cb95b4eaaf0d2d717e7ecb55caedd1a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:97608af3f6e99897febf0dfa",
+        "type": "evidence",
+        "root": "code",
+        "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+        "start_line": 137,
+        "total_lines": 213,
+        "start_char": 8739,
+        "end_char": 14214,
+        "evidence_id": "97608af3f6e99897febf0dfa",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "44502b5fd3150dc076ecd3d32a83ee55ff06342cb5e41ed033c09d6337df1bf6",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/adapter/src/error.rs",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+              "offset": 136,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "44502b5fd3150dc076ecd3d32a83ee55ff06342cb5e41ed033c09d6337df1bf6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9dbc83657b180158d44e66fb",
+        "type": "evidence",
+        "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+        "heading": "- /sql/system-catalog/mz_internal/ > `mz_recent_activity_log`",
+        "start_line": 72,
+        "end_line": 76,
+        "start_char": 5009,
+        "end_char": 6679,
+        "score": "0.031754032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "transaction_isolation"
+        ],
+        "evidence_id": "9dbc83657b180158d44e66fb",
+        "source_type": "repository",
+        "content_hash": "9bad91eb65e129ac950a4995196b3be93195bfc91b591556e66f4ee886b4f2a7",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9bad91eb65e129ac950a4995196b3be93195bfc91b591556e66f4ee886b4f2a7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a21684fa4b076f87c4010faf",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/sql/session/vars.md",
+        "start_line": 2,
+        "total_lines": 13,
+        "start_char": 4,
+        "end_char": 1062,
+        "evidence_id": "a21684fa4b076f87c4010faf",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "4e3bac74718c405cc4b1ee689a04de83554e6817536ef8ee7d10153c5404fbdb",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/generated/sql/session/vars/definitions.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars/errors.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4e3bac74718c405cc4b1ee689a04de83554e6817536ef8ee7d10153c5404fbdb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a48ae5f36a6ff27762ba7094",
+        "type": "evidence",
+        "path": "src/adapter/src/coord/timestamp_selection.rs",
+        "heading": "",
+        "start_line": 319,
+        "end_line": 348,
+        "start_char": 12837,
+        "end_char": 14493,
+        "score": "0.021532091097308487",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "boundedstaleness",
+          "staleness"
+        ],
+        "evidence_id": "a48ae5f36a6ff27762ba7094",
+        "source_type": "repository",
+        "content_hash": "e141956b9c831f3bc55c3e35388fa1d8efddcfdd2ccb85aedd34a19e20f44196",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "e141956b9c831f3bc55c3e35388fa1d8efddcfdd2ccb85aedd34a19e20f44196",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ad531a0e5b933e9a9a7e224d",
+        "type": "evidence",
+        "path": "doc/developer/change-data-capture.md",
+        "heading": "Change data capture > Materialize can improvise for you > Real-time timestamping",
+        "start_line": 57,
+        "end_line": 62,
+        "start_char": 3282,
+        "end_char": 3953,
+        "score": "0.03149801587301587",
+        "root": "docs",
+        "matched_terms": [
+          "real",
+          "time"
+        ],
+        "evidence_id": "ad531a0e5b933e9a9a7e224d",
+        "source_type": "repository",
+        "content_hash": "d52cf3bef5d4e8657f4d3c4f60c5b914f4b9333ae74a746f4c41cdac1228de2e",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d52cf3bef5d4e8657f4d3c4f60c5b914f4b9333ae74a746f4c41cdac1228de2e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b508a9425f876eb619441b3f",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/sql/src/session/vars/value.rs",
+        "start_line": 1,
+        "total_lines": 1425,
+        "start_char": 0,
+        "end_char": 3742,
+        "evidence_id": "b508a9425f876eb619441b3f",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "df6e2dc734a508c5dabc7650026e988229c390f476ac1b147ed8875638d6642c",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/sql/src/session/vars/value.rs",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/guide-adapter.md",
+              "offset": 94,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "df6e2dc734a508c5dabc7650026e988229c390f476ac1b147ed8875638d6642c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bc17e210e5b91b38c771dc2e",
+        "type": "evidence",
+        "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+        "heading": "Bounded staleness isolation > Open questions",
+        "start_line": 206,
+        "end_line": 213,
+        "start_char": 13589,
+        "end_char": 14214,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessexceeded"
+        ],
+        "evidence_id": "bc17e210e5b91b38c771dc2e",
+        "source_type": "repository",
+        "content_hash": "9ffb52ff57d03ca52a72d2a13174bc06fde58e6226f5685738ae0d6d984bd631",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "9ffb52ff57d03ca52a72d2a13174bc06fde58e6226f5685738ae0d6d984bd631",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bc6531e9b40f2e92064917b2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+        "start_line": 110,
+        "total_lines": 198,
+        "start_char": 6335,
+        "end_char": 11507,
+        "evidence_id": "bc6531e9b40f2e92064917b2",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "09787533d83d690b8a91aa04182444ff351ec6dee69fe6bd6ed279e166e70a69",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": ".agents/skills/README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20220819_bounded_input_reliance.md",
+              "offset": 109,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/adapter/flags.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "09787533d83d690b8a91aa04182444ff351ec6dee69fe6bd6ed279e166e70a69",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bd38288d53ec23ab2fe1fde8",
+        "type": "evidence",
+        "path": ".agents/skills/mz-benchmark/SKILL.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 10,
+        "start_char": 0,
+        "end_char": 533,
+        "score": "0.014798607189911538",
+        "root": "docs",
+        "matched_terms": [
+          "feature"
+        ],
+        "evidence_id": "bd38288d53ec23ab2fe1fde8",
+        "source_type": "repository",
+        "content_hash": "ce60a1e8401a041140159f4fe27e038b64b97ebb2a15814398e16358f46c406f",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "ce60a1e8401a041140159f4fe27e038b64b97ebb2a15814398e16358f46c406f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:be3f3d2a2b50e3460c002d21",
+        "type": "evidence",
+        "path": "doc/developer/design/20230720_single_statement_explitic_transaction.md",
+        "heading": "Single-Statement Explicit Transactions > Detailed description > Session Transaction State Machine",
+        "start_line": 69,
+        "end_line": 80,
+        "start_char": 4157,
+        "end_char": 5258,
+        "score": "0.017905405405405406",
+        "root": "docs",
+        "matched_terms": [
+          "set"
+        ],
+        "evidence_id": "be3f3d2a2b50e3460c002d21",
+        "source_type": "repository",
+        "content_hash": "e7c80c511efe5f968effff86744f57a3385f119cd7a7728ca527425ccb69f1c4",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e7c80c511efe5f968effff86744f57a3385f119cd7a7728ca527425ccb69f1c4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:be5920e855529951afbdf843",
+        "type": "evidence",
+        "path": "doc/developer/generated/sql/session/vars/definitions.md",
+        "heading": "mz-sql::session::vars::definitions",
+        "start_line": 6,
+        "end_line": 13,
+        "start_char": 78,
+        "end_char": 1365,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "flags",
+          "session",
+          "variables"
+        ],
+        "evidence_id": "be5920e855529951afbdf843",
+        "source_type": "repository",
+        "content_hash": "4514dd3a35ca6984a684c96dac4fcefbfee335e0dcf7235b278b8714fe983cde",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "4514dd3a35ca6984a684c96dac4fcefbfee335e0dcf7235b278b8714fe983cde",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bfab3c41e15f806fea6e3b18",
+        "type": "evidence",
+        "path": "doc/developer/generated/adapter/flags.md",
+        "heading": "adapter::flags",
+        "start_line": 6,
+        "end_line": 10,
+        "start_char": 63,
+        "end_char": 596,
+        "score": "0.015625",
+        "root": "docs",
+        "matched_terms": [
+          "flags",
+          "variables"
+        ],
+        "evidence_id": "bfab3c41e15f806fea6e3b18",
+        "source_type": "repository",
+        "content_hash": "b17ac89e00855e8af25cb94b8dc86afb43a3f0b18c862b55ac57345c65899622",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "b17ac89e00855e8af25cb94b8dc86afb43a3f0b18c862b55ac57345c65899622",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c7ae987f2a53c41419c5855a",
+        "type": "evidence",
+        "path": "src/adapter/src/coord/sequencer/inner.rs",
+        "heading": "",
+        "start_line": 1921,
+        "end_line": 1950,
+        "start_char": 76288,
+        "end_char": 77888,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessrealtimerecencyconflict"
+        ],
+        "evidence_id": "c7ae987f2a53c41419c5855a",
+        "source_type": "repository",
+        "content_hash": "bc0e2673966ad4df42882cad629b0f00fb27e00f0d1aab26bbe68c4a0a69cb0c",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "bc0e2673966ad4df42882cad629b0f00fb27e00f0d1aab26bbe68c4a0a69cb0c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c96b1650252678f37a05691e",
+        "type": "evidence",
+        "root": "code",
+        "path": "doc/developer/guide-adapter.md",
+        "start_line": 95,
+        "total_lines": 150,
+        "start_char": 4621,
+        "end_char": 7709,
+        "evidence_id": "c96b1650252678f37a05691e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8e35c8eec52bc204569e7e5ba52e88c4224a5a5be5696c2945b348c3f3fb3c35",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/sql/src/session/vars/value.rs",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/guide-adapter.md",
+              "offset": 94,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "8e35c8eec52bc204569e7e5ba52e88c4224a5a5be5696c2945b348c3f3fb3c35",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c9d4ddc6169409a6d51b1256",
+        "type": "evidence",
+        "path": "doc/user/content/transform-data/patterns/durable-subscriptions.md",
+        "heading": "- /transform-data/patterns/time-travel-queries/#history-retention-period > Enabling durable subscriptions in your application",
+        "start_line": 232,
+        "end_line": 260,
+        "start_char": 8833,
+        "end_char": 10419,
+        "score": "0.025478740668614087",
+        "root": "docs",
+        "matched_terms": [
+          "time"
+        ],
+        "evidence_id": "c9d4ddc6169409a6d51b1256",
+        "source_type": "repository",
+        "content_hash": "a1b2f75a1ac27b3b800d719fbb9231ac62b9cdb082d83c1c24ffdac63f969960",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a1b2f75a1ac27b3b800d719fbb9231ac62b9cdb082d83c1c24ffdac63f969960",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cc9d2fb6aceb88eb72d6f1f9",
+        "type": "evidence",
+        "path": "doc/developer/design/20251219_zero_downtime_upgrades_physical_isolation_high_availability.md",
+        "heading": "Zero-Downtime Upgrades, Physical Isolation, and High Availability > Context > Physical Isolation",
+        "start_line": 89,
+        "end_line": 99,
+        "start_char": 3986,
+        "end_char": 4465,
+        "score": "0.03273446728088826",
+        "root": "docs",
+        "matched_terms": [
+          "isolation"
+        ],
+        "evidence_id": "cc9d2fb6aceb88eb72d6f1f9",
+        "source_type": "repository",
+        "content_hash": "4a70fca4f895220369d78993ea6886e41225cf67f91b4d911700132630c90f10",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation",
+            "strict serializable isolation level",
+            "serializable isolation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4a70fca4f895220369d78993ea6886e41225cf67f91b4d911700132630c90f10",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cec100be98f0aac5e4b9e209",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/change-data-capture.md",
+        "start_line": 53,
+        "total_lines": 83,
+        "start_char": 2677,
+        "end_char": 5725,
+        "evidence_id": "cec100be98f0aac5e4b9e209",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "0062e14ed089d80fe5a08d6ad0a48d7c0bf5eb5ada6a981a0a45110dd64e26f7",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "offset": 117,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/change-data-capture.md",
+              "offset": 52,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage-controller/rtr.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0062e14ed089d80fe5a08d6ad0a48d7c0bf5eb5ada6a981a0a45110dd64e26f7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cec6a6bd8dda03fdec132f5f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/sql/session/vars/definitions.md",
+        "start_line": 2,
+        "total_lines": 13,
+        "start_char": 4,
+        "end_char": 1365,
+        "evidence_id": "cec6a6bd8dda03fdec132f5f",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5db434e33e43d711f77cf39a04f09881bd8c35af5c668957e0a1940404e42fe9",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/generated/sql/session/vars/definitions.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars/errors.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/sql/session/vars.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5db434e33e43d711f77cf39a04f09881bd8c35af5c668957e0a1940404e42fe9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cfaf1428e7c45df6b7e7466d",
+        "type": "evidence",
+        "path": "src/adapter/src/coord/timestamp_selection.rs",
+        "heading": "",
+        "start_line": 349,
+        "end_line": 377,
+        "start_char": 14493,
+        "end_char": 16119,
+        "score": "0.01986930413281526",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "boundedstaleness",
+          "staleness"
+        ],
+        "evidence_id": "cfaf1428e7c45df6b7e7466d",
+        "source_type": "repository",
+        "content_hash": "d402c8b3511e8a998e7f5366dc75528f60041b7635b17b759e2fe7a8b19779ba",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "d402c8b3511e8a998e7f5366dc75528f60041b7635b17b759e2fe7a8b19779ba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cfc5f324c1641354f38bedea",
+        "type": "evidence",
+        "path": "src/adapter/src/error.rs",
+        "heading": "",
+        "start_line": 905,
+        "end_line": 927,
+        "start_char": 43963,
+        "end_char": 45575,
+        "score": "0.032018442622950824",
+        "root": "code",
+        "matched_terms": [
+          "boundedstalenessexceeded",
+          "boundedstalenessreadonly"
+        ],
+        "evidence_id": "cfc5f324c1641354f38bedea",
+        "source_type": "repository",
+        "content_hash": "e30b96e7a701f1ff1bfdfc5f502806ddc3da3a8c68bbed06945e2c3f49a109b3",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStalenessExceeded",
+            "BoundedStalenessReadOnly",
+            "BoundedStalenessRealTimeRecencyConflict"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "e30b96e7a701f1ff1bfdfc5f502806ddc3da3a8c68bbed06945e2c3f49a109b3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d073e64e82a2815b8619ec9d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/sql/set.md",
+        "start_line": 56,
+        "total_lines": 79,
+        "start_char": 1674,
+        "end_char": 1957,
+        "evidence_id": "d073e64e82a2815b8619ec9d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "67de8b40aee06e2fc677808ba4b310a2063cc6b4314544cb978aa1ffed9a8ee3",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/set.md",
+              "offset": 55,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "offset": 159,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/show.md",
+              "offset": 38,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "67de8b40aee06e2fc677808ba4b310a2063cc6b4314544cb978aa1ffed9a8ee3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d269de2509c36445c7da80be",
+        "type": "evidence",
+        "path": "doc/user/content/sql/show.md",
+        "heading": "Examples > Show transaction isolation level",
+        "start_line": 43,
+        "end_line": 53,
+        "start_char": 699,
+        "end_char": 855,
+        "score": "0.031746031746031744",
+        "root": "docs",
+        "matched_terms": [
+          "transaction_isolation"
+        ],
+        "evidence_id": "d269de2509c36445c7da80be",
+        "source_type": "repository",
+        "content_hash": "bb93b0e0a88fb8a851836abd0ed11f1fd2dfa091feeaed7cac55e7875f2cadf6",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "bb93b0e0a88fb8a851836abd0ed11f1fd2dfa091feeaed7cac55e7875f2cadf6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d6c8543f7183a0bea017169c",
+        "type": "evidence",
+        "path": "doc/developer/design/20260311_optimizer_customer_tradeoff.md",
+        "heading": "Resolving customer tradeoffs optimizer changes > Weighing Alternatives > `feature-flags`",
+        "start_line": 73,
+        "end_line": 87,
+        "start_char": 3882,
+        "end_char": 4712,
+        "score": "0.015151515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "flags"
+        ],
+        "evidence_id": "d6c8543f7183a0bea017169c",
+        "source_type": "repository",
+        "content_hash": "7e22f7490f26dc61cb9e59d9427907c3c602c08f2493620bd60ddd2250b30a45",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "7e22f7490f26dc61cb9e59d9427907c3c602c08f2493620bd60ddd2250b30a45",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dc6256b76432e6e74a2b930a",
+        "type": "evidence",
+        "path": "doc/user/content/reference/isolation-level.md",
+        "heading": "weight: 150 > Strict Serializable > Real-time recency",
+        "start_line": 122,
+        "end_line": 144,
+        "start_char": 6282,
+        "end_char": 7698,
+        "score": "0.03252247488101534",
+        "root": "docs",
+        "matched_terms": [
+          "real",
+          "real_time_recency",
+          "recency",
+          "time"
+        ],
+        "evidence_id": "dc6256b76432e6e74a2b930a",
+        "source_type": "repository",
+        "content_hash": "25b5cbb0640b8e3e9eff1d39e1767f80bac9a08259ef69e98e4dbfc56e938e5b",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "25b5cbb0640b8e3e9eff1d39e1767f80bac9a08259ef69e98e4dbfc56e938e5b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:de0846e2ca33a7f9574fb8d1",
+        "type": "evidence",
+        "path": "src/sql/src/session/vars/value.rs",
+        "heading": "",
+        "start_line": 1333,
+        "end_line": 1382,
+        "start_char": 43981,
+        "end_char": 45564,
+        "score": "0.02938045560996381",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "boundedstaleness",
+          "staleness"
+        ],
+        "evidence_id": "de0846e2ca33a7f9574fb8d1",
+        "source_type": "repository",
+        "content_hash": "364e3ae61defb487dcdf5e7c8bac46b775557eb50209797b84b238fdc413aa6c",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "364e3ae61defb487dcdf5e7c8bac46b775557eb50209797b84b238fdc413aa6c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:df40d5a238ca0a6de2b90b31",
+        "type": "evidence",
+        "path": "doc/developer/generated/storage-controller/rtr.md",
+        "heading": "storage-controller::rtr",
+        "start_line": 6,
+        "end_line": 10,
+        "start_char": 72,
+        "end_char": 580,
+        "score": "0.030798389007344232",
+        "root": "docs",
+        "matched_terms": [
+          "real",
+          "recency",
+          "time"
+        ],
+        "evidence_id": "df40d5a238ca0a6de2b90b31",
+        "source_type": "repository",
+        "content_hash": "35ca227361e64f98219efc17ae007780e9e0cccfdf61ba8a151cff5ee04399fd",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "35ca227361e64f98219efc17ae007780e9e0cccfdf61ba8a151cff5ee04399fd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:df62469a20b25abc0c8b3e76",
+        "type": "evidence",
+        "path": "doc/developer/design/20210714_reclocking.md",
+        "heading": "Reclocking > Practical Addendum",
+        "start_line": 121,
+        "end_line": 135,
+        "start_char": 8308,
+        "end_char": 10035,
+        "score": "0.02667140825035562",
+        "root": "docs",
+        "matched_terms": [
+          "time"
+        ],
+        "evidence_id": "df62469a20b25abc0c8b3e76",
+        "source_type": "repository",
+        "content_hash": "be1fa40b9e2454fc96aeedf1fd627fa7633cb42a93c003a5f1577fab8749cd14",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "be1fa40b9e2454fc96aeedf1fd627fa7633cb42a93c003a5f1577fab8749cd14",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e068f2381a0a01929bbe9c9b",
+        "type": "evidence",
+        "path": "doc/developer/generated/sql/session/vars/errors.md",
+        "heading": "mz-sql::session::vars::errors",
+        "start_line": 6,
+        "end_line": 9,
+        "start_char": 73,
+        "end_char": 410,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "session",
+          "variables"
+        ],
+        "evidence_id": "e068f2381a0a01929bbe9c9b",
+        "source_type": "repository",
+        "content_hash": "cfa3b53dd03449075c121e455d08e30610962877ed63d65c2dd10e6128beb34c",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "cfa3b53dd03449075c121e455d08e30610962877ed63d65c2dd10e6128beb34c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e4060d2e6bf8ad201ff3671c",
+        "type": "evidence",
+        "path": "test/testdrive/bounded-staleness.td",
+        "heading": "--- error path: bounded staleness exceeded -----------------------------------",
+        "start_line": 41,
+        "end_line": 42,
+        "start_char": 1200,
+        "end_char": 1283,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "bounded",
+          "staleness"
+        ],
+        "evidence_id": "e4060d2e6bf8ad201ff3671c",
+        "source_type": "repository",
+        "content_hash": "9c4cd0cf9475cbafe44835ed6293bd4aec77234527c1b77e8e112f8c7717f3d2",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "BoundedStaleness",
+            "bounded staleness"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-4"
+        ],
+        "exported_content_sha256": "9c4cd0cf9475cbafe44835ed6293bd4aec77234527c1b77e8e112f8c7717f3d2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e4e568c703b2a638b95f98d0",
+        "type": "evidence",
+        "path": "doc/user/content/reference/isolation-level.md",
+        "heading": "weight: 150 > Strict Serializable > Real-time recency",
+        "start_line": 93,
+        "end_line": 121,
+        "start_char": 4663,
+        "end_char": 6282,
+        "score": "0.032018442622950824",
+        "root": "docs",
+        "matched_terms": [
+          "real",
+          "recency",
+          "time"
+        ],
+        "evidence_id": "e4e568c703b2a638b95f98d0",
+        "source_type": "repository",
+        "content_hash": "1f180c9718be8230dc7331aa6e415af17cf4c8e6825e13599560bcf3a2526adf",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "real_time_recency",
+            "real-time recency"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1f180c9718be8230dc7331aa6e415af17cf4c8e6825e13599560bcf3a2526adf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e5022599df26874f257dfd70",
+        "type": "evidence",
+        "path": "doc/user/content/integrations/cli/reference/profile.md",
+        "heading": "weight: 1 > `config get` > Flags",
+        "start_line": 93,
+        "end_line": 99,
+        "start_char": 1911,
+        "end_char": 2245,
+        "score": "0.014925373134328358",
+        "root": "docs",
+        "matched_terms": [
+          "flags",
+          "variables"
+        ],
+        "evidence_id": "e5022599df26874f257dfd70",
+        "source_type": "repository",
+        "content_hash": "00bfa353e51ed61fe7789921ed9242ea1cd0a75a808ef507c444278f0f02bbe4",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "00bfa353e51ed61fe7789921ed9242ea1cd0a75a808ef507c444278f0f02bbe4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ec0354e839bd7be9a6174168",
+        "type": "evidence",
+        "path": "doc/user/content/headless/configuration-parameters.md",
+        "heading": "headless: true > Key configuration parameters",
+        "start_line": 4,
+        "end_line": 13,
+        "start_char": 23,
+        "end_char": 1229,
+        "score": "0.027651515151515153",
+        "root": "docs",
+        "matched_terms": [
+          "transaction_isolation",
+          "values"
+        ],
+        "evidence_id": "ec0354e839bd7be9a6174168",
+        "source_type": "repository",
+        "content_hash": "8c9e10bbe6562ecc3b988558882fe0da4d123c4b672cee64806d680ca68cf702",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8c9e10bbe6562ecc3b988558882fe0da4d123c4b672cee64806d680ca68cf702",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed3e62bdd09f37f2172a59c2",
+        "type": "evidence",
+        "path": "doc/user/content/sql/set.md",
+        "heading": "Examples > Set transaction isolation level",
+        "start_line": 60,
+        "end_line": 65,
+        "start_char": 1704,
+        "end_char": 1799,
+        "score": "0.03278688524590164",
+        "root": "docs",
+        "matched_terms": [
+          "set",
+          "transaction_isolation"
+        ],
+        "evidence_id": "ed3e62bdd09f37f2172a59c2",
+        "source_type": "repository",
+        "content_hash": "dfd4c7d7e0785184e9a1bf7c2d9efb725b0e0ef222620847d8d8e2e0d8e15c28",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "dfd4c7d7e0785184e9a1bf7c2d9efb725b0e0ef222620847d8d8e2e0d8e15c28",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ef3a26d8642af4c726f13d3e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/reference/isolation-level.md",
+        "start_line": 141,
+        "total_lines": 195,
+        "start_char": 7473,
+        "end_char": 9442,
+        "evidence_id": "ef3a26d8642af4c726f13d3e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "22ff2ce58986d0cf02703e32d12c3006674b5d0d6a692e5c8f7b403c387912e8",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/reference/isolation-level.md",
+              "query": "## Isolation levels and query latency",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "22ff2ce58986d0cf02703e32d12c3006674b5d0d6a692e5c8f7b403c387912e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f07f1b471d0766a6a1f7ad24",
+        "type": "evidence",
+        "path": ".agents/skills/README.md",
+        "heading": "Agent Skills for Materialize",
+        "start_line": 1,
+        "end_line": 12,
+        "start_char": 0,
+        "end_char": 633,
+        "score": "0.01639344262295082",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "f07f1b471d0766a6a1f7ad24",
+        "source_type": "repository",
+        "content_hash": "52fc17e38e083ae0e2d0b478a6ab5eb6bd5ee910d8bb67fc8c83702029e0373d",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "52fc17e38e083ae0e2d0b478a6ab5eb6bd5ee910d8bb67fc8c83702029e0373d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f597cfb3bc088586c01e40f7",
+        "type": "evidence",
+        "path": "doc/developer/generated/sql/session/vars.md",
+        "heading": "mz-sql::session::vars",
+        "start_line": 6,
+        "end_line": 13,
+        "start_char": 66,
+        "end_char": 1062,
+        "score": "0.01639344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "session",
+          "variables"
+        ],
+        "evidence_id": "f597cfb3bc088586c01e40f7",
+        "source_type": "repository",
+        "content_hash": "2e85b9c23a1d4f4c19cb0c876b454592c1d3257ad538cb823ab0d3f1a5f9af05",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable_bounded_staleness_isolation",
+            "feature flags session variables user"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "2e85b9c23a1d4f4c19cb0c876b454592c1d3257ad538cb823ab0d3f1a5f9af05",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f7dafc3fd4888c6b276e2c8b",
+        "type": "evidence",
+        "path": "doc/developer/design/20220516_transactional_consistency.md",
+        "heading": "Materialize Transactional Consistency > Description",
+        "start_line": 36,
+        "end_line": 57,
+        "start_char": 1746,
+        "end_char": 3394,
+        "score": "0.030622901094139315",
+        "root": "docs",
+        "matched_terms": [
+          "serializable",
+          "strict"
+        ],
+        "evidence_id": "f7dafc3fd4888c6b276e2c8b",
+        "source_type": "repository",
+        "content_hash": "e67ac5d2ad64e76a1f9e43381df744135d6d6999dcaa1132c4e73b5e72ce2e77",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation",
+            "strict serializable isolation level",
+            "serializable isolation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e67ac5d2ad64e76a1f9e43381df744135d6d6999dcaa1132c4e73b5e72ce2e77",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fa2e9ca28c0df45ad143a8bb",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/adapter/src/error.rs",
+        "start_line": 1,
+        "total_lines": 1548,
+        "start_char": 0,
+        "end_char": 4801,
+        "evidence_id": "fa2e9ca28c0df45ad143a8bb",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "d23326696abade1ff0f425db6cc9495ee96f69580095aaf23d4e76e58a502db7",
+        "revision": "2d01f76ba4cd06328776861fb2312bf99129fc3b",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/adapter/src/error.rs",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20260429_bounded_staleness_isolation.md",
+              "offset": 136,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "d23326696abade1ff0f425db6cc9495ee96f69580095aaf23d4e76e58a502db7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fd8c2a5a6cf403a12d7c3ea0",
+        "type": "evidence",
+        "path": "doc/developer/platform/formalism.md",
+        "heading": "Adapter > Transactions",
+        "start_line": 740,
+        "end_line": 755,
+        "start_char": 40488,
+        "end_char": 42281,
+        "score": "0.0207597645799893",
+        "root": "docs",
+        "matched_terms": [
+          "valid"
+        ],
+        "evidence_id": "fd8c2a5a6cf403a12d7c3ea0",
+        "source_type": "repository",
+        "content_hash": "088f7c33ef50ae04d2ed6bc6ec986c3a5f995d96fb1bd72dd8170a9abe6fe6ac",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation valid values",
+            "SET TRANSACTION_ISOLATION"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "088f7c33ef50ae04d2ed6bc6ec986c3a5f995d96fb1bd72dd8170a9abe6fe6ac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fef6c921780dfd294fff51e4",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-cluster.md",
+        "heading": "parent: commands > Details > Resource isolation",
+        "start_line": 42,
+        "end_line": 57,
+        "start_char": 977,
+        "end_char": 1650,
+        "score": "0.031648002519428314",
+        "root": "docs",
+        "matched_terms": [
+          "isolation"
+        ],
+        "evidence_id": "fef6c921780dfd294fff51e4",
+        "source_type": "repository",
+        "content_hash": "16e5b8efb28f38fccbf2051b86ce0d12c9619b691f2c691d0b2cbe23ced75774",
+        "revision": "d11afb6f0e326060f33752dc61e5e3134baa352d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transaction_isolation",
+            "strict serializable isolation level",
+            "serializable isolation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "16e5b8efb28f38fccbf2051b86ce0d12c9619b691f2c691d0b2cbe23ced75774",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:isolation-level-reference",
+        "type": "requirement",
+        "description": "Add a 'Bounded staleness' section to the isolation-level reference: syntax `bounded staleness <duration>` (humantime specs like 5s, 500ms, 1m30s; zero rejected), semantics (freshest timestamp within D of oracle read_ts, no waiting on input frontiers), read-only restriction (writes error), mutual exclusion with real_time_recency, EpochMilliseconds-only timelines, SQLSTATE 40001 error when the bound cannot be met, and the enable_bounded_staleness_isolation feature flag. Also update the 'Isolation levels and query latency' comparison to include it."
+      },
+      {
+        "id": "requirement:config-params-table",
+        "type": "requirement",
+        "description": "Update the `transaction_isolation` row in the headless configuration-parameters table: its 'Accepts values' list currently reads only `serializable`, `strict serializable`; add `bounded staleness <duration>` and note the feature-flag gating."
+      },
+      {
+        "id": "requirement:set-sql-example",
+        "type": "requirement",
+        "description": "In the SET SQL reference, extend the 'Set transaction isolation level' example to show `SET transaction_isolation = 'bounded staleness 5s';` alongside the existing serializable example."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "doc/user/content/reference/isolation-level.md",
+        "hash": "43bfca6a91624a139c6f14045e1a056d098c63a10fec857a56fc25dba6d8db6d"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "doc/user/content/headless/configuration-parameters.md",
+        "hash": "8d6670bb64d0b114670fe9ce4f282cfe45191be10e621382ce862da4c175476d"
+      },
+      {
+        "id": "edit:2",
+        "type": "edit",
+        "path": "doc/user/content/sql/set.md",
+        "hash": "547dc868d8e34fdfb01939d998362ba14c87a044c8047cb800ed2abc08d5f10f"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "isolation-level-reference",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "doc/user/content/reference/isolation-level.md"
+        ],
+        "evidence_ids": [
+          "ef3a26d8642af4c726f13d3e",
+          "7d763a8a8204796f54784122",
+          "97608af3f6e99897febf0dfa",
+          "c96b1650252678f37a05691e"
+        ],
+        "reason": "Add a 'Bounded staleness' section to the isolation-level reference: syntax `bounded staleness <duration>` (humantime specs like 5s, 500ms, 1m30s; zero rejected), semantics (freshest timestamp within D of oracle read_ts, no waiting on input frontiers), read-only restriction (writes error), mutual exclusion with real_time_recency, EpochMilliseconds-only timelines, SQLSTATE 40001 error when the bound cannot be met, and the enable_bounded_staleness_isolation feature flag. Also update the 'Isolation levels and query latency' comparison to include it."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "config-params-table",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "doc/user/content/headless/configuration-parameters.md"
+        ],
+        "evidence_ids": [
+          "19245c93fd4aa285a0719da0"
+        ],
+        "reason": "Update the `transaction_isolation` row in the headless configuration-parameters table: its 'Accepts values' list currently reads only `serializable`, `strict serializable`; add `bounded staleness <duration>` and note the feature-flag gating."
+      },
+      {
+        "id": "coverage:2",
+        "type": "coverage",
+        "requirement_id": "set-sql-example",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "doc/user/content/sql/set.md"
+        ],
+        "evidence_ids": [
+          "385a997dfb42744126627766",
+          "d073e64e82a2815b8619ec9d"
+        ],
+        "reason": "In the SET SQL reference, extend the 'Set transaction isolation level' example to show `SET transaction_isolation = 'bounded staleness 5s';` alongside the existing serializable example."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where does user-facing documentation describe transaction isolation levels (serializable, strict serializable) and how to set transaction_isolation?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where is real_time_recency documented, since bounded staleness conflicts with it?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Where are feature flags documented, to add enable_bounded_staleness_isolation?"
+      },
+      {
+        "id": "research:Q1-4",
+        "type": "research_question",
+        "description": "What does the new error variants and SQLSTATE 40001 look like in code, and how are errors documented?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "What does the user-facing isolation-level reference page currently say about available isolation levels, and where would a new 'bounded staleness <duration>' level need to be added?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the user-facing SET/SHOW SQL reference enumerate valid transaction_isolation values that must include the new bounded staleness syntax?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Is there a user-facing page documenting feature flags or session variables where enable_bounded_staleness_isolation should be listed?"
+      },
+      {
+        "id": "research:Q2-4",
+        "type": "research_question",
+        "description": "How does the code parse and render the bounded staleness isolation level value (syntax, duration format, zero rejection) so docs match implementation?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:001994c8786fe344460a21fa",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:04747aed5ba1ed237f5c11fb",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:073e70bb6be2b88be963f704",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:089674b6116d59d7c8e0994c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:08d427b21460b97c6aa08e67",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c2c3475502523f83ea3fb0b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c52374bdcb4b149de9fd551",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c52374bdcb4b149de9fd551",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d8263de6d9dd0d38e304ebe",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0f7fe60899f47df4a75202d7",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:11b2e40d8c34b040ccb1d3c0",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:143c3f7c37cccd4991fa018a",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:19245c93fd4aa285a0719da0",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:20dc7d489354c57a1c6004da",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2293d7af7351d72fadcc6cf1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2293d7af7351d72fadcc6cf1",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2813cb66538fa2b36336c643",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2813cb66538fa2b36336c643",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:28b3b5f46ebb01906606331c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:296133434ba58a694060080b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2ada896c417fe2d1b6bb5e47",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:31f1b3e26c75842b57752967",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:377556482dd648c28b2f8962",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:385a997dfb42744126627766",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:423fac1994308d9b3d1f51c4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:42f52473bd0dae46d030b6bb",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e708ebec40d90d61c7f5296",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:522e990f6f3af45946571095",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:525b69856f4d58c5c5bbe2e7",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:529abcf1f524f19020b918f0",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:58242cbce89f5286b32c1aed",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:590450ddc74f8e42a4b010cf",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:59aa05c0f8c0543eec68b1c9",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5f01f7e60739677d17a96db2",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6223db5135d62269981912a3",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6587acce4c68ba42be46cf50",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6c3d5dfe11384a182565b75f",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6d005b809bd6cbf6f0fdec78",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6eb54c5dd04a5853bf7a2a42",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6eb54c5dd04a5853bf7a2a42",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:70022fbda5c6620f69c6f36f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:72a6235cc342ab9aa70c73f5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:772a84e8cc2d5d8569001fd7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7990c868604bfc998447f4b3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7990c868604bfc998447f4b3",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7b8db127d3f94363bc2404a2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7b8db127d3f94363bc2404a2",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7c92df72e5509e5d4e7ea146",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7d763a8a8204796f54784122",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7ed244b8fcfef6a04e93fccf",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:823ca65720684a0b8c542994",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:82cd655c2ac13b8e3e429a1f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:89c90081e5a1c207bee0da8e",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8a0483188d6f561ef89d301e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8cc8f9d2d0d09eb5cb8ca415",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8f47a896e6d8f6d22e8468c0",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:94fa1ab785f52e32e3f06a49",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:97608af3f6e99897febf0dfa",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9dbc83657b180158d44e66fb",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a21684fa4b076f87c4010faf",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a48ae5f36a6ff27762ba7094",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ad531a0e5b933e9a9a7e224d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b508a9425f876eb619441b3f",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bc17e210e5b91b38c771dc2e",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bc6531e9b40f2e92064917b2",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bd38288d53ec23ab2fe1fde8",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:be3f3d2a2b50e3460c002d21",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:be5920e855529951afbdf843",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:be5920e855529951afbdf843",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bfab3c41e15f806fea6e3b18",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c7ae987f2a53c41419c5855a",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c96b1650252678f37a05691e",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c9d4ddc6169409a6d51b1256",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cc9d2fb6aceb88eb72d6f1f9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cec100be98f0aac5e4b9e209",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cec6a6bd8dda03fdec132f5f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cfaf1428e7c45df6b7e7466d",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cfc5f324c1641354f38bedea",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d073e64e82a2815b8619ec9d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d269de2509c36445c7da80be",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d269de2509c36445c7da80be",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d6c8543f7183a0bea017169c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d6c8543f7183a0bea017169c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dc6256b76432e6e74a2b930a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:de0846e2ca33a7f9574fb8d1",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:df40d5a238ca0a6de2b90b31",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:df62469a20b25abc0c8b3e76",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e068f2381a0a01929bbe9c9b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e068f2381a0a01929bbe9c9b",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e4060d2e6bf8ad201ff3671c",
+        "to": "research:Q2-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e4e568c703b2a638b95f98d0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e5022599df26874f257dfd70",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec0354e839bd7be9a6174168",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec0354e839bd7be9a6174168",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed3e62bdd09f37f2172a59c2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed3e62bdd09f37f2172a59c2",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef3a26d8642af4c726f13d3e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f07f1b471d0766a6a1f7ad24",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f597cfb3bc088586c01e40f7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f597cfb3bc088586c01e40f7",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7dafc3fd4888c6b276e2c8b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fa2e9ca28c0df45ad143a8bb",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fd8c2a5a6cf403a12d7c3ea0",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fef6c921780dfd294fff51e4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef3a26d8642af4c726f13d3e",
+        "to": "requirement:isolation-level-reference",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:7d763a8a8204796f54784122",
+        "to": "requirement:isolation-level-reference",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:97608af3f6e99897febf0dfa",
+        "to": "requirement:isolation-level-reference",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c96b1650252678f37a05691e",
+        "to": "requirement:isolation-level-reference",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:19245c93fd4aa285a0719da0",
+        "to": "requirement:config-params-table",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:385a997dfb42744126627766",
+        "to": "requirement:set-sql-example",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:d073e64e82a2815b8619ec9d",
+        "to": "requirement:set-sql-example",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:isolation-level-reference",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:ef3a26d8642af4c726f13d3e",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:7d763a8a8204796f54784122",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:97608af3f6e99897febf0dfa",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c96b1650252678f37a05691e",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:config-params-table",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:19245c93fd4aa285a0719da0",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:set-sql-example",
+        "to": "edit:2",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:385a997dfb42744126627766",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:d073e64e82a2815b8619ec9d",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:isolation-level-reference",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:ef3a26d8642af4c726f13d3e",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:7d763a8a8204796f54784122",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:97608af3f6e99897febf0dfa",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c96b1650252678f37a05691e",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:config-params-table",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:19245c93fd4aa285a0719da0",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:set-sql-example",
+        "to": "coverage:2",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:385a997dfb42744126627766",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:d073e64e82a2815b8619ec9d",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "daa916713fd540bf42dbd149080d8c9803caea829645b2d0eda09e1308978546"
+}

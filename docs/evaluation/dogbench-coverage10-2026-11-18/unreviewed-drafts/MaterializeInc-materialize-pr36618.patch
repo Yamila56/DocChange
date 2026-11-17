@@ -1,0 +1,20 @@
+diff --git a/doc/user/content/self-managed-deployments/upgrading/_index.md b/doc/user/content/self-managed-deployments/upgrading/_index.md
+index d5704416a9e97e0a44df36e4805a84bb00003c2f..bfae119de835e2b9b8f530206f5ededf596e1686 100644
+--- a/doc/user/content/self-managed-deployments/upgrading/_index.md
++++ b/doc/user/content/self-managed-deployments/upgrading/_index.md
+@@ -288,6 +288,15 @@ kubectl patch materialize <instance-name> \
+   -p "{\"spec\": {\"requestRollout\": \"<lastCompletedRolloutRequest-value>\"}}"
+ ```
+ 
++You do not need to revert `environmentdImageRef` as part of cancelling. The
++Operator keeps the `balancerd` and `console` components aligned with the
++environmentd image of the last completed rollout (recorded in
++`status.lastCompletedRolloutEnvironmentdImageRef`), rather than the image in
++`spec.environmentdImageRef`. This means that if you cancel a rollout by
++reverting only `requestRollout` and leave `environmentdImageRef` pointing at
++the newer version, `balancerd` and `console` continue to run the version that
++matches the currently running environmentd instead of the newer spec image.
++
+ ## Version Specific Upgrade Notes
+ 
+ ### Upgrading to `v26.1` and later versions

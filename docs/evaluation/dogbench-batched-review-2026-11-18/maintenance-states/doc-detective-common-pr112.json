@@ -1,0 +1,63 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REASON",
+  "tasks": [],
+  "impact": null,
+  "discovery": null,
+  "research_history": null,
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "cd0ba532d3291293cbef7ba5e429221a8851ed00",
+    "code": "ec921b716816fce40ebdc1d3c385cb43fd205f92"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {
+    "REASON": {
+      "errors": [
+        {
+          "type": "too_long",
+          "loc": [
+            "investigate",
+            "questions",
+            0,
+            "queries"
+          ],
+          "msg": "List should have at most 3 items after validation, not 5"
+        }
+      ],
+      "instruction": "Return a complete corrected decision using only observed evidence."
+    }
+  },
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": null,
+  "index_slot_wait_ms": null,
+  "tool_metrics": null,
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:149241e100a723c02e8bb595",
+        "type": "evidence",
+        "evidence_id": "149241e100a723c02e8bb595",
+        "source_type": "implementation",
+        "exported_content_sha256": "5e4758e3a7503f70540e691b36b93a8ee4d50fbf2cc7123a3c426bc7618be039",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b1a1697c61ea6329e392354d",
+        "type": "evidence",
+        "evidence_id": "b1a1697c61ea6329e392354d",
+        "source_type": "task",
+        "exported_content_sha256": "d0f282828dc54caee7e4f85ac0a231841eda73306d89bf4d83a3c12d93ab4582",
+        "source_content_omitted_from_public_export": true
+      }
+    ],
+    "edges": [],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

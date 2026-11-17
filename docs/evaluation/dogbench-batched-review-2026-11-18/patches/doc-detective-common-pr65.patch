@@ -1,0 +1,62 @@
+diff --git a/docs/references/schemas/arazzo.md b/docs/references/schemas/arazzo.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..6be9ba0a105e7e2384328c34316ec5ea60a5e459
+--- /dev/null
++++ b/docs/references/schemas/arazzo.md
+@@ -0,0 +1,31 @@
++# arazzo
++
++Arazzo description and configuration.
++
++## Fields
++
++Field | Type | Description | Default
++:-- | :-- | :-- | :--
++name | string |  Required at the config level. Name of the Arazzo description, as defined in your configuration. | 
++descriptionPath | string |  Required at the config level. URL or local path to the Arazzo description. | 
++workflowId | string |  Optional. Only permitted at the test level. Unique identifier for the workflow to run. If not specified, runs the first workflow in the Arazzo description. | 
++inputs | object |  Optional. Only permitted at the test level. Input parameters for the Arazzo description. | 
++
++## Examples
++
++```json
++{
++  "descriptionPath": "https://example.com/arazzo.json"
++}
++```
++
++```json
++{
++  "name": "CreateUser",
++  "descriptionPath": "https://www.acme.com/create-user.arazzo.json",
++  "inputs": {
++    "name": "John Doe",
++    "email": "johndoe@acme.com"
++  }
++}
++```
+diff --git a/docs/references/schemas/config.md b/docs/references/schemas/config.md
+index a0df24027094bbaf7c2dab113246563b6cf041f7..4c2617aa596cf6e608af39dcc6930c7fe2427171 100644
+--- a/docs/references/schemas/config.md
++++ b/docs/references/schemas/config.md
+@@ -49,6 +49,7 @@ fileTypes.markup.actions | array of <br/>- strings<br/>- objects<br/>-&nbsp;obje
+ fileTypes.markup.actions.name | string |  Required. Name of the action.<br/><br/>Accepted values: `checkLink`, `find`, `goTo`, `httpRequest`, `runShell`, `saveScreenshot`, `setVariables`, `startRecording`, `stopRecording`, `typeKeys`, `wait` | 
+ fileTypes.markup.actions.params | object |  Optional. Parameters for the action. | 
+ integrations | object |  Optional. Options for connecting to external services. | 
++arazzo | array of object([arazzo](/docs/references/schemas/arazzo)) |  Optional. Arazzo descriptions to run. Each entry requires `name` and `descriptionPath`; `workflowId` and `inputs` aren't permitted at the config level. | 
+ telemetry | object |  Optional. Options around sending telemetry for Doc Detective usage. | ``{"send":true}``
+ telemetry.send | boolean |  Required. If `true`, sends Doc Detective telemetry. | `true`
+ telemetry.userId | string |  Optional. Identifier for the organization, group, or individual running Doc Detective. | 
+diff --git a/docs/references/schemas/specification.md b/docs/references/schemas/specification.md
+index e4a0295eade2918afec34cacf6ade5f90cd9b761..729a48470cba9072da0b3df479485a29c082002c 100644
+--- a/docs/references/schemas/specification.md
++++ b/docs/references/schemas/specification.md
+@@ -11,7 +11,7 @@ id | string |  Optional. Unique identifier for the test specification. |
+ description | string |  Optional. Description of the test specification. | 
+ file | string |  Optional. Path to the file that the specification is associated with. | 
+ contexts | array of object([context](/docs/references/schemas/context)) |  Optional. Application/platform sets to run tests in. Overrides `contexts` defined at the config-level. | 
+-tests | array of object([test](/docs/references/schemas/test)) |  Required. [Tests](test) to perform. | 
++tests | array of <br/>-&nbsp;object([test](/docs/references/schemas/test))<br/>-&nbsp;object([arazzo](/docs/references/schemas/arazzo)) |  Required. [Tests](test) to perform. Items can be either a test object or an Arazzo workflow reference. Arazzo entries at the test level can include `workflowId` and `inputs`. | 
+ 
+ ## Examples
+ 

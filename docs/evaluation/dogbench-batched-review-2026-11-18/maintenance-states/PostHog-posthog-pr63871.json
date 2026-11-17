@@ -1,0 +1,2426 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "slack-setup-landing",
+      "description": "In contents/docs/slack/setup.mdx, the 'Connect Slack to your project' step only points users to Settings → Integrations. Add a note that Slack can also be connected from the shareable landing page at /integrations/slack (the new IntegrationsLanding scene), which shows the logo, description, capabilities, and a single Connect button and flips to a success view after the OAuth round-trip.",
+      "evidence_ids": [
+        "4e5aabfb854a21fa3ccd1f49",
+        "81c8d035236de5a9f3883a5d",
+        "2aef00b5ed594ed6b3aa7826",
+        "439833ea3369ad34afcae7a9"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "replay-integrations-landing",
+      "description": "In contents/docs/session-replay/integrations.mdx, the 'Setting up integrations' section says to go to project settings to connect Linear/GitHub/GitLab/Jira. Mention the new per-integration landing pages at /integrations/<slug> (slugs: linear, github, gitlab, jira) as an alternative shareable connect entry point that shows connection status and a connect action.",
+      "evidence_ids": [
+        "809617c42e3a638cb4dc491d",
+        "2a3cc015ea947bdca983dcc1",
+        "439833ea3369ad34afcae7a9"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "error-tracking-landing",
+      "description": "In contents/docs/error-tracking/integrations.mdx, the Jira (and other) setup steps only reference Error tracking settings. Add that the same integrations can be connected from the shareable /integrations/<slug> landing page, which shows connection status and a connect button.",
+      "evidence_ids": [
+        "4c8801c1e2372dbd97d05113",
+        "db3909aad698a97a2fef91ec",
+        "2a3cc015ea947bdca983dcc1"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "f28b82fc8d6c3c0c01029cac8f9dd5d27ed7a6713bccb9c849d1d4bc58272a32",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Do existing docs describe connecting Slack/GitHub/GitLab/Jira/Linear integrations, and do they reference settings paths or URLs that the new /integrations/:slug landing page changes?",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/data-warehouse/sources/posthog.mdx",
+              "offset": 366,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/error-tracking/integrations.mdx",
+              "offset": 56,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/support/start-here.mdx",
+              "offset": 114,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "cf5a3807f6dc8120a3b32b7f",
+            "4c8801c1e2372dbd97d05113",
+            "c329015923576d592f4e3912",
+            "676eb907a79ae8337233a740",
+            "db3909aad698a97a2fef91ec",
+            "06c28e9495320b16cb2a4874",
+            "482ca50848d465fb277d3844",
+            "890c9de520ce27e03451a990",
+            "e834661fad0074d029f2b728",
+            "92d4290afcf23c753c218f80",
+            "993d938611c40bc7340c2f48",
+            "cdd0e6dbed047d0a3eda4014",
+            "d749a1976563aa5b5108243d",
+            "952b2cfc425e79e495df4e83",
+            "ec69f3c47341d685714ef291"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/data-warehouse/sources/posthog.mdx",
+              "evidence_id": "676eb907a79ae8337233a740",
+              "score": "0.04372294372294372"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/error-tracking/integrations.mdx",
+              "evidence_id": "db3909aad698a97a2fef91ec",
+              "score": "0.04045813341587989"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/error-tracking/integrations.mdx",
+              "evidence_id": "06c28e9495320b16cb2a4874",
+              "score": "0.03843223382012704"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/support/start-here.mdx",
+              "evidence_id": "482ca50848d465fb277d3844",
+              "score": "0.03611070452771273"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/slack/setup.mdx",
+              "evidence_id": "890c9de520ce27e03451a990",
+              "score": "0.03436759624508406"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/support/start-here.mdx",
+              "evidence_id": "e834661fad0074d029f2b728",
+              "score": "0.03338492451395677"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/session-replay/integrations.mdx",
+              "evidence_id": "92d4290afcf23c753c218f80",
+              "score": "0.03303159396118769"
+            },
+            {
+              "rank": 8,
+              "path": "contents/handbook/engineering/ai/implementation.md",
+              "evidence_id": "993d938611c40bc7340c2f48",
+              "score": "0.03247857495400906"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/slack/setup.mdx",
+              "evidence_id": "cdd0e6dbed047d0a3eda4014",
+              "score": "0.03131538837874454"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/libraries/slack.mdx",
+              "evidence_id": "d749a1976563aa5b5108243d",
+              "score": "0.030274052348997535"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/slack/index.mdx",
+              "evidence_id": "952b2cfc425e79e495df4e83",
+              "score": "0.029907178336497708"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/posthog-code/git-github-integration.mdx",
+              "evidence_id": "ec69f3c47341d685714ef291",
+              "score": "0.029831932773109242"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/data-warehouse/sources/posthog.mdx",
+              "start": 366,
+              "end": 482,
+              "total_lines": 482
+            },
+            {
+              "path": "contents/docs/error-tracking/integrations.mdx",
+              "start": 56,
+              "end": 82,
+              "total_lines": 82
+            },
+            {
+              "path": "contents/docs/support/start-here.mdx",
+              "start": 114,
+              "end": 226,
+              "total_lines": 226
+            }
+          ],
+          "read_evidence_ids": [
+            "cf5a3807f6dc8120a3b32b7f",
+            "4c8801c1e2372dbd97d05113",
+            "c329015923576d592f4e3912"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is there any docs page describing integration landing pages or shareable connect URLs that would need updating?",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/session-replay/integrations.mdx",
+              "offset": 10,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/notion.md",
+              "offset": 9,
+              "limit": 120
+            },
+            {
+              "path": "WARP.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "809617c42e3a638cb4dc491d",
+            "ea400327ab7916f6798e3a7a",
+            "1a293df81c02c09a124a0daa",
+            "92d4290afcf23c753c218f80",
+            "7b0876b498330ecbb9b13d78",
+            "676eb907a79ae8337233a740",
+            "645a7d829b17ba50b10d764d",
+            "ec8123a5a1008219e94c291a",
+            "36c91e5d611cfd6aef5cf07d",
+            "f76ac79d50d5f36b0368f233",
+            "72cd8b767c27887604501876",
+            "c2af6013e6ed23e25209f8d1",
+            "a48be4538a24bed4bb9e12e3",
+            "290cde9c6f2d3a3531831725",
+            "2b164340cbb66a5505a9365c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/session-replay/integrations.mdx",
+              "evidence_id": "92d4290afcf23c753c218f80",
+              "score": "0.026397515527950312"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/cdp/sources/notion.md",
+              "evidence_id": "7b0876b498330ecbb9b13d78",
+              "score": "0.0261986301369863"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/data-warehouse/sources/posthog.mdx",
+              "evidence_id": "676eb907a79ae8337233a740",
+              "score": "0.025603864734299518"
+            },
+            {
+              "rank": 4,
+              "path": "WARP.md",
+              "evidence_id": "645a7d829b17ba50b10d764d",
+              "score": "0.025478740668614087"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/product-analytics/tutorials.mdx",
+              "evidence_id": "ec8123a5a1008219e94c291a",
+              "score": "0.025252525252525252"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/error-tracking/integrations.mdx",
+              "evidence_id": "36c91e5d611cfd6aef5cf07d",
+              "score": "0.023237179487179488"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/error-tracking/integrations.mdx",
+              "evidence_id": "f76ac79d50d5f36b0368f233",
+              "score": "0.021967626655455118"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/integrations/v0.mdx",
+              "evidence_id": "72cd8b767c27887604501876",
+              "score": "0.02074213049822806"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/integrations/vercel-marketplace.mdx",
+              "evidence_id": "c2af6013e6ed23e25209f8d1",
+              "score": "0.020292474531712127"
+            },
+            {
+              "rank": 10,
+              "path": "contents/tutorials/nextjs-supabase-signup-funnel.mdx",
+              "evidence_id": "a48be4538a24bed4bb9e12e3",
+              "score": "0.01925139425139425"
+            },
+            {
+              "rank": 11,
+              "path": ".claude/skills/competitor-data-verifier/references/schema-guide.md",
+              "evidence_id": "290cde9c6f2d3a3531831725",
+              "score": "0.0192481884057971"
+            },
+            {
+              "rank": 12,
+              "path": "contents/handbook/marketing/co-marketing.md",
+              "evidence_id": "2b164340cbb66a5505a9365c",
+              "score": "0.01914039135264462"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/session-replay/integrations.mdx",
+              "start": 10,
+              "end": 50,
+              "total_lines": 50
+            },
+            {
+              "path": "contents/docs/cdp/sources/notion.md",
+              "start": 9,
+              "end": 55,
+              "total_lines": 55
+            },
+            {
+              "path": "WARP.md",
+              "start": 39,
+              "end": 83,
+              "total_lines": 83
+            }
+          ],
+          "read_evidence_ids": [
+            "809617c42e3a638cb4dc491d",
+            "ea400327ab7916f6798e3a7a",
+            "1a293df81c02c09a124a0daa"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What does the new landing scene and route actually expose to users (URL, layout, connect flow)?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "frontend/src/scenes/integrations/IntegrationsLandingScene.tsx",
+            "frontend/src/scenes/urls.ts"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "frontend/src/scenes/integrations/IntegrationsLandingScene.tsx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/scenes/urls.ts",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "2aef00b5ed594ed6b3aa7826",
+            "0ff9a2d0f267ce8c90bb9b4d"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "frontend/src/scenes/integrations/IntegrationsLandingScene.tsx",
+              "start": 0,
+              "end": 28,
+              "total_lines": 28
+            },
+            {
+              "path": "frontend/src/scenes/urls.ts",
+              "start": 0,
+              "end": 120,
+              "total_lines": 378
+            }
+          ],
+          "read_evidence_ids": [
+            "2aef00b5ed594ed6b3aa7826",
+            "0ff9a2d0f267ce8c90bb9b4d"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "06c28e9495320b16cb2a4874",
+        "0ff9a2d0f267ce8c90bb9b4d",
+        "1a293df81c02c09a124a0daa",
+        "290cde9c6f2d3a3531831725",
+        "2aef00b5ed594ed6b3aa7826",
+        "2b164340cbb66a5505a9365c",
+        "36c91e5d611cfd6aef5cf07d",
+        "482ca50848d465fb277d3844",
+        "4c8801c1e2372dbd97d05113",
+        "645a7d829b17ba50b10d764d",
+        "676eb907a79ae8337233a740",
+        "72cd8b767c27887604501876",
+        "7b0876b498330ecbb9b13d78",
+        "809617c42e3a638cb4dc491d",
+        "890c9de520ce27e03451a990",
+        "92d4290afcf23c753c218f80",
+        "952b2cfc425e79e495df4e83",
+        "993d938611c40bc7340c2f48",
+        "a48be4538a24bed4bb9e12e3",
+        "c2af6013e6ed23e25209f8d1",
+        "c329015923576d592f4e3912",
+        "cdd0e6dbed047d0a3eda4014",
+        "cf5a3807f6dc8120a3b32b7f",
+        "d749a1976563aa5b5108243d",
+        "db3909aad698a97a2fef91ec",
+        "e834661fad0074d029f2b728",
+        "ea400327ab7916f6798e3a7a",
+        "ec69f3c47341d685714ef291",
+        "ec8123a5a1008219e94c291a",
+        "f76ac79d50d5f36b0368f233"
+      ],
+      "new_evidence_count": 30,
+      "new_path_count": 19
+    },
+    {
+      "signature": "b77f2f328ca8b29042d1b4577c609953be24ef7ecf3209f7824e178e4021d090",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the Slack setup doc (contents/docs/slack/setup.mdx) describe the connect flow in a way that should mention the new /integrations/slack landing page as an alternative entry point?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "contents/docs/slack/setup.mdx"
+          ],
+          "anchor": "Head to [**Settings → Integrations**]",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/slack/setup.mdx",
+              "query": "Head to [**Settings → Integrations**]",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "4e5aabfb854a21fa3ccd1f49"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "contents/docs/slack/setup.mdx",
+              "start": 15,
+              "end": 103,
+              "total_lines": 103
+            }
+          ],
+          "read_evidence_ids": [
+            "4e5aabfb854a21fa3ccd1f49"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "What slugs and docsUrl values are defined for each integration, and does the landing page expose a shareable URL worth documenting?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "frontend/src/scenes/integrations/definitions/index.ts",
+            "frontend/src/scenes/integrations/definitions/slack.tsx"
+          ],
+          "anchor": "slug",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "frontend/src/scenes/integrations/definitions/index.ts",
+              "query": "slug",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/scenes/integrations/definitions/slack.tsx",
+              "query": "slug",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "2a3cc015ea947bdca983dcc1",
+            "81c8d035236de5a9f3883a5d"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "frontend/src/scenes/integrations/definitions/index.ts",
+              "start": 7,
+              "end": 14,
+              "total_lines": 14
+            },
+            {
+              "path": "frontend/src/scenes/integrations/definitions/slack.tsx",
+              "start": 3,
+              "end": 26,
+              "total_lines": 26
+            }
+          ],
+          "read_evidence_ids": [
+            "2a3cc015ea947bdca983dcc1",
+            "81c8d035236de5a9f3883a5d"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Does the urls.ts define an integration(slug) helper and is there any existing docs reference to /integrations/ paths?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "frontend/src/scenes/urls.ts"
+          ],
+          "anchor": "integration:",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "frontend/src/scenes/urls.ts",
+              "query": "integration:",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "439833ea3369ad34afcae7a9"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "frontend/src/scenes/urls.ts",
+              "start": 228,
+              "end": 348,
+              "total_lines": 378
+            }
+          ],
+          "read_evidence_ids": [
+            "439833ea3369ad34afcae7a9"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "2a3cc015ea947bdca983dcc1",
+        "439833ea3369ad34afcae7a9",
+        "4e5aabfb854a21fa3ccd1f49",
+        "81c8d035236de5a9f3883a5d"
+      ],
+      "new_evidence_count": 4,
+      "new_path_count": 2
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+    "code": "0fb6ff5bd39f175ff56dcfc4206d8a97813b0f0c"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:1c51fdac16cebac9": 0,
+    "discover:Q1-2:69cd1380a6e30623": 229
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:1c51fdac16cebac9": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 229,
+      "cache_hit": false
+    },
+    "discover:Q1-2:69cd1380a6e30623": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 157,
+      "cache_hit": false
+    },
+    "discover:Q1-2:5b239932e7aa1991": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 194,
+      "cache_hit": false
+    },
+    "discover:Q1-3:0ccb9813444f137a": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 213,
+      "cache_hit": false
+    },
+    "discover:Q1-1:9128973d74a3d1e3": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 257,
+      "cache_hit": false
+    },
+    "discover:Q2-1:c395c900a056ed0e": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 120,
+      "cache_hit": false
+    },
+    "discover:Q2-2:753c32fb3c363dce": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 143,
+      "cache_hit": false
+    },
+    "discover:Q2-3:65b562d0c265fc7c": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 183,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2306,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "slack-setup-landing",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/slack/setup.mdx"
+      ],
+      "evidence_ids": [
+        "4e5aabfb854a21fa3ccd1f49",
+        "81c8d035236de5a9f3883a5d",
+        "2aef00b5ed594ed6b3aa7826",
+        "439833ea3369ad34afcae7a9"
+      ],
+      "reason": "In contents/docs/slack/setup.mdx, the 'Connect Slack to your project' step only points users to Settings → Integrations. Add a note that Slack can also be connected from the shareable landing page at /integrations/slack (the new IntegrationsLanding scene), which shows the logo, description, capabilities, and a single Connect button and flips to a success view after the OAuth round-trip."
+    },
+    {
+      "requirement_id": "replay-integrations-landing",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/session-replay/integrations.mdx"
+      ],
+      "evidence_ids": [
+        "809617c42e3a638cb4dc491d",
+        "2a3cc015ea947bdca983dcc1",
+        "439833ea3369ad34afcae7a9"
+      ],
+      "reason": "In contents/docs/session-replay/integrations.mdx, the 'Setting up integrations' section says to go to project settings to connect Linear/GitHub/GitLab/Jira. Mention the new per-integration landing pages at /integrations/<slug> (slugs: linear, github, gitlab, jira) as an alternative shareable connect entry point that shows connection status and a connect action."
+    },
+    {
+      "requirement_id": "error-tracking-landing",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/error-tracking/integrations.mdx"
+      ],
+      "evidence_ids": [
+        "4c8801c1e2372dbd97d05113",
+        "db3909aad698a97a2fef91ec",
+        "2a3cc015ea947bdca983dcc1"
+      ],
+      "reason": "In contents/docs/error-tracking/integrations.mdx, the Jira (and other) setup steps only reference Error tracking settings. Add that the same integrations can be connected from the shareable /integrations/<slug> landing page, which shows connection status and a connect button."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:06c28e9495320b16cb2a4874",
+        "type": "evidence",
+        "path": "contents/docs/error-tracking/integrations.mdx",
+        "heading": "title: Set up integrations > GitLab integration",
+        "start_line": 30,
+        "end_line": 44,
+        "start_char": 1463,
+        "end_char": 2050,
+        "score": "0.03843223382012704",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "gitlab",
+          "integration"
+        ],
+        "evidence_id": "06c28e9495320b16cb2a4874",
+        "source_type": "repository",
+        "content_hash": "e193ff927bd1ef0e6b8a9ab7c0b83c4b36dec99963f99db7c74608a2ab0154b0",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e193ff927bd1ef0e6b8a9ab7c0b83c4b36dec99963f99db7c74608a2ab0154b0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0ff9a2d0f267ce8c90bb9b4d",
+        "type": "evidence",
+        "root": "code",
+        "path": "frontend/src/scenes/urls.ts",
+        "start_line": 1,
+        "total_lines": 378,
+        "start_char": 0,
+        "end_char": 5062,
+        "evidence_id": "0ff9a2d0f267ce8c90bb9b4d",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "de345ed975f7aad017c112b11891ac1e1933987f7fdbe75be1c3f972f65f0b22",
+        "revision": "0fb6ff5bd39f175ff56dcfc4206d8a97813b0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "frontend/src/scenes/integrations/IntegrationsLandingScene.tsx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/scenes/urls.ts",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "de345ed975f7aad017c112b11891ac1e1933987f7fdbe75be1c3f972f65f0b22",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a293df81c02c09a124a0daa",
+        "type": "evidence",
+        "root": "docs",
+        "path": "WARP.md",
+        "start_line": 40,
+        "total_lines": 83,
+        "start_char": 1863,
+        "end_char": 4336,
+        "evidence_id": "1a293df81c02c09a124a0daa",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "f932af1b187de50845c62719d8cf7bca8f4d5086d15e66b22b5e56ac21391c40",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/session-replay/integrations.mdx",
+              "offset": 10,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/notion.md",
+              "offset": 9,
+              "limit": 120
+            },
+            {
+              "path": "WARP.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f932af1b187de50845c62719d8cf7bca8f4d5086d15e66b22b5e56ac21391c40",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:290cde9c6f2d3a3531831725",
+        "type": "evidence",
+        "path": ".claude/skills/competitor-data-verifier/references/schema-guide.md",
+        "heading": "CompetitorData Schema Reference > Verification Strategies by Category > Platform: Integrations",
+        "start_line": 162,
+        "end_line": 191,
+        "start_char": 4222,
+        "end_char": 4786,
+        "score": "0.0192481884057971",
+        "root": "docs",
+        "matched_terms": [
+          "integration",
+          "integrations",
+          "page"
+        ],
+        "evidence_id": "290cde9c6f2d3a3531831725",
+        "source_type": "repository",
+        "content_hash": "645f880321a5af61ce0889aae43a66e2f234846b87995017d1a2f3b299e838b5",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "645f880321a5af61ce0889aae43a66e2f234846b87995017d1a2f3b299e838b5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2a3cc015ea947bdca983dcc1",
+        "type": "evidence",
+        "root": "code",
+        "path": "frontend/src/scenes/integrations/definitions/index.ts",
+        "start_line": 8,
+        "total_lines": 14,
+        "start_char": 220,
+        "end_char": 508,
+        "evidence_id": "2a3cc015ea947bdca983dcc1",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "36c70bb6ca36abb206bfa3c37849a8a530867acc76093ce04cb06b58af21e2b1",
+        "revision": "0fb6ff5bd39f175ff56dcfc4206d8a97813b0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "frontend/src/scenes/integrations/definitions/index.ts",
+              "query": "slug",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/scenes/integrations/definitions/slack.tsx",
+              "query": "slug",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "36c70bb6ca36abb206bfa3c37849a8a530867acc76093ce04cb06b58af21e2b1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2aef00b5ed594ed6b3aa7826",
+        "type": "evidence",
+        "root": "code",
+        "path": "frontend/src/scenes/integrations/IntegrationsLandingScene.tsx",
+        "start_line": 1,
+        "total_lines": 28,
+        "start_char": 0,
+        "end_char": 771,
+        "evidence_id": "2aef00b5ed594ed6b3aa7826",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "6b192b048f8782ef74c14dea9d73cce9c4888b93211c0e990e5f1e728e008a69",
+        "revision": "0fb6ff5bd39f175ff56dcfc4206d8a97813b0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "frontend/src/scenes/integrations/IntegrationsLandingScene.tsx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/scenes/urls.ts",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6b192b048f8782ef74c14dea9d73cce9c4888b93211c0e990e5f1e728e008a69",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2b164340cbb66a5505a9365c",
+        "type": "evidence",
+        "path": "contents/handbook/marketing/co-marketing.md",
+        "heading": "showTitle: true > Integrations and CDP destinations",
+        "start_line": 21,
+        "end_line": 42,
+        "start_char": 1112,
+        "end_char": 2839,
+        "score": "0.01914039135264462",
+        "root": "docs",
+        "matched_terms": [
+          "integration",
+          "integrations"
+        ],
+        "evidence_id": "2b164340cbb66a5505a9365c",
+        "source_type": "repository",
+        "content_hash": "134ef6dd19bac59645d8ce77c23769c4ac717abb8631239f4229399a999ab082",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "134ef6dd19bac59645d8ce77c23769c4ac717abb8631239f4229399a999ab082",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:36c91e5d611cfd6aef5cf07d",
+        "type": "evidence",
+        "path": "contents/docs/error-tracking/integrations.mdx",
+        "heading": "title: Set up integrations",
+        "start_line": 2,
+        "end_line": 13,
+        "start_char": 4,
+        "end_char": 833,
+        "score": "0.023237179487179488",
+        "root": "docs",
+        "matched_terms": [
+          "integration",
+          "integrations"
+        ],
+        "evidence_id": "36c91e5d611cfd6aef5cf07d",
+        "source_type": "repository",
+        "content_hash": "66ad114709723c6580ceb3b413543bbb0014f65d845ceda34c077e6e21fc4374",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "66ad114709723c6580ceb3b413543bbb0014f65d845ceda34c077e6e21fc4374",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:439833ea3369ad34afcae7a9",
+        "type": "evidence",
+        "root": "code",
+        "path": "frontend/src/scenes/urls.ts",
+        "start_line": 229,
+        "total_lines": 378,
+        "start_char": 10693,
+        "end_char": 16460,
+        "evidence_id": "439833ea3369ad34afcae7a9",
+        "truncated": false,
+        "next_offset": 348,
+        "source_type": "repository",
+        "content_hash": "79d94419381dffceb625ab09e527b108ec10f998a01ae3c6f228714d1f731925",
+        "revision": "0fb6ff5bd39f175ff56dcfc4206d8a97813b0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "frontend/src/scenes/urls.ts",
+              "query": "integration:",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "79d94419381dffceb625ab09e527b108ec10f998a01ae3c6f228714d1f731925",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:482ca50848d465fb277d3844",
+        "type": "evidence",
+        "path": "contents/docs/support/start-here.mdx",
+        "heading": "contentMaxWidthClass: max-w-5xl > How to connect",
+        "start_line": 119,
+        "end_line": 139,
+        "start_char": 3970,
+        "end_char": 4486,
+        "score": "0.03611070452771273",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "github",
+          "integration"
+        ],
+        "evidence_id": "482ca50848d465fb277d3844",
+        "source_type": "repository",
+        "content_hash": "88c389203c8fd012b8785d3e88445f9963936c0bb288df2f6de8f119f530f607",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "88c389203c8fd012b8785d3e88445f9963936c0bb288df2f6de8f119f530f607",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4c8801c1e2372dbd97d05113",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/error-tracking/integrations.mdx",
+        "start_line": 57,
+        "total_lines": 82,
+        "start_char": 2598,
+        "end_char": 3538,
+        "evidence_id": "4c8801c1e2372dbd97d05113",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "49b37d6a79631501fd0c1a752dbe85c12cf1a30421aa61776e6ed8d86e8e3a8a",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/data-warehouse/sources/posthog.mdx",
+              "offset": 366,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/error-tracking/integrations.mdx",
+              "offset": 56,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/support/start-here.mdx",
+              "offset": 114,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "49b37d6a79631501fd0c1a752dbe85c12cf1a30421aa61776e6ed8d86e8e3a8a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4e5aabfb854a21fa3ccd1f49",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/slack/setup.mdx",
+        "start_line": 16,
+        "total_lines": 103,
+        "start_char": 633,
+        "end_char": 6174,
+        "evidence_id": "4e5aabfb854a21fa3ccd1f49",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "c22b9ff2d07e8ac12c2a1718a979b4f659d90e4247dca4f530961ea6b587d804",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/slack/setup.mdx",
+              "query": "Head to [**Settings → Integrations**]",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "c22b9ff2d07e8ac12c2a1718a979b4f659d90e4247dca4f530961ea6b587d804",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:645a7d829b17ba50b10d764d",
+        "type": "evidence",
+        "path": "WARP.md",
+        "heading": "WARP.md > Architecture Overview > Key Integrations",
+        "start_line": 44,
+        "end_line": 50,
+        "start_char": 2142,
+        "end_char": 2458,
+        "score": "0.025478740668614087",
+        "root": "docs",
+        "matched_terms": [
+          "integration",
+          "integrations"
+        ],
+        "evidence_id": "645a7d829b17ba50b10d764d",
+        "source_type": "repository",
+        "content_hash": "b3e33541ee5019a919a62059d98d5c46dfce5b43b4eb1b80ab247eacce56344e",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b3e33541ee5019a919a62059d98d5c46dfce5b43b4eb1b80ab247eacce56344e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:676eb907a79ae8337233a740",
+        "type": "evidence",
+        "path": "contents/docs/data-warehouse/sources/posthog.mdx",
+        "heading": "title: Linking PostHog as a data warehouse source > System tables > `system.integrations`",
+        "start_line": 371,
+        "end_line": 388,
+        "start_char": 32389,
+        "end_char": 34042,
+        "score": "0.025603864734299518",
+        "root": "docs",
+        "matched_terms": [
+          "integration",
+          "integrations"
+        ],
+        "evidence_id": "676eb907a79ae8337233a740",
+        "source_type": "repository",
+        "content_hash": "a697afbd984da6b77c23c0f1dd0d808004fc82fd12d94cd569e68b5e2b36e773",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a697afbd984da6b77c23c0f1dd0d808004fc82fd12d94cd569e68b5e2b36e773",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:72cd8b767c27887604501876",
+        "type": "evidence",
+        "path": "contents/docs/integrations/v0.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 26,
+        "score": "0.02074213049822806",
+        "root": "docs",
+        "matched_terms": [
+          "integration"
+        ],
+        "evidence_id": "72cd8b767c27887604501876",
+        "source_type": "repository",
+        "content_hash": "33e2ec130b867429b6b8fae78e7885fbefd8305168e262d9df07f1d8034656cc",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "33e2ec130b867429b6b8fae78e7885fbefd8305168e262d9df07f1d8034656cc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7b0876b498330ecbb9b13d78",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/notion.md",
+        "heading": "sourceId: Notion > Adding a data source",
+        "start_line": 14,
+        "end_line": 34,
+        "start_char": 280,
+        "end_char": 1527,
+        "score": "0.0261986301369863",
+        "root": "docs",
+        "matched_terms": [
+          "integration",
+          "integrations",
+          "page"
+        ],
+        "evidence_id": "7b0876b498330ecbb9b13d78",
+        "source_type": "repository",
+        "content_hash": "b98f85ff97ca4e0fc18ce2e9ecc58fcaf8681bfa8ee1d978f4ff7dfedfc53d4a",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b98f85ff97ca4e0fc18ce2e9ecc58fcaf8681bfa8ee1d978f4ff7dfedfc53d4a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:809617c42e3a638cb4dc491d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/session-replay/integrations.mdx",
+        "start_line": 11,
+        "total_lines": 50,
+        "start_char": 399,
+        "end_char": 2033,
+        "evidence_id": "809617c42e3a638cb4dc491d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "f3214b0bc405cc0ca028c1979d7419e1922b658c10996a9c100349f70154c616",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/session-replay/integrations.mdx",
+              "offset": 10,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/notion.md",
+              "offset": 9,
+              "limit": 120
+            },
+            {
+              "path": "WARP.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f3214b0bc405cc0ca028c1979d7419e1922b658c10996a9c100349f70154c616",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:81c8d035236de5a9f3883a5d",
+        "type": "evidence",
+        "root": "code",
+        "path": "frontend/src/scenes/integrations/definitions/slack.tsx",
+        "start_line": 4,
+        "total_lines": 26,
+        "start_char": 114,
+        "end_char": 1277,
+        "evidence_id": "81c8d035236de5a9f3883a5d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "b2120857d3e571740e552f30ba282aace61bce282284442ab09775abcbf05d9c",
+        "revision": "0fb6ff5bd39f175ff56dcfc4206d8a97813b0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "frontend/src/scenes/integrations/definitions/index.ts",
+              "query": "slug",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/scenes/integrations/definitions/slack.tsx",
+              "query": "slug",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b2120857d3e571740e552f30ba282aace61bce282284442ab09775abcbf05d9c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:890c9de520ce27e03451a990",
+        "type": "evidence",
+        "path": "contents/docs/slack/setup.mdx",
+        "heading": "]",
+        "start_line": 11,
+        "end_line": 32,
+        "start_char": 414,
+        "end_char": 2029,
+        "score": "0.03436759624508406",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "github",
+          "integration",
+          "slack"
+        ],
+        "evidence_id": "890c9de520ce27e03451a990",
+        "source_type": "repository",
+        "content_hash": "c548d10eb9ef3d9f27cf4777bff480b7fa31f515be15d51cb108d8523918c7d0",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c548d10eb9ef3d9f27cf4777bff480b7fa31f515be15d51cb108d8523918c7d0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:92d4290afcf23c753c218f80",
+        "type": "evidence",
+        "path": "contents/docs/session-replay/integrations.mdx",
+        "heading": "enterprise: full > Setting up integrations",
+        "start_line": 15,
+        "end_line": 24,
+        "start_char": 788,
+        "end_char": 1149,
+        "score": "0.026397515527950312",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "integrations"
+        ],
+        "evidence_id": "92d4290afcf23c753c218f80",
+        "source_type": "repository",
+        "content_hash": "635e05f2eb498426492d93767aaf06c07e4804d3da67180655e82607f647bdf7",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "635e05f2eb498426492d93767aaf06c07e4804d3da67180655e82607f647bdf7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:952b2cfc425e79e495df4e83",
+        "type": "evidence",
+        "path": "contents/docs/slack/index.mdx",
+        "heading": "title: PostHog Slack app > Related",
+        "start_line": 75,
+        "end_line": 83,
+        "start_char": 4038,
+        "end_char": 4600,
+        "score": "0.029907178336497708",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "github",
+          "integration",
+          "slack"
+        ],
+        "evidence_id": "952b2cfc425e79e495df4e83",
+        "source_type": "repository",
+        "content_hash": "aba74c85f16ee84d03a780b7e811e2f20dc8f8f7da704d7a279298d0993b76fd",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "aba74c85f16ee84d03a780b7e811e2f20dc8f8f7da704d7a279298d0993b76fd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:993d938611c40bc7340c2f48",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/ai/implementation.md",
+        "heading": "showTitle: true > Future directions > Third-party context integration",
+        "start_line": 123,
+        "end_line": 126,
+        "start_char": 9766,
+        "end_char": 10267,
+        "score": "0.03247857495400906",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "integration",
+          "slack"
+        ],
+        "evidence_id": "993d938611c40bc7340c2f48",
+        "source_type": "repository",
+        "content_hash": "1f3ebd9f1c5d8c8d78ed0c62a547a2227d3cc5556f7fd43d9e51355ea47f7644",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1f3ebd9f1c5d8c8d78ed0c62a547a2227d3cc5556f7fd43d9e51355ea47f7644",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9ea2f666d4a36a18562a839f",
+        "type": "evidence",
+        "evidence_id": "9ea2f666d4a36a18562a839f",
+        "source_type": "implementation",
+        "exported_content_sha256": "a1e717443b9b98dfea0a50105ba91923e500fcef4efdbd03c970706e0e03b58c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a48be4538a24bed4bb9e12e3",
+        "type": "evidence",
+        "path": "contents/tutorials/nextjs-supabase-signup-funnel.mdx",
+        "heading": "date: 2021-10-21 > Build a sign up funnel > Signup flow landing page",
+        "start_line": 153,
+        "end_line": 202,
+        "start_char": 8717,
+        "end_char": 10172,
+        "score": "0.01925139425139425",
+        "root": "docs",
+        "matched_terms": [
+          "landing",
+          "page"
+        ],
+        "evidence_id": "a48be4538a24bed4bb9e12e3",
+        "source_type": "repository",
+        "content_hash": "03ca2e32187a386cf29f7efb1e9ed9a19559237cd595da252caf61e28cd07612",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "03ca2e32187a386cf29f7efb1e9ed9a19559237cd595da252caf61e28cd07612",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:be009ac094ce904859e01be2",
+        "type": "evidence",
+        "evidence_id": "be009ac094ce904859e01be2",
+        "source_type": "task",
+        "exported_content_sha256": "99cebf0c201746ef6fd96030d417bd16ddc706a297dd09235f775f88fbf0151a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c2af6013e6ed23e25209f8d1",
+        "type": "evidence",
+        "path": "contents/docs/integrations/vercel-marketplace.mdx",
+        "heading": "https://res.cloudinary.com/dmukukwp6/image/upload/vercel_icon_svgrepo_com_b7e78b41f9.svg > Installing the integration > Link Existing Account",
+        "start_line": 31,
+        "end_line": 48,
+        "start_char": 1179,
+        "end_char": 2240,
+        "score": "0.020292474531712127",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "integration",
+          "integrations",
+          "page"
+        ],
+        "evidence_id": "c2af6013e6ed23e25209f8d1",
+        "source_type": "repository",
+        "content_hash": "65c88393b7d09495b626478e7b9649e58747b09822fdefd5d581465083be321a",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "65c88393b7d09495b626478e7b9649e58747b09822fdefd5d581465083be321a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c329015923576d592f4e3912",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/support/start-here.mdx",
+        "start_line": 115,
+        "total_lines": 226,
+        "start_char": 3769,
+        "end_char": 7078,
+        "evidence_id": "c329015923576d592f4e3912",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "35a45d05ec31fbc646a2be5c4eb0ced4ebd257510217a3a9bc4679306a52a98b",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/data-warehouse/sources/posthog.mdx",
+              "offset": 366,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/error-tracking/integrations.mdx",
+              "offset": 56,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/support/start-here.mdx",
+              "offset": 114,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "35a45d05ec31fbc646a2be5c4eb0ced4ebd257510217a3a9bc4679306a52a98b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cdd0e6dbed047d0a3eda4014",
+        "type": "evidence",
+        "path": "contents/docs/slack/setup.mdx",
+        "heading": "]",
+        "start_line": 33,
+        "end_line": 57,
+        "start_char": 2029,
+        "end_char": 3732,
+        "score": "0.03131538837874454",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "github",
+          "integration",
+          "slack"
+        ],
+        "evidence_id": "cdd0e6dbed047d0a3eda4014",
+        "source_type": "repository",
+        "content_hash": "b292f06b95272df364464b9ef8c896b684025c12cf2e817d9d8f94bdc017f13a",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b292f06b95272df364464b9ef8c896b684025c12cf2e817d9d8f94bdc017f13a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cf5a3807f6dc8120a3b32b7f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/data-warehouse/sources/posthog.mdx",
+        "start_line": 367,
+        "total_lines": 482,
+        "start_char": 32205,
+        "end_char": 42139,
+        "evidence_id": "cf5a3807f6dc8120a3b32b7f",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "83a53a8428f9af00dc50dedfcf3f681e522ad8a37c7d544abb6e25edfe2b3f94",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/data-warehouse/sources/posthog.mdx",
+              "offset": 366,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/error-tracking/integrations.mdx",
+              "offset": 56,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/support/start-here.mdx",
+              "offset": 114,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "83a53a8428f9af00dc50dedfcf3f681e522ad8a37c7d544abb6e25edfe2b3f94",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d749a1976563aa5b5108243d",
+        "type": "evidence",
+        "path": "contents/docs/libraries/slack.mdx",
+        "heading": "platformLogo: slack > What can you do with this integration?",
+        "start_line": 94,
+        "end_line": 103,
+        "start_char": 3823,
+        "end_char": 4628,
+        "score": "0.030274052348997535",
+        "root": "docs",
+        "matched_terms": [
+          "integration",
+          "slack"
+        ],
+        "evidence_id": "d749a1976563aa5b5108243d",
+        "source_type": "repository",
+        "content_hash": "d131703d353255eb72848cb892b234066f803d169371c1ca331fee3841ea26db",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d131703d353255eb72848cb892b234066f803d169371c1ca331fee3841ea26db",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:db3909aad698a97a2fef91ec",
+        "type": "evidence",
+        "path": "contents/docs/error-tracking/integrations.mdx",
+        "heading": "title: Set up integrations > Jira integration",
+        "start_line": 61,
+        "end_line": 75,
+        "start_char": 2667,
+        "end_char": 3202,
+        "score": "0.04045813341587989",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "integration",
+          "jira"
+        ],
+        "evidence_id": "db3909aad698a97a2fef91ec",
+        "source_type": "repository",
+        "content_hash": "9539b47b9719202633bd4dc892f2959c4f60a05d927777155fabe8a99ca0159f",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9539b47b9719202633bd4dc892f2959c4f60a05d927777155fabe8a99ca0159f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e834661fad0074d029f2b728",
+        "type": "evidence",
+        "path": "contents/docs/support/start-here.mdx",
+        "heading": "contentMaxWidthClass: max-w-5xl > How to enable",
+        "start_line": 70,
+        "end_line": 110,
+        "start_char": 2044,
+        "end_char": 3685,
+        "score": "0.03338492451395677",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "github",
+          "integration",
+          "slack"
+        ],
+        "evidence_id": "e834661fad0074d029f2b728",
+        "source_type": "repository",
+        "content_hash": "36ce33f3f71cb44b581e7ab818fb7be18157cdb2608b33b60a9432c6b7231ff0",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "36ce33f3f71cb44b581e7ab818fb7be18157cdb2608b33b60a9432c6b7231ff0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ea400327ab7916f6798e3a7a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/notion.md",
+        "start_line": 10,
+        "total_lines": 55,
+        "start_char": 149,
+        "end_char": 2713,
+        "evidence_id": "ea400327ab7916f6798e3a7a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "cdebf8a89a55f1a074925264828352342084494f1e9e27fbde61f2083e1a9483",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/session-replay/integrations.mdx",
+              "offset": 10,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/notion.md",
+              "offset": 9,
+              "limit": 120
+            },
+            {
+              "path": "WARP.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cdebf8a89a55f1a074925264828352342084494f1e9e27fbde61f2083e1a9483",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ec69f3c47341d685714ef291",
+        "type": "evidence",
+        "path": "contents/docs/posthog-code/git-github-integration.mdx",
+        "heading": "title: PostHog Git + GitHub integration",
+        "start_line": 2,
+        "end_line": 6,
+        "start_char": 4,
+        "end_char": 223,
+        "score": "0.029831932773109242",
+        "root": "docs",
+        "matched_terms": [
+          "github",
+          "integration"
+        ],
+        "evidence_id": "ec69f3c47341d685714ef291",
+        "source_type": "repository",
+        "content_hash": "f2d291b45aa28901388e790630e72df1af98d5599eceec1f2b3b843e18dd2632",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "slack integration connect",
+            "github integration connect",
+            "linear jira gitlab integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f2d291b45aa28901388e790630e72df1af98d5599eceec1f2b3b843e18dd2632",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ec8123a5a1008219e94c291a",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/tutorials.mdx",
+        "heading": "showTitle: true > Integrations",
+        "start_line": 34,
+        "end_line": 37,
+        "start_char": 1645,
+        "end_char": 1751,
+        "score": "0.025252525252525252",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "integrations"
+        ],
+        "evidence_id": "ec8123a5a1008219e94c291a",
+        "source_type": "repository",
+        "content_hash": "bcf36227aedd3353ff860afb4c5c1f84f951488c23565ce3a1b81b436c1315bb",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "bcf36227aedd3353ff860afb4c5c1f84f951488c23565ce3a1b81b436c1315bb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f76ac79d50d5f36b0368f233",
+        "type": "evidence",
+        "path": "contents/docs/error-tracking/integrations.mdx",
+        "heading": "title: Set up integrations > Linear integration",
+        "start_line": 45,
+        "end_line": 60,
+        "start_char": 2050,
+        "end_char": 2667,
+        "score": "0.021967626655455118",
+        "root": "docs",
+        "matched_terms": [
+          "connect",
+          "integration",
+          "integrations"
+        ],
+        "evidence_id": "f76ac79d50d5f36b0368f233",
+        "source_type": "repository",
+        "content_hash": "443196f65ba1dc9ef076729286f70388e653c7877fc9d185718e9e20d730c94f",
+        "revision": "11d0d1d91117241e26672d9ec44a024bd2ee228f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "integrations landing page",
+            "connect integration url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "443196f65ba1dc9ef076729286f70388e653c7877fc9d185718e9e20d730c94f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:slack-setup-landing",
+        "type": "requirement",
+        "description": "In contents/docs/slack/setup.mdx, the 'Connect Slack to your project' step only points users to Settings → Integrations. Add a note that Slack can also be connected from the shareable landing page at /integrations/slack (the new IntegrationsLanding scene), which shows the logo, description, capabilities, and a single Connect button and flips to a success view after the OAuth round-trip."
+      },
+      {
+        "id": "requirement:replay-integrations-landing",
+        "type": "requirement",
+        "description": "In contents/docs/session-replay/integrations.mdx, the 'Setting up integrations' section says to go to project settings to connect Linear/GitHub/GitLab/Jira. Mention the new per-integration landing pages at /integrations/<slug> (slugs: linear, github, gitlab, jira) as an alternative shareable connect entry point that shows connection status and a connect action."
+      },
+      {
+        "id": "requirement:error-tracking-landing",
+        "type": "requirement",
+        "description": "In contents/docs/error-tracking/integrations.mdx, the Jira (and other) setup steps only reference Error tracking settings. Add that the same integrations can be connected from the shareable /integrations/<slug> landing page, which shows connection status and a connect button."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "contents/docs/slack/setup.mdx",
+        "hash": "534b617b87c5d7e46b315eeca2fe17b8ed1df051c868d03e6be6db2802d1e57f"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "contents/docs/session-replay/integrations.mdx",
+        "hash": "e18d1d6a75690b939257b45e0cefbec2d5799f2742d4bd3ad7f0466853a6734f"
+      },
+      {
+        "id": "edit:2",
+        "type": "edit",
+        "path": "contents/docs/error-tracking/integrations.mdx",
+        "hash": "0289228214ba2283af8ceeb24cbf68d7cfb3072432a7a1a69908df77d829e9e6"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "slack-setup-landing",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/slack/setup.mdx"
+        ],
+        "evidence_ids": [
+          "4e5aabfb854a21fa3ccd1f49",
+          "81c8d035236de5a9f3883a5d",
+          "2aef00b5ed594ed6b3aa7826",
+          "439833ea3369ad34afcae7a9"
+        ],
+        "reason": "In contents/docs/slack/setup.mdx, the 'Connect Slack to your project' step only points users to Settings → Integrations. Add a note that Slack can also be connected from the shareable landing page at /integrations/slack (the new IntegrationsLanding scene), which shows the logo, description, capabilities, and a single Connect button and flips to a success view after the OAuth round-trip."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "replay-integrations-landing",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/session-replay/integrations.mdx"
+        ],
+        "evidence_ids": [
+          "809617c42e3a638cb4dc491d",
+          "2a3cc015ea947bdca983dcc1",
+          "439833ea3369ad34afcae7a9"
+        ],
+        "reason": "In contents/docs/session-replay/integrations.mdx, the 'Setting up integrations' section says to go to project settings to connect Linear/GitHub/GitLab/Jira. Mention the new per-integration landing pages at /integrations/<slug> (slugs: linear, github, gitlab, jira) as an alternative shareable connect entry point that shows connection status and a connect action."
+      },
+      {
+        "id": "coverage:2",
+        "type": "coverage",
+        "requirement_id": "error-tracking-landing",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/error-tracking/integrations.mdx"
+        ],
+        "evidence_ids": [
+          "4c8801c1e2372dbd97d05113",
+          "db3909aad698a97a2fef91ec",
+          "2a3cc015ea947bdca983dcc1"
+        ],
+        "reason": "In contents/docs/error-tracking/integrations.mdx, the Jira (and other) setup steps only reference Error tracking settings. Add that the same integrations can be connected from the shareable /integrations/<slug> landing page, which shows connection status and a connect button."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Do existing docs describe connecting Slack/GitHub/GitLab/Jira/Linear integrations, and do they reference settings paths or URLs that the new /integrations/:slug landing page changes?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is there any docs page describing integration landing pages or shareable connect URLs that would need updating?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What does the new landing scene and route actually expose to users (URL, layout, connect flow)?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the Slack setup doc (contents/docs/slack/setup.mdx) describe the connect flow in a way that should mention the new /integrations/slack landing page as an alternative entry point?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "What slugs and docsUrl values are defined for each integration, and does the landing page expose a shareable URL worth documenting?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Does the urls.ts define an integration(slug) helper and is there any existing docs reference to /integrations/ paths?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:06c28e9495320b16cb2a4874",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0ff9a2d0f267ce8c90bb9b4d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a293df81c02c09a124a0daa",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:290cde9c6f2d3a3531831725",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2a3cc015ea947bdca983dcc1",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2aef00b5ed594ed6b3aa7826",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2b164340cbb66a5505a9365c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:36c91e5d611cfd6aef5cf07d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:439833ea3369ad34afcae7a9",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:482ca50848d465fb277d3844",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4c8801c1e2372dbd97d05113",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e5aabfb854a21fa3ccd1f49",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:645a7d829b17ba50b10d764d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:676eb907a79ae8337233a740",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:676eb907a79ae8337233a740",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:72cd8b767c27887604501876",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7b0876b498330ecbb9b13d78",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:809617c42e3a638cb4dc491d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:81c8d035236de5a9f3883a5d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:890c9de520ce27e03451a990",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:92d4290afcf23c753c218f80",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:92d4290afcf23c753c218f80",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:952b2cfc425e79e495df4e83",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:993d938611c40bc7340c2f48",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a48be4538a24bed4bb9e12e3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c2af6013e6ed23e25209f8d1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c329015923576d592f4e3912",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cdd0e6dbed047d0a3eda4014",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cf5a3807f6dc8120a3b32b7f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d749a1976563aa5b5108243d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:db3909aad698a97a2fef91ec",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e834661fad0074d029f2b728",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ea400327ab7916f6798e3a7a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec69f3c47341d685714ef291",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec8123a5a1008219e94c291a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f76ac79d50d5f36b0368f233",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e5aabfb854a21fa3ccd1f49",
+        "to": "requirement:slack-setup-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:81c8d035236de5a9f3883a5d",
+        "to": "requirement:slack-setup-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:2aef00b5ed594ed6b3aa7826",
+        "to": "requirement:slack-setup-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:439833ea3369ad34afcae7a9",
+        "to": "requirement:slack-setup-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:809617c42e3a638cb4dc491d",
+        "to": "requirement:replay-integrations-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:2a3cc015ea947bdca983dcc1",
+        "to": "requirement:replay-integrations-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:439833ea3369ad34afcae7a9",
+        "to": "requirement:replay-integrations-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:4c8801c1e2372dbd97d05113",
+        "to": "requirement:error-tracking-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:db3909aad698a97a2fef91ec",
+        "to": "requirement:error-tracking-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:2a3cc015ea947bdca983dcc1",
+        "to": "requirement:error-tracking-landing",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:slack-setup-landing",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:4e5aabfb854a21fa3ccd1f49",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:81c8d035236de5a9f3883a5d",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2aef00b5ed594ed6b3aa7826",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:439833ea3369ad34afcae7a9",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:replay-integrations-landing",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:809617c42e3a638cb4dc491d",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2a3cc015ea947bdca983dcc1",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:439833ea3369ad34afcae7a9",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:error-tracking-landing",
+        "to": "edit:2",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:4c8801c1e2372dbd97d05113",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:db3909aad698a97a2fef91ec",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2a3cc015ea947bdca983dcc1",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:slack-setup-landing",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:4e5aabfb854a21fa3ccd1f49",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:81c8d035236de5a9f3883a5d",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2aef00b5ed594ed6b3aa7826",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:439833ea3369ad34afcae7a9",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:replay-integrations-landing",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:809617c42e3a638cb4dc491d",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2a3cc015ea947bdca983dcc1",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:439833ea3369ad34afcae7a9",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:error-tracking-landing",
+        "to": "coverage:2",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:4c8801c1e2372dbd97d05113",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:db3909aad698a97a2fef91ec",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2a3cc015ea947bdca983dcc1",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "587f738c37c7aff1c43c904847716c7c101ae85fa87c7f5f835a0aeabcbac42d"
+}

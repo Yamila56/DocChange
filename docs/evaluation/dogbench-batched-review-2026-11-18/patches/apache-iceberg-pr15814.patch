@@ -1,0 +1,32 @@
+diff --git a/docs/docs/evolution.md b/docs/docs/evolution.md
+index 437234ec3756f8384ee041065528763be3e0c01e..f378ceced43dfe5011b30fde083a9ee026df2a42 100644
+--- a/docs/docs/evolution.md
++++ b/docs/docs/evolution.md
+@@ -36,6 +36,10 @@ Iceberg supports the following schema evolution changes:
+ 
+ Iceberg schema updates are **metadata changes**, so no data files need to be rewritten to perform the update.
+ 
++!!! info
++    When tables are managed through a Hive Metastore catalog, the Hive Metastore (HMS) version can constrain or
++    otherwise affect schema-evolution operations. See the [Hive documentation](hive.md#schema-evolution) for details.
++
+ Note that map keys do not support adding or dropping struct fields that would change equality.
+ 
+ ### Correctness
+diff --git a/docs/docs/hive.md b/docs/docs/hive.md
+index 0531e9b04a15abbdb508e1e03177c0e47ac1d8f8..d712b91b095c24425ed0c4f79b23645f54dc6610 100644
+--- a/docs/docs/hive.md
++++ b/docs/docs/hive.md
+@@ -356,6 +356,12 @@ ALTER TABLE t SET TBLPROPERTIES('...'='...');
+ The Hive table schema is kept in sync with the Iceberg table. If an outside source (Impala/Spark/Java API/etc)
+ changes the schema, the Hive table immediately reflects the changes. You alter the table schema using Hive commands:
+ 
++!!! info
++    Hive Metastore (HMS) compatibility can affect Iceberg schema-evolution operations. Some operations, such as
++    renaming a column, changing a column type, or reordering columns, may be constrained by the HMS version in use.
++    Use a supported HMS version (Hive 2.3.10 or 3.1.3 or later, as described in the
++    [Global Hive catalog](#global-hive-catalog) section) to avoid unexpected limitations.
++
+ * Rename a table
+ ```sql
+ ALTER TABLE orders RENAME TO renamed_orders;

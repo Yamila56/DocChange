@@ -1,0 +1,4333 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "stripe-webhook-initial-sync",
+      "description": "In contents/docs/cdp/sources/stripe.md, clarify in the 'Setting up webhooks for real-time syncing' section that webhook-based real-time ingestion only begins after the first successful sync completes (initial sync), and that a full reset/re-sync temporarily falls back to scheduled syncing until the initial sync completes again. This reflects the new initial_sync_complete gating and reset_pipeline behavior in the webhook S3 ingestion path.",
+      "evidence_ids": [
+        "59fc42c0947c7f395dd45dda",
+        "261a023ac590b3096235f88e",
+        "6843bfb9e419595461008a44"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "sources-webhook-sync-method",
+      "description": "In contents/docs/cdp/sources/index.mdx under the 'Webhook' sync method, note that webhook sync activates only after the table's initial sync has completed and is paused during a full reset, so users understand why real-time updates may not appear immediately after setup.",
+      "evidence_ids": [
+        "218e81424ef2e1ffdd0c7b6c",
+        "261a023ac590b3096235f88e",
+        "6843bfb9e419595461008a44"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "ad3ac76fb05ad8199504bae1a2f82ce543b645a399e03623070a34dee682ba07",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Do existing docs describe data warehouse source sync behavior, initial sync, or webhook-based ingestion that would need updating for initial_sync_complete and webhook S3 path?",
+          "root": "docs",
+          "queries": [
+            "data warehouse source sync initial sync",
+            "webhook source ingestion",
+            "data import pipeline sync"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/onboarding/onboarding-data.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "218e81424ef2e1ffdd0c7b6c",
+            "b734e7cf7a45d11ea82d1d5e",
+            "95575f335db046623ecde7f0",
+            "311d110dcf01bb5dd54eda13",
+            "8e61986a62345ce55d4cee8d",
+            "7f97b98dc8b4d7497baf69bf",
+            "304f91907fe4d7874f79857d",
+            "f1f2e62f425ad4fcad3052a4",
+            "424aa44eddfdde02807fb0e8",
+            "5d2a5fde19d8bf2c53c0459b",
+            "8035f961340ccb25356fc0fd",
+            "5f9cb9cc94bd4973bc00b4a7",
+            "66a18719d7f6b35c02eaeb86",
+            "08d8d8c4ddb5517865a910d6",
+            "18639c6982a83554035d812b"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "evidence_id": "311d110dcf01bb5dd54eda13",
+              "score": "0.037517230135321405"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "evidence_id": "8e61986a62345ce55d4cee8d",
+              "score": "0.03228802447552448"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "evidence_id": "7f97b98dc8b4d7497baf69bf",
+              "score": "0.030886196246139225"
+            },
+            {
+              "rank": 4,
+              "path": "contents/handbook/onboarding/onboarding-data.md",
+              "evidence_id": "304f91907fe4d7874f79857d",
+              "score": "0.03028233151183971"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/cdp/sources/convex.md",
+              "evidence_id": "f1f2e62f425ad4fcad3052a4",
+              "score": "0.029709507042253523"
+            },
+            {
+              "rank": 6,
+              "path": "contents/tutorials/hubspot-reports.md",
+              "evidence_id": "424aa44eddfdde02807fb0e8",
+              "score": "0.02804284323271665"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/data-warehouse/sources/index.mdx",
+              "evidence_id": "5d2a5fde19d8bf2c53c0459b",
+              "score": "0.027833396898042206"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "evidence_id": "8035f961340ccb25356fc0fd",
+              "score": "0.027583600982429624"
+            },
+            {
+              "rank": 9,
+              "path": "contents/tutorials/zendesk-reports.md",
+              "evidence_id": "5f9cb9cc94bd4973bc00b4a7",
+              "score": "0.02749719416386083"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/cdp/sources/google-sheets.md",
+              "evidence_id": "66a18719d7f6b35c02eaeb86",
+              "score": "0.02749266862170088"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/data-warehouse/under-the-hood.md",
+              "evidence_id": "08d8d8c4ddb5517865a910d6",
+              "score": "0.027443609022556388"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "evidence_id": "18639c6982a83554035d812b",
+              "score": "0.027417840375586856"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "start": 48,
+              "end": 109,
+              "total_lines": 109
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "start": 2,
+              "end": 70,
+              "total_lines": 70
+            },
+            {
+              "path": "contents/handbook/onboarding/onboarding-data.md",
+              "start": 39,
+              "end": 87,
+              "total_lines": 87
+            }
+          ],
+          "read_evidence_ids": [
+            "218e81424ef2e1ffdd0c7b6c",
+            "b734e7cf7a45d11ea82d1d5e",
+            "95575f335db046623ecde7f0"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is there user-facing documentation for Stripe source or webhook sources that mentions feature flags or ingestion paths?",
+          "root": "docs",
+          "queries": [
+            "stripe source data warehouse",
+            "webhook source feature flag"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "offset": 49,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/best-open-source-feature-flag-tools.md",
+              "offset": 227,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/best-feature-flag-software-for-developers.mdx",
+              "offset": 235,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "59fc42c0947c7f395dd45dda",
+            "dacf9539a862294f7249dccd",
+            "c9ce92f24ed7963221baf857",
+            "2bc063b0e387e9a59d6171ae",
+            "311d110dcf01bb5dd54eda13",
+            "e916d3e6eaa51c41a6216e1f",
+            "e6191af8b8c978c22203d351",
+            "18639c6982a83554035d812b",
+            "b7e796e286d3f19b4f1429c9",
+            "92690b477ad6a8c2da35760e",
+            "d3d653f0c439524a2c3d9e6a",
+            "00d47dce30e755d8fe9b965f",
+            "d8772fb8720fb0295f801201",
+            "40921a19e598f2582af28966",
+            "fa74077b3eaed43fe6220b90"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "evidence_id": "2bc063b0e387e9a59d6171ae",
+              "score": "0.022233201581027668"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "evidence_id": "311d110dcf01bb5dd54eda13",
+              "score": "0.018005821430988965"
+            },
+            {
+              "rank": 3,
+              "path": "contents/blog/best-open-source-feature-flag-tools.md",
+              "evidence_id": "e916d3e6eaa51c41a6216e1f",
+              "score": "0.017534145441122185"
+            },
+            {
+              "rank": 4,
+              "path": "contents/blog/best-open-source-feature-flag-tools.md",
+              "evidence_id": "e6191af8b8c978c22203d351",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "evidence_id": "18639c6982a83554035d812b",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 6,
+              "path": "contents/blog/best-feature-flag-software-for-developers.mdx",
+              "evidence_id": "b7e796e286d3f19b4f1429c9",
+              "score": "0.016374648496647198"
+            },
+            {
+              "rank": 7,
+              "path": "contents/tutorials/stripe-reports.md",
+              "evidence_id": "92690b477ad6a8c2da35760e",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/sql/index.mdx",
+              "evidence_id": "d3d653f0c439524a2c3d9e6a",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 9,
+              "path": "contents/blog/what-is-a-feature-flag.mdx",
+              "evidence_id": "00d47dce30e755d8fe9b965f",
+              "score": "0.01568627450980392"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/cdp/destinations/webhook.mdx",
+              "evidence_id": "d8772fb8720fb0295f801201",
+              "score": "0.015625"
+            },
+            {
+              "rank": 11,
+              "path": "contents/tutorials/stripe-reports.md",
+              "evidence_id": "40921a19e598f2582af28966",
+              "score": "0.015625"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/revenue-analytics/payment-platforms/stripe.mdx",
+              "evidence_id": "fa74077b3eaed43fe6220b90",
+              "score": "0.015151515151515152"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "start": 49,
+              "end": 64,
+              "total_lines": 64
+            },
+            {
+              "path": "contents/blog/best-open-source-feature-flag-tools.md",
+              "start": 227,
+              "end": 310,
+              "total_lines": 310
+            },
+            {
+              "path": "contents/blog/best-feature-flag-software-for-developers.mdx",
+              "start": 235,
+              "end": 355,
+              "total_lines": 403
+            }
+          ],
+          "read_evidence_ids": [
+            "59fc42c0947c7f395dd45dda",
+            "dacf9539a862294f7249dccd",
+            "c9ce92f24ed7963221baf857"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Does the external data schema model expose initial_sync_complete to any user-facing API or serialized output documented in docs?",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ],
+          "paths": [
+            "products/data_warehouse/backend/models/external_data_schema.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "products/data_warehouse/backend/models/external_data_schema.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "offset": 124,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "74ddc89d3200b6fa7b944a9e",
+            "8f8cdb6cfa07c87114dd0c3f",
+            "68f0199a2c08ebc88b3a5985",
+            "58438c2efc85e3f87248e165",
+            "5d3839420c59efa7505a35cf",
+            "f55558a376fc52b0685a00c9",
+            "5bea01e1dd6cb4dd07f25af5",
+            "406632101fda20ad501241f4",
+            "04c7ba4599277dbecc482e45",
+            "26282515ba5312476af38230",
+            "46e05050d3308695e3be3600",
+            "017cfda9caac67055c0c720e",
+            "b93ca50f14e9bb4dfdbd4860"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "evidence_id": "68f0199a2c08ebc88b3a5985",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 2,
+              "path": "posthog/temporal/data_imports/pipelines/pipeline_v3/pipeline.py",
+              "evidence_id": "58438c2efc85e3f87248e165",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 3,
+              "path": "posthog/temporal/data_imports/pipelines/pipeline_sync.py",
+              "evidence_id": "5d3839420c59efa7505a35cf",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 4,
+              "path": "products/data_warehouse/backend/migrations/0027_externaldataschema_webhook_fields.py",
+              "evidence_id": "f55558a376fc52b0685a00c9",
+              "score": "0.015625"
+            },
+            {
+              "rank": 5,
+              "path": "posthog/temporal/data_imports/pipelines/common/load.py",
+              "evidence_id": "5bea01e1dd6cb4dd07f25af5",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 6,
+              "path": "posthog/temporal/tests/data_imports/test_end_to_end.py",
+              "evidence_id": "406632101fda20ad501241f4",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 7,
+              "path": "posthog/temporal/data_imports/pipelines/pipeline/pipeline.py",
+              "evidence_id": "04c7ba4599277dbecc482e45",
+              "score": "0.014925373134328358"
+            },
+            {
+              "rank": 8,
+              "path": "products/data_warehouse/backend/models/external_data_schema.py",
+              "evidence_id": "26282515ba5312476af38230",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 9,
+              "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+              "evidence_id": "46e05050d3308695e3be3600",
+              "score": "0.014492753623188406"
+            },
+            {
+              "rank": 10,
+              "path": "products/data_warehouse/backend/models/external_data_schema.py",
+              "evidence_id": "017cfda9caac67055c0c720e",
+              "score": "0.014285714285714285"
+            },
+            {
+              "rank": 11,
+              "path": "posthog/temporal/tests/data_imports/test_end_to_end.py",
+              "evidence_id": "b93ca50f14e9bb4dfdbd4860",
+              "score": "0.014084507042253521"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "products/data_warehouse/backend/models/external_data_schema.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 473
+            },
+            {
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "start": 124,
+              "end": 244,
+              "total_lines": 567
+            }
+          ],
+          "read_evidence_ids": [
+            "74ddc89d3200b6fa7b944a9e",
+            "8f8cdb6cfa07c87114dd0c3f"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "00d47dce30e755d8fe9b965f",
+        "017cfda9caac67055c0c720e",
+        "04c7ba4599277dbecc482e45",
+        "08d8d8c4ddb5517865a910d6",
+        "18639c6982a83554035d812b",
+        "218e81424ef2e1ffdd0c7b6c",
+        "26282515ba5312476af38230",
+        "2bc063b0e387e9a59d6171ae",
+        "304f91907fe4d7874f79857d",
+        "311d110dcf01bb5dd54eda13",
+        "406632101fda20ad501241f4",
+        "40921a19e598f2582af28966",
+        "424aa44eddfdde02807fb0e8",
+        "46e05050d3308695e3be3600",
+        "58438c2efc85e3f87248e165",
+        "59fc42c0947c7f395dd45dda",
+        "5bea01e1dd6cb4dd07f25af5",
+        "5d2a5fde19d8bf2c53c0459b",
+        "5d3839420c59efa7505a35cf",
+        "5f9cb9cc94bd4973bc00b4a7",
+        "66a18719d7f6b35c02eaeb86",
+        "68f0199a2c08ebc88b3a5985",
+        "74ddc89d3200b6fa7b944a9e",
+        "7f97b98dc8b4d7497baf69bf",
+        "8035f961340ccb25356fc0fd",
+        "8e61986a62345ce55d4cee8d",
+        "8f8cdb6cfa07c87114dd0c3f",
+        "92690b477ad6a8c2da35760e",
+        "95575f335db046623ecde7f0",
+        "b734e7cf7a45d11ea82d1d5e",
+        "b7e796e286d3f19b4f1429c9",
+        "b93ca50f14e9bb4dfdbd4860",
+        "c9ce92f24ed7963221baf857",
+        "d3d653f0c439524a2c3d9e6a",
+        "d8772fb8720fb0295f801201",
+        "dacf9539a862294f7249dccd",
+        "e6191af8b8c978c22203d351",
+        "e916d3e6eaa51c41a6216e1f",
+        "f1f2e62f425ad4fcad3052a4",
+        "f55558a376fc52b0685a00c9",
+        "fa74077b3eaed43fe6220b90"
+      ],
+      "new_evidence_count": 41,
+      "new_path_count": 26
+    },
+    {
+      "signature": "5976c3a145b03b80d1b8ddd07688307503ae99648a6345157f319b62715afc75",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the Stripe source docs page or webhook docs describe behavior that changes when webhook S3 ingestion is enabled (e.g., initial sync, reset pipeline, real-time updates)?",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ],
+          "paths": [
+            "contents/docs/cdp/sources/stripe.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/workflows/workflow-builder.mdx",
+              "offset": 58,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/destinations/webhook.mdx",
+              "offset": 36,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "10ce53da14578152f2e2ed2a",
+            "e13fafc1c66b2abff85a3cf0",
+            "d70aa717af312ece6a82c818",
+            "311d110dcf01bb5dd54eda13",
+            "2bc063b0e387e9a59d6171ae",
+            "6a09ecf396fe4def447a8b1a",
+            "8e61986a62345ce55d4cee8d",
+            "83150bddd36e9a5f8b3675f4",
+            "d68871681514f4e099f07b30",
+            "d8772fb8720fb0295f801201",
+            "722660f27b14b4f767ba0fcb",
+            "97144d0124c7431db78856f2",
+            "201c28747bd489e5f9eca12f",
+            "40921a19e598f2582af28966",
+            "296fafc4005a98fb83995d0e"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "evidence_id": "311d110dcf01bb5dd54eda13",
+              "score": "0.03252247488101534"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "evidence_id": "2bc063b0e387e9a59d6171ae",
+              "score": "0.032266458495966696"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/workflows/workflow-builder.mdx",
+              "evidence_id": "6a09ecf396fe4def447a8b1a",
+              "score": "0.02728937728937729"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "evidence_id": "8e61986a62345ce55d4cee8d",
+              "score": "0.026263297872340427"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/cdp/destinations/webhook.mdx",
+              "evidence_id": "83150bddd36e9a5f8b3675f4",
+              "score": "0.02564935064935065"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/cdp/sources/incoming-webhooks.mdx",
+              "evidence_id": "d68871681514f4e099f07b30",
+              "score": "0.022917757988475642"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/cdp/destinations/webhook.mdx",
+              "evidence_id": "d8772fb8720fb0295f801201",
+              "score": "0.022189638318670577"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/cdp/destinations/zapier.md",
+              "evidence_id": "722660f27b14b4f767ba0fcb",
+              "score": "0.0210982126405012"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/cdp/sources/incoming-webhooks.mdx",
+              "evidence_id": "97144d0124c7431db78856f2",
+              "score": "0.02108948087431694"
+            },
+            {
+              "rank": 10,
+              "path": "contents/tutorials/next-steps-after-installing.md",
+              "evidence_id": "201c28747bd489e5f9eca12f",
+              "score": "0.021039876624807226"
+            },
+            {
+              "rank": 11,
+              "path": "contents/tutorials/stripe-reports.md",
+              "evidence_id": "40921a19e598f2582af28966",
+              "score": "0.020512820512820513"
+            },
+            {
+              "rank": 12,
+              "path": "contents/tutorials/github-star-tracker.md",
+              "evidence_id": "296fafc4005a98fb83995d0e",
+              "score": "0.02012012012012012"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "start": 0,
+              "end": 64,
+              "total_lines": 64
+            },
+            {
+              "path": "contents/docs/workflows/workflow-builder.mdx",
+              "start": 58,
+              "end": 178,
+              "total_lines": 205
+            },
+            {
+              "path": "contents/docs/cdp/destinations/webhook.mdx",
+              "start": 36,
+              "end": 102,
+              "total_lines": 102
+            }
+          ],
+          "read_evidence_ids": [
+            "10ce53da14578152f2e2ed2a",
+            "e13fafc1c66b2abff85a3cf0",
+            "d70aa717af312ece6a82c818"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is there any user-facing documentation describing the data pipeline sources tab, sync status, or initial sync completion that would need to mention initial_sync_complete?",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ],
+          "paths": [
+            "contents/docs/cdp/sources/index.mdx"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/data-warehouse-launch.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+              "offset": 6,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "52105498bd419d046c7d3289",
+            "65f8a72bad73a9ac78185840",
+            "2b7455458e3cb6312e5c49e5",
+            "304f91907fe4d7874f79857d",
+            "54adc49211f1cb2bd42251b3",
+            "f2613a98da88530b918b0089",
+            "6f0647d82f934e1a40a5f6a1",
+            "18639c6982a83554035d812b",
+            "c5a656e9b13972f777094974",
+            "424aa44eddfdde02807fb0e8",
+            "7f97b98dc8b4d7497baf69bf",
+            "f1f2e62f425ad4fcad3052a4",
+            "5d2a5fde19d8bf2c53c0459b",
+            "27e75bfac868106a9a96193b",
+            "66a18719d7f6b35c02eaeb86"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/handbook/onboarding/onboarding-data.md",
+              "evidence_id": "304f91907fe4d7874f79857d",
+              "score": "0.029877369007803793"
+            },
+            {
+              "rank": 2,
+              "path": "contents/blog/data-warehouse-launch.md",
+              "evidence_id": "54adc49211f1cb2bd42251b3",
+              "score": "0.02946912242686891"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+              "evidence_id": "f2613a98da88530b918b0089",
+              "score": "0.029206349206349208"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "evidence_id": "6f0647d82f934e1a40a5f6a1",
+              "score": "0.0287391216352965"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "evidence_id": "18639c6982a83554035d812b",
+              "score": "0.026881720430107527"
+            },
+            {
+              "rank": 6,
+              "path": "contents/blog/data-warehouse-launch.md",
+              "evidence_id": "c5a656e9b13972f777094974",
+              "score": "0.026041666666666664"
+            },
+            {
+              "rank": 7,
+              "path": "contents/tutorials/hubspot-reports.md",
+              "evidence_id": "424aa44eddfdde02807fb0e8",
+              "score": "0.02538152610441767"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "evidence_id": "7f97b98dc8b4d7497baf69bf",
+              "score": "0.025243000145074714"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/cdp/sources/convex.md",
+              "evidence_id": "f1f2e62f425ad4fcad3052a4",
+              "score": "0.024288588674906582"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/data-warehouse/sources/index.mdx",
+              "evidence_id": "5d2a5fde19d8bf2c53c0459b",
+              "score": "0.02368937482478273"
+            },
+            {
+              "rank": 11,
+              "path": "contents/teams/data-stack/objectives.mdx",
+              "evidence_id": "27e75bfac868106a9a96193b",
+              "score": "0.023391812865497075"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/cdp/sources/google-sheets.md",
+              "evidence_id": "66a18719d7f6b35c02eaeb86",
+              "score": "0.022967329894374847"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "start": 0,
+              "end": 109,
+              "total_lines": 109
+            },
+            {
+              "path": "contents/blog/data-warehouse-launch.md",
+              "start": 0,
+              "end": 39,
+              "total_lines": 39
+            },
+            {
+              "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+              "start": 6,
+              "end": 75,
+              "total_lines": 75
+            }
+          ],
+          "read_evidence_ids": [
+            "52105498bd419d046c7d3289",
+            "65f8a72bad73a9ac78185840",
+            "2b7455458e3cb6312e5c49e5"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Does the webhook_s3 manager expose any user-visible configuration (feature flag, S3 bucket, reset_pipeline) that docs should describe?",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ],
+          "paths": [
+            "posthog/temporal/data_imports/sources/common/webhook_s3.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "offset": 85,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "261a023ac590b3096235f88e",
+            "6843bfb9e419595461008a44",
+            "68f0199a2c08ebc88b3a5985",
+            "a889094cb298f454f0a0f6cd",
+            "2079e78eaadb0c9602ae9f76",
+            "0199385b94b335f33df23fbd",
+            "c4311d6e3c271c91b7636f55",
+            "9fc4b966f6b1ffc454406d0b",
+            "3b8c569eefeed0df2b79852f",
+            "ece7ab59ea5dd1ebf20f161f",
+            "fad59dc7508b1dba60bb9f0d",
+            "4e401d06b0b4a761252e1058",
+            "fa154ecb089e6a2cda4f7a52",
+            "1568ccb5e26fc7ab4bd80921"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "evidence_id": "68f0199a2c08ebc88b3a5985",
+              "score": "0.032266458495966696"
+            },
+            {
+              "rank": 2,
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "evidence_id": "a889094cb298f454f0a0f6cd",
+              "score": "0.027346637102734665"
+            },
+            {
+              "rank": 3,
+              "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+              "evidence_id": "2079e78eaadb0c9602ae9f76",
+              "score": "0.026754075124025514"
+            },
+            {
+              "rank": 4,
+              "path": "posthog/temporal/data_imports/sources/stripe/stripe.py",
+              "evidence_id": "0199385b94b335f33df23fbd",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 5,
+              "path": "posthog/temporal/data_imports/workflow_activities/import_data_sync.py",
+              "evidence_id": "c4311d6e3c271c91b7636f55",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 6,
+              "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+              "evidence_id": "9fc4b966f6b1ffc454406d0b",
+              "score": "0.015625"
+            },
+            {
+              "rank": 7,
+              "path": "posthog/temporal/utils.py",
+              "evidence_id": "3b8c569eefeed0df2b79852f",
+              "score": "0.015625"
+            },
+            {
+              "rank": 8,
+              "path": "posthog/temporal/data_imports/workflow_activities/import_data_sync.py",
+              "evidence_id": "ece7ab59ea5dd1ebf20f161f",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 9,
+              "path": "posthog/temporal/tests/data_imports/test_end_to_end.py",
+              "evidence_id": "fad59dc7508b1dba60bb9f0d",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 10,
+              "path": "posthog/temporal/data_imports/external_data_job.py",
+              "evidence_id": "4e401d06b0b4a761252e1058",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 11,
+              "path": "posthog/temporal/data_imports/pipelines/common/extract.py",
+              "evidence_id": "fa154ecb089e6a2cda4f7a52",
+              "score": "0.014925373134328358"
+            },
+            {
+              "rank": 12,
+              "path": "posthog/temporal/data_imports/sources/stripe/source.py",
+              "evidence_id": "1568ccb5e26fc7ab4bd80921",
+              "score": "0.014925373134328358"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 177
+            },
+            {
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "start": 85,
+              "end": 205,
+              "total_lines": 567
+            }
+          ],
+          "read_evidence_ids": [
+            "261a023ac590b3096235f88e",
+            "6843bfb9e419595461008a44"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0199385b94b335f33df23fbd",
+        "10ce53da14578152f2e2ed2a",
+        "1568ccb5e26fc7ab4bd80921",
+        "201c28747bd489e5f9eca12f",
+        "2079e78eaadb0c9602ae9f76",
+        "261a023ac590b3096235f88e",
+        "27e75bfac868106a9a96193b",
+        "296fafc4005a98fb83995d0e",
+        "2b7455458e3cb6312e5c49e5",
+        "3b8c569eefeed0df2b79852f",
+        "4e401d06b0b4a761252e1058",
+        "52105498bd419d046c7d3289",
+        "54adc49211f1cb2bd42251b3",
+        "65f8a72bad73a9ac78185840",
+        "6843bfb9e419595461008a44",
+        "6a09ecf396fe4def447a8b1a",
+        "6f0647d82f934e1a40a5f6a1",
+        "722660f27b14b4f767ba0fcb",
+        "83150bddd36e9a5f8b3675f4",
+        "97144d0124c7431db78856f2",
+        "9fc4b966f6b1ffc454406d0b",
+        "a889094cb298f454f0a0f6cd",
+        "c4311d6e3c271c91b7636f55",
+        "c5a656e9b13972f777094974",
+        "d68871681514f4e099f07b30",
+        "d70aa717af312ece6a82c818",
+        "e13fafc1c66b2abff85a3cf0",
+        "ece7ab59ea5dd1ebf20f161f",
+        "f2613a98da88530b918b0089",
+        "fa154ecb089e6a2cda4f7a52",
+        "fad59dc7508b1dba60bb9f0d"
+      ],
+      "new_evidence_count": 31,
+      "new_path_count": 14
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "862ebc4341f119601edff6e2e5e7572b74602256",
+    "code": "fe6cda15388ad02072a58b970a4c94de62dbbe73"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:dd6738a4ebb9e2b8": 0,
+    "discover:Q1-2:cc1822e541b6111c": 356,
+    "discover:Q1-3:d4cba628d8f7b242": 0,
+    "discover:Q2-3:80aedb8423107cc0": 0,
+    "discover:Q2-1:0f6690de1279f5fd": 0,
+    "discover:Q2-2:269bc2fe02c8e317": 911
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:d4cba628d8f7b242": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:dd6738a4ebb9e2b8": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 357,
+      "cache_hit": false
+    },
+    "discover:Q1-2:cc1822e541b6111c": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 297,
+      "cache_hit": false
+    },
+    "discover:Q1-3:d4cba628d8f7b242": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 35586,
+      "cache_hit": false
+    },
+    "discover:Q1-1:ac4e3a36bc029c93": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 198,
+      "cache_hit": false
+    },
+    "discover:Q1-3:d7948e0bbcd97f2f": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 220,
+      "cache_hit": false
+    },
+    "discover:Q1-2:0bde0a7d3a2e9b21": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 236,
+      "cache_hit": false
+    },
+    "discover:Q2-3:80aedb8423107cc0": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 416,
+      "cache_hit": false
+    },
+    "discover:Q2-1:0f6690de1279f5fd": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 912,
+      "cache_hit": false
+    },
+    "discover:Q2-2:269bc2fe02c8e317": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 294,
+      "cache_hit": false
+    },
+    "discover:Q2-2:66a0189b5a8be2a0": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 221,
+      "cache_hit": false
+    },
+    "discover:Q2-1:0240db4c3fc2defe": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 250,
+      "cache_hit": false
+    },
+    "discover:Q2-3:a153bb32f152a6e8": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 282,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 1735,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "stripe-webhook-initial-sync",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/cdp/sources/stripe.md"
+      ],
+      "evidence_ids": [
+        "59fc42c0947c7f395dd45dda",
+        "261a023ac590b3096235f88e",
+        "6843bfb9e419595461008a44"
+      ],
+      "reason": "In contents/docs/cdp/sources/stripe.md, clarify in the 'Setting up webhooks for real-time syncing' section that webhook-based real-time ingestion only begins after the first successful sync completes (initial sync), and that a full reset/re-sync temporarily falls back to scheduled syncing until the initial sync completes again. This reflects the new initial_sync_complete gating and reset_pipeline behavior in the webhook S3 ingestion path."
+    },
+    {
+      "requirement_id": "sources-webhook-sync-method",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/cdp/sources/index.mdx"
+      ],
+      "evidence_ids": [
+        "218e81424ef2e1ffdd0c7b6c",
+        "261a023ac590b3096235f88e",
+        "6843bfb9e419595461008a44"
+      ],
+      "reason": "In contents/docs/cdp/sources/index.mdx under the 'Webhook' sync method, note that webhook sync activates only after the table's initial sync has completed and is paused during a full reset, so users understand why real-time updates may not appear immediately after setup."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:00d47dce30e755d8fe9b965f",
+        "type": "evidence",
+        "path": "contents/blog/what-is-a-feature-flag.mdx",
+        "heading": "Feature flags control releases. Remote config changes behavior without deploys. A/B tests measure what works. Here's when to use each, and how PostHog handles all three. > Frequently asked questions",
+        "start_line": 229,
+        "end_line": 251,
+        "start_char": 18881,
+        "end_char": 20549,
+        "score": "0.01568627450980392",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "feature",
+          "flag",
+          "source",
+          "warehouse"
+        ],
+        "evidence_id": "00d47dce30e755d8fe9b965f",
+        "source_type": "repository",
+        "content_hash": "4a83b64d2ff2eed313db6143ed026ef8ffe277eef28174ecd064aeae40c3a2c9",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe source data warehouse",
+            "webhook source feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4a83b64d2ff2eed313db6143ed026ef8ffe277eef28174ecd064aeae40c3a2c9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:017cfda9caac67055c0c720e",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/models/external_data_schema.py",
+        "heading": "",
+        "start_line": 65,
+        "end_line": 114,
+        "start_char": 3247,
+        "end_char": 4806,
+        "score": "0.014285714285714285",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "017cfda9caac67055c0c720e",
+        "source_type": "repository",
+        "content_hash": "e6b3862b5267bd3264a63399f6685c97bc1525f18ccb0041d259d8be5365563b",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "e6b3862b5267bd3264a63399f6685c97bc1525f18ccb0041d259d8be5365563b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0199385b94b335f33df23fbd",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/sources/stripe/stripe.py",
+        "heading": "",
+        "start_line": 232,
+        "end_line": 274,
+        "start_char": 9852,
+        "end_char": 11454,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "webhook_enabled"
+        ],
+        "evidence_id": "0199385b94b335f33df23fbd",
+        "source_type": "repository",
+        "content_hash": "a01adfdfd092f8f69a9a8b12cea466942c152f07426c2f95d075e149664c26fc",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "a01adfdfd092f8f69a9a8b12cea466942c152f07426c2f95d075e149664c26fc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:04c7ba4599277dbecc482e45",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/pipelines/pipeline/pipeline.py",
+        "heading": "shared by logging, DB operations, and S3 writes.",
+        "start_line": 391,
+        "end_line": 423,
+        "start_char": 15560,
+        "end_char": 17177,
+        "score": "0.014925373134328358",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "04c7ba4599277dbecc482e45",
+        "source_type": "repository",
+        "content_hash": "f68ec1149192e3301352222cb317a4ef088e034e7273aebc191cf5662c5d4466",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f68ec1149192e3301352222cb317a4ef088e034e7273aebc191cf5662c5d4466",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:08d8d8c4ddb5517865a910d6",
+        "type": "evidence",
+        "path": "contents/docs/data-warehouse/under-the-hood.md",
+        "heading": "sidebar: Docs > Connectors",
+        "start_line": 8,
+        "end_line": 11,
+        "start_char": 173,
+        "end_char": 556,
+        "score": "0.027443609022556388",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "source",
+          "sync"
+        ],
+        "evidence_id": "08d8d8c4ddb5517865a910d6",
+        "source_type": "repository",
+        "content_hash": "5dee30a52d343edbbd5526b60ef9d743260a76193f9a9f0ce97504fddd262e1f",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data warehouse source sync initial sync",
+            "webhook source ingestion",
+            "data import pipeline sync"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5dee30a52d343edbbd5526b60ef9d743260a76193f9a9f0ce97504fddd262e1f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:10ce53da14578152f2e2ed2a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/stripe.md",
+        "start_line": 1,
+        "total_lines": 64,
+        "start_char": 0,
+        "end_char": 3918,
+        "evidence_id": "10ce53da14578152f2e2ed2a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "c46ef86cba81460558ad10c3dd4bd6b4a43180303c813625f07cfd5169810401",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/workflows/workflow-builder.mdx",
+              "offset": 58,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/destinations/webhook.mdx",
+              "offset": 36,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "c46ef86cba81460558ad10c3dd4bd6b4a43180303c813625f07cfd5169810401",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1568ccb5e26fc7ab4bd80921",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/sources/stripe/source.py",
+        "heading": "The API keys URL will pre-fill the form with the account ID, key name and also all the required permissions.",
+        "start_line": 48,
+        "end_line": 97,
+        "start_char": 1822,
+        "end_char": 3416,
+        "score": "0.014925373134328358",
+        "root": "code",
+        "matched_terms": [
+          "_is_webhook_feature_flag_enabled"
+        ],
+        "evidence_id": "1568ccb5e26fc7ab4bd80921",
+        "source_type": "repository",
+        "content_hash": "0309c41cabaa0c9c1396c990ed05f5331ec28290c384234c5c98e2d220c9c716",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "0309c41cabaa0c9c1396c990ed05f5331ec28290c384234c5c98e2d220c9c716",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:18639c6982a83554035d812b",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/stripe.md",
+        "heading": "sourceId: Stripe > Adding a data source > Option 2: Restricted API key",
+        "start_line": 47,
+        "end_line": 53,
+        "start_char": 2796,
+        "end_char": 3305,
+        "score": "0.026881720430107527",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "pipeline",
+          "sources",
+          "sync",
+          "tab",
+          "warehouse"
+        ],
+        "evidence_id": "18639c6982a83554035d812b",
+        "source_type": "repository",
+        "content_hash": "2baa78c60252a371e46bb8f1ac47f7bbdd2ccf7f8727f9371a6b930519c35a53",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2baa78c60252a371e46bb8f1ac47f7bbdd2ccf7f8727f9371a6b930519c35a53",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:201c28747bd489e5f9eca12f",
+        "type": "evidence",
+        "path": "contents/tutorials/next-steps-after-installing.md",
+        "heading": "- product os > 4. Create subscriptions to important events, actions, and dashboards",
+        "start_line": 145,
+        "end_line": 155,
+        "start_char": 6697,
+        "end_char": 8497,
+        "score": "0.021039876624807226",
+        "root": "docs",
+        "matched_terms": [
+          "webhook"
+        ],
+        "evidence_id": "201c28747bd489e5f9eca12f",
+        "source_type": "repository",
+        "content_hash": "93939e407f48e88fd1dd82051d19874b65c89cb8628449fe7c18b9371c881eef",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "93939e407f48e88fd1dd82051d19874b65c89cb8628449fe7c18b9371c881eef",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2079e78eaadb0c9602ae9f76",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 49,
+        "start_char": 0,
+        "end_char": 1631,
+        "score": "0.026754075124025514",
+        "root": "code",
+        "matched_terms": [
+          "_is_webhook_feature_flag_enabled",
+          "webhook_enabled"
+        ],
+        "evidence_id": "2079e78eaadb0c9602ae9f76",
+        "source_type": "repository",
+        "content_hash": "56db58c2e611a5d60982bec34c5062a703f20625239e82541b45976e0299337c",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "56db58c2e611a5d60982bec34c5062a703f20625239e82541b45976e0299337c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:218e81424ef2e1ffdd0c7b6c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "start_line": 49,
+        "total_lines": 109,
+        "start_char": 1812,
+        "end_char": 5216,
+        "evidence_id": "218e81424ef2e1ffdd0c7b6c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9fdecdd50dfbf93a88f8e4e22ca063b674d3d65a8bb1fc8aaf8672d0ac434451",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/onboarding/onboarding-data.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9fdecdd50dfbf93a88f8e4e22ca063b674d3d65a8bb1fc8aaf8672d0ac434451",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:261a023ac590b3096235f88e",
+        "type": "evidence",
+        "root": "code",
+        "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+        "start_line": 1,
+        "total_lines": 177,
+        "start_char": 0,
+        "end_char": 4338,
+        "evidence_id": "261a023ac590b3096235f88e",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "a4e306049f766acc4d6e1656e6ce7402143a4868db00e8d60d6356d124ce22a5",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "offset": 85,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "a4e306049f766acc4d6e1656e6ce7402143a4868db00e8d60d6356d124ce22a5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:26282515ba5312476af38230",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/models/external_data_schema.py",
+        "heading": "",
+        "start_line": 215,
+        "end_line": 251,
+        "start_char": 7901,
+        "end_char": 9562,
+        "score": "0.014705882352941176",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "26282515ba5312476af38230",
+        "source_type": "repository",
+        "content_hash": "d5e2506a38ac59794d1e96fb08e264fef2446c68d91e9c99ea40a74f9833b3e4",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d5e2506a38ac59794d1e96fb08e264fef2446c68d91e9c99ea40a74f9833b3e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:27e75bfac868106a9a96193b",
+        "type": "evidence",
+        "path": "contents/teams/data-stack/objectives.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 19,
+        "start_char": 0,
+        "end_char": 555,
+        "score": "0.023391812865497075",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "initial",
+          "pipeline",
+          "sources",
+          "sync",
+          "warehouse"
+        ],
+        "evidence_id": "27e75bfac868106a9a96193b",
+        "source_type": "repository",
+        "content_hash": "1b8da9adfdd4a3643a3f4c5b9af799cd0203bef80a6bd61be5371d0792bc0e63",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "1b8da9adfdd4a3643a3f4c5b9af799cd0203bef80a6bd61be5371d0792bc0e63",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:296fafc4005a98fb83995d0e",
+        "type": "evidence",
+        "path": "contents/tutorials/github-star-tracker.md",
+        "heading": "- events > Setting up your webhook in GitHub",
+        "start_line": 23,
+        "end_line": 44,
+        "start_char": 1551,
+        "end_char": 2765,
+        "score": "0.02012012012012012",
+        "root": "docs",
+        "matched_terms": [
+          "webhook"
+        ],
+        "evidence_id": "296fafc4005a98fb83995d0e",
+        "source_type": "repository",
+        "content_hash": "4cafac7b728a0f8754690ad529cdd7aff7cf1a0386f8d206b4981b24fd3c2b0a",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "4cafac7b728a0f8754690ad529cdd7aff7cf1a0386f8d206b4981b24fd3c2b0a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2b7455458e3cb6312e5c49e5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+        "start_line": 7,
+        "total_lines": 75,
+        "start_char": 173,
+        "end_char": 3473,
+        "evidence_id": "2b7455458e3cb6312e5c49e5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "0fc8d52f5a2125060f029744a2cdac8add39416170680948c08603748794c33a",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/data-warehouse-launch.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+              "offset": 6,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0fc8d52f5a2125060f029744a2cdac8add39416170680948c08603748794c33a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2bc063b0e387e9a59d6171ae",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/stripe.md",
+        "heading": "sourceId: Stripe > Setting up webhooks for real-time syncing",
+        "start_line": 54,
+        "end_line": 64,
+        "start_char": 3305,
+        "end_char": 3918,
+        "score": "0.032266458495966696",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline",
+          "real",
+          "source",
+          "stripe",
+          "syncing",
+          "time",
+          "webhook"
+        ],
+        "evidence_id": "2bc063b0e387e9a59d6171ae",
+        "source_type": "repository",
+        "content_hash": "1a2b2a5450dc2d7aeb88c1a46c536e88ca86a90dbab8150c5b5fa4316c0c3724",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "1a2b2a5450dc2d7aeb88c1a46c536e88ca86a90dbab8150c5b5fa4316c0c3724",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:304f91907fe4d7874f79857d",
+        "type": "evidence",
+        "path": "contents/handbook/onboarding/onboarding-data.md",
+        "heading": "showTitle: true > Vitally integration > Data sync pipeline",
+        "start_line": 44,
+        "end_line": 55,
+        "start_char": 1268,
+        "end_char": 2091,
+        "score": "0.029877369007803793",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "pipeline",
+          "sync",
+          "warehouse"
+        ],
+        "evidence_id": "304f91907fe4d7874f79857d",
+        "source_type": "repository",
+        "content_hash": "1f903e4b8ed6c95e50e559232911e0b9ac7f640fc4b21582402043564e263c97",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "1f903e4b8ed6c95e50e559232911e0b9ac7f640fc4b21582402043564e263c97",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:311d110dcf01bb5dd54eda13",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "heading": "enterprise: full > Sync methods > Webhook",
+        "start_line": 53,
+        "end_line": 58,
+        "start_char": 2013,
+        "end_char": 2340,
+        "score": "0.03252247488101534",
+        "root": "docs",
+        "matched_terms": [
+          "source",
+          "stripe",
+          "sync",
+          "webhook"
+        ],
+        "evidence_id": "311d110dcf01bb5dd54eda13",
+        "source_type": "repository",
+        "content_hash": "150398a9a4452244fa7eab88462776acd529f6aba30ded32b1f57550df76ecee",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "150398a9a4452244fa7eab88462776acd529f6aba30ded32b1f57550df76ecee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3b8c569eefeed0df2b79852f",
+        "type": "evidence",
+        "path": "posthog/temporal/utils.py",
+        "heading": "Dataclass living here to avoid circular reference",
+        "start_line": 7,
+        "end_line": 39,
+        "start_char": 75,
+        "end_char": 1049,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "reset_pipeline"
+        ],
+        "evidence_id": "3b8c569eefeed0df2b79852f",
+        "source_type": "repository",
+        "content_hash": "137aae4023d5988d3ce1e6eba9c484c353e1cfad7e1ff550fe5c81ee2b4db4cd",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "137aae4023d5988d3ce1e6eba9c484c353e1cfad7e1ff550fe5c81ee2b4db4cd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3c1ff4dc312967909b488b95",
+        "type": "evidence",
+        "evidence_id": "3c1ff4dc312967909b488b95",
+        "source_type": "task",
+        "exported_content_sha256": "08454137d37d24969966c8a9ecac7b51c4b6535b9df00ea6320eaddbd1c70ea4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:406632101fda20ad501241f4",
+        "type": "evidence",
+        "path": "posthog/temporal/tests/data_imports/test_end_to_end.py",
+        "heading": "",
+        "start_line": 3327,
+        "end_line": 3369,
+        "start_char": 127467,
+        "end_char": 129070,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "406632101fda20ad501241f4",
+        "source_type": "repository",
+        "content_hash": "463c7ce4ac9f728bbfc4151d4c1da06bb60fff714e2310c6f270212e45b87553",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "463c7ce4ac9f728bbfc4151d4c1da06bb60fff714e2310c6f270212e45b87553",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:40921a19e598f2582af28966",
+        "type": "evidence",
+        "path": "contents/tutorials/stripe-reports.md",
+        "heading": "- data warehouse > Linking Stripe data to PostHog",
+        "start_line": 14,
+        "end_line": 34,
+        "start_char": 416,
+        "end_char": 1821,
+        "score": "0.020512820512820513",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline",
+          "source",
+          "stripe",
+          "sync"
+        ],
+        "evidence_id": "40921a19e598f2582af28966",
+        "source_type": "repository",
+        "content_hash": "1c8bdd2a25ab751db471bf3df49af18048effe1bcbf28f101b379687af7960e0",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "1c8bdd2a25ab751db471bf3df49af18048effe1bcbf28f101b379687af7960e0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:424aa44eddfdde02807fb0e8",
+        "type": "evidence",
+        "path": "contents/tutorials/hubspot-reports.md",
+        "heading": "- data warehouse > Linking Hubspot data to PostHog",
+        "start_line": 14,
+        "end_line": 34,
+        "start_char": 453,
+        "end_char": 1604,
+        "score": "0.02538152610441767",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "pipeline",
+          "sources",
+          "sync",
+          "tab",
+          "warehouse"
+        ],
+        "evidence_id": "424aa44eddfdde02807fb0e8",
+        "source_type": "repository",
+        "content_hash": "c7504be5066b809d85b86ac70c27ac2457b2505ff81f678d6ee02f99e1c03e09",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c7504be5066b809d85b86ac70c27ac2457b2505ff81f678d6ee02f99e1c03e09",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:46e05050d3308695e3be3600",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+        "heading": "",
+        "start_line": 50,
+        "end_line": 91,
+        "start_char": 1631,
+        "end_char": 3267,
+        "score": "0.014492753623188406",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "46e05050d3308695e3be3600",
+        "source_type": "repository",
+        "content_hash": "ef407bb923cc89c13100d9ea5a73e90cb121a2c5755ae5cc86382c998b87e700",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ef407bb923cc89c13100d9ea5a73e90cb121a2c5755ae5cc86382c998b87e700",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4e401d06b0b4a761252e1058",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/external_data_job.py",
+        "heading": "TODO: update retry policies",
+        "start_line": 285,
+        "end_line": 319,
+        "start_char": 11208,
+        "end_char": 12811,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "reset_pipeline"
+        ],
+        "evidence_id": "4e401d06b0b4a761252e1058",
+        "source_type": "repository",
+        "content_hash": "e62105038289e06c777f8956cc8a6bd9cd33f0d1c454f646e63d2ac5130e618f",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "e62105038289e06c777f8956cc8a6bd9cd33f0d1c454f646e63d2ac5130e618f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:52105498bd419d046c7d3289",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "start_line": 1,
+        "total_lines": 109,
+        "start_char": 0,
+        "end_char": 5216,
+        "evidence_id": "52105498bd419d046c7d3289",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d4adaf3695e72fb9d00e34842456beb560002e000f74b794af0580c02c4b9f98",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/data-warehouse-launch.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+              "offset": 6,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d4adaf3695e72fb9d00e34842456beb560002e000f74b794af0580c02c4b9f98",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:54adc49211f1cb2bd42251b3",
+        "type": "evidence",
+        "path": "contents/blog/data-warehouse-launch.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 9,
+        "start_char": 0,
+        "end_char": 238,
+        "score": "0.02946912242686891",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "sources",
+          "sync"
+        ],
+        "evidence_id": "54adc49211f1cb2bd42251b3",
+        "source_type": "repository",
+        "content_hash": "4b0173077ef939205e93ad28132236d2f0ae1835e35af71236c5dfda9c87e617",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4b0173077ef939205e93ad28132236d2f0ae1835e35af71236c5dfda9c87e617",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:58438c2efc85e3f87248e165",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/pipelines/pipeline_v3/pipeline.py",
+        "heading": "",
+        "start_line": 355,
+        "end_line": 376,
+        "start_char": 14614,
+        "end_char": 15505,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "58438c2efc85e3f87248e165",
+        "source_type": "repository",
+        "content_hash": "6b65494a313070458c005ea0cec6aa60699afcbbef94bf9369e80f2ec187b5a8",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6b65494a313070458c005ea0cec6aa60699afcbbef94bf9369e80f2ec187b5a8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:59fc42c0947c7f395dd45dda",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/stripe.md",
+        "start_line": 50,
+        "total_lines": 64,
+        "start_char": 2865,
+        "end_char": 3918,
+        "evidence_id": "59fc42c0947c7f395dd45dda",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8555188585c7ccca52aa9efab39dd18a738d271e762953f9b77b516fb8143d85",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "offset": 49,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/best-open-source-feature-flag-tools.md",
+              "offset": 227,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/best-feature-flag-software-for-developers.mdx",
+              "offset": 235,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8555188585c7ccca52aa9efab39dd18a738d271e762953f9b77b516fb8143d85",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5bea01e1dd6cb4dd07f25af5",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/pipelines/common/load.py",
+        "heading": "",
+        "start_line": 156,
+        "end_line": 190,
+        "start_char": 6471,
+        "end_char": 8075,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "5bea01e1dd6cb4dd07f25af5",
+        "source_type": "repository",
+        "content_hash": "8e87009aec84bedc0339fe0b4851cf07d1995156a6adc4c5ce70d50b0e3ee9e5",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8e87009aec84bedc0339fe0b4851cf07d1995156a6adc4c5ce70d50b0e3ee9e5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5d2a5fde19d8bf2c53c0459b",
+        "type": "evidence",
+        "path": "contents/docs/data-warehouse/sources/index.mdx",
+        "heading": "title: Data warehouse sources > Self-hosted sources",
+        "start_line": 17,
+        "end_line": 23,
+        "start_char": 563,
+        "end_char": 963,
+        "score": "0.02368937482478273",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "pipeline",
+          "sources",
+          "sync"
+        ],
+        "evidence_id": "5d2a5fde19d8bf2c53c0459b",
+        "source_type": "repository",
+        "content_hash": "4099e9e2db64f80339b6a05aa8550ede1a4b59a04ed09ab3b1c2d4190047e17e",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4099e9e2db64f80339b6a05aa8550ede1a4b59a04ed09ab3b1c2d4190047e17e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5d3839420c59efa7505a35cf",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/pipelines/pipeline_sync.py",
+        "heading": "",
+        "start_line": 46,
+        "end_line": 95,
+        "start_char": 1628,
+        "end_char": 3194,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "5d3839420c59efa7505a35cf",
+        "source_type": "repository",
+        "content_hash": "3da8c73049816f1b52f21c5ed4657e1baa69d26e4ba9eda225a33d7df841992c",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "3da8c73049816f1b52f21c5ed4657e1baa69d26e4ba9eda225a33d7df841992c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5f9cb9cc94bd4973bc00b4a7",
+        "type": "evidence",
+        "path": "contents/tutorials/zendesk-reports.md",
+        "heading": "- data warehouse > Linking Zendesk data to PostHog",
+        "start_line": 14,
+        "end_line": 33,
+        "start_char": 368,
+        "end_char": 1676,
+        "score": "0.02749719416386083",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "import",
+          "pipeline",
+          "source",
+          "sync",
+          "warehouse"
+        ],
+        "evidence_id": "5f9cb9cc94bd4973bc00b4a7",
+        "source_type": "repository",
+        "content_hash": "5184bbb1516eb04da9c42352aac7d15379ab901241d7e3b1f378b0292ca66c47",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data warehouse source sync initial sync",
+            "webhook source ingestion",
+            "data import pipeline sync"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5184bbb1516eb04da9c42352aac7d15379ab901241d7e3b1f378b0292ca66c47",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:65f8a72bad73a9ac78185840",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/blog/data-warehouse-launch.md",
+        "start_line": 1,
+        "total_lines": 39,
+        "start_char": 0,
+        "end_char": 3015,
+        "evidence_id": "65f8a72bad73a9ac78185840",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "614147bbee21c12c1769df2f9dc1ebb4b6923063c913991f047c8eda9ba95363",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/data-warehouse-launch.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+              "offset": 6,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "614147bbee21c12c1769df2f9dc1ebb4b6923063c913991f047c8eda9ba95363",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:66a18719d7f6b35c02eaeb86",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/google-sheets.md",
+        "heading": "sourceId: GoogleSheets > Syncing a worksheet > Configuring PostHog",
+        "start_line": 32,
+        "end_line": 44,
+        "start_char": 1092,
+        "end_char": 1613,
+        "score": "0.022967329894374847",
+        "root": "docs",
+        "matched_terms": [
+          "complete",
+          "data",
+          "pipeline",
+          "sources",
+          "sync",
+          "tab"
+        ],
+        "evidence_id": "66a18719d7f6b35c02eaeb86",
+        "source_type": "repository",
+        "content_hash": "d7023ef04f54b01b455bb0549d18622fd721854865235614d9bf5373d5c95fe5",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d7023ef04f54b01b455bb0549d18622fd721854865235614d9bf5373d5c95fe5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6843bfb9e419595461008a44",
+        "type": "evidence",
+        "root": "code",
+        "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+        "start_line": 86,
+        "total_lines": 567,
+        "start_char": 2865,
+        "end_char": 7158,
+        "evidence_id": "6843bfb9e419595461008a44",
+        "truncated": false,
+        "next_offset": 205,
+        "source_type": "repository",
+        "content_hash": "9263bc09ae4e77639584ea311bf9276fb2b6d08384120bf506cb96ae1943367c",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "offset": 85,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "9263bc09ae4e77639584ea311bf9276fb2b6d08384120bf506cb96ae1943367c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:68f0199a2c08ebc88b3a5985",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+        "heading": "",
+        "start_line": 129,
+        "end_line": 175,
+        "start_char": 4659,
+        "end_char": 6278,
+        "score": "0.032266458495966696",
+        "root": "code",
+        "matched_terms": [
+          "_is_webhook_feature_flag_enabled",
+          "reset_pipeline",
+          "webhook_enabled"
+        ],
+        "evidence_id": "68f0199a2c08ebc88b3a5985",
+        "source_type": "repository",
+        "content_hash": "2719d51a75f484accd1f1a8d2b1f4e579002493327bf67dce2e00d2c1e4ce3cc",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "2719d51a75f484accd1f1a8d2b1f4e579002493327bf67dce2e00d2c1e4ce3cc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6a09ecf396fe4def447a8b1a",
+        "type": "evidence",
+        "path": "contents/docs/workflows/workflow-builder.mdx",
+        "heading": "title: Workflow builder > Triggers > Webhook triggers",
+        "start_line": 63,
+        "end_line": 75,
+        "start_char": 4742,
+        "end_char": 5596,
+        "score": "0.02728937728937729",
+        "root": "docs",
+        "matched_terms": [
+          "webhook"
+        ],
+        "evidence_id": "6a09ecf396fe4def447a8b1a",
+        "source_type": "repository",
+        "content_hash": "2ce28e32a05e3c13f14f28aa4bb05d841ab33d4b579651bded0a74b94142002c",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "2ce28e32a05e3c13f14f28aa4bb05d841ab33d4b579651bded0a74b94142002c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6f0647d82f934e1a40a5f6a1",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "heading": "enterprise: full > Syncing",
+        "start_line": 89,
+        "end_line": 109,
+        "start_char": 4257,
+        "end_char": 5216,
+        "score": "0.0287391216352965",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "sources",
+          "status",
+          "sync"
+        ],
+        "evidence_id": "6f0647d82f934e1a40a5f6a1",
+        "source_type": "repository",
+        "content_hash": "df8ef9ac1780bc496faa155e0f96d1b0a57a6d9a25f94409a7955d32204bbdb7",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "df8ef9ac1780bc496faa155e0f96d1b0a57a6d9a25f94409a7955d32204bbdb7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:722660f27b14b4f767ba0fcb",
+        "type": "evidence",
+        "path": "contents/docs/cdp/destinations/zapier.md",
+        "heading": "- template-zapier > Installation > Option 2: Via PostHog's Data pipelines",
+        "start_line": 28,
+        "end_line": 37,
+        "start_char": 1063,
+        "end_char": 1658,
+        "score": "0.0210982126405012",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline",
+          "webhook"
+        ],
+        "evidence_id": "722660f27b14b4f767ba0fcb",
+        "source_type": "repository",
+        "content_hash": "bbdb0e97240613c73f4e9312fa3df188df53d65d27dff1c6a242e8916bfb5c6b",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "bbdb0e97240613c73f4e9312fa3df188df53d65d27dff1c6a242e8916bfb5c6b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:74ddc89d3200b6fa7b944a9e",
+        "type": "evidence",
+        "root": "code",
+        "path": "products/data_warehouse/backend/models/external_data_schema.py",
+        "start_line": 1,
+        "total_lines": 473,
+        "start_char": 0,
+        "end_char": 5024,
+        "evidence_id": "74ddc89d3200b6fa7b944a9e",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "c825043726b467ad334e5c47f0216097cb3f2c1cb6e5e94207cc232c17b48bbc",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/data_warehouse/backend/models/external_data_schema.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "offset": 124,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c825043726b467ad334e5c47f0216097cb3f2c1cb6e5e94207cc232c17b48bbc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f97b98dc8b4d7497baf69bf",
+        "type": "evidence",
+        "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+        "heading": "showTitle: true > Use incremental or append only sync",
+        "start_line": 7,
+        "end_line": 14,
+        "start_char": 75,
+        "end_char": 582,
+        "score": "0.025243000145074714",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "sources",
+          "sync",
+          "warehouse"
+        ],
+        "evidence_id": "7f97b98dc8b4d7497baf69bf",
+        "source_type": "repository",
+        "content_hash": "7983eb1494fa65f03a53b1a296f4e549d85e4ffb321013f4fd06e26b03baebba",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "7983eb1494fa65f03a53b1a296f4e549d85e4ffb321013f4fd06e26b03baebba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8035f961340ccb25356fc0fd",
+        "type": "evidence",
+        "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+        "heading": "showTitle: true > Sync less frequently",
+        "start_line": 15,
+        "end_line": 20,
+        "start_char": 582,
+        "end_char": 940,
+        "score": "0.027583600982429624",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "sync"
+        ],
+        "evidence_id": "8035f961340ccb25356fc0fd",
+        "source_type": "repository",
+        "content_hash": "d39eeeb0c6e58a8c5b3e3825fffab3d5679edb9f76d86d75d477d7ee04eb3d73",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data warehouse source sync initial sync",
+            "webhook source ingestion",
+            "data import pipeline sync"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d39eeeb0c6e58a8c5b3e3825fffab3d5679edb9f76d86d75d477d7ee04eb3d73",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83150bddd36e9a5f8b3675f4",
+        "type": "evidence",
+        "path": "contents/docs/cdp/destinations/webhook.mdx",
+        "heading": "- template-webhook > Setting up destination webhooks > 2. Configure the webhook",
+        "start_line": 41,
+        "end_line": 58,
+        "start_char": 1497,
+        "end_char": 2143,
+        "score": "0.02564935064935065",
+        "root": "docs",
+        "matched_terms": [
+          "webhook"
+        ],
+        "evidence_id": "83150bddd36e9a5f8b3675f4",
+        "source_type": "repository",
+        "content_hash": "43084baf5669a0c0cc689ae546160d8d160f6abf7da3b57a132a3203c3085c29",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "43084baf5669a0c0cc689ae546160d8d160f6abf7da3b57a132a3203c3085c29",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8e61986a62345ce55d4cee8d",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "heading": "enterprise: full > Sync methods",
+        "start_line": 49,
+        "end_line": 52,
+        "start_char": 1812,
+        "end_char": 2013,
+        "score": "0.026263297872340427",
+        "root": "docs",
+        "matched_terms": [
+          "real",
+          "source",
+          "sync",
+          "time",
+          "webhook"
+        ],
+        "evidence_id": "8e61986a62345ce55d4cee8d",
+        "source_type": "repository",
+        "content_hash": "39f46aadbd2dc3d92eb85809f8a0531ec67a3f1bbc437eaa52e5f39b1c15b636",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "39f46aadbd2dc3d92eb85809f8a0531ec67a3f1bbc437eaa52e5f39b1c15b636",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8f8cdb6cfa07c87114dd0c3f",
+        "type": "evidence",
+        "root": "code",
+        "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+        "start_line": 125,
+        "total_lines": 567,
+        "start_char": 4529,
+        "end_char": 8489,
+        "evidence_id": "8f8cdb6cfa07c87114dd0c3f",
+        "truncated": false,
+        "next_offset": 244,
+        "source_type": "repository",
+        "content_hash": "720be79dee6cde557ae5b5dd2f4d7ab84996ed588fbc184db359705105aa5bbc",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/data_warehouse/backend/models/external_data_schema.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+              "offset": 124,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "720be79dee6cde557ae5b5dd2f4d7ab84996ed588fbc184db359705105aa5bbc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:92690b477ad6a8c2da35760e",
+        "type": "evidence",
+        "path": "contents/tutorials/stripe-reports.md",
+        "heading": "- data warehouse",
+        "start_line": 7,
+        "end_line": 13,
+        "start_char": 86,
+        "end_char": 416,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "stripe",
+          "warehouse"
+        ],
+        "evidence_id": "92690b477ad6a8c2da35760e",
+        "source_type": "repository",
+        "content_hash": "0bf6c2e1ef35afb950c35bf5ba42406a25d690b3d8c5411a77ab2129223f7930",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe source data warehouse",
+            "webhook source feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0bf6c2e1ef35afb950c35bf5ba42406a25d690b3d8c5411a77ab2129223f7930",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:95575f335db046623ecde7f0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/handbook/onboarding/onboarding-data.md",
+        "start_line": 40,
+        "total_lines": 87,
+        "start_char": 1176,
+        "end_char": 3439,
+        "evidence_id": "95575f335db046623ecde7f0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "27926dcb2f9386c641f017ed32bb5afa963cbf5aa1c42dc792b2bfbf57c1a02c",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/onboarding/onboarding-data.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "27926dcb2f9386c641f017ed32bb5afa963cbf5aa1c42dc792b2bfbf57c1a02c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:97144d0124c7431db78856f2",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/incoming-webhooks.mdx",
+        "heading": "enterprise: full > How it works",
+        "start_line": 22,
+        "end_line": 25,
+        "start_char": 1173,
+        "end_char": 1499,
+        "score": "0.02108948087431694",
+        "root": "docs",
+        "matched_terms": [
+          "source",
+          "webhook"
+        ],
+        "evidence_id": "97144d0124c7431db78856f2",
+        "source_type": "repository",
+        "content_hash": "0948b03ba4ed1ab72fa9ad9f2efba6532fd9666d6c1c1e8d27233dc74090ed77",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "0948b03ba4ed1ab72fa9ad9f2efba6532fd9666d6c1c1e8d27233dc74090ed77",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9fc4b966f6b1ffc454406d0b",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/sources/common/webhook_s3.py",
+        "heading": "",
+        "start_line": 134,
+        "end_line": 177,
+        "start_char": 4901,
+        "end_char": 6456,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "_is_webhook_feature_flag_enabled"
+        ],
+        "evidence_id": "9fc4b966f6b1ffc454406d0b",
+        "source_type": "repository",
+        "content_hash": "dbd1614950400270967505d99ec8da6c4e7e31587f665313047e6a1e878b6b2b",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "dbd1614950400270967505d99ec8da6c4e7e31587f665313047e6a1e878b6b2b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a889094cb298f454f0a0f6cd",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/sources/common/test/test_webhook_s3.py",
+        "heading": "",
+        "start_line": 90,
+        "end_line": 128,
+        "start_char": 3031,
+        "end_char": 4659,
+        "score": "0.027346637102734665",
+        "root": "code",
+        "matched_terms": [
+          "_is_webhook_feature_flag_enabled",
+          "webhook_enabled"
+        ],
+        "evidence_id": "a889094cb298f454f0a0f6cd",
+        "source_type": "repository",
+        "content_hash": "0b5eaff615a6dbaca8dfcc495d00d61150e7281c0b698538f37a26d628d8fe48",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "0b5eaff615a6dbaca8dfcc495d00d61150e7281c0b698538f37a26d628d8fe48",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b734e7cf7a45d11ea82d1d5e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+        "start_line": 3,
+        "total_lines": 70,
+        "start_char": 40,
+        "end_char": 3234,
+        "evidence_id": "b734e7cf7a45d11ea82d1d5e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "c2276bd2cd821e1ec326b9e4735aad3824b238654dc9afb2d30b240099a39e8f",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/onboarding/onboarding-data.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c2276bd2cd821e1ec326b9e4735aad3824b238654dc9afb2d30b240099a39e8f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b7e796e286d3f19b4f1429c9",
+        "type": "evidence",
+        "path": "contents/blog/best-feature-flag-software-for-developers.mdx",
+        "heading": "metaDescription: 'Compare the best feature flag tools for developers. See how PostHog, LaunchDarkly, GrowthBook, Unleash, Flagsmith, Statsig, and DevCycle stack up.' > Which feature flag tool should you choose?",
+        "start_line": 240,
+        "end_line": 249,
+        "start_char": 15065,
+        "end_char": 15750,
+        "score": "0.016374648496647198",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "feature",
+          "flag",
+          "source",
+          "warehouse"
+        ],
+        "evidence_id": "b7e796e286d3f19b4f1429c9",
+        "source_type": "repository",
+        "content_hash": "c1f8205f1d8820d8d03c6fcb826023eea4e5e37ada20b76f6900ad41cc3b7e01",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe source data warehouse",
+            "webhook source feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c1f8205f1d8820d8d03c6fcb826023eea4e5e37ada20b76f6900ad41cc3b7e01",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b93ca50f14e9bb4dfdbd4860",
+        "type": "evidence",
+        "path": "posthog/temporal/tests/data_imports/test_end_to_end.py",
+        "heading": "",
+        "start_line": 309,
+        "end_line": 347,
+        "start_char": 12539,
+        "end_char": 14158,
+        "score": "0.014084507042253521",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "b93ca50f14e9bb4dfdbd4860",
+        "source_type": "repository",
+        "content_hash": "3aa22c374aa4a4c6d748dd590743b015e0dd9340f0182d4818d1524b60201d08",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "3aa22c374aa4a4c6d748dd590743b015e0dd9340f0182d4818d1524b60201d08",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c4311d6e3c271c91b7636f55",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/workflow_activities/import_data_sync.py",
+        "heading": "",
+        "start_line": 85,
+        "end_line": 124,
+        "start_char": 3221,
+        "end_char": 4821,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "reset_pipeline"
+        ],
+        "evidence_id": "c4311d6e3c271c91b7636f55",
+        "source_type": "repository",
+        "content_hash": "2be0a1f9c5e4b0b1272f62a2e92229cb0683a8e8194e51586a5a88c4c5ce8766",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "2be0a1f9c5e4b0b1272f62a2e92229cb0683a8e8194e51586a5a88c4c5ce8766",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c5a656e9b13972f777094974",
+        "type": "evidence",
+        "path": "contents/blog/data-warehouse-launch.md",
+        "heading": "- PostHog news",
+        "start_line": 10,
+        "end_line": 33,
+        "start_char": 238,
+        "end_char": 2038,
+        "score": "0.026041666666666664",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "sources",
+          "sync",
+          "warehouse"
+        ],
+        "evidence_id": "c5a656e9b13972f777094974",
+        "source_type": "repository",
+        "content_hash": "0723460221303f0986351c203481f829d4c69ca469b2bccc0a8c3d699d4ea1cc",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0723460221303f0986351c203481f829d4c69ca469b2bccc0a8c3d699d4ea1cc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c9ce92f24ed7963221baf857",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/blog/best-feature-flag-software-for-developers.mdx",
+        "start_line": 236,
+        "total_lines": 403,
+        "start_char": 14642,
+        "end_char": 21864,
+        "evidence_id": "c9ce92f24ed7963221baf857",
+        "truncated": false,
+        "next_offset": 355,
+        "source_type": "repository",
+        "content_hash": "a9dc9a4569f317f5a36c3939273bf5a72b52ba1ce494f151c3617bdab1f45d84",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "offset": 49,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/best-open-source-feature-flag-tools.md",
+              "offset": 227,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/best-feature-flag-software-for-developers.mdx",
+              "offset": 235,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a9dc9a4569f317f5a36c3939273bf5a72b52ba1ce494f151c3617bdab1f45d84",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d3d653f0c439524a2c3d9e6a",
+        "type": "evidence",
+        "path": "contents/docs/sql/index.mdx",
+        "heading": "enterprise: full > Data warehouse",
+        "start_line": 144,
+        "end_line": 154,
+        "start_char": 5481,
+        "end_char": 5967,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "stripe",
+          "warehouse"
+        ],
+        "evidence_id": "d3d653f0c439524a2c3d9e6a",
+        "source_type": "repository",
+        "content_hash": "9712283348e724a141dda03bb4b0da2ba54032e50515b0066b82b56937e3332f",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe source data warehouse",
+            "webhook source feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9712283348e724a141dda03bb4b0da2ba54032e50515b0066b82b56937e3332f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d68871681514f4e099f07b30",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/incoming-webhooks.mdx",
+        "heading": "enterprise: full",
+        "start_line": 8,
+        "end_line": 21,
+        "start_char": 104,
+        "end_char": 1173,
+        "score": "0.022917757988475642",
+        "root": "docs",
+        "matched_terms": [
+          "webhook"
+        ],
+        "evidence_id": "d68871681514f4e099f07b30",
+        "source_type": "repository",
+        "content_hash": "e1b8a78963428b7338eaf6c1a345b5e8bde658dde31b1e4d3d2963015b4baedf",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e1b8a78963428b7338eaf6c1a345b5e8bde658dde31b1e4d3d2963015b4baedf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d70aa717af312ece6a82c818",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/destinations/webhook.mdx",
+        "start_line": 37,
+        "total_lines": 102,
+        "start_char": 1442,
+        "end_char": 3653,
+        "evidence_id": "d70aa717af312ece6a82c818",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "4685fef8f01d140e628ff4f27bbacc06b635e97f4e798c7fe7139b86f7872215",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/workflows/workflow-builder.mdx",
+              "offset": 58,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/destinations/webhook.mdx",
+              "offset": 36,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "4685fef8f01d140e628ff4f27bbacc06b635e97f4e798c7fe7139b86f7872215",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d8772fb8720fb0295f801201",
+        "type": "evidence",
+        "path": "contents/docs/cdp/destinations/webhook.mdx",
+        "heading": "- template-webhook > FAQ > Is the source code for this destination available?",
+        "start_line": 94,
+        "end_line": 102,
+        "start_char": 3305,
+        "end_char": 3653,
+        "score": "0.022189638318670577",
+        "root": "docs",
+        "matched_terms": [
+          "source",
+          "webhook"
+        ],
+        "evidence_id": "d8772fb8720fb0295f801201",
+        "source_type": "repository",
+        "content_hash": "dc8c905b7ec5a3e87b9207994cf8169befb9188718cea4fc79fe282aca9eae8f",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe webhook real-time syncing initial sync",
+            "webhook source reset pipeline"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "dc8c905b7ec5a3e87b9207994cf8169befb9188718cea4fc79fe282aca9eae8f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dacf9539a862294f7249dccd",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/blog/best-open-source-feature-flag-tools.md",
+        "start_line": 228,
+        "total_lines": 310,
+        "start_char": 13172,
+        "end_char": 18924,
+        "evidence_id": "dacf9539a862294f7249dccd",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "ae550529ffd7cdecf1c5611ca4fe012aa5cbd49622de634cfb7e7b8dc69393b9",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "offset": 49,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/best-open-source-feature-flag-tools.md",
+              "offset": 227,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/best-feature-flag-software-for-developers.mdx",
+              "offset": 235,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ae550529ffd7cdecf1c5611ca4fe012aa5cbd49622de634cfb7e7b8dc69393b9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e13fafc1c66b2abff85a3cf0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/workflows/workflow-builder.mdx",
+        "start_line": 59,
+        "total_lines": 205,
+        "start_char": 4689,
+        "end_char": 13721,
+        "evidence_id": "e13fafc1c66b2abff85a3cf0",
+        "truncated": false,
+        "next_offset": 178,
+        "source_type": "repository",
+        "content_hash": "a2d6d45d915899a772a5b5391d9c46fe559db00e7ad963a86d73da8d30a9e834",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/stripe.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/workflows/workflow-builder.mdx",
+              "offset": 58,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/destinations/webhook.mdx",
+              "offset": 36,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a2d6d45d915899a772a5b5391d9c46fe559db00e7ad963a86d73da8d30a9e834",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e232992e90e282d48f77c3dc",
+        "type": "evidence",
+        "evidence_id": "e232992e90e282d48f77c3dc",
+        "source_type": "implementation",
+        "exported_content_sha256": "58144a4f50693796b2d85e87379a7a0216981d8240ddb53153f2dbbbe22ad3d9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e6191af8b8c978c22203d351",
+        "type": "evidence",
+        "path": "contents/blog/best-open-source-feature-flag-tools.md",
+        "heading": "- Comparisons > What features do you need in an open-source feature flag tool?",
+        "start_line": 23,
+        "end_line": 43,
+        "start_char": 903,
+        "end_char": 2121,
+        "score": "0.01639344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "feature",
+          "flag",
+          "source"
+        ],
+        "evidence_id": "e6191af8b8c978c22203d351",
+        "source_type": "repository",
+        "content_hash": "d74addc371550636343dc72404da4654f3251c729016257608e8fd370129844e",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe source data warehouse",
+            "webhook source feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d74addc371550636343dc72404da4654f3251c729016257608e8fd370129844e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e916d3e6eaa51c41a6216e1f",
+        "type": "evidence",
+        "path": "contents/blog/best-open-source-feature-flag-tools.md",
+        "heading": "- Comparisons > Which open-source feature flag tool should you choose?",
+        "start_line": 232,
+        "end_line": 242,
+        "start_char": 13438,
+        "end_char": 14456,
+        "score": "0.017534145441122185",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "feature",
+          "flag",
+          "source",
+          "warehouse"
+        ],
+        "evidence_id": "e916d3e6eaa51c41a6216e1f",
+        "source_type": "repository",
+        "content_hash": "3124c8817f2821084befaef34d3064a78cec67753ea25e7fa59f71e88746d419",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe source data warehouse",
+            "webhook source feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3124c8817f2821084befaef34d3064a78cec67753ea25e7fa59f71e88746d419",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ece7ab59ea5dd1ebf20f161f",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/workflow_activities/import_data_sync.py",
+        "heading": "",
+        "start_line": 35,
+        "end_line": 84,
+        "start_char": 1678,
+        "end_char": 3221,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "reset_pipeline"
+        ],
+        "evidence_id": "ece7ab59ea5dd1ebf20f161f",
+        "source_type": "repository",
+        "content_hash": "9c5c16cc6e7a7bc9e5f2519441920f2da4435c75bea27449b643ee4db9d4390e",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "9c5c16cc6e7a7bc9e5f2519441920f2da4435c75bea27449b643ee4db9d4390e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f1f2e62f425ad4fcad3052a4",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/convex.md",
+        "heading": "sourceId: Convex > Linking Convex to PostHog > How syncing works",
+        "start_line": 32,
+        "end_line": 44,
+        "start_char": 1064,
+        "end_char": 1750,
+        "score": "0.024288588674906582",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "initial",
+          "sync"
+        ],
+        "evidence_id": "f1f2e62f425ad4fcad3052a4",
+        "source_type": "repository",
+        "content_hash": "737d450466b60eb366aecffec59fbf30f341e19f4bb7d35c4ccee003a615bf60",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "737d450466b60eb366aecffec59fbf30f341e19f4bb7d35c4ccee003a615bf60",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f2613a98da88530b918b0089",
+        "type": "evidence",
+        "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+        "heading": "title: Data Warehouse troubleshooting > How can I see why my syncs are failing?",
+        "start_line": 11,
+        "end_line": 30,
+        "start_char": 275,
+        "end_char": 1350,
+        "score": "0.029206349206349208",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "sources",
+          "status",
+          "sync",
+          "tab"
+        ],
+        "evidence_id": "f2613a98da88530b918b0089",
+        "source_type": "repository",
+        "content_hash": "ad6b09e32d172b21da8b01efbab7b5a8227ba3ebd8b1d90a49851b7be10f2593",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "data pipeline sources tab sync status",
+            "initial sync complete data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ad6b09e32d172b21da8b01efbab7b5a8227ba3ebd8b1d90a49851b7be10f2593",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f55558a376fc52b0685a00c9",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/migrations/0027_externaldataschema_webhook_fields.py",
+        "heading": "Generated by Django 4.2.28",
+        "start_line": 1,
+        "end_line": 17,
+        "start_char": 0,
+        "end_char": 415,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "initial_sync_complete"
+        ],
+        "evidence_id": "f55558a376fc52b0685a00c9",
+        "source_type": "repository",
+        "content_hash": "290ffd75321d479473e5bb8032fb141a4feb14c681845b805e8e8992dfedb216",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "initial_sync_complete"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "290ffd75321d479473e5bb8032fb141a4feb14c681845b805e8e8992dfedb216",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fa154ecb089e6a2cda4f7a52",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/pipelines/common/extract.py",
+        "heading": "",
+        "start_line": 202,
+        "end_line": 239,
+        "start_char": 8207,
+        "end_char": 9874,
+        "score": "0.014925373134328358",
+        "root": "code",
+        "matched_terms": [
+          "reset_pipeline"
+        ],
+        "evidence_id": "fa154ecb089e6a2cda4f7a52",
+        "source_type": "repository",
+        "content_hash": "3027686a8902d367d467e3d77ab66994b030556a64c5dfd93e38bd397afa8474",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "3027686a8902d367d467e3d77ab66994b030556a64c5dfd93e38bd397afa8474",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fa74077b3eaed43fe6220b90",
+        "type": "evidence",
+        "path": "contents/docs/revenue-analytics/payment-platforms/stripe.mdx",
+        "heading": "showTitle: true",
+        "start_line": 5,
+        "end_line": 28,
+        "start_char": 70,
+        "end_char": 1140,
+        "score": "0.015151515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "source",
+          "stripe"
+        ],
+        "evidence_id": "fa74077b3eaed43fe6220b90",
+        "source_type": "repository",
+        "content_hash": "d618fda16b389360cddb8aa3d754bd7e513245c4de5573bd398467e670aaa4cd",
+        "revision": "862ebc4341f119601edff6e2e5e7572b74602256",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "stripe source data warehouse",
+            "webhook source feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d618fda16b389360cddb8aa3d754bd7e513245c4de5573bd398467e670aaa4cd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fad59dc7508b1dba60bb9f0d",
+        "type": "evidence",
+        "path": "posthog/temporal/tests/data_imports/test_end_to_end.py",
+        "heading": "",
+        "start_line": 3448,
+        "end_line": 3490,
+        "start_char": 132292,
+        "end_char": 133894,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "_is_webhook_feature_flag_enabled"
+        ],
+        "evidence_id": "fad59dc7508b1dba60bb9f0d",
+        "source_type": "repository",
+        "content_hash": "d67c5a0020aa00070ba6dccd3be905e2a55cf893902024b81a14b9c1d4c31879",
+        "revision": "fe6cda15388ad02072a58b970a4c94de62dbbe73",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "webhook_enabled reset_pipeline",
+            "_is_webhook_feature_flag_enabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "d67c5a0020aa00070ba6dccd3be905e2a55cf893902024b81a14b9c1d4c31879",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:stripe-webhook-initial-sync",
+        "type": "requirement",
+        "description": "In contents/docs/cdp/sources/stripe.md, clarify in the 'Setting up webhooks for real-time syncing' section that webhook-based real-time ingestion only begins after the first successful sync completes (initial sync), and that a full reset/re-sync temporarily falls back to scheduled syncing until the initial sync completes again. This reflects the new initial_sync_complete gating and reset_pipeline behavior in the webhook S3 ingestion path."
+      },
+      {
+        "id": "requirement:sources-webhook-sync-method",
+        "type": "requirement",
+        "description": "In contents/docs/cdp/sources/index.mdx under the 'Webhook' sync method, note that webhook sync activates only after the table's initial sync has completed and is paused during a full reset, so users understand why real-time updates may not appear immediately after setup."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "contents/docs/cdp/sources/stripe.md",
+        "hash": "22fee72138f7eac6869b9abc4529a5b20330a10a388e64c81eb84e155a83e89e"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "hash": "97e70bd956cbecde8df4a42273c97caef70a5eb6cff0ef6d3487ae0a183aefb2"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "stripe-webhook-initial-sync",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/cdp/sources/stripe.md"
+        ],
+        "evidence_ids": [
+          "59fc42c0947c7f395dd45dda",
+          "261a023ac590b3096235f88e",
+          "6843bfb9e419595461008a44"
+        ],
+        "reason": "In contents/docs/cdp/sources/stripe.md, clarify in the 'Setting up webhooks for real-time syncing' section that webhook-based real-time ingestion only begins after the first successful sync completes (initial sync), and that a full reset/re-sync temporarily falls back to scheduled syncing until the initial sync completes again. This reflects the new initial_sync_complete gating and reset_pipeline behavior in the webhook S3 ingestion path."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "sources-webhook-sync-method",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/cdp/sources/index.mdx"
+        ],
+        "evidence_ids": [
+          "218e81424ef2e1ffdd0c7b6c",
+          "261a023ac590b3096235f88e",
+          "6843bfb9e419595461008a44"
+        ],
+        "reason": "In contents/docs/cdp/sources/index.mdx under the 'Webhook' sync method, note that webhook sync activates only after the table's initial sync has completed and is paused during a full reset, so users understand why real-time updates may not appear immediately after setup."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Do existing docs describe data warehouse source sync behavior, initial sync, or webhook-based ingestion that would need updating for initial_sync_complete and webhook S3 path?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is there user-facing documentation for Stripe source or webhook sources that mentions feature flags or ingestion paths?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Does the external data schema model expose initial_sync_complete to any user-facing API or serialized output documented in docs?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the Stripe source docs page or webhook docs describe behavior that changes when webhook S3 ingestion is enabled (e.g., initial sync, reset pipeline, real-time updates)?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is there any user-facing documentation describing the data pipeline sources tab, sync status, or initial sync completion that would need to mention initial_sync_complete?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Does the webhook_s3 manager expose any user-visible configuration (feature flag, S3 bucket, reset_pipeline) that docs should describe?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:00d47dce30e755d8fe9b965f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:017cfda9caac67055c0c720e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0199385b94b335f33df23fbd",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:04c7ba4599277dbecc482e45",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:08d8d8c4ddb5517865a910d6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:10ce53da14578152f2e2ed2a",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1568ccb5e26fc7ab4bd80921",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:18639c6982a83554035d812b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:18639c6982a83554035d812b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:18639c6982a83554035d812b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:201c28747bd489e5f9eca12f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2079e78eaadb0c9602ae9f76",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:218e81424ef2e1ffdd0c7b6c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:261a023ac590b3096235f88e",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:26282515ba5312476af38230",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:27e75bfac868106a9a96193b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:296fafc4005a98fb83995d0e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2b7455458e3cb6312e5c49e5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2bc063b0e387e9a59d6171ae",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2bc063b0e387e9a59d6171ae",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:304f91907fe4d7874f79857d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:304f91907fe4d7874f79857d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:311d110dcf01bb5dd54eda13",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:311d110dcf01bb5dd54eda13",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:311d110dcf01bb5dd54eda13",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3b8c569eefeed0df2b79852f",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:406632101fda20ad501241f4",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:40921a19e598f2582af28966",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:40921a19e598f2582af28966",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:424aa44eddfdde02807fb0e8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:424aa44eddfdde02807fb0e8",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:46e05050d3308695e3be3600",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e401d06b0b4a761252e1058",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:52105498bd419d046c7d3289",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:54adc49211f1cb2bd42251b3",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:58438c2efc85e3f87248e165",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:59fc42c0947c7f395dd45dda",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5bea01e1dd6cb4dd07f25af5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d2a5fde19d8bf2c53c0459b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d2a5fde19d8bf2c53c0459b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d3839420c59efa7505a35cf",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5f9cb9cc94bd4973bc00b4a7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:65f8a72bad73a9ac78185840",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:66a18719d7f6b35c02eaeb86",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:66a18719d7f6b35c02eaeb86",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6843bfb9e419595461008a44",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68f0199a2c08ebc88b3a5985",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68f0199a2c08ebc88b3a5985",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6a09ecf396fe4def447a8b1a",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6f0647d82f934e1a40a5f6a1",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:722660f27b14b4f767ba0fcb",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:74ddc89d3200b6fa7b944a9e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f97b98dc8b4d7497baf69bf",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f97b98dc8b4d7497baf69bf",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8035f961340ccb25356fc0fd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83150bddd36e9a5f8b3675f4",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8e61986a62345ce55d4cee8d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8e61986a62345ce55d4cee8d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8f8cdb6cfa07c87114dd0c3f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:92690b477ad6a8c2da35760e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:95575f335db046623ecde7f0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:97144d0124c7431db78856f2",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9fc4b966f6b1ffc454406d0b",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a889094cb298f454f0a0f6cd",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b734e7cf7a45d11ea82d1d5e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b7e796e286d3f19b4f1429c9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b93ca50f14e9bb4dfdbd4860",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c4311d6e3c271c91b7636f55",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c5a656e9b13972f777094974",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c9ce92f24ed7963221baf857",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d3d653f0c439524a2c3d9e6a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d68871681514f4e099f07b30",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d70aa717af312ece6a82c818",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d8772fb8720fb0295f801201",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d8772fb8720fb0295f801201",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dacf9539a862294f7249dccd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e13fafc1c66b2abff85a3cf0",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e6191af8b8c978c22203d351",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e916d3e6eaa51c41a6216e1f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ece7ab59ea5dd1ebf20f161f",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f1f2e62f425ad4fcad3052a4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f1f2e62f425ad4fcad3052a4",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f2613a98da88530b918b0089",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f55558a376fc52b0685a00c9",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fa154ecb089e6a2cda4f7a52",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fa74077b3eaed43fe6220b90",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fad59dc7508b1dba60bb9f0d",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:59fc42c0947c7f395dd45dda",
+        "to": "requirement:stripe-webhook-initial-sync",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:261a023ac590b3096235f88e",
+        "to": "requirement:stripe-webhook-initial-sync",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6843bfb9e419595461008a44",
+        "to": "requirement:stripe-webhook-initial-sync",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:218e81424ef2e1ffdd0c7b6c",
+        "to": "requirement:sources-webhook-sync-method",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:261a023ac590b3096235f88e",
+        "to": "requirement:sources-webhook-sync-method",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6843bfb9e419595461008a44",
+        "to": "requirement:sources-webhook-sync-method",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:stripe-webhook-initial-sync",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:59fc42c0947c7f395dd45dda",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:261a023ac590b3096235f88e",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6843bfb9e419595461008a44",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:sources-webhook-sync-method",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:218e81424ef2e1ffdd0c7b6c",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:261a023ac590b3096235f88e",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6843bfb9e419595461008a44",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:stripe-webhook-initial-sync",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:59fc42c0947c7f395dd45dda",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:261a023ac590b3096235f88e",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6843bfb9e419595461008a44",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:sources-webhook-sync-method",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:218e81424ef2e1ffdd0c7b6c",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:261a023ac590b3096235f88e",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6843bfb9e419595461008a44",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "1d08b6f7f839d4395d0a065626de8909c45e4138a59571306baec95a1e4aa604"
+}

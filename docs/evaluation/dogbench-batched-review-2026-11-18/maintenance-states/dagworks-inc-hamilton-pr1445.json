@@ -1,0 +1,2580 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "viz-display-name",
+      "description": "In docs/concepts/visualization.rst, in the 'Apply custom style' section (or a new subsection near it), document that a node's `display_name` tag is used as its label in graphviz visualizations. Explain resolution order (explicit name param > display_name tag > node name), that list values use the first element (empty list falls back to node name), and that values are HTML-escaped. Include a short @tag(display_name=...) example.",
+      "evidence_ids": [
+        "5604591edb590e776aa1afaa",
+        "ea7da5f9cc655afb6b0e03c1",
+        "c18c46f73b1b982be4f1afaa",
+        "c924cf18024d026c0cb17723"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "tag-display-name",
+      "description": "In docs/concepts/function-modifiers.rst under the @tag section (and/or docs/reference/decorators/tag.rst), mention the special `display_name` tag that controls the label shown in graphviz visualizations, cross-referencing the visualization docs.",
+      "evidence_ids": [
+        "1f9229992f0657ea5c7aee81",
+        "a5fc3f737c50e72cf2e2ecd7",
+        "5553c00675f67ce974664a54",
+        "5604591edb590e776aa1afaa"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "3bfd97a4ae762b401582fb053ca2c5b16a3a2d475f4ec7053012d787921c825d",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where in the docs is graphviz visualization / create_graphviz_graph documented, and does it mention node labels or tags?",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/ecosystem/index.md",
+              "offset": 98,
+              "limit": 120
+            },
+            {
+              "path": "docs/concepts/visualization.rst",
+              "offset": 166,
+              "limit": 120
+            },
+            {
+              "path": "examples/styling_visualization/README.md",
+              "offset": 53,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "90a854dab8d0301381d745e3",
+            "c18c46f73b1b982be4f1afaa",
+            "171bc595661be6796cfa69ba",
+            "c784c747ca22a048d2a8d6d3",
+            "e516623771478908138f1cfb",
+            "28df78f2235cdb0d2e8154ba",
+            "170a78fb15ef79c09aba102c",
+            "d2d0fe6ba4aacf69482ba2ce",
+            "d4c14dc16355671699aeb0a4",
+            "514a3b07a4353fe44328b62f",
+            "c80a48d154f22bde2db07df2",
+            "6d17f908c327a7e6bcede26c",
+            "b5ae0a7b65e6e4857fd4aeb8",
+            "7e8861c6ddaabff132e2d809",
+            "a62513b9157dfc00b92ed932"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/ecosystem/index.md",
+              "evidence_id": "c784c747ca22a048d2a8d6d3",
+              "score": "0.04226051726051726"
+            },
+            {
+              "rank": 2,
+              "path": "docs/concepts/visualization.rst",
+              "evidence_id": "e516623771478908138f1cfb",
+              "score": "0.040622737786252805"
+            },
+            {
+              "rank": 3,
+              "path": "examples/styling_visualization/README.md",
+              "evidence_id": "28df78f2235cdb0d2e8154ba",
+              "score": "0.039099324975892"
+            },
+            {
+              "rank": 4,
+              "path": "examples/styling_visualization/README.md",
+              "evidence_id": "170a78fb15ef79c09aba102c",
+              "score": "0.03876027180783818"
+            },
+            {
+              "rank": 5,
+              "path": "README.md",
+              "evidence_id": "d2d0fe6ba4aacf69482ba2ce",
+              "score": "0.03812986247807282"
+            },
+            {
+              "rank": 6,
+              "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+              "evidence_id": "d4c14dc16355671699aeb0a4",
+              "score": "0.034247375611159044"
+            },
+            {
+              "rank": 7,
+              "path": "README.md",
+              "evidence_id": "514a3b07a4353fe44328b62f",
+              "score": "0.0331453607815186"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/install.md",
+              "evidence_id": "c80a48d154f22bde2db07df2",
+              "score": "0.03248362890306624"
+            },
+            {
+              "rank": 9,
+              "path": "docs/concepts/node.rst",
+              "evidence_id": "6d17f908c327a7e6bcede26c",
+              "score": "0.032413419913419915"
+            },
+            {
+              "rank": 10,
+              "path": ".github/PULL_REQUEST_TEMPLATE/HAMILTON_CONTRIB_PR_TEMPLATE.md",
+              "evidence_id": "b5ae0a7b65e6e4857fd4aeb8",
+              "score": "0.031693229939859735"
+            },
+            {
+              "rank": 11,
+              "path": "examples/LLM_Workflows/GraphRAG/requirements.txt",
+              "evidence_id": "7e8861c6ddaabff132e2d809",
+              "score": "0.0315056192793419"
+            },
+            {
+              "rank": 12,
+              "path": "docs/reference/graph-adapters/SimplePythonGraphAdapter.rst",
+              "evidence_id": "a62513b9157dfc00b92ed932",
+              "score": "0.03143559143559144"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/ecosystem/index.md",
+              "start": 98,
+              "end": 218,
+              "total_lines": 222
+            },
+            {
+              "path": "docs/concepts/visualization.rst",
+              "start": 166,
+              "end": 215,
+              "total_lines": 215
+            },
+            {
+              "path": "examples/styling_visualization/README.md",
+              "start": 53,
+              "end": 96,
+              "total_lines": 96
+            }
+          ],
+          "read_evidence_ids": [
+            "90a854dab8d0301381d745e3",
+            "c18c46f73b1b982be4f1afaa",
+            "171bc595661be6796cfa69ba"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where are node tags (e.g. tag modifier, owner) documented, and is there a list of reserved/special tags?",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/concepts/function-modifiers.rst",
+              "offset": 71,
+              "limit": 120
+            },
+            {
+              "path": "docs/reference/decorators/tag.rst",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "writeups/decorators.md",
+              "offset": 371,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "1f9229992f0657ea5c7aee81",
+            "5553c00675f67ce974664a54",
+            "6c620115cfa485862836b8af",
+            "a5fc3f737c50e72cf2e2ecd7",
+            "36956a9abf8af59823d42060",
+            "4543196ff2e2a33bbdeb3b67",
+            "f9496a43927a1d6840762d4d",
+            "a44d23ff1938abff84b7f483",
+            "1a549d48f72e5fe65329d87c",
+            "c1f857c31094c1c1a0f3a167",
+            "34b46f00ae14cf5412db8556",
+            "e516623771478908138f1cfb",
+            "9f7fe35860f70a8c164acbdd",
+            "7fc5d5d4d9f4d1447444ec93",
+            "91beb4c52cbbdf411ec7d57c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/concepts/function-modifiers.rst",
+              "evidence_id": "a5fc3f737c50e72cf2e2ecd7",
+              "score": "0.048915917503966164"
+            },
+            {
+              "rank": 2,
+              "path": "docs/reference/decorators/tag.rst",
+              "evidence_id": "36956a9abf8af59823d42060",
+              "score": "0.04839549075403121"
+            },
+            {
+              "rank": 3,
+              "path": "writeups/decorators.md",
+              "evidence_id": "4543196ff2e2a33bbdeb3b67",
+              "score": "0.04462063757838406"
+            },
+            {
+              "rank": 4,
+              "path": "examples/validation/static_validator/README.md",
+              "evidence_id": "f9496a43927a1d6840762d4d",
+              "score": "0.04253001986276634"
+            },
+            {
+              "rank": 5,
+              "path": "writeups/decorators.md",
+              "evidence_id": "a44d23ff1938abff84b7f483",
+              "score": "0.040958737864077666"
+            },
+            {
+              "rank": 6,
+              "path": "docs/concepts/function-modifiers.rst",
+              "evidence_id": "1a549d48f72e5fe65329d87c",
+              "score": "0.040655088900702935"
+            },
+            {
+              "rank": 7,
+              "path": "examples/lineage/README.md",
+              "evidence_id": "c1f857c31094c1c1a0f3a167",
+              "score": "0.04043062200956938"
+            },
+            {
+              "rank": 8,
+              "path": "docs/reference/decorators/tag.rst",
+              "evidence_id": "34b46f00ae14cf5412db8556",
+              "score": "0.04005482790130978"
+            },
+            {
+              "rank": 9,
+              "path": "docs/concepts/visualization.rst",
+              "evidence_id": "e516623771478908138f1cfb",
+              "score": "0.03621759514616658"
+            },
+            {
+              "rank": 10,
+              "path": "docs/code-comparisons/kedro.rst",
+              "evidence_id": "9f7fe35860f70a8c164acbdd",
+              "score": "0.03264292855569354"
+            },
+            {
+              "rank": 11,
+              "path": "contrib/docs/blog/2023-11-13-welcome/index.md",
+              "evidence_id": "7fc5d5d4d9f4d1447444ec93",
+              "score": "0.03108656816305089"
+            },
+            {
+              "rank": 12,
+              "path": "contrib/hamilton/contrib/user/zilto/webscraper/README.md",
+              "evidence_id": "91beb4c52cbbdf411ec7d57c",
+              "score": "0.031077224897449615"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/concepts/function-modifiers.rst",
+              "start": 71,
+              "end": 191,
+              "total_lines": 518
+            },
+            {
+              "path": "docs/reference/decorators/tag.rst",
+              "start": 0,
+              "end": 46,
+              "total_lines": 46
+            },
+            {
+              "path": "writeups/decorators.md",
+              "start": 371,
+              "end": 491,
+              "total_lines": 691
+            }
+          ],
+          "read_evidence_ids": [
+            "1f9229992f0657ea5c7aee81",
+            "5553c00675f67ce974664a54",
+            "6c620115cfa485862836b8af"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Does the codebase document display_name anywhere else (e.g. other modules, docstrings) that docs should align with?",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ],
+          "paths": [
+            "hamilton/graph.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "hamilton/graph.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "tests/resources/display_name_functions.py",
+              "offset": 11,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "406f3663bcf24b6d17c2771e",
+            "c924cf18024d026c0cb17723",
+            "5604591edb590e776aa1afaa",
+            "ea7da5f9cc655afb6b0e03c1",
+            "b2f8b150161ce12df8467a55",
+            "be63d6a9a0a55ea52f37bce6",
+            "0e36a813979189193e06e8aa",
+            "c9ccb205d6f516834b7d2e60",
+            "df6b676f15c93d9124bdb4ca",
+            "42a8f49e36dcad4e541cec20",
+            "1234d0e9abd626cc4b02c460",
+            "b7c70c5c117fd156617694b0",
+            "92d429a823ce97313a815d6c",
+            "81dda9766463a98b6c1a19a9"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "hamilton/graph.py",
+              "evidence_id": "5604591edb590e776aa1afaa",
+              "score": "0.03278688524590164"
+            },
+            {
+              "rank": 2,
+              "path": "hamilton/graph.py",
+              "evidence_id": "ea7da5f9cc655afb6b0e03c1",
+              "score": "0.03200204813108039"
+            },
+            {
+              "rank": 3,
+              "path": "tests/resources/display_name_functions.py",
+              "evidence_id": "b2f8b150161ce12df8467a55",
+              "score": "0.031754032258064516"
+            },
+            {
+              "rank": 4,
+              "path": "tests/test_graph.py",
+              "evidence_id": "be63d6a9a0a55ea52f37bce6",
+              "score": "0.031024531024531024"
+            },
+            {
+              "rank": 5,
+              "path": "tests/test_graph.py",
+              "evidence_id": "0e36a813979189193e06e8aa",
+              "score": "0.025987006496751626"
+            },
+            {
+              "rank": 6,
+              "path": "examples/caching/tutorial.ipynb",
+              "evidence_id": "c9ccb205d6f516834b7d2e60",
+              "score": "0.0251661918328585"
+            },
+            {
+              "rank": 7,
+              "path": "tests/resources/display_name_list_functions.py",
+              "evidence_id": "df6b676f15c93d9124bdb4ca",
+              "score": "0.024818577648766327"
+            },
+            {
+              "rank": 8,
+              "path": "docs/how-tos/caching-tutorial.ipynb",
+              "evidence_id": "42a8f49e36dcad4e541cec20",
+              "score": "0.024393871783430016"
+            },
+            {
+              "rank": 9,
+              "path": "examples/reverse_etl/notebook.ipynb",
+              "evidence_id": "1234d0e9abd626cc4b02c460",
+              "score": "0.020575022461814915"
+            },
+            {
+              "rank": 10,
+              "path": "examples/caching_nodes/diskcache_adapter/notebook.ipynb",
+              "evidence_id": "b7c70c5c117fd156617694b0",
+              "score": "0.020334507042253522"
+            },
+            {
+              "rank": 11,
+              "path": "examples/LLM_Workflows/NER_Example/notebook.ipynb",
+              "evidence_id": "92d429a823ce97313a815d6c",
+              "score": "0.020061728395061727"
+            },
+            {
+              "rank": 12,
+              "path": "examples/LLM_Workflows/RAG_document_extract_chunk_embed/simple_pipeline.ipynb",
+              "evidence_id": "81dda9766463a98b6c1a19a9",
+              "score": "0.019833599462139674"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "hamilton/graph.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 1146
+            },
+            {
+              "path": "tests/resources/display_name_functions.py",
+              "start": 11,
+              "end": 52,
+              "total_lines": 52
+            }
+          ],
+          "read_evidence_ids": [
+            "406f3663bcf24b6d17c2771e",
+            "c924cf18024d026c0cb17723"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0e36a813979189193e06e8aa",
+        "1234d0e9abd626cc4b02c460",
+        "170a78fb15ef79c09aba102c",
+        "171bc595661be6796cfa69ba",
+        "1a549d48f72e5fe65329d87c",
+        "1f9229992f0657ea5c7aee81",
+        "28df78f2235cdb0d2e8154ba",
+        "34b46f00ae14cf5412db8556",
+        "36956a9abf8af59823d42060",
+        "406f3663bcf24b6d17c2771e",
+        "42a8f49e36dcad4e541cec20",
+        "4543196ff2e2a33bbdeb3b67",
+        "514a3b07a4353fe44328b62f",
+        "5553c00675f67ce974664a54",
+        "5604591edb590e776aa1afaa",
+        "6c620115cfa485862836b8af",
+        "6d17f908c327a7e6bcede26c",
+        "7e8861c6ddaabff132e2d809",
+        "7fc5d5d4d9f4d1447444ec93",
+        "81dda9766463a98b6c1a19a9",
+        "90a854dab8d0301381d745e3",
+        "91beb4c52cbbdf411ec7d57c",
+        "92d429a823ce97313a815d6c",
+        "9f7fe35860f70a8c164acbdd",
+        "a44d23ff1938abff84b7f483",
+        "a5fc3f737c50e72cf2e2ecd7",
+        "a62513b9157dfc00b92ed932",
+        "b2f8b150161ce12df8467a55",
+        "b5ae0a7b65e6e4857fd4aeb8",
+        "b7c70c5c117fd156617694b0",
+        "be63d6a9a0a55ea52f37bce6",
+        "c18c46f73b1b982be4f1afaa",
+        "c1f857c31094c1c1a0f3a167",
+        "c784c747ca22a048d2a8d6d3",
+        "c80a48d154f22bde2db07df2",
+        "c924cf18024d026c0cb17723",
+        "c9ccb205d6f516834b7d2e60",
+        "d2d0fe6ba4aacf69482ba2ce",
+        "d4c14dc16355671699aeb0a4",
+        "df6b676f15c93d9124bdb4ca",
+        "e516623771478908138f1cfb",
+        "ea7da5f9cc655afb6b0e03c1",
+        "f9496a43927a1d6840762d4d"
+      ],
+      "new_evidence_count": 43,
+      "new_path_count": 28
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+    "code": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:2be1b1a80b7c029b": 0,
+    "discover:Q1-2:5621f16be761f148": 497,
+    "discover:Q1-3:a7f0b2d5631a97c8": 0
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:a7f0b2d5631a97c8": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:2be1b1a80b7c029b": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 497,
+      "cache_hit": false
+    },
+    "discover:Q1-2:5621f16be761f148": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 280,
+      "cache_hit": false
+    },
+    "discover:Q1-3:a7f0b2d5631a97c8": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 15048,
+      "cache_hit": false
+    },
+    "discover:Q1-2:34f6ea930dfe1784": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 404,
+      "cache_hit": false
+    },
+    "discover:Q1-3:f03279676d8f48d2": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 507,
+      "cache_hit": false
+    },
+    "discover:Q1-1:c4bd83dc81ea32c0": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 610,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2030,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "viz-display-name",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/concepts/visualization.rst"
+      ],
+      "evidence_ids": [
+        "5604591edb590e776aa1afaa",
+        "ea7da5f9cc655afb6b0e03c1",
+        "c18c46f73b1b982be4f1afaa",
+        "c924cf18024d026c0cb17723"
+      ],
+      "reason": "In docs/concepts/visualization.rst, in the 'Apply custom style' section (or a new subsection near it), document that a node's `display_name` tag is used as its label in graphviz visualizations. Explain resolution order (explicit name param > display_name tag > node name), that list values use the first element (empty list falls back to node name), and that values are HTML-escaped. Include a short @tag(display_name=...) example."
+    },
+    {
+      "requirement_id": "tag-display-name",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/concepts/function-modifiers.rst"
+      ],
+      "evidence_ids": [
+        "1f9229992f0657ea5c7aee81",
+        "a5fc3f737c50e72cf2e2ecd7",
+        "5553c00675f67ce974664a54",
+        "5604591edb590e776aa1afaa"
+      ],
+      "reason": "In docs/concepts/function-modifiers.rst under the @tag section (and/or docs/reference/decorators/tag.rst), mention the special `display_name` tag that controls the label shown in graphviz visualizations, cross-referencing the visualization docs."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0e36a813979189193e06e8aa",
+        "type": "evidence",
+        "path": "tests/test_graph.py",
+        "heading": "See: https://github.com/apache/hamilton/issues/1413",
+        "start_line": 1362,
+        "end_line": 1403,
+        "start_char": 52819,
+        "end_char": 54453,
+        "score": "0.025987006496751626",
+        "root": "code",
+        "matched_terms": [
+          "display_name",
+          "get"
+        ],
+        "evidence_id": "0e36a813979189193e06e8aa",
+        "source_type": "repository",
+        "content_hash": "5b6f47ceaec0c5d4d7f579cda0b5485aa83bf5e6777f167510840f2ea510ece2",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5b6f47ceaec0c5d4d7f579cda0b5485aa83bf5e6777f167510840f2ea510ece2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1234d0e9abd626cc4b02c460",
+        "type": "evidence",
+        "path": "examples/reverse_etl/notebook.ipynb",
+        "heading": "",
+        "start_line": 1261,
+        "end_line": 1285,
+        "start_char": 81237,
+        "end_char": 81671,
+        "score": "0.020575022461814915",
+        "root": "code",
+        "matched_terms": [
+          "display_name"
+        ],
+        "evidence_id": "1234d0e9abd626cc4b02c460",
+        "source_type": "repository",
+        "content_hash": "8417bbdf998cf057a49b9571e9909d289e5fe6d9969e8d6e606e2038a520efea",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8417bbdf998cf057a49b9571e9909d289e5fe6d9969e8d6e606e2038a520efea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:170a78fb15ef79c09aba102c",
+        "type": "evidence",
+        "path": "examples/styling_visualization/README.md",
+        "heading": "Style your dataflow visualizations",
+        "start_line": 20,
+        "end_line": 55,
+        "start_char": 765,
+        "end_char": 2429,
+        "score": "0.03876027180783818",
+        "root": "docs",
+        "matched_terms": [
+          "graphviz",
+          "visualization"
+        ],
+        "evidence_id": "170a78fb15ef79c09aba102c",
+        "source_type": "repository",
+        "content_hash": "a7af3ceb7562d490cdd5a735a7ed6782186409e7fef6e58247b1595f97153a70",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a7af3ceb7562d490cdd5a735a7ed6782186409e7fef6e58247b1595f97153a70",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:171bc595661be6796cfa69ba",
+        "type": "evidence",
+        "root": "docs",
+        "path": "examples/styling_visualization/README.md",
+        "start_line": 54,
+        "total_lines": 96,
+        "start_char": 2298,
+        "end_char": 4743,
+        "evidence_id": "171bc595661be6796cfa69ba",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "92c24fdc2eef4a6f56b07bcbfdadab662cbc61a205f9741070ae40c8f2559e13",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/ecosystem/index.md",
+              "offset": 98,
+              "limit": 120
+            },
+            {
+              "path": "docs/concepts/visualization.rst",
+              "offset": 166,
+              "limit": 120
+            },
+            {
+              "path": "examples/styling_visualization/README.md",
+              "offset": 53,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "92c24fdc2eef4a6f56b07bcbfdadab662cbc61a205f9741070ae40c8f2559e13",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a549d48f72e5fe65329d87c",
+        "type": "evidence",
+        "path": "docs/concepts/function-modifiers.rst",
+        "heading": "Customize visualization by tag",
+        "start_line": 106,
+        "end_line": 135,
+        "start_char": 3863,
+        "end_char": 4747,
+        "score": "0.040655088900702935",
+        "root": "docs",
+        "matched_terms": [
+          "tag",
+          "tags"
+        ],
+        "evidence_id": "1a549d48f72e5fe65329d87c",
+        "source_type": "repository",
+        "content_hash": "d279486159950d2069ea52e49404cd74cbc9496a1d5a6c1a760b2af3e3c5a57b",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d279486159950d2069ea52e49404cd74cbc9496a1d5a6c1a760b2af3e3c5a57b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1f9229992f0657ea5c7aee81",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/concepts/function-modifiers.rst",
+        "start_line": 72,
+        "total_lines": 518,
+        "start_char": 2751,
+        "end_char": 8295,
+        "evidence_id": "1f9229992f0657ea5c7aee81",
+        "truncated": false,
+        "next_offset": 191,
+        "source_type": "repository",
+        "content_hash": "30fbc5a20976c1cec12071b7d496ba29628c2b7aea3a3ac4c3a0e5ca54d0ae64",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/concepts/function-modifiers.rst",
+              "offset": 71,
+              "limit": 120
+            },
+            {
+              "path": "docs/reference/decorators/tag.rst",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "writeups/decorators.md",
+              "offset": 371,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "30fbc5a20976c1cec12071b7d496ba29628c2b7aea3a3ac4c3a0e5ca54d0ae64",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:284b68ef511fa7a79b30b0f6",
+        "type": "evidence",
+        "evidence_id": "284b68ef511fa7a79b30b0f6",
+        "source_type": "task",
+        "exported_content_sha256": "2d0b4a2d8df4e0b83910be93b1460afa1b3d13647a539fc6301c44f1d88c6fc7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:28df78f2235cdb0d2e8154ba",
+        "type": "evidence",
+        "path": "examples/styling_visualization/README.md",
+        "heading": "Style your dataflow visualizations > Steps to define your custom style",
+        "start_line": 58,
+        "end_line": 71,
+        "start_char": 2503,
+        "end_char": 3332,
+        "score": "0.039099324975892",
+        "root": "docs",
+        "matched_terms": [
+          "graphviz",
+          "visualization"
+        ],
+        "evidence_id": "28df78f2235cdb0d2e8154ba",
+        "source_type": "repository",
+        "content_hash": "7efc4beaad9fd067bc994f09ad0ed54bb49f0e0328548ef87c0f8564e7c1025a",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7efc4beaad9fd067bc994f09ad0ed54bb49f0e0328548ef87c0f8564e7c1025a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:34b46f00ae14cf5412db8556",
+        "type": "evidence",
+        "path": "docs/reference/decorators/tag.rst",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 24,
+        "score": "0.04005482790130978",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "34b46f00ae14cf5412db8556",
+        "source_type": "repository",
+        "content_hash": "f56faf3fbadb23a5447e047d195827c2397833d8c4b987716ff2b11ef1eeaea0",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f56faf3fbadb23a5447e047d195827c2397833d8c4b987716ff2b11ef1eeaea0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:36956a9abf8af59823d42060",
+        "type": "evidence",
+        "path": "docs/reference/decorators/tag.rst",
+        "heading": "tag*",
+        "start_line": 2,
+        "end_line": 46,
+        "start_char": 24,
+        "end_char": 1385,
+        "score": "0.04839549075403121",
+        "root": "docs",
+        "matched_terms": [
+          "node",
+          "tag",
+          "tags"
+        ],
+        "evidence_id": "36956a9abf8af59823d42060",
+        "source_type": "repository",
+        "content_hash": "392e41475dcf568489808d2110aa3a368f51ce6c19b3a7a5aca04606eae1338c",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "392e41475dcf568489808d2110aa3a368f51ce6c19b3a7a5aca04606eae1338c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:406f3663bcf24b6d17c2771e",
+        "type": "evidence",
+        "root": "code",
+        "path": "hamilton/graph.py",
+        "start_line": 1,
+        "total_lines": 1146,
+        "start_char": 0,
+        "end_char": 5578,
+        "evidence_id": "406f3663bcf24b6d17c2771e",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "bc2bf0f078be8b8a7eccfb56ec88670c94d48af3cec173e0d232359e8a17a7e4",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "hamilton/graph.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "tests/resources/display_name_functions.py",
+              "offset": 11,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "bc2bf0f078be8b8a7eccfb56ec88670c94d48af3cec173e0d232359e8a17a7e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:42a8f49e36dcad4e541cec20",
+        "type": "evidence",
+        "path": "docs/how-tos/caching-tutorial.ipynb",
+        "heading": "",
+        "start_line": 3997,
+        "end_line": 4025,
+        "start_char": 226585,
+        "end_char": 227186,
+        "score": "0.024393871783430016",
+        "root": "code",
+        "matched_terms": [
+          "display_name",
+          "get"
+        ],
+        "evidence_id": "42a8f49e36dcad4e541cec20",
+        "source_type": "repository",
+        "content_hash": "a2b9634de5aba390008d4b39929627c8f33b935b5ac2737dc3e0933453a51e11",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a2b9634de5aba390008d4b39929627c8f33b935b5ac2737dc3e0933453a51e11",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4543196ff2e2a33bbdeb3b67",
+        "type": "evidence",
+        "path": "writeups/decorators.md",
+        "heading": "Decorators > @tag and friends > How do I query by tags?",
+        "start_line": 376,
+        "end_line": 390,
+        "start_char": 16812,
+        "end_char": 17424,
+        "score": "0.04462063757838406",
+        "root": "docs",
+        "matched_terms": [
+          "tag",
+          "tags"
+        ],
+        "evidence_id": "4543196ff2e2a33bbdeb3b67",
+        "source_type": "repository",
+        "content_hash": "0f83c54d05d08275c417d07607826c07c55324570cbc17dc95334b9560ca76e2",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0f83c54d05d08275c417d07607826c07c55324570cbc17dc95334b9560ca76e2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:514a3b07a4353fe44328b62f",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "",
+        "start_line": 55,
+        "end_line": 70,
+        "start_char": 3252,
+        "end_char": 4266,
+        "score": "0.0331453607815186",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "514a3b07a4353fe44328b62f",
+        "source_type": "repository",
+        "content_hash": "f18669a1c781176076aed7a30a55f31d3ab24cfa5bbd532046d68cbabcb2fedb",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f18669a1c781176076aed7a30a55f31d3ab24cfa5bbd532046d68cbabcb2fedb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5553c00675f67ce974664a54",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/reference/decorators/tag.rst",
+        "start_line": 1,
+        "total_lines": 46,
+        "start_char": 0,
+        "end_char": 1385,
+        "evidence_id": "5553c00675f67ce974664a54",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "a599e8f804c7b102301f9ebe82c3603eb846a09a5d6f8ce13f52f3c1d850b327",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/concepts/function-modifiers.rst",
+              "offset": 71,
+              "limit": 120
+            },
+            {
+              "path": "docs/reference/decorators/tag.rst",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "writeups/decorators.md",
+              "offset": 371,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a599e8f804c7b102301f9ebe82c3603eb846a09a5d6f8ce13f52f3c1d850b327",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5604591edb590e776aa1afaa",
+        "type": "evidence",
+        "path": "hamilton/graph.py",
+        "heading": "under the License.",
+        "start_line": 294,
+        "end_line": 325,
+        "start_char": 13590,
+        "end_char": 15200,
+        "score": "0.03278688524590164",
+        "root": "code",
+        "matched_terms": [
+          "display_name",
+          "get",
+          "tags"
+        ],
+        "evidence_id": "5604591edb590e776aa1afaa",
+        "source_type": "repository",
+        "content_hash": "6f2102dc215eb4b0b2025816c530a2264dada2e057a342ec328ade37b04fecac",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6f2102dc215eb4b0b2025816c530a2264dada2e057a342ec328ade37b04fecac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6c620115cfa485862836b8af",
+        "type": "evidence",
+        "root": "docs",
+        "path": "writeups/decorators.md",
+        "start_line": 372,
+        "total_lines": 691,
+        "start_char": 16633,
+        "end_char": 22101,
+        "evidence_id": "6c620115cfa485862836b8af",
+        "truncated": false,
+        "next_offset": 491,
+        "source_type": "repository",
+        "content_hash": "694addf0223946138b88aecec2b05dbb9ea84b2a0346528bd6d41a4bfaed0d35",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/concepts/function-modifiers.rst",
+              "offset": 71,
+              "limit": 120
+            },
+            {
+              "path": "docs/reference/decorators/tag.rst",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "writeups/decorators.md",
+              "offset": 371,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "694addf0223946138b88aecec2b05dbb9ea84b2a0346528bd6d41a4bfaed0d35",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6d17f908c327a7e6bcede26c",
+        "type": "evidence",
+        "path": "docs/concepts/node.rst",
+        "heading": "How other frameworks build graphs",
+        "start_line": 115,
+        "end_line": 130,
+        "start_char": 4475,
+        "end_char": 6111,
+        "score": "0.032413419913419915",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "6d17f908c327a7e6bcede26c",
+        "source_type": "repository",
+        "content_hash": "394a55125db071c1ae02b3c2fe5f312591f4de45b23d9769e2e6add1e54e9c4d",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "394a55125db071c1ae02b3c2fe5f312591f4de45b23d9769e2e6add1e54e9c4d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7e8861c6ddaabff132e2d809",
+        "type": "evidence",
+        "path": "examples/LLM_Workflows/GraphRAG/requirements.txt",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 4,
+        "start_char": 0,
+        "end_char": 75,
+        "score": "0.0315056192793419",
+        "root": "docs",
+        "matched_terms": [
+          "graphviz",
+          "visualization"
+        ],
+        "evidence_id": "7e8861c6ddaabff132e2d809",
+        "source_type": "repository",
+        "content_hash": "b65add76d1ddaabc854d4ec3036c75fca700e6a622a2ec052482d03dde967943",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b65add76d1ddaabc854d4ec3036c75fca700e6a622a2ec052482d03dde967943",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7fc5d5d4d9f4d1447444ec93",
+        "type": "evidence",
+        "path": "contrib/docs/blog/2023-11-13-welcome/index.md",
+        "heading": "tags: [hamilton, how-to, dataflows]",
+        "start_line": 24,
+        "end_line": 34,
+        "start_char": 857,
+        "end_char": 1372,
+        "score": "0.03108656816305089",
+        "root": "docs",
+        "matched_terms": [
+          "tags"
+        ],
+        "evidence_id": "7fc5d5d4d9f4d1447444ec93",
+        "source_type": "repository",
+        "content_hash": "f6732be111f7704c5d2cc906b2841e7ff30e76955576b0c3bc12f556eb49ab7a",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f6732be111f7704c5d2cc906b2841e7ff30e76955576b0c3bc12f556eb49ab7a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:81dda9766463a98b6c1a19a9",
+        "type": "evidence",
+        "path": "examples/LLM_Workflows/RAG_document_extract_chunk_embed/simple_pipeline.ipynb",
+        "heading": "",
+        "start_line": 4541,
+        "end_line": 4561,
+        "start_char": 286712,
+        "end_char": 287134,
+        "score": "0.019833599462139674",
+        "root": "code",
+        "matched_terms": [
+          "display_name"
+        ],
+        "evidence_id": "81dda9766463a98b6c1a19a9",
+        "source_type": "repository",
+        "content_hash": "b42b358ac9435bc4a77ddac763663e5bd46b43703f7189c59907910d1579b2c5",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b42b358ac9435bc4a77ddac763663e5bd46b43703f7189c59907910d1579b2c5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:90a854dab8d0301381d745e3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/ecosystem/index.md",
+        "start_line": 99,
+        "total_lines": 222,
+        "start_char": 8794,
+        "end_char": 16444,
+        "evidence_id": "90a854dab8d0301381d745e3",
+        "truncated": false,
+        "next_offset": 218,
+        "source_type": "repository",
+        "content_hash": "4d5e3fb50ded82b08a1703678a26aa1ae885c0d5ce3ed2c70c837c3da005957e",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/ecosystem/index.md",
+              "offset": 98,
+              "limit": 120
+            },
+            {
+              "path": "docs/concepts/visualization.rst",
+              "offset": 166,
+              "limit": 120
+            },
+            {
+              "path": "examples/styling_visualization/README.md",
+              "offset": 53,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4d5e3fb50ded82b08a1703678a26aa1ae885c0d5ce3ed2c70c837c3da005957e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:91beb4c52cbbdf411ec7d57c",
+        "type": "evidence",
+        "path": "contrib/hamilton/contrib/user/zilto/webscraper/README.md",
+        "heading": "Configuration Options > Inputs",
+        "start_line": 29,
+        "end_line": 33,
+        "start_char": 1093,
+        "end_char": 1260,
+        "score": "0.031077224897449615",
+        "root": "docs",
+        "matched_terms": [
+          "tags"
+        ],
+        "evidence_id": "91beb4c52cbbdf411ec7d57c",
+        "source_type": "repository",
+        "content_hash": "6948dd347699ab1258f1b57c051da5e43f7ccecf4f97e46a54cba1b4fe097d94",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6948dd347699ab1258f1b57c051da5e43f7ccecf4f97e46a54cba1b4fe097d94",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:92d429a823ce97313a815d6c",
+        "type": "evidence",
+        "path": "examples/LLM_Workflows/NER_Example/notebook.ipynb",
+        "heading": "",
+        "start_line": 2497,
+        "end_line": 2517,
+        "start_char": 171689,
+        "end_char": 172111,
+        "score": "0.020061728395061727",
+        "root": "code",
+        "matched_terms": [
+          "display_name"
+        ],
+        "evidence_id": "92d429a823ce97313a815d6c",
+        "source_type": "repository",
+        "content_hash": "4c092b3186b2b227d654c0e627153ce77d416fcd7b6d964ddc238d451eb74503",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4c092b3186b2b227d654c0e627153ce77d416fcd7b6d964ddc238d451eb74503",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9f7fe35860f70a8c164acbdd",
+        "type": "evidence",
+        "path": "docs/code-comparisons/kedro.rst",
+        "heading": "Feature comparison",
+        "start_line": 254,
+        "end_line": 275,
+        "start_char": 14783,
+        "end_char": 15248,
+        "score": "0.03264292855569354",
+        "root": "docs",
+        "matched_terms": [
+          "tag"
+        ],
+        "evidence_id": "9f7fe35860f70a8c164acbdd",
+        "source_type": "repository",
+        "content_hash": "78835a80f99b9ae44fd81cef0d75eb305d94e78cdca38beb684074c6389ea818",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "78835a80f99b9ae44fd81cef0d75eb305d94e78cdca38beb684074c6389ea818",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a44d23ff1938abff84b7f483",
+        "type": "evidence",
+        "path": "writeups/decorators.md",
+        "heading": "Decorators > @tag and friends > @tag",
+        "start_line": 305,
+        "end_line": 328,
+        "start_char": 14254,
+        "end_char": 15045,
+        "score": "0.040958737864077666",
+        "root": "docs",
+        "matched_terms": [
+          "tag"
+        ],
+        "evidence_id": "a44d23ff1938abff84b7f483",
+        "source_type": "repository",
+        "content_hash": "d544a871a9d03b5a68939a18a64843f594972a544f0b33af987a8782c7fbead6",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d544a871a9d03b5a68939a18a64843f594972a544f0b33af987a8782c7fbead6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a5fc3f737c50e72cf2e2ecd7",
+        "type": "evidence",
+        "path": "docs/concepts/function-modifiers.rst",
+        "heading": "@tag",
+        "start_line": 76,
+        "end_line": 105,
+        "start_char": 2799,
+        "end_char": 3863,
+        "score": "0.048915917503966164",
+        "root": "docs",
+        "matched_terms": [
+          "node",
+          "tag",
+          "tags"
+        ],
+        "evidence_id": "a5fc3f737c50e72cf2e2ecd7",
+        "source_type": "repository",
+        "content_hash": "3ab434149050bb9f6f16b1bf2a3753843c381cbd63a8bd55ae84006f383b6e55",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3ab434149050bb9f6f16b1bf2a3753843c381cbd63a8bd55ae84006f383b6e55",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a62513b9157dfc00b92ed932",
+        "type": "evidence",
+        "path": "docs/reference/graph-adapters/SimplePythonGraphAdapter.rst",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 25,
+        "score": "0.03143559143559144",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a62513b9157dfc00b92ed932",
+        "source_type": "repository",
+        "content_hash": "1d3510f73802c9f9324a5f0198815f8463f0910e09e8128db5d9c33e60ddd2cf",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1d3510f73802c9f9324a5f0198815f8463f0910e09e8128db5d9c33e60ddd2cf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b2f8b150161ce12df8467a55",
+        "type": "evidence",
+        "path": "tests/resources/display_name_functions.py",
+        "heading": "under the License.",
+        "start_line": 16,
+        "end_line": 52,
+        "start_char": 764,
+        "end_char": 1840,
+        "score": "0.031754032258064516",
+        "root": "code",
+        "matched_terms": [
+          "display_name",
+          "tags"
+        ],
+        "evidence_id": "b2f8b150161ce12df8467a55",
+        "source_type": "repository",
+        "content_hash": "a355f299d6d152b29cb2108f7baaacfda961950c0402e53e18a0959875ca1042",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a355f299d6d152b29cb2108f7baaacfda961950c0402e53e18a0959875ca1042",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b5ae0a7b65e6e4857fd4aeb8",
+        "type": "evidence",
+        "path": ".github/PULL_REQUEST_TEMPLATE/HAMILTON_CONTRIB_PR_TEMPLATE.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 27,
+        "score": "0.031693229939859735",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b5ae0a7b65e6e4857fd4aeb8",
+        "source_type": "repository",
+        "content_hash": "352c40040e902fa1224eabcf8431c602350331fd9f3351cd1f4763aa57b71f9b",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "352c40040e902fa1224eabcf8431c602350331fd9f3351cd1f4763aa57b71f9b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b7c70c5c117fd156617694b0",
+        "type": "evidence",
+        "path": "examples/caching_nodes/diskcache_adapter/notebook.ipynb",
+        "heading": "",
+        "start_line": 79,
+        "end_line": 103,
+        "start_char": 2875,
+        "end_char": 3309,
+        "score": "0.020334507042253522",
+        "root": "code",
+        "matched_terms": [
+          "display_name"
+        ],
+        "evidence_id": "b7c70c5c117fd156617694b0",
+        "source_type": "repository",
+        "content_hash": "b960faaf0368065d8854828d200420fd6afc1ba4504620e6f50391877f9818f4",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b960faaf0368065d8854828d200420fd6afc1ba4504620e6f50391877f9818f4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:be63d6a9a0a55ea52f37bce6",
+        "type": "evidence",
+        "path": "tests/test_graph.py",
+        "heading": "See: https://github.com/apache/hamilton/issues/1413",
+        "start_line": 1404,
+        "end_line": 1445,
+        "start_char": 54453,
+        "end_char": 56079,
+        "score": "0.031024531024531024",
+        "root": "code",
+        "matched_terms": [
+          "display_name",
+          "get",
+          "tags"
+        ],
+        "evidence_id": "be63d6a9a0a55ea52f37bce6",
+        "source_type": "repository",
+        "content_hash": "d0cc42d354b3c803e9ec6d2ad1798ed9d26588fccafae5694bcb1d732f833179",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d0cc42d354b3c803e9ec6d2ad1798ed9d26588fccafae5694bcb1d732f833179",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c18c46f73b1b982be4f1afaa",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/concepts/visualization.rst",
+        "start_line": 167,
+        "total_lines": 215,
+        "start_char": 4234,
+        "end_char": 6618,
+        "evidence_id": "c18c46f73b1b982be4f1afaa",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "131ef16102a105b9e63679993b977667b6510aaa17cb86e1fbdb8e24f378d686",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/ecosystem/index.md",
+              "offset": 98,
+              "limit": 120
+            },
+            {
+              "path": "docs/concepts/visualization.rst",
+              "offset": 166,
+              "limit": 120
+            },
+            {
+              "path": "examples/styling_visualization/README.md",
+              "offset": 53,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "131ef16102a105b9e63679993b977667b6510aaa17cb86e1fbdb8e24f378d686",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c1f857c31094c1c1a0f3a167",
+        "type": "evidence",
+        "path": "examples/lineage/README.md",
+        "heading": "Lineage + Apache Hamilton > Apache Hamilton's Lineage Capabilities > Auditing and Compliance",
+        "start_line": 115,
+        "end_line": 130,
+        "start_char": 7784,
+        "end_char": 9281,
+        "score": "0.04043062200956938",
+        "root": "docs",
+        "matched_terms": [
+          "tag",
+          "tags"
+        ],
+        "evidence_id": "c1f857c31094c1c1a0f3a167",
+        "source_type": "repository",
+        "content_hash": "636125b39266fb628a8667096f3bbd8cc96de52ff18823bbc7a44a59df2a568b",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "636125b39266fb628a8667096f3bbd8cc96de52ff18823bbc7a44a59df2a568b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c784c747ca22a048d2a8d6d3",
+        "type": "evidence",
+        "path": "docs/ecosystem/index.md",
+        "heading": "Ecosystem > Built-in Integrations > Visualization",
+        "start_line": 103,
+        "end_line": 112,
+        "start_char": 9332,
+        "end_char": 10102,
+        "score": "0.04226051726051726",
+        "root": "docs",
+        "matched_terms": [
+          "visualization"
+        ],
+        "evidence_id": "c784c747ca22a048d2a8d6d3",
+        "source_type": "repository",
+        "content_hash": "4afb4404bf7fa0c9c4e326b2fa126d3fd81f630875e94416b788d26ab5f90f02",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4afb4404bf7fa0c9c4e326b2fa126d3fd81f630875e94416b788d26ab5f90f02",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c80a48d154f22bde2db07df2",
+        "type": "evidence",
+        "path": "docs/get-started/install.md",
+        "heading": "Install > Installing with pip",
+        "start_line": 32,
+        "end_line": 45,
+        "start_char": 1090,
+        "end_char": 1567,
+        "score": "0.03248362890306624",
+        "root": "docs",
+        "matched_terms": [
+          "graphviz",
+          "visualization"
+        ],
+        "evidence_id": "c80a48d154f22bde2db07df2",
+        "source_type": "repository",
+        "content_hash": "5fdf9c27c074e12b5638a8825bb4cb8e7df6a2edffc49ca56f0b6d231ef4b893",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5fdf9c27c074e12b5638a8825bb4cb8e7df6a2edffc49ca56f0b6d231ef4b893",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c924cf18024d026c0cb17723",
+        "type": "evidence",
+        "root": "code",
+        "path": "tests/resources/display_name_functions.py",
+        "start_line": 12,
+        "total_lines": 52,
+        "start_char": 527,
+        "end_char": 1840,
+        "evidence_id": "c924cf18024d026c0cb17723",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "76a6a69ebf4dbf61275b30e8f0f1127e87ac6969b59d8f965b4328022993c2fa",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "hamilton/graph.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "tests/resources/display_name_functions.py",
+              "offset": 11,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "76a6a69ebf4dbf61275b30e8f0f1127e87ac6969b59d8f965b4328022993c2fa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c9ccb205d6f516834b7d2e60",
+        "type": "evidence",
+        "path": "examples/caching/tutorial.ipynb",
+        "heading": "",
+        "start_line": 4034,
+        "end_line": 4062,
+        "start_char": 228697,
+        "end_char": 229298,
+        "score": "0.0251661918328585",
+        "root": "code",
+        "matched_terms": [
+          "display_name",
+          "get"
+        ],
+        "evidence_id": "c9ccb205d6f516834b7d2e60",
+        "source_type": "repository",
+        "content_hash": "a2b9634de5aba390008d4b39929627c8f33b935b5ac2737dc3e0933453a51e11",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a2b9634de5aba390008d4b39929627c8f33b935b5ac2737dc3e0933453a51e11",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d2d0fe6ba4aacf69482ba2ce",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Installation",
+        "start_line": 71,
+        "end_line": 86,
+        "start_char": 4266,
+        "end_char": 4810,
+        "score": "0.03812986247807282",
+        "root": "docs",
+        "matched_terms": [
+          "graphviz",
+          "visualization"
+        ],
+        "evidence_id": "d2d0fe6ba4aacf69482ba2ce",
+        "source_type": "repository",
+        "content_hash": "9463aabdd7d8133a045c3b534a04bcce6a767cd2c053f0ca1472e243ad2545f1",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9463aabdd7d8133a045c3b534a04bcce6a767cd2c053f0ca1472e243ad2545f1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d4c14dc16355671699aeb0a4",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/bug_report.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 11,
+        "start_char": 0,
+        "end_char": 208,
+        "score": "0.034247375611159044",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "d4c14dc16355671699aeb0a4",
+        "source_type": "repository",
+        "content_hash": "5a59ab46dea088d3e8b326bb360478964e11e6589a1d69ca3270a2d41d75988e",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "graphviz",
+            "create_graphviz_graph",
+            "visualization"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5a59ab46dea088d3e8b326bb360478964e11e6589a1d69ca3270a2d41d75988e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:df6b676f15c93d9124bdb4ca",
+        "type": "evidence",
+        "path": "tests/resources/display_name_list_functions.py",
+        "heading": "under the License.",
+        "start_line": 16,
+        "end_line": 34,
+        "start_char": 764,
+        "end_char": 1228,
+        "score": "0.024818577648766327",
+        "root": "code",
+        "matched_terms": [
+          "display_name"
+        ],
+        "evidence_id": "df6b676f15c93d9124bdb4ca",
+        "source_type": "repository",
+        "content_hash": "5c6e844fbf917ba283b33f2f8644c4947cd3a3205c4e108570aecfa8d0b2ea8c",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5c6e844fbf917ba283b33f2f8644c4947cd3a3205c4e108570aecfa8d0b2ea8c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e516623771478908138f1cfb",
+        "type": "evidence",
+        "path": "docs/concepts/visualization.rst",
+        "heading": "Apply custom style",
+        "start_line": 171,
+        "end_line": 201,
+        "start_char": 4626,
+        "end_char": 6281,
+        "score": "0.03621759514616658",
+        "root": "docs",
+        "matched_terms": [
+          "modifier",
+          "node",
+          "tag"
+        ],
+        "evidence_id": "e516623771478908138f1cfb",
+        "source_type": "repository",
+        "content_hash": "d12c827fc4201b05afa3f25d45d7f3714dcd204ea94d89a05f6982c450af4ec6",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d12c827fc4201b05afa3f25d45d7f3714dcd204ea94d89a05f6982c450af4ec6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e7831dc81446049f327f5ea7",
+        "type": "evidence",
+        "evidence_id": "e7831dc81446049f327f5ea7",
+        "source_type": "implementation",
+        "exported_content_sha256": "d9e8b02a35b1b999733c1580933e99c6ccc229ebdd7fbe477831910766955048",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ea7da5f9cc655afb6b0e03c1",
+        "type": "evidence",
+        "path": "hamilton/graph.py",
+        "heading": "under the License.",
+        "start_line": 326,
+        "end_line": 359,
+        "start_char": 15200,
+        "end_char": 16801,
+        "score": "0.03200204813108039",
+        "root": "code",
+        "matched_terms": [
+          "display_name",
+          "get",
+          "tags"
+        ],
+        "evidence_id": "ea7da5f9cc655afb6b0e03c1",
+        "source_type": "repository",
+        "content_hash": "fbb37599177ef23adac9f573a300f345adcbb5b320bd42dd1775cfa60fea0d35",
+        "revision": "4ad573fdde4a7cf65d348045cd40cdde3dcbe6f3",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "display_name",
+            "tags.get(\"display_name\")"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "fbb37599177ef23adac9f573a300f345adcbb5b320bd42dd1775cfa60fea0d35",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f9496a43927a1d6840762d4d",
+        "type": "evidence",
+        "path": "examples/validation/static_validator/README.md",
+        "heading": "Example showing graph validation",
+        "start_line": 20,
+        "end_line": 43,
+        "start_char": 765,
+        "end_char": 1610,
+        "score": "0.04253001986276634",
+        "root": "docs",
+        "matched_terms": [
+          "node",
+          "tag",
+          "tags"
+        ],
+        "evidence_id": "f9496a43927a1d6840762d4d",
+        "source_type": "repository",
+        "content_hash": "0a68e941485418c58e0df7855cea4cdb20b1fda493f3d9770eda396029a91f88",
+        "revision": "9f6a7afc3c932175166bf94b95ee974dc1ce310c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "tag modifier",
+            "node tags",
+            "@tag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0a68e941485418c58e0df7855cea4cdb20b1fda493f3d9770eda396029a91f88",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:viz-display-name",
+        "type": "requirement",
+        "description": "In docs/concepts/visualization.rst, in the 'Apply custom style' section (or a new subsection near it), document that a node's `display_name` tag is used as its label in graphviz visualizations. Explain resolution order (explicit name param > display_name tag > node name), that list values use the first element (empty list falls back to node name), and that values are HTML-escaped. Include a short @tag(display_name=...) example."
+      },
+      {
+        "id": "requirement:tag-display-name",
+        "type": "requirement",
+        "description": "In docs/concepts/function-modifiers.rst under the @tag section (and/or docs/reference/decorators/tag.rst), mention the special `display_name` tag that controls the label shown in graphviz visualizations, cross-referencing the visualization docs."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/concepts/visualization.rst",
+        "hash": "864080e7949d8b83251243604dcfbe542ef760bbc91af06f4810284c60b735ab"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/concepts/function-modifiers.rst",
+        "hash": "ca740689888b05e7a16350cfdac98271a73cda06bd51a765299054d2a994ffd3"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "viz-display-name",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/concepts/visualization.rst"
+        ],
+        "evidence_ids": [
+          "5604591edb590e776aa1afaa",
+          "ea7da5f9cc655afb6b0e03c1",
+          "c18c46f73b1b982be4f1afaa",
+          "c924cf18024d026c0cb17723"
+        ],
+        "reason": "In docs/concepts/visualization.rst, in the 'Apply custom style' section (or a new subsection near it), document that a node's `display_name` tag is used as its label in graphviz visualizations. Explain resolution order (explicit name param > display_name tag > node name), that list values use the first element (empty list falls back to node name), and that values are HTML-escaped. Include a short @tag(display_name=...) example."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "tag-display-name",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/concepts/function-modifiers.rst"
+        ],
+        "evidence_ids": [
+          "1f9229992f0657ea5c7aee81",
+          "a5fc3f737c50e72cf2e2ecd7",
+          "5553c00675f67ce974664a54",
+          "5604591edb590e776aa1afaa"
+        ],
+        "reason": "In docs/concepts/function-modifiers.rst under the @tag section (and/or docs/reference/decorators/tag.rst), mention the special `display_name` tag that controls the label shown in graphviz visualizations, cross-referencing the visualization docs."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where in the docs is graphviz visualization / create_graphviz_graph documented, and does it mention node labels or tags?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where are node tags (e.g. tag modifier, owner) documented, and is there a list of reserved/special tags?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Does the codebase document display_name anywhere else (e.g. other modules, docstrings) that docs should align with?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0e36a813979189193e06e8aa",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1234d0e9abd626cc4b02c460",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:170a78fb15ef79c09aba102c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:171bc595661be6796cfa69ba",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a549d48f72e5fe65329d87c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1f9229992f0657ea5c7aee81",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:28df78f2235cdb0d2e8154ba",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:34b46f00ae14cf5412db8556",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:36956a9abf8af59823d42060",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:406f3663bcf24b6d17c2771e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:42a8f49e36dcad4e541cec20",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4543196ff2e2a33bbdeb3b67",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:514a3b07a4353fe44328b62f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5553c00675f67ce974664a54",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5604591edb590e776aa1afaa",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6c620115cfa485862836b8af",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6d17f908c327a7e6bcede26c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7e8861c6ddaabff132e2d809",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7fc5d5d4d9f4d1447444ec93",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:81dda9766463a98b6c1a19a9",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:90a854dab8d0301381d745e3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:91beb4c52cbbdf411ec7d57c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:92d429a823ce97313a815d6c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9f7fe35860f70a8c164acbdd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a44d23ff1938abff84b7f483",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a5fc3f737c50e72cf2e2ecd7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a62513b9157dfc00b92ed932",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b2f8b150161ce12df8467a55",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b5ae0a7b65e6e4857fd4aeb8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b7c70c5c117fd156617694b0",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:be63d6a9a0a55ea52f37bce6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c18c46f73b1b982be4f1afaa",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c1f857c31094c1c1a0f3a167",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c784c747ca22a048d2a8d6d3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c80a48d154f22bde2db07df2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c924cf18024d026c0cb17723",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c9ccb205d6f516834b7d2e60",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d2d0fe6ba4aacf69482ba2ce",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d4c14dc16355671699aeb0a4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:df6b676f15c93d9124bdb4ca",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e516623771478908138f1cfb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e516623771478908138f1cfb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ea7da5f9cc655afb6b0e03c1",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f9496a43927a1d6840762d4d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5604591edb590e776aa1afaa",
+        "to": "requirement:viz-display-name",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:ea7da5f9cc655afb6b0e03c1",
+        "to": "requirement:viz-display-name",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c18c46f73b1b982be4f1afaa",
+        "to": "requirement:viz-display-name",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c924cf18024d026c0cb17723",
+        "to": "requirement:viz-display-name",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:1f9229992f0657ea5c7aee81",
+        "to": "requirement:tag-display-name",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:a5fc3f737c50e72cf2e2ecd7",
+        "to": "requirement:tag-display-name",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5553c00675f67ce974664a54",
+        "to": "requirement:tag-display-name",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5604591edb590e776aa1afaa",
+        "to": "requirement:tag-display-name",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:viz-display-name",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:5604591edb590e776aa1afaa",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ea7da5f9cc655afb6b0e03c1",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c18c46f73b1b982be4f1afaa",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c924cf18024d026c0cb17723",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:tag-display-name",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:1f9229992f0657ea5c7aee81",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:a5fc3f737c50e72cf2e2ecd7",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5553c00675f67ce974664a54",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5604591edb590e776aa1afaa",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:viz-display-name",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:5604591edb590e776aa1afaa",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ea7da5f9cc655afb6b0e03c1",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c18c46f73b1b982be4f1afaa",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c924cf18024d026c0cb17723",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:tag-display-name",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:1f9229992f0657ea5c7aee81",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:a5fc3f737c50e72cf2e2ecd7",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5553c00675f67ce974664a54",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5604591edb590e776aa1afaa",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "ffa35c7ec801f36ccf74c345026f6753fafd3144d79d60c46d0c8fba2a05208a"
+}

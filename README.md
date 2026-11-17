@@ -39,6 +39,7 @@ flowchart LR
 | SCIDOCS检索 | 完整test，1,000查询 | Dense Recall@10：22.94%，相对BM25提高48.70% |
 | DoGBench仓库定位 | 110项具有适用路径标签的任务 | Recall@10：60.88% → 69.10% |
 | DoGBench文档维护基线 | 175项公开dev任务 | 导出73份通过git apply --check的候选补丁 |
+| DoGBench编排对照 | 固定49题，Flash非思考 | 同10次决策上限，方向正确率22.45% → 51.02%，平均决策9.43 → 4.98次；新版26份补丁通过应用检查 |
 
 检索召回、路径定位、补丁可应用性和修改语义质量采用独立指标。四种检索配置的逐题结果、配对区间和候选补丁见评测报告。
 
@@ -46,6 +47,7 @@ flowchart LR
 - [仓库定位评测](docs/evaluation/repository-localization-2026-11-03.md)
 - [文档维护基线](docs/evaluation/docchange-public-2026-11-02.md)
 - [49题运行配置对照](docs/evaluation/docchange-flash-comparison-2026-11-04.md)
+- [批量ReAct的49题历史与同预算对照](docs/evaluation/docchange-batched-comparison-2026-11-18.md)
 - [复现说明](docs/PUBLIC_BENCHMARK_RUNBOOK.md)
 
 ## 本地运行

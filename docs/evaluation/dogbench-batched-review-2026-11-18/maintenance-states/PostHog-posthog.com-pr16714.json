@@ -1,0 +1,2854 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "postgres-cdc-prereqs",
+      "description": "Add a CDC sync mode section to the Postgres source doc explaining prerequisites (wal_level=logical, replication slot, publication), supported table modes, and WAL lag behavior/failure conditions that affect capture.",
+      "evidence_ids": [
+        "11859adac8e2b44491b5c7bf",
+        "5178208debd5fab054c1c05c",
+        "94e3c06e5ada31f2b04f6fcb"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "sources-cdc-mode",
+      "description": "Document the CDC sync mode in the sources index alongside incremental/append-only/full table, noting it captures inserts/updates/deletes via database-level replication and its prerequisites.",
+      "evidence_ids": [
+        "94e3c06e5ada31f2b04f6fcb",
+        "2888e0b296c6d4b8021bdb62"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "2f8eab4b6303c8897ed39d9d1a49621bcdbd5d870d3a29114e1e701d7411957c",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the documentation cover Postgres CDC prerequisites such as replication slots and publications?",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs"
+          ],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/clickhouse-vs-postgres.md",
+              "offset": 157,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "offset": 4,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "614a7aab57b87513997e683f",
+            "c57c6b008e9371d4b086f604",
+            "11859adac8e2b44491b5c7bf",
+            "10c893e97b6c72ae738e3c34",
+            "6e07cd54819e6560d1a3cd40",
+            "f04d2ecd037f5d76b8813183",
+            "3a0f934f4f7b1061fc271300",
+            "e5432479bbf89dedb96a8d4b",
+            "03727e05ec98fa3cbaaff007",
+            "677bbdfb53c9b26d5dfe4da6",
+            "08d76b61dcb3b46d38fea7ba",
+            "5d9eb7c70ad608e1247de58f",
+            "67db5ac71720584c3cab7a6d",
+            "d70f2c577907a3f7ef358596",
+            "aa4c787f980bb9218ca9562a"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+              "evidence_id": "10c893e97b6c72ae738e3c34",
+              "score": "0.04813947436898257"
+            },
+            {
+              "rank": 2,
+              "path": "contents/blog/clickhouse-vs-postgres.md",
+              "evidence_id": "6e07cd54819e6560d1a3cd40",
+              "score": "0.04437621202327085"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "evidence_id": "f04d2ecd037f5d76b8813183",
+              "score": "0.044008618655930046"
+            },
+            {
+              "rank": 4,
+              "path": "contents/blog/clickhouse-vs-postgres.md",
+              "evidence_id": "3a0f934f4f7b1061fc271300",
+              "score": "0.04024962462462463"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "evidence_id": "e5432479bbf89dedb96a8d4b",
+              "score": "0.03826158300396816"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+              "evidence_id": "03727e05ec98fa3cbaaff007",
+              "score": "0.03780789085545723"
+            },
+            {
+              "rank": 7,
+              "path": "contents/blog/best-mcp-servers-for-startups.mdx",
+              "evidence_id": "677bbdfb53c9b26d5dfe4da6",
+              "score": "0.03237986270022883"
+            },
+            {
+              "rank": 8,
+              "path": "contents/handbook/engineering/deployments-support.mdx",
+              "evidence_id": "08d76b61dcb3b46d38fea7ba",
+              "score": "0.030508259356687464"
+            },
+            {
+              "rank": 9,
+              "path": "contents/blog/duckdb-vs-clickhouse.mdx",
+              "evidence_id": "5d9eb7c70ad608e1247de58f",
+              "score": "0.030206835482115148"
+            },
+            {
+              "rank": 10,
+              "path": "contents/blog/data-warehouse-at-posthog.mdx",
+              "evidence_id": "67db5ac71720584c3cab7a6d",
+              "score": "0.030118651250579685"
+            },
+            {
+              "rank": 11,
+              "path": "contents/blog/duckdb-vs-clickhouse.mdx",
+              "evidence_id": "d70f2c577907a3f7ef358596",
+              "score": "0.029811047225907904"
+            },
+            {
+              "rank": 12,
+              "path": "contents/handbook/company/post-mortems/2025-11-15-persons-db-migration.md",
+              "evidence_id": "aa4c787f980bb9218ca9562a",
+              "score": "0.029770333173637115"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+              "start": 81,
+              "end": 96,
+              "total_lines": 96
+            },
+            {
+              "path": "contents/blog/clickhouse-vs-postgres.md",
+              "start": 157,
+              "end": 195,
+              "total_lines": 195
+            },
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "start": 4,
+              "end": 87,
+              "total_lines": 87
+            }
+          ],
+          "read_evidence_ids": [
+            "614a7aab57b87513997e683f",
+            "c57c6b008e9371d4b086f604",
+            "11859adac8e2b44491b5c7bf"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Does the documentation describe Postgres CDC table modes and WAL lag behavior/failure conditions?",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs"
+          ],
+          "reads": [
+            {
+              "path": "contents/docs/sql/clickhouse-functions.mdx",
+              "offset": 648,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-28-0.md",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "scripts/hogfm/handbook/S3_SETUP.md",
+              "offset": 35,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d36b0bbee41a365ce22e5dd5",
+            "1430fd16b1557ddb79a1d1cd",
+            "48a963028b9c52fe09a9258b",
+            "7f811f8bc8df10940c4e914e",
+            "5a715309f1e8890da5526dd0",
+            "10c893e97b6c72ae738e3c34",
+            "694599195e7ce961f80d0db1",
+            "9b747e088495e2860353ae76",
+            "a14dd8cd2a5de8f66ac73166",
+            "e26e287e1f8366c41c2fc850",
+            "9ed40c446eac0da10f3fa8dd",
+            "0d37fa105885cbf5970301f9",
+            "6be7650a6b8a05d0f4d7b86f",
+            "65c35a13e4957f6275c1bb18",
+            "7daefaa7a91276eb92ec4983"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/sql/clickhouse-functions.mdx",
+              "evidence_id": "7f811f8bc8df10940c4e914e",
+              "score": "0.017360560611345405"
+            },
+            {
+              "rank": 2,
+              "path": "contents/blog/the-posthog-array-1-28-0.md",
+              "evidence_id": "5a715309f1e8890da5526dd0",
+              "score": "0.016755062680810028"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+              "evidence_id": "10c893e97b6c72ae738e3c34",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 4,
+              "path": "scripts/hogfm/handbook/S3_SETUP.md",
+              "evidence_id": "694599195e7ce961f80d0db1",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/advanced/proxy/sveltekit.mdx",
+              "evidence_id": "9b747e088495e2860353ae76",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+              "evidence_id": "a14dd8cd2a5de8f66ac73166",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 7,
+              "path": "contents/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss.md",
+              "evidence_id": "e26e287e1f8366c41c2fc850",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 8,
+              "path": "contents/blog/the-posthog-array-1-17-0.md",
+              "evidence_id": "9ed40c446eac0da10f3fa8dd",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/advanced/proxy/netlify.mdx",
+              "evidence_id": "0d37fa105885cbf5970301f9",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/cdp/sources/pganalyze.md",
+              "evidence_id": "6be7650a6b8a05d0f4d7b86f",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 11,
+              "path": "contents/blog/the-posthog-array-1-17-0.md",
+              "evidence_id": "65c35a13e4957f6275c1bb18",
+              "score": "0.015625"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/ai-observability/installation/openclaw.mdx",
+              "evidence_id": "7daefaa7a91276eb92ec4983",
+              "score": "0.015625"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/sql/clickhouse-functions.mdx",
+              "start": 648,
+              "end": 675,
+              "total_lines": 675
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-28-0.md",
+              "start": 42,
+              "end": 142,
+              "total_lines": 142
+            },
+            {
+              "path": "scripts/hogfm/handbook/S3_SETUP.md",
+              "start": 35,
+              "end": 155,
+              "total_lines": 296
+            }
+          ],
+          "read_evidence_ids": [
+            "d36b0bbee41a365ce22e5dd5",
+            "1430fd16b1557ddb79a1d1cd",
+            "48a963028b9c52fe09a9258b"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "03727e05ec98fa3cbaaff007",
+        "08d76b61dcb3b46d38fea7ba",
+        "0d37fa105885cbf5970301f9",
+        "10c893e97b6c72ae738e3c34",
+        "11859adac8e2b44491b5c7bf",
+        "1430fd16b1557ddb79a1d1cd",
+        "3a0f934f4f7b1061fc271300",
+        "48a963028b9c52fe09a9258b",
+        "5a715309f1e8890da5526dd0",
+        "5d9eb7c70ad608e1247de58f",
+        "614a7aab57b87513997e683f",
+        "65c35a13e4957f6275c1bb18",
+        "677bbdfb53c9b26d5dfe4da6",
+        "67db5ac71720584c3cab7a6d",
+        "694599195e7ce961f80d0db1",
+        "6be7650a6b8a05d0f4d7b86f",
+        "6e07cd54819e6560d1a3cd40",
+        "7daefaa7a91276eb92ec4983",
+        "7f811f8bc8df10940c4e914e",
+        "9b747e088495e2860353ae76",
+        "9ed40c446eac0da10f3fa8dd",
+        "a14dd8cd2a5de8f66ac73166",
+        "aa4c787f980bb9218ca9562a",
+        "c57c6b008e9371d4b086f604",
+        "d36b0bbee41a365ce22e5dd5",
+        "d70f2c577907a3f7ef358596",
+        "e26e287e1f8366c41c2fc850",
+        "e5432479bbf89dedb96a8d4b",
+        "f04d2ecd037f5d76b8813183"
+      ],
+      "new_evidence_count": 29,
+      "new_path_count": 17
+    },
+    {
+      "signature": "824e49cbf14988b4e36c47e876a47a9a6bda1efbe55ee8c41636af87c8a57336",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the Postgres source doc describe CDC sync mode, its prerequisites (replication slots, publications, wal_level=logical), and table modes?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "contents/docs/cdp/sources/postgres.mdx"
+          ],
+          "anchor": "Selecting columns",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "query": "Selecting columns",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "5178208debd5fab054c1c05c"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "start": 35,
+              "end": 87,
+              "total_lines": 87
+            }
+          ],
+          "read_evidence_ids": [
+            "5178208debd5fab054c1c05c"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is there any dedicated CDC documentation page covering WAL lag, replication slot/publication setup, or failure conditions for Postgres CDC?",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/paddle.md",
+              "offset": 37,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "94e3c06e5ada31f2b04f6fcb",
+            "b734e7cf7a45d11ea82d1d5e",
+            "83cc3e1814f6ff3c06f0c2a0",
+            "22a7f1bbabb4bdaa064db2a5",
+            "7f97b98dc8b4d7497baf69bf",
+            "c1fb3812bac92b1e79e44cf4",
+            "1411105b01a4aa693e591617",
+            "2661a86b425e83c72ca12c74",
+            "5788876188cd9eb27f6f5f27",
+            "5aa7b91ca0024d28d0828aac",
+            "6c6f05de4f6a97e15e249f6e",
+            "26d3e9ea12c3212afd926fce",
+            "073da25610a9160ad55d7bbf",
+            "b200016bbce07639b72f01c9",
+            "54969eed75211019199efd78"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "evidence_id": "22a7f1bbabb4bdaa064db2a5",
+              "score": "0.04457454507857733"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "evidence_id": "7f97b98dc8b4d7497baf69bf",
+              "score": "0.04199730735725034"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/cdp/sources/paddle.md",
+              "evidence_id": "c1fb3812bac92b1e79e44cf4",
+              "score": "0.03790738529694353"
+            },
+            {
+              "rank": 4,
+              "path": "contents/handbook/engineering/clickhouse/clusters.mdx",
+              "evidence_id": "1411105b01a4aa693e591617",
+              "score": "0.034497549019607845"
+            },
+            {
+              "rank": 5,
+              "path": "contents/blog/the-posthog-array-1-34-0.md",
+              "evidence_id": "2661a86b425e83c72ca12c74",
+              "score": "0.032266458495966696"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/how-posthog-works/clickhouse.md",
+              "evidence_id": "5788876188cd9eb27f6f5f27",
+              "score": "0.029437229437229435"
+            },
+            {
+              "rank": 7,
+              "path": "contents/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss.md",
+              "evidence_id": "5aa7b91ca0024d28d0828aac",
+              "score": "0.02928692699490662"
+            },
+            {
+              "rank": 8,
+              "path": "contents/handbook/engineering/clickhouse/index.mdx",
+              "evidence_id": "6c6f05de4f6a97e15e249f6e",
+              "score": "0.02928517560870502"
+            },
+            {
+              "rank": 9,
+              "path": "contents/handbook/engineering/clickhouse/schema/sharded-events.mdx",
+              "evidence_id": "26d3e9ea12c3212afd926fce",
+              "score": "0.028438886647841874"
+            },
+            {
+              "rank": 10,
+              "path": "contents/blog/the-posthog-array-1-34-0.md",
+              "evidence_id": "073da25610a9160ad55d7bbf",
+              "score": "0.026553280111072546"
+            },
+            {
+              "rank": 11,
+              "path": "contents/teams/warehouse-sources/objectives.mdx",
+              "evidence_id": "b200016bbce07639b72f01c9",
+              "score": "0.026153846153846153"
+            },
+            {
+              "rank": 12,
+              "path": "contents/handbook/engineering/clickhouse/data-storage.mdx",
+              "evidence_id": "54969eed75211019199efd78",
+              "score": "0.02578981302385558"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "start": 54,
+              "end": 127,
+              "total_lines": 127
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "start": 2,
+              "end": 70,
+              "total_lines": 70
+            },
+            {
+              "path": "contents/docs/cdp/sources/paddle.md",
+              "start": 37,
+              "end": 44,
+              "total_lines": 44
+            }
+          ],
+          "read_evidence_ids": [
+            "94e3c06e5ada31f2b04f6fcb",
+            "b734e7cf7a45d11ea82d1d5e",
+            "83cc3e1814f6ff3c06f0c2a0"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "073da25610a9160ad55d7bbf",
+        "1411105b01a4aa693e591617",
+        "22a7f1bbabb4bdaa064db2a5",
+        "2661a86b425e83c72ca12c74",
+        "26d3e9ea12c3212afd926fce",
+        "5178208debd5fab054c1c05c",
+        "54969eed75211019199efd78",
+        "5788876188cd9eb27f6f5f27",
+        "5aa7b91ca0024d28d0828aac",
+        "6c6f05de4f6a97e15e249f6e",
+        "7f97b98dc8b4d7497baf69bf",
+        "83cc3e1814f6ff3c06f0c2a0",
+        "94e3c06e5ada31f2b04f6fcb",
+        "b200016bbce07639b72f01c9",
+        "b734e7cf7a45d11ea82d1d5e",
+        "c1fb3812bac92b1e79e44cf4"
+      ],
+      "new_evidence_count": 16,
+      "new_path_count": 10
+    },
+    {
+      "signature": "487b17a4b441b2f09ca8b0e4d80feb49d3f378ccc6b209ddb96c9225164c2b74",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q3-1",
+          "question": "Does the Postgres source doc mention CDC sync mode at all, and what does it say about prerequisites (wal_level=logical, replication slots, publications) and table modes?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "contents/docs/cdp/sources/postgres.mdx"
+          ],
+          "anchor": "## Selecting columns",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "query": "## Selecting columns",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "5178208debd5fab054c1c05c"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "start": 35,
+              "end": 87,
+              "total_lines": 87
+            }
+          ],
+          "read_evidence_ids": [
+            "5178208debd5fab054c1c05c"
+          ]
+        },
+        {
+          "id": "Q3-2",
+          "question": "Does the sources index page describe CDC sync mode and its requirements, and is there any mention of WAL lag or replication slot/publication failure conditions?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "contents/docs/cdp/sources/index.mdx"
+          ],
+          "anchor": "### Append only",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "query": "### Append only",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "2888e0b296c6d4b8021bdb62"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "start": 80,
+              "end": 127,
+              "total_lines": 127
+            }
+          ],
+          "read_evidence_ids": [
+            "2888e0b296c6d4b8021bdb62"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "2888e0b296c6d4b8021bdb62"
+      ],
+      "new_evidence_count": 1,
+      "new_path_count": 0
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "5682cbb4af79c8589fa999bd00364b7c58ca79f6"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:347816ba7e9de1c5": 0,
+    "discover:Q1-2:03bdbe9cacf35e9b": 355,
+    "discover:Q2-2:4b8e1812e84cf0f4": 0
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:347816ba7e9de1c5": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 355,
+      "cache_hit": false
+    },
+    "discover:Q1-2:03bdbe9cacf35e9b": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 144,
+      "cache_hit": false
+    },
+    "discover:Q1-1:01f851adab34c6cd": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 233,
+      "cache_hit": false
+    },
+    "discover:Q1-2:3c768f066d4cfd9e": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 270,
+      "cache_hit": false
+    },
+    "discover:Q2-2:4b8e1812e84cf0f4": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 187,
+      "cache_hit": false
+    },
+    "discover:Q2-1:316fcaddb2d60496": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 89,
+      "cache_hit": false
+    },
+    "discover:Q2-2:277319db0b825089": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 150,
+      "cache_hit": false
+    },
+    "discover:Q3-1:26849d974bf0f406": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 79,
+      "cache_hit": false
+    },
+    "discover:Q3-2:77230f8f276a64af": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 100,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2118,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "postgres-cdc-prereqs",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "evidence_ids": [
+        "11859adac8e2b44491b5c7bf",
+        "5178208debd5fab054c1c05c",
+        "94e3c06e5ada31f2b04f6fcb"
+      ],
+      "reason": "Add a CDC sync mode section to the Postgres source doc explaining prerequisites (wal_level=logical, replication slot, publication), supported table modes, and WAL lag behavior/failure conditions that affect capture."
+    },
+    {
+      "requirement_id": "sources-cdc-mode",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/cdp/sources/index.mdx"
+      ],
+      "evidence_ids": [
+        "94e3c06e5ada31f2b04f6fcb",
+        "2888e0b296c6d4b8021bdb62"
+      ],
+      "reason": "Document the CDC sync mode in the sources index alongside incremental/append-only/full table, noting it captures inserts/updates/deletes via database-level replication and its prerequisites."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:03727e05ec98fa3cbaaff007",
+        "type": "evidence",
+        "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 7,
+        "start_char": 0,
+        "end_char": 129,
+        "score": "0.03780789085545723",
+        "root": "docs",
+        "matched_terms": [
+          "postgres"
+        ],
+        "evidence_id": "03727e05ec98fa3cbaaff007",
+        "source_type": "repository",
+        "content_hash": "117efd09d498751bba43594772d2d1cb1d7266f9d5857cb67d8734538e1cc228",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "117efd09d498751bba43594772d2d1cb1d7266f9d5857cb67d8734538e1cc228",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:073da25610a9160ad55d7bbf",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-34-0.md",
+        "heading": "- Release notes > PostHog 1.34.0 release notes",
+        "start_line": 31,
+        "end_line": 43,
+        "start_char": 1302,
+        "end_char": 1836,
+        "score": "0.026553280111072546",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "replication"
+        ],
+        "evidence_id": "073da25610a9160ad55d7bbf",
+        "source_type": "repository",
+        "content_hash": "f577b664594640eac32b045a1baa4120d63e482b49dda515d7d86f69d6208174",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "f577b664594640eac32b045a1baa4120d63e482b49dda515d7d86f69d6208174",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:08d76b61dcb3b46d38fea7ba",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/deployments-support.mdx",
+        "heading": "showTitle: true > Common issues > How can I connect to Postgres?",
+        "start_line": 83,
+        "end_line": 86,
+        "start_char": 4320,
+        "end_char": 4458,
+        "score": "0.030508259356687464",
+        "root": "docs",
+        "matched_terms": [
+          "postgres"
+        ],
+        "evidence_id": "08d76b61dcb3b46d38fea7ba",
+        "source_type": "repository",
+        "content_hash": "e0d945537a6140372e2410aa564574f4e215a40f938918a9c34f7af36c9824c2",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e0d945537a6140372e2410aa564574f4e215a40f938918a9c34f7af36c9824c2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0d37fa105885cbf5970301f9",
+        "type": "evidence",
+        "path": "contents/docs/advanced/proxy/netlify.mdx",
+        "heading": "platformLogo: netlify > Prerequisites",
+        "start_line": 49,
+        "end_line": 53,
+        "start_char": 2808,
+        "end_char": 2964,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "prerequisites"
+        ],
+        "evidence_id": "0d37fa105885cbf5970301f9",
+        "source_type": "repository",
+        "content_hash": "30eb209ea82a0d497b999b3803bf1c02c708153c6a6d9244dc5b85d073978df8",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "30eb209ea82a0d497b999b3803bf1c02c708153c6a6d9244dc5b85d073978df8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:10c893e97b6c72ae738e3c34",
+        "type": "evidence",
+        "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+        "heading": "enterprise: full > Postgres configuration",
+        "start_line": 86,
+        "end_line": 96,
+        "start_char": 5798,
+        "end_char": 6776,
+        "score": "0.01639344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "table"
+        ],
+        "evidence_id": "10c893e97b6c72ae738e3c34",
+        "source_type": "repository",
+        "content_hash": "ded464eebb3e78f5d0fd2653367c46ec9988c6d45499301e5e631133e33f4176",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ded464eebb3e78f5d0fd2653367c46ec9988c6d45499301e5e631133e33f4176",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:11859adac8e2b44491b5c7bf",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "start_line": 5,
+        "total_lines": 87,
+        "start_char": 70,
+        "end_char": 4240,
+        "evidence_id": "11859adac8e2b44491b5c7bf",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "74c970cfda9f477db9af839a4f85b52868cf1dcf4514b135768fd5309b3d0137",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/clickhouse-vs-postgres.md",
+              "offset": 157,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "offset": 4,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "74c970cfda9f477db9af839a4f85b52868cf1dcf4514b135768fd5309b3d0137",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1411105b01a4aa693e591617",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/clusters.mdx",
+        "heading": "title: ClickHouse Clusters > Common features > ZooKeeper",
+        "start_line": 23,
+        "end_line": 28,
+        "start_char": 472,
+        "end_char": 699,
+        "score": "0.034497549019607845",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "replication"
+        ],
+        "evidence_id": "1411105b01a4aa693e591617",
+        "source_type": "repository",
+        "content_hash": "8aa25555d9c8b7bcb16481885fa2274cffd078dd8930f1be5d4a5d9c7ff36fee",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8aa25555d9c8b7bcb16481885fa2274cffd078dd8930f1be5d4a5d9c7ff36fee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1430fd16b1557ddb79a1d1cd",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/blog/the-posthog-array-1-28-0.md",
+        "start_line": 43,
+        "total_lines": 142,
+        "start_char": 1841,
+        "end_char": 7625,
+        "evidence_id": "1430fd16b1557ddb79a1d1cd",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "7534e1c6adfa7545bff1eaad2d54130773194e4a30f29a4d8d2e901fa6657c76",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/sql/clickhouse-functions.mdx",
+              "offset": 648,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-28-0.md",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "scripts/hogfm/handbook/S3_SETUP.md",
+              "offset": 35,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7534e1c6adfa7545bff1eaad2d54130773194e4a30f29a4d8d2e901fa6657c76",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20faf5132bd5393903a2a4e5",
+        "type": "evidence",
+        "evidence_id": "20faf5132bd5393903a2a4e5",
+        "source_type": "implementation",
+        "exported_content_sha256": "ef34b8c0ae348e7856c8fe5e47c94309f1a9757717a53758a8451dca777691e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:22a7f1bbabb4bdaa064db2a5",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "heading": "enterprise: full > Sync methods > Incremental",
+        "start_line": 59,
+        "end_line": 74,
+        "start_char": 2340,
+        "end_char": 3340,
+        "score": "0.04457454507857733",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "replication",
+          "sync",
+          "warehouse"
+        ],
+        "evidence_id": "22a7f1bbabb4bdaa064db2a5",
+        "source_type": "repository",
+        "content_hash": "e0f4ef26046fa6fe3803bab40537dc5d8f13c97981f6cccad6e2063d29f8e4b3",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e0f4ef26046fa6fe3803bab40537dc5d8f13c97981f6cccad6e2063d29f8e4b3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2661a86b425e83c72ca12c74",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-34-0.md",
+        "heading": "- Release notes > PostHog 1.34.0 release notes > New: Sharding and replication support for ClickHouse",
+        "start_line": 82,
+        "end_line": 87,
+        "start_char": 5102,
+        "end_char": 5472,
+        "score": "0.032266458495966696",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "replication"
+        ],
+        "evidence_id": "2661a86b425e83c72ca12c74",
+        "source_type": "repository",
+        "content_hash": "52b117f9ab798fd7215358eace4f88e14551385caf64d686fc9ae48f1f7f2460",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "52b117f9ab798fd7215358eace4f88e14551385caf64d686fc9ae48f1f7f2460",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:26d3e9ea12c3212afd926fce",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/schema/sharded-events.mdx",
+        "heading": "title: sharded_events > Sharding by `cityHash64(distinct_id)`",
+        "start_line": 79,
+        "end_line": 87,
+        "start_char": 3428,
+        "end_char": 3956,
+        "score": "0.028438886647841874",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "replication"
+        ],
+        "evidence_id": "26d3e9ea12c3212afd926fce",
+        "source_type": "repository",
+        "content_hash": "be4fe41da14f69422d96113e76542ea034b7467f9d7cdb8d5dff712507012dd4",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "be4fe41da14f69422d96113e76542ea034b7467f9d7cdb8d5dff712507012dd4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2888e0b296c6d4b8021bdb62",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "start_line": 81,
+        "total_lines": 127,
+        "start_char": 3932,
+        "end_char": 6628,
+        "evidence_id": "2888e0b296c6d4b8021bdb62",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "ba7f5027f84b6200ddccc44aafd6b9859b45461ff3171a37fa8868d6cb91446d",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "query": "### Append only",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "ba7f5027f84b6200ddccc44aafd6b9859b45461ff3171a37fa8868d6cb91446d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3a0f934f4f7b1061fc271300",
+        "type": "evidence",
+        "path": "contents/blog/clickhouse-vs-postgres.md",
+        "heading": "- ClickHouse > Comparing ClickHouse and Postgres > Postgres and its sharding problem",
+        "start_line": 179,
+        "end_line": 188,
+        "start_char": 16453,
+        "end_char": 17836,
+        "score": "0.04024962462462463",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "postgres"
+        ],
+        "evidence_id": "3a0f934f4f7b1061fc271300",
+        "source_type": "repository",
+        "content_hash": "1bd2ef6e6ba22d7b0c6eb78e792950523bc13073812b447fd59c2d4892410eb2",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1bd2ef6e6ba22d7b0c6eb78e792950523bc13073812b447fd59c2d4892410eb2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:48a963028b9c52fe09a9258b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "scripts/hogfm/handbook/S3_SETUP.md",
+        "start_line": 36,
+        "total_lines": 296,
+        "start_char": 823,
+        "end_char": 3448,
+        "evidence_id": "48a963028b9c52fe09a9258b",
+        "truncated": false,
+        "next_offset": 155,
+        "source_type": "repository",
+        "content_hash": "ca280b8d41b6fee74a1ba364e7a709973adc99db136bf088f7a7699cb3116391",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/sql/clickhouse-functions.mdx",
+              "offset": 648,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-28-0.md",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "scripts/hogfm/handbook/S3_SETUP.md",
+              "offset": 35,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ca280b8d41b6fee74a1ba364e7a709973adc99db136bf088f7a7699cb3116391",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5173cf25c2470640b63edba5",
+        "type": "evidence",
+        "evidence_id": "5173cf25c2470640b63edba5",
+        "source_type": "task",
+        "exported_content_sha256": "1c74168453fe43a182553a558cf7944354accd9d8f5f5e39b22c9ea9289c418b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5178208debd5fab054c1c05c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "start_line": 36,
+        "total_lines": 87,
+        "start_char": 1762,
+        "end_char": 4240,
+        "evidence_id": "5178208debd5fab054c1c05c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "365a4f6ff48caffc9baa944c199441983ed4ac0191a19e7d78f5138797762a79",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "query": "## Selecting columns",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "365a4f6ff48caffc9baa944c199441983ed4ac0191a19e7d78f5138797762a79",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:54969eed75211019199efd78",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/data-storage.mdx",
+        "heading": "title: Data storage or what is a MergeTree > Suggested reading",
+        "start_line": 510,
+        "end_line": 519,
+        "start_char": 23421,
+        "end_char": 24285,
+        "score": "0.02578981302385558",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "replication"
+        ],
+        "evidence_id": "54969eed75211019199efd78",
+        "source_type": "repository",
+        "content_hash": "b551a145e39b9ef1e8e520b40bb795fa62539784bc0b6ca951877022411a15bf",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b551a145e39b9ef1e8e520b40bb795fa62539784bc0b6ca951877022411a15bf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5788876188cd9eb27f6f5f27",
+        "type": "evidence",
+        "path": "contents/docs/how-posthog-works/clickhouse.md",
+        "heading": "title: ClickHouse > Events > `sharded_events` table",
+        "start_line": 78,
+        "end_line": 87,
+        "start_char": 2855,
+        "end_char": 3245,
+        "score": "0.029437229437229435",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "replication"
+        ],
+        "evidence_id": "5788876188cd9eb27f6f5f27",
+        "source_type": "repository",
+        "content_hash": "70032485db84e06d7320bfe8f2e59aa6ed8b61296abcb74ec5ebfde023d22d7f",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "70032485db84e06d7320bfe8f2e59aa6ed8b61296abcb74ec5ebfde023d22d7f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a715309f1e8890da5526dd0",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-28-0.md",
+        "heading": "- Release notes > PostHog 1.28.0 release notes > Significantly revamped performance",
+        "start_line": 47,
+        "end_line": 50,
+        "start_char": 1995,
+        "end_char": 2275,
+        "score": "0.016755062680810028",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "5a715309f1e8890da5526dd0",
+        "source_type": "repository",
+        "content_hash": "638c633e930b6d60ff545e368453c9e1506bad0b18c9386ef554633437954758",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "638c633e930b6d60ff545e368453c9e1506bad0b18c9386ef554633437954758",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5aa7b91ca0024d28d0828aac",
+        "type": "evidence",
+        "path": "contents/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss.md",
+        "heading": "- Post mortems > Root cause analysis > Zero Copy replication bug",
+        "start_line": 41,
+        "end_line": 48,
+        "start_char": 3168,
+        "end_char": 4076,
+        "score": "0.02928692699490662",
+        "root": "docs",
+        "matched_terms": [
+          "replication"
+        ],
+        "evidence_id": "5aa7b91ca0024d28d0828aac",
+        "source_type": "repository",
+        "content_hash": "482b2480a04b733a2925539539184703a9a1fe1e496fae4f05921f7fe4592fee",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "482b2480a04b733a2925539539184703a9a1fe1e496fae4f05921f7fe4592fee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5d9eb7c70ad608e1247de58f",
+        "type": "evidence",
+        "path": "contents/blog/duckdb-vs-clickhouse.mdx",
+        "heading": "make DuckDB work like Postgres. > How we use ClickHouse and DuckDB (and Postgres)",
+        "start_line": 123,
+        "end_line": 123,
+        "start_char": 13978,
+        "end_char": 14109,
+        "score": "0.030206835482115148",
+        "root": "docs",
+        "matched_terms": [
+          "postgres"
+        ],
+        "evidence_id": "5d9eb7c70ad608e1247de58f",
+        "source_type": "repository",
+        "content_hash": "83996d882d2a5a91153435cb45b73fcf9bb12eb574d8cdfd10ead3ae3b79035e",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "83996d882d2a5a91153435cb45b73fcf9bb12eb574d8cdfd10ead3ae3b79035e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:614a7aab57b87513997e683f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+        "start_line": 82,
+        "total_lines": 96,
+        "start_char": 5583,
+        "end_char": 6776,
+        "evidence_id": "614a7aab57b87513997e683f",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "28060d0624a2604f0205f62a963c2c71e2f80092abfcb410eb3094a0e61c80ec",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/clickhouse-vs-postgres.md",
+              "offset": 157,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "offset": 4,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "28060d0624a2604f0205f62a963c2c71e2f80092abfcb410eb3094a0e61c80ec",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:65c35a13e4957f6275c1bb18",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-17-0.md",
+        "heading": "- Release notes > Bug Fixes and Performance Improvements",
+        "start_line": 183,
+        "end_line": 195,
+        "start_char": 16266,
+        "end_char": 17973,
+        "score": "0.015625",
+        "root": "docs",
+        "matched_terms": [
+          "lag"
+        ],
+        "evidence_id": "65c35a13e4957f6275c1bb18",
+        "source_type": "repository",
+        "content_hash": "524b17fe5d135cd855ebfb4a873f5f2c385154694b6821d42030997cca5e3571",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "524b17fe5d135cd855ebfb4a873f5f2c385154694b6821d42030997cca5e3571",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:677bbdfb53c9b26d5dfe4da6",
+        "type": "evidence",
+        "path": "contents/blog/best-mcp-servers-for-startups.mdx",
+        "heading": "} > Best MCP servers, by workflow > Answering questions about your data (the SQL/warehouse loop)",
+        "start_line": 95,
+        "end_line": 109,
+        "start_char": 7832,
+        "end_char": 9138,
+        "score": "0.03237986270022883",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "postgres"
+        ],
+        "evidence_id": "677bbdfb53c9b26d5dfe4da6",
+        "source_type": "repository",
+        "content_hash": "8858fdf511b80b9a0f83d441f0fdeae2b7e106468993b3afeb00337a90028f4d",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "8858fdf511b80b9a0f83d441f0fdeae2b7e106468993b3afeb00337a90028f4d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:67db5ac71720584c3cab7a6d",
+        "type": "evidence",
+        "path": "contents/blog/data-warehouse-at-posthog.mdx",
+        "heading": "- Product engineers > Problem #2: Tracking revenue",
+        "start_line": 171,
+        "end_line": 191,
+        "start_char": 9294,
+        "end_char": 10928,
+        "score": "0.030118651250579685",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "postgres"
+        ],
+        "evidence_id": "67db5ac71720584c3cab7a6d",
+        "source_type": "repository",
+        "content_hash": "cfcf576a521cdc2cf7b952ad5dc92a83508421dd6d02b1c6edcfbfec9669e655",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "cfcf576a521cdc2cf7b952ad5dc92a83508421dd6d02b1c6edcfbfec9669e655",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:694599195e7ce961f80d0db1",
+        "type": "evidence",
+        "path": "scripts/hogfm/handbook/S3_SETUP.md",
+        "heading": "S3 Upload Setup Guide > Prerequisites",
+        "start_line": 40,
+        "end_line": 41,
+        "start_char": 949,
+        "end_char": 967,
+        "score": "0.01639344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "prerequisites"
+        ],
+        "evidence_id": "694599195e7ce961f80d0db1",
+        "source_type": "repository",
+        "content_hash": "d406f90d8f85477b1804b6ba47d1f44eadac2809fd79305a6efcdd724a017231",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d406f90d8f85477b1804b6ba47d1f44eadac2809fd79305a6efcdd724a017231",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6be7650a6b8a05d0f4d7b86f",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/pganalyze.md",
+        "heading": "sourceId: PgAnalyze > Available tables",
+        "start_line": 30,
+        "end_line": 38,
+        "start_char": 1156,
+        "end_char": 1840,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "table"
+        ],
+        "evidence_id": "6be7650a6b8a05d0f4d7b86f",
+        "source_type": "repository",
+        "content_hash": "2c35ec7c36b3d601ac139eb973f6dbae6e68766d27eee92bab4f8817d05a6a22",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2c35ec7c36b3d601ac139eb973f6dbae6e68766d27eee92bab4f8817d05a6a22",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6c6f05de4f6a97e15e249f6e",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/index.mdx",
+        "heading": "title: ClickHouse Manual > Manual sections",
+        "start_line": 50,
+        "end_line": 63,
+        "start_char": 3886,
+        "end_char": 4796,
+        "score": "0.02928517560870502",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "replication"
+        ],
+        "evidence_id": "6c6f05de4f6a97e15e249f6e",
+        "source_type": "repository",
+        "content_hash": "3320770ebbc3a419b5510446bfc1a4ccd1ec96f49adb1465519ed59a54711dfb",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "3320770ebbc3a419b5510446bfc1a4ccd1ec96f49adb1465519ed59a54711dfb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6e07cd54819e6560d1a3cd40",
+        "type": "evidence",
+        "path": "contents/blog/clickhouse-vs-postgres.md",
+        "heading": "- ClickHouse > Comparing ClickHouse and Postgres > ClickHouse's not so secret weapon... Materialized Views > Materialized View averaging age",
+        "start_line": 162,
+        "end_line": 168,
+        "start_char": 14114,
+        "end_char": 14823,
+        "score": "0.04437621202327085",
+        "root": "docs",
+        "matched_terms": [
+          "postgres"
+        ],
+        "evidence_id": "6e07cd54819e6560d1a3cd40",
+        "source_type": "repository",
+        "content_hash": "becbefe952781abfe300b091bf2e6271b84994c6d11950ab6185762bf107f641",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "becbefe952781abfe300b091bf2e6271b84994c6d11950ab6185762bf107f641",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7daefaa7a91276eb92ec4983",
+        "type": "evidence",
+        "path": "contents/docs/ai-observability/installation/openclaw.mdx",
+        "heading": "] > Prerequisites",
+        "start_line": 41,
+        "end_line": 47,
+        "start_char": 1164,
+        "end_char": 1355,
+        "score": "0.015625",
+        "root": "docs",
+        "matched_terms": [
+          "prerequisites"
+        ],
+        "evidence_id": "7daefaa7a91276eb92ec4983",
+        "source_type": "repository",
+        "content_hash": "81af535d75b35d55c6a9589fa56f2012c154fa91a5ab56555614d1c79fd3dffc",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "81af535d75b35d55c6a9589fa56f2012c154fa91a5ab56555614d1c79fd3dffc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f811f8bc8df10940c4e914e",
+        "type": "evidence",
+        "path": "contents/docs/sql/clickhouse-functions.mdx",
+        "heading": "enterprise: full > Window functions",
+        "start_line": 653,
+        "end_line": 663,
+        "start_char": 11123,
+        "end_char": 11279,
+        "score": "0.017360560611345405",
+        "root": "docs",
+        "matched_terms": [
+          "lag"
+        ],
+        "evidence_id": "7f811f8bc8df10940c4e914e",
+        "source_type": "repository",
+        "content_hash": "42a9019461b7bf8c617942a6d2d9cdf55e6d44c5188e9b872c774d7a7b205aed",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "42a9019461b7bf8c617942a6d2d9cdf55e6d44c5188e9b872c774d7a7b205aed",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f97b98dc8b4d7497baf69bf",
+        "type": "evidence",
+        "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+        "heading": "showTitle: true > Use incremental or append only sync",
+        "start_line": 7,
+        "end_line": 14,
+        "start_char": 75,
+        "end_char": 582,
+        "score": "0.04199730735725034",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "replication",
+          "sync",
+          "warehouse"
+        ],
+        "evidence_id": "7f97b98dc8b4d7497baf69bf",
+        "source_type": "repository",
+        "content_hash": "7983eb1494fa65f03a53b1a296f4e549d85e4ffb321013f4fd06e26b03baebba",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "7983eb1494fa65f03a53b1a296f4e549d85e4ffb321013f4fd06e26b03baebba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83cc3e1814f6ff3c06f0c2a0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/paddle.md",
+        "start_line": 38,
+        "total_lines": 44,
+        "start_char": 1234,
+        "end_char": 1534,
+        "evidence_id": "83cc3e1814f6ff3c06f0c2a0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2e305d521b66b6f3fb26dde483caafa9324d58d9baf999bf21886236650cd214",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/paddle.md",
+              "offset": 37,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2e305d521b66b6f3fb26dde483caafa9324d58d9baf999bf21886236650cd214",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:94e3c06e5ada31f2b04f6fcb",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "start_line": 55,
+        "total_lines": 127,
+        "start_char": 2026,
+        "end_char": 6628,
+        "evidence_id": "94e3c06e5ada31f2b04f6fcb",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d024f924fd8531f02695f904435f8427ac144d476b98a5b0e7952a647393b304",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/paddle.md",
+              "offset": 37,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d024f924fd8531f02695f904435f8427ac144d476b98a5b0e7952a647393b304",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9b747e088495e2860353ae76",
+        "type": "evidence",
+        "path": "contents/docs/advanced/proxy/sveltekit.mdx",
+        "heading": "platformLogo: svelte > Prerequisites",
+        "start_line": 43,
+        "end_line": 46,
+        "start_char": 2129,
+        "end_char": 2220,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "prerequisites"
+        ],
+        "evidence_id": "9b747e088495e2860353ae76",
+        "source_type": "repository",
+        "content_hash": "0c386e476eb5f98fef84ebb5f0fe1b9b84ebaa36fcf1c912faa82569ca33aa09",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0c386e476eb5f98fef84ebb5f0fe1b9b84ebaa36fcf1c912faa82569ca33aa09",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9ed40c446eac0da10f3fa8dd",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-17-0.md",
+        "heading": "- Release notes > Bug Fixes and Performance Improvements",
+        "start_line": 196,
+        "end_line": 207,
+        "start_char": 17973,
+        "end_char": 19576,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "wal"
+        ],
+        "evidence_id": "9ed40c446eac0da10f3fa8dd",
+        "source_type": "repository",
+        "content_hash": "9e2f71d53bf7b340d74c5c97d37336d00a7ac4baa8d003474b10f4d039a5190f",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9e2f71d53bf7b340d74c5c97d37336d00a7ac4baa8d003474b10f4d039a5190f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a14dd8cd2a5de8f66ac73166",
+        "type": "evidence",
+        "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+        "heading": "enterprise: full > Models > Persons model",
+        "start_line": 68,
+        "end_line": 72,
+        "start_char": 4966,
+        "end_char": 5149,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "table"
+        ],
+        "evidence_id": "a14dd8cd2a5de8f66ac73166",
+        "source_type": "repository",
+        "content_hash": "ac04d6807006afe7342629199031283d0f08ddab3c2c336539fb538f7b649528",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ac04d6807006afe7342629199031283d0f08ddab3c2c336539fb538f7b649528",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aa4c787f980bb9218ca9562a",
+        "type": "evidence",
+        "path": "contents/handbook/company/post-mortems/2025-11-15-persons-db-migration.md",
+        "heading": "- Post mortems > Root cause analysis > Primary issue: Postgres TOAST OID exhaustion",
+        "start_line": 67,
+        "end_line": 67,
+        "start_char": 6150,
+        "end_char": 6220,
+        "score": "0.029770333173637115",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "aa4c787f980bb9218ca9562a",
+        "source_type": "repository",
+        "content_hash": "9c06eba5f19b9c9f247cc916c07c0fce297b2b0fd47320deca9dba036707e0c3",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9c06eba5f19b9c9f247cc916c07c0fce297b2b0fd47320deca9dba036707e0c3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b200016bbce07639b72f01c9",
+        "type": "evidence",
+        "path": "contents/teams/warehouse-sources/objectives.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 41,
+        "start_char": 0,
+        "end_char": 1157,
+        "score": "0.026153846153846153",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "logical",
+          "replication",
+          "warehouse"
+        ],
+        "evidence_id": "b200016bbce07639b72f01c9",
+        "source_type": "repository",
+        "content_hash": "75718a7dc07386f74ae874dd26660960bff28750fc80b5600db6e85cb49f0ffa",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "75718a7dc07386f74ae874dd26660960bff28750fc80b5600db6e85cb49f0ffa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b734e7cf7a45d11ea82d1d5e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+        "start_line": 3,
+        "total_lines": 70,
+        "start_char": 40,
+        "end_char": 3234,
+        "evidence_id": "b734e7cf7a45d11ea82d1d5e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "c2276bd2cd821e1ec326b9e4735aad3824b238654dc9afb2d30b240099a39e8f",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/data-warehouse/cutting-costs.mdx",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/paddle.md",
+              "offset": 37,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c2276bd2cd821e1ec326b9e4735aad3824b238654dc9afb2d30b240099a39e8f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c1fb3812bac92b1e79e44cf4",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/paddle.md",
+        "heading": "sourceId: Paddle > Sync methods",
+        "start_line": 42,
+        "end_line": 44,
+        "start_char": 1274,
+        "end_char": 1534,
+        "score": "0.03790738529694353",
+        "root": "docs",
+        "matched_terms": [
+          "replication",
+          "sync"
+        ],
+        "evidence_id": "c1fb3812bac92b1e79e44cf4",
+        "source_type": "repository",
+        "content_hash": "711e216f560b29c2221933abc9707cfecd1a0d18798681b1f2310afd89d5445e",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC sync mode",
+            "logical replication wal_level",
+            "replication slot publication data warehouse"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "711e216f560b29c2221933abc9707cfecd1a0d18798681b1f2310afd89d5445e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c57c6b008e9371d4b086f604",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/blog/clickhouse-vs-postgres.md",
+        "start_line": 158,
+        "total_lines": 195,
+        "start_char": 13625,
+        "end_char": 18453,
+        "evidence_id": "c57c6b008e9371d4b086f604",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "de67f9b541566490a8f1920abe3a3b40c6cb9406c70eb27672e4bbb6ba578fcb",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/batch-exports/postgres.mdx",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/clickhouse-vs-postgres.md",
+              "offset": 157,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "offset": 4,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "de67f9b541566490a8f1920abe3a3b40c6cb9406c70eb27672e4bbb6ba578fcb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d36b0bbee41a365ce22e5dd5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/sql/clickhouse-functions.mdx",
+        "start_line": 649,
+        "total_lines": 675,
+        "start_char": 11069,
+        "end_char": 11473,
+        "evidence_id": "d36b0bbee41a365ce22e5dd5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5464cd95b7d9a353eb8a94d14aac25c95a98be07c6474c4581c02e641f50f607",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/sql/clickhouse-functions.mdx",
+              "offset": 648,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-28-0.md",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "scripts/hogfm/handbook/S3_SETUP.md",
+              "offset": 35,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5464cd95b7d9a353eb8a94d14aac25c95a98be07c6474c4581c02e641f50f607",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d70f2c577907a3f7ef358596",
+        "type": "evidence",
+        "path": "contents/blog/duckdb-vs-clickhouse.mdx",
+        "heading": "make DuckDB work like Postgres. > How we use ClickHouse and DuckDB (and Postgres)",
+        "start_line": 113,
+        "end_line": 123,
+        "start_char": 12178,
+        "end_char": 13978,
+        "score": "0.029811047225907904",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "postgres"
+        ],
+        "evidence_id": "d70f2c577907a3f7ef358596",
+        "source_type": "repository",
+        "content_hash": "abb5255c90d10b1b4a092542c2db72854672b07149279499e21e3ad2639d7eda",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "abb5255c90d10b1b4a092542c2db72854672b07149279499e21e3ad2639d7eda",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e26e287e1f8366c41c2fc850",
+        "type": "evidence",
+        "path": "contents/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss.md",
+        "heading": "- Post mortems > Root cause analysis > Lack of detection",
+        "start_line": 49,
+        "end_line": 52,
+        "start_char": 4076,
+        "end_char": 4523,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "lag"
+        ],
+        "evidence_id": "e26e287e1f8366c41c2fc850",
+        "source_type": "repository",
+        "content_hash": "cd7e30fd085ec32dad7270b26ef3e1df54f051dce5a02cabbebde57d7fe7c909",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "WAL lag",
+            "table mode postgres",
+            "logical replication prerequisites"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cd7e30fd085ec32dad7270b26ef3e1df54f051dce5a02cabbebde57d7fe7c909",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e5432479bbf89dedb96a8d4b",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "heading": "sourceId: Postgres > Selecting columns",
+        "start_line": 40,
+        "end_line": 69,
+        "start_char": 1802,
+        "end_char": 3451,
+        "score": "0.03826158300396816",
+        "root": "docs",
+        "matched_terms": [
+          "change",
+          "data",
+          "postgres"
+        ],
+        "evidence_id": "e5432479bbf89dedb96a8d4b",
+        "source_type": "repository",
+        "content_hash": "0bf3f414818b938b14310371f23419bb446d1cf8fa0d94bb7c65edbb12d3e6ea",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0bf3f414818b938b14310371f23419bb446d1cf8fa0d94bb7c65edbb12d3e6ea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f04d2ecd037f5d76b8813183",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "heading": "sourceId: Postgres",
+        "start_line": 9,
+        "end_line": 34,
+        "start_char": 134,
+        "end_char": 1761,
+        "score": "0.044008618655930046",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "postgres"
+        ],
+        "evidence_id": "f04d2ecd037f5d76b8813183",
+        "source_type": "repository",
+        "content_hash": "b33937e76a793d208a02ae65886926f1e40fec6d84700a3afc553b7d89d964ed",
+        "revision": "5682cbb4af79c8589fa999bd00364b7c58ca79f6",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres replication slot",
+            "postgres publication",
+            "change data capture postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b33937e76a793d208a02ae65886926f1e40fec6d84700a3afc553b7d89d964ed",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:postgres-cdc-prereqs",
+        "type": "requirement",
+        "description": "Add a CDC sync mode section to the Postgres source doc explaining prerequisites (wal_level=logical, replication slot, publication), supported table modes, and WAL lag behavior/failure conditions that affect capture."
+      },
+      {
+        "id": "requirement:sources-cdc-mode",
+        "type": "requirement",
+        "description": "Document the CDC sync mode in the sources index alongside incremental/append-only/full table, noting it captures inserts/updates/deletes via database-level replication and its prerequisites."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "hash": "57119bc658fea14342c9ba823169a6781f4a2e6fef60e30c75b476ea630439b0"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "hash": "5eb03b37b675040aabbc40fd65b0244ec13c14c3dd66b5f4cd28c71b56bde7ff"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "postgres-cdc-prereqs",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/cdp/sources/postgres.mdx"
+        ],
+        "evidence_ids": [
+          "11859adac8e2b44491b5c7bf",
+          "5178208debd5fab054c1c05c",
+          "94e3c06e5ada31f2b04f6fcb"
+        ],
+        "reason": "Add a CDC sync mode section to the Postgres source doc explaining prerequisites (wal_level=logical, replication slot, publication), supported table modes, and WAL lag behavior/failure conditions that affect capture."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "sources-cdc-mode",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/cdp/sources/index.mdx"
+        ],
+        "evidence_ids": [
+          "94e3c06e5ada31f2b04f6fcb",
+          "2888e0b296c6d4b8021bdb62"
+        ],
+        "reason": "Document the CDC sync mode in the sources index alongside incremental/append-only/full table, noting it captures inserts/updates/deletes via database-level replication and its prerequisites."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the documentation cover Postgres CDC prerequisites such as replication slots and publications?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Does the documentation describe Postgres CDC table modes and WAL lag behavior/failure conditions?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the Postgres source doc describe CDC sync mode, its prerequisites (replication slots, publications, wal_level=logical), and table modes?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is there any dedicated CDC documentation page covering WAL lag, replication slot/publication setup, or failure conditions for Postgres CDC?"
+      },
+      {
+        "id": "research:Q3-1",
+        "type": "research_question",
+        "description": "Does the Postgres source doc mention CDC sync mode at all, and what does it say about prerequisites (wal_level=logical, replication slots, publications) and table modes?"
+      },
+      {
+        "id": "research:Q3-2",
+        "type": "research_question",
+        "description": "Does the sources index page describe CDC sync mode and its requirements, and is there any mention of WAL lag or replication slot/publication failure conditions?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:03727e05ec98fa3cbaaff007",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:073da25610a9160ad55d7bbf",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:08d76b61dcb3b46d38fea7ba",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d37fa105885cbf5970301f9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:10c893e97b6c72ae738e3c34",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:10c893e97b6c72ae738e3c34",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:11859adac8e2b44491b5c7bf",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1411105b01a4aa693e591617",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1430fd16b1557ddb79a1d1cd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22a7f1bbabb4bdaa064db2a5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2661a86b425e83c72ca12c74",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:26d3e9ea12c3212afd926fce",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2888e0b296c6d4b8021bdb62",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3a0f934f4f7b1061fc271300",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:48a963028b9c52fe09a9258b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5178208debd5fab054c1c05c",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5178208debd5fab054c1c05c",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:54969eed75211019199efd78",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5788876188cd9eb27f6f5f27",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a715309f1e8890da5526dd0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5aa7b91ca0024d28d0828aac",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d9eb7c70ad608e1247de58f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:614a7aab57b87513997e683f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:65c35a13e4957f6275c1bb18",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:677bbdfb53c9b26d5dfe4da6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:67db5ac71720584c3cab7a6d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:694599195e7ce961f80d0db1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6be7650a6b8a05d0f4d7b86f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6c6f05de4f6a97e15e249f6e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6e07cd54819e6560d1a3cd40",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7daefaa7a91276eb92ec4983",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f811f8bc8df10940c4e914e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f97b98dc8b4d7497baf69bf",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83cc3e1814f6ff3c06f0c2a0",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:94e3c06e5ada31f2b04f6fcb",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9b747e088495e2860353ae76",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9ed40c446eac0da10f3fa8dd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a14dd8cd2a5de8f66ac73166",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aa4c787f980bb9218ca9562a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b200016bbce07639b72f01c9",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b734e7cf7a45d11ea82d1d5e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c1fb3812bac92b1e79e44cf4",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c57c6b008e9371d4b086f604",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d36b0bbee41a365ce22e5dd5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d70f2c577907a3f7ef358596",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e26e287e1f8366c41c2fc850",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e5432479bbf89dedb96a8d4b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f04d2ecd037f5d76b8813183",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:11859adac8e2b44491b5c7bf",
+        "to": "requirement:postgres-cdc-prereqs",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5178208debd5fab054c1c05c",
+        "to": "requirement:postgres-cdc-prereqs",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:94e3c06e5ada31f2b04f6fcb",
+        "to": "requirement:postgres-cdc-prereqs",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:94e3c06e5ada31f2b04f6fcb",
+        "to": "requirement:sources-cdc-mode",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:2888e0b296c6d4b8021bdb62",
+        "to": "requirement:sources-cdc-mode",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:postgres-cdc-prereqs",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:11859adac8e2b44491b5c7bf",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5178208debd5fab054c1c05c",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:94e3c06e5ada31f2b04f6fcb",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:sources-cdc-mode",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:94e3c06e5ada31f2b04f6fcb",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2888e0b296c6d4b8021bdb62",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:postgres-cdc-prereqs",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:11859adac8e2b44491b5c7bf",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5178208debd5fab054c1c05c",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:94e3c06e5ada31f2b04f6fcb",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:sources-cdc-mode",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:94e3c06e5ada31f2b04f6fcb",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2888e0b296c6d4b8021bdb62",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "379f9e73e8e9aac99e276cdd3d9759abfb26ae6bb3323531699d6b32fc476c8f"
+}

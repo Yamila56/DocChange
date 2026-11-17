@@ -1,0 +1,1979 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REASON",
+  "tasks": [],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "5ad701a8dd6c74b6e06c368b60e9040bd16c98a8dda200ae8bb63de8bf9042bd",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where does the existing Iceberg destination documentation describe catalog configuration (REST, Glue, warehouse, endpoint, SigV4)?",
+          "root": "docs",
+          "queries": [
+            "iceberg destination catalog configuration",
+            "iceberg REST catalog glue",
+            "iceberg warehouse endpoint sigv4"
+          ],
+          "paths": [
+            "docs/website/docs/dlt-ecosystem/destinations/iceberg.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "offset": 173,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "offset": 2,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "bac7c0589087f9a62cee1c24",
+            "0bfc8c592f381386ebd02cab",
+            "dea94e662720db34a12ba062",
+            "ab8d216fef533917e0443ccb",
+            "820736a48088080b35d375c7",
+            "e1635eb58624133198b2ce70",
+            "bcafe2f8050c945eacae3938",
+            "02cfa202f886b6235cc2acba",
+            "0670c1f72652db99e0c91ff9",
+            "f2018389b39855c17b75d864",
+            "7127df826f41e815dc63c423",
+            "9f4d4d5d826b69143e21ea9d",
+            "67f6d140428cf4a126ae8a95",
+            "983db02f02dae37eb8f6dfde",
+            "bddf8879cb7e6b597a036943"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "evidence_id": "ab8d216fef533917e0443ccb",
+              "score": "0.04787506400409626"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "evidence_id": "820736a48088080b35d375c7",
+              "score": "0.04643902077700826"
+            },
+            {
+              "rank": 3,
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "evidence_id": "e1635eb58624133198b2ce70",
+              "score": "0.04212735027497017"
+            },
+            {
+              "rank": 4,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "evidence_id": "bcafe2f8050c945eacae3938",
+              "score": "0.039649122807017545"
+            },
+            {
+              "rank": 5,
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "evidence_id": "02cfa202f886b6235cc2acba",
+              "score": "0.039186507936507936"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "evidence_id": "0670c1f72652db99e0c91ff9",
+              "score": "0.038855002675227394"
+            },
+            {
+              "rank": 7,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "evidence_id": "f2018389b39855c17b75d864",
+              "score": "0.036921897907503665"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "evidence_id": "7127df826f41e815dc63c423",
+              "score": "0.03615820095033481"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "evidence_id": "9f4d4d5d826b69143e21ea9d",
+              "score": "0.033116263537044985"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/delta-iceberg.md",
+              "evidence_id": "67f6d140428cf4a126ae8a95",
+              "score": "0.031254487058378994"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "evidence_id": "983db02f02dae37eb8f6dfde",
+              "score": "0.030179127725856698"
+            },
+            {
+              "rank": 12,
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "evidence_id": "bddf8879cb7e6b597a036943",
+              "score": "0.029860348680573398"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 137
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "start": 173,
+              "end": 293,
+              "total_lines": 585
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "start": 2,
+              "end": 122,
+              "total_lines": 293
+            }
+          ],
+          "read_evidence_ids": [
+            "bac7c0589087f9a62cee1c24",
+            "0bfc8c592f381386ebd02cab",
+            "dea94e662720db34a12ba062"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Does the docs mention S3 Tables or s3tables anywhere, and how are AWS credentials/SigV4 configured for Iceberg?",
+          "root": "docs",
+          "queries": [
+            "s3tables S3 Tables iceberg",
+            "iceberg aws credentials sigv4",
+            "iceberg glue data catalog"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "offset": 171,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "offset": 2,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "0cc33262bcad69494b435eb5",
+            "46d0e9b8ad59802226a23c7b",
+            "2fc53844354354698b5803e5",
+            "7127df826f41e815dc63c423",
+            "820736a48088080b35d375c7",
+            "9f4d4d5d826b69143e21ea9d",
+            "ab8d216fef533917e0443ccb",
+            "f2018389b39855c17b75d864",
+            "e1635eb58624133198b2ce70",
+            "983db02f02dae37eb8f6dfde",
+            "bcafe2f8050c945eacae3938",
+            "794f324a51d3fed5bf6fac02",
+            "e2d072799260f6e3c2853faa",
+            "bddf8879cb7e6b597a036943",
+            "b634e1ef81226bfc66acfc21"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "evidence_id": "7127df826f41e815dc63c423",
+              "score": "0.042198550974642056"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "evidence_id": "820736a48088080b35d375c7",
+              "score": "0.041875843454790826"
+            },
+            {
+              "rank": 3,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "evidence_id": "9f4d4d5d826b69143e21ea9d",
+              "score": "0.041601724552384055"
+            },
+            {
+              "rank": 4,
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "evidence_id": "ab8d216fef533917e0443ccb",
+              "score": "0.04129522409092301"
+            },
+            {
+              "rank": 5,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "evidence_id": "f2018389b39855c17b75d864",
+              "score": "0.038698696246139225"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "evidence_id": "e1635eb58624133198b2ce70",
+              "score": "0.03868264411027569"
+            },
+            {
+              "rank": 7,
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "evidence_id": "983db02f02dae37eb8f6dfde",
+              "score": "0.03831040480708412"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "evidence_id": "bcafe2f8050c945eacae3938",
+              "score": "0.037538402457757296"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "evidence_id": "794f324a51d3fed5bf6fac02",
+              "score": "0.0374866068661395"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "evidence_id": "e2d072799260f6e3c2853faa",
+              "score": "0.03675176056338028"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "evidence_id": "bddf8879cb7e6b597a036943",
+              "score": "0.034157157661334675"
+            },
+            {
+              "rank": 12,
+              "path": "docs/website/docs/release-notes/1.12.1.md",
+              "evidence_id": "b634e1ef81226bfc66acfc21",
+              "score": "0.02500864952139315"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "start": 171,
+              "end": 291,
+              "total_lines": 318
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 126
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "start": 2,
+              "end": 14,
+              "total_lines": 14
+            }
+          ],
+          "read_evidence_ids": [
+            "0cc33262bcad69494b435eb5",
+            "46d0e9b8ad59802226a23c7b",
+            "2fc53844354354698b5803e5"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "02cfa202f886b6235cc2acba",
+        "0670c1f72652db99e0c91ff9",
+        "0bfc8c592f381386ebd02cab",
+        "0cc33262bcad69494b435eb5",
+        "2fc53844354354698b5803e5",
+        "46d0e9b8ad59802226a23c7b",
+        "67f6d140428cf4a126ae8a95",
+        "7127df826f41e815dc63c423",
+        "794f324a51d3fed5bf6fac02",
+        "820736a48088080b35d375c7",
+        "983db02f02dae37eb8f6dfde",
+        "9f4d4d5d826b69143e21ea9d",
+        "ab8d216fef533917e0443ccb",
+        "b634e1ef81226bfc66acfc21",
+        "bac7c0589087f9a62cee1c24",
+        "bcafe2f8050c945eacae3938",
+        "bddf8879cb7e6b597a036943",
+        "dea94e662720db34a12ba062",
+        "e1635eb58624133198b2ce70",
+        "e2d072799260f6e3c2853faa",
+        "f2018389b39855c17b75d864"
+      ],
+      "new_evidence_count": 21,
+      "new_path_count": 8
+    },
+    {
+      "signature": "dbacadc83692694e92df9979ba0832e961f5e4d3bfd06866819db299eca1c871",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the dlt+ Iceberg destination docs page already document AWS Glue / S3 Tables catalog setups (catalog_type, warehouse, uri, SigV4 properties), and where would a new AWS catalogs section fit?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/website/docs/plus/ecosystem/iceberg.md"
+          ],
+          "anchor": "### Polaris catalog",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "query": "### Polaris catalog",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d081677d602afbd82ed116de"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "start": 234,
+              "end": 354,
+              "total_lines": 585
+            }
+          ],
+          "read_evidence_ids": [
+            "d081677d602afbd82ed116de"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "What configuration keys does the dlt+ Iceberg destination expose for REST catalog credentials (uri, warehouse, properties like sigv4/rest.sigv4-enabled, rest.signing-region, rest.signing-name) that the AWS catalog setups must reference?",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ],
+          "paths": [
+            "docs/website/docs/plus/ecosystem/iceberg.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "offset": 96,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "69c4d323332f61ebe03a8f65",
+            "52a3e2b5094df19ed5d3c123",
+            "d11ffb546a751ff58c9016a9",
+            "ab8d216fef533917e0443ccb",
+            "5dccb2683b0b15ae4a31413c",
+            "3a48017a8c208d9bc35cc9e7",
+            "0670c1f72652db99e0c91ff9",
+            "7127df826f41e815dc63c423",
+            "9d81442eca981abba8cee136",
+            "7781756646050275e0e10f75",
+            "bddf8879cb7e6b597a036943",
+            "e1635eb58624133198b2ce70",
+            "9f4d4d5d826b69143e21ea9d",
+            "d3540ba245c2deeea82ae18c",
+            "67f6d140428cf4a126ae8a95"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "evidence_id": "ab8d216fef533917e0443ccb",
+              "score": "0.032266458495966696"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "evidence_id": "5dccb2683b0b15ae4a31413c",
+              "score": "0.032266458495966696"
+            },
+            {
+              "rank": 3,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "evidence_id": "3a48017a8c208d9bc35cc9e7",
+              "score": "0.0266900790166813"
+            },
+            {
+              "rank": 4,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "evidence_id": "0670c1f72652db99e0c91ff9",
+              "score": "0.02667140825035562"
+            },
+            {
+              "rank": 5,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "evidence_id": "7127df826f41e815dc63c423",
+              "score": "0.024652147610405323"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "evidence_id": "9d81442eca981abba8cee136",
+              "score": "0.024562989752863168"
+            },
+            {
+              "rank": 7,
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "evidence_id": "7781756646050275e0e10f75",
+              "score": "0.024250440917107582"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "evidence_id": "bddf8879cb7e6b597a036943",
+              "score": "0.023306233062330622"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "evidence_id": "e1635eb58624133198b2ce70",
+              "score": "0.021980676328502417"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "evidence_id": "9f4d4d5d826b69143e21ea9d",
+              "score": "0.021330883853847724"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "evidence_id": "d3540ba245c2deeea82ae18c",
+              "score": "0.020556478405315614"
+            },
+            {
+              "rank": 12,
+              "path": "docs/website/docs/dlt-ecosystem/destinations/delta-iceberg.md",
+              "evidence_id": "67f6d140428cf4a126ae8a95",
+              "score": "0.019017094017094015"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 585
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "start": 0,
+              "end": 14,
+              "total_lines": 14
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "start": 96,
+              "end": 126,
+              "total_lines": 126
+            }
+          ],
+          "read_evidence_ids": [
+            "69c4d323332f61ebe03a8f65",
+            "52a3e2b5094df19ed5d3c123",
+            "d11ffb546a751ff58c9016a9"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "3a48017a8c208d9bc35cc9e7",
+        "52a3e2b5094df19ed5d3c123",
+        "5dccb2683b0b15ae4a31413c",
+        "69c4d323332f61ebe03a8f65",
+        "7781756646050275e0e10f75",
+        "9d81442eca981abba8cee136",
+        "d081677d602afbd82ed116de",
+        "d11ffb546a751ff58c9016a9",
+        "d3540ba245c2deeea82ae18c"
+      ],
+      "new_evidence_count": 9,
+      "new_path_count": 0
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:bc6e1e8d81fd8a83": 0,
+    "discover:Q1-2:e3c2144ce1c6d390": 103,
+    "discover:Q2-2:fc860f333b09b70a": 0
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:bc6e1e8d81fd8a83": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 103,
+      "cache_hit": false
+    },
+    "discover:Q1-2:e3c2144ce1c6d390": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 104,
+      "cache_hit": false
+    },
+    "discover:Q1-1:21145a19787c6d52": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 199,
+      "cache_hit": false
+    },
+    "discover:Q1-2:1a4b4ef9f1c05833": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 215,
+      "cache_hit": false
+    },
+    "discover:Q2-2:fc860f333b09b70a": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 551,
+      "cache_hit": false
+    },
+    "discover:Q2-1:a53eeec4315b20bd": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 572,
+      "cache_hit": false
+    },
+    "discover:Q2-2:a9124416e64a42b3": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 663,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:02cfa202f886b6235cc2acba",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+        "heading": "Snowflake+ Iceberg / Open Catalog > Configuration > `catalog`",
+        "start_line": 136,
+        "end_line": 140,
+        "start_char": 5428,
+        "end_char": 5687,
+        "score": "0.039186507936507936",
+        "root": "docs",
+        "matched_terms": [
+          "catalog",
+          "iceberg"
+        ],
+        "evidence_id": "02cfa202f886b6235cc2acba",
+        "source_type": "repository",
+        "content_hash": "c8fb87c0ee046121e782a0430034903c9b9696bad540c45b193789f29c3239bc",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg destination catalog configuration",
+            "iceberg REST catalog glue",
+            "iceberg warehouse endpoint sigv4"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c8fb87c0ee046121e782a0430034903c9b9696bad540c45b193789f29c3239bc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0670c1f72652db99e0c91ff9",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 56,
+        "score": "0.02667140825035562",
+        "root": "docs",
+        "matched_terms": [
+          "iceberg"
+        ],
+        "evidence_id": "0670c1f72652db99e0c91ff9",
+        "source_type": "repository",
+        "content_hash": "09a36ef161ad972df89e2ec41e805b2624ab8f39cb3b3b8929fdc992254df8b0",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "09a36ef161ad972df89e2ec41e805b2624ab8f39cb3b3b8929fdc992254df8b0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0bfc8c592f381386ebd02cab",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+        "start_line": 174,
+        "total_lines": 585,
+        "start_char": 7857,
+        "end_char": 12249,
+        "evidence_id": "0bfc8c592f381386ebd02cab",
+        "truncated": false,
+        "next_offset": 293,
+        "source_type": "repository",
+        "content_hash": "4389c512c97ff694865aea3aada4f1f30d76e683584774efce5c7e6bc955af7b",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "offset": 173,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "offset": 2,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4389c512c97ff694865aea3aada4f1f30d76e683584774efce5c7e6bc955af7b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0cc33262bcad69494b435eb5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+        "start_line": 172,
+        "total_lines": 318,
+        "start_char": 7411,
+        "end_char": 12663,
+        "evidence_id": "0cc33262bcad69494b435eb5",
+        "truncated": false,
+        "next_offset": 291,
+        "source_type": "repository",
+        "content_hash": "fa5c0e151ee086b1f732170d4bab3d3110e8679cf9558db1bc15c05eec697334",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "offset": 171,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "offset": 2,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fa5c0e151ee086b1f732170d4bab3d3110e8679cf9558db1bc15c05eec697334",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20faf5132bd5393903a2a4e5",
+        "type": "evidence",
+        "evidence_id": "20faf5132bd5393903a2a4e5",
+        "source_type": "implementation",
+        "exported_content_sha256": "ef34b8c0ae348e7856c8fe5e47c94309f1a9757717a53758a8451dca777691e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2fc53844354354698b5803e5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+        "start_line": 3,
+        "total_lines": 14,
+        "start_char": 19,
+        "end_char": 302,
+        "evidence_id": "2fc53844354354698b5803e5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3af08c12d7b04a55ab680b8744bd8e1a00aef174584fe5df0974eb84c37d6084",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "offset": 171,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "offset": 2,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3af08c12d7b04a55ab680b8744bd8e1a00aef174584fe5df0974eb84c37d6084",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3a48017a8c208d9bc35cc9e7",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+        "heading": "keywords: [iceberg, destination, data warehouse]",
+        "start_line": 4,
+        "end_line": 6,
+        "start_char": 56,
+        "end_char": 110,
+        "score": "0.0266900790166813",
+        "root": "docs",
+        "matched_terms": [
+          "iceberg",
+          "warehouse"
+        ],
+        "evidence_id": "3a48017a8c208d9bc35cc9e7",
+        "source_type": "repository",
+        "content_hash": "9416f0139944f4fa67922fe2ec3fb1ff494f9eb193a7ed01e0f842ea9ab32012",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9416f0139944f4fa67922fe2ec3fb1ff494f9eb193a7ed01e0f842ea9ab32012",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:46d0e9b8ad59802226a23c7b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+        "start_line": 1,
+        "total_lines": 126,
+        "start_char": 0,
+        "end_char": 4697,
+        "evidence_id": "46d0e9b8ad59802226a23c7b",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "80c33d7847f7191a5681289ae6b0948ee4235a417da29ff9830cada139cc2512",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+              "offset": 171,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "offset": 2,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "80c33d7847f7191a5681289ae6b0948ee4235a417da29ff9830cada139cc2512",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:52a3e2b5094df19ed5d3c123",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+        "start_line": 1,
+        "total_lines": 14,
+        "start_char": 0,
+        "end_char": 302,
+        "evidence_id": "52a3e2b5094df19ed5d3c123",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "6294fc87fcb51fafcb9acdf266f44b760b656ff147b24b6dab1906ebc4471f5c",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "offset": 96,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6294fc87fcb51fafcb9acdf266f44b760b656ff147b24b6dab1906ebc4471f5c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5dccb2683b0b15ae4a31413c",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+        "heading": "Iceberg > Configuration > Lakekeeper catalog",
+        "start_line": 222,
+        "end_line": 238,
+        "start_char": 9717,
+        "end_char": 10722,
+        "score": "0.032266458495966696",
+        "root": "docs",
+        "matched_terms": [
+          "credentials",
+          "iceberg",
+          "properties",
+          "uri",
+          "warehouse"
+        ],
+        "evidence_id": "5dccb2683b0b15ae4a31413c",
+        "source_type": "repository",
+        "content_hash": "c23c8a09b5b34e3db4144048fed0c77f43cce6f4431299ac416ac93fe583ec3d",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c23c8a09b5b34e3db4144048fed0c77f43cce6f4431299ac416ac93fe583ec3d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:67f6d140428cf4a126ae8a95",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/delta-iceberg.md",
+        "heading": "keywords: [delta, destination, data warehouse]",
+        "start_line": 4,
+        "end_line": 6,
+        "start_char": 52,
+        "end_char": 104,
+        "score": "0.019017094017094015",
+        "root": "docs",
+        "matched_terms": [
+          "warehouse"
+        ],
+        "evidence_id": "67f6d140428cf4a126ae8a95",
+        "source_type": "repository",
+        "content_hash": "daff4b1c026ef4c60e7ccc9cb33e0dfded36ab5049140234122e1a8ea0b80408",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "daff4b1c026ef4c60e7ccc9cb33e0dfded36ab5049140234122e1a8ea0b80408",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:69c4d323332f61ebe03a8f65",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+        "start_line": 1,
+        "total_lines": 585,
+        "start_char": 0,
+        "end_char": 4398,
+        "evidence_id": "69c4d323332f61ebe03a8f65",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "ab06aa688a23b53c307cec54d5bd80721c3a847bcb760dc8807d13c4f65f679c",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "offset": 96,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ab06aa688a23b53c307cec54d5bd80721c3a847bcb760dc8807d13c4f65f679c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7127df826f41e815dc63c423",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+        "heading": "AWS Athena / Glue Catalog > Additional destination options > Iceberg data tables",
+        "start_line": 176,
+        "end_line": 202,
+        "start_char": 7510,
+        "end_char": 8588,
+        "score": "0.024652147610405323",
+        "root": "docs",
+        "matched_terms": [
+          "iceberg",
+          "properties"
+        ],
+        "evidence_id": "7127df826f41e815dc63c423",
+        "source_type": "repository",
+        "content_hash": "c6c820c065c5dbe421abf73d6bb516b1c2510fe23e64f3062a4cacc3c1291a93",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c6c820c065c5dbe421abf73d6bb516b1c2510fe23e64f3062a4cacc3c1291a93",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7781756646050275e0e10f75",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+        "heading": "Snowflake+ Iceberg / Open Catalog",
+        "start_line": 26,
+        "end_line": 31,
+        "start_char": 1802,
+        "end_char": 2602,
+        "score": "0.024250440917107582",
+        "root": "docs",
+        "matched_terms": [
+          "iceberg",
+          "name"
+        ],
+        "evidence_id": "7781756646050275e0e10f75",
+        "source_type": "repository",
+        "content_hash": "1f821b0b87b835fee951c4c24a325804573be16201fc6f13de08c95c6ac464ed",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "1f821b0b87b835fee951c4c24a325804573be16201fc6f13de08c95c6ac464ed",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:794f324a51d3fed5bf6fac02",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+        "heading": "Snowflake+ Iceberg / Open Catalog > Syncing Snowflake-managed Iceberg tables to Snowflake Open Catalog",
+        "start_line": 231,
+        "end_line": 234,
+        "start_char": 9287,
+        "end_char": 9728,
+        "score": "0.0374866068661395",
+        "root": "docs",
+        "matched_terms": [
+          "catalog",
+          "iceberg",
+          "tables"
+        ],
+        "evidence_id": "794f324a51d3fed5bf6fac02",
+        "source_type": "repository",
+        "content_hash": "fcae4ab7b8f61ddc1ef9ff35739b6cce39f5f6fcdfafc613789878397ace57c4",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "s3tables S3 Tables iceberg",
+            "iceberg aws credentials sigv4",
+            "iceberg glue data catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fcae4ab7b8f61ddc1ef9ff35739b6cce39f5f6fcdfafc613789878397ace57c4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:820736a48088080b35d375c7",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+        "heading": "Iceberg > Configuration > Polaris catalog",
+        "start_line": 239,
+        "end_line": 288,
+        "start_char": 10722,
+        "end_char": 12129,
+        "score": "0.041875843454790826",
+        "root": "docs",
+        "matched_terms": [
+          "catalog",
+          "credentials",
+          "iceberg",
+          "s3",
+          "tables"
+        ],
+        "evidence_id": "820736a48088080b35d375c7",
+        "source_type": "repository",
+        "content_hash": "f8155befa89033f6da72ccce2ff3a1bb3dc1d23cb831b61a07251ea65f6df5f2",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "s3tables S3 Tables iceberg",
+            "iceberg aws credentials sigv4",
+            "iceberg glue data catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f8155befa89033f6da72ccce2ff3a1bb3dc1d23cb831b61a07251ea65f6df5f2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:983db02f02dae37eb8f6dfde",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+        "heading": "Iceberg table format",
+        "start_line": 7,
+        "end_line": 10,
+        "start_char": 97,
+        "end_char": 233,
+        "score": "0.03831040480708412",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "iceberg",
+          "tables"
+        ],
+        "evidence_id": "983db02f02dae37eb8f6dfde",
+        "source_type": "repository",
+        "content_hash": "081e136e0d639f1a11faa83c8bdda1e95e5e7dc341fab8de84521d555abb8ffd",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "s3tables S3 Tables iceberg",
+            "iceberg aws credentials sigv4",
+            "iceberg glue data catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "081e136e0d639f1a11faa83c8bdda1e95e5e7dc341fab8de84521d555abb8ffd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9d81442eca981abba8cee136",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+        "heading": "keywords: [iceberg, table formats]",
+        "start_line": 4,
+        "end_line": 6,
+        "start_char": 57,
+        "end_char": 97,
+        "score": "0.024562989752863168",
+        "root": "docs",
+        "matched_terms": [
+          "iceberg"
+        ],
+        "evidence_id": "9d81442eca981abba8cee136",
+        "source_type": "repository",
+        "content_hash": "97d511507c8d1aaaa77a32bc08c0aebb53a09081c043f4178c226c4d0b03848f",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "97d511507c8d1aaaa77a32bc08c0aebb53a09081c043f4178c226c4d0b03848f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9f4d4d5d826b69143e21ea9d",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/athena.md",
+        "heading": "AWS Athena / Glue Catalog > Additional destination options > dbt support",
+        "start_line": 245,
+        "end_line": 254,
+        "start_char": 10227,
+        "end_char": 10940,
+        "score": "0.021330883853847724",
+        "root": "docs",
+        "matched_terms": [
+          "credentials",
+          "iceberg",
+          "name"
+        ],
+        "evidence_id": "9f4d4d5d826b69143e21ea9d",
+        "source_type": "repository",
+        "content_hash": "5b62cf8a83ed6734b53d7b991bd0bc82bb75791077a25d274003a1de54f50be8",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "5b62cf8a83ed6734b53d7b991bd0bc82bb75791077a25d274003a1de54f50be8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ab8d216fef533917e0443ccb",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+        "heading": "Iceberg > Configuration > Lakekeeper catalog",
+        "start_line": 178,
+        "end_line": 221,
+        "start_char": 7996,
+        "end_char": 9717,
+        "score": "0.032266458495966696",
+        "root": "docs",
+        "matched_terms": [
+          "catalog_type",
+          "credentials",
+          "iceberg",
+          "name",
+          "properties",
+          "rest",
+          "uri",
+          "warehouse"
+        ],
+        "evidence_id": "ab8d216fef533917e0443ccb",
+        "source_type": "repository",
+        "content_hash": "5d689377f1a57f236d6fd67aaf2dad5e0c5bd674eb92ea031560ea2d5f1eb729",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "5d689377f1a57f236d6fd67aaf2dad5e0c5bd674eb92ea031560ea2d5f1eb729",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b634e1ef81226bfc66acfc21",
+        "type": "evidence",
+        "path": "docs/website/docs/release-notes/1.12.1.md",
+        "heading": "``` > Iceberg: `upsert` merge strategy added",
+        "start_line": 195,
+        "end_line": 213,
+        "start_char": 5148,
+        "end_char": 5780,
+        "score": "0.02500864952139315",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "iceberg"
+        ],
+        "evidence_id": "b634e1ef81226bfc66acfc21",
+        "source_type": "repository",
+        "content_hash": "7aae1941e5e4f095186a4c23f0a6a58033c07545495a8ae219d7cd1f228901c7",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "s3tables S3 Tables iceberg",
+            "iceberg aws credentials sigv4",
+            "iceberg glue data catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7aae1941e5e4f095186a4c23f0a6a58033c07545495a8ae219d7cd1f228901c7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bac7c0589087f9a62cee1c24",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+        "start_line": 1,
+        "total_lines": 137,
+        "start_char": 0,
+        "end_char": 4410,
+        "evidence_id": "bac7c0589087f9a62cee1c24",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "6b1ae1790caf21d381b0a86b36c3263e979518464f729d343405294102fe83cc",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "offset": 173,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "offset": 2,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6b1ae1790caf21d381b0a86b36c3263e979518464f729d343405294102fe83cc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bcafe2f8050c945eacae3938",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+        "heading": "Iceberg table format > Iceberg single-user ephemeral catalog",
+        "start_line": 13,
+        "end_line": 26,
+        "start_char": 552,
+        "end_char": 1611,
+        "score": "0.037538402457757296",
+        "root": "docs",
+        "matched_terms": [
+          "catalog",
+          "iceberg",
+          "tables"
+        ],
+        "evidence_id": "bcafe2f8050c945eacae3938",
+        "source_type": "repository",
+        "content_hash": "0cd701effdbf07b34cc43cc133ef0dd495bbc8b1d37118e82474b8a4a9349332",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "s3tables S3 Tables iceberg",
+            "iceberg aws credentials sigv4",
+            "iceberg glue data catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0cd701effdbf07b34cc43cc133ef0dd495bbc8b1d37118e82474b8a4a9349332",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bddf8879cb7e6b597a036943",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 57,
+        "score": "0.023306233062330622",
+        "root": "docs",
+        "matched_terms": [
+          "iceberg"
+        ],
+        "evidence_id": "bddf8879cb7e6b597a036943",
+        "source_type": "repository",
+        "content_hash": "ef835ac85442b15d0f38d2e3bd8afe1c684c65c36c5cbc4e595475803f4430c5",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ef835ac85442b15d0f38d2e3bd8afe1c684c65c36c5cbc4e595475803f4430c5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d081677d602afbd82ed116de",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+        "start_line": 235,
+        "total_lines": 585,
+        "start_char": 10451,
+        "end_char": 14535,
+        "evidence_id": "d081677d602afbd82ed116de",
+        "truncated": false,
+        "next_offset": 354,
+        "source_type": "repository",
+        "content_hash": "6c740a43d0129e0f07530dc9a9deea83d7e0bdcaddd1c87daac7a0b503c5d9ef",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "query": "### Polaris catalog",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "6c740a43d0129e0f07530dc9a9deea83d7e0bdcaddd1c87daac7a0b503c5d9ef",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d11ffb546a751ff58c9016a9",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+        "start_line": 97,
+        "total_lines": 126,
+        "start_char": 3822,
+        "end_char": 4863,
+        "evidence_id": "d11ffb546a751ff58c9016a9",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "ab744ff51618bec0e6fa747b2f8109bd09b001eeb3691dc6f5ef0d242d89e6a4",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/table-formats/iceberg.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+              "offset": 96,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ab744ff51618bec0e6fa747b2f8109bd09b001eeb3691dc6f5ef0d242d89e6a4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d3540ba245c2deeea82ae18c",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+        "heading": "Dremio > Table partitioning and local sort",
+        "start_line": 101,
+        "end_line": 121,
+        "start_char": 4002,
+        "end_char": 4698,
+        "score": "0.020556478405315614",
+        "root": "docs",
+        "matched_terms": [
+          "iceberg",
+          "properties"
+        ],
+        "evidence_id": "d3540ba245c2deeea82ae18c",
+        "source_type": "repository",
+        "content_hash": "de7dd9851c11339bd0dfc1ec9aa26034cddc4168f5cb706a360b6f91635e63dd",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "de7dd9851c11339bd0dfc1ec9aa26034cddc4168f5cb706a360b6f91635e63dd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dea94e662720db34a12ba062",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+        "start_line": 3,
+        "total_lines": 293,
+        "start_char": 60,
+        "end_char": 4990,
+        "evidence_id": "dea94e662720db34a12ba062",
+        "truncated": false,
+        "next_offset": 122,
+        "source_type": "repository",
+        "content_hash": "2c9393a5242d9a781486128f7a7d480c64c5ad2f4d450a1c09f5c03ebafe7ffd",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/iceberg.md",
+              "offset": 173,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+              "offset": 2,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2c9393a5242d9a781486128f7a7d480c64c5ad2f4d450a1c09f5c03ebafe7ffd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e1635eb58624133198b2ce70",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/ecosystem/snowflake_plus.md",
+        "heading": "Snowflake+ Iceberg / Open Catalog",
+        "start_line": 7,
+        "end_line": 25,
+        "start_char": 174,
+        "end_char": 1802,
+        "score": "0.021980676328502417",
+        "root": "docs",
+        "matched_terms": [
+          "iceberg"
+        ],
+        "evidence_id": "e1635eb58624133198b2ce70",
+        "source_type": "repository",
+        "content_hash": "bea6cf7ecdc4b8a74ae07326dcb47cb9bf1a681c3b53f96c87186ba81366a737",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg credentials properties sigv4 signing-name",
+            "iceberg catalog_type rest warehouse uri properties"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "bea6cf7ecdc4b8a74ae07326dcb47cb9bf1a681c3b53f96c87186ba81366a737",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e2d072799260f6e3c2853faa",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/iceberg.md",
+        "heading": "Iceberg table format > Google Cloud Storage authentication",
+        "start_line": 107,
+        "end_line": 118,
+        "start_char": 3627,
+        "end_char": 4153,
+        "score": "0.03675176056338028",
+        "root": "docs",
+        "matched_terms": [
+          "credentials",
+          "iceberg",
+          "s3"
+        ],
+        "evidence_id": "e2d072799260f6e3c2853faa",
+        "source_type": "repository",
+        "content_hash": "dd1529fbc576ccd46efdc434cc0620782ee138adf0bc24abe3243e2035c327e4",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "s3tables S3 Tables iceberg",
+            "iceberg aws credentials sigv4",
+            "iceberg glue data catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "dd1529fbc576ccd46efdc434cc0620782ee138adf0bc24abe3243e2035c327e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f2018389b39855c17b75d864",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/destinations/dremio.md",
+        "heading": "keywords: [dremio, iceberg, aws, glue catalog]",
+        "start_line": 4,
+        "end_line": 6,
+        "start_char": 58,
+        "end_char": 110,
+        "score": "0.038698696246139225",
+        "root": "docs",
+        "matched_terms": [
+          "aws",
+          "catalog",
+          "glue",
+          "iceberg"
+        ],
+        "evidence_id": "f2018389b39855c17b75d864",
+        "source_type": "repository",
+        "content_hash": "e75955db9914fc7fbd77b46b5579ace4ae351d6f787f2ca822eab31d0e597744",
+        "revision": "e39d603e5f2d6f04de7b1884a3bb9e75beef897e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "s3tables S3 Tables iceberg",
+            "iceberg aws credentials sigv4",
+            "iceberg glue data catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e75955db9914fc7fbd77b46b5579ace4ae351d6f787f2ca822eab31d0e597744",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fe90524260c12a22b6e840ab",
+        "type": "evidence",
+        "evidence_id": "fe90524260c12a22b6e840ab",
+        "source_type": "task",
+        "exported_content_sha256": "5cdf7750555f8cc6112c3af0fdc2453be9e515a83dc80f503726c54d3bc868ad",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where does the existing Iceberg destination documentation describe catalog configuration (REST, Glue, warehouse, endpoint, SigV4)?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Does the docs mention S3 Tables or s3tables anywhere, and how are AWS credentials/SigV4 configured for Iceberg?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the dlt+ Iceberg destination docs page already document AWS Glue / S3 Tables catalog setups (catalog_type, warehouse, uri, SigV4 properties), and where would a new AWS catalogs section fit?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "What configuration keys does the dlt+ Iceberg destination expose for REST catalog credentials (uri, warehouse, properties like sigv4/rest.sigv4-enabled, rest.signing-region, rest.signing-name) that the AWS catalog setups must reference?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:02cfa202f886b6235cc2acba",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0670c1f72652db99e0c91ff9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0670c1f72652db99e0c91ff9",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0bfc8c592f381386ebd02cab",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0cc33262bcad69494b435eb5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2fc53844354354698b5803e5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3a48017a8c208d9bc35cc9e7",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:46d0e9b8ad59802226a23c7b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:52a3e2b5094df19ed5d3c123",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5dccb2683b0b15ae4a31413c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:67f6d140428cf4a126ae8a95",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:67f6d140428cf4a126ae8a95",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:69c4d323332f61ebe03a8f65",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7127df826f41e815dc63c423",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7127df826f41e815dc63c423",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7127df826f41e815dc63c423",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7781756646050275e0e10f75",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:794f324a51d3fed5bf6fac02",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:820736a48088080b35d375c7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:820736a48088080b35d375c7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:983db02f02dae37eb8f6dfde",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:983db02f02dae37eb8f6dfde",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9d81442eca981abba8cee136",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9f4d4d5d826b69143e21ea9d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9f4d4d5d826b69143e21ea9d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9f4d4d5d826b69143e21ea9d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ab8d216fef533917e0443ccb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ab8d216fef533917e0443ccb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ab8d216fef533917e0443ccb",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b634e1ef81226bfc66acfc21",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bac7c0589087f9a62cee1c24",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bcafe2f8050c945eacae3938",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bcafe2f8050c945eacae3938",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bddf8879cb7e6b597a036943",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bddf8879cb7e6b597a036943",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bddf8879cb7e6b597a036943",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d081677d602afbd82ed116de",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d11ffb546a751ff58c9016a9",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d3540ba245c2deeea82ae18c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dea94e662720db34a12ba062",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e1635eb58624133198b2ce70",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e1635eb58624133198b2ce70",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e1635eb58624133198b2ce70",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e2d072799260f6e3c2853faa",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f2018389b39855c17b75d864",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f2018389b39855c17b75d864",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

@@ -1,0 +1,21 @@
+diff --git a/doc/user/content/self-managed-deployments/upgrading/_index.md b/doc/user/content/self-managed-deployments/upgrading/_index.md
+index d5704416a9e97e0a44df36e4805a84bb00003c2f..e43a5eee360e18e51b8408291a5f2f872581caf3 100644
+--- a/doc/user/content/self-managed-deployments/upgrading/_index.md
++++ b/doc/user/content/self-managed-deployments/upgrading/_index.md
+@@ -140,6 +140,16 @@ Until you specify a new `requestRollout`, the Operator watches for updates but
+ does not roll out the changes.
+ {{< /note >}}
+ 
++{{< note >}}
++If you cancel an in-progress rollout by reverting only `spec.requestRollout`
++without also reverting `spec.environmentdImageRef`, the spec image stays ahead
++of the image that environmentd is actually running. In this case, balancerd and
++console continue to track the image of the last completed rollout (recorded in
++`status.lastCompletedRolloutEnvironmentdImageRef`) so that they stay aligned
++with the running environmentd. If you want the spec to reflect the running
++version, revert `spec.environmentdImageRef` as well.
++{{< /note >}}
++
+ 
+ ### Applying the changes via `requestRollout`
+ 

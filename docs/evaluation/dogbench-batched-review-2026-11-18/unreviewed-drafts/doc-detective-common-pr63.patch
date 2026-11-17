@@ -1,0 +1,37 @@
+diff --git a/docs/references/schemas/httpRequest.md b/docs/references/schemas/httpRequest.md
+index 9c0e795ebeb19e812108ac49f76b396597c4d281..7e2caa76365651036c1d28f71706757eb1dc95d7 100644
+--- a/docs/references/schemas/httpRequest.md
++++ b/docs/references/schemas/httpRequest.md
+@@ -10,7 +10,8 @@ Field | Type | Description | Default
+ id | string |  Optional. ID of the step. | Generated UUID
+ description | string |  Optional. Description of the step. | 
+ action | string |  Required. Action to perform. | 
+-url | string |  Required. URL for the HTTP request. | 
++url | string |  Optional. URL for the HTTP request. Required only when no `openApi` reference is provided. | 
++openApi | object([openApi](/docs/references/schemas/openApi)) |  Optional. OpenAPI operation reference to use for the request. When provided, `url` is optional. | 
+ statusCodes | array of integers |  Optional. Accepted status codes. If the specified URL returns a code other than what is specified here, the action fails. | ``[200]``
+ method | string |  Optional. Method of the HTTP request<br/><br/>Accepted values: `get`, `put`, `post`, `patch`, `delete` | `get`
+ timeout | integer |  Optional. Timeout for the HTTP request, in milliseconds. | `60000`
+diff --git a/docs/references/schemas/openApi.md b/docs/references/schemas/openApi.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..f653a94fe6626ca148213c87269c26bac6800323
+--- /dev/null
++++ b/docs/references/schemas/openApi.md
+@@ -0,0 +1,17 @@
++
++# openApi
++
++OpenAPI definition and configuration. Use this object to reference an OpenAPI operation for an `httpRequest` step. You can reference it at the config, spec, test, and step levels.
++
++## Fields
++
++Field | Type | Description | Default
++:-- | :-- | :-- | :--
++name | string |  Optional. Name of the OpenAPI definition, as defined in your configuration. | 
++descriptionPath | string |  Optional. URL or local path to the OpenAPI definition. | 
++operationId | string |  Optional. ID of the operation to use for the request. | 
++server | string |  Optional. Server to use for example requests. Only valid if `useExample` is `request` or `both`. If not specified but an example is used for the request, uses the first server defined in the OpenAPI definition. | 
++validateAgainstSchema | string |  Optional. Validates the request and/or response against the schema in the OpenAPI definition. If the request or response doesn't match the schema, the step fails.<br/><br/>Accepted values: `request`, `response`, `both`, `none` | `both`
++mockResponse | boolean |  Optional. If `true`, doesn't make the HTTP request, but instead uses the response example or schema from the OpenAPI definition as the response data. Useful for creating tests when an API isn't fully implemented yet. If `statusCode` isn't specified, uses the first defined response code. | 
++statusCode | integer |  Optional. Response code to use for validation, examples, and status code checking. If the response code doesn't match, the step fails. `statusCodes` overrides this value when specified. | 
++useExample | string |  Optional. Uses the example from the OpenAPI definition as the request and response data. If the request or response has multiple examples, specify `exampleKey`. If `statusCode` isn't specified, uses the first defined response code. `requestData`, `requestParams`, and `requestHeaders` override portions of request examples when specified. `responseData` overrides portions of response examples when specified.<br/><br/>Accepted values: `request`, `response`, `both`, `none` | `none`

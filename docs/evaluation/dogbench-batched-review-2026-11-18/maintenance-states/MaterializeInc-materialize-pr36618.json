@@ -1,0 +1,1634 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "upgrading-cancel-rollout",
+      "description": "In doc/user/content/self-managed-deployments/upgrading/_index.md, add a note in the rollout/upgrade section explaining that if you cancel an in-progress rollout by reverting only `spec.requestRollout` without also reverting `spec.environmentdImageRef`, the spec image stays ahead of the running environmentd; balancerd and console continue tracking the last completed rollout's image (status.lastCompletedRolloutEnvironmentdImageRef) so they stay aligned with the running environmentd. Advise reverting `environmentdImageRef` too if you want the spec to reflect the running version.",
+      "evidence_ids": [
+        "882cca1ae1d394f5515bc120",
+        "56b7baeb62af03528d35a1b1",
+        "fe419608975f95192900907a",
+        "46b90df80bab5cd60bb1a931"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "03465d027bb833526e413dd898cc155c9998596fbe020cd6b977b3732013e310",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the user-facing documentation describe the Materialize CR status fields (lastCompletedRolloutEnvironmentdImageRef) or rollout/upgrade behavior that this change affects?",
+          "root": "docs",
+          "queries": [
+            "lastCompletedRolloutEnvironmentdImageRef",
+            "requestRollout rolloutStrategy",
+            "environmentdImageRef upgrade"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "offset": 164,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "offset": 155,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "offset": 1009,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "56b7baeb62af03528d35a1b1",
+            "ec3ba1f2dd5799a45622cd47",
+            "5243fe416569059673d53fbc",
+            "2b1f7890fb8e53a6e940610d",
+            "e74c332473f872f56f44c059",
+            "4838902dd3387a88febe30a7",
+            "f9e0d86f7fc2d255b1235fdf",
+            "6815a14a5a8abc23cf9d9542",
+            "05265bc72735b6cd2bf04cb9",
+            "b29a7446091fe8c85586079f",
+            "f07f1b471d0766a6a1f7ad24",
+            "c7c0ae2d75b05501f345b8b0",
+            "e319ea32a0a8c7e9816dd707",
+            "ee87bea4e5e749bdee0c49dd",
+            "aa6e3b29d03c764af5d562e7"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "evidence_id": "2b1f7890fb8e53a6e940610d",
+              "score": "0.031671252524924906"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "evidence_id": "e74c332473f872f56f44c059",
+              "score": "0.031337452529775926"
+            },
+            {
+              "rank": 3,
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "evidence_id": "4838902dd3387a88febe30a7",
+              "score": "0.03007688828584351"
+            },
+            {
+              "rank": 4,
+              "path": "doc/user/content/releases/_index.md",
+              "evidence_id": "f9e0d86f7fc2d255b1235fdf",
+              "score": "0.02736726874657909"
+            },
+            {
+              "rank": 5,
+              "path": "doc/developer/design/20230210_storage_persist_sink_redux.md",
+              "evidence_id": "6815a14a5a8abc23cf9d9542",
+              "score": "0.02736498731424429"
+            },
+            {
+              "rank": 6,
+              "path": "misc/helm-charts/operator/README.md",
+              "evidence_id": "05265bc72735b6cd2bf04cb9",
+              "score": "0.026754075124025514"
+            },
+            {
+              "rank": 7,
+              "path": ".agents/skills/README.md",
+              "evidence_id": "b29a7446091fe8c85586079f",
+              "score": "0.0265113137453563"
+            },
+            {
+              "rank": 8,
+              "path": ".agents/skills/README.md",
+              "evidence_id": "f07f1b471d0766a6a1f7ad24",
+              "score": "0.02639344262295082"
+            },
+            {
+              "rank": 9,
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "evidence_id": "c7c0ae2d75b05501f345b8b0",
+              "score": "0.025058179776873062"
+            },
+            {
+              "rank": 10,
+              "path": "doc/user/shared-content/self-managed/upgrade-notes/v26.0.md",
+              "evidence_id": "e319ea32a0a8c7e9816dd707",
+              "score": "0.02426470588235294"
+            },
+            {
+              "rank": 11,
+              "path": ".agents/skills/mz-adapter-guide/SKILL.md",
+              "evidence_id": "ee87bea4e5e749bdee0c49dd",
+              "score": "0.02317541613316261"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/generated/environmentd/http/catalog.md",
+              "evidence_id": "aa6e3b29d03c764af5d562e7",
+              "score": "0.02312889812889813"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "start": 164,
+              "end": 284,
+              "total_lines": 313
+            },
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "start": 155,
+              "end": 275,
+              "total_lines": 331
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "start": 1009,
+              "end": 1077,
+              "total_lines": 1077
+            }
+          ],
+          "read_evidence_ids": [
+            "56b7baeb62af03528d35a1b1",
+            "ec3ba1f2dd5799a45622cd47",
+            "5243fe416569059673d53fbc"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Does documentation describe balancerd/console image tracking or version skew during upgrades?",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "offset": 47,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20230419_stash_migrations.md",
+              "offset": 346,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "offset": 117,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "e9ed371908f3cb141ba417fd",
+            "1ba3244f3a7df0a01b8d7ae8",
+            "fe419608975f95192900907a",
+            "cf4ea3d11727141462be0ef5",
+            "4166a5a55ebe6ff1cc4925b9",
+            "46b90df80bab5cd60bb1a931",
+            "1a959dd0e6ad3325494c8011",
+            "2b1f7890fb8e53a6e940610d",
+            "e319ea32a0a8c7e9816dd707",
+            "f07f1b471d0766a6a1f7ad24",
+            "b29a7446091fe8c85586079f",
+            "2280578b1b2afc568355d7bd",
+            "6a27b43db398fd803047caa2",
+            "4ac0aa946473ca0c5ff70806",
+            "812ce166becebdab5e0958c4"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "evidence_id": "cf4ea3d11727141462be0ef5",
+              "score": "0.02325895875591616"
+            },
+            {
+              "rank": 2,
+              "path": "doc/developer/design/20230419_stash_migrations.md",
+              "evidence_id": "4166a5a55ebe6ff1cc4925b9",
+              "score": "0.02292152292152292"
+            },
+            {
+              "rank": 3,
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "evidence_id": "46b90df80bab5cd60bb1a931",
+              "score": "0.021241830065359478"
+            },
+            {
+              "rank": 4,
+              "path": "doc/developer/design/20230419_stash_migrations.md",
+              "evidence_id": "1a959dd0e6ad3325494c8011",
+              "score": "0.021207349081364832"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "evidence_id": "2b1f7890fb8e53a6e940610d",
+              "score": "0.021044679473343406"
+            },
+            {
+              "rank": 6,
+              "path": "doc/user/shared-content/self-managed/upgrade-notes/v26.0.md",
+              "evidence_id": "e319ea32a0a8c7e9816dd707",
+              "score": "0.020449699554177168"
+            },
+            {
+              "rank": 7,
+              "path": ".agents/skills/README.md",
+              "evidence_id": "f07f1b471d0766a6a1f7ad24",
+              "score": "0.019342472118959106"
+            },
+            {
+              "rank": 8,
+              "path": ".agents/skills/README.md",
+              "evidence_id": "b29a7446091fe8c85586079f",
+              "score": "0.018841552051884154"
+            },
+            {
+              "rank": 9,
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "evidence_id": "2280578b1b2afc568355d7bd",
+              "score": "0.018646251800197074"
+            },
+            {
+              "rank": 10,
+              "path": "console/misc/docker/README.md",
+              "evidence_id": "6a27b43db398fd803047caa2",
+              "score": "0.018543980257359424"
+            },
+            {
+              "rank": 11,
+              "path": "doc/developer/generated/cloud-resources/crd/console.md",
+              "evidence_id": "4ac0aa946473ca0c5ff70806",
+              "score": "0.01764705882352941"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/generated/catalog/durable/upgrade/v75_to_v76.md",
+              "evidence_id": "812ce166becebdab5e0958c4",
+              "score": "0.017548177034036272"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "start": 47,
+              "end": 167,
+              "total_lines": 331
+            },
+            {
+              "path": "doc/developer/design/20230419_stash_migrations.md",
+              "start": 346,
+              "end": 443,
+              "total_lines": 443
+            },
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "start": 117,
+              "end": 237,
+              "total_lines": 313
+            }
+          ],
+          "read_evidence_ids": [
+            "e9ed371908f3cb141ba417fd",
+            "1ba3244f3a7df0a01b8d7ae8",
+            "fe419608975f95192900907a"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "05265bc72735b6cd2bf04cb9",
+        "1a959dd0e6ad3325494c8011",
+        "1ba3244f3a7df0a01b8d7ae8",
+        "2280578b1b2afc568355d7bd",
+        "2b1f7890fb8e53a6e940610d",
+        "4166a5a55ebe6ff1cc4925b9",
+        "46b90df80bab5cd60bb1a931",
+        "4838902dd3387a88febe30a7",
+        "4ac0aa946473ca0c5ff70806",
+        "5243fe416569059673d53fbc",
+        "56b7baeb62af03528d35a1b1",
+        "6815a14a5a8abc23cf9d9542",
+        "6a27b43db398fd803047caa2",
+        "812ce166becebdab5e0958c4",
+        "aa6e3b29d03c764af5d562e7",
+        "b29a7446091fe8c85586079f",
+        "c7c0ae2d75b05501f345b8b0",
+        "cf4ea3d11727141462be0ef5",
+        "e319ea32a0a8c7e9816dd707",
+        "e74c332473f872f56f44c059",
+        "e9ed371908f3cb141ba417fd",
+        "ec3ba1f2dd5799a45622cd47",
+        "ee87bea4e5e749bdee0c49dd",
+        "f07f1b471d0766a6a1f7ad24",
+        "f9e0d86f7fc2d255b1235fdf",
+        "fe419608975f95192900907a"
+      ],
+      "new_evidence_count": 26,
+      "new_path_count": 13
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+    "code": "fc2fda7d7e982dd542066489203fb28c31f3fd04"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:9a79b50e11425d33": 0,
+    "discover:Q1-2:73fb81d99bd53a39": 169
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:9a79b50e11425d33": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 169,
+      "cache_hit": false
+    },
+    "discover:Q1-2:73fb81d99bd53a39": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 175,
+      "cache_hit": false
+    },
+    "discover:Q1-1:9d3903994578cc43": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 227,
+      "cache_hit": false
+    },
+    "discover:Q1-2:a0cc6b6d913f17ab": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 248,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 1749,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "upgrading-cancel-rollout",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "doc/user/content/self-managed-deployments/upgrading/_index.md"
+      ],
+      "evidence_ids": [
+        "46b90df80bab5cd60bb1a931",
+        "fe419608975f95192900907a",
+        "56b7baeb62af03528d35a1b1",
+        "882cca1ae1d394f5515bc120"
+      ],
+      "reason": "In doc/user/content/self-managed-deployments/upgrading/_index.md, add a note in the rollout/upgrade section explaining that if you cancel an in-progress rollout by reverting only `spec.requestRollout` without also reverting `spec.environmentdImageRef`, the spec image stays ahead of the running environmentd; balancerd and console continue tracking the last completed rollout's image (status.lastCompletedRolloutEnvironmentdImageRef) so they stay aligned with the running environmentd. Advise reverting `environmentdImageRef` too if you want the spec to reflect the running version."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:05265bc72735b6cd2bf04cb9",
+        "type": "evidence",
+        "path": "misc/helm-charts/operator/README.md",
+        "heading": "Materialize Kubernetes Operator Helm Chart > Upgrading > Upgrading Materialize Instances > Using `kubectl` patch",
+        "start_line": 319,
+        "end_line": 345,
+        "start_char": 17102,
+        "end_char": 17954,
+        "score": "0.026754075124025514",
+        "root": "docs",
+        "matched_terms": [
+          "environmentdimageref",
+          "requestrollout"
+        ],
+        "evidence_id": "05265bc72735b6cd2bf04cb9",
+        "source_type": "repository",
+        "content_hash": "1e328ee756d6535ec35fd00cd24d76b45cb0620f57f8097fdb0f67fd975b25f7",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "lastCompletedRolloutEnvironmentdImageRef",
+            "requestRollout rolloutStrategy",
+            "environmentdImageRef upgrade"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1e328ee756d6535ec35fd00cd24d76b45cb0620f57f8097fdb0f67fd975b25f7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0e4017eecba4ff3ee4213602",
+        "type": "evidence",
+        "evidence_id": "0e4017eecba4ff3ee4213602",
+        "source_type": "task",
+        "exported_content_sha256": "45f28ab149839ac717a711d3c975771f78127dbd4fd0717bb8d87688bbc45056",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a959dd0e6ad3325494c8011",
+        "type": "evidence",
+        "path": "doc/developer/design/20230419_stash_migrations.md",
+        "heading": "Rollout > Migration to this new framework",
+        "start_line": 312,
+        "end_line": 319,
+        "start_char": 15803,
+        "end_char": 16358,
+        "score": "0.021207349081364832",
+        "root": "docs",
+        "matched_terms": [
+          "upgrade",
+          "version"
+        ],
+        "evidence_id": "1a959dd0e6ad3325494c8011",
+        "source_type": "repository",
+        "content_hash": "7594b594857e99a0163e05e7d3dbcdd8bab598f3b14f8ce983d6fff8db5ecb37",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7594b594857e99a0163e05e7d3dbcdd8bab598f3b14f8ce983d6fff8db5ecb37",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1ba3244f3a7df0a01b8d7ae8",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/design/20230419_stash_migrations.md",
+        "start_line": 347,
+        "total_lines": 443,
+        "start_char": 18046,
+        "end_char": 24306,
+        "evidence_id": "1ba3244f3a7df0a01b8d7ae8",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "32be5e57ca41f213b388060d29b277bf6f8e3bbb365d690a9ce947f4594b07d2",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "offset": 47,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20230419_stash_migrations.md",
+              "offset": 346,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "offset": 117,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "32be5e57ca41f213b388060d29b277bf6f8e3bbb365d690a9ce947f4594b07d2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2280578b1b2afc568355d7bd",
+        "type": "evidence",
+        "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+        "heading": "Simplified upgrade rollout triggers and CRD changes > Solution Proposal > 1. New CRD Version: v1alpha2",
+        "start_line": 37,
+        "end_line": 52,
+        "start_char": 1808,
+        "end_char": 3608,
+        "score": "0.018646251800197074",
+        "root": "docs",
+        "matched_terms": [
+          "rollout",
+          "version"
+        ],
+        "evidence_id": "2280578b1b2afc568355d7bd",
+        "source_type": "repository",
+        "content_hash": "07609d86a345a9a7868084127d4a6760481e5f15a28dbb72a65b2e81e341d4bb",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "07609d86a345a9a7868084127d4a6760481e5f15a28dbb72a65b2e81e341d4bb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2b1f7890fb8e53a6e940610d",
+        "type": "evidence",
+        "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+        "heading": "identifier: \"upgrading\" > Upgrading Materialize Instances > Staging and applying in a single command > Using YAML Definition",
+        "start_line": 169,
+        "end_line": 193,
+        "start_char": 5273,
+        "end_char": 6269,
+        "score": "0.021044679473343406",
+        "root": "docs",
+        "matched_terms": [
+          "rollout",
+          "version"
+        ],
+        "evidence_id": "2b1f7890fb8e53a6e940610d",
+        "source_type": "repository",
+        "content_hash": "8a057d762f94d3e82749249034bf19cc87e7b232418a7e14846abcef753d2b77",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8a057d762f94d3e82749249034bf19cc87e7b232418a7e14846abcef753d2b77",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4166a5a55ebe6ff1cc4925b9",
+        "type": "evidence",
+        "path": "doc/developer/design/20230419_stash_migrations.md",
+        "heading": "Rollout > Testing and observability",
+        "start_line": 351,
+        "end_line": 359,
+        "start_char": 18388,
+        "end_char": 18990,
+        "score": "0.02292152292152292",
+        "root": "docs",
+        "matched_terms": [
+          "rollout",
+          "upgrade",
+          "version"
+        ],
+        "evidence_id": "4166a5a55ebe6ff1cc4925b9",
+        "source_type": "repository",
+        "content_hash": "f7c97ca75fdd2aa91a7a4760ef1c38001c47d8759428b07a21567c2e1666ce64",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f7c97ca75fdd2aa91a7a4760ef1c38001c47d8759428b07a21567c2e1666ce64",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:46b90df80bab5cd60bb1a931",
+        "type": "evidence",
+        "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+        "heading": "identifier: \"upgrading\" > Upgrading Materialize Instances > Stage the Materialize instance version change",
+        "start_line": 122,
+        "end_line": 143,
+        "start_char": 3337,
+        "end_char": 4191,
+        "score": "0.021241830065359478",
+        "root": "docs",
+        "matched_terms": [
+          "rollout",
+          "upgrade",
+          "version"
+        ],
+        "evidence_id": "46b90df80bab5cd60bb1a931",
+        "source_type": "repository",
+        "content_hash": "762e07bd60ffbd0286aa5c17bd35d4840463aedfadbfb3959e4ff2e89bb50b49",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "762e07bd60ffbd0286aa5c17bd35d4840463aedfadbfb3959e4ff2e89bb50b49",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4838902dd3387a88febe30a7",
+        "type": "evidence",
+        "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+        "heading": "Simplified upgrade rollout triggers and CRD changes > Solution Proposal > 3. Conversion Webhook > Example round trips > Simplest case",
+        "start_line": 160,
+        "end_line": 173,
+        "start_char": 8714,
+        "end_char": 10407,
+        "score": "0.03007688828584351",
+        "root": "docs",
+        "matched_terms": [
+          "requestrollout",
+          "upgrade"
+        ],
+        "evidence_id": "4838902dd3387a88febe30a7",
+        "source_type": "repository",
+        "content_hash": "8eceaedb7c85df4bafccf6241bb59d27cd6873bcdc9ce5f3929b348ecce63763",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "lastCompletedRolloutEnvironmentdImageRef",
+            "requestRollout rolloutStrategy",
+            "environmentdImageRef upgrade"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "8eceaedb7c85df4bafccf6241bb59d27cd6873bcdc9ce5f3929b348ecce63763",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4ac0aa946473ca0c5ff70806",
+        "type": "evidence",
+        "path": "doc/developer/generated/cloud-resources/crd/console.md",
+        "heading": "cloud-resources::crd::console",
+        "start_line": 6,
+        "end_line": 8,
+        "start_char": 77,
+        "end_char": 371,
+        "score": "0.01764705882352941",
+        "root": "docs",
+        "matched_terms": [
+          "version"
+        ],
+        "evidence_id": "4ac0aa946473ca0c5ff70806",
+        "source_type": "repository",
+        "content_hash": "b8721a8d155e2f9fb3de463aa7eaeca2aebb0a01cf1838bba96a9e57447f8683",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b8721a8d155e2f9fb3de463aa7eaeca2aebb0a01cf1838bba96a9e57447f8683",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5243fe416569059673d53fbc",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/releases/_index.md",
+        "start_line": 1010,
+        "total_lines": 1077,
+        "start_char": 53576,
+        "end_char": 55350,
+        "evidence_id": "5243fe416569059673d53fbc",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d383dddd1884c660ec87b24028df21fb1403d1e5c89c29d876538a615e6b7e89",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "offset": 164,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "offset": 155,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "offset": 1009,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d383dddd1884c660ec87b24028df21fb1403d1e5c89c29d876538a615e6b7e89",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:56b7baeb62af03528d35a1b1",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+        "start_line": 165,
+        "total_lines": 313,
+        "start_char": 5078,
+        "end_char": 11062,
+        "evidence_id": "56b7baeb62af03528d35a1b1",
+        "truncated": false,
+        "next_offset": 284,
+        "source_type": "repository",
+        "content_hash": "ef0db2640d37ed6f1fbeeafd18099b65ec90674a007ec2d6db88865470b45035",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "offset": 164,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "offset": 155,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "offset": 1009,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ef0db2640d37ed6f1fbeeafd18099b65ec90674a007ec2d6db88865470b45035",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6815a14a5a8abc23cf9d9542",
+        "type": "evidence",
+        "path": "doc/developer/design/20230210_storage_persist_sink_redux.md",
+        "heading": "Rollout",
+        "start_line": 135,
+        "end_line": 137,
+        "start_char": 8261,
+        "end_char": 8292,
+        "score": "0.02736498731424429",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "6815a14a5a8abc23cf9d9542",
+        "source_type": "repository",
+        "content_hash": "f608d949febdb3af31738d0bd74516cb4d17b7e541333919fad47b657d7edbba",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "lastCompletedRolloutEnvironmentdImageRef",
+            "requestRollout rolloutStrategy",
+            "environmentdImageRef upgrade"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f608d949febdb3af31738d0bd74516cb4d17b7e541333919fad47b657d7edbba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6a27b43db398fd803047caa2",
+        "type": "evidence",
+        "path": "console/misc/docker/README.md",
+        "heading": "Materialize Console Docker Setup > Local development > Pointing at a local kind setup",
+        "start_line": 39,
+        "end_line": 54,
+        "start_char": 1889,
+        "end_char": 2519,
+        "score": "0.018543980257359424",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "6a27b43db398fd803047caa2",
+        "source_type": "repository",
+        "content_hash": "cbe93b5a9d69dc053e713648abe5854537a4801813b7c8e62aee06dc75098ba7",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cbe93b5a9d69dc053e713648abe5854537a4801813b7c8e62aee06dc75098ba7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:812ce166becebdab5e0958c4",
+        "type": "evidence",
+        "path": "doc/developer/generated/catalog/durable/upgrade/v75_to_v76.md",
+        "heading": "catalog::durable::upgrade::v75_to_v76",
+        "start_line": 6,
+        "end_line": 9,
+        "start_char": 84,
+        "end_char": 289,
+        "score": "0.017548177034036272",
+        "root": "docs",
+        "matched_terms": [
+          "upgrade",
+          "version"
+        ],
+        "evidence_id": "812ce166becebdab5e0958c4",
+        "source_type": "repository",
+        "content_hash": "d68792e58bf27fc4c85994064ea4c7eb96df7b72a7575fc04cb37abc74968f30",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d68792e58bf27fc4c85994064ea4c7eb96df7b72a7575fc04cb37abc74968f30",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:882cca1ae1d394f5515bc120",
+        "type": "evidence",
+        "evidence_id": "882cca1ae1d394f5515bc120",
+        "source_type": "implementation",
+        "exported_content_sha256": "a35a6e3a30d5fd8a711b5521826dc6922de3ddd882352d29f82e78572f5dd609",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aa6e3b29d03c764af5d562e7",
+        "type": "evidence",
+        "path": "doc/developer/generated/environmentd/http/catalog.md",
+        "heading": "revision: 0b6718c2a4",
+        "start_line": 3,
+        "end_line": 5,
+        "start_char": 49,
+        "end_char": 75,
+        "score": "0.02312889812889813",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "aa6e3b29d03c764af5d562e7",
+        "source_type": "repository",
+        "content_hash": "0b35c042ec6163a61c220758345f0bfd9cfbae686ea4eae43bd323c6a66b9ed8",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "lastCompletedRolloutEnvironmentdImageRef",
+            "requestRollout rolloutStrategy",
+            "environmentdImageRef upgrade"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0b35c042ec6163a61c220758345f0bfd9cfbae686ea4eae43bd323c6a66b9ed8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b29a7446091fe8c85586079f",
+        "type": "evidence",
+        "path": ".agents/skills/README.md",
+        "heading": "Agent Skills for Materialize > Development Workflow",
+        "start_line": 13,
+        "end_line": 22,
+        "start_char": 633,
+        "end_char": 1559,
+        "score": "0.018841552051884154",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b29a7446091fe8c85586079f",
+        "source_type": "repository",
+        "content_hash": "781cdc6967623685a70c817c2de5bdc9b6446bbd7b625e1d209d880f7cd2fd33",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "781cdc6967623685a70c817c2de5bdc9b6446bbd7b625e1d209d880f7cd2fd33",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c7c0ae2d75b05501f345b8b0",
+        "type": "evidence",
+        "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+        "heading": "Simplified upgrade rollout triggers and CRD changes > Solution Proposal > 2. Spec Hash Generation",
+        "start_line": 96,
+        "end_line": 117,
+        "start_char": 5285,
+        "end_char": 6017,
+        "score": "0.025058179776873062",
+        "root": "docs",
+        "matched_terms": [
+          "rolloutstrategy"
+        ],
+        "evidence_id": "c7c0ae2d75b05501f345b8b0",
+        "source_type": "repository",
+        "content_hash": "9c5b6b0eaf14b5d8b0b39a1a670aaa59975022b5caf51c3e80d4cd258dea6d0c",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "lastCompletedRolloutEnvironmentdImageRef",
+            "requestRollout rolloutStrategy",
+            "environmentdImageRef upgrade"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9c5b6b0eaf14b5d8b0b39a1a670aaa59975022b5caf51c3e80d4cd258dea6d0c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cf4ea3d11727141462be0ef5",
+        "type": "evidence",
+        "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+        "heading": "Simplified upgrade rollout triggers and CRD changes > Solution Proposal > 1. New CRD Version: v1alpha2",
+        "start_line": 52,
+        "end_line": 52,
+        "start_char": 3608,
+        "end_char": 3659,
+        "score": "0.02325895875591616",
+        "root": "docs",
+        "matched_terms": [
+          "rollout"
+        ],
+        "evidence_id": "cf4ea3d11727141462be0ef5",
+        "source_type": "repository",
+        "content_hash": "c369cbbbde7d837a2584ce0a4751d6ee9fdd159cb0e21151bf2a341d75c33d1c",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c369cbbbde7d837a2584ce0a4751d6ee9fdd159cb0e21151bf2a341d75c33d1c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e319ea32a0a8c7e9816dd707",
+        "type": "evidence",
+        "path": "doc/user/shared-content/self-managed/upgrade-notes/v26.0.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 29,
+        "start_char": 0,
+        "end_char": 1346,
+        "score": "0.020449699554177168",
+        "root": "docs",
+        "matched_terms": [
+          "rollout",
+          "upgrade",
+          "version"
+        ],
+        "evidence_id": "e319ea32a0a8c7e9816dd707",
+        "source_type": "repository",
+        "content_hash": "6a29a18956d4fd3b8a03dbbe26939afe11f23c452a271ddff9833c9e6ded26f1",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6a29a18956d4fd3b8a03dbbe26939afe11f23c452a271ddff9833c9e6ded26f1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e74c332473f872f56f44c059",
+        "type": "evidence",
+        "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+        "heading": "identifier: \"upgrading\" > Rollout Configuration > `requestRollout` > `requestRollout` with `forcedRollouts`",
+        "start_line": 216,
+        "end_line": 227,
+        "start_char": 6860,
+        "end_char": 7254,
+        "score": "0.031337452529775926",
+        "root": "docs",
+        "matched_terms": [
+          "requestrollout"
+        ],
+        "evidence_id": "e74c332473f872f56f44c059",
+        "source_type": "repository",
+        "content_hash": "7f7b508bdc9f9655ebf90bfaed6a4552f3387c6805fa7bfc81b25eaaba2b2fcb",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "lastCompletedRolloutEnvironmentdImageRef",
+            "requestRollout rolloutStrategy",
+            "environmentdImageRef upgrade"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7f7b508bdc9f9655ebf90bfaed6a4552f3387c6805fa7bfc81b25eaaba2b2fcb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e9ed371908f3cb141ba417fd",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+        "start_line": 48,
+        "total_lines": 331,
+        "start_char": 2803,
+        "end_char": 9465,
+        "evidence_id": "e9ed371908f3cb141ba417fd",
+        "truncated": false,
+        "next_offset": 167,
+        "source_type": "repository",
+        "content_hash": "e5c10d0ed8e8493ceda0553a1e7f3e0f6f7031deb115ad867f67692ea9a1f2e8",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "offset": 47,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20230419_stash_migrations.md",
+              "offset": 346,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "offset": 117,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e5c10d0ed8e8493ceda0553a1e7f3e0f6f7031deb115ad867f67692ea9a1f2e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ec3ba1f2dd5799a45622cd47",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+        "start_line": 156,
+        "total_lines": 331,
+        "start_char": 8250,
+        "end_char": 16556,
+        "evidence_id": "ec3ba1f2dd5799a45622cd47",
+        "truncated": false,
+        "next_offset": 275,
+        "source_type": "repository",
+        "content_hash": "f34c716873eb714ca5a8c2945eb851b31e1b097c30d12f0c74e68e19071cd854",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "offset": 164,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "offset": 155,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "offset": 1009,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f34c716873eb714ca5a8c2945eb851b31e1b097c30d12f0c74e68e19071cd854",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee87bea4e5e749bdee0c49dd",
+        "type": "evidence",
+        "path": ".agents/skills/mz-adapter-guide/SKILL.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 7,
+        "start_char": 0,
+        "end_char": 337,
+        "score": "0.02317541613316261",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ee87bea4e5e749bdee0c49dd",
+        "source_type": "repository",
+        "content_hash": "e535e03ca6610a7fbeaba4c0170477715277222fd6baf5393e42d17fbec8151b",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "lastCompletedRolloutEnvironmentdImageRef",
+            "requestRollout rolloutStrategy",
+            "environmentdImageRef upgrade"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e535e03ca6610a7fbeaba4c0170477715277222fd6baf5393e42d17fbec8151b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f07f1b471d0766a6a1f7ad24",
+        "type": "evidence",
+        "path": ".agents/skills/README.md",
+        "heading": "Agent Skills for Materialize",
+        "start_line": 1,
+        "end_line": 12,
+        "start_char": 0,
+        "end_char": 633,
+        "score": "0.019342472118959106",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "f07f1b471d0766a6a1f7ad24",
+        "source_type": "repository",
+        "content_hash": "52fc17e38e083ae0e2d0b478a6ab5eb6bd5ee910d8bb67fc8c83702029e0373d",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "balancerdImageRef consoleImageRef",
+            "version skew upgrade",
+            "ManuallyPromote rollout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "52fc17e38e083ae0e2d0b478a6ab5eb6bd5ee910d8bb67fc8c83702029e0373d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f9e0d86f7fc2d255b1235fdf",
+        "type": "evidence",
+        "path": "doc/user/content/releases/_index.md",
+        "heading": "- /self-managed/v25.1/release-notes/ > Self-Managed v26.0.0 > Deprecation",
+        "start_line": 1014,
+        "end_line": 1023,
+        "start_char": 53723,
+        "end_char": 54052,
+        "score": "0.02736726874657909",
+        "root": "docs",
+        "matched_terms": [
+          "rolloutstrategy"
+        ],
+        "evidence_id": "f9e0d86f7fc2d255b1235fdf",
+        "source_type": "repository",
+        "content_hash": "c0c1bd68cd281285afd5564b1ba696563576ec5e858f01c933618076a1f35fc9",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "lastCompletedRolloutEnvironmentdImageRef",
+            "requestRollout rolloutStrategy",
+            "environmentdImageRef upgrade"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c0c1bd68cd281285afd5564b1ba696563576ec5e858f01c933618076a1f35fc9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fe419608975f95192900907a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+        "start_line": 118,
+        "total_lines": 313,
+        "start_char": 3206,
+        "end_char": 8007,
+        "evidence_id": "fe419608975f95192900907a",
+        "truncated": false,
+        "next_offset": 237,
+        "source_type": "repository",
+        "content_hash": "282c23b80c3051f41ddbf8ba4b0ebc17d6295ef9651ffa6eadf3b5c6a19d94b5",
+        "revision": "4cd74fe9c4ed891ebc57c3955e9ce8ab950aa4da",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/design/20260209_simplified_rollout_triggers_and_crd.md",
+              "offset": 47,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20230419_stash_migrations.md",
+              "offset": 346,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+              "offset": 117,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "282c23b80c3051f41ddbf8ba4b0ebc17d6295ef9651ffa6eadf3b5c6a19d94b5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:upgrading-cancel-rollout",
+        "type": "requirement",
+        "description": "In doc/user/content/self-managed-deployments/upgrading/_index.md, add a note in the rollout/upgrade section explaining that if you cancel an in-progress rollout by reverting only `spec.requestRollout` without also reverting `spec.environmentdImageRef`, the spec image stays ahead of the running environmentd; balancerd and console continue tracking the last completed rollout's image (status.lastCompletedRolloutEnvironmentdImageRef) so they stay aligned with the running environmentd. Advise reverting `environmentdImageRef` too if you want the spec to reflect the running version."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "doc/user/content/self-managed-deployments/upgrading/_index.md",
+        "hash": "d7c6af3954c9da335926b2c3d0394f552db308989d2b31ea5dc6e9ac2f7d398b"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "upgrading-cancel-rollout",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "doc/user/content/self-managed-deployments/upgrading/_index.md"
+        ],
+        "evidence_ids": [
+          "46b90df80bab5cd60bb1a931",
+          "fe419608975f95192900907a",
+          "56b7baeb62af03528d35a1b1",
+          "882cca1ae1d394f5515bc120"
+        ],
+        "reason": "In doc/user/content/self-managed-deployments/upgrading/_index.md, add a note in the rollout/upgrade section explaining that if you cancel an in-progress rollout by reverting only `spec.requestRollout` without also reverting `spec.environmentdImageRef`, the spec image stays ahead of the running environmentd; balancerd and console continue tracking the last completed rollout's image (status.lastCompletedRolloutEnvironmentdImageRef) so they stay aligned with the running environmentd. Advise reverting `environmentdImageRef` too if you want the spec to reflect the running version."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the user-facing documentation describe the Materialize CR status fields (lastCompletedRolloutEnvironmentdImageRef) or rollout/upgrade behavior that this change affects?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Does documentation describe balancerd/console image tracking or version skew during upgrades?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:05265bc72735b6cd2bf04cb9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a959dd0e6ad3325494c8011",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1ba3244f3a7df0a01b8d7ae8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2280578b1b2afc568355d7bd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2b1f7890fb8e53a6e940610d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2b1f7890fb8e53a6e940610d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4166a5a55ebe6ff1cc4925b9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:46b90df80bab5cd60bb1a931",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4838902dd3387a88febe30a7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ac0aa946473ca0c5ff70806",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5243fe416569059673d53fbc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:56b7baeb62af03528d35a1b1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6815a14a5a8abc23cf9d9542",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6a27b43db398fd803047caa2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:812ce166becebdab5e0958c4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aa6e3b29d03c764af5d562e7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b29a7446091fe8c85586079f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b29a7446091fe8c85586079f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c7c0ae2d75b05501f345b8b0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cf4ea3d11727141462be0ef5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e319ea32a0a8c7e9816dd707",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e319ea32a0a8c7e9816dd707",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e74c332473f872f56f44c059",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e9ed371908f3cb141ba417fd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec3ba1f2dd5799a45622cd47",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee87bea4e5e749bdee0c49dd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f07f1b471d0766a6a1f7ad24",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f07f1b471d0766a6a1f7ad24",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f9e0d86f7fc2d255b1235fdf",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fe419608975f95192900907a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:882cca1ae1d394f5515bc120",
+        "to": "requirement:upgrading-cancel-rollout",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:56b7baeb62af03528d35a1b1",
+        "to": "requirement:upgrading-cancel-rollout",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:fe419608975f95192900907a",
+        "to": "requirement:upgrading-cancel-rollout",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:46b90df80bab5cd60bb1a931",
+        "to": "requirement:upgrading-cancel-rollout",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:upgrading-cancel-rollout",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:46b90df80bab5cd60bb1a931",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:fe419608975f95192900907a",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:56b7baeb62af03528d35a1b1",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:882cca1ae1d394f5515bc120",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:upgrading-cancel-rollout",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:46b90df80bab5cd60bb1a931",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:fe419608975f95192900907a",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:56b7baeb62af03528d35a1b1",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:882cca1ae1d394f5515bc120",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "310d78945574847eeb6c499e181d3e22dd58219305c406e076856356da6e3529"
+}

@@ -1,0 +1,1519 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "EDIT",
+  "tasks": [
+    {
+      "id": "config-image-pattern",
+      "description": "Update the config schema reference example/default for fileTypes markup to include the new \"Image\" pattern that captures markdown image URLs via regex and triggers a saveScreenshot action with a directory param, matching samples/config.json.",
+      "evidence_ids": [
+        "3d486664df0ac78d94c4c094",
+        "054d938cc3b17944b2f6d582",
+        "e36d6f0af335a5a09d44ce0e"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "savescreenshot-directory",
+      "description": "Confirm/expand saveScreenshot reference to document the directory param used by the new Image pattern (saving captured screenshots to a configured output directory).",
+      "evidence_ids": [
+        "c304a87af77850b5c35cbc3f",
+        "fe2789cfb0bd650e22dbc736"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "6a0d4370a09d6320e6c346b3668c90a89a37c5d77e16c9b8a184cba9ffd6447a",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "What does the samples/config.json change add for the Image pattern and saveScreenshot action, and how is it structured?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "samples/config.json"
+          ],
+          "anchor": "Image",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "samples/config.json",
+              "query": "Image",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "3d486664df0ac78d94c4c094"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "samples/config.json",
+              "start": 63,
+              "end": 87,
+              "total_lines": 87
+            }
+          ],
+          "read_evidence_ids": [
+            "3d486664df0ac78d94c4c094"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Does existing documentation describe config patterns, regex capture, or the saveScreenshot action and its directory param?",
+          "root": "docs",
+          "queries": [
+            "saveScreenshot",
+            "config pattern regex",
+            "screenshot directory"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "offset": 168,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "reference/schemas/saveScreenshot.md",
+              "offset": 29,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "054d938cc3b17944b2f6d582",
+            "b874022984c15e75f8b5ef6e",
+            "c304a87af77850b5c35cbc3f",
+            "85bd7377c3d8f3470208d0cc",
+            "e36d6f0af335a5a09d44ce0e",
+            "78238ed8a8ea8dd2498cffaa",
+            "fe2789cfb0bd650e22dbc736",
+            "39e1554c168252538b65bc46",
+            "0a24d323caa2e22c4735f710",
+            "68c80966f96bbb813dca4b30",
+            "f9ec518672dd4f6507ee6ae4",
+            "c3ac84f78230e3fa08e68d76",
+            "fcbccc273c717e4a031ca87b",
+            "99368fa5576f2083ed1a6a29",
+            "82ba38cb956a7911659b8354"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "reference/schemas/config.md",
+              "evidence_id": "85bd7377c3d8f3470208d0cc",
+              "score": "0.04366616989567809"
+            },
+            {
+              "rank": 2,
+              "path": "reference/schemas/config.md",
+              "evidence_id": "e36d6f0af335a5a09d44ce0e",
+              "score": "0.04296125815113157"
+            },
+            {
+              "rank": 3,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.040109890109890106"
+            },
+            {
+              "rank": 4,
+              "path": "reference/schemas/saveScreenshot.md",
+              "evidence_id": "fe2789cfb0bd650e22dbc736",
+              "score": "0.038933125162633364"
+            },
+            {
+              "rank": 5,
+              "path": "get-started.md",
+              "evidence_id": "39e1554c168252538b65bc46",
+              "score": "0.03871769954964839"
+            },
+            {
+              "rank": 6,
+              "path": "reference/schemas/specification.md",
+              "evidence_id": "0a24d323caa2e22c4735f710",
+              "score": "0.03768853695324284"
+            },
+            {
+              "rank": 7,
+              "path": "reference/schemas/saveScreenshot.md",
+              "evidence_id": "68c80966f96bbb813dca4b30",
+              "score": "0.03753437907887376"
+            },
+            {
+              "rank": 8,
+              "path": "get-started.md",
+              "evidence_id": "f9ec518672dd4f6507ee6ae4",
+              "score": "0.03626723038487745"
+            },
+            {
+              "rank": 9,
+              "path": "index.md",
+              "evidence_id": "c3ac84f78230e3fa08e68d76",
+              "score": "0.03619610233112179"
+            },
+            {
+              "rank": 10,
+              "path": "index.md",
+              "evidence_id": "fcbccc273c717e4a031ca87b",
+              "score": "0.036113568234311264"
+            },
+            {
+              "rank": 11,
+              "path": "reference/schemas/context.md",
+              "evidence_id": "99368fa5576f2083ed1a6a29",
+              "score": "0.034985955056179775"
+            },
+            {
+              "rank": 12,
+              "path": "reference/schemas/test.md",
+              "evidence_id": "82ba38cb956a7911659b8354",
+              "score": "0.03495988073102501"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "start": 168,
+              "end": 288,
+              "total_lines": 536
+            },
+            {
+              "path": "README.md",
+              "start": 0,
+              "end": 28,
+              "total_lines": 28
+            },
+            {
+              "path": "reference/schemas/saveScreenshot.md",
+              "start": 29,
+              "end": 55,
+              "total_lines": 55
+            }
+          ],
+          "read_evidence_ids": [
+            "054d938cc3b17944b2f6d582",
+            "b874022984c15e75f8b5ef6e",
+            "c304a87af77850b5c35cbc3f"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What documentation files exist covering configuration and actions?",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "offset": 268,
+              "limit": 120
+            },
+            {
+              "path": "index.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "get-started.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "da5f2ccfe9da0fe4e3372b59",
+            "394658f14f7d4f8fe508193c",
+            "98a8738e1b75ed71e9dc9d36",
+            "85bd7377c3d8f3470208d0cc",
+            "9a5302dfd6641464bd6caf72",
+            "78238ed8a8ea8dd2498cffaa",
+            "c3ac84f78230e3fa08e68d76",
+            "39e1554c168252538b65bc46",
+            "fcbccc273c717e4a031ca87b",
+            "8aa983f6b6254d33876118e9",
+            "597c8c1000cd24a4f23ec091",
+            "99368fa5576f2083ed1a6a29",
+            "1474206eeaf404f3b60cbbc2",
+            "0a24d323caa2e22c4735f710",
+            "459f4b790c2c8a123ec2095b"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "reference/schemas/config.md",
+              "evidence_id": "85bd7377c3d8f3470208d0cc",
+              "score": "0.04692957315908136"
+            },
+            {
+              "rank": 2,
+              "path": "reference/schemas/config.md",
+              "evidence_id": "9a5302dfd6641464bd6caf72",
+              "score": "0.04482184482184482"
+            },
+            {
+              "rank": 3,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.03979850004517936"
+            },
+            {
+              "rank": 4,
+              "path": "index.md",
+              "evidence_id": "c3ac84f78230e3fa08e68d76",
+              "score": "0.03850267379679144"
+            },
+            {
+              "rank": 5,
+              "path": "get-started.md",
+              "evidence_id": "39e1554c168252538b65bc46",
+              "score": "0.03842588094312735"
+            },
+            {
+              "rank": 6,
+              "path": "index.md",
+              "evidence_id": "fcbccc273c717e4a031ca87b",
+              "score": "0.03806813782423538"
+            },
+            {
+              "rank": 7,
+              "path": "get-started.md",
+              "evidence_id": "8aa983f6b6254d33876118e9",
+              "score": "0.036885305705530426"
+            },
+            {
+              "rank": 8,
+              "path": "reference/schemas/checkLink.md",
+              "evidence_id": "597c8c1000cd24a4f23ec091",
+              "score": "0.03543532481485745"
+            },
+            {
+              "rank": 9,
+              "path": "reference/schemas/context.md",
+              "evidence_id": "99368fa5576f2083ed1a6a29",
+              "score": "0.03367683642913001"
+            },
+            {
+              "rank": 10,
+              "path": "README.md",
+              "evidence_id": "1474206eeaf404f3b60cbbc2",
+              "score": "0.03356186924089513"
+            },
+            {
+              "rank": 11,
+              "path": "reference/schemas/specification.md",
+              "evidence_id": "0a24d323caa2e22c4735f710",
+              "score": "0.03327950112309235"
+            },
+            {
+              "rank": 12,
+              "path": "reference/schemas/find.md",
+              "evidence_id": "459f4b790c2c8a123ec2095b",
+              "score": "0.03296840073155863"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "start": 268,
+              "end": 388,
+              "total_lines": 536
+            },
+            {
+              "path": "index.md",
+              "start": 0,
+              "end": 62,
+              "total_lines": 62
+            },
+            {
+              "path": "get-started.md",
+              "start": 0,
+              "end": 49,
+              "total_lines": 49
+            }
+          ],
+          "read_evidence_ids": [
+            "da5f2ccfe9da0fe4e3372b59",
+            "394658f14f7d4f8fe508193c",
+            "98a8738e1b75ed71e9dc9d36"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "054d938cc3b17944b2f6d582",
+        "0a24d323caa2e22c4735f710",
+        "1474206eeaf404f3b60cbbc2",
+        "394658f14f7d4f8fe508193c",
+        "39e1554c168252538b65bc46",
+        "3d486664df0ac78d94c4c094",
+        "459f4b790c2c8a123ec2095b",
+        "597c8c1000cd24a4f23ec091",
+        "68c80966f96bbb813dca4b30",
+        "78238ed8a8ea8dd2498cffaa",
+        "82ba38cb956a7911659b8354",
+        "85bd7377c3d8f3470208d0cc",
+        "8aa983f6b6254d33876118e9",
+        "98a8738e1b75ed71e9dc9d36",
+        "99368fa5576f2083ed1a6a29",
+        "9a5302dfd6641464bd6caf72",
+        "b874022984c15e75f8b5ef6e",
+        "c304a87af77850b5c35cbc3f",
+        "c3ac84f78230e3fa08e68d76",
+        "da5f2ccfe9da0fe4e3372b59",
+        "e36d6f0af335a5a09d44ce0e",
+        "f9ec518672dd4f6507ee6ae4",
+        "fcbccc273c717e4a031ca87b",
+        "fe2789cfb0bd650e22dbc736"
+      ],
+      "new_evidence_count": 24,
+      "new_path_count": 11
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+    "code": "c61b0f4c4a5a405484c82b4a7083b05072f31378"
+  },
+  "protocol_retries": {
+    "EDIT": 1
+  },
+  "protocol_feedback": {
+    "EDIT": {
+      "errors": [
+        {
+          "type": "UNOBSERVED_EDIT",
+          "msg": "Read all target ranges before modifying them"
+        }
+      ],
+      "instruction": "Return a complete corrected decision using only observed evidence."
+    }
+  },
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-2:40181dd632bf9c61": 0,
+    "discover:Q1-3:e3dc28359b2845d7": 184
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-2:40181dd632bf9c61": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 184,
+      "cache_hit": false
+    },
+    "discover:Q1-3:e3dc28359b2845d7": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 181,
+      "cache_hit": false
+    },
+    "discover:Q1-1:209905911dd607ed": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 296,
+      "cache_hit": false
+    },
+    "discover:Q1-2:86f4011a8ba5692f": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 523,
+      "cache_hit": false
+    },
+    "discover:Q1-3:9dee54f6f06d04a6": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 564,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:054d938cc3b17944b2f6d582",
+        "type": "evidence",
+        "root": "docs",
+        "path": "reference/schemas/config.md",
+        "start_line": 169,
+        "total_lines": 536,
+        "start_char": 10211,
+        "end_char": 12970,
+        "evidence_id": "054d938cc3b17944b2f6d582",
+        "truncated": false,
+        "next_offset": 288,
+        "source_type": "repository",
+        "content_hash": "25bd7a24cbd83dc7e576ed6a3cc1c4a03e2226b409c28eb30353695e1de1163a",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "offset": 168,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "reference/schemas/saveScreenshot.md",
+              "offset": 29,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "25bd7a24cbd83dc7e576ed6a3cc1c4a03e2226b409c28eb30353695e1de1163a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0a24d323caa2e22c4735f710",
+        "type": "evidence",
+        "path": "reference/schemas/specification.md",
+        "heading": "specification > Examples",
+        "start_line": 134,
+        "end_line": 144,
+        "start_char": 2802,
+        "end_char": 2928,
+        "score": "0.03327950112309235",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "0a24d323caa2e22c4735f710",
+        "source_type": "repository",
+        "content_hash": "ecc357d6dcc9a32b2625fe1fe4dc5e5017d4a762b69778bd585c2b4d14f2e9c1",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ecc357d6dcc9a32b2625fe1fe4dc5e5017d4a762b69778bd585c2b4d14f2e9c1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1474206eeaf404f3b60cbbc2",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Doc Detective documentation > Get started",
+        "start_line": 3,
+        "end_line": 28,
+        "start_char": 31,
+        "end_char": 980,
+        "score": "0.03356186924089513",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "1474206eeaf404f3b60cbbc2",
+        "source_type": "repository",
+        "content_hash": "1effa56eb66f1ea20a202332b5229912049d751c80750ce2ebc2f6184f5d30f6",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "1effa56eb66f1ea20a202332b5229912049d751c80750ce2ebc2f6184f5d30f6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:394658f14f7d4f8fe508193c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "index.md",
+        "start_line": 1,
+        "total_lines": 62,
+        "start_char": 0,
+        "end_char": 3504,
+        "evidence_id": "394658f14f7d4f8fe508193c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "c730ca827a722571704889ee5b80cea6849646524577f5aca90cd115d29d89ba",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "offset": 268,
+              "limit": 120
+            },
+            {
+              "path": "index.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "get-started.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c730ca827a722571704889ee5b80cea6849646524577f5aca90cd115d29d89ba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:39e1554c168252538b65bc46",
+        "type": "evidence",
+        "path": "get-started.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 39,
+        "score": "0.03842588094312735",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "39e1554c168252538b65bc46",
+        "source_type": "repository",
+        "content_hash": "5a6148067e4fee0d6ab756a08a3f3a5ab0283c65484dd588507befa87179eb27",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5a6148067e4fee0d6ab756a08a3f3a5ab0283c65484dd588507befa87179eb27",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3d486664df0ac78d94c4c094",
+        "type": "evidence",
+        "root": "code",
+        "path": "samples/config.json",
+        "start_line": 64,
+        "total_lines": 87,
+        "start_char": 1534,
+        "end_char": 2031,
+        "evidence_id": "3d486664df0ac78d94c4c094",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8e9450ce82ef0889ec42d5f08bb40e43b46c3d5f9edc7cbc8a9984423a50714b",
+        "revision": "c61b0f4c4a5a405484c82b4a7083b05072f31378",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "samples/config.json",
+              "query": "Image",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "8e9450ce82ef0889ec42d5f08bb40e43b46c3d5f9edc7cbc8a9984423a50714b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:459f4b790c2c8a123ec2095b",
+        "type": "evidence",
+        "path": "reference/schemas/find.md",
+        "heading": "find > Examples",
+        "start_line": 38,
+        "end_line": 57,
+        "start_char": 1333,
+        "end_char": 1592,
+        "score": "0.03296840073155863",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "459f4b790c2c8a123ec2095b",
+        "source_type": "repository",
+        "content_hash": "5ac9a8bf363b1b558b2a5d9c82a22afa03f5f69e1c914a11a6daa58bca1a951e",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5ac9a8bf363b1b558b2a5d9c82a22afa03f5f69e1c914a11a6daa58bca1a951e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:597c8c1000cd24a4f23ec091",
+        "type": "evidence",
+        "path": "reference/schemas/checkLink.md",
+        "heading": "checkLink > Examples",
+        "start_line": 35,
+        "end_line": 63,
+        "start_char": 845,
+        "end_char": 1164,
+        "score": "0.03543532481485745",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "597c8c1000cd24a4f23ec091",
+        "source_type": "repository",
+        "content_hash": "c66c00133130388140da96bae479905459c85550cfcf2ec25ecc03469c3e6746",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c66c00133130388140da96bae479905459c85550cfcf2ec25ecc03469c3e6746",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:68c80966f96bbb813dca4b30",
+        "type": "evidence",
+        "path": "reference/schemas/saveScreenshot.md",
+        "heading": "saveScreenshot > Description",
+        "start_line": 20,
+        "end_line": 23,
+        "start_char": 221,
+        "end_char": 272,
+        "score": "0.03753437907887376",
+        "root": "docs",
+        "matched_terms": [
+          "screenshot"
+        ],
+        "evidence_id": "68c80966f96bbb813dca4b30",
+        "source_type": "repository",
+        "content_hash": "428f28ae37fc367144d35fdc217ecea64c512fdc38714ce94d211ed18a3c7e60",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "saveScreenshot",
+            "config pattern regex",
+            "screenshot directory"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "428f28ae37fc367144d35fdc217ecea64c512fdc38714ce94d211ed18a3c7e60",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78238ed8a8ea8dd2498cffaa",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Doc Detective documentation",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 31,
+        "score": "0.03979850004517936",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "78238ed8a8ea8dd2498cffaa",
+        "source_type": "repository",
+        "content_hash": "68e75a810c30988eadf8bc30ba33513bd82ee9a406c2a178577d614f257c66a6",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "68e75a810c30988eadf8bc30ba33513bd82ee9a406c2a178577d614f257c66a6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7c6ae06c41e6927ad8b953f8",
+        "type": "evidence",
+        "evidence_id": "7c6ae06c41e6927ad8b953f8",
+        "source_type": "task",
+        "exported_content_sha256": "1521ab087cc4c42b5763c062e10d4a63422b63791517bc01bb428b6e890e2004",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:82ba38cb956a7911659b8354",
+        "type": "evidence",
+        "path": "reference/schemas/test.md",
+        "heading": "test > Examples",
+        "start_line": 137,
+        "end_line": 150,
+        "start_char": 3722,
+        "end_char": 3875,
+        "score": "0.03495988073102501",
+        "root": "docs",
+        "matched_terms": [
+          "savescreenshot"
+        ],
+        "evidence_id": "82ba38cb956a7911659b8354",
+        "source_type": "repository",
+        "content_hash": "3edb2c98daa8ac61f710eb41b86a5102c9cbbb66e9ba2258214e01fc2f155a63",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "saveScreenshot",
+            "config pattern regex",
+            "screenshot directory"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3edb2c98daa8ac61f710eb41b86a5102c9cbbb66e9ba2258214e01fc2f155a63",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:85bd7377c3d8f3470208d0cc",
+        "type": "evidence",
+        "path": "reference/schemas/config.md",
+        "heading": "config > Examples",
+        "start_line": 173,
+        "end_line": 222,
+        "start_char": 10364,
+        "end_char": 11415,
+        "score": "0.04692957315908136",
+        "root": "docs",
+        "matched_terms": [
+          "actions"
+        ],
+        "evidence_id": "85bd7377c3d8f3470208d0cc",
+        "source_type": "repository",
+        "content_hash": "75315d1d94f01d679afc28bca03de73759cd4c956bdefaba1c390037ac2cb3f3",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "75315d1d94f01d679afc28bca03de73759cd4c956bdefaba1c390037ac2cb3f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8aa983f6b6254d33876118e9",
+        "type": "evidence",
+        "path": "get-started.md",
+        "heading": "Get started",
+        "start_line": 7,
+        "end_line": 10,
+        "start_char": 57,
+        "end_char": 261,
+        "score": "0.036885305705530426",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "8aa983f6b6254d33876118e9",
+        "source_type": "repository",
+        "content_hash": "c36053a89bb40eb92f05639f64a679cf540a123bca2272240ee5905b13194aa5",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c36053a89bb40eb92f05639f64a679cf540a123bca2272240ee5905b13194aa5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:98a8738e1b75ed71e9dc9d36",
+        "type": "evidence",
+        "root": "docs",
+        "path": "get-started.md",
+        "start_line": 1,
+        "total_lines": 49,
+        "start_char": 0,
+        "end_char": 1968,
+        "evidence_id": "98a8738e1b75ed71e9dc9d36",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "52691b7653e8ae3bcd9408f7d8cbed6891bdd4b66eede5864f6d75eba5a9d2be",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "offset": 268,
+              "limit": 120
+            },
+            {
+              "path": "index.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "get-started.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "52691b7653e8ae3bcd9408f7d8cbed6891bdd4b66eede5864f6d75eba5a9d2be",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:99368fa5576f2083ed1a6a29",
+        "type": "evidence",
+        "path": "reference/schemas/context.md",
+        "heading": "context > Examples",
+        "start_line": 89,
+        "end_line": 93,
+        "start_char": 1869,
+        "end_char": 1908,
+        "score": "0.03367683642913001",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "99368fa5576f2083ed1a6a29",
+        "source_type": "repository",
+        "content_hash": "c8a935d693891591af3b3203ecc84775d4db261ca84b4eddde4f4cff9a377050",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c8a935d693891591af3b3203ecc84775d4db261ca84b4eddde4f4cff9a377050",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9a5302dfd6641464bd6caf72",
+        "type": "evidence",
+        "path": "reference/schemas/config.md",
+        "heading": "config > Examples",
+        "start_line": 273,
+        "end_line": 322,
+        "start_char": 12569,
+        "end_char": 13610,
+        "score": "0.04482184482184482",
+        "root": "docs",
+        "matched_terms": [
+          "actions"
+        ],
+        "evidence_id": "9a5302dfd6641464bd6caf72",
+        "source_type": "repository",
+        "content_hash": "51481da7100b49380eeafc7807e2e7fd2f811216ff0bd4b4348c913f07886e35",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "51481da7100b49380eeafc7807e2e7fd2f811216ff0bd4b4348c913f07886e35",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a2fd3525e06f40545a6fff85",
+        "type": "evidence",
+        "evidence_id": "a2fd3525e06f40545a6fff85",
+        "source_type": "implementation",
+        "exported_content_sha256": "cf970191c4fec6e606dc51523f869ce11fe98cc3e7a7e1e871204f4d86b40c19",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b874022984c15e75f8b5ef6e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "README.md",
+        "start_line": 1,
+        "total_lines": 28,
+        "start_char": 0,
+        "end_char": 980,
+        "evidence_id": "b874022984c15e75f8b5ef6e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "f609d27442fab6c2a4228589d4d098925d3be59389492694f1339fe28b116b74",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "offset": 168,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "reference/schemas/saveScreenshot.md",
+              "offset": 29,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f609d27442fab6c2a4228589d4d098925d3be59389492694f1339fe28b116b74",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c304a87af77850b5c35cbc3f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "reference/schemas/saveScreenshot.md",
+        "start_line": 30,
+        "total_lines": 55,
+        "start_char": 462,
+        "end_char": 1061,
+        "evidence_id": "c304a87af77850b5c35cbc3f",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5fe60cc94a63dfa5b769e46b4e2ede5ada1a1068721785429e0e8eb27888761d",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "offset": 168,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "reference/schemas/saveScreenshot.md",
+              "offset": 29,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5fe60cc94a63dfa5b769e46b4e2ede5ada1a1068721785429e0e8eb27888761d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c3ac84f78230e3fa08e68d76",
+        "type": "evidence",
+        "path": "index.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 32,
+        "score": "0.03850267379679144",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "c3ac84f78230e3fa08e68d76",
+        "source_type": "repository",
+        "content_hash": "79cb0a9d50623faeb841cd8a83e62fdca557af438c139e0a4b9ecfbd55889cf4",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "79cb0a9d50623faeb841cd8a83e62fdca557af438c139e0a4b9ecfbd55889cf4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:da5f2ccfe9da0fe4e3372b59",
+        "type": "evidence",
+        "root": "docs",
+        "path": "reference/schemas/config.md",
+        "start_line": 269,
+        "total_lines": 536,
+        "start_char": 12467,
+        "end_char": 14689,
+        "evidence_id": "da5f2ccfe9da0fe4e3372b59",
+        "truncated": false,
+        "next_offset": 388,
+        "source_type": "repository",
+        "content_hash": "e8809842edd4c9a7345dbca2da77d794f6fbe57d5c35f8be0b98ebace4b64cad",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "reference/schemas/config.md",
+              "offset": 268,
+              "limit": 120
+            },
+            {
+              "path": "index.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "get-started.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "e8809842edd4c9a7345dbca2da77d794f6fbe57d5c35f8be0b98ebace4b64cad",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e36d6f0af335a5a09d44ce0e",
+        "type": "evidence",
+        "path": "reference/schemas/config.md",
+        "heading": "config > Fields",
+        "start_line": 47,
+        "end_line": 52,
+        "start_char": 3811,
+        "end_char": 5611,
+        "score": "0.04296125815113157",
+        "root": "docs",
+        "matched_terms": [
+          "directory",
+          "regex"
+        ],
+        "evidence_id": "e36d6f0af335a5a09d44ce0e",
+        "source_type": "repository",
+        "content_hash": "814315c7944b85c3f9e1d8fb902b9b6e60f275b1d00fbffaf10f605fb8c30cb4",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "saveScreenshot",
+            "config pattern regex",
+            "screenshot directory"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "814315c7944b85c3f9e1d8fb902b9b6e60f275b1d00fbffaf10f605fb8c30cb4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f9ec518672dd4f6507ee6ae4",
+        "type": "evidence",
+        "path": "get-started.md",
+        "heading": "Get started > CLI",
+        "start_line": 29,
+        "end_line": 49,
+        "start_char": 923,
+        "end_char": 1968,
+        "score": "0.03626723038487745",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "directory"
+        ],
+        "evidence_id": "f9ec518672dd4f6507ee6ae4",
+        "source_type": "repository",
+        "content_hash": "34f306250fe439633c9aa9aadaf4c48d7bebc0204b1f733b5b99483693fa17e2",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "saveScreenshot",
+            "config pattern regex",
+            "screenshot directory"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "34f306250fe439633c9aa9aadaf4c48d7bebc0204b1f733b5b99483693fa17e2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fcbccc273c717e4a031ca87b",
+        "type": "evidence",
+        "path": "index.md",
+        "heading": "What's Doc Detective? > What can Doc Detective do? > Generate screenshots or video to accompany documentation",
+        "start_line": 28,
+        "end_line": 31,
+        "start_char": 1311,
+        "end_char": 1631,
+        "score": "0.03806813782423538",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "fcbccc273c717e4a031ca87b",
+        "source_type": "repository",
+        "content_hash": "deb3e6809a73de3924903ba39ec6728384a0ce8d1cab043db0a7bcbf0a7d5e32",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "configuration",
+            "actions",
+            "screenshot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "deb3e6809a73de3924903ba39ec6728384a0ce8d1cab043db0a7bcbf0a7d5e32",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fe2789cfb0bd650e22dbc736",
+        "type": "evidence",
+        "path": "reference/schemas/saveScreenshot.md",
+        "heading": "saveScreenshot > Examples",
+        "start_line": 34,
+        "end_line": 55,
+        "start_char": 829,
+        "end_char": 1061,
+        "score": "0.038933125162633364",
+        "root": "docs",
+        "matched_terms": [
+          "directory",
+          "savescreenshot"
+        ],
+        "evidence_id": "fe2789cfb0bd650e22dbc736",
+        "source_type": "repository",
+        "content_hash": "47eea7ba65ec7a271088909d9907066414138137d759ecfd2d866ba8f793c68f",
+        "revision": "b9ac8377a63c0cf1454cc276f01b9b7fdfbed104",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "saveScreenshot",
+            "config pattern regex",
+            "screenshot directory"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "47eea7ba65ec7a271088909d9907066414138137d759ecfd2d866ba8f793c68f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:config-image-pattern",
+        "type": "requirement",
+        "description": "Update the config schema reference example/default for fileTypes markup to include the new \"Image\" pattern that captures markdown image URLs via regex and triggers a saveScreenshot action with a directory param, matching samples/config.json."
+      },
+      {
+        "id": "requirement:savescreenshot-directory",
+        "type": "requirement",
+        "description": "Confirm/expand saveScreenshot reference to document the directory param used by the new Image pattern (saving captured screenshots to a configured output directory)."
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "What does the samples/config.json change add for the Image pattern and saveScreenshot action, and how is it structured?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Does existing documentation describe config patterns, regex capture, or the saveScreenshot action and its directory param?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What documentation files exist covering configuration and actions?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:054d938cc3b17944b2f6d582",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0a24d323caa2e22c4735f710",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0a24d323caa2e22c4735f710",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1474206eeaf404f3b60cbbc2",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:394658f14f7d4f8fe508193c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:39e1554c168252538b65bc46",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:39e1554c168252538b65bc46",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3d486664df0ac78d94c4c094",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:459f4b790c2c8a123ec2095b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:597c8c1000cd24a4f23ec091",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68c80966f96bbb813dca4b30",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:82ba38cb956a7911659b8354",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:85bd7377c3d8f3470208d0cc",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:85bd7377c3d8f3470208d0cc",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8aa983f6b6254d33876118e9",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:98a8738e1b75ed71e9dc9d36",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:99368fa5576f2083ed1a6a29",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:99368fa5576f2083ed1a6a29",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9a5302dfd6641464bd6caf72",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b874022984c15e75f8b5ef6e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c304a87af77850b5c35cbc3f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3ac84f78230e3fa08e68d76",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3ac84f78230e3fa08e68d76",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da5f2ccfe9da0fe4e3372b59",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e36d6f0af335a5a09d44ce0e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f9ec518672dd4f6507ee6ae4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fcbccc273c717e4a031ca87b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fcbccc273c717e4a031ca87b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fe2789cfb0bd650e22dbc736",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3d486664df0ac78d94c4c094",
+        "to": "requirement:config-image-pattern",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:054d938cc3b17944b2f6d582",
+        "to": "requirement:config-image-pattern",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:e36d6f0af335a5a09d44ce0e",
+        "to": "requirement:config-image-pattern",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c304a87af77850b5c35cbc3f",
+        "to": "requirement:savescreenshot-directory",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:fe2789cfb0bd650e22dbc736",
+        "to": "requirement:savescreenshot-directory",
+        "type": "motivates"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

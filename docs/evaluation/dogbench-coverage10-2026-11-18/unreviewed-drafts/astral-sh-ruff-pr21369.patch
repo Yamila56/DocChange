@@ -1,0 +1,45 @@
+diff --git a/docs/formatter.md b/docs/formatter.md
+index a80028d09e8a4ff0dfbe6f82aa3405c0be915784..3ace79f813467deaae3193d1613d11d5dd564576 100644
+--- a/docs/formatter.md
++++ b/docs/formatter.md
+@@ -394,6 +394,40 @@ If you've identified a new deviation, please [file an issue](https://github.com/
+ Similar to [Black](https://black.readthedocs.io/en/stable/the_black_code_style/future_style.html#preview-style), Ruff implements formatting changes
+ under the [`preview`](https://docs.astral.sh/ruff/settings/#format_preview) flag, promoting them to stable through minor releases, in accordance with our [versioning policy](https://github.com/astral-sh/ruff/discussions/6998#discussioncomment-7016766).
+ 
++#### Fluent call chains break before the first call
++
++When a call chain is formatted in fluent style, the preview style now breaks the chain before its
++first call or subscript rather than before the second one. For example:
++
++```python
++# Input
++x = df.merge().groupby().agg().filter()
++
++# Stable
++x = (
++    df.merge()
++    .groupby()
++    .agg()
++    .filter()
++)
++
++# Preview
++x = (
++    df
++    .merge()
++    .groupby()
++    .agg()
++    .filter()
++)
++```
++
++Consecutive calls and subscripts on a single object are treated as one unit when deciding where
++the chain starts. A parenthesized root also counts toward the chain, so a chain with a
++parenthesized root can be split after just one call or subscript.
++
++This change only applies when the [`preview`](https://docs.astral.sh/ruff/settings/#format_preview)
++flag is enabled; stable formatting is unchanged.
++
+ ### F-string formatting
+ 
+ _Stabilized in Ruff 0.9.0_

@@ -1,0 +1,93 @@
+diff --git a/doc/user/content/headless/configuration-parameters.md b/doc/user/content/headless/configuration-parameters.md
+index 6c583cb96f4693aaeef46b5706764684627f9f5a..75b4594ec799c3b5aa800a535c312fbfadf5b1c6 100644
+--- a/doc/user/content/headless/configuration-parameters.md
++++ b/doc/user/content/headless/configuration-parameters.md
+@@ -9,7 +9,7 @@ Name                                        | Default value             |  Descr
+ `cluster_replica`                           |                           | The target cluster replica for `SELECT` queries.                      | Yes
+ `database`                                  | `materialize`             | The current database.                                                 | Yes
+ `search_path`                               | `public`                  | The schema search order for names that are not schema-qualified.      | Yes
+-`transaction_isolation`                     | `strict serializable`     | The transaction isolation level. For more information, see [Isolation level](/reference/isolation-level/). <br/><br/> Accepts values: `serializable`, `strict serializable`. | Yes
++`transaction_isolation`                     | `strict serializable`     | The transaction isolation level. For more information, see [Isolation level](/reference/isolation-level/). <br/><br/> Accepts values: `serializable`, `strict serializable`, `bounded staleness <duration>` (requires the `enable_bounded_staleness_isolation` feature flag). | Yes
+ 
+ ### Other configuration parameters
+ 
+diff --git a/doc/user/content/reference/isolation-level.md b/doc/user/content/reference/isolation-level.md
+index 5dae9dc8609cafb475490def1103367e0e9abc09..fe75870401bec7aa8671e34ad8c9eaaa0f7f1a5d 100644
+--- a/doc/user/content/reference/isolation-level.md
++++ b/doc/user/content/reference/isolation-level.md
+@@ -161,6 +161,60 @@ reads than Serializable.
+   of linearizability. However, if a consistent snapshot is not available, the
+   query blocks until one becomes available.
+ 
++- **Bounded staleness** does not wait for writes to propagate, but places an
++  explicit ceiling on how stale a read may be. It reads the freshest timestamp
++  that is no more than the configured duration behind the system's current
++  timestamp, so reads avoid the wait imposed by Strict Serializable while
++  bounding staleness (unlike Serializable). If no timestamp within the bound is
++  available, the query returns an error instead of blocking. See [Bounded
++  staleness](#bounded-staleness).
++
++## Bounded staleness
++
++Bounded staleness lets you read data that is no older than a duration you
++choose, without waiting for recent writes to propagate through materialized
++views and indexes. It is modeled on bounded-staleness reads in systems such as
++Spanner.
++
++### Syntax
++
++```mzsql
++SET TRANSACTION_ISOLATION TO 'BOUNDED STALENESS <duration>';
++```
++
++`<duration>` is a human-readable duration such as `5s`, `500ms`, or `1m30s`. A
++zero duration is rejected. There is no upper cap on the duration; large bounds
++behave similarly to Serializable when input frontiers stay within the bound.
++
++### Semantics
++
++Under bounded staleness, Materialize selects the freshest timestamp that is at
++most `<duration>` behind the system's current timestamp, without waiting on
++input frontiers. This gives you an explicit guarantee of the form "data no
++older than `<duration>`" rather than a guarantee of perfect freshness.
++
++If no timestamp within the bound is available (for example, because an input
++lags by more than `<duration>`), the query fails with SQLSTATE `40001`
++(serialization failure) instead of blocking. This error is raised before the
++query is dispatched to a cluster, so the failure mode does not depend on your
++cluster configuration.
++
++### Restrictions
++
++- Bounded staleness is read-only. `INSERT`, `UPDATE`, `DELETE`, and `COPY FROM`
++  are rejected under this isolation level.
++- Bounded staleness cannot be combined with
++  [`real_time_recency`](#real-time-recency). Setting `real_time_recency = on`
++  while using bounded staleness is rejected.
++- Bounded staleness is only supported on the wall-clock (`EpochMilliseconds`)
++  timeline. Queries that touch other timelines are rejected.
++
++### Feature flag
++
++Bounded staleness is gated behind the `enable_bounded_staleness_isolation`
++feature flag. Until the flag is enabled, setting
++`TRANSACTION_ISOLATION` to a bounded-staleness value fails at planning time.
++
+ ## Setting isolation level
+ 
+ {{< tip >}}
+diff --git a/doc/user/content/sql/set.md b/doc/user/content/sql/set.md
+index e8194bde70e4e64054645660ca4ce1497291c359..1f0d9abfb0a99b400c46f1ee00184304c5cb9664 100644
+--- a/doc/user/content/sql/set.md
++++ b/doc/user/content/sql/set.md
+@@ -63,6 +63,10 @@ SHOW cluster;
+ SET transaction_isolation = 'serializable';
+ ```
+ 
++```mzsql
++SET transaction_isolation = 'bounded staleness 5s';
++```
++
+ ### Set search path
+ 
+ ```mzsql

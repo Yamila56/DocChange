@@ -1,0 +1,1466 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "readme-input-multi",
+      "description": "Update the README 'Run tests' section to document that `--input`/`-i` accepts a comma-separated list of paths (and URLs), each resolved to an absolute path, enabling multi-file input. Add an example such as `npx doc-detective --input file1.md,file2.md`.",
+      "evidence_ids": [
+        "22c298aec32965ce13e1aaf4",
+        "b202ac29b5c9cad1f55befcd",
+        "83947a141fd31cb0bc72bf17"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "385fbffd20c020c6e47b0880992d1e2a87c85335dfee2661d86335454facd805",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where does the documentation describe the --input/-i CLI argument and its accepted values?",
+          "root": "docs",
+          "queries": [
+            "--input",
+            "input argument",
+            "-i input"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 33,
+              "limit": 120
+            },
+            {
+              "path": "samples/kitten-search-inline.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "64d4bb57a7c03f2a29dd78be",
+            "22c298aec32965ce13e1aaf4",
+            "00f8a183aa77532fc7df21e3",
+            "a63dbbb3f59c93093ac14f0d",
+            "83947a141fd31cb0bc72bf17",
+            "dee1a1dc07fb9403d6dd620c",
+            "0079e8f708e58673de283cf4",
+            "3b86b56b31a045b2af7e9da2",
+            "abac445afc10f0a5e42c41d9",
+            "ff5d362d998551e219a35819",
+            "7f81054ae4b584989567c7bb",
+            "69db0d3d9132ad350a2165d2",
+            "27d76dac3a03f7ebec0fa90d",
+            "dffe5a3eb2e867c1bdcc75c5"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "CONTRIBUTIONS.md",
+              "evidence_id": "a63dbbb3f59c93093ac14f0d",
+              "score": "0.048915917503966164"
+            },
+            {
+              "rank": 2,
+              "path": "README.md",
+              "evidence_id": "83947a141fd31cb0bc72bf17",
+              "score": "0.04839549075403121"
+            },
+            {
+              "rank": 3,
+              "path": "CONTRIBUTIONS.md",
+              "evidence_id": "dee1a1dc07fb9403d6dd620c",
+              "score": "0.04787506400409626"
+            },
+            {
+              "rank": 4,
+              "path": "README.md",
+              "evidence_id": "0079e8f708e58673de283cf4",
+              "score": "0.04640151515151515"
+            },
+            {
+              "rank": 5,
+              "path": "samples/kitten-search-inline.md",
+              "evidence_id": "00f8a183aa77532fc7df21e3",
+              "score": "0.04352173647948296"
+            },
+            {
+              "rank": 6,
+              "path": "samples/local-gui.md",
+              "evidence_id": "3b86b56b31a045b2af7e9da2",
+              "score": "0.04191059399877526"
+            },
+            {
+              "rank": 7,
+              "path": "samples/kitten-search-detect.md",
+              "evidence_id": "abac445afc10f0a5e42c41d9",
+              "score": "0.04038941538941539"
+            },
+            {
+              "rank": 8,
+              "path": "samples/doc-content-inline-tests.md",
+              "evidence_id": "ff5d362d998551e219a35819",
+              "score": "0.03932963609845688"
+            },
+            {
+              "rank": 9,
+              "path": "samples/doc-content-detect.md",
+              "evidence_id": "7f81054ae4b584989567c7bb",
+              "score": "0.037990919847459934"
+            },
+            {
+              "rank": 10,
+              "path": "test/artifacts/doc-content.md",
+              "evidence_id": "69db0d3d9132ad350a2165d2",
+              "score": "0.037500000000000006"
+            },
+            {
+              "rank": 11,
+              "path": "CONTRIBUTIONS.md",
+              "evidence_id": "27d76dac3a03f7ebec0fa90d",
+              "score": "0.04525625548726954"
+            },
+            {
+              "rank": 12,
+              "path": "CONTRIBUTIONS.md",
+              "evidence_id": "dffe5a3eb2e867c1bdcc75c5",
+              "score": "0.0439657771747324"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "start": 20,
+              "end": 27,
+              "total_lines": 27
+            },
+            {
+              "path": "README.md",
+              "start": 33,
+              "end": 110,
+              "total_lines": 110
+            },
+            {
+              "path": "samples/kitten-search-inline.md",
+              "start": 0,
+              "end": 15,
+              "total_lines": 15
+            }
+          ],
+          "read_evidence_ids": [
+            "64d4bb57a7c03f2a29dd78be",
+            "22c298aec32965ce13e1aaf4",
+            "00f8a183aa77532fc7df21e3"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where does the documentation describe the --config argument and config file resolution?",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "test/artifacts/doc-content.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "samples/doc-content-inline-tests.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "da4abd1e67aa4fe80a3ca2fa",
+            "69db0d3d9132ad350a2165d2",
+            "ff5d362d998551e219a35819",
+            "83947a141fd31cb0bc72bf17",
+            "e1fb32aa3c237fe8b810002f",
+            "b6a3897e02c0061ab98aaab3",
+            "dee1a1dc07fb9403d6dd620c",
+            "7f81054ae4b584989567c7bb",
+            "00f8a183aa77532fc7df21e3",
+            "3b86b56b31a045b2af7e9da2",
+            "abac445afc10f0a5e42c41d9",
+            "1c315b8de63105dfff664b8a",
+            "0079e8f708e58673de283cf4"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "README.md",
+              "evidence_id": "83947a141fd31cb0bc72bf17",
+              "score": "0.03278688524590164"
+            },
+            {
+              "rank": 2,
+              "path": "README.md",
+              "evidence_id": "e1fb32aa3c237fe8b810002f",
+              "score": "0.03225806451612903"
+            },
+            {
+              "rank": 3,
+              "path": "CONTRIBUTIONS.md",
+              "evidence_id": "b6a3897e02c0061ab98aaab3",
+              "score": "0.030776515151515152"
+            },
+            {
+              "rank": 4,
+              "path": "CONTRIBUTIONS.md",
+              "evidence_id": "dee1a1dc07fb9403d6dd620c",
+              "score": "0.030330882352941176"
+            },
+            {
+              "rank": 5,
+              "path": "test/artifacts/doc-content.md",
+              "evidence_id": "69db0d3d9132ad350a2165d2",
+              "score": "0.028381642512077296"
+            },
+            {
+              "rank": 6,
+              "path": "samples/doc-content-inline-tests.md",
+              "evidence_id": "ff5d362d998551e219a35819",
+              "score": "0.028370221327967807"
+            },
+            {
+              "rank": 7,
+              "path": "samples/doc-content-detect.md",
+              "evidence_id": "7f81054ae4b584989567c7bb",
+              "score": "0.02797339593114241"
+            },
+            {
+              "rank": 8,
+              "path": "samples/kitten-search-inline.md",
+              "evidence_id": "00f8a183aa77532fc7df21e3",
+              "score": "0.026334026334026334"
+            },
+            {
+              "rank": 9,
+              "path": "samples/local-gui.md",
+              "evidence_id": "3b86b56b31a045b2af7e9da2",
+              "score": "0.025645240835114255"
+            },
+            {
+              "rank": 10,
+              "path": "samples/kitten-search-detect.md",
+              "evidence_id": "abac445afc10f0a5e42c41d9",
+              "score": "0.02484567901234568"
+            },
+            {
+              "rank": 11,
+              "path": "README.md",
+              "evidence_id": "1c315b8de63105dfff664b8a",
+              "score": "0.031746031746031744"
+            },
+            {
+              "rank": 12,
+              "path": "README.md",
+              "evidence_id": "0079e8f708e58673de283cf4",
+              "score": "0.03076923076923077"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "start": 4,
+              "end": 27,
+              "total_lines": 27
+            },
+            {
+              "path": "test/artifacts/doc-content.md",
+              "start": 0,
+              "end": 16,
+              "total_lines": 16
+            },
+            {
+              "path": "samples/doc-content-inline-tests.md",
+              "start": 0,
+              "end": 23,
+              "total_lines": 23
+            }
+          ],
+          "read_evidence_ids": [
+            "da4abd1e67aa4fe80a3ca2fa",
+            "69db0d3d9132ad350a2165d2",
+            "ff5d362d998551e219a35819"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What does the current setArgs and setConfig implementation look like for input/config handling?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "src/utils.js"
+          ],
+          "anchor": "function setArgs",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "src/utils.js",
+              "query": "function setArgs",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "b202ac29b5c9cad1f55befcd"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "src/utils.js",
+              "start": 11,
+              "end": 131,
+              "total_lines": 564
+            }
+          ],
+          "read_evidence_ids": [
+            "b202ac29b5c9cad1f55befcd"
+          ]
+        },
+        {
+          "id": "Q1-4",
+          "question": "What does the main entrypoint do with configPath and setConfig?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "src/index.js"
+          ],
+          "anchor": "setConfig",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "src/index.js",
+              "query": "setConfig",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7a67111850305d71a89ff25a"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "src/index.js",
+              "start": 0,
+              "end": 46,
+              "total_lines": 46
+            }
+          ],
+          "read_evidence_ids": [
+            "7a67111850305d71a89ff25a"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0079e8f708e58673de283cf4",
+        "00f8a183aa77532fc7df21e3",
+        "1c315b8de63105dfff664b8a",
+        "22c298aec32965ce13e1aaf4",
+        "27d76dac3a03f7ebec0fa90d",
+        "3b86b56b31a045b2af7e9da2",
+        "64d4bb57a7c03f2a29dd78be",
+        "69db0d3d9132ad350a2165d2",
+        "7a67111850305d71a89ff25a",
+        "7f81054ae4b584989567c7bb",
+        "83947a141fd31cb0bc72bf17",
+        "a63dbbb3f59c93093ac14f0d",
+        "abac445afc10f0a5e42c41d9",
+        "b202ac29b5c9cad1f55befcd",
+        "b6a3897e02c0061ab98aaab3",
+        "da4abd1e67aa4fe80a3ca2fa",
+        "dee1a1dc07fb9403d6dd620c",
+        "dffe5a3eb2e867c1bdcc75c5",
+        "e1fb32aa3c237fe8b810002f",
+        "ff5d362d998551e219a35819"
+      ],
+      "new_evidence_count": 20,
+      "new_path_count": 10
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+    "code": "21ca7143a3846998d21121ab040047bf4d25623c"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:b26d95342491eeab": 0,
+    "discover:Q1-2:78c2e6231ca1461b": 696
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:b26d95342491eeab": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 696,
+      "cache_hit": false
+    },
+    "discover:Q1-2:78c2e6231ca1461b": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 208,
+      "cache_hit": false
+    },
+    "discover:Q1-1:7b87cb0e4fc9df92": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 176,
+      "cache_hit": false
+    },
+    "discover:Q1-3:8239bc573f4504e5": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 296,
+      "cache_hit": false
+    },
+    "discover:Q1-2:acf30414a7255116": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 385,
+      "cache_hit": false
+    },
+    "discover:Q1-4:3858c40fcb40c9bb": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 341,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 4039,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "readme-input-multi",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "README.md"
+      ],
+      "evidence_ids": [
+        "22c298aec32965ce13e1aaf4",
+        "b202ac29b5c9cad1f55befcd",
+        "83947a141fd31cb0bc72bf17"
+      ],
+      "reason": "Update the README 'Run tests' section to document that `--input`/`-i` accepts a comma-separated list of paths (and URLs), each resolved to an absolute path, enabling multi-file input. Add an example such as `npx doc-detective --input file1.md,file2.md`."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0079e8f708e58673de283cf4",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "<img src=\"https://github.com/doc-detective/doc-detective/blob/main/icon.png\" width=50 style=\"vertical-align:middle;margin-bottom:7px\"/> Doc Detective: The Documentation Testing Framework > Contributions",
+        "start_line": 104,
+        "end_line": 107,
+        "start_char": 6456,
+        "end_char": 6710,
+        "score": "0.03076923076923077",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "0079e8f708e58673de283cf4",
+        "source_type": "repository",
+        "content_hash": "459eb9f78189beca3cd445c007d70acc6e7003fc44589455961bd94697f4513f",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "459eb9f78189beca3cd445c007d70acc6e7003fc44589455961bd94697f4513f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:00f8a183aa77532fc7df21e3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "samples/kitten-search-inline.md",
+        "start_line": 1,
+        "total_lines": 15,
+        "start_char": 0,
+        "end_char": 692,
+        "evidence_id": "00f8a183aa77532fc7df21e3",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9e4d0b6bad6f48dc72c3d9bf00adb2218801bad3376d699be4ce6a0e677a945a",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 33,
+              "limit": 120
+            },
+            {
+              "path": "samples/kitten-search-inline.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9e4d0b6bad6f48dc72c3d9bf00adb2218801bad3376d699be4ce6a0e677a945a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:054364ca5e8d233aa4e01149",
+        "type": "evidence",
+        "evidence_id": "054364ca5e8d233aa4e01149",
+        "source_type": "implementation",
+        "exported_content_sha256": "c5ad2d21aa7795269795fdf4095a62b0fb40c2784ceb2682c9a39631e0dc9124",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1c315b8de63105dfff664b8a",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "<img src=\"https://github.com/doc-detective/doc-detective/blob/main/icon.png\" width=50 style=\"vertical-align:middle;margin-bottom:7px\"/> Doc Detective: The Documentation Testing Framework > Concepts",
+        "start_line": 85,
+        "end_line": 89,
+        "start_char": 5449,
+        "end_char": 6123,
+        "score": "0.031746031746031744",
+        "root": "docs",
+        "matched_terms": [
+          "config"
+        ],
+        "evidence_id": "1c315b8de63105dfff664b8a",
+        "source_type": "repository",
+        "content_hash": "5e9a6f4550321f36418b2ffef0144bc3360f4b7cef33f458a35fe9fd64b24102",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5e9a6f4550321f36418b2ffef0144bc3360f4b7cef33f458a35fe9fd64b24102",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:22c298aec32965ce13e1aaf4",
+        "type": "evidence",
+        "root": "docs",
+        "path": "README.md",
+        "start_line": 34,
+        "total_lines": 110,
+        "start_char": 2150,
+        "end_char": 6832,
+        "evidence_id": "22c298aec32965ce13e1aaf4",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "deb9246f944b0a1acb5cea2b3c914dd7b02aef8f3c049b60087f83d436d4b862",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 33,
+              "limit": 120
+            },
+            {
+              "path": "samples/kitten-search-inline.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "deb9246f944b0a1acb5cea2b3c914dd7b02aef8f3c049b60087f83d436d4b862",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:27d76dac3a03f7ebec0fa90d",
+        "type": "evidence",
+        "path": "CONTRIBUTIONS.md",
+        "heading": "How to contribute > License",
+        "start_line": 21,
+        "end_line": 24,
+        "start_char": 784,
+        "end_char": 975,
+        "score": "0.04525625548726954",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "27d76dac3a03f7ebec0fa90d",
+        "source_type": "repository",
+        "content_hash": "7da83d36723e62c80fd47d7c9c606d56d60adcf34d3156f4d2dec8c54e3a09d9",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--input",
+            "input argument",
+            "-i input"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7da83d36723e62c80fd47d7c9c606d56d60adcf34d3156f4d2dec8c54e3a09d9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3b86b56b31a045b2af7e9da2",
+        "type": "evidence",
+        "path": "samples/local-gui.md",
+        "heading": "Sample Local GUI",
+        "start_line": 1,
+        "end_line": 6,
+        "start_char": 0,
+        "end_char": 165,
+        "score": "0.025645240835114255",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "3b86b56b31a045b2af7e9da2",
+        "source_type": "repository",
+        "content_hash": "419130454369bb5f849f97d494d9e537b874eb9b049c88aa1517e216e2145e52",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "419130454369bb5f849f97d494d9e537b874eb9b049c88aa1517e216e2145e52",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:64d4bb57a7c03f2a29dd78be",
+        "type": "evidence",
+        "root": "docs",
+        "path": "CONTRIBUTIONS.md",
+        "start_line": 21,
+        "total_lines": 27,
+        "start_char": 784,
+        "end_char": 1077,
+        "evidence_id": "64d4bb57a7c03f2a29dd78be",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "c88637b5b049712ceae35a94f0ca5e08220818bc5c4161e2525bb61cfc5296f1",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 33,
+              "limit": 120
+            },
+            {
+              "path": "samples/kitten-search-inline.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c88637b5b049712ceae35a94f0ca5e08220818bc5c4161e2525bb61cfc5296f1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:69db0d3d9132ad350a2165d2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "test/artifacts/doc-content.md",
+        "start_line": 1,
+        "total_lines": 16,
+        "start_char": 0,
+        "end_char": 1180,
+        "evidence_id": "69db0d3d9132ad350a2165d2",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "578b0d902433dc3fc6d33a9bf635778f1fa56aa5a69d38809f5b86f663f0dbb9",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "test/artifacts/doc-content.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "samples/doc-content-inline-tests.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "578b0d902433dc3fc6d33a9bf635778f1fa56aa5a69d38809f5b86f663f0dbb9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7a67111850305d71a89ff25a",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/index.js",
+        "start_line": 1,
+        "total_lines": 46,
+        "start_char": 0,
+        "end_char": 1421,
+        "evidence_id": "7a67111850305d71a89ff25a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "52aa7ff65c6cdea580831f197f0397f59640975e4d5bd7b47837728a2fc002e5",
+        "revision": "21ca7143a3846998d21121ab040047bf4d25623c",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/index.js",
+              "query": "setConfig",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "52aa7ff65c6cdea580831f197f0397f59640975e4d5bd7b47837728a2fc002e5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f81054ae4b584989567c7bb",
+        "type": "evidence",
+        "path": "samples/doc-content-detect.md",
+        "heading": "Doc Detective documentation overview",
+        "start_line": 1,
+        "end_line": 10,
+        "start_char": 0,
+        "end_char": 556,
+        "score": "0.02797339593114241",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "7f81054ae4b584989567c7bb",
+        "source_type": "repository",
+        "content_hash": "aff8880a0878925ba1dff56e2792cdc01ff04e9bb561739f13e375a185205531",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "aff8880a0878925ba1dff56e2792cdc01ff04e9bb561739f13e375a185205531",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83947a141fd31cb0bc72bf17",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "<img src=\"https://github.com/doc-detective/doc-detective/blob/main/icon.png\" width=50 style=\"vertical-align:middle;margin-bottom:7px\"/> Doc Detective: The Documentation Testing Framework > Run tests",
+        "start_line": 38,
+        "end_line": 65,
+        "start_char": 2433,
+        "end_char": 3632,
+        "score": "0.03278688524590164",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "file"
+        ],
+        "evidence_id": "83947a141fd31cb0bc72bf17",
+        "source_type": "repository",
+        "content_hash": "978e73f31108d653b28325d7bdc93194b42428ed751c8a6e9d527e7f99cfc64c",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "978e73f31108d653b28325d7bdc93194b42428ed751c8a6e9d527e7f99cfc64c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a223df69e67b9775c935664d",
+        "type": "evidence",
+        "evidence_id": "a223df69e67b9775c935664d",
+        "source_type": "task",
+        "exported_content_sha256": "b200ba4c0fb9baa77fd15bbc9417f82074a678384bd39bb9f2d325c15414a37d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a63dbbb3f59c93093ac14f0d",
+        "type": "evidence",
+        "path": "CONTRIBUTIONS.md",
+        "heading": "How to contribute > Thank you",
+        "start_line": 25,
+        "end_line": 27,
+        "start_char": 975,
+        "end_char": 1077,
+        "score": "0.048915917503966164",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a63dbbb3f59c93093ac14f0d",
+        "source_type": "repository",
+        "content_hash": "b5dc74a5843af214844c5550d7d1ea3dcedf6f914afb9740deae73a0c85dda90",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--input",
+            "input argument",
+            "-i input"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b5dc74a5843af214844c5550d7d1ea3dcedf6f914afb9740deae73a0c85dda90",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:abac445afc10f0a5e42c41d9",
+        "type": "evidence",
+        "path": "samples/kitten-search-detect.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 8,
+        "start_char": 0,
+        "end_char": 264,
+        "score": "0.02484567901234568",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "abac445afc10f0a5e42c41d9",
+        "source_type": "repository",
+        "content_hash": "40f0f90633580a126a020dd9ac2a476f4832a40c884e1b478ee8a558dda9c23f",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "40f0f90633580a126a020dd9ac2a476f4832a40c884e1b478ee8a558dda9c23f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b202ac29b5c9cad1f55befcd",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/utils.js",
+        "start_line": 12,
+        "total_lines": 564,
+        "start_char": 386,
+        "end_char": 3711,
+        "evidence_id": "b202ac29b5c9cad1f55befcd",
+        "truncated": false,
+        "next_offset": 131,
+        "source_type": "repository",
+        "content_hash": "ad6a39289e5c7f3dfa49794956f644f8608bb9522be4c88f5ecc42c0fb6a0a58",
+        "revision": "21ca7143a3846998d21121ab040047bf4d25623c",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/utils.js",
+              "query": "function setArgs",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ad6a39289e5c7f3dfa49794956f644f8608bb9522be4c88f5ecc42c0fb6a0a58",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b6a3897e02c0061ab98aaab3",
+        "type": "evidence",
+        "path": "CONTRIBUTIONS.md",
+        "heading": "How to contribute > Contributing code",
+        "start_line": 9,
+        "end_line": 20,
+        "start_char": 434,
+        "end_char": 784,
+        "score": "0.030776515151515152",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b6a3897e02c0061ab98aaab3",
+        "source_type": "repository",
+        "content_hash": "7a3008be76fe5ce9d1b87d3a423ed496e9ca542eab58cf65a71087f38a3284c8",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7a3008be76fe5ce9d1b87d3a423ed496e9ca542eab58cf65a71087f38a3284c8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:da4abd1e67aa4fe80a3ca2fa",
+        "type": "evidence",
+        "root": "docs",
+        "path": "CONTRIBUTIONS.md",
+        "start_line": 5,
+        "total_lines": 27,
+        "start_char": 297,
+        "end_char": 1077,
+        "evidence_id": "da4abd1e67aa4fe80a3ca2fa",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "af0c16a812802984dfc410a666bcdcdfbc27a2137133e1c12f34fe337d9df336",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "test/artifacts/doc-content.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "samples/doc-content-inline-tests.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "af0c16a812802984dfc410a666bcdcdfbc27a2137133e1c12f34fe337d9df336",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dee1a1dc07fb9403d6dd620c",
+        "type": "evidence",
+        "path": "CONTRIBUTIONS.md",
+        "heading": "How to contribute",
+        "start_line": 1,
+        "end_line": 4,
+        "start_char": 0,
+        "end_char": 297,
+        "score": "0.030330882352941176",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "dee1a1dc07fb9403d6dd620c",
+        "source_type": "repository",
+        "content_hash": "37a64b0b50edbd9bc7d54869ee576b7723ac581c58029226a3bb1135b8e63033",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "37a64b0b50edbd9bc7d54869ee576b7723ac581c58029226a3bb1135b8e63033",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dffe5a3eb2e867c1bdcc75c5",
+        "type": "evidence",
+        "path": "CONTRIBUTIONS.md",
+        "heading": "How to contribute > Reporting issues",
+        "start_line": 5,
+        "end_line": 8,
+        "start_char": 297,
+        "end_char": 434,
+        "score": "0.0439657771747324",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "dffe5a3eb2e867c1bdcc75c5",
+        "source_type": "repository",
+        "content_hash": "bed53f2ef94094361909536e13e29307bcea65928d9aeb09deb6fd4a63464583",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--input",
+            "input argument",
+            "-i input"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "bed53f2ef94094361909536e13e29307bcea65928d9aeb09deb6fd4a63464583",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e1fb32aa3c237fe8b810002f",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "<img src=\"https://github.com/doc-detective/doc-detective/blob/main/icon.png\" width=50 style=\"vertical-align:middle;margin-bottom:7px\"/> Doc Detective: The Documentation Testing Framework > Run tests > Check out some samples",
+        "start_line": 66,
+        "end_line": 69,
+        "start_char": 3632,
+        "end_char": 3792,
+        "score": "0.03225806451612903",
+        "root": "docs",
+        "matched_terms": [
+          "config"
+        ],
+        "evidence_id": "e1fb32aa3c237fe8b810002f",
+        "source_type": "repository",
+        "content_hash": "ff312b7a72c08317d44f603eefac0698ce657bf6956b4cf8a08d3e4b22e4807f",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "--config",
+            "config file"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ff312b7a72c08317d44f603eefac0698ce657bf6956b4cf8a08d3e4b22e4807f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ff5d362d998551e219a35819",
+        "type": "evidence",
+        "root": "docs",
+        "path": "samples/doc-content-inline-tests.md",
+        "start_line": 1,
+        "total_lines": 23,
+        "start_char": 0,
+        "end_char": 891,
+        "evidence_id": "ff5d362d998551e219a35819",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "31f727b39c1632bc42ce55e8a87286c86224eb7e59da829d60a80aa5ab28ec3c",
+        "revision": "9763311b0ca6b8aa9e03bb41590719b146a9d5dc",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "CONTRIBUTIONS.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "test/artifacts/doc-content.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "samples/doc-content-inline-tests.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "31f727b39c1632bc42ce55e8a87286c86224eb7e59da829d60a80aa5ab28ec3c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:readme-input-multi",
+        "type": "requirement",
+        "description": "Update the README 'Run tests' section to document that `--input`/`-i` accepts a comma-separated list of paths (and URLs), each resolved to an absolute path, enabling multi-file input. Add an example such as `npx doc-detective --input file1.md,file2.md`."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "README.md",
+        "hash": "04d31e53fad1e2c83d50f6e1b04e50f294fe17b8c4c4c1bd3de9e85696485896"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "readme-input-multi",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "README.md"
+        ],
+        "evidence_ids": [
+          "22c298aec32965ce13e1aaf4",
+          "b202ac29b5c9cad1f55befcd",
+          "83947a141fd31cb0bc72bf17"
+        ],
+        "reason": "Update the README 'Run tests' section to document that `--input`/`-i` accepts a comma-separated list of paths (and URLs), each resolved to an absolute path, enabling multi-file input. Add an example such as `npx doc-detective --input file1.md,file2.md`."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where does the documentation describe the --input/-i CLI argument and its accepted values?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where does the documentation describe the --config argument and config file resolution?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What does the current setArgs and setConfig implementation look like for input/config handling?"
+      },
+      {
+        "id": "research:Q1-4",
+        "type": "research_question",
+        "description": "What does the main entrypoint do with configPath and setConfig?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0079e8f708e58673de283cf4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0079e8f708e58673de283cf4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:00f8a183aa77532fc7df21e3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:00f8a183aa77532fc7df21e3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1c315b8de63105dfff664b8a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22c298aec32965ce13e1aaf4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:27d76dac3a03f7ebec0fa90d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3b86b56b31a045b2af7e9da2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3b86b56b31a045b2af7e9da2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64d4bb57a7c03f2a29dd78be",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:69db0d3d9132ad350a2165d2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:69db0d3d9132ad350a2165d2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7a67111850305d71a89ff25a",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f81054ae4b584989567c7bb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f81054ae4b584989567c7bb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83947a141fd31cb0bc72bf17",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83947a141fd31cb0bc72bf17",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a63dbbb3f59c93093ac14f0d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:abac445afc10f0a5e42c41d9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:abac445afc10f0a5e42c41d9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b202ac29b5c9cad1f55befcd",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b6a3897e02c0061ab98aaab3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da4abd1e67aa4fe80a3ca2fa",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dee1a1dc07fb9403d6dd620c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dee1a1dc07fb9403d6dd620c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dffe5a3eb2e867c1bdcc75c5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e1fb32aa3c237fe8b810002f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff5d362d998551e219a35819",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff5d362d998551e219a35819",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22c298aec32965ce13e1aaf4",
+        "to": "requirement:readme-input-multi",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:b202ac29b5c9cad1f55befcd",
+        "to": "requirement:readme-input-multi",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:83947a141fd31cb0bc72bf17",
+        "to": "requirement:readme-input-multi",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:readme-input-multi",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:22c298aec32965ce13e1aaf4",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:b202ac29b5c9cad1f55befcd",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:83947a141fd31cb0bc72bf17",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:readme-input-multi",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:22c298aec32965ce13e1aaf4",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:b202ac29b5c9cad1f55befcd",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:83947a141fd31cb0bc72bf17",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "7751c80a053a973c4e2a5e7274a7a04d6d4afc6b67601fe0c99b2b179aebce9a"
+}

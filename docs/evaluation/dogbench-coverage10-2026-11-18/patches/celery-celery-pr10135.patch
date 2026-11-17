@@ -1,0 +1,57 @@
+diff --git a/docs/userguide/configuration.rst b/docs/userguide/configuration.rst
+index f88849e42b9951d2122510b1ac724012da88134d..8ce49fde342c14956712fd58826bb54d383c63cb 100644
+--- a/docs/userguide/configuration.rst
++++ b/docs/userguide/configuration.rst
+@@ -1146,6 +1146,52 @@ the :setting:`database_engine_options` setting::
+     # To disable the default pool health options:
+     app.conf.database_engine_options = {'pool_pre_ping': False, 'pool_recycle': None}
+ 
++.. setting:: database_engine_callback
++
++``database_engine_callback``
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++Default: ``None``.
++
++A callable that is invoked with the SQLAlchemy engine immediately after it is
++created by the database result backend. This allows you to perform custom
++engine configuration, such as registering connection-level event listeners or
++setting pragmas.
++
++The callback may be given either as a Python callable or as a dotted import
++path string, which is resolved when the backend is initialized. If the
++resolved value is not callable, an :exc:`~celery.exceptions.ImproperlyConfigured`
++exception is raised.
++
++.. code-block:: python
++
++    def configure_engine(engine):
++        from sqlalchemy import event
++
++        @event.listens_for(engine, 'do_connect')
++        def on_connect(dialect, conn_rec, cargs, cparams):
++            cparams['application_name'] = 'celery'
++
++    # As a callable:
++    app.conf.database_engine_callback = configure_engine
++
++    # Or as a dotted import path:
++    app.conf.database_engine_callback = 'myapp.db:configure_engine'
++
++The callback can also be passed directly as the ``engine_callback`` keyword
++argument when constructing the backend, in which case it takes precedence over
++the :setting:`database_engine_callback` setting:
++
++.. code-block:: python
++
++    from celery.backends.database import DatabaseBackend
++
++    backend = DatabaseBackend(
++        'db+sqlite:///results.db',
++        app=app,
++        engine_callback=configure_engine,
++    )
++
+ .. setting:: database_short_lived_sessions
+ 
+ ``database_short_lived_sessions``

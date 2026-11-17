@@ -1,0 +1,135 @@
+{
+  "cohort": 49,
+  "old": {
+    "tasks": 49,
+    "patch_needed": 37,
+    "no_change": 12,
+    "completion_rate": 0.5102040816326531,
+    "execution_failures": 24,
+    "runtime_unresolved": 0,
+    "runtime_errors": 24,
+    "mean_research_rounds": 0.0,
+    "decision_accuracy": 0.42857142857142855,
+    "patch_recall": 0.5405405405405406,
+    "no_change_recall": 0.08333333333333333,
+    "documentation_quality": 14.394594594594595,
+    "p0_clean_delivery_rate": 0.10810810810810811,
+    "mean_model_decisions": 18.26530612244898,
+    "median_model_decisions": 16,
+    "mean_operational_tool_calls": 9.040816326530612,
+    "total_model_decisions": 895,
+    "mean_task_wall_ms": 128175.99360408162,
+    "median_task_wall_ms": 109406.11499999977,
+    "total_api_receipt_records": 895,
+    "receipts_with_usage": 895,
+    "reported_input_tokens": 13027077,
+    "reported_output_tokens": 423278,
+    "total_protocol_corrections": 0,
+    "correct_decisions_per_100_model_decisions": 2.346368715083799,
+    "completed_decisions_per_100_model_decisions": 2.793296089385475
+  },
+  "new": {
+    "tasks": 49,
+    "patch_needed": 37,
+    "no_change": 12,
+    "completion_rate": 0.5918367346938775,
+    "execution_failures": 20,
+    "runtime_unresolved": 6,
+    "runtime_errors": 14,
+    "mean_research_rounds": 1.836734693877551,
+    "decision_accuracy": 0.5102040816326531,
+    "patch_recall": 0.5945945945945946,
+    "no_change_recall": 0.25,
+    "documentation_quality": 20.886486486486486,
+    "p0_clean_delivery_rate": 0.13513513513513514,
+    "mean_model_decisions": 4.979591836734694,
+    "median_model_decisions": 5,
+    "mean_operational_tool_calls": 9.714285714285714,
+    "total_model_decisions": 244,
+    "mean_task_wall_ms": 149702.48914693753,
+    "median_task_wall_ms": 149088.76650000457,
+    "total_api_receipt_records": 244,
+    "receipts_with_usage": 242,
+    "reported_input_tokens": 3141250,
+    "reported_output_tokens": 76190,
+    "total_protocol_corrections": 33,
+    "correct_decisions_per_100_model_decisions": 10.245901639344263,
+    "completed_decisions_per_100_model_decisions": 11.885245901639344
+  },
+  "latency_comparison": {
+    "full_cohort_latency_comparable": true,
+    "interrupted_new_task_ids": [],
+    "quality_metrics_still_include_all_tasks": true,
+    "uninterrupted_paired_subset_tasks": 49,
+    "old_mean_wall_ms": 128175.99360408162,
+    "new_mean_wall_ms": 149702.48914693753,
+    "caution": "Historical timing; interrupted tasks remain in all quality denominators"
+  },
+  "paired": {
+    "both_correct": 14,
+    "old_only_correct": 7,
+    "new_only_correct": 11,
+    "both_wrong": 17
+  },
+  "paired_by_outcome": {
+    "patch": {
+      "both_correct": 14,
+      "old_only_correct": 6,
+      "new_only_correct": 8,
+      "both_wrong": 9
+    },
+    "abstain": {
+      "both_correct": 0,
+      "old_only_correct": 1,
+      "new_only_correct": 3,
+      "both_wrong": 8
+    }
+  },
+  "decision_accuracy_ci": {
+    "metric": "decision_accuracy_delta",
+    "mean": 0.08163265306122448,
+    "percentile_95_ci": [
+      -0.08163265306122448,
+      0.24489795918367346
+    ],
+    "seed": 20261117,
+    "resamples": 5000,
+    "unit": "paired task",
+    "causal_interpretation": false
+  },
+  "taxonomy": {
+    "A": "Planning",
+    "B": "Discovery",
+    "C": "Coverage",
+    "D": "Editing",
+    "E": "Verification",
+    "F": "Repair",
+    "G": "Protocol/Runtime"
+  },
+  "primary_failure_counts": {
+    "G": 14,
+    "C": 8,
+    "D": 22,
+    "F": 2
+  },
+  "secondary_failure_counts": {
+    "E": 17
+  },
+  "definitions": {
+    "completion": "Final output returned, including wrong decisions; not task correctness",
+    "documentation_quality": "Official patch-needed quality including execution/wrong-direction zeros",
+    "model_decisions": "Persisted Run.model_calls, includes interrupted charged reservations; API receipts reported separately",
+    "operational_tool_calls": "Unique persisted list/search/read/read_many/propose invocations; excludes plan/review/abstain role actions",
+    "reported_tokens": "Provider usage receipts only; missing usage remains unknown",
+    "correct_decisions": "Correct edit/no-change direction, not full patch semantic correctness",
+    "taxonomy": "Primary observable failure stage plus secondary checks; A/B semantic attribution may remain unresolved"
+  },
+  "comparison": "historical-system",
+  "matched_decision_budget": false,
+  "old_effective_model_limit": 32,
+  "new_effective_model_limit": 10,
+  "old_policy": "coverage-v1",
+  "new_policy": "batched-react-v1",
+  "historical_baseline": true,
+  "new_official_175_composite": null
+}

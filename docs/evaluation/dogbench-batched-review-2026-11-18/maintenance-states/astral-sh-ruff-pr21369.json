@@ -1,0 +1,3330 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "changelog-preview-entry",
+      "description": "Add a formatter preview-style entry to the unreleased section of CHANGELOG.md describing the new `fluent_layout_split_first_call` preview behavior: in preview mode, fluent call chains now break before the first call/subscript (e.g. `df.merge().groupby()` breaks before `.merge`), gated by preview and leaving stable output unchanged.",
+      "evidence_ids": [
+        "cda88fbc8258e77fbd6f2c80",
+        "cc2047caf6c3d75efdfb407a",
+        "0925e9415c5bd8f49abdb681",
+        "edbb87e4a07fbd0882a722ea"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "de1bd0eb67e2c5f4bf334d10c009b03572a802bb9934dbd26475c86051a0b906",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the docs tree document the formatter's preview mode, preview flags, or fluent/call-chain formatting behavior that this change affects?",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "changelogs/0.1.x.md",
+              "offset": 406,
+              "limit": 120
+            },
+            {
+              "path": "docs/formatter/black.md",
+              "offset": 520,
+              "limit": 120
+            },
+            {
+              "path": "crates/ty_python_semantic/resources/mdtest/scopes/nonlocal.md",
+              "offset": 250,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "170e4b73bdf502fa77471569",
+            "1566ce9e48ee4b66f411b1d9",
+            "aea98838fc2b1b65415a165b",
+            "31a7d1f349cba569f8527e0c",
+            "5cdabdb5d7cab08c65c1f59e",
+            "12fc5d3cd4b98dff249ff2fc",
+            "22b9c138d99e38afe0e9eb5c",
+            "467fcb1f5da3d582d9dc7914",
+            "246e284537997232cfcf6864",
+            "aab70c1ab363c4162e738dd1",
+            "c35ca58430cec8ead7c5b8b7",
+            "e158f05826bcebbbdfd68ec4",
+            "e3c03ff4f71b94b6813f2190",
+            "8a50feaacdc0994c1395b6ef",
+            "3bcc207753e33c5aa80adf1e"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "changelogs/0.1.x.md",
+              "evidence_id": "31a7d1f349cba569f8527e0c",
+              "score": "0.03845708424326649"
+            },
+            {
+              "rank": 2,
+              "path": "docs/formatter/black.md",
+              "evidence_id": "5cdabdb5d7cab08c65c1f59e",
+              "score": "0.03452299635701275"
+            },
+            {
+              "rank": 3,
+              "path": "docs/formatter/black.md",
+              "evidence_id": "12fc5d3cd4b98dff249ff2fc",
+              "score": "0.03367710918114144"
+            },
+            {
+              "rank": 4,
+              "path": "crates/ty_python_semantic/resources/mdtest/scopes/nonlocal.md",
+              "evidence_id": "22b9c138d99e38afe0e9eb5c",
+              "score": "0.029386529386529386"
+            },
+            {
+              "rank": 5,
+              "path": "crates/ty_python_semantic/resources/mdtest/call/callable_instance.md",
+              "evidence_id": "467fcb1f5da3d582d9dc7914",
+              "score": "0.028125"
+            },
+            {
+              "rank": 6,
+              "path": "changelogs/0.2.x.md",
+              "evidence_id": "246e284537997232cfcf6864",
+              "score": "0.027031963470319637"
+            },
+            {
+              "rank": 7,
+              "path": "changelogs/0.1.x.md",
+              "evidence_id": "aab70c1ab363c4162e738dd1",
+              "score": "0.026830135039090264"
+            },
+            {
+              "rank": 8,
+              "path": "crates/ty_python_semantic/resources/mdtest/call/callables_as_descriptors.md",
+              "evidence_id": "c35ca58430cec8ead7c5b8b7",
+              "score": "0.026120660599932594"
+            },
+            {
+              "rank": 9,
+              "path": "crates/ty_python_semantic/resources/mdtest/descriptor_protocol.md",
+              "evidence_id": "e158f05826bcebbbdfd68ec4",
+              "score": "0.026021080368906456"
+            },
+            {
+              "rank": 10,
+              "path": "crates/ty_python_semantic/resources/mdtest/call/function.md",
+              "evidence_id": "e3c03ff4f71b94b6813f2190",
+              "score": "0.025278219395866455"
+            },
+            {
+              "rank": 11,
+              "path": "crates/ty_python_semantic/resources/mdtest/call/subclass_of.md",
+              "evidence_id": "8a50feaacdc0994c1395b6ef",
+              "score": "0.02483719521429653"
+            },
+            {
+              "rank": 12,
+              "path": "docs/preview.md",
+              "evidence_id": "3bcc207753e33c5aa80adf1e",
+              "score": "0.024657905432868176"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "changelogs/0.1.x.md",
+              "start": 406,
+              "end": 526,
+              "total_lines": 885
+            },
+            {
+              "path": "docs/formatter/black.md",
+              "start": 520,
+              "end": 640,
+              "total_lines": 839
+            },
+            {
+              "path": "crates/ty_python_semantic/resources/mdtest/scopes/nonlocal.md",
+              "start": 250,
+              "end": 370,
+              "total_lines": 448
+            }
+          ],
+          "read_evidence_ids": [
+            "170e4b73bdf502fa77471569",
+            "1566ce9e48ee4b66f411b1d9",
+            "aea98838fc2b1b65415a165b"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where is the preview flag is_fluent_layout_split_first_call_enabled defined and how are preview flags documented in the formatter crate?",
+          "root": "code",
+          "queries": [
+            "is_fluent_layout_split_first_call_enabled",
+            "fluent_layout_split_first_call"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "crates/ruff_python_formatter/src/preview.rs",
+              "offset": 30,
+              "limit": 120
+            },
+            {
+              "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+              "offset": 117,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "cc2047caf6c3d75efdfb407a",
+            "0925e9415c5bd8f49abdb681",
+            "4e3c7e477e1996ec948b4187",
+            "67434233f9a284119553820c",
+            "dce09b601a0bf4ad48632b2a",
+            "c0aefcd593cf849f8aadf4b6"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "crates/ruff_python_formatter/src/preview.rs",
+              "evidence_id": "4e3c7e477e1996ec948b4187",
+              "score": "0.03252247488101534"
+            },
+            {
+              "rank": 2,
+              "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+              "evidence_id": "67434233f9a284119553820c",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 3,
+              "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+              "evidence_id": "dce09b601a0bf4ad48632b2a",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 4,
+              "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+              "evidence_id": "c0aefcd593cf849f8aadf4b6",
+              "score": "0.015625"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "crates/ruff_python_formatter/src/preview.rs",
+              "start": 30,
+              "end": 68,
+              "total_lines": 68
+            },
+            {
+              "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+              "start": 117,
+              "end": 237,
+              "total_lines": 257
+            }
+          ],
+          "read_evidence_ids": [
+            "cc2047caf6c3d75efdfb407a",
+            "0925e9415c5bd8f49abdb681"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Is there existing documentation of the CallChainLayout::Fluent behavior and its doc-comment that should be updated?",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+              "offset": 866,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "bc43faaa4c4b6a61bb193e24",
+            "edbb87e4a07fbd0882a722ea",
+            "f6aefba93ca38be26be00bcf",
+            "c0aefcd593cf849f8aadf4b6",
+            "2228329ecf834b0052287d58",
+            "166f0d083942d8b8ea232d94",
+            "20744a7c9246d47f40e389ef",
+            "b49814aadc1a61a85770094a",
+            "df793b4a46a17eca5ffc3e95",
+            "03994608b85caa796781acdc",
+            "8ea228f087920f1817a2b7a9",
+            "8dd7b76245fc8824d1c2d48b",
+            "87177784ee3282ca0dafde53",
+            "281bd2513297aefd720773fb"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py",
+              "evidence_id": "f6aefba93ca38be26be00bcf",
+              "score": "0.03177805800756621"
+            },
+            {
+              "rank": 2,
+              "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+              "evidence_id": "c0aefcd593cf849f8aadf4b6",
+              "score": "0.031009615384615385"
+            },
+            {
+              "rank": 3,
+              "path": "crates/ruff_python_formatter/tests/snapshots/format@fluent.py.snap",
+              "evidence_id": "2228329ecf834b0052287d58",
+              "score": "0.03021353930031804"
+            },
+            {
+              "rank": 4,
+              "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+              "evidence_id": "166f0d083942d8b8ea232d94",
+              "score": "0.029957522915269395"
+            },
+            {
+              "rank": 5,
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py",
+              "evidence_id": "20744a7c9246d47f40e389ef",
+              "score": "0.029850746268656716"
+            },
+            {
+              "rank": 6,
+              "path": "crates/ruff_python_formatter/tests/snapshots/format@fluent.py.snap",
+              "evidence_id": "b49814aadc1a61a85770094a",
+              "score": "0.02819138376017471"
+            },
+            {
+              "rank": 7,
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/parentheses/call_chains.py",
+              "evidence_id": "df793b4a46a17eca5ffc3e95",
+              "score": "0.02694394213381555"
+            },
+            {
+              "rank": 8,
+              "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+              "evidence_id": "03994608b85caa796781acdc",
+              "score": "0.02533373786407767"
+            },
+            {
+              "rank": 9,
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/expression/call.py",
+              "evidence_id": "8ea228f087920f1817a2b7a9",
+              "score": "0.024877149877149878"
+            },
+            {
+              "rank": 10,
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/parentheses/call_chains.py",
+              "evidence_id": "8dd7b76245fc8824d1c2d48b",
+              "score": "0.02456928838951311"
+            },
+            {
+              "rank": 11,
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/statement/assignment_split_value_first.py",
+              "evidence_id": "87177784ee3282ca0dafde53",
+              "score": "0.022214040255277366"
+            },
+            {
+              "rank": 12,
+              "path": "changelogs/0.1.x.md",
+              "evidence_id": "281bd2513297aefd720773fb",
+              "score": "0.02183253977470677"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py",
+              "start": 0,
+              "end": 35,
+              "total_lines": 35
+            },
+            {
+              "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+              "start": 866,
+              "end": 986,
+              "total_lines": 1513
+            }
+          ],
+          "read_evidence_ids": [
+            "bc43faaa4c4b6a61bb193e24",
+            "edbb87e4a07fbd0882a722ea"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "03994608b85caa796781acdc",
+        "0925e9415c5bd8f49abdb681",
+        "12fc5d3cd4b98dff249ff2fc",
+        "1566ce9e48ee4b66f411b1d9",
+        "166f0d083942d8b8ea232d94",
+        "170e4b73bdf502fa77471569",
+        "20744a7c9246d47f40e389ef",
+        "2228329ecf834b0052287d58",
+        "22b9c138d99e38afe0e9eb5c",
+        "246e284537997232cfcf6864",
+        "281bd2513297aefd720773fb",
+        "31a7d1f349cba569f8527e0c",
+        "3bcc207753e33c5aa80adf1e",
+        "467fcb1f5da3d582d9dc7914",
+        "4e3c7e477e1996ec948b4187",
+        "5cdabdb5d7cab08c65c1f59e",
+        "67434233f9a284119553820c",
+        "87177784ee3282ca0dafde53",
+        "8a50feaacdc0994c1395b6ef",
+        "8dd7b76245fc8824d1c2d48b",
+        "8ea228f087920f1817a2b7a9",
+        "aab70c1ab363c4162e738dd1",
+        "aea98838fc2b1b65415a165b",
+        "b49814aadc1a61a85770094a",
+        "bc43faaa4c4b6a61bb193e24",
+        "c0aefcd593cf849f8aadf4b6",
+        "c35ca58430cec8ead7c5b8b7",
+        "cc2047caf6c3d75efdfb407a",
+        "dce09b601a0bf4ad48632b2a",
+        "df793b4a46a17eca5ffc3e95",
+        "e158f05826bcebbbdfd68ec4",
+        "e3c03ff4f71b94b6813f2190",
+        "edbb87e4a07fbd0882a722ea",
+        "f6aefba93ca38be26be00bcf"
+      ],
+      "new_evidence_count": 34,
+      "new_path_count": 19
+    },
+    {
+      "signature": "952b9fad8243a8193d5d7cfe799c08834822eddbfd1a03b58012d685ee322075",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the docs tree have a formatter preview-style page (e.g. docs/formatter/preview.md or similar) that lists preview flags and would need a new entry for fluent_layout_split_first_call?",
+          "root": "docs",
+          "queries": [
+            "preview style formatter",
+            "formatter preview",
+            "fluent_layout_split_first_call"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/formatter/"
+          ],
+          "reads": [
+            {
+              "path": "changelogs/0.7.x.md",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "CHANGELOG.md",
+              "offset": 204,
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.5.x.md",
+              "offset": 224,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "2b339735e8afcde9cf7eb83f",
+            "3f5281f81d9cc73517185626",
+            "5c55bfdbf449dd21659ed672",
+            "31a7d1f349cba569f8527e0c",
+            "57db7d2b9d34598b6ffcc99a",
+            "b2b5e10095dc555ed0878a7a",
+            "723204353259afd074e56b3f",
+            "317dbcaa066c347c45b55c55",
+            "938fe91eaafbcb1399cd80f8",
+            "15ea7d082396d29d51d5612c",
+            "35fd3ce856a4a004239a3500",
+            "99784de942cafe2c9eb8234e",
+            "f2f02b2a617c3d170dbcacf7",
+            "640ce81fcbb846be107b8dc0",
+            "3bcc207753e33c5aa80adf1e"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "changelogs/0.1.x.md",
+              "evidence_id": "31a7d1f349cba569f8527e0c",
+              "score": "0.04270851031356818"
+            },
+            {
+              "rank": 2,
+              "path": "changelogs/0.7.x.md",
+              "evidence_id": "57db7d2b9d34598b6ffcc99a",
+              "score": "0.03608721527890494"
+            },
+            {
+              "rank": 3,
+              "path": "CHANGELOG.md",
+              "evidence_id": "b2b5e10095dc555ed0878a7a",
+              "score": "0.035678475935828874"
+            },
+            {
+              "rank": 4,
+              "path": "changelogs/0.5.x.md",
+              "evidence_id": "723204353259afd074e56b3f",
+              "score": "0.03530838530838531"
+            },
+            {
+              "rank": 5,
+              "path": "changelogs/0.1.x.md",
+              "evidence_id": "317dbcaa066c347c45b55c55",
+              "score": "0.03527833315795012"
+            },
+            {
+              "rank": 6,
+              "path": "changelogs/0.8.x.md",
+              "evidence_id": "938fe91eaafbcb1399cd80f8",
+              "score": "0.03474476911976912"
+            },
+            {
+              "rank": 7,
+              "path": "changelogs/0.7.x.md",
+              "evidence_id": "15ea7d082396d29d51d5612c",
+              "score": "0.033075813075813074"
+            },
+            {
+              "rank": 8,
+              "path": "docs/formatter.md",
+              "evidence_id": "35fd3ce856a4a004239a3500",
+              "score": "0.03225806451612903"
+            },
+            {
+              "rank": 9,
+              "path": "changelogs/0.6.x.md",
+              "evidence_id": "99784de942cafe2c9eb8234e",
+              "score": "0.031494997264617804"
+            },
+            {
+              "rank": 10,
+              "path": "changelogs/0.2.x.md",
+              "evidence_id": "f2f02b2a617c3d170dbcacf7",
+              "score": "0.030912259122591226"
+            },
+            {
+              "rank": 11,
+              "path": "CHANGELOG.md",
+              "evidence_id": "640ce81fcbb846be107b8dc0",
+              "score": "0.030079074967204675"
+            },
+            {
+              "rank": 12,
+              "path": "docs/preview.md",
+              "evidence_id": "3bcc207753e33c5aa80adf1e",
+              "score": "0.029957522915269395"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "changelogs/0.7.x.md",
+              "start": 15,
+              "end": 135,
+              "total_lines": 185
+            },
+            {
+              "path": "CHANGELOG.md",
+              "start": 204,
+              "end": 324,
+              "total_lines": 499
+            },
+            {
+              "path": "changelogs/0.5.x.md",
+              "start": 224,
+              "end": 344,
+              "total_lines": 402
+            }
+          ],
+          "read_evidence_ids": [
+            "2b339735e8afcde9cf7eb83f",
+            "3f5281f81d9cc73517185626",
+            "5c55bfdbf449dd21659ed672"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is there a changelog or release notes file for the current unreleased version where new preview features are recorded?",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ],
+          "paths": [
+            "CHANGELOG.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "CHANGELOG.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.2.x.md",
+              "offset": 168,
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.1.x.md",
+              "offset": 554,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "cda88fbc8258e77fbd6f2c80",
+            "bbbb2084588d9e8b87e5214e",
+            "abc826f4ff45ccbdad0674ba",
+            "9cbd9b93139a355851dbae61",
+            "57db7d2b9d34598b6ffcc99a",
+            "15ea7d082396d29d51d5612c",
+            "b0f12c98108f0d2d3fbf28b9",
+            "8ec5dd1727f1c60becfe4fcf",
+            "b2b5e10095dc555ed0878a7a",
+            "35fd3ce856a4a004239a3500",
+            "f2f02b2a617c3d170dbcacf7",
+            "584f454736086d3942fa5dd0",
+            "5d71fda576a95bc827081dd7",
+            "3bcc207753e33c5aa80adf1e",
+            "824f74e15af72248e48cc7de"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "CHANGELOG.md",
+              "evidence_id": "9cbd9b93139a355851dbae61",
+              "score": "0.03642013305650902"
+            },
+            {
+              "rank": 2,
+              "path": "changelogs/0.7.x.md",
+              "evidence_id": "57db7d2b9d34598b6ffcc99a",
+              "score": "0.035318530815521894"
+            },
+            {
+              "rank": 3,
+              "path": "changelogs/0.7.x.md",
+              "evidence_id": "15ea7d082396d29d51d5612c",
+              "score": "0.03510040832253299"
+            },
+            {
+              "rank": 4,
+              "path": "changelogs/0.2.x.md",
+              "evidence_id": "b0f12c98108f0d2d3fbf28b9",
+              "score": "0.03411735323500029"
+            },
+            {
+              "rank": 5,
+              "path": "changelogs/0.1.x.md",
+              "evidence_id": "8ec5dd1727f1c60becfe4fcf",
+              "score": "0.033736695498171446"
+            },
+            {
+              "rank": 6,
+              "path": "CHANGELOG.md",
+              "evidence_id": "b2b5e10095dc555ed0878a7a",
+              "score": "0.03332291028520863"
+            },
+            {
+              "rank": 7,
+              "path": "docs/formatter.md",
+              "evidence_id": "35fd3ce856a4a004239a3500",
+              "score": "0.03225806451612903"
+            },
+            {
+              "rank": 8,
+              "path": "changelogs/0.2.x.md",
+              "evidence_id": "f2f02b2a617c3d170dbcacf7",
+              "score": "0.03093582887700535"
+            },
+            {
+              "rank": 9,
+              "path": "changelogs/0.6.x.md",
+              "evidence_id": "584f454736086d3942fa5dd0",
+              "score": "0.030853657482255097"
+            },
+            {
+              "rank": 10,
+              "path": "changelogs/0.6.x.md",
+              "evidence_id": "5d71fda576a95bc827081dd7",
+              "score": "0.02983776633728008"
+            },
+            {
+              "rank": 11,
+              "path": "docs/preview.md",
+              "evidence_id": "3bcc207753e33c5aa80adf1e",
+              "score": "0.029709507042253523"
+            },
+            {
+              "rank": 12,
+              "path": "docs/preview.md",
+              "evidence_id": "824f74e15af72248e48cc7de",
+              "score": "0.02967032967032967"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "CHANGELOG.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 499
+            },
+            {
+              "path": "changelogs/0.2.x.md",
+              "start": 168,
+              "end": 271,
+              "total_lines": 271
+            },
+            {
+              "path": "changelogs/0.1.x.md",
+              "start": 554,
+              "end": 674,
+              "total_lines": 885
+            }
+          ],
+          "read_evidence_ids": [
+            "cda88fbc8258e77fbd6f2c80",
+            "bbbb2084588d9e8b87e5214e",
+            "abc826f4ff45ccbdad0674ba"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "15ea7d082396d29d51d5612c",
+        "2b339735e8afcde9cf7eb83f",
+        "317dbcaa066c347c45b55c55",
+        "35fd3ce856a4a004239a3500",
+        "3f5281f81d9cc73517185626",
+        "57db7d2b9d34598b6ffcc99a",
+        "584f454736086d3942fa5dd0",
+        "5c55bfdbf449dd21659ed672",
+        "5d71fda576a95bc827081dd7",
+        "640ce81fcbb846be107b8dc0",
+        "723204353259afd074e56b3f",
+        "824f74e15af72248e48cc7de",
+        "8ec5dd1727f1c60becfe4fcf",
+        "938fe91eaafbcb1399cd80f8",
+        "99784de942cafe2c9eb8234e",
+        "9cbd9b93139a355851dbae61",
+        "abc826f4ff45ccbdad0674ba",
+        "b0f12c98108f0d2d3fbf28b9",
+        "b2b5e10095dc555ed0878a7a",
+        "bbbb2084588d9e8b87e5214e",
+        "cda88fbc8258e77fbd6f2c80",
+        "f2f02b2a617c3d170dbcacf7"
+      ],
+      "new_evidence_count": 22,
+      "new_path_count": 6
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "8e85d62d72e7759e07bf56443e195e74052119b2",
+    "code": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:ae913adeb4747cf7": 0,
+    "discover:Q1-2:f410048aea827558": 0,
+    "discover:Q1-3:9b04d6fcdc6310c8": 149834,
+    "discover:Q2-1:a2cecec4aa7c8679": 0,
+    "discover:Q2-2:06cb2f08db46bceb": 495
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-2:f410048aea827558": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:ae913adeb4747cf7": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 381,
+      "cache_hit": false
+    },
+    "discover:Q1-2:f410048aea827558": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 149835,
+      "cache_hit": false
+    },
+    "discover:Q1-3:9b04d6fcdc6310c8": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 388,
+      "cache_hit": false
+    },
+    "discover:Q1-2:daa3d0e6d4bc4dc9": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 275,
+      "cache_hit": false
+    },
+    "discover:Q1-3:c6a77f055e7d06f5": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 366,
+      "cache_hit": false
+    },
+    "discover:Q1-1:d72053d353aaddfb": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 389,
+      "cache_hit": false
+    },
+    "discover:Q2-1:a2cecec4aa7c8679": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 495,
+      "cache_hit": false
+    },
+    "discover:Q2-2:06cb2f08db46bceb": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 186,
+      "cache_hit": false
+    },
+    "discover:Q2-1:5a5c69a5a6a35d33": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 311,
+      "cache_hit": false
+    },
+    "discover:Q2-2:3b0167f4cfdbac72": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 350,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2488,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "changelog-preview-entry",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "CHANGELOG.md"
+      ],
+      "evidence_ids": [
+        "cda88fbc8258e77fbd6f2c80",
+        "cc2047caf6c3d75efdfb407a",
+        "0925e9415c5bd8f49abdb681",
+        "edbb87e4a07fbd0882a722ea"
+      ],
+      "reason": "Add a formatter preview-style entry to the unreleased section of CHANGELOG.md describing the new `fluent_layout_split_first_call` preview behavior: in preview mode, fluent call chains now break before the first call/subscript (e.g. `df.merge().groupby()` breaks before `.merge`), gated by preview and leaving stable output unchanged."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:03994608b85caa796781acdc",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+        "heading": "",
+        "start_line": 84,
+        "end_line": 121,
+        "start_char": 3250,
+        "end_char": 4866,
+        "score": "0.02533373786407767",
+        "root": "code",
+        "matched_terms": [
+          "call",
+          "chain",
+          "fluent",
+          "formatting"
+        ],
+        "evidence_id": "03994608b85caa796781acdc",
+        "source_type": "repository",
+        "content_hash": "a325c6a8dc963a5144ef7c12575462acb5768f3404a939c5d5cc4af0a7fd2ef6",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a325c6a8dc963a5144ef7c12575462acb5768f3404a939c5d5cc4af0a7fd2ef6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0925e9415c5bd8f49abdb681",
+        "type": "evidence",
+        "root": "code",
+        "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+        "start_line": 118,
+        "total_lines": 257,
+        "start_char": 4759,
+        "end_char": 8848,
+        "evidence_id": "0925e9415c5bd8f49abdb681",
+        "truncated": false,
+        "next_offset": 237,
+        "source_type": "repository",
+        "content_hash": "90daa2d8f86f876d492dd9ba44b4aa9969917bc2ff307da3b44fe66f2de8d26b",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "crates/ruff_python_formatter/src/preview.rs",
+              "offset": 30,
+              "limit": 120
+            },
+            {
+              "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+              "offset": 117,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "90daa2d8f86f876d492dd9ba44b4aa9969917bc2ff307da3b44fe66f2de8d26b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:12fc5d3cd4b98dff249ff2fc",
+        "type": "evidence",
+        "path": "docs/formatter/black.md",
+        "heading": "- navigation > Parentheses around call-chain assignment values are not preserved",
+        "start_line": 492,
+        "end_line": 524,
+        "start_char": 11977,
+        "end_char": 12699,
+        "score": "0.03367710918114144",
+        "root": "docs",
+        "matched_terms": [
+          "call",
+          "chain"
+        ],
+        "evidence_id": "12fc5d3cd4b98dff249ff2fc",
+        "source_type": "repository",
+        "content_hash": "210716e9a5cc7bd9ea1ea5fcf7053527490362a67c10bd906e65e7a653549dd4",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "210716e9a5cc7bd9ea1ea5fcf7053527490362a67c10bd906e65e7a653549dd4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1566ce9e48ee4b66f411b1d9",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/formatter/black.md",
+        "start_line": 521,
+        "total_lines": 839,
+        "start_char": 12623,
+        "end_char": 15907,
+        "evidence_id": "1566ce9e48ee4b66f411b1d9",
+        "truncated": false,
+        "next_offset": 640,
+        "source_type": "repository",
+        "content_hash": "7910dbfbdbe4d29d7b1609d19beb4be09d4327c75bea6f29358e74da5652cdf1",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "changelogs/0.1.x.md",
+              "offset": 406,
+              "limit": 120
+            },
+            {
+              "path": "docs/formatter/black.md",
+              "offset": 520,
+              "limit": 120
+            },
+            {
+              "path": "crates/ty_python_semantic/resources/mdtest/scopes/nonlocal.md",
+              "offset": 250,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7910dbfbdbe4d29d7b1609d19beb4be09d4327c75bea6f29358e74da5652cdf1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:15ea7d082396d29d51d5612c",
+        "type": "evidence",
+        "path": "changelogs/0.7.x.md",
+        "heading": "Changelog 0.7.x > 0.7.1 > Preview features",
+        "start_line": 52,
+        "end_line": 58,
+        "start_char": 3266,
+        "end_char": 3830,
+        "score": "0.03510040832253299",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "preview"
+        ],
+        "evidence_id": "15ea7d082396d29d51d5612c",
+        "source_type": "repository",
+        "content_hash": "eeb3fcd971ffba0117edfef9b307c343b57c20d671ad03be51264e9bf0794ef7",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "eeb3fcd971ffba0117edfef9b307c343b57c20d671ad03be51264e9bf0794ef7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:166f0d083942d8b8ea232d94",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+        "heading": "",
+        "start_line": 921,
+        "end_line": 961,
+        "start_char": 36987,
+        "end_char": 38599,
+        "score": "0.029957522915269395",
+        "root": "code",
+        "matched_terms": [
+          "call",
+          "callchainlayout",
+          "chain",
+          "fluent"
+        ],
+        "evidence_id": "166f0d083942d8b8ea232d94",
+        "source_type": "repository",
+        "content_hash": "d98562065906b5154dba1bf128aa8e0351c1ac085a88e8aa77768a30f957a14e",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d98562065906b5154dba1bf128aa8e0351c1ac085a88e8aa77768a30f957a14e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:170e4b73bdf502fa77471569",
+        "type": "evidence",
+        "root": "docs",
+        "path": "changelogs/0.1.x.md",
+        "start_line": 407,
+        "total_lines": 885,
+        "start_char": 30660,
+        "end_char": 40853,
+        "evidence_id": "170e4b73bdf502fa77471569",
+        "truncated": false,
+        "next_offset": 526,
+        "source_type": "repository",
+        "content_hash": "18fdedbe4e4b0504e54fab8412fe2ec50377dd364ff8f47013dd271196105578",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "changelogs/0.1.x.md",
+              "offset": 406,
+              "limit": 120
+            },
+            {
+              "path": "docs/formatter/black.md",
+              "offset": 520,
+              "limit": 120
+            },
+            {
+              "path": "crates/ty_python_semantic/resources/mdtest/scopes/nonlocal.md",
+              "offset": 250,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "18fdedbe4e4b0504e54fab8412fe2ec50377dd364ff8f47013dd271196105578",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20744a7c9246d47f40e389ef",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py",
+        "heading": "fluent formatting (just 1, in the presence of a parenthesized",
+        "start_line": 26,
+        "end_line": 26,
+        "start_char": 579,
+        "end_char": 643,
+        "score": "0.029850746268656716",
+        "root": "code",
+        "matched_terms": [
+          "fluent",
+          "formatting"
+        ],
+        "evidence_id": "20744a7c9246d47f40e389ef",
+        "source_type": "repository",
+        "content_hash": "2d596df229cd9dae399fa7bf9e16568edcf7c5f3349ea74b998d1b490234e693",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2d596df229cd9dae399fa7bf9e16568edcf7c5f3349ea74b998d1b490234e693",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2228329ecf834b0052287d58",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/tests/snapshots/format@fluent.py.snap",
+        "heading": "input_file: crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py > Input",
+        "start_line": 5,
+        "end_line": 43,
+        "start_char": 143,
+        "end_char": 903,
+        "score": "0.03021353930031804",
+        "root": "code",
+        "matched_terms": [
+          "call",
+          "chain",
+          "fluent",
+          "formatting"
+        ],
+        "evidence_id": "2228329ecf834b0052287d58",
+        "source_type": "repository",
+        "content_hash": "46c9ce2263a8530679e57dff05b882c1c564c3b8d357dbb373a00622effcbcc5",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "46c9ce2263a8530679e57dff05b882c1c564c3b8d357dbb373a00622effcbcc5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:22b9c138d99e38afe0e9eb5c",
+        "type": "evidence",
+        "path": "crates/ty_python_semantic/resources/mdtest/scopes/nonlocal.md",
+        "heading": "Nonlocal references > `nonlocal` \"chaining\"",
+        "start_line": 255,
+        "end_line": 295,
+        "start_char": 5789,
+        "end_char": 6566,
+        "score": "0.029386529386529386",
+        "root": "docs",
+        "matched_terms": [
+          "chain"
+        ],
+        "evidence_id": "22b9c138d99e38afe0e9eb5c",
+        "source_type": "repository",
+        "content_hash": "a3488d8a9e8e85ee7743722001054c20a2336636f5d404ae915d7f31f65d015f",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a3488d8a9e8e85ee7743722001054c20a2336636f5d404ae915d7f31f65d015f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:246e284537997232cfcf6864",
+        "type": "evidence",
+        "path": "changelogs/0.2.x.md",
+        "heading": "Changelog 0.2.x > 0.2.2 > Formatter",
+        "start_line": 235,
+        "end_line": 240,
+        "start_char": 17801,
+        "end_char": 18159,
+        "score": "0.027031963470319637",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "formatting",
+          "mode"
+        ],
+        "evidence_id": "246e284537997232cfcf6864",
+        "source_type": "repository",
+        "content_hash": "c095982dfc7a6d99e2fb00054eb968dd726c3aa94816bfa8d44ac42f1f6e44ee",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c095982dfc7a6d99e2fb00054eb968dd726c3aa94816bfa8d44ac42f1f6e44ee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:281bd2513297aefd720773fb",
+        "type": "evidence",
+        "path": "changelogs/0.1.x.md",
+        "heading": "Changelog 0.1.x > 0.1.6 > Formatter",
+        "start_line": 411,
+        "end_line": 416,
+        "start_char": 31128,
+        "end_char": 31475,
+        "score": "0.02183253977470677",
+        "root": "code",
+        "matched_terms": [
+          "fluent",
+          "formatting"
+        ],
+        "evidence_id": "281bd2513297aefd720773fb",
+        "source_type": "repository",
+        "content_hash": "a3d16a98a51ac59e63f111d1e7d41e3e99dae5b3e6476a7f988d0cc2de221d18",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a3d16a98a51ac59e63f111d1e7d41e3e99dae5b3e6476a7f988d0cc2de221d18",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2b339735e8afcde9cf7eb83f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "changelogs/0.7.x.md",
+        "start_line": 16,
+        "total_lines": 185,
+        "start_char": 900,
+        "end_char": 8678,
+        "evidence_id": "2b339735e8afcde9cf7eb83f",
+        "truncated": false,
+        "next_offset": 135,
+        "source_type": "repository",
+        "content_hash": "e4dea8eb83535b848d8c73a86e26521725fff4ded59e5bbfe19b36635cada339",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "changelogs/0.7.x.md",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "CHANGELOG.md",
+              "offset": 204,
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.5.x.md",
+              "offset": 224,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e4dea8eb83535b848d8c73a86e26521725fff4ded59e5bbfe19b36635cada339",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:317dbcaa066c347c45b55c55",
+        "type": "evidence",
+        "path": "changelogs/0.1.x.md",
+        "heading": "Changelog 0.1.x > 0.1.15 > Preview features",
+        "start_line": 844,
+        "end_line": 858,
+        "start_char": 65293,
+        "end_char": 66903,
+        "score": "0.03527833315795012",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "preview"
+        ],
+        "evidence_id": "317dbcaa066c347c45b55c55",
+        "source_type": "repository",
+        "content_hash": "6a58708e40b18b74d1712702fc4d5d6a2736962f04433a63ba4605707f0c03d4",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style formatter",
+            "formatter preview",
+            "fluent_layout_split_first_call"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "6a58708e40b18b74d1712702fc4d5d6a2736962f04433a63ba4605707f0c03d4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:31a7d1f349cba569f8527e0c",
+        "type": "evidence",
+        "path": "changelogs/0.1.x.md",
+        "heading": "Changelog 0.1.x > 0.1.6 > Formatter",
+        "start_line": 411,
+        "end_line": 416,
+        "start_char": 31128,
+        "end_char": 31475,
+        "score": "0.04270851031356818",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "style"
+        ],
+        "evidence_id": "31a7d1f349cba569f8527e0c",
+        "source_type": "repository",
+        "content_hash": "a3d16a98a51ac59e63f111d1e7d41e3e99dae5b3e6476a7f988d0cc2de221d18",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style formatter",
+            "formatter preview",
+            "fluent_layout_split_first_call"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a3d16a98a51ac59e63f111d1e7d41e3e99dae5b3e6476a7f988d0cc2de221d18",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:35fd3ce856a4a004239a3500",
+        "type": "evidence",
+        "path": "docs/formatter.md",
+        "heading": "The Ruff Formatter > Style Guide <span id=\"black-compatibility\"></span> > Preview style",
+        "start_line": 392,
+        "end_line": 396,
+        "start_char": 14099,
+        "end_char": 14520,
+        "score": "0.03225806451612903",
+        "root": "docs",
+        "matched_terms": [
+          "preview",
+          "style"
+        ],
+        "evidence_id": "35fd3ce856a4a004239a3500",
+        "source_type": "repository",
+        "content_hash": "e4ffadce1a15582349e57c533c0dc89ad866708035610072adaab46e2cad8a25",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e4ffadce1a15582349e57c533c0dc89ad866708035610072adaab46e2cad8a25",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3bcc207753e33c5aa80adf1e",
+        "type": "evidence",
+        "path": "docs/preview.md",
+        "heading": "Preview > Enabling preview mode",
+        "start_line": 10,
+        "end_line": 59,
+        "start_char": 580,
+        "end_char": 1375,
+        "score": "0.029709507042253523",
+        "root": "docs",
+        "matched_terms": [
+          "preview",
+          "style"
+        ],
+        "evidence_id": "3bcc207753e33c5aa80adf1e",
+        "source_type": "repository",
+        "content_hash": "625f15586d4e114092ebc65cc12e5ae940beba0b2fda9507d57a5fd0bfdb00d9",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "625f15586d4e114092ebc65cc12e5ae940beba0b2fda9507d57a5fd0bfdb00d9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3f5281f81d9cc73517185626",
+        "type": "evidence",
+        "root": "docs",
+        "path": "CHANGELOG.md",
+        "start_line": 205,
+        "total_lines": 499,
+        "start_char": 9647,
+        "end_char": 16261,
+        "evidence_id": "3f5281f81d9cc73517185626",
+        "truncated": false,
+        "next_offset": 324,
+        "source_type": "repository",
+        "content_hash": "046229281dc192f88a1fbd7cebd07da5973b82f5ef62ceaf6363c67f754fd013",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "changelogs/0.7.x.md",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "CHANGELOG.md",
+              "offset": 204,
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.5.x.md",
+              "offset": 224,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "046229281dc192f88a1fbd7cebd07da5973b82f5ef62ceaf6363c67f754fd013",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:467fcb1f5da3d582d9dc7914",
+        "type": "evidence",
+        "path": "crates/ty_python_semantic/resources/mdtest/call/callable_instance.md",
+        "heading": "Callable instance > Call binding errors",
+        "start_line": 77,
+        "end_line": 78,
+        "start_char": 1604,
+        "end_char": 1628,
+        "score": "0.028125",
+        "root": "docs",
+        "matched_terms": [
+          "call"
+        ],
+        "evidence_id": "467fcb1f5da3d582d9dc7914",
+        "source_type": "repository",
+        "content_hash": "0f13314fb5a9fadbf781e79f677dbd387d3beb487232338d6d8342a5c2cf665b",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0f13314fb5a9fadbf781e79f677dbd387d3beb487232338d6d8342a5c2cf665b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4e3c7e477e1996ec948b4187",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/src/preview.rs",
+        "heading": "",
+        "start_line": 35,
+        "end_line": 68,
+        "start_char": 1631,
+        "end_char": 2778,
+        "score": "0.03252247488101534",
+        "root": "code",
+        "matched_terms": [
+          "fluent_layout_split_first_call",
+          "is_fluent_layout_split_first_call_enabled"
+        ],
+        "evidence_id": "4e3c7e477e1996ec948b4187",
+        "source_type": "repository",
+        "content_hash": "3264575b99088e5880d83f42f7b1e74f3b70d7fcbe9044c8243bde0af774e1d2",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "is_fluent_layout_split_first_call_enabled",
+            "fluent_layout_split_first_call"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3264575b99088e5880d83f42f7b1e74f3b70d7fcbe9044c8243bde0af774e1d2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:57db7d2b9d34598b6ffcc99a",
+        "type": "evidence",
+        "path": "changelogs/0.7.x.md",
+        "heading": "Changelog 0.7.x > 0.7.0 > Formatter preview style",
+        "start_line": 20,
+        "end_line": 23,
+        "start_char": 1154,
+        "end_char": 1300,
+        "score": "0.035318530815521894",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "preview",
+          "style"
+        ],
+        "evidence_id": "57db7d2b9d34598b6ffcc99a",
+        "source_type": "repository",
+        "content_hash": "cbf74820e8ccebb8cb721b620f2b764934b9e9082aa79f69845bcb36c10005aa",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "cbf74820e8ccebb8cb721b620f2b764934b9e9082aa79f69845bcb36c10005aa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:584f454736086d3942fa5dd0",
+        "type": "evidence",
+        "path": "changelogs/0.6.x.md",
+        "heading": "Changelog 0.6.x > 0.6.9 > Preview features",
+        "start_line": 307,
+        "end_line": 311,
+        "start_char": 18614,
+        "end_char": 18875,
+        "score": "0.030853657482255097",
+        "root": "docs",
+        "matched_terms": [
+          "preview"
+        ],
+        "evidence_id": "584f454736086d3942fa5dd0",
+        "source_type": "repository",
+        "content_hash": "048099c2c3647bed2d61c939d9e814335d6b81de706fe8f08c29dc3bf09feece",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "048099c2c3647bed2d61c939d9e814335d6b81de706fe8f08c29dc3bf09feece",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5c55bfdbf449dd21659ed672",
+        "type": "evidence",
+        "root": "docs",
+        "path": "changelogs/0.5.x.md",
+        "start_line": 225,
+        "total_lines": 402,
+        "start_char": 14457,
+        "end_char": 21302,
+        "evidence_id": "5c55bfdbf449dd21659ed672",
+        "truncated": false,
+        "next_offset": 344,
+        "source_type": "repository",
+        "content_hash": "0403d3074bd508a6165bc4d0c5eeb2b822914c885ed7d83720cb034399fab5b5",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "changelogs/0.7.x.md",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "CHANGELOG.md",
+              "offset": 204,
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.5.x.md",
+              "offset": 224,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "0403d3074bd508a6165bc4d0c5eeb2b822914c885ed7d83720cb034399fab5b5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5cdabdb5d7cab08c65c1f59e",
+        "type": "evidence",
+        "path": "docs/formatter/black.md",
+        "heading": "- navigation > Call chain calls break differently in some cases",
+        "start_line": 525,
+        "end_line": 574,
+        "start_char": 12699,
+        "end_char": 13884,
+        "score": "0.03452299635701275",
+        "root": "docs",
+        "matched_terms": [
+          "call",
+          "chain"
+        ],
+        "evidence_id": "5cdabdb5d7cab08c65c1f59e",
+        "source_type": "repository",
+        "content_hash": "553cf2b0c046ebdd62a2ed9fae1b1b8736b2352998cef00b50a9a8b15ad16368",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "553cf2b0c046ebdd62a2ed9fae1b1b8736b2352998cef00b50a9a8b15ad16368",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5d71fda576a95bc827081dd7",
+        "type": "evidence",
+        "path": "changelogs/0.6.x.md",
+        "heading": "Changelog 0.6.x > 0.6.1 > Preview features",
+        "start_line": 102,
+        "end_line": 105,
+        "start_char": 6784,
+        "end_char": 6935,
+        "score": "0.02983776633728008",
+        "root": "docs",
+        "matched_terms": [
+          "preview"
+        ],
+        "evidence_id": "5d71fda576a95bc827081dd7",
+        "source_type": "repository",
+        "content_hash": "3bb8e06f7a59cf2e51dea805df9585dc0a87dd58eadc06d31d0e5d6a6e16ca04",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "3bb8e06f7a59cf2e51dea805df9585dc0a87dd58eadc06d31d0e5d6a6e16ca04",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:640ce81fcbb846be107b8dc0",
+        "type": "evidence",
+        "path": "CHANGELOG.md",
+        "heading": "Changelog > 0.14.1 > Preview features",
+        "start_line": 357,
+        "end_line": 365,
+        "start_char": 17521,
+        "end_char": 18389,
+        "score": "0.030079074967204675",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "preview"
+        ],
+        "evidence_id": "640ce81fcbb846be107b8dc0",
+        "source_type": "repository",
+        "content_hash": "630d5bf8968b2812d381d84cbbe7cecb7b6d7b23b5a5c5f735971bbe286b0d19",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style formatter",
+            "formatter preview",
+            "fluent_layout_split_first_call"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "630d5bf8968b2812d381d84cbbe7cecb7b6d7b23b5a5c5f735971bbe286b0d19",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:67434233f9a284119553820c",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+        "heading": "",
+        "start_line": 122,
+        "end_line": 165,
+        "start_char": 4866,
+        "end_char": 6503,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "is_fluent_layout_split_first_call_enabled"
+        ],
+        "evidence_id": "67434233f9a284119553820c",
+        "source_type": "repository",
+        "content_hash": "f8ff2de672a82a4caae35676f885e9a8de42eb0a2d51e6e277d03c283189f5d8",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "is_fluent_layout_split_first_call_enabled",
+            "fluent_layout_split_first_call"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f8ff2de672a82a4caae35676f885e9a8de42eb0a2d51e6e277d03c283189f5d8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:723204353259afd074e56b3f",
+        "type": "evidence",
+        "path": "changelogs/0.5.x.md",
+        "heading": "Changelog 0.5.x > 0.5.3 > Preview features",
+        "start_line": 229,
+        "end_line": 233,
+        "start_char": 14688,
+        "end_char": 14995,
+        "score": "0.03530838530838531",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "preview"
+        ],
+        "evidence_id": "723204353259afd074e56b3f",
+        "source_type": "repository",
+        "content_hash": "c0f1910462ef7c4785e6baf19bc3d5ed106b9ea41742065d2b135673faf38f3c",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style formatter",
+            "formatter preview",
+            "fluent_layout_split_first_call"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "c0f1910462ef7c4785e6baf19bc3d5ed106b9ea41742065d2b135673faf38f3c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:824f74e15af72248e48cc7de",
+        "type": "evidence",
+        "path": "docs/preview.md",
+        "heading": "Preview",
+        "start_line": 1,
+        "end_line": 9,
+        "start_char": 0,
+        "end_char": 580,
+        "score": "0.02967032967032967",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "preview",
+          "style"
+        ],
+        "evidence_id": "824f74e15af72248e48cc7de",
+        "source_type": "repository",
+        "content_hash": "66ebf391aa63de42673ae05ce291e1ce40c32d4d58cf4bd8e63f683bffd1c660",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "66ebf391aa63de42673ae05ce291e1ce40c32d4d58cf4bd8e63f683bffd1c660",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:87177784ee3282ca0dafde53",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/statement/assignment_split_value_first.py",
+        "heading": "Subscripts and non-fluent attribute chains",
+        "start_line": 157,
+        "end_line": 174,
+        "start_char": 5503,
+        "end_char": 6074,
+        "score": "0.022214040255277366",
+        "root": "code",
+        "matched_terms": [
+          "fluent"
+        ],
+        "evidence_id": "87177784ee3282ca0dafde53",
+        "source_type": "repository",
+        "content_hash": "90bdb4d49cf0b4d28530c1f583acfce212169207f09edecf9ed7a087ce4c176b",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "90bdb4d49cf0b4d28530c1f583acfce212169207f09edecf9ed7a087ce4c176b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8a50feaacdc0994c1395b6ef",
+        "type": "evidence",
+        "path": "crates/ty_python_semantic/resources/mdtest/call/subclass_of.md",
+        "heading": "Call `type[...]`",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 20,
+        "score": "0.02483719521429653",
+        "root": "docs",
+        "matched_terms": [
+          "call"
+        ],
+        "evidence_id": "8a50feaacdc0994c1395b6ef",
+        "source_type": "repository",
+        "content_hash": "ca696d4fc4e6492ed83bfee13d7ddb0f787cb734cf93695d051845c52f8814e9",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ca696d4fc4e6492ed83bfee13d7ddb0f787cb734cf93695d051845c52f8814e9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8dd7b76245fc8824d1c2d48b",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/parentheses/call_chains.py",
+        "heading": "Doesn't fit, fluent style",
+        "start_line": 104,
+        "end_line": 110,
+        "start_char": 2351,
+        "end_char": 2546,
+        "score": "0.02456928838951311",
+        "root": "code",
+        "matched_terms": [
+          "fluent"
+        ],
+        "evidence_id": "8dd7b76245fc8824d1c2d48b",
+        "source_type": "repository",
+        "content_hash": "180333ed86bac8e130f5cf33deea7561f892d8c6fbf6b4241abc52f974e7cad6",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "180333ed86bac8e130f5cf33deea7561f892d8c6fbf6b4241abc52f974e7cad6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8ea228f087920f1817a2b7a9",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/expression/call.py",
+        "heading": "Call chains/fluent interface (https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html#call-chains)",
+        "start_line": 55,
+        "end_line": 64,
+        "start_char": 1200,
+        "end_char": 1543,
+        "score": "0.024877149877149878",
+        "root": "code",
+        "matched_terms": [
+          "call",
+          "fluent"
+        ],
+        "evidence_id": "8ea228f087920f1817a2b7a9",
+        "source_type": "repository",
+        "content_hash": "3df5a504fab6a1e181b040baa6a8f271bdc7d254a1fa8d2732c3ae42766d15c1",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "3df5a504fab6a1e181b040baa6a8f271bdc7d254a1fa8d2732c3ae42766d15c1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8ec5dd1727f1c60becfe4fcf",
+        "type": "evidence",
+        "path": "changelogs/0.1.x.md",
+        "heading": "Changelog 0.1.x > 0.1.8 > Preview features",
+        "start_line": 559,
+        "end_line": 567,
+        "start_char": 43780,
+        "end_char": 44557,
+        "score": "0.033736695498171446",
+        "root": "docs",
+        "matched_terms": [
+          "preview",
+          "style"
+        ],
+        "evidence_id": "8ec5dd1727f1c60becfe4fcf",
+        "source_type": "repository",
+        "content_hash": "af99bf919c616eb72993423b8bb090e467c08529afc87cf941fdda36fa5e4731",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "af99bf919c616eb72993423b8bb090e467c08529afc87cf941fdda36fa5e4731",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9331b22b2cde70c1f74e07db",
+        "type": "evidence",
+        "evidence_id": "9331b22b2cde70c1f74e07db",
+        "source_type": "implementation",
+        "exported_content_sha256": "b322ada7359bb976057888470d155ce732e15dbe6ae284ec690ad2701cae7b87",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:938fe91eaafbcb1399cd80f8",
+        "type": "evidence",
+        "path": "changelogs/0.8.x.md",
+        "heading": "Changelog 0.8.x > 0.8.1 > Preview features",
+        "start_line": 104,
+        "end_line": 117,
+        "start_char": 7149,
+        "end_char": 8857,
+        "score": "0.03474476911976912",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "preview",
+          "style"
+        ],
+        "evidence_id": "938fe91eaafbcb1399cd80f8",
+        "source_type": "repository",
+        "content_hash": "a7f60e028601c0c4b5a7b99a1546ae5779464f4ef77db749f3fffd45ec302076",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style formatter",
+            "formatter preview",
+            "fluent_layout_split_first_call"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a7f60e028601c0c4b5a7b99a1546ae5779464f4ef77db749f3fffd45ec302076",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:99784de942cafe2c9eb8234e",
+        "type": "evidence",
+        "path": "changelogs/0.6.x.md",
+        "heading": "Changelog 0.6.x > 0.6.6 > Formatter",
+        "start_line": 240,
+        "end_line": 243,
+        "start_char": 15512,
+        "end_char": 15630,
+        "score": "0.031494997264617804",
+        "root": "docs",
+        "matched_terms": [
+          "formatter"
+        ],
+        "evidence_id": "99784de942cafe2c9eb8234e",
+        "source_type": "repository",
+        "content_hash": "618e58100bb43c120a6427f570ae8fba1bc940aec29cfbec34dde8afac3ba256",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style formatter",
+            "formatter preview",
+            "fluent_layout_split_first_call"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "618e58100bb43c120a6427f570ae8fba1bc940aec29cfbec34dde8afac3ba256",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9cbd9b93139a355851dbae61",
+        "type": "evidence",
+        "path": "CHANGELOG.md",
+        "heading": "Changelog > 0.14.2 > Preview features",
+        "start_line": 309,
+        "end_line": 312,
+        "start_char": 15135,
+        "end_char": 15315,
+        "score": "0.03642013305650902",
+        "root": "docs",
+        "matched_terms": [
+          "preview"
+        ],
+        "evidence_id": "9cbd9b93139a355851dbae61",
+        "source_type": "repository",
+        "content_hash": "67095d149ae06f0ad7bf525b9e8bf1f89195c450d0faded4b2c1172ad99de516",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "67095d149ae06f0ad7bf525b9e8bf1f89195c450d0faded4b2c1172ad99de516",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aab70c1ab363c4162e738dd1",
+        "type": "evidence",
+        "path": "changelogs/0.1.x.md",
+        "heading": "Changelog 0.1.x > 0.1.8 > Formatter",
+        "start_line": 579,
+        "end_line": 588,
+        "start_char": 45624,
+        "end_char": 46457,
+        "score": "0.026830135039090264",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "formatting",
+          "mode"
+        ],
+        "evidence_id": "aab70c1ab363c4162e738dd1",
+        "source_type": "repository",
+        "content_hash": "12bdea2fb46fab97dd6a790ddb46c8f4d1972c56174f1850f227798fe4717473",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "12bdea2fb46fab97dd6a790ddb46c8f4d1972c56174f1850f227798fe4717473",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:abc826f4ff45ccbdad0674ba",
+        "type": "evidence",
+        "root": "docs",
+        "path": "changelogs/0.1.x.md",
+        "start_line": 555,
+        "total_lines": 885,
+        "start_char": 43572,
+        "end_char": 52933,
+        "evidence_id": "abc826f4ff45ccbdad0674ba",
+        "truncated": false,
+        "next_offset": 674,
+        "source_type": "repository",
+        "content_hash": "6d9a51e0df3f49d20e2824eee3167fe67ce29185679e0dacb1345e96031ff549",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "CHANGELOG.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.2.x.md",
+              "offset": 168,
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.1.x.md",
+              "offset": 554,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6d9a51e0df3f49d20e2824eee3167fe67ce29185679e0dacb1345e96031ff549",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aea98838fc2b1b65415a165b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "crates/ty_python_semantic/resources/mdtest/scopes/nonlocal.md",
+        "start_line": 251,
+        "total_lines": 448,
+        "start_char": 5710,
+        "end_char": 8848,
+        "evidence_id": "aea98838fc2b1b65415a165b",
+        "truncated": false,
+        "next_offset": 370,
+        "source_type": "repository",
+        "content_hash": "ae4e750f036c70b236ae90327d22ba24757b059daa8c970af8c3bc1137f9f5ff",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "changelogs/0.1.x.md",
+              "offset": 406,
+              "limit": 120
+            },
+            {
+              "path": "docs/formatter/black.md",
+              "offset": 520,
+              "limit": 120
+            },
+            {
+              "path": "crates/ty_python_semantic/resources/mdtest/scopes/nonlocal.md",
+              "offset": 250,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ae4e750f036c70b236ae90327d22ba24757b059daa8c970af8c3bc1137f9f5ff",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b0f12c98108f0d2d3fbf28b9",
+        "type": "evidence",
+        "path": "changelogs/0.2.x.md",
+        "heading": "Changelog 0.2.x > 0.2.1 > Preview features",
+        "start_line": 173,
+        "end_line": 177,
+        "start_char": 13703,
+        "end_char": 13931,
+        "score": "0.03411735323500029",
+        "root": "docs",
+        "matched_terms": [
+          "preview"
+        ],
+        "evidence_id": "b0f12c98108f0d2d3fbf28b9",
+        "source_type": "repository",
+        "content_hash": "c891ce1c5a57a387d79cc9fb496886edc47befd6567fcd9b8e716e5cd35b7fd9",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c891ce1c5a57a387d79cc9fb496886edc47befd6567fcd9b8e716e5cd35b7fd9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b2b5e10095dc555ed0878a7a",
+        "type": "evidence",
+        "path": "CHANGELOG.md",
+        "heading": "Changelog > 0.14.4 > Preview features",
+        "start_line": 209,
+        "end_line": 215,
+        "start_char": 9683,
+        "end_char": 10235,
+        "score": "0.03332291028520863",
+        "root": "docs",
+        "matched_terms": [
+          "formatter",
+          "preview"
+        ],
+        "evidence_id": "b2b5e10095dc555ed0878a7a",
+        "source_type": "repository",
+        "content_hash": "0848e6a1720414b305f9613579f4a7bc2850c65a6ae64f3796ca118984629a20",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0848e6a1720414b305f9613579f4a7bc2850c65a6ae64f3796ca118984629a20",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b49814aadc1a61a85770094a",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/tests/snapshots/format@fluent.py.snap",
+        "heading": "input_file: crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py > Outputs > Output 1",
+        "start_line": 45,
+        "end_line": 94,
+        "start_char": 914,
+        "end_char": 1848,
+        "score": "0.02819138376017471",
+        "root": "code",
+        "matched_terms": [
+          "call",
+          "fluent",
+          "formatting"
+        ],
+        "evidence_id": "b49814aadc1a61a85770094a",
+        "source_type": "repository",
+        "content_hash": "8e9ca807ef1da3430670d7d3128f54da39d7b6bfae292654687769a2d1a9ea9c",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8e9ca807ef1da3430670d7d3128f54da39d7b6bfae292654687769a2d1a9ea9c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bbbb2084588d9e8b87e5214e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "changelogs/0.2.x.md",
+        "start_line": 169,
+        "total_lines": 271,
+        "start_char": 13583,
+        "end_char": 20861,
+        "evidence_id": "bbbb2084588d9e8b87e5214e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "a49330ef79af2b48af7ac36ad49bcaafb18e9e41a0954c6efbfb6d3286d91fd0",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "CHANGELOG.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.2.x.md",
+              "offset": 168,
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.1.x.md",
+              "offset": 554,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "a49330ef79af2b48af7ac36ad49bcaafb18e9e41a0954c6efbfb6d3286d91fd0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bc43faaa4c4b6a61bb193e24",
+        "type": "evidence",
+        "root": "code",
+        "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py",
+        "start_line": 1,
+        "total_lines": 35,
+        "start_char": 0,
+        "end_char": 736,
+        "evidence_id": "bc43faaa4c4b6a61bb193e24",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "56d306e945b3fd716184a0ab785a37dc4fb91893d7cf4b36cfc4a369f2f4b753",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+              "offset": 866,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "56d306e945b3fd716184a0ab785a37dc4fb91893d7cf4b36cfc4a369f2f4b753",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bc708aca65b1e83da8ec00a7",
+        "type": "evidence",
+        "evidence_id": "bc708aca65b1e83da8ec00a7",
+        "source_type": "task",
+        "exported_content_sha256": "843e4f6c18aef6c533cb7ffdf0b1f46b1faa73604014ec210bfe3ca688f22c0d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c0aefcd593cf849f8aadf4b6",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+        "heading": "",
+        "start_line": 871,
+        "end_line": 920,
+        "start_char": 35421,
+        "end_char": 36987,
+        "score": "0.031009615384615385",
+        "root": "code",
+        "matched_terms": [
+          "call",
+          "callchainlayout",
+          "chain",
+          "fluent"
+        ],
+        "evidence_id": "c0aefcd593cf849f8aadf4b6",
+        "source_type": "repository",
+        "content_hash": "2fbb8e012791d5d4f97a1d3e5b705b1191a904fcd6443647b05c5a49e2b0ddc6",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2fbb8e012791d5d4f97a1d3e5b705b1191a904fcd6443647b05c5a49e2b0ddc6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c35ca58430cec8ead7c5b8b7",
+        "type": "evidence",
+        "path": "crates/ty_python_semantic/resources/mdtest/call/callables_as_descriptors.md",
+        "heading": "Callables as descriptors? > Introduction",
+        "start_line": 97,
+        "end_line": 106,
+        "start_char": 3358,
+        "end_char": 3716,
+        "score": "0.026120660599932594",
+        "root": "docs",
+        "matched_terms": [
+          "call"
+        ],
+        "evidence_id": "c35ca58430cec8ead7c5b8b7",
+        "source_type": "repository",
+        "content_hash": "0acf1be6875bd814de4626af6da63518b0a453cd4f669fb6773d59e9001b5396",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0acf1be6875bd814de4626af6da63518b0a453cd4f669fb6773d59e9001b5396",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cc2047caf6c3d75efdfb407a",
+        "type": "evidence",
+        "root": "code",
+        "path": "crates/ruff_python_formatter/src/preview.rs",
+        "start_line": 31,
+        "total_lines": 68,
+        "start_char": 1421,
+        "end_char": 2778,
+        "evidence_id": "cc2047caf6c3d75efdfb407a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "ad5d8fa49573ee1415a6bf41d584ede0651c6febe1b30d411cba5dc757a57261",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "crates/ruff_python_formatter/src/preview.rs",
+              "offset": 30,
+              "limit": 120
+            },
+            {
+              "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+              "offset": 117,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ad5d8fa49573ee1415a6bf41d584ede0651c6febe1b30d411cba5dc757a57261",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cda88fbc8258e77fbd6f2c80",
+        "type": "evidence",
+        "root": "docs",
+        "path": "CHANGELOG.md",
+        "start_line": 1,
+        "total_lines": 499,
+        "start_char": 0,
+        "end_char": 5231,
+        "evidence_id": "cda88fbc8258e77fbd6f2c80",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "5616306f4f492e6db650450f016cb96e47cc9c4a55648b5e89b53c74cea273c5",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "CHANGELOG.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.2.x.md",
+              "offset": 168,
+              "limit": 120
+            },
+            {
+              "path": "changelogs/0.1.x.md",
+              "offset": 554,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "5616306f4f492e6db650450f016cb96e47cc9c4a55648b5e89b53c74cea273c5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dce09b601a0bf4ad48632b2a",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/src/expression/expr_attribute.rs",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 46,
+        "start_char": 0,
+        "end_char": 1640,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "is_fluent_layout_split_first_call_enabled"
+        ],
+        "evidence_id": "dce09b601a0bf4ad48632b2a",
+        "source_type": "repository",
+        "content_hash": "2a0d57254c5ac7a1f6d6b1b8c2bc56d5b1b33ad1fb3c1817b64d695e58a0b7b0",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "is_fluent_layout_split_first_call_enabled",
+            "fluent_layout_split_first_call"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2a0d57254c5ac7a1f6d6b1b8c2bc56d5b1b33ad1fb3c1817b64d695e58a0b7b0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:df793b4a46a17eca5ffc3e95",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/parentheses/call_chains.py",
+        "heading": "fluent formatting. If we ever decide to do so,",
+        "start_line": 228,
+        "end_line": 228,
+        "start_char": 4627,
+        "end_char": 4676,
+        "score": "0.02694394213381555",
+        "root": "code",
+        "matched_terms": [
+          "fluent",
+          "formatting"
+        ],
+        "evidence_id": "df793b4a46a17eca5ffc3e95",
+        "source_type": "repository",
+        "content_hash": "b0fc6feaf32f0f7605f03e526b9445031d254c6829cff869d6c849beade91e15",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b0fc6feaf32f0f7605f03e526b9445031d254c6829cff869d6c849beade91e15",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e158f05826bcebbbdfd68ec4",
+        "type": "evidence",
+        "path": "crates/ty_python_semantic/resources/mdtest/descriptor_protocol.md",
+        "heading": "Descriptor protocol > Error handling and edge cases > Descriptors with non-function `__get__` callables that are descriptors themselves",
+        "start_line": 818,
+        "end_line": 861,
+        "start_char": 27765,
+        "end_char": 29171,
+        "score": "0.026021080368906456",
+        "root": "docs",
+        "matched_terms": [
+          "chain"
+        ],
+        "evidence_id": "e158f05826bcebbbdfd68ec4",
+        "source_type": "repository",
+        "content_hash": "f3d129af309f632e4ecc946296226bba31e6dd739f5a2a86d23252b39bccc286",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f3d129af309f632e4ecc946296226bba31e6dd739f5a2a86d23252b39bccc286",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e3c03ff4f71b94b6813f2190",
+        "type": "evidence",
+        "path": "crates/ty_python_semantic/resources/mdtest/call/function.md",
+        "heading": "Call expression",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 19,
+        "score": "0.025278219395866455",
+        "root": "docs",
+        "matched_terms": [
+          "call"
+        ],
+        "evidence_id": "e3c03ff4f71b94b6813f2190",
+        "source_type": "repository",
+        "content_hash": "ca590db2da2394a5ae7b7d17c941e01929093a5bb1b0e40535184c304c1b2f38",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview mode formatter",
+            "fluent call chain",
+            "call chain formatting"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ca590db2da2394a5ae7b7d17c941e01929093a5bb1b0e40535184c304c1b2f38",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:edbb87e4a07fbd0882a722ea",
+        "type": "evidence",
+        "root": "code",
+        "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+        "start_line": 867,
+        "total_lines": 1513,
+        "start_char": 35322,
+        "end_char": 39511,
+        "evidence_id": "edbb87e4a07fbd0882a722ea",
+        "truncated": false,
+        "next_offset": 986,
+        "source_type": "repository",
+        "content_hash": "8fa4e0c43e4932623cb6936b1a9017978ed5a11f5c15e407a3972e50577edf4f",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "crates/ruff_python_formatter/src/expression/mod.rs",
+              "offset": 866,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8fa4e0c43e4932623cb6936b1a9017978ed5a11f5c15e407a3972e50577edf4f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f2f02b2a617c3d170dbcacf7",
+        "type": "evidence",
+        "path": "changelogs/0.2.x.md",
+        "heading": "Changelog 0.2.x > 0.2.0 > Preview features",
+        "start_line": 144,
+        "end_line": 149,
+        "start_char": 11720,
+        "end_char": 12085,
+        "score": "0.03093582887700535",
+        "root": "docs",
+        "matched_terms": [
+          "preview",
+          "style"
+        ],
+        "evidence_id": "f2f02b2a617c3d170dbcacf7",
+        "source_type": "repository",
+        "content_hash": "ad95344d27aff85678062369b186a7f1c2aca7b708496ef21059de9791f49038",
+        "revision": "8e85d62d72e7759e07bf56443e195e74052119b2",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "preview style",
+            "formatter preview",
+            "unreleased"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ad95344d27aff85678062369b186a7f1c2aca7b708496ef21059de9791f49038",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f6aefba93ca38be26be00bcf",
+        "type": "evidence",
+        "path": "crates/ruff_python_formatter/resources/test/fixtures/ruff/fluent.py",
+        "heading": "Fixtures for fluent formatting of call chains",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 48,
+        "score": "0.03177805800756621",
+        "root": "code",
+        "matched_terms": [
+          "call",
+          "fluent",
+          "formatting"
+        ],
+        "evidence_id": "f6aefba93ca38be26be00bcf",
+        "source_type": "repository",
+        "content_hash": "8224dfcbc66cb711f7456cd850ac6587461340a0255f6f825a5c9b996148ccf4",
+        "revision": "66f109f8e026e48fb992a24d18ee5b7c86ccb0e0",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CallChainLayout Fluent",
+            "fluent formatting call chain"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8224dfcbc66cb711f7456cd850ac6587461340a0255f6f825a5c9b996148ccf4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:changelog-preview-entry",
+        "type": "requirement",
+        "description": "Add a formatter preview-style entry to the unreleased section of CHANGELOG.md describing the new `fluent_layout_split_first_call` preview behavior: in preview mode, fluent call chains now break before the first call/subscript (e.g. `df.merge().groupby()` breaks before `.merge`), gated by preview and leaving stable output unchanged."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "CHANGELOG.md",
+        "hash": "d0ebe9b50d84a573af8d75fe37599709264dcee707c73d2990737eedcba92776"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "changelog-preview-entry",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "CHANGELOG.md"
+        ],
+        "evidence_ids": [
+          "cda88fbc8258e77fbd6f2c80",
+          "cc2047caf6c3d75efdfb407a",
+          "0925e9415c5bd8f49abdb681",
+          "edbb87e4a07fbd0882a722ea"
+        ],
+        "reason": "Add a formatter preview-style entry to the unreleased section of CHANGELOG.md describing the new `fluent_layout_split_first_call` preview behavior: in preview mode, fluent call chains now break before the first call/subscript (e.g. `df.merge().groupby()` breaks before `.merge`), gated by preview and leaving stable output unchanged."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the docs tree document the formatter's preview mode, preview flags, or fluent/call-chain formatting behavior that this change affects?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where is the preview flag is_fluent_layout_split_first_call_enabled defined and how are preview flags documented in the formatter crate?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Is there existing documentation of the CallChainLayout::Fluent behavior and its doc-comment that should be updated?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the docs tree have a formatter preview-style page (e.g. docs/formatter/preview.md or similar) that lists preview flags and would need a new entry for fluent_layout_split_first_call?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is there a changelog or release notes file for the current unreleased version where new preview features are recorded?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:03994608b85caa796781acdc",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0925e9415c5bd8f49abdb681",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:12fc5d3cd4b98dff249ff2fc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1566ce9e48ee4b66f411b1d9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:15ea7d082396d29d51d5612c",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:15ea7d082396d29d51d5612c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:166f0d083942d8b8ea232d94",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:170e4b73bdf502fa77471569",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:20744a7c9246d47f40e389ef",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2228329ecf834b0052287d58",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22b9c138d99e38afe0e9eb5c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:246e284537997232cfcf6864",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:281bd2513297aefd720773fb",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2b339735e8afcde9cf7eb83f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:317dbcaa066c347c45b55c55",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:31a7d1f349cba569f8527e0c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:31a7d1f349cba569f8527e0c",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:35fd3ce856a4a004239a3500",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:35fd3ce856a4a004239a3500",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3bcc207753e33c5aa80adf1e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3bcc207753e33c5aa80adf1e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3bcc207753e33c5aa80adf1e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3f5281f81d9cc73517185626",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:467fcb1f5da3d582d9dc7914",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e3c7e477e1996ec948b4187",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:57db7d2b9d34598b6ffcc99a",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:57db7d2b9d34598b6ffcc99a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:584f454736086d3942fa5dd0",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5c55bfdbf449dd21659ed672",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5cdabdb5d7cab08c65c1f59e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d71fda576a95bc827081dd7",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:640ce81fcbb846be107b8dc0",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:67434233f9a284119553820c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:723204353259afd074e56b3f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:824f74e15af72248e48cc7de",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:87177784ee3282ca0dafde53",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8a50feaacdc0994c1395b6ef",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8dd7b76245fc8824d1c2d48b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8ea228f087920f1817a2b7a9",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8ec5dd1727f1c60becfe4fcf",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:938fe91eaafbcb1399cd80f8",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:99784de942cafe2c9eb8234e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9cbd9b93139a355851dbae61",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aab70c1ab363c4162e738dd1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:abc826f4ff45ccbdad0674ba",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aea98838fc2b1b65415a165b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b0f12c98108f0d2d3fbf28b9",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b2b5e10095dc555ed0878a7a",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b2b5e10095dc555ed0878a7a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b49814aadc1a61a85770094a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bbbb2084588d9e8b87e5214e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bc43faaa4c4b6a61bb193e24",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c0aefcd593cf849f8aadf4b6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c0aefcd593cf849f8aadf4b6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c35ca58430cec8ead7c5b8b7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cc2047caf6c3d75efdfb407a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cda88fbc8258e77fbd6f2c80",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dce09b601a0bf4ad48632b2a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:df793b4a46a17eca5ffc3e95",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e158f05826bcebbbdfd68ec4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e3c03ff4f71b94b6813f2190",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:edbb87e4a07fbd0882a722ea",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f2f02b2a617c3d170dbcacf7",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f2f02b2a617c3d170dbcacf7",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f6aefba93ca38be26be00bcf",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cda88fbc8258e77fbd6f2c80",
+        "to": "requirement:changelog-preview-entry",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:cc2047caf6c3d75efdfb407a",
+        "to": "requirement:changelog-preview-entry",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:0925e9415c5bd8f49abdb681",
+        "to": "requirement:changelog-preview-entry",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:edbb87e4a07fbd0882a722ea",
+        "to": "requirement:changelog-preview-entry",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:changelog-preview-entry",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:cda88fbc8258e77fbd6f2c80",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:cc2047caf6c3d75efdfb407a",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:0925e9415c5bd8f49abdb681",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:edbb87e4a07fbd0882a722ea",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:changelog-preview-entry",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:cda88fbc8258e77fbd6f2c80",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:cc2047caf6c3d75efdfb407a",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:0925e9415c5bd8f49abdb681",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:edbb87e4a07fbd0882a722ea",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "aa17d40042548fe697909d354c3ee7aaf93ebf4fcd22e44b47564a0931005e86"
+}

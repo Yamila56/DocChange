@@ -1,0 +1,1785 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "resource-add-map-section",
+      "description": "Expand the 'Filter, transform, and pivot data' section in general-usage/resource.md to document add_map as the primary way to transform data: explain that add_map applies a function to each item, show a standalone example (e.g., anonymizing/deriving fields), note it returns a new resource and can be chained with add_filter/add_yield_map, and mention the insert_at parameter for controlling execution order.",
+      "evidence_ids": [
+        "6b4e79f18d3a9d609970939f",
+        "7d76af0c3c0d97f920a1b97a",
+        "ae25e81c4e58188f0b86423a"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "build-pipeline-transform-link",
+      "description": "In build-a-pipeline-tutorial.md 'Transforming the data > Before loading', add a short explanation and link to the add_map documentation in resource.md so users can find the canonical add_map reference for transforming data before loading.",
+      "evidence_ids": [
+        "5efee26857399b56883c58de",
+        "67e78d1750d986356d5585f8"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "dbf0c4fa986d4fb09afb48024907fda566ca6f641619bff57825b255a076bc58",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where in the docs is dlt's add_map capability (or related map/transform helpers) currently documented?",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/website/docs"
+          ],
+          "reads": [
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/currency_conversion_data_enrichment.md",
+              "offset": 187,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/url-parser-data-enrichment.md",
+              "offset": 171,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/resource.md",
+              "offset": 343,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "e4e950241276532e51b8608e",
+            "84de3f4697cf2d5a5f2e7a92",
+            "6b4e79f18d3a9d609970939f",
+            "9b840ac743336f38190f7f36",
+            "f760aebbfafdf6346ad29bd2",
+            "7d76af0c3c0d97f920a1b97a",
+            "1f76e91d2f920c5da75ad34f",
+            "1e54980d0ce01bc1843898e4",
+            "be7f678a91e29f206b3a95c9",
+            "57e1730f4fb4f96d0f31dbf3",
+            "537703290894242167599e2d",
+            "9d6d3e3d4272897edb6a371f",
+            "3cb46d6d1d74e11c0d5a3e09",
+            "2a907c9d2be44df337937577",
+            "e208bbfcaf3306ef57894c89"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/general-usage/data-enrichments/currency_conversion_data_enrichment.md",
+              "evidence_id": "9b840ac743336f38190f7f36",
+              "score": "0.04279277428544038"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/general-usage/data-enrichments/url-parser-data-enrichment.md",
+              "evidence_id": "f760aebbfafdf6346ad29bd2",
+              "score": "0.03944304701043543"
+            },
+            {
+              "rank": 3,
+              "path": "docs/website/docs/general-usage/resource.md",
+              "evidence_id": "7d76af0c3c0d97f920a1b97a",
+              "score": "0.039222548309327046"
+            },
+            {
+              "rank": 4,
+              "path": "docs/website/docs/general-usage/data-enrichments/user_agent_device_data_enrichment.md",
+              "evidence_id": "1f76e91d2f920c5da75ad34f",
+              "score": "0.03867537313432836"
+            },
+            {
+              "rank": 5,
+              "path": "docs/website/docs/general-usage/merge-loading.md",
+              "evidence_id": "1e54980d0ce01bc1843898e4",
+              "score": "0.0334541069520237"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/dlt-ecosystem/verified-sources/rest_api/basic.md",
+              "evidence_id": "be7f678a91e29f206b3a95c9",
+              "score": "0.032782768279725684"
+            },
+            {
+              "rank": 7,
+              "path": "docs/website/docs/general-usage/customising-pipelines/renaming_columns.md",
+              "evidence_id": "57e1730f4fb4f96d0f31dbf3",
+              "score": "0.032049910873440286"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/dlt-ecosystem/verified-sources/rest_api/basic.md",
+              "evidence_id": "537703290894242167599e2d",
+              "score": "0.031474367514914656"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "9d6d3e3d4272897edb6a371f",
+              "score": "0.03099680170575693"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "3cb46d6d1d74e11c0d5a3e09",
+              "score": "0.02987422764299032"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/docs/general-usage/incremental/cursor.md",
+              "evidence_id": "2a907c9d2be44df337937577",
+              "score": "0.029138513513513514"
+            },
+            {
+              "rank": 12,
+              "path": "docs/website/docs/general-usage/customising-pipelines/pseudonymizing_columns.md",
+              "evidence_id": "e208bbfcaf3306ef57894c89",
+              "score": "0.02849875415282392"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/currency_conversion_data_enrichment.md",
+              "start": 187,
+              "end": 267,
+              "total_lines": 267
+            },
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/url-parser-data-enrichment.md",
+              "start": 171,
+              "end": 250,
+              "total_lines": 250
+            },
+            {
+              "path": "docs/website/docs/general-usage/resource.md",
+              "start": 343,
+              "end": 463,
+              "total_lines": 681
+            }
+          ],
+          "read_evidence_ids": [
+            "e4e950241276532e51b8608e",
+            "84de3f4697cf2d5a5f2e7a92",
+            "6b4e79f18d3a9d609970939f"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "What existing documentation covers transforming/normalizing data with dlt resources, to place add_map content consistently?",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/website/docs"
+          ],
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "offset": 279,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/incremental/cursor.md",
+              "offset": 474,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+              "offset": 195,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "721fbd0915c612e14b3540ba",
+            "ae25e81c4e58188f0b86423a",
+            "5efee26857399b56883c58de",
+            "ebbca570fe999af9100a3e10",
+            "9d6d3e3d4272897edb6a371f",
+            "7d76af0c3c0d97f920a1b97a",
+            "2a907c9d2be44df337937577",
+            "67e78d1750d986356d5585f8",
+            "dd614fd72c9ae7b35bf7ee91",
+            "294136f8a428cb1b93cc635b",
+            "75485a24984dac7fc379e644",
+            "5c000f25e1159181fff29b46",
+            "756ec4c21665f0d4ccaae5af",
+            "effd2a6c6e5f17d6a1678cd6",
+            "3f0a2df2d020b799644a6ced"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "ebbca570fe999af9100a3e10",
+              "score": "0.04608655517333391"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "9d6d3e3d4272897edb6a371f",
+              "score": "0.045335381464413724"
+            },
+            {
+              "rank": 3,
+              "path": "docs/website/docs/general-usage/resource.md",
+              "evidence_id": "7d76af0c3c0d97f920a1b97a",
+              "score": "0.04518383201814552"
+            },
+            {
+              "rank": 4,
+              "path": "docs/website/docs/general-usage/incremental/cursor.md",
+              "evidence_id": "2a907c9d2be44df337937577",
+              "score": "0.04504312675751677"
+            },
+            {
+              "rank": 5,
+              "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+              "evidence_id": "67e78d1750d986356d5585f8",
+              "score": "0.040808647301313394"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/plus/features/transformations/setup.md",
+              "evidence_id": "dd614fd72c9ae7b35bf7ee91",
+              "score": "0.03666944510597761"
+            },
+            {
+              "rank": 7,
+              "path": "docs/website/docs/dlt-ecosystem/transformations/index.md",
+              "evidence_id": "294136f8a428cb1b93cc635b",
+              "score": "0.036613104409714575"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/plus/features/transformations/python-transformations.md",
+              "evidence_id": "75485a24984dac7fc379e644",
+              "score": "0.03570847952331982"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/dlt-ecosystem/transformations/index.md",
+              "evidence_id": "5c000f25e1159181fff29b46",
+              "score": "0.03426869401474755"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/dlt-ecosystem/transformations/python.md",
+              "evidence_id": "756ec4c21665f0d4ccaae5af",
+              "score": "0.03287222832544896"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/docs/dlt-ecosystem/transformations/sql.md",
+              "evidence_id": "effd2a6c6e5f17d6a1678cd6",
+              "score": "0.032114676915293794"
+            },
+            {
+              "rank": 12,
+              "path": "docs/website/docs/plus/features/transformations/setup.md",
+              "evidence_id": "3f0a2df2d020b799644a6ced",
+              "score": "0.03177461052914316"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "start": 279,
+              "end": 399,
+              "total_lines": 2133
+            },
+            {
+              "path": "docs/website/docs/general-usage/incremental/cursor.md",
+              "start": 474,
+              "end": 514,
+              "total_lines": 514
+            },
+            {
+              "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+              "start": 195,
+              "end": 315,
+              "total_lines": 390
+            }
+          ],
+          "read_evidence_ids": [
+            "721fbd0915c612e14b3540ba",
+            "ae25e81c4e58188f0b86423a",
+            "5efee26857399b56883c58de"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "1e54980d0ce01bc1843898e4",
+        "1f76e91d2f920c5da75ad34f",
+        "294136f8a428cb1b93cc635b",
+        "2a907c9d2be44df337937577",
+        "3cb46d6d1d74e11c0d5a3e09",
+        "3f0a2df2d020b799644a6ced",
+        "537703290894242167599e2d",
+        "57e1730f4fb4f96d0f31dbf3",
+        "5c000f25e1159181fff29b46",
+        "5efee26857399b56883c58de",
+        "67e78d1750d986356d5585f8",
+        "6b4e79f18d3a9d609970939f",
+        "721fbd0915c612e14b3540ba",
+        "75485a24984dac7fc379e644",
+        "756ec4c21665f0d4ccaae5af",
+        "7d76af0c3c0d97f920a1b97a",
+        "84de3f4697cf2d5a5f2e7a92",
+        "9b840ac743336f38190f7f36",
+        "9d6d3e3d4272897edb6a371f",
+        "ae25e81c4e58188f0b86423a",
+        "be7f678a91e29f206b3a95c9",
+        "dd614fd72c9ae7b35bf7ee91",
+        "e208bbfcaf3306ef57894c89",
+        "e4e950241276532e51b8608e",
+        "ebbca570fe999af9100a3e10",
+        "effd2a6c6e5f17d6a1678cd6",
+        "f760aebbfafdf6346ad29bd2"
+      ],
+      "new_evidence_count": 27,
+      "new_path_count": 16
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "f28a3a1c019edeb2db11133f279521e665ac75b9"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:36d8d2dac6355d92": 0,
+    "discover:Q1-2:d2430e2aed3d77b5": 283
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:36d8d2dac6355d92": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 283,
+      "cache_hit": false
+    },
+    "discover:Q1-2:d2430e2aed3d77b5": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 538,
+      "cache_hit": false
+    },
+    "discover:Q1-1:49cf8df5a2d53eb0": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 203,
+      "cache_hit": false
+    },
+    "discover:Q1-2:9c153d298d090715": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 233,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2664,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "resource-add-map-section",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/website/docs/general-usage/resource.md"
+      ],
+      "evidence_ids": [
+        "6b4e79f18d3a9d609970939f",
+        "7d76af0c3c0d97f920a1b97a",
+        "ae25e81c4e58188f0b86423a"
+      ],
+      "reason": "Expand the 'Filter, transform, and pivot data' section in general-usage/resource.md to document add_map as the primary way to transform data: explain that add_map applies a function to each item, show a standalone example (e.g., anonymizing/deriving fields), note it returns a new resource and can be chained with add_filter/add_yield_map, and mention the insert_at parameter for controlling execution order."
+    },
+    {
+      "requirement_id": "build-pipeline-transform-link",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/website/docs/build-a-pipeline-tutorial.md"
+      ],
+      "evidence_ids": [
+        "5efee26857399b56883c58de",
+        "67e78d1750d986356d5585f8"
+      ],
+      "reason": "In build-a-pipeline-tutorial.md 'Transforming the data > Before loading', add a short explanation and link to the add_map documentation in resource.md so users can find the canonical add_map reference for transforming data before loading."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:1e54980d0ce01bc1843898e4",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/merge-loading.md",
+        "heading": "Merge loading > `scd2` strategy > 🧪 Use scd2 with Arrow tables and Panda frames",
+        "start_line": 513,
+        "end_line": 536,
+        "start_char": 21768,
+        "end_char": 22832,
+        "score": "0.0334541069520237",
+        "root": "docs",
+        "matched_terms": [
+          "add_map",
+          "data",
+          "dlt",
+          "transform"
+        ],
+        "evidence_id": "1e54980d0ce01bc1843898e4",
+        "source_type": "repository",
+        "content_hash": "c85f8de464a66d45e2cbecfbb2ed15354ef88a362c96b8021df8961576c81f3b",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c85f8de464a66d45e2cbecfbb2ed15354ef88a362c96b8021df8961576c81f3b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1f76e91d2f920c5da75ad34f",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/data-enrichments/user_agent_device_data_enrichment.md",
+        "heading": "Data enrichment part one: User-agent device data enrichment > Creating a data enrichment pipeline > 3. Create your pipeline",
+        "start_line": 209,
+        "end_line": 252,
+        "start_char": 8839,
+        "end_char": 10492,
+        "score": "0.03867537313432836",
+        "root": "docs",
+        "matched_terms": [
+          "add_map",
+          "data",
+          "dlt",
+          "map"
+        ],
+        "evidence_id": "1f76e91d2f920c5da75ad34f",
+        "source_type": "repository",
+        "content_hash": "4a4fef2cf8e62a0da0930151fa6d72786d569b38192c513c0b47f68ae4c60e23",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4a4fef2cf8e62a0da0930151fa6d72786d569b38192c513c0b47f68ae4c60e23",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20faf5132bd5393903a2a4e5",
+        "type": "evidence",
+        "evidence_id": "20faf5132bd5393903a2a4e5",
+        "source_type": "implementation",
+        "exported_content_sha256": "ef34b8c0ae348e7856c8fe5e47c94309f1a9757717a53758a8451dca777691e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:294136f8a428cb1b93cc635b",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/transformations/index.md",
+        "heading": "Transforming data",
+        "start_line": 8,
+        "end_line": 24,
+        "start_char": 177,
+        "end_char": 1277,
+        "score": "0.036613104409714575",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "transform"
+        ],
+        "evidence_id": "294136f8a428cb1b93cc635b",
+        "source_type": "repository",
+        "content_hash": "26ff44667c38afbd6f11272eb667ae7957c995bfbb658492058d6c7af64b8ad7",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "26ff44667c38afbd6f11272eb667ae7957c995bfbb658492058d6c7af64b8ad7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2a907c9d2be44df337937577",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/incremental/cursor.md",
+        "heading": "Cursor-based incremental loading > Transform records before incremental processing",
+        "start_line": 479,
+        "end_line": 512,
+        "start_char": 25138,
+        "end_char": 26765,
+        "score": "0.04504312675751677",
+        "root": "docs",
+        "matched_terms": [
+          "custom",
+          "data",
+          "resource",
+          "transform",
+          "transformation"
+        ],
+        "evidence_id": "2a907c9d2be44df337937577",
+        "source_type": "repository",
+        "content_hash": "e66053c819e8beb91af253ca17ebda0a82579b43bdb44c610abb2d43ea27e2a7",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e66053c819e8beb91af253ca17ebda0a82579b43bdb44c610abb2d43ea27e2a7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3cb46d6d1d74e11c0d5a3e09",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt transformation`",
+        "start_line": 68,
+        "end_line": 108,
+        "start_char": 2863,
+        "end_char": 4523,
+        "score": "0.02987422764299032",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "dlt",
+          "transform"
+        ],
+        "evidence_id": "3cb46d6d1d74e11c0d5a3e09",
+        "source_type": "repository",
+        "content_hash": "32ba2dbd31923ebba4eaad06bd0e76ef5da5df3cb30575e85fb074098a5f6898",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "32ba2dbd31923ebba4eaad06bd0e76ef5da5df3cb30575e85fb074098a5f6898",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3f0a2df2d020b799644a6ced",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/features/transformations/setup.md",
+        "heading": "description: Define and execute local transformations > Generate scaffolding",
+        "start_line": 77,
+        "end_line": 94,
+        "start_char": 2834,
+        "end_char": 3523,
+        "score": "0.03177461052914316",
+        "root": "docs",
+        "matched_terms": [
+          "transformation"
+        ],
+        "evidence_id": "3f0a2df2d020b799644a6ced",
+        "source_type": "repository",
+        "content_hash": "a455e9142361f197f53bfeeff0bb28851a839c43abef37ba68f4d29250c928bd",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a455e9142361f197f53bfeeff0bb28851a839c43abef37ba68f4d29250c928bd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:537703290894242167599e2d",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/verified-sources/rest_api/basic.md",
+        "heading": "keywords: [rest api, restful api] > Source configuration > Processing steps: filter and transform data > Combining `filter` and `map`",
+        "start_line": 939,
+        "end_line": 955,
+        "start_char": 37085,
+        "end_char": 37431,
+        "score": "0.031474367514914656",
+        "root": "docs",
+        "matched_terms": [
+          "map"
+        ],
+        "evidence_id": "537703290894242167599e2d",
+        "source_type": "repository",
+        "content_hash": "676467f73f11b2ee7743ac02cc79938030a892f4727a4979a94967d28a4f7f88",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "676467f73f11b2ee7743ac02cc79938030a892f4727a4979a94967d28a4f7f88",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:57e1730f4fb4f96d0f31dbf3",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/customising-pipelines/renaming_columns.md",
+        "heading": "Renaming columns > Renaming columns by replacing the special characters",
+        "start_line": 9,
+        "end_line": 54,
+        "start_char": 169,
+        "end_char": 1647,
+        "score": "0.032049910873440286",
+        "root": "docs",
+        "matched_terms": [
+          "add_map",
+          "dlt",
+          "map"
+        ],
+        "evidence_id": "57e1730f4fb4f96d0f31dbf3",
+        "source_type": "repository",
+        "content_hash": "960ee969dee9a39bc0c9bce091cea3b1a73c0e30939c59d14577b7e11bcd2d90",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "960ee969dee9a39bc0c9bce091cea3b1a73c0e30939c59d14577b7e11bcd2d90",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5c000f25e1159181fff29b46",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/transformations/index.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 74,
+        "score": "0.03426869401474755",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "transform"
+        ],
+        "evidence_id": "5c000f25e1159181fff29b46",
+        "source_type": "repository",
+        "content_hash": "dc7a1b9761b3e30aaa2e25890010dc6a6a61e67f0ab945bbad4eb75f0c0d3a7d",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "dc7a1b9761b3e30aaa2e25890010dc6a6a61e67f0ab945bbad4eb75f0c0d3a7d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5efee26857399b56883c58de",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+        "start_line": 196,
+        "total_lines": 390,
+        "start_char": 10375,
+        "end_char": 15612,
+        "evidence_id": "5efee26857399b56883c58de",
+        "truncated": false,
+        "next_offset": 315,
+        "source_type": "repository",
+        "content_hash": "95a35243f57327a1a9f09f0fc239d4c6a1bd7a51eeafccfb7dbf9e6c396964be",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "offset": 279,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/incremental/cursor.md",
+              "offset": 474,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+              "offset": 195,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "95a35243f57327a1a9f09f0fc239d4c6a1bd7a51eeafccfb7dbf9e6c396964be",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:67e78d1750d986356d5585f8",
+        "type": "evidence",
+        "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+        "heading": "Building data pipelines with `dlt`, from basic to advanced > Transforming the data",
+        "start_line": 200,
+        "end_line": 204,
+        "start_char": 10586,
+        "end_char": 10786,
+        "score": "0.040808647301313394",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "transformation"
+        ],
+        "evidence_id": "67e78d1750d986356d5585f8",
+        "source_type": "repository",
+        "content_hash": "75bb812f7ebbc57b84ddcecc3d09f15b9a6d5c058794122fba34aae6c54e26bf",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "75bb812f7ebbc57b84ddcecc3d09f15b9a6d5c058794122fba34aae6c54e26bf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6b4e79f18d3a9d609970939f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/general-usage/resource.md",
+        "start_line": 344,
+        "total_lines": 681,
+        "start_char": 13756,
+        "end_char": 17876,
+        "evidence_id": "6b4e79f18d3a9d609970939f",
+        "truncated": false,
+        "next_offset": 463,
+        "source_type": "repository",
+        "content_hash": "ec6c5250c8e208689632eb7af1c5304aa2de9773a2c719df647ab25df5adcc31",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/currency_conversion_data_enrichment.md",
+              "offset": 187,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/url-parser-data-enrichment.md",
+              "offset": 171,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/resource.md",
+              "offset": 343,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ec6c5250c8e208689632eb7af1c5304aa2de9773a2c719df647ab25df5adcc31",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:721fbd0915c612e14b3540ba",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/plus/reference.md",
+        "start_line": 280,
+        "total_lines": 2133,
+        "start_char": 7964,
+        "end_char": 10150,
+        "evidence_id": "721fbd0915c612e14b3540ba",
+        "truncated": false,
+        "next_offset": 399,
+        "source_type": "repository",
+        "content_hash": "6478a1c0ad0ca7da267fcd23af53e729c143ab9dc3f0007d5b1cbd9a65d000e7",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "offset": 279,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/incremental/cursor.md",
+              "offset": 474,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+              "offset": 195,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6478a1c0ad0ca7da267fcd23af53e729c143ab9dc3f0007d5b1cbd9a65d000e7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:75485a24984dac7fc379e644",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/features/transformations/python-transformations.md",
+        "heading": "description: Define transformations in Python > Generate template",
+        "start_line": 13,
+        "end_line": 36,
+        "start_char": 582,
+        "end_char": 1899,
+        "score": "0.03570847952331982",
+        "root": "docs",
+        "matched_terms": [
+          "transformation"
+        ],
+        "evidence_id": "75485a24984dac7fc379e644",
+        "source_type": "repository",
+        "content_hash": "e197015d0cb553e55070cd6dc89a61fb3b81b89e92d2f16487833dcb01bcb36c",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e197015d0cb553e55070cd6dc89a61fb3b81b89e92d2f16487833dcb01bcb36c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:756ec4c21665f0d4ccaae5af",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/transformations/python.md",
+        "heading": "Transforming data in Python with Arrow tables or DataFrames > Other transforming tools",
+        "start_line": 102,
+        "end_line": 109,
+        "start_char": 3882,
+        "end_char": 4144,
+        "score": "0.03287222832544896",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "transform"
+        ],
+        "evidence_id": "756ec4c21665f0d4ccaae5af",
+        "source_type": "repository",
+        "content_hash": "c3f3519307a81d8f23e9ac82221999058c22e1b37384787907ab54557d5a7454",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c3f3519307a81d8f23e9ac82221999058c22e1b37384787907ab54557d5a7454",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7d76af0c3c0d97f920a1b97a",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/resource.md",
+        "heading": "Resource > Customize resources > Filter, transform, and pivot data",
+        "start_line": 348,
+        "end_line": 391,
+        "start_char": 13868,
+        "end_char": 15108,
+        "score": "0.04518383201814552",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "resource",
+          "transform",
+          "transformation"
+        ],
+        "evidence_id": "7d76af0c3c0d97f920a1b97a",
+        "source_type": "repository",
+        "content_hash": "83abaa20c78bc2cf3b47260487917fa15ce7f7f732eefa32c05e1c321feff320",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "83abaa20c78bc2cf3b47260487917fa15ce7f7f732eefa32c05e1c321feff320",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:84de3f4697cf2d5a5f2e7a92",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/general-usage/data-enrichments/url-parser-data-enrichment.md",
+        "start_line": 172,
+        "total_lines": 250,
+        "start_char": 5833,
+        "end_char": 8265,
+        "evidence_id": "84de3f4697cf2d5a5f2e7a92",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d2740b800c78af130ac000cf74c30f4d8f446853405402adf0aa6c49166fd5c8",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/currency_conversion_data_enrichment.md",
+              "offset": 187,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/url-parser-data-enrichment.md",
+              "offset": 171,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/resource.md",
+              "offset": 343,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d2740b800c78af130ac000cf74c30f4d8f446853405402adf0aa6c49166fd5c8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8520d56200d9d8c8b1befed2",
+        "type": "evidence",
+        "evidence_id": "8520d56200d9d8c8b1befed2",
+        "source_type": "task",
+        "exported_content_sha256": "a5d3e611986fc0bcb778257933723b69315d753e5bb9a4d43566caee4bd493c7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9b840ac743336f38190f7f36",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/data-enrichments/currency_conversion_data_enrichment.md",
+        "heading": "Data enrichment part two: Currency conversion data enrichment > Creating data enrichment pipeline > 3. Create your pipeline",
+        "start_line": 192,
+        "end_line": 234,
+        "start_char": 7932,
+        "end_char": 9554,
+        "score": "0.04279277428544038",
+        "root": "docs",
+        "matched_terms": [
+          "add_map",
+          "data",
+          "dlt",
+          "map",
+          "transform"
+        ],
+        "evidence_id": "9b840ac743336f38190f7f36",
+        "source_type": "repository",
+        "content_hash": "4f5f8cfcb9bf598c00cf4a75dd8942169f6519d4f8a67c3f3b02e3229e0f73b7",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4f5f8cfcb9bf598c00cf4a75dd8942169f6519d4f8a67c3f3b02e3229e0f73b7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9d6d3e3d4272897edb6a371f",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt transformation`",
+        "start_line": 109,
+        "end_line": 115,
+        "start_char": 4523,
+        "end_char": 4968,
+        "score": "0.045335381464413724",
+        "root": "docs",
+        "matched_terms": [
+          "transform",
+          "transformation"
+        ],
+        "evidence_id": "9d6d3e3d4272897edb6a371f",
+        "source_type": "repository",
+        "content_hash": "9d51dac918c59911fe99390a542ab320e748792f7bc18f32152994505c996d62",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9d51dac918c59911fe99390a542ab320e748792f7bc18f32152994505c996d62",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ae25e81c4e58188f0b86423a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/general-usage/incremental/cursor.md",
+        "start_line": 475,
+        "total_lines": 514,
+        "start_char": 25082,
+        "end_char": 26801,
+        "evidence_id": "ae25e81c4e58188f0b86423a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2c785f45c46486a60b4f256915d189f3745c3c22d594c86538a73fb4498738f6",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "offset": 279,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/incremental/cursor.md",
+              "offset": 474,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+              "offset": 195,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2c785f45c46486a60b4f256915d189f3745c3c22d594c86538a73fb4498738f6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:be7f678a91e29f206b3a95c9",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/verified-sources/rest_api/basic.md",
+        "heading": "keywords: [rest api, restful api] > Source configuration > Processing steps: filter and transform data > Using `map`",
+        "start_line": 915,
+        "end_line": 938,
+        "start_char": 36504,
+        "end_char": 37085,
+        "score": "0.032782768279725684",
+        "root": "docs",
+        "matched_terms": [
+          "map"
+        ],
+        "evidence_id": "be7f678a91e29f206b3a95c9",
+        "source_type": "repository",
+        "content_hash": "5d9ae9348ec2eee83f24be5dbdd81989334887759b379958b7debb77963d401c",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5d9ae9348ec2eee83f24be5dbdd81989334887759b379958b7debb77963d401c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dd614fd72c9ae7b35bf7ee91",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/features/transformations/setup.md",
+        "heading": "description: Define and execute local transformations",
+        "start_line": 3,
+        "end_line": 31,
+        "start_char": 17,
+        "end_char": 1529,
+        "score": "0.03666944510597761",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "transformation"
+        ],
+        "evidence_id": "dd614fd72c9ae7b35bf7ee91",
+        "source_type": "repository",
+        "content_hash": "c0fe57d5b9d18fe86ec509103680e41cb3a830a5cac37ecaf469aa1ec3d6a145",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c0fe57d5b9d18fe86ec509103680e41cb3a830a5cac37ecaf469aa1ec3d6a145",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e208bbfcaf3306ef57894c89",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/customising-pipelines/pseudonymizing_columns.md",
+        "heading": "Pseudonymizing columns",
+        "start_line": 49,
+        "end_line": 59,
+        "start_char": 1816,
+        "end_char": 2184,
+        "score": "0.02849875415282392",
+        "root": "docs",
+        "matched_terms": [
+          "add_map",
+          "dlt"
+        ],
+        "evidence_id": "e208bbfcaf3306ef57894c89",
+        "source_type": "repository",
+        "content_hash": "54bb8955c4fcb7010c8d1159443a89f90ddb3c8c5343b3261e3929b353e28942",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "54bb8955c4fcb7010c8d1159443a89f90ddb3c8c5343b3261e3929b353e28942",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e4e950241276532e51b8608e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/general-usage/data-enrichments/currency_conversion_data_enrichment.md",
+        "start_line": 188,
+        "total_lines": 267,
+        "start_char": 7738,
+        "end_char": 10355,
+        "evidence_id": "e4e950241276532e51b8608e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3a7cf2bdfe4b7c153e606561e5763bb624959a6202df55b36562fa390f5c4673",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/currency_conversion_data_enrichment.md",
+              "offset": 187,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/data-enrichments/url-parser-data-enrichment.md",
+              "offset": 171,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/resource.md",
+              "offset": 343,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "3a7cf2bdfe4b7c153e606561e5763bb624959a6202df55b36562fa390f5c4673",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ebbca570fe999af9100a3e10",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt transformation` > `dlt transformation transform`",
+        "start_line": 284,
+        "end_line": 307,
+        "start_char": 8026,
+        "end_char": 8504,
+        "score": "0.04608655517333391",
+        "root": "docs",
+        "matched_terms": [
+          "transform",
+          "transformation"
+        ],
+        "evidence_id": "ebbca570fe999af9100a3e10",
+        "source_type": "repository",
+        "content_hash": "1aa308265f4f154bd9241b34190a03462acfe90d7d9c28697c17431819326cb4",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1aa308265f4f154bd9241b34190a03462acfe90d7d9c28697c17431819326cb4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:effd2a6c6e5f17d6a1678cd6",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/transformations/sql.md",
+        "heading": "Transforming data using the `dlt` SQL client > Other transforming tools",
+        "start_line": 64,
+        "end_line": 71,
+        "start_char": 2419,
+        "end_char": 2703,
+        "score": "0.032114676915293794",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "transform"
+        ],
+        "evidence_id": "effd2a6c6e5f17d6a1678cd6",
+        "source_type": "repository",
+        "content_hash": "34281147cbeabb2cad5b86d97057194ab35cf84d394e513dd12d6c7d77f31c8f",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "transform data resource",
+            "custom transformation",
+            "data transformation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "34281147cbeabb2cad5b86d97057194ab35cf84d394e513dd12d6c7d77f31c8f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f760aebbfafdf6346ad29bd2",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/data-enrichments/url-parser-data-enrichment.md",
+        "heading": "Data enrichment part three: URL parser data enrichment > Creating a data enrichment pipeline > 3. Create your pipeline",
+        "start_line": 176,
+        "end_line": 219,
+        "start_char": 5951,
+        "end_char": 7563,
+        "score": "0.03944304701043543",
+        "root": "docs",
+        "matched_terms": [
+          "add_map",
+          "data",
+          "dlt",
+          "map",
+          "transform"
+        ],
+        "evidence_id": "f760aebbfafdf6346ad29bd2",
+        "source_type": "repository",
+        "content_hash": "bc39c57f7e5170bc79a24aaf86c4473a4c8c81e1fdc10cbb4717a775c5753729",
+        "revision": "f28a3a1c019edeb2db11133f279521e665ac75b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "add_map",
+            "add_map transform",
+            "map data dlt"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "bc39c57f7e5170bc79a24aaf86c4473a4c8c81e1fdc10cbb4717a775c5753729",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:resource-add-map-section",
+        "type": "requirement",
+        "description": "Expand the 'Filter, transform, and pivot data' section in general-usage/resource.md to document add_map as the primary way to transform data: explain that add_map applies a function to each item, show a standalone example (e.g., anonymizing/deriving fields), note it returns a new resource and can be chained with add_filter/add_yield_map, and mention the insert_at parameter for controlling execution order."
+      },
+      {
+        "id": "requirement:build-pipeline-transform-link",
+        "type": "requirement",
+        "description": "In build-a-pipeline-tutorial.md 'Transforming the data > Before loading', add a short explanation and link to the add_map documentation in resource.md so users can find the canonical add_map reference for transforming data before loading."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/website/docs/general-usage/resource.md",
+        "hash": "af22fd7b78314eee140b6c6eb306416951559d80f3c5f958b92105bda43549bf"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+        "hash": "6b8685e10973246394776103475358ba91c946d13173929d685144f2ef0dca0e"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "resource-add-map-section",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/website/docs/general-usage/resource.md"
+        ],
+        "evidence_ids": [
+          "6b4e79f18d3a9d609970939f",
+          "7d76af0c3c0d97f920a1b97a",
+          "ae25e81c4e58188f0b86423a"
+        ],
+        "reason": "Expand the 'Filter, transform, and pivot data' section in general-usage/resource.md to document add_map as the primary way to transform data: explain that add_map applies a function to each item, show a standalone example (e.g., anonymizing/deriving fields), note it returns a new resource and can be chained with add_filter/add_yield_map, and mention the insert_at parameter for controlling execution order."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "build-pipeline-transform-link",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/website/docs/build-a-pipeline-tutorial.md"
+        ],
+        "evidence_ids": [
+          "5efee26857399b56883c58de",
+          "67e78d1750d986356d5585f8"
+        ],
+        "reason": "In build-a-pipeline-tutorial.md 'Transforming the data > Before loading', add a short explanation and link to the add_map documentation in resource.md so users can find the canonical add_map reference for transforming data before loading."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where in the docs is dlt's add_map capability (or related map/transform helpers) currently documented?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "What existing documentation covers transforming/normalizing data with dlt resources, to place add_map content consistently?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:1e54980d0ce01bc1843898e4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1f76e91d2f920c5da75ad34f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:294136f8a428cb1b93cc635b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2a907c9d2be44df337937577",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2a907c9d2be44df337937577",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3cb46d6d1d74e11c0d5a3e09",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3f0a2df2d020b799644a6ced",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:537703290894242167599e2d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:57e1730f4fb4f96d0f31dbf3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5c000f25e1159181fff29b46",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5efee26857399b56883c58de",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:67e78d1750d986356d5585f8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6b4e79f18d3a9d609970939f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:721fbd0915c612e14b3540ba",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:75485a24984dac7fc379e644",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:756ec4c21665f0d4ccaae5af",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7d76af0c3c0d97f920a1b97a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7d76af0c3c0d97f920a1b97a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:84de3f4697cf2d5a5f2e7a92",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9b840ac743336f38190f7f36",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9d6d3e3d4272897edb6a371f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9d6d3e3d4272897edb6a371f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ae25e81c4e58188f0b86423a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:be7f678a91e29f206b3a95c9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dd614fd72c9ae7b35bf7ee91",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e208bbfcaf3306ef57894c89",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e4e950241276532e51b8608e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ebbca570fe999af9100a3e10",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:effd2a6c6e5f17d6a1678cd6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f760aebbfafdf6346ad29bd2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6b4e79f18d3a9d609970939f",
+        "to": "requirement:resource-add-map-section",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:7d76af0c3c0d97f920a1b97a",
+        "to": "requirement:resource-add-map-section",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:ae25e81c4e58188f0b86423a",
+        "to": "requirement:resource-add-map-section",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5efee26857399b56883c58de",
+        "to": "requirement:build-pipeline-transform-link",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:67e78d1750d986356d5585f8",
+        "to": "requirement:build-pipeline-transform-link",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:resource-add-map-section",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:6b4e79f18d3a9d609970939f",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:7d76af0c3c0d97f920a1b97a",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ae25e81c4e58188f0b86423a",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:build-pipeline-transform-link",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:5efee26857399b56883c58de",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:67e78d1750d986356d5585f8",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:resource-add-map-section",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:6b4e79f18d3a9d609970939f",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:7d76af0c3c0d97f920a1b97a",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ae25e81c4e58188f0b86423a",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:build-pipeline-transform-link",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:5efee26857399b56883c58de",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:67e78d1750d986356d5585f8",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "361ef1c49dda6a25bf2320d62b88a40ebaae5719312d742793811f22842b1739"
+}

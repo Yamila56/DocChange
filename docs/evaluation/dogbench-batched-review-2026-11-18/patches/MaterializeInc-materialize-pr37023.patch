@@ -1,0 +1,132 @@
+diff --git a/doc/user/content/ingest-data/postgres/dedicated-replica.md b/doc/user/content/ingest-data/postgres/dedicated-replica.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..1b6e89284eea34bd566861c88f1240ff58d343e2
+--- /dev/null
++++ b/doc/user/content/ingest-data/postgres/dedicated-replica.md
+@@ -0,0 +1,117 @@
++---
++title: "Dedicated PostgreSQL Replica"
++description: "Using a dedicated PostgreSQL replica as the upstream for a Materialize PostgreSQL source."
++menu:
++  main:
++    parent: 'ingest-data'
++    weight: 15
++---
++
++This guide shows you how to stand up a dedicated PostgreSQL replica using
++PostgreSQL's native replication, and point a Materialize PostgreSQL source at
++that replica instead of your production primary. This isolates the load of
++Materialize's replication slot and snapshotting from your primary database.
++
++## Before you begin
++
++{{% include-from-yaml data="ingest_postgres" name="before-you-begin" %}}
++
++## A. Configure the primary
++
++Materialize uses PostgreSQL's [logical
++replication](https://www.postgresql.org/docs/current/logical-replication.html)
++protocol to track changes in your database. Logical replication must be enabled
++on the **primary**, and the replica must be able to serve logical replication
++slots to Materialize.
++
++1. As a _superuser_, use `psql` (or your preferred SQL client) to connect to
++your primary database.
++
++1. Check if logical replication is enabled:
++
++    ```postgres
++    SHOW wal_level;
++    ```
++
++1. If `wal_level` is **not** set to `logical`, set it in `postgresql.conf` on
++   the **primary** and restart the database for the change to take effect.
++
++1. Ensure the primary allows physical replication connections, e.g. by
++   configuring `pg_hba.conf` to permit replication connections from the
++   replica host.
++
++1. Create a **physical replication slot** on the primary for the replica. This
++   slot, combined with `hot_standby_feedback` on the replica, prevents the
++   primary from discarding WAL that the replica still needs.
++
++    ```postgres
++    SELECT pg_create_physical_replication_slot('<replica_slot>');
++    ```
++
++## B. Create the replica
++
++1. Take a base backup of the primary and start the replica from it, using the
++   physical slot created above:
++
++    ```bash
++    pg_basebackup -h <primary-host> -D <replica-data-dir> -U <replication-user> \
++      -Fp -Xs -P -R -S <replica_slot>
++    ```
++
++    The `-R` flag writes a `primary_conninfo` entry into the replica's
++    configuration so it streams changes from the primary.
++
++1. Set `hot_standby_feedback = on` on the replica so that the primary retains
++   WAL needed by the replica's own replication slot.
++
++1. Start the replica and verify it is in recovery and streaming:
++
++    ```postgres
++    SELECT pg_is_in_recovery();
++    ```
++
++{{< note >}}
++A streaming standby can only serve logical replication slots when it is
++configured for logical decoding (for example, a cascading replica or a
++standby with `wal_level = logical` and the necessary physical slot on the
++primary). If your replica cannot serve logical slots, point Materialize at a
++logical-capable replica or at the primary instead.
++{{</ note >}}
++
++## C. Create a publication and a replication user on the replica
++
++{{% include-from-yaml data="ingest_postgres" name="create-a-publication-other" %}}
++
++## D. Create a connection and source in Materialize
++
++Point the connection at the **replica** host, not the production primary.
++
++```mzsql
++CREATE SECRET pg_replica_password AS '<password>';
++
++CREATE CONNECTION pg_replica_connection TO POSTGRES (
++    HOST '<replica-host>',
++    PORT 5432,
++    USER '<materialize-user>',
++    PASSWORD SECRET pg_replica_password,
++    DATABASE '<database>',
++    SSL MODE 'require'
++);
++
++CREATE SOURCE mz_source
++    FROM POSTGRES CONNECTION pg_replica_connection (PUBLICATION 'mz_source')
++    FOR ALL TABLES;
++```
++
++## Caveats
++
++- **Replication slot lives on the replica.** Materialize creates and holds its
++  logical replication slot on the replica. If the replica is rebuilt from a new
++  base backup, the slot is lost and the source must be recreated (and will
++  re-snapshot).
++- **Failover.** If the replica is promoted or replaced, update the connection's
++  `HOST` to point at the new replica and recreate the source, since the
++  replication slot does not carry over automatically.
++- **Slot conflicts.** Ensure only one Materialize source uses a given
++  replication slot; see [Replication slot is
++  active](/ingest-data/postgres/replication-slot-active/) for troubleshooting.
+diff --git a/doc/user/shared-content/postgresql-ingest-data-guides.md b/doc/user/shared-content/postgresql-ingest-data-guides.md
+index 25c407cc3c6ce95a1c4788c1af68b2af3c67f3f4..63c2ff0dc0466b8daf4e7ad43d7fa51c0a6fa919 100644
+--- a/doc/user/shared-content/postgresql-ingest-data-guides.md
++++ b/doc/user/shared-content/postgresql-ingest-data-guides.md
+@@ -5,3 +5,4 @@
+ - [Google Cloud SQL for PostgreSQL](/ingest-data/postgres/cloud-sql/)
+ - [Neon](/ingest-data/postgres/neon/)
+ - [Self-hosted PostgreSQL](/ingest-data/postgres/self-hosted/)
++- [Dedicated PostgreSQL Replica](/ingest-data/postgres/dedicated-replica/)

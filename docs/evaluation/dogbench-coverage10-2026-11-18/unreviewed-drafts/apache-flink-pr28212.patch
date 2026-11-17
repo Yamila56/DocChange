@@ -1,0 +1,78 @@
+diff --git a/docs/content.zh/docs/dev/table/functions/ptfs.md b/docs/content.zh/docs/dev/table/functions/ptfs.md
+index 4190e9e3ba5a6302dc38a7bf8a1563a667e71155..a7636d997dca9f5f4c9288dbe27e0efa65156988 100644
+--- a/docs/content.zh/docs/dev/table/functions/ptfs.md
++++ b/docs/content.zh/docs/dev/table/functions/ptfs.md
+@@ -2349,7 +2349,7 @@ void testPOJO() throws Exception {
+ ### PTF Features Unsupported by the TestHarness
+ 
+ - `Context` paramter
+-- State (`@StateHint`)
++- State TTL
+ - Timers (`onTimer`)
+ - `on_time` / `rowtime`
+ - Update traits (`SUPPORTS_UPDATES`, `REQUIRE_UPDATE_BEFORE`)
+diff --git a/docs/content/docs/dev/table/functions/ptfs.md b/docs/content/docs/dev/table/functions/ptfs.md
+index 7181fc1a3d142838b75268a48ea16f7f6a8398c8..19a52e1cc1cf38ac4885c03a667d080ffc807208 100644
+--- a/docs/content/docs/dev/table/functions/ptfs.md
++++ b/docs/content/docs/dev/table/functions/ptfs.md
+@@ -2347,12 +2347,59 @@ void testPOJO() throws Exception {
+ {{< /tab >}}
+ {{< /tabs >}}
+ 
++#### Testing Stateful PTFs
++
++The harness supports PTFs that declare state via `@StateHint`. State is injected into `eval()` based on the
++partition key of the input table, and is converted to its internal representation (`ArrayData`, `MapData`, or
++`RowData`) after each `eval()` call, so state serialization is exercised as part of the test.
++
++The following state categories are supported:
++
++- Scalar state (e.g. `INT`, `STRING`)
++- `ListView` state
++- `MapView` state
++- `Row` and POJO structured types
++
++{{< tabs "stateful" >}}
++{{< tab "Java" >}}
++```java
++@DataTypeHint("ROW<key STRING, count INT>")
++public class CountPTF extends ProcessTableFunction<Row> {
++  public void eval(
++    @ArgumentHint(ArgumentTrait.SET_SEMANTIC_TABLE) Row input,
++    @StateHint int count) {
++    count++;
++    collect(Row.of(input.getFieldAs("key"), count));
++  }
++}
++
++@Test
++void testStatefulPTF() throws Exception {
++  try (ProcessTableFunctionTestHarness<Row> harness =
++    ProcessTableFunctionTestHarness.ofClass(CountPTF.class)
++    .withTableArgument("input", DataTypes.of("ROW<key STRING>"))
++    .withPartitionBy("input", "key")
++    .build()) {
++
++    harness.processElement(Row.of("A"));
++    harness.processElement(Row.of("A"));
++
++    List<Row> output = harness.getOutput();
++    assertThat(output).containsExactly(Row.of("A", 1), Row.of("A", 2));
++  }
++}
++```
++{{< /tab >}}
++{{< /tabs >}}
++
++State TTL is not supported by the test harness.
++
+ {{< top >}}
+ 
+ ### PTF Features Unsupported by the TestHarness
+ 
+ - `Context` paramter
+-- State (`@StateHint`)
++- State TTL
+ - Timers (`onTimer`)
+ - `on_time` / `rowtime`
+ - Update traits (`SUPPORTS_UPDATES`, `REQUIRE_UPDATE_BEFORE`)

@@ -1,0 +1,25 @@
+diff --git a/docs/source/build-with-bentoml/runtime-environment.rst b/docs/source/build-with-bentoml/runtime-environment.rst
+index 5f8694b12958abce763a294c59ea34f9dafc9203..bcd36f6a2583e7e4da3498b290a0e64f6babb34b 100644
+--- a/docs/source/build-with-bentoml/runtime-environment.rst
++++ b/docs/source/build-with-bentoml/runtime-environment.rst
+@@ -280,6 +280,20 @@ Here is an example:
+ 
+ ``run()`` is context-sensitive. For example, commands placed before ``.python_packages()`` are executed before installing Python dependencies, while those placed after are executed after installation. This allows you to perform certain tasks in the correct order.
+ 
++``build_include()``
++^^^^^^^^^^^^^^^^^^^^
++
++Include additional files from your build context in the image. It accepts one or more paths relative to the Bento context root (typically the directory where your ``service.py`` resides), appends them to ``build_include_paths``, and returns the ``Image`` instance so it can be chained with other methods.
++
++.. code-block:: python
++
++    import bentoml
++
++    image = bentoml.images.Image(python_version='3.11') \
++        .build_include("data/", "config.yaml")
++
++Each included path is copied into the image under ``./src/<name>`` during the build. If your project contains a ``wheels/`` directory, it is included automatically.
++
+ ``run_script()``
+ ^^^^^^^^^^^^^^^^
+ 

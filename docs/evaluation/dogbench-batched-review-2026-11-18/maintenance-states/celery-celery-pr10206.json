@@ -1,0 +1,3386 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REPAIR",
+  "tasks": [
+    {
+      "id": "task-request-time-limits",
+      "description": "In docs/userguide/tasks.rst, the 'Task Request' section lists request attributes including ':timelimit: A tuple of the current (soft, hard) time limits'. Add documentation for the new first-class request attributes `time_limit` and `soft_time_limit` (accessible as `task.request.time_limit` / `task.request.soft_time_limit`), noting they are None when no limits are configured, reflect values passed to apply_async, and reflect limits declared at the task class level or via task_time_limit/task_soft_time_limit settings.",
+      "evidence_ids": [
+        "f717a6acc34c61c282b4e017",
+        "c61634e8ac5c652cf261f70b",
+        "c35337dfde3c5125f824e0f8"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "calling-time-limit-request",
+      "description": "In docs/userguide/calling.rst, document that time_limit/soft_time_limit passed to apply_async are now exposed inside the task via task.request.time_limit and task.request.soft_time_limit, and that these override limits declared at the task class level.",
+      "evidence_ids": [
+        "7ad2dec593d079fc3460f971",
+        "36125d662e6d3a7796ab0c77",
+        "c61634e8ac5c652cf261f70b"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "6d832b6d3663dd6cddecd0487331fc746c56e1121bc63b23a9642eda15e0140f",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the docs describe task.request attributes or Context fields, and where are time_limit/soft_time_limit documented for tasks?",
+          "root": "docs",
+          "queries": [
+            "time_limit soft_time_limit",
+            "task.request",
+            "Context attributes request"
+          ],
+          "paths": [
+            "docs/userguide/tasks.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.2.rst",
+              "offset": 539,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "6a954667a61ed033f51fd0a3",
+            "8ac49e8cbe9ceb35026019dc",
+            "9ef8b6af10f940b82e46f416",
+            "5cf8bc59a8981f042849c377",
+            "31f3fab7ffdb618b869805fa",
+            "eccc6d1a73709de61e88a032",
+            "4869400e2a0a02a272f18edb",
+            "a06d314e27591df8834e1904",
+            "58b0593db0bd5c961418aef1",
+            "50d3f5c4a2291169bc083b8e",
+            "d41761776fd6e7749dc7c8f4",
+            "cd13ce445a6429556970aaca",
+            "0844f908780bf57e13b2ec7e",
+            "20eea08fa29766e44dd4f544",
+            "29956cb5b2c071a19d44a59f"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/history/changelog-2.2.rst",
+              "evidence_id": "5cf8bc59a8981f042849c377",
+              "score": "0.03296429762796953"
+            },
+            {
+              "rank": 2,
+              "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+              "evidence_id": "31f3fab7ffdb618b869805fa",
+              "score": "0.031814572165971805"
+            },
+            {
+              "rank": 3,
+              "path": "docs/glossary.rst",
+              "evidence_id": "eccc6d1a73709de61e88a032",
+              "score": "0.03149801587301587"
+            },
+            {
+              "rank": 4,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "4869400e2a0a02a272f18edb",
+              "score": "0.03149801587301587"
+            },
+            {
+              "rank": 5,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "a06d314e27591df8834e1904",
+              "score": "0.03145728426245257"
+            },
+            {
+              "rank": 6,
+              "path": "docs/userguide/signals.rst",
+              "evidence_id": "58b0593db0bd5c961418aef1",
+              "score": "0.031054405392392875"
+            },
+            {
+              "rank": 7,
+              "path": "docs/history/whatsnew-4.2.rst",
+              "evidence_id": "50d3f5c4a2291169bc083b8e",
+              "score": "0.02984288496655988"
+            },
+            {
+              "rank": 8,
+              "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+              "evidence_id": "d41761776fd6e7749dc7c8f4",
+              "score": "0.02960383247627088"
+            },
+            {
+              "rank": 9,
+              "path": "docs/reference/celery.worker.request.rst",
+              "evidence_id": "cd13ce445a6429556970aaca",
+              "score": "0.02819138376017471"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/changelog-2.3.rst",
+              "evidence_id": "0844f908780bf57e13b2ec7e",
+              "score": "0.024986383149302963"
+            },
+            {
+              "rank": 11,
+              "path": "docs/reference/celery.app.task.rst",
+              "evidence_id": "20eea08fa29766e44dd4f544",
+              "score": "0.024806892453951276"
+            },
+            {
+              "rank": 12,
+              "path": "docs/reference/celery.worker.request.rst",
+              "evidence_id": "29956cb5b2c071a19d44a59f",
+              "score": "0.02475171886936593"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 2327
+            },
+            {
+              "path": "docs/history/changelog-2.2.rst",
+              "start": 539,
+              "end": 659,
+              "total_lines": 1028
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+              "start": 0,
+              "end": 93,
+              "total_lines": 93
+            }
+          ],
+          "read_evidence_ids": [
+            "6a954667a61ed033f51fd0a3",
+            "8ac49e8cbe9ceb35026019dc",
+            "9ef8b6af10f940b82e46f416"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where are task_time_limit and task_soft_time_limit configuration options documented?",
+          "root": "docs",
+          "queries": [
+            "task_time_limit",
+            "task_soft_time_limit",
+            "time limits configuration"
+          ],
+          "paths": [
+            "docs/userguide/configuration.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/workers.rst",
+              "offset": 692,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "offset": 227,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a023399c55066a32826456d3",
+            "c35337dfde3c5125f824e0f8",
+            "c07f70336f544ea2a8e88dc3",
+            "3754fb9e0c527c0c4168bfd3",
+            "0844f908780bf57e13b2ec7e",
+            "3bf5f88371a7b41c5d86a5b7",
+            "1a466895f6b277781953f514",
+            "13243ee2dc06ba93e7dcda8a",
+            "9ccddfbf7d34e8b7acf4e4c5",
+            "913b49a4db7fa13229e62b64",
+            "a06d314e27591df8834e1904",
+            "e43acc13ad6a26b7ae4bf65a",
+            "61a8bb1b16cf5a0c15204421",
+            "1501a6662dde9fdef41d06ff",
+            "ed948878093dbf4634abdd9d"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/userguide/workers.rst",
+              "evidence_id": "3754fb9e0c527c0c4168bfd3",
+              "score": "0.048131080389144903"
+            },
+            {
+              "rank": 2,
+              "path": "docs/history/changelog-2.3.rst",
+              "evidence_id": "0844f908780bf57e13b2ec7e",
+              "score": "0.04538503926160628"
+            },
+            {
+              "rank": 3,
+              "path": "docs/history/changelog-2.0.rst",
+              "evidence_id": "3bf5f88371a7b41c5d86a5b7",
+              "score": "0.043364259782170234"
+            },
+            {
+              "rank": 4,
+              "path": "docs/userguide/workers.rst",
+              "evidence_id": "1a466895f6b277781953f514",
+              "score": "0.04300493413396639"
+            },
+            {
+              "rank": 5,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "13243ee2dc06ba93e7dcda8a",
+              "score": "0.042628010524185384"
+            },
+            {
+              "rank": 6,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "9ccddfbf7d34e8b7acf4e4c5",
+              "score": "0.042531969309462916"
+            },
+            {
+              "rank": 7,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "913b49a4db7fa13229e62b64",
+              "score": "0.039810547875064"
+            },
+            {
+              "rank": 8,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "a06d314e27591df8834e1904",
+              "score": "0.039299646077139684"
+            },
+            {
+              "rank": 9,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "e43acc13ad6a26b7ae4bf65a",
+              "score": "0.0392513318601504"
+            },
+            {
+              "rank": 10,
+              "path": "docs/internals/protocol.rst",
+              "evidence_id": "61a8bb1b16cf5a0c15204421",
+              "score": "0.032914138860802154"
+            },
+            {
+              "rank": 11,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "1501a6662dde9fdef41d06ff",
+              "score": "0.032465219460306796"
+            },
+            {
+              "rank": 12,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "ed948878093dbf4634abdd9d",
+              "score": "0.030141418983700864"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 4329
+            },
+            {
+              "path": "docs/userguide/workers.rst",
+              "start": 692,
+              "end": 812,
+              "total_lines": 1259
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "start": 227,
+              "end": 347,
+              "total_lines": 370
+            }
+          ],
+          "read_evidence_ids": [
+            "a023399c55066a32826456d3",
+            "c35337dfde3c5125f824e0f8",
+            "c07f70336f544ea2a8e88dc3"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Is apply_async time_limit/soft_time_limit usage documented in calling tasks guide?",
+          "root": "docs",
+          "queries": [
+            "apply_async time_limit",
+            "soft_time_limit apply_async",
+            "time limits"
+          ],
+          "paths": [
+            "docs/userguide/calling.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-3.1.rst",
+              "offset": 541,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/tasks.rst",
+              "offset": 1014,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7ad2dec593d079fc3460f971",
+            "36125d662e6d3a7796ab0c77",
+            "c61634e8ac5c652cf261f70b",
+            "0844f908780bf57e13b2ec7e",
+            "1a466895f6b277781953f514",
+            "abc11c9348bc857fd2615a77",
+            "a06d314e27591df8834e1904",
+            "a046555096a02259a3c4c2ec",
+            "3754fb9e0c527c0c4168bfd3",
+            "f34d0a6a833674d3209874e6",
+            "3bf5f88371a7b41c5d86a5b7",
+            "13243ee2dc06ba93e7dcda8a",
+            "7e45e3a6c0d875956455f009",
+            "1a81bfabffcb632e39db5666",
+            "3c42b9ea2466531bcc2da205"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/history/changelog-2.3.rst",
+              "evidence_id": "0844f908780bf57e13b2ec7e",
+              "score": "0.04762704813108039"
+            },
+            {
+              "rank": 2,
+              "path": "docs/userguide/workers.rst",
+              "evidence_id": "1a466895f6b277781953f514",
+              "score": "0.04316077275335577"
+            },
+            {
+              "rank": 3,
+              "path": "docs/history/whatsnew-3.1.rst",
+              "evidence_id": "abc11c9348bc857fd2615a77",
+              "score": "0.04261826847428252"
+            },
+            {
+              "rank": 4,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "a06d314e27591df8834e1904",
+              "score": "0.039320920043811616"
+            },
+            {
+              "rank": 5,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "a046555096a02259a3c4c2ec",
+              "score": "0.03901914295749912"
+            },
+            {
+              "rank": 6,
+              "path": "docs/userguide/workers.rst",
+              "evidence_id": "3754fb9e0c527c0c4168bfd3",
+              "score": "0.038612296120638726"
+            },
+            {
+              "rank": 7,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "f34d0a6a833674d3209874e6",
+              "score": "0.03795795795795796"
+            },
+            {
+              "rank": 8,
+              "path": "docs/history/changelog-2.0.rst",
+              "evidence_id": "3bf5f88371a7b41c5d86a5b7",
+              "score": "0.03633319121429259"
+            },
+            {
+              "rank": 9,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "13243ee2dc06ba93e7dcda8a",
+              "score": "0.03504129129129129"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/changelog-1.0.rst",
+              "evidence_id": "7e45e3a6c0d875956455f009",
+              "score": "0.0337723764908231"
+            },
+            {
+              "rank": 11,
+              "path": "docs/history/whatsnew-5.1.rst",
+              "evidence_id": "1a81bfabffcb632e39db5666",
+              "score": "0.03323357648436128"
+            },
+            {
+              "rank": 12,
+              "path": "docs/userguide/canvas.rst",
+              "evidence_id": "3c42b9ea2466531bcc2da205",
+              "score": "0.03232600732600733"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 857
+            },
+            {
+              "path": "docs/history/whatsnew-3.1.rst",
+              "start": 541,
+              "end": 661,
+              "total_lines": 1278
+            },
+            {
+              "path": "docs/userguide/tasks.rst",
+              "start": 1014,
+              "end": 1134,
+              "total_lines": 2327
+            }
+          ],
+          "read_evidence_ids": [
+            "7ad2dec593d079fc3460f971",
+            "36125d662e6d3a7796ab0c77",
+            "c61634e8ac5c652cf261f70b"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0844f908780bf57e13b2ec7e",
+        "13243ee2dc06ba93e7dcda8a",
+        "1501a6662dde9fdef41d06ff",
+        "1a466895f6b277781953f514",
+        "1a81bfabffcb632e39db5666",
+        "20eea08fa29766e44dd4f544",
+        "29956cb5b2c071a19d44a59f",
+        "31f3fab7ffdb618b869805fa",
+        "36125d662e6d3a7796ab0c77",
+        "3754fb9e0c527c0c4168bfd3",
+        "3bf5f88371a7b41c5d86a5b7",
+        "3c42b9ea2466531bcc2da205",
+        "4869400e2a0a02a272f18edb",
+        "50d3f5c4a2291169bc083b8e",
+        "58b0593db0bd5c961418aef1",
+        "5cf8bc59a8981f042849c377",
+        "61a8bb1b16cf5a0c15204421",
+        "6a954667a61ed033f51fd0a3",
+        "7ad2dec593d079fc3460f971",
+        "7e45e3a6c0d875956455f009",
+        "8ac49e8cbe9ceb35026019dc",
+        "913b49a4db7fa13229e62b64",
+        "9ccddfbf7d34e8b7acf4e4c5",
+        "9ef8b6af10f940b82e46f416",
+        "a023399c55066a32826456d3",
+        "a046555096a02259a3c4c2ec",
+        "a06d314e27591df8834e1904",
+        "abc11c9348bc857fd2615a77",
+        "c07f70336f544ea2a8e88dc3",
+        "c35337dfde3c5125f824e0f8",
+        "c61634e8ac5c652cf261f70b",
+        "cd13ce445a6429556970aaca",
+        "d41761776fd6e7749dc7c8f4",
+        "e43acc13ad6a26b7ae4bf65a",
+        "eccc6d1a73709de61e88a032",
+        "ed948878093dbf4634abdd9d",
+        "f34d0a6a833674d3209874e6"
+      ],
+      "new_evidence_count": 37,
+      "new_path_count": 20
+    },
+    {
+      "signature": "00234b82516d48be7f5618473ff23e5c5fae5507099f41b83cb07889eee5f260",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the task-request-info section of tasks.rst list the context/request attributes, and does it mention time_limit/soft_time_limit?",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ],
+          "paths": [
+            "docs/userguide/tasks.rst"
+          ],
+          "anchor": "task-request-info",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "query": "task-request-info",
+              "limit": 120
+            },
+            {
+              "path": "docs/glossary.rst",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/signals.rst",
+              "offset": 310,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f717a6acc34c61c282b4e017",
+            "0d7e784746395b62482e3a42",
+            "32ed2c92a7b214cd4775cbf3",
+            "eccc6d1a73709de61e88a032",
+            "5cf8bc59a8981f042849c377",
+            "4869400e2a0a02a272f18edb",
+            "58b0593db0bd5c961418aef1",
+            "a1f059036cbe3570948adca7",
+            "cd13ce445a6429556970aaca",
+            "50d3f5c4a2291169bc083b8e",
+            "31f3fab7ffdb618b869805fa",
+            "e4adddc1762d2aba648ab4ba",
+            "2b32f83e0822ce52485f5693",
+            "29956cb5b2c071a19d44a59f",
+            "5cfaa6dc584fc4dc8623c46d"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/glossary.rst",
+              "evidence_id": "eccc6d1a73709de61e88a032",
+              "score": "0.032266458495966696"
+            },
+            {
+              "rank": 2,
+              "path": "docs/history/changelog-2.2.rst",
+              "evidence_id": "5cf8bc59a8981f042849c377",
+              "score": "0.032018442622950824"
+            },
+            {
+              "rank": 3,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "4869400e2a0a02a272f18edb",
+              "score": "0.03149801587301587"
+            },
+            {
+              "rank": 4,
+              "path": "docs/userguide/signals.rst",
+              "evidence_id": "58b0593db0bd5c961418aef1",
+              "score": "0.031054405392392875"
+            },
+            {
+              "rank": 5,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "a1f059036cbe3570948adca7",
+              "score": "0.03021353930031804"
+            },
+            {
+              "rank": 6,
+              "path": "docs/reference/celery.worker.request.rst",
+              "evidence_id": "cd13ce445a6429556970aaca",
+              "score": "0.028484848484848488"
+            },
+            {
+              "rank": 7,
+              "path": "docs/history/whatsnew-4.2.rst",
+              "evidence_id": "50d3f5c4a2291169bc083b8e",
+              "score": "0.02817460317460317"
+            },
+            {
+              "rank": 8,
+              "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+              "evidence_id": "31f3fab7ffdb618b869805fa",
+              "score": "0.025708635464733027"
+            },
+            {
+              "rank": 9,
+              "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+              "evidence_id": "e4adddc1762d2aba648ab4ba",
+              "score": "0.025158227848101268"
+            },
+            {
+              "rank": 10,
+              "path": "docs/faq.rst",
+              "evidence_id": "2b32f83e0822ce52485f5693",
+              "score": "0.024593763724198508"
+            },
+            {
+              "rank": 11,
+              "path": "docs/reference/celery.worker.request.rst",
+              "evidence_id": "29956cb5b2c071a19d44a59f",
+              "score": "0.02411038489469862"
+            },
+            {
+              "rank": 12,
+              "path": "docs/history/changelog-2.3.rst",
+              "evidence_id": "5cfaa6dc584fc4dc8623c46d",
+              "score": "0.023856578204404292"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "start": 292,
+              "end": 412,
+              "total_lines": 2327
+            },
+            {
+              "path": "docs/glossary.rst",
+              "start": 42,
+              "end": 122,
+              "total_lines": 122
+            },
+            {
+              "path": "docs/userguide/signals.rst",
+              "start": 310,
+              "end": 430,
+              "total_lines": 870
+            }
+          ],
+          "read_evidence_ids": [
+            "f717a6acc34c61c282b4e017",
+            "0d7e784746395b62482e3a42",
+            "32ed2c92a7b214cd4775cbf3"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the calling guide document time_limit/soft_time_limit as apply_async execution options in its options list?",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ],
+          "paths": [
+            "docs/userguide/calling.rst"
+          ],
+          "anchor": "time_limit",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "time_limit",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.0.rst",
+              "offset": 790,
+              "limit": 120
+            },
+            {
+              "path": "docs/internals/protocol.rst",
+              "offset": 244,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "029cd011724eb3f20a6b71b7",
+            "5fba8906e95239dbb341cc66",
+            "1a466895f6b277781953f514",
+            "0844f908780bf57e13b2ec7e",
+            "a06d314e27591df8834e1904",
+            "2daf7100c84cdf6e99e68b97",
+            "3754fb9e0c527c0c4168bfd3",
+            "3bf5f88371a7b41c5d86a5b7",
+            "61a8bb1b16cf5a0c15204421",
+            "abc11c9348bc857fd2615a77",
+            "e66d054f7ed7d7f532a13c4d",
+            "9ccddfbf7d34e8b7acf4e4c5",
+            "6d5d83b3dd9eb2819092e62b",
+            "13243ee2dc06ba93e7dcda8a"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/userguide/workers.rst",
+              "evidence_id": "1a466895f6b277781953f514",
+              "score": "0.03252247488101534"
+            },
+            {
+              "rank": 2,
+              "path": "docs/history/changelog-2.3.rst",
+              "evidence_id": "0844f908780bf57e13b2ec7e",
+              "score": "0.0304147465437788"
+            },
+            {
+              "rank": 3,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "a06d314e27591df8834e1904",
+              "score": "0.029631255487269532"
+            },
+            {
+              "rank": 4,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "2daf7100c84cdf6e99e68b97",
+              "score": "0.029206349206349208"
+            },
+            {
+              "rank": 5,
+              "path": "docs/userguide/workers.rst",
+              "evidence_id": "3754fb9e0c527c0c4168bfd3",
+              "score": "0.027629397679130595"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/changelog-2.0.rst",
+              "evidence_id": "3bf5f88371a7b41c5d86a5b7",
+              "score": "0.027271052146674038"
+            },
+            {
+              "rank": 7,
+              "path": "docs/internals/protocol.rst",
+              "evidence_id": "61a8bb1b16cf5a0c15204421",
+              "score": "0.02674825174825175"
+            },
+            {
+              "rank": 8,
+              "path": "docs/history/whatsnew-3.1.rst",
+              "evidence_id": "abc11c9348bc857fd2615a77",
+              "score": "0.02533373786407767"
+            },
+            {
+              "rank": 9,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "e66d054f7ed7d7f532a13c4d",
+              "score": "0.024652147610405323"
+            },
+            {
+              "rank": 10,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "9ccddfbf7d34e8b7acf4e4c5",
+              "score": "0.024325827078120657"
+            },
+            {
+              "rank": 11,
+              "path": "docs/internals/worker.rst",
+              "evidence_id": "6d5d83b3dd9eb2819092e62b",
+              "score": "0.023676099747828524"
+            },
+            {
+              "rank": 12,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "13243ee2dc06ba93e7dcda8a",
+              "score": "0.022817460317460316"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/history/changelog-2.0.rst",
+              "start": 790,
+              "end": 910,
+              "total_lines": 1079
+            },
+            {
+              "path": "docs/internals/protocol.rst",
+              "start": 244,
+              "end": 364,
+              "total_lines": 398
+            }
+          ],
+          "read_evidence_ids": [
+            "029cd011724eb3f20a6b71b7",
+            "5fba8906e95239dbb341cc66"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "029cd011724eb3f20a6b71b7",
+        "0d7e784746395b62482e3a42",
+        "2b32f83e0822ce52485f5693",
+        "2daf7100c84cdf6e99e68b97",
+        "32ed2c92a7b214cd4775cbf3",
+        "5cfaa6dc584fc4dc8623c46d",
+        "5fba8906e95239dbb341cc66",
+        "6d5d83b3dd9eb2819092e62b",
+        "a1f059036cbe3570948adca7",
+        "e4adddc1762d2aba648ab4ba",
+        "e66d054f7ed7d7f532a13c4d",
+        "f717a6acc34c61c282b4e017"
+      ],
+      "new_evidence_count": 12,
+      "new_path_count": 2
+    }
+  ],
+  "review": {
+    "kind": "local_repair",
+    "defects": [
+      {
+        "requirement_id": "calling-time-limit-request",
+        "path": "docs/userguide/calling.rst",
+        "reason": "The edit only adds a cheat-sheet bullet showing apply_async(time_limit=..., soft_time_limit=...) sets limits; it does not document that these values are exposed inside the task via task.request.time_limit / task.request.soft_time_limit, nor that they override limits declared at the task class level. Add prose (e.g., in the execution options section) covering the new request attributes and override behavior."
+      }
+    ]
+  },
+  "repairs": 1,
+  "snapshot": {
+    "docs": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+    "code": "54714571a756f99fdf7d39ab4aa186fcf805334c"
+  },
+  "protocol_retries": {
+    "REPAIR": 1
+  },
+  "protocol_feedback": {
+    "REPAIR": {
+      "errors": [
+        {
+          "type": "extra_forbidden",
+          "loc": [
+            "repair",
+            "edits",
+            0,
+            "edit_id"
+          ],
+          "msg": "Extra inputs are not permitted"
+        },
+        {
+          "type": "extra_forbidden",
+          "loc": [
+            "repair",
+            "edits",
+            1,
+            "edit_id"
+          ],
+          "msg": "Extra inputs are not permitted"
+        }
+      ],
+      "instruction": "Return a complete corrected decision using only observed evidence."
+    }
+  },
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:1656d46a34172eb8": 0,
+    "discover:Q1-2:5d37b6fe54b4ec70": 128,
+    "discover:Q1-3:92cc0f451307c773": 225,
+    "discover:Q2-1:df9f30bf0eda7f6a": 0,
+    "discover:Q2-2:e6667d33d8e4ed50": 133
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:1656d46a34172eb8": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 129,
+      "cache_hit": false
+    },
+    "discover:Q1-2:5d37b6fe54b4ec70": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 96,
+      "cache_hit": false
+    },
+    "discover:Q1-3:92cc0f451307c773": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 99,
+      "cache_hit": false
+    },
+    "discover:Q1-1:ef8114b897245247": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 273,
+      "cache_hit": false
+    },
+    "discover:Q1-2:4591dc21572e66b5": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 353,
+      "cache_hit": false
+    },
+    "discover:Q1-3:cb9334ea9a688dd8": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 386,
+      "cache_hit": false
+    },
+    "discover:Q2-1:df9f30bf0eda7f6a": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 133,
+      "cache_hit": false
+    },
+    "discover:Q2-2:e6667d33d8e4ed50": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 120,
+      "cache_hit": false
+    },
+    "discover:Q2-1:7a4bce3f1eadcef0": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 407,
+      "cache_hit": false
+    },
+    "discover:Q2-2:18d1b8f8b9ece54a": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 476,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 1872,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "task-request-time-limits",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/userguide/tasks.rst"
+      ],
+      "evidence_ids": [
+        "f717a6acc34c61c282b4e017",
+        "c61634e8ac5c652cf261f70b",
+        "c35337dfde3c5125f824e0f8"
+      ],
+      "reason": "In docs/userguide/tasks.rst, the 'Task Request' section lists request attributes including ':timelimit: A tuple of the current (soft, hard) time limits'. Add documentation for the new first-class request attributes `time_limit` and `soft_time_limit` (accessible as `task.request.time_limit` / `task.request.soft_time_limit`), noting they are None when no limits are configured, reflect values passed to apply_async, and reflect limits declared at the task class level or via task_time_limit/task_soft_time_limit settings."
+    },
+    {
+      "requirement_id": "calling-time-limit-request",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/userguide/calling.rst"
+      ],
+      "evidence_ids": [
+        "7ad2dec593d079fc3460f971",
+        "36125d662e6d3a7796ab0c77",
+        "c61634e8ac5c652cf261f70b"
+      ],
+      "reason": "In docs/userguide/calling.rst, document that time_limit/soft_time_limit passed to apply_async are now exposed inside the task via task.request.time_limit and task.request.soft_time_limit, and that these override limits declared at the task class level."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:029cd011724eb3f20a6b71b7",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-2.0.rst",
+        "start_line": 791,
+        "total_lines": 1079,
+        "start_char": 24682,
+        "end_char": 28831,
+        "evidence_id": "029cd011724eb3f20a6b71b7",
+        "truncated": false,
+        "next_offset": 910,
+        "source_type": "repository",
+        "content_hash": "277d8b9cb8256095f1d5b3410c7fa6e6d711748c7705ecfc26372681ac1e13a8",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "time_limit",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.0.rst",
+              "offset": 790,
+              "limit": 120
+            },
+            {
+              "path": "docs/internals/protocol.rst",
+              "offset": 244,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "277d8b9cb8256095f1d5b3410c7fa6e6d711748c7705ecfc26372681ac1e13a8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0844f908780bf57e13b2ec7e",
+        "type": "evidence",
+        "path": "docs/history/changelog-2.3.rst",
+        "heading": "News",
+        "start_line": 232,
+        "end_line": 275,
+        "start_char": 6491,
+        "end_char": 8098,
+        "score": "0.0304147465437788",
+        "root": "docs",
+        "matched_terms": [
+          "limit",
+          "time",
+          "time_limit"
+        ],
+        "evidence_id": "0844f908780bf57e13b2ec7e",
+        "source_type": "repository",
+        "content_hash": "5beceec4e0abf0779dd4e5d746afd9665c33812f5d6c1a02abd9d714f0a42873",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "5beceec4e0abf0779dd4e5d746afd9665c33812f5d6c1a02abd9d714f0a42873",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0d7e784746395b62482e3a42",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/glossary.rst",
+        "start_line": 43,
+        "total_lines": 122,
+        "start_char": 1398,
+        "end_char": 4861,
+        "evidence_id": "0d7e784746395b62482e3a42",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d9a6be87546d8f4742090d2fb02ea9b386c29911df7a2a2394140cd1ff98d1e9",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "query": "task-request-info",
+              "limit": 120
+            },
+            {
+              "path": "docs/glossary.rst",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/signals.rst",
+              "offset": 310,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "d9a6be87546d8f4742090d2fb02ea9b386c29911df7a2a2394140cd1ff98d1e9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:13243ee2dc06ba93e7dcda8a",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``task_allow_error_cb_on_chord_header``",
+        "start_line": 568,
+        "end_line": 601,
+        "start_char": 21323,
+        "end_char": 22181,
+        "score": "0.022817460317460316",
+        "root": "docs",
+        "matched_terms": [
+          "limit",
+          "time"
+        ],
+        "evidence_id": "13243ee2dc06ba93e7dcda8a",
+        "source_type": "repository",
+        "content_hash": "3cad00a864bed0a0c72ef2c86476dcb3433f9444908364956ac1e1309ab3c3e0",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "3cad00a864bed0a0c72ef2c86476dcb3433f9444908364956ac1e1309ab3c3e0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1501a6662dde9fdef41d06ff",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.0.rst",
+        "heading": "Worker",
+        "start_line": 1849,
+        "end_line": 1881,
+        "start_char": 62451,
+        "end_char": 63353,
+        "score": "0.032465219460306796",
+        "root": "docs",
+        "matched_terms": [
+          "task_soft_time_limit",
+          "task_time_limit"
+        ],
+        "evidence_id": "1501a6662dde9fdef41d06ff",
+        "source_type": "repository",
+        "content_hash": "59a780617023183719af80a7eb75bee31a2f56a3104c8c325d5b0a7ea7257d45",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_time_limit",
+            "task_soft_time_limit",
+            "time limits configuration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "59a780617023183719af80a7eb75bee31a2f56a3104c8c325d5b0a7ea7257d45",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a466895f6b277781953f514",
+        "type": "evidence",
+        "path": "docs/userguide/workers.rst",
+        "heading": "Changing time limits at run-time",
+        "start_line": 750,
+        "end_line": 772,
+        "start_char": 28489,
+        "end_char": 29201,
+        "score": "0.03252247488101534",
+        "root": "docs",
+        "matched_terms": [
+          "limit",
+          "time",
+          "time_limit"
+        ],
+        "evidence_id": "1a466895f6b277781953f514",
+        "source_type": "repository",
+        "content_hash": "f7d6c09c7190677251fb67fcb33eed7f40fdda0df594ee9b5a0dd5a49d9b14b2",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "f7d6c09c7190677251fb67fcb33eed7f40fdda0df594ee9b5a0dd5a49d9b14b2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a81bfabffcb632e39db5666",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.1.rst",
+        "heading": "`task.apply_async(ignore_result=True)` now avoids persisting the result",
+        "start_line": 383,
+        "end_line": 388,
+        "start_char": 12345,
+        "end_char": 12615,
+        "score": "0.03323357648436128",
+        "root": "docs",
+        "matched_terms": [
+          "apply_async"
+        ],
+        "evidence_id": "1a81bfabffcb632e39db5666",
+        "source_type": "repository",
+        "content_hash": "cff3672a11f0b55b3ce675cc9f271f23b71a7167b43c421d4ca6dc202bfaff56",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "apply_async time_limit",
+            "soft_time_limit apply_async",
+            "time limits"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "cff3672a11f0b55b3ce675cc9f271f23b71a7167b43c421d4ca6dc202bfaff56",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20eea08fa29766e44dd4f544",
+        "type": "evidence",
+        "path": "docs/reference/celery.app.task.rst",
+        "heading": "``celery.app.task``",
+        "start_line": 2,
+        "end_line": 10,
+        "start_char": 36,
+        "end_char": 226,
+        "score": "0.024806892453951276",
+        "root": "docs",
+        "matched_terms": [
+          "context",
+          "task"
+        ],
+        "evidence_id": "20eea08fa29766e44dd4f544",
+        "source_type": "repository",
+        "content_hash": "2dbc15fe4f3962bebc6220a1a3d830573d04c19b75275aa4be385b93d2e79169",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "time_limit soft_time_limit",
+            "task.request",
+            "Context attributes request"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2dbc15fe4f3962bebc6220a1a3d830573d04c19b75275aa4be385b93d2e79169",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:29956cb5b2c071a19d44a59f",
+        "type": "evidence",
+        "path": "docs/reference/celery.worker.request.rst",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 38,
+        "score": "0.02411038489469862",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "29956cb5b2c071a19d44a59f",
+        "source_type": "repository",
+        "content_hash": "1a587e8ea2765b435271a3c11f97285e29855617ec50a073af7c3481e632752e",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "1a587e8ea2765b435271a3c11f97285e29855617ec50a073af7c3481e632752e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2b32f83e0822ce52485f5693",
+        "type": "evidence",
+        "path": "docs/faq.rst",
+        "heading": "Can I get the task id of the current task?",
+        "start_line": 634,
+        "end_line": 668,
+        "start_char": 19822,
+        "end_char": 20755,
+        "score": "0.024593763724198508",
+        "root": "docs",
+        "matched_terms": [
+          "info",
+          "request",
+          "task"
+        ],
+        "evidence_id": "2b32f83e0822ce52485f5693",
+        "source_type": "repository",
+        "content_hash": "cd47cd7e042102ae86dec4c54fbbb07e4cc08827151e05bd529d32d354719638",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "cd47cd7e042102ae86dec4c54fbbb07e4cc08827151e05bd529d32d354719638",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2daf7100c84cdf6e99e68b97",
+        "type": "evidence",
+        "path": "docs/userguide/calling.rst",
+        "heading": "Basics",
+        "start_line": 14,
+        "end_line": 61,
+        "start_char": 131,
+        "end_char": 1645,
+        "score": "0.029206349206349208",
+        "root": "docs",
+        "matched_terms": [
+          "calling",
+          "execution",
+          "options"
+        ],
+        "evidence_id": "2daf7100c84cdf6e99e68b97",
+        "source_type": "repository",
+        "content_hash": "04e227cd916c7085635a2ed9cfa9c9bd854967ef352f0794109e0c7951522c39",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "04e227cd916c7085635a2ed9cfa9c9bd854967ef352f0794109e0c7951522c39",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:31f3fab7ffdb618b869805fa",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 14,
+        "start_char": 0,
+        "end_char": 290,
+        "score": "0.025708635464733027",
+        "root": "docs",
+        "matched_terms": [
+          "request"
+        ],
+        "evidence_id": "31f3fab7ffdb618b869805fa",
+        "source_type": "repository",
+        "content_hash": "247bc513071aedc4f0f7796f325e13afc6469224bd5b5e896615bd957c361b7e",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "247bc513071aedc4f0f7796f325e13afc6469224bd5b5e896615bd957c361b7e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:32ed2c92a7b214cd4775cbf3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/signals.rst",
+        "start_line": 311,
+        "total_lines": 870,
+        "start_char": 6429,
+        "end_char": 8868,
+        "evidence_id": "32ed2c92a7b214cd4775cbf3",
+        "truncated": false,
+        "next_offset": 430,
+        "source_type": "repository",
+        "content_hash": "6246cebf91bfcb8583bce5d8d078037f221bdb29550eb3432bae1b1dfa487d44",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "query": "task-request-info",
+              "limit": 120
+            },
+            {
+              "path": "docs/glossary.rst",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/signals.rst",
+              "offset": 310,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "6246cebf91bfcb8583bce5d8d078037f221bdb29550eb3432bae1b1dfa487d44",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:357ead016cf5f8607549a678",
+        "type": "evidence",
+        "evidence_id": "357ead016cf5f8607549a678",
+        "source_type": "implementation",
+        "exported_content_sha256": "28a0f994a98da8fbff9e2fb7027238f8a02c37148095e11e9e38b81d98298b27",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:36125d662e6d3a7796ab0c77",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/whatsnew-3.1.rst",
+        "start_line": 542,
+        "total_lines": 1278,
+        "start_char": 19869,
+        "end_char": 24328,
+        "evidence_id": "36125d662e6d3a7796ab0c77",
+        "truncated": false,
+        "next_offset": 661,
+        "source_type": "repository",
+        "content_hash": "25bb3d33c1cb356d8cccf73a94d666cd81792f40516dc67005f3f845cc8aefdd",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-3.1.rst",
+              "offset": 541,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/tasks.rst",
+              "offset": 1014,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "25bb3d33c1cb356d8cccf73a94d666cd81792f40516dc67005f3f845cc8aefdd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3754fb9e0c527c0c4168bfd3",
+        "type": "evidence",
+        "path": "docs/userguide/workers.rst",
+        "heading": "Time Limits",
+        "start_line": 697,
+        "end_line": 746,
+        "start_char": 26820,
+        "end_char": 28418,
+        "score": "0.027629397679130595",
+        "root": "docs",
+        "matched_terms": [
+          "limit",
+          "time"
+        ],
+        "evidence_id": "3754fb9e0c527c0c4168bfd3",
+        "source_type": "repository",
+        "content_hash": "7693b2f6a579a6c8a67548b42b5b31dbf3d74e20ed8ceb356326c95bdeb96d7f",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "7693b2f6a579a6c8a67548b42b5b31dbf3d74e20ed8ceb356326c95bdeb96d7f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3bf5f88371a7b41c5d86a5b7",
+        "type": "evidence",
+        "path": "docs/history/changelog-2.0.rst",
+        "heading": "News",
+        "start_line": 795,
+        "end_line": 835,
+        "start_char": 24756,
+        "end_char": 26405,
+        "score": "0.027271052146674038",
+        "root": "docs",
+        "matched_terms": [
+          "limit",
+          "time"
+        ],
+        "evidence_id": "3bf5f88371a7b41c5d86a5b7",
+        "source_type": "repository",
+        "content_hash": "a05de400eb3b9a90ac940aba562a952912685faf094b5716686443728d6163f9",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "a05de400eb3b9a90ac940aba562a952912685faf094b5716686443728d6163f9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3c42b9ea2466531bcc2da205",
+        "type": "evidence",
+        "path": "docs/userguide/canvas.rst",
+        "heading": "Signatures",
+        "start_line": 65,
+        "end_line": 111,
+        "start_char": 1609,
+        "end_char": 2849,
+        "score": "0.03232600732600733",
+        "root": "docs",
+        "matched_terms": [
+          "apply_async"
+        ],
+        "evidence_id": "3c42b9ea2466531bcc2da205",
+        "source_type": "repository",
+        "content_hash": "875c5cdcf38c0a89f6d4fe59a79c8c54f435db078d92a7bab2cc911e052baacb",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "apply_async time_limit",
+            "soft_time_limit apply_async",
+            "time limits"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "875c5cdcf38c0a89f6d4fe59a79c8c54f435db078d92a7bab2cc911e052baacb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4869400e2a0a02a272f18edb",
+        "type": "evidence",
+        "path": "docs/userguide/tasks.rst",
+        "heading": "Task Request",
+        "start_line": 299,
+        "end_line": 345,
+        "start_char": 9252,
+        "end_char": 10858,
+        "score": "0.03149801587301587",
+        "root": "docs",
+        "matched_terms": [
+          "attributes",
+          "request",
+          "task"
+        ],
+        "evidence_id": "4869400e2a0a02a272f18edb",
+        "source_type": "repository",
+        "content_hash": "5316ac1a629fed7be75a91704e9fb7df55bf6a936dbd43564fd041b93add9bb8",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "5316ac1a629fed7be75a91704e9fb7df55bf6a936dbd43564fd041b93add9bb8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4f8adaa0a6d9f71e202610aa",
+        "type": "evidence",
+        "evidence_id": "4f8adaa0a6d9f71e202610aa",
+        "source_type": "task",
+        "exported_content_sha256": "fd1771ba85bc6fce31f7cd312b7b5b1c328a48629d87b87c2f0bd4bbe2cd402b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:50d3f5c4a2291169bc083b8e",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.2.rst",
+        "heading": "Custom Requests",
+        "start_line": 976,
+        "end_line": 991,
+        "start_char": 34904,
+        "end_char": 35348,
+        "score": "0.02817460317460317",
+        "root": "docs",
+        "matched_terms": [
+          "request",
+          "task"
+        ],
+        "evidence_id": "50d3f5c4a2291169bc083b8e",
+        "source_type": "repository",
+        "content_hash": "3d4fcee556d273969621a6b202657ff5694c64f205966eafac521d3a1e9deb79",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "3d4fcee556d273969621a6b202657ff5694c64f205966eafac521d3a1e9deb79",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:58b0593db0bd5c961418aef1",
+        "type": "evidence",
+        "path": "docs/userguide/signals.rst",
+        "heading": "``task_failure``",
+        "start_line": 315,
+        "end_line": 338,
+        "start_char": 6462,
+        "end_char": 6894,
+        "score": "0.031054405392392875",
+        "root": "docs",
+        "matched_terms": [
+          "request",
+          "task"
+        ],
+        "evidence_id": "58b0593db0bd5c961418aef1",
+        "source_type": "repository",
+        "content_hash": "b99f878d71b84ee5bb02d92850a51b2770fa41d9dbe164985c4517d82dfd4cdb",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b99f878d71b84ee5bb02d92850a51b2770fa41d9dbe164985c4517d82dfd4cdb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5cf8bc59a8981f042849c377",
+        "type": "evidence",
+        "path": "docs/history/changelog-2.2.rst",
+        "heading": "Important Notes",
+        "start_line": 544,
+        "end_line": 578,
+        "start_char": 16497,
+        "end_char": 18108,
+        "score": "0.032018442622950824",
+        "root": "docs",
+        "matched_terms": [
+          "attributes",
+          "context",
+          "request",
+          "task"
+        ],
+        "evidence_id": "5cf8bc59a8981f042849c377",
+        "source_type": "repository",
+        "content_hash": "b13c9b3456a865111b762074a92a6d04f448a4b112029a527c42251589ebcfc9",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b13c9b3456a865111b762074a92a6d04f448a4b112029a527c42251589ebcfc9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5cfaa6dc584fc4dc8623c46d",
+        "type": "evidence",
+        "path": "docs/history/changelog-2.3.rst",
+        "heading": "News",
+        "start_line": 69,
+        "end_line": 90,
+        "start_char": 1407,
+        "end_char": 1918,
+        "score": "0.023856578204404292",
+        "root": "docs",
+        "matched_terms": [
+          "request",
+          "task"
+        ],
+        "evidence_id": "5cfaa6dc584fc4dc8623c46d",
+        "source_type": "repository",
+        "content_hash": "58c9346924d15551aa2eb3286597d1060ba713dffa7719a15682a01e5e68ab75",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "58c9346924d15551aa2eb3286597d1060ba713dffa7719a15682a01e5e68ab75",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5fba8906e95239dbb341cc66",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/internals/protocol.rst",
+        "start_line": 245,
+        "total_lines": 398,
+        "start_char": 6149,
+        "end_char": 9206,
+        "evidence_id": "5fba8906e95239dbb341cc66",
+        "truncated": false,
+        "next_offset": 364,
+        "source_type": "repository",
+        "content_hash": "30886ae07e923b252c6d05737a4844f27965c365cede8ea8ae3a1910a9507854",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "time_limit",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.0.rst",
+              "offset": 790,
+              "limit": 120
+            },
+            {
+              "path": "docs/internals/protocol.rst",
+              "offset": 244,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "30886ae07e923b252c6d05737a4844f27965c365cede8ea8ae3a1910a9507854",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:61a8bb1b16cf5a0c15204421",
+        "type": "evidence",
+        "path": "docs/internals/protocol.rst",
+        "heading": "Changes from version 1",
+        "start_line": 249,
+        "end_line": 288,
+        "start_char": 6195,
+        "end_char": 7176,
+        "score": "0.02674825174825175",
+        "root": "docs",
+        "matched_terms": [
+          "execution",
+          "limit",
+          "time"
+        ],
+        "evidence_id": "61a8bb1b16cf5a0c15204421",
+        "source_type": "repository",
+        "content_hash": "4bae084428aa3767f780161826c3ba8b4ba3e5ee1907d5bff617ecf80b3f7d0e",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4bae084428aa3767f780161826c3ba8b4ba3e5ee1907d5bff617ecf80b3f7d0e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6a954667a61ed033f51fd0a3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/tasks.rst",
+        "start_line": 1,
+        "total_lines": 2327,
+        "start_char": 0,
+        "end_char": 4764,
+        "evidence_id": "6a954667a61ed033f51fd0a3",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "21bb92efe9e823397bba2abc787d06b9f29a9b42e4fc86ce7d45ed95b920d2ad",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.2.rst",
+              "offset": 539,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "21bb92efe9e823397bba2abc787d06b9f29a9b42e4fc86ce7d45ed95b920d2ad",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6d5d83b3dd9eb2819092e62b",
+        "type": "evidence",
+        "path": "docs/internals/worker.rst",
+        "heading": "Consumer",
+        "start_line": 30,
+        "end_line": 43,
+        "start_char": 562,
+        "end_char": 1002,
+        "score": "0.023676099747828524",
+        "root": "docs",
+        "matched_terms": [
+          "execution",
+          "limit"
+        ],
+        "evidence_id": "6d5d83b3dd9eb2819092e62b",
+        "source_type": "repository",
+        "content_hash": "a4b8b9170f6dd935a6ff3e64a79ff784a55c407eb604698d5859ac7699d66536",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "a4b8b9170f6dd935a6ff3e64a79ff784a55c407eb604698d5859ac7699d66536",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7ad2dec593d079fc3460f971",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/calling.rst",
+        "start_line": 1,
+        "total_lines": 857,
+        "start_char": 0,
+        "end_char": 3223,
+        "evidence_id": "7ad2dec593d079fc3460f971",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "baff83e74f2466701e6dd3d107a5178a5af9730bcee47ae6ac49de9041c71712",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-3.1.rst",
+              "offset": 541,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/tasks.rst",
+              "offset": 1014,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "baff83e74f2466701e6dd3d107a5178a5af9730bcee47ae6ac49de9041c71712",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7e45e3a6c0d875956455f009",
+        "type": "evidence",
+        "path": "docs/history/changelog-1.0.rst",
+        "heading": "0.3.20",
+        "start_line": 1358,
+        "end_line": 1403,
+        "start_char": 43345,
+        "end_char": 44950,
+        "score": "0.0337723764908231",
+        "root": "docs",
+        "matched_terms": [
+          "apply_async"
+        ],
+        "evidence_id": "7e45e3a6c0d875956455f009",
+        "source_type": "repository",
+        "content_hash": "83026a12b134f3fe0509108543ba995c013b8104c773eba441b2195192251a3f",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "apply_async time_limit",
+            "soft_time_limit apply_async",
+            "time limits"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "83026a12b134f3fe0509108543ba995c013b8104c773eba441b2195192251a3f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8ac49e8cbe9ceb35026019dc",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-2.2.rst",
+        "start_line": 540,
+        "total_lines": 1028,
+        "start_char": 16364,
+        "end_char": 21095,
+        "evidence_id": "8ac49e8cbe9ceb35026019dc",
+        "truncated": false,
+        "next_offset": 659,
+        "source_type": "repository",
+        "content_hash": "021055d04fd7f5429c12c864257c0cf23beb3190a76183ed349065fc2a234aeb",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.2.rst",
+              "offset": 539,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "021055d04fd7f5429c12c864257c0cf23beb3190a76183ed349065fc2a234aeb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:913b49a4db7fa13229e62b64",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.0.rst",
+        "heading": "Lowercase setting names",
+        "start_line": 473,
+        "end_line": 482,
+        "start_char": 19217,
+        "end_char": 19826,
+        "score": "0.039810547875064",
+        "root": "docs",
+        "matched_terms": [
+          "task_soft_time_limit",
+          "task_time_limit"
+        ],
+        "evidence_id": "913b49a4db7fa13229e62b64",
+        "source_type": "repository",
+        "content_hash": "e1dbdb21c724a020e77117b5496158321ca7731d50d7623a544248f88a5eb83a",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_time_limit",
+            "task_soft_time_limit",
+            "time limits configuration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e1dbdb21c724a020e77117b5496158321ca7731d50d7623a544248f88a5eb83a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9ccddfbf7d34e8b7acf4e4c5",
+        "type": "evidence",
+        "path": "docs/userguide/tasks.rst",
+        "heading": "General",
+        "start_line": 974,
+        "end_line": 1018,
+        "start_char": 30362,
+        "end_char": 32009,
+        "score": "0.024325827078120657",
+        "root": "docs",
+        "matched_terms": [
+          "limit",
+          "time"
+        ],
+        "evidence_id": "9ccddfbf7d34e8b7acf4e4c5",
+        "source_type": "repository",
+        "content_hash": "3f067ba347ffe3b37148b41db134a34d18e4f22c29893dbc4a2cf4f033b15390",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "3f067ba347ffe3b37148b41db134a34d18e4f22c29893dbc4a2cf4f033b15390",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9ef8b6af10f940b82e46f416",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+        "start_line": 1,
+        "total_lines": 93,
+        "start_char": 0,
+        "end_char": 2598,
+        "evidence_id": "9ef8b6af10f940b82e46f416",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9474ef30944608fcfddf9f20100501328a3009ec6733329bb94bfa86faa0f34d",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.2.rst",
+              "offset": 539,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9474ef30944608fcfddf9f20100501328a3009ec6733329bb94bfa86faa0f34d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a023399c55066a32826456d3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 1,
+        "total_lines": 4329,
+        "start_char": 0,
+        "end_char": 6174,
+        "evidence_id": "a023399c55066a32826456d3",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "5ce1a3f302d680c818f617445add26da6759f9589ea919a36224b4315f2b174e",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/workers.rst",
+              "offset": 692,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "offset": 227,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5ce1a3f302d680c818f617445add26da6759f9589ea919a36224b4315f2b174e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a046555096a02259a3c4c2ec",
+        "type": "evidence",
+        "path": "docs/userguide/calling.rst",
+        "heading": "Expiration",
+        "start_line": 305,
+        "end_line": 327,
+        "start_char": 9656,
+        "end_char": 10304,
+        "score": "0.03901914295749912",
+        "root": "docs",
+        "matched_terms": [
+          "apply_async",
+          "time"
+        ],
+        "evidence_id": "a046555096a02259a3c4c2ec",
+        "source_type": "repository",
+        "content_hash": "f0ad914f4eef9551bfb1237fdd39b57d5bcfca2e623e794a7522d2efc804e723",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "apply_async time_limit",
+            "soft_time_limit apply_async",
+            "time limits"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f0ad914f4eef9551bfb1237fdd39b57d5bcfca2e623e794a7522d2efc804e723",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a06d314e27591df8834e1904",
+        "type": "evidence",
+        "path": "docs/userguide/tasks.rst",
+        "heading": "General",
+        "start_line": 1019,
+        "end_line": 1066,
+        "start_char": 32009,
+        "end_char": 33622,
+        "score": "0.029631255487269532",
+        "root": "docs",
+        "matched_terms": [
+          "calling",
+          "limit",
+          "time",
+          "time_limit"
+        ],
+        "evidence_id": "a06d314e27591df8834e1904",
+        "source_type": "repository",
+        "content_hash": "1d03f75ff4a19d0407857a66a469213a38e24c47efd81fb3691787ff9af3efdf",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "1d03f75ff4a19d0407857a66a469213a38e24c47efd81fb3691787ff9af3efdf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a1f059036cbe3570948adca7",
+        "type": "evidence",
+        "path": "docs/userguide/tasks.rst",
+        "heading": "Example",
+        "start_line": 391,
+        "end_line": 408,
+        "start_char": 12350,
+        "end_char": 12793,
+        "score": "0.03021353930031804",
+        "root": "docs",
+        "matched_terms": [
+          "attributes",
+          "context",
+          "request",
+          "task"
+        ],
+        "evidence_id": "a1f059036cbe3570948adca7",
+        "source_type": "repository",
+        "content_hash": "b676bc526fa3a7bf2119443568430fbdf2d5ad224b0548918d57790da08c2056",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b676bc526fa3a7bf2119443568430fbdf2d5ad224b0548918d57790da08c2056",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:abc11c9348bc857fd2615a77",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-3.1.rst",
+        "heading": "Caveats",
+        "start_line": 546,
+        "end_line": 595,
+        "start_char": 20044,
+        "end_char": 21614,
+        "score": "0.02533373786407767",
+        "root": "docs",
+        "matched_terms": [
+          "calling",
+          "options",
+          "time",
+          "time_limit"
+        ],
+        "evidence_id": "abc11c9348bc857fd2615a77",
+        "source_type": "repository",
+        "content_hash": "23cc79612cb61140afbd95978fd0f2b3fa5f76e32b2877cde058abfd33a3178f",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "23cc79612cb61140afbd95978fd0f2b3fa5f76e32b2877cde058abfd33a3178f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c07f70336f544ea2a8e88dc3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-2.3.rst",
+        "start_line": 228,
+        "total_lines": 370,
+        "start_char": 6330,
+        "end_char": 10572,
+        "evidence_id": "c07f70336f544ea2a8e88dc3",
+        "truncated": false,
+        "next_offset": 347,
+        "source_type": "repository",
+        "content_hash": "4425e8e9306f4f8131c1d5c88cd99d8e01588249de2a84017aeab80c99d1f667",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/workers.rst",
+              "offset": 692,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "offset": 227,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4425e8e9306f4f8131c1d5c88cd99d8e01588249de2a84017aeab80c99d1f667",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c35337dfde3c5125f824e0f8",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/workers.rst",
+        "start_line": 693,
+        "total_lines": 1259,
+        "start_char": 26622,
+        "end_char": 30246,
+        "evidence_id": "c35337dfde3c5125f824e0f8",
+        "truncated": false,
+        "next_offset": 812,
+        "source_type": "repository",
+        "content_hash": "e3cf41df6ff9a729ce1df0d15615f612def80265b5080202f5a0eff2d48de206",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/workers.rst",
+              "offset": 692,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "offset": 227,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e3cf41df6ff9a729ce1df0d15615f612def80265b5080202f5a0eff2d48de206",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c61634e8ac5c652cf261f70b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/tasks.rst",
+        "start_line": 1015,
+        "total_lines": 2327,
+        "start_char": 31787,
+        "end_char": 36110,
+        "evidence_id": "c61634e8ac5c652cf261f70b",
+        "truncated": false,
+        "next_offset": 1134,
+        "source_type": "repository",
+        "content_hash": "49f4385498a898bbad87c6521b9b150d309778755f25e004f46f811646ab3e8c",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-3.1.rst",
+              "offset": 541,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/tasks.rst",
+              "offset": 1014,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "49f4385498a898bbad87c6521b9b150d309778755f25e004f46f811646ab3e8c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cd13ce445a6429556970aaca",
+        "type": "evidence",
+        "path": "docs/reference/celery.worker.request.rst",
+        "heading": "``celery.worker.request``",
+        "start_line": 2,
+        "end_line": 11,
+        "start_char": 38,
+        "end_char": 244,
+        "score": "0.028484848484848488",
+        "root": "docs",
+        "matched_terms": [
+          "request"
+        ],
+        "evidence_id": "cd13ce445a6429556970aaca",
+        "source_type": "repository",
+        "content_hash": "b1f4dd608c873a6bc85dfa80df4100106705b2d59055757814f7cc8856f1d480",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b1f4dd608c873a6bc85dfa80df4100106705b2d59055757814f7cc8856f1d480",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d41761776fd6e7749dc7c8f4",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+        "heading": "Design",
+        "start_line": 56,
+        "end_line": 57,
+        "start_char": 1747,
+        "end_char": 1757,
+        "score": "0.02960383247627088",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "d41761776fd6e7749dc7c8f4",
+        "source_type": "repository",
+        "content_hash": "1bf58adddeed88ceb3caa52eb38c3a1d7935f266cf1d204602c9f88541fb7c27",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "time_limit soft_time_limit",
+            "task.request",
+            "Context attributes request"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1bf58adddeed88ceb3caa52eb38c3a1d7935f266cf1d204602c9f88541fb7c27",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e43acc13ad6a26b7ae4bf65a",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``task_track_started``",
+        "start_line": 503,
+        "end_line": 526,
+        "start_char": 18952,
+        "end_char": 19701,
+        "score": "0.0392513318601504",
+        "root": "docs",
+        "matched_terms": [
+          "task_time_limit",
+          "time"
+        ],
+        "evidence_id": "e43acc13ad6a26b7ae4bf65a",
+        "source_type": "repository",
+        "content_hash": "cab1a4abb9a49e1552897073f983017826a5da0c421a42b94aa83bcab706d0a1",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_time_limit",
+            "task_soft_time_limit",
+            "time limits configuration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cab1a4abb9a49e1552897073f983017826a5da0c421a42b94aa83bcab706d0a1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e4adddc1762d2aba648ab4ba",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Feature-Request.md",
+        "heading": "Brief Summary",
+        "start_line": 50,
+        "end_line": 55,
+        "start_char": 1643,
+        "end_char": 1747,
+        "score": "0.025158227848101268",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "e4adddc1762d2aba648ab4ba",
+        "source_type": "repository",
+        "content_hash": "8c3902b7f54d60fb9028aff145edaddb6af5cad0a44863d5af7d1b9697a7a7c9",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "8c3902b7f54d60fb9028aff145edaddb6af5cad0a44863d5af7d1b9697a7a7c9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e66d054f7ed7d7f532a13c4d",
+        "type": "evidence",
+        "path": "docs/userguide/calling.rst",
+        "heading": "Example",
+        "start_line": 62,
+        "end_line": 110,
+        "start_char": 1645,
+        "end_char": 2930,
+        "score": "0.024652147610405323",
+        "root": "docs",
+        "matched_terms": [
+          "calling",
+          "execution",
+          "options"
+        ],
+        "evidence_id": "e66d054f7ed7d7f532a13c4d",
+        "source_type": "repository",
+        "content_hash": "2a8e03f311170a1158af31f74259a4fb233e41fb664c2716ca1178b95a8412cb",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "calling-time-limit",
+            "execution options time_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2a8e03f311170a1158af31f74259a4fb233e41fb664c2716ca1178b95a8412cb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eccc6d1a73709de61e88a032",
+        "type": "evidence",
+        "path": "docs/glossary.rst",
+        "heading": "Glossary",
+        "start_line": 47,
+        "end_line": 89,
+        "start_char": 1621,
+        "end_char": 3270,
+        "score": "0.032266458495966696",
+        "root": "docs",
+        "matched_terms": [
+          "context",
+          "info",
+          "request",
+          "task"
+        ],
+        "evidence_id": "eccc6d1a73709de61e88a032",
+        "source_type": "repository",
+        "content_hash": "843a6fa3474c1760279999f8da915167e9aab4afd9c7e7b58053cf5219a88d25",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task-request-info",
+            "request attributes context"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "843a6fa3474c1760279999f8da915167e9aab4afd9c7e7b58053cf5219a88d25",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed948878093dbf4634abdd9d",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "Checklist > Optional Debugging Information",
+        "start_line": 44,
+        "end_line": 61,
+        "start_char": 2050,
+        "end_char": 2899,
+        "score": "0.030141418983700864",
+        "root": "docs",
+        "matched_terms": [
+          "limits"
+        ],
+        "evidence_id": "ed948878093dbf4634abdd9d",
+        "source_type": "repository",
+        "content_hash": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_time_limit",
+            "task_soft_time_limit",
+            "time limits configuration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f34d0a6a833674d3209874e6",
+        "type": "evidence",
+        "path": "docs/userguide/calling.rst",
+        "heading": "Retry Policy",
+        "start_line": 399,
+        "end_line": 416,
+        "start_char": 12218,
+        "end_char": 12763,
+        "score": "0.03795795795795796",
+        "root": "docs",
+        "matched_terms": [
+          "apply_async",
+          "time"
+        ],
+        "evidence_id": "f34d0a6a833674d3209874e6",
+        "source_type": "repository",
+        "content_hash": "d501482116abfea757d228a79b89eeb4733117cdf92c512769f4af0962640ddf",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "apply_async time_limit",
+            "soft_time_limit apply_async",
+            "time limits"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d501482116abfea757d228a79b89eeb4733117cdf92c512769f4af0962640ddf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f717a6acc34c61c282b4e017",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/tasks.rst",
+        "start_line": 293,
+        "total_lines": 2327,
+        "start_char": 9084,
+        "end_char": 12875,
+        "evidence_id": "f717a6acc34c61c282b4e017",
+        "truncated": false,
+        "next_offset": 412,
+        "source_type": "repository",
+        "content_hash": "a319062dab71e1bf8600711fd196aa665dcd6c26989dbb9ad99d23762fdf32fe",
+        "revision": "449fa3c2708e259e7b99105491cce2ac174bb6ec",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "query": "task-request-info",
+              "limit": 120
+            },
+            {
+              "path": "docs/glossary.rst",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/signals.rst",
+              "offset": 310,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a319062dab71e1bf8600711fd196aa665dcd6c26989dbb9ad99d23762fdf32fe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:task-request-time-limits",
+        "type": "requirement",
+        "description": "In docs/userguide/tasks.rst, the 'Task Request' section lists request attributes including ':timelimit: A tuple of the current (soft, hard) time limits'. Add documentation for the new first-class request attributes `time_limit` and `soft_time_limit` (accessible as `task.request.time_limit` / `task.request.soft_time_limit`), noting they are None when no limits are configured, reflect values passed to apply_async, and reflect limits declared at the task class level or via task_time_limit/task_soft_time_limit settings."
+      },
+      {
+        "id": "requirement:calling-time-limit-request",
+        "type": "requirement",
+        "description": "In docs/userguide/calling.rst, document that time_limit/soft_time_limit passed to apply_async are now exposed inside the task via task.request.time_limit and task.request.soft_time_limit, and that these override limits declared at the task class level."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/userguide/tasks.rst",
+        "hash": "b2e10f335af6b161ba62dd13c0c6d58659dd1a0499e28767c27418c7a8905177"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/userguide/calling.rst",
+        "hash": "1958ae3efd7be5f49ff396716e012caa5fe560f6887a57fe69ea4e17e74833e9"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "task-request-time-limits",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/userguide/tasks.rst"
+        ],
+        "evidence_ids": [
+          "f717a6acc34c61c282b4e017",
+          "c61634e8ac5c652cf261f70b",
+          "c35337dfde3c5125f824e0f8"
+        ],
+        "reason": "In docs/userguide/tasks.rst, the 'Task Request' section lists request attributes including ':timelimit: A tuple of the current (soft, hard) time limits'. Add documentation for the new first-class request attributes `time_limit` and `soft_time_limit` (accessible as `task.request.time_limit` / `task.request.soft_time_limit`), noting they are None when no limits are configured, reflect values passed to apply_async, and reflect limits declared at the task class level or via task_time_limit/task_soft_time_limit settings."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "calling-time-limit-request",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/userguide/calling.rst"
+        ],
+        "evidence_ids": [
+          "7ad2dec593d079fc3460f971",
+          "36125d662e6d3a7796ab0c77",
+          "c61634e8ac5c652cf261f70b"
+        ],
+        "reason": "In docs/userguide/calling.rst, document that time_limit/soft_time_limit passed to apply_async are now exposed inside the task via task.request.time_limit and task.request.soft_time_limit, and that these override limits declared at the task class level."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "local_repair",
+        "defects": [
+          {
+            "requirement_id": "calling-time-limit-request",
+            "path": "docs/userguide/calling.rst",
+            "reason": "The edit only adds a cheat-sheet bullet showing apply_async(time_limit=..., soft_time_limit=...) sets limits; it does not document that these values are exposed inside the task via task.request.time_limit / task.request.soft_time_limit, nor that they override limits declared at the task class level. Add prose (e.g., in the execution options section) covering the new request attributes and override behavior."
+          }
+        ]
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the docs describe task.request attributes or Context fields, and where are time_limit/soft_time_limit documented for tasks?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where are task_time_limit and task_soft_time_limit configuration options documented?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Is apply_async time_limit/soft_time_limit usage documented in calling tasks guide?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the task-request-info section of tasks.rst list the context/request attributes, and does it mention time_limit/soft_time_limit?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the calling guide document time_limit/soft_time_limit as apply_async execution options in its options list?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:029cd011724eb3f20a6b71b7",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0844f908780bf57e13b2ec7e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0844f908780bf57e13b2ec7e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0844f908780bf57e13b2ec7e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0844f908780bf57e13b2ec7e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d7e784746395b62482e3a42",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:13243ee2dc06ba93e7dcda8a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:13243ee2dc06ba93e7dcda8a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:13243ee2dc06ba93e7dcda8a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1501a6662dde9fdef41d06ff",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a466895f6b277781953f514",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a466895f6b277781953f514",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a466895f6b277781953f514",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a81bfabffcb632e39db5666",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:20eea08fa29766e44dd4f544",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:29956cb5b2c071a19d44a59f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:29956cb5b2c071a19d44a59f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2b32f83e0822ce52485f5693",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2daf7100c84cdf6e99e68b97",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:31f3fab7ffdb618b869805fa",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:31f3fab7ffdb618b869805fa",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:32ed2c92a7b214cd4775cbf3",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:36125d662e6d3a7796ab0c77",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3754fb9e0c527c0c4168bfd3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3754fb9e0c527c0c4168bfd3",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3754fb9e0c527c0c4168bfd3",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3bf5f88371a7b41c5d86a5b7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3bf5f88371a7b41c5d86a5b7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3bf5f88371a7b41c5d86a5b7",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3c42b9ea2466531bcc2da205",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4869400e2a0a02a272f18edb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4869400e2a0a02a272f18edb",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:50d3f5c4a2291169bc083b8e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:50d3f5c4a2291169bc083b8e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:58b0593db0bd5c961418aef1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:58b0593db0bd5c961418aef1",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5cf8bc59a8981f042849c377",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5cf8bc59a8981f042849c377",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5cfaa6dc584fc4dc8623c46d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5fba8906e95239dbb341cc66",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:61a8bb1b16cf5a0c15204421",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:61a8bb1b16cf5a0c15204421",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6a954667a61ed033f51fd0a3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6d5d83b3dd9eb2819092e62b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7ad2dec593d079fc3460f971",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7e45e3a6c0d875956455f009",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8ac49e8cbe9ceb35026019dc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:913b49a4db7fa13229e62b64",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9ccddfbf7d34e8b7acf4e4c5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9ccddfbf7d34e8b7acf4e4c5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9ef8b6af10f940b82e46f416",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a023399c55066a32826456d3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a046555096a02259a3c4c2ec",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a06d314e27591df8834e1904",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a06d314e27591df8834e1904",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a06d314e27591df8834e1904",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a06d314e27591df8834e1904",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a1f059036cbe3570948adca7",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:abc11c9348bc857fd2615a77",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:abc11c9348bc857fd2615a77",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c07f70336f544ea2a8e88dc3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c35337dfde3c5125f824e0f8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c61634e8ac5c652cf261f70b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd13ce445a6429556970aaca",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd13ce445a6429556970aaca",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d41761776fd6e7749dc7c8f4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e43acc13ad6a26b7ae4bf65a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e4adddc1762d2aba648ab4ba",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e66d054f7ed7d7f532a13c4d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eccc6d1a73709de61e88a032",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eccc6d1a73709de61e88a032",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed948878093dbf4634abdd9d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f34d0a6a833674d3209874e6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f717a6acc34c61c282b4e017",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f717a6acc34c61c282b4e017",
+        "to": "requirement:task-request-time-limits",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c61634e8ac5c652cf261f70b",
+        "to": "requirement:task-request-time-limits",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c35337dfde3c5125f824e0f8",
+        "to": "requirement:task-request-time-limits",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:7ad2dec593d079fc3460f971",
+        "to": "requirement:calling-time-limit-request",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:36125d662e6d3a7796ab0c77",
+        "to": "requirement:calling-time-limit-request",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c61634e8ac5c652cf261f70b",
+        "to": "requirement:calling-time-limit-request",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:task-request-time-limits",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:f717a6acc34c61c282b4e017",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c61634e8ac5c652cf261f70b",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c35337dfde3c5125f824e0f8",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:calling-time-limit-request",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:7ad2dec593d079fc3460f971",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:36125d662e6d3a7796ab0c77",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c61634e8ac5c652cf261f70b",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:task-request-time-limits",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:f717a6acc34c61c282b4e017",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c61634e8ac5c652cf261f70b",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c35337dfde3c5125f824e0f8",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:calling-time-limit-request",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:7ad2dec593d079fc3460f971",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:36125d662e6d3a7796ab0c77",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:c61634e8ac5c652cf261f70b",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "eba1e492336e3a91a330529d270016be7d7be3306f04ec7f50634f8e75154e30"
+}

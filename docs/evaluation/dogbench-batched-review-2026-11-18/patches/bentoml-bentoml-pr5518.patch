@@ -1,0 +1,23 @@
+diff --git a/docs/source/build-with-bentoml/runtime-environment.rst b/docs/source/build-with-bentoml/runtime-environment.rst
+index 5f8694b12958abce763a294c59ea34f9dafc9203..16e776c4c437b541fda4c8733a5dd81a9ff4f808 100644
+--- a/docs/source/build-with-bentoml/runtime-environment.rst
++++ b/docs/source/build-with-bentoml/runtime-environment.rst
+@@ -90,6 +90,18 @@ Install specific Python dependencies by listing them directly. It supports versi
+ 
+     You don't need to specify BentoML as a dependency in this field since the current version of BentoML will be added to the list by default. However, you can override this by specifying a different BentoML version.
+ 
++``build_include()``
++^^^^^^^^^^^^^^^^^^^
++
++Include additional files from the Bento build context in the image. It accepts one or more paths relative to the Bento context root, appends them to the build include list, and returns ``self`` so you can chain it with other configuration methods. The included files are copied into the image under ``./src/<name>``.
++
++.. code-block:: python
++
++    import bentoml
++
++    image = bentoml.images.Image(python_version='3.11') \
++        .build_include("data/", "config.yaml")
++
+ GitHub packages
+ """""""""""""""
+ 

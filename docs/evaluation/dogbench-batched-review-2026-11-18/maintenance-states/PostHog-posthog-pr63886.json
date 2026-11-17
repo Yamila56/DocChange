@@ -1,0 +1,3286 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "mcp-analytics-mcp-tools",
+      "description": "Add a section to the MCP analytics docs documenting the MCP server tools for MCP analytics (intent clusters, sessions, and the new `mcp-feedback-submit` and `mcp-missing-capability-report` submission tools), noting they require the `mcp_analytics:read`/`mcp_analytics:write` scopes and are gated behind the `mcp-analytics` feature flag.",
+      "evidence_ids": [
+        "4f9feee1930bb1f9acd5c7b6",
+        "e91d966a014a07de1ed44c89",
+        "a7eb1a5c17fbeaddd9a6d93b",
+        "57b903b7fd19b4c597010ede"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "mcp-analytics-feedback-tools",
+      "description": "Document the two new MCP tools `mcp-feedback-submit` (qualitative feedback about a workflow/tool result) and `mcp-missing-capability-report` (captures cases where no available tool suffices), including that they require the `mcp_analytics:write` scope and the `mcp-analytics` feature flag, and that internal transport fields are omitted from the exposed schema.",
+      "evidence_ids": [
+        "4f9feee1930bb1f9acd5c7b6",
+        "1ff21b76cb9c071d6934db44",
+        "a7eb1a5c17fbeaddd9a6d93b"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "6add8889d75cea7c0434c35ef5610a04bc28578a057a4c77b60ab9d64851800c",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Do user-facing docs describe MCP analytics endpoints as staff-only or admin-restricted, or document the mcp_analytics scope/permissions?",
+          "root": "docs",
+          "queries": [
+            "mcp analytics staff only",
+            "mcp_analytics scope",
+            "mcp analytics feature flag"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "offset": 5,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "e91d966a014a07de1ed44c89",
+            "93d273f05390ebd004319ec5",
+            "a7eb1a5c17fbeaddd9a6d93b",
+            "b057d6cbc977de0e918c4d75",
+            "d4e79aa3c9cf0ebdf3f2ec54",
+            "6ec86ec2d99111312a6b0bcb",
+            "7b298f14e438c716317d417a",
+            "08f15187a98047af4a28f511",
+            "91e5d6da55e086ca6544183f",
+            "553c5efe7a3decb51473bd9b",
+            "d3eecad60e127b0dae6271fd",
+            "7ab43d4ec55041eafb9d0398",
+            "07c81bfbc49098b10cc9ff6e",
+            "9f62e9b2eadcd3aba9d928bd",
+            "20863f8010d66213e4db418b"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "evidence_id": "b057d6cbc977de0e918c4d75",
+              "score": "0.04220096843047663"
+            },
+            {
+              "rank": 2,
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "evidence_id": "d4e79aa3c9cf0ebdf3f2ec54",
+              "score": "0.04170447982839699"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "evidence_id": "6ec86ec2d99111312a6b0bcb",
+              "score": "0.03993930905695611"
+            },
+            {
+              "rank": 4,
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "evidence_id": "7b298f14e438c716317d417a",
+              "score": "0.037336542441477216"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "evidence_id": "08f15187a98047af4a28f511",
+              "score": "0.035842911877394634"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "evidence_id": "91e5d6da55e086ca6544183f",
+              "score": "0.03384529864643264"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/mcp-analytics/installation.mdx",
+              "evidence_id": "553c5efe7a3decb51473bd9b",
+              "score": "0.03146325045226976"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/product-analytics/build-insights-mcp.mdx",
+              "evidence_id": "d3eecad60e127b0dae6271fd",
+              "score": "0.03130589585231683"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+              "evidence_id": "7ab43d4ec55041eafb9d0398",
+              "score": "0.02947247648116544"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/mcp-analytics/queries.mdx",
+              "evidence_id": "07c81bfbc49098b10cc9ff6e",
+              "score": "0.028321075626648193"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/mcp-analytics/installation.mdx",
+              "evidence_id": "9f62e9b2eadcd3aba9d928bd",
+              "score": "0.02807810747573191"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "evidence_id": "20863f8010d66213e4db418b",
+              "score": "0.027190018415583977"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "start": 0,
+              "end": 100,
+              "total_lines": 100
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "start": 5,
+              "end": 125,
+              "total_lines": 548
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "start": 0,
+              "end": 120,
+              "total_lines": 229
+            }
+          ],
+          "read_evidence_ids": [
+            "e91d966a014a07de1ed44c89",
+            "93d273f05390ebd004319ec5",
+            "a7eb1a5c17fbeaddd9a6d93b"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Do docs describe the MCP feedback or missing-capability tools, or list available MCP tools?",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "missing-capability-report",
+            "MCP tools list"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/ai-evals/index.mdx",
+              "offset": 270,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 178,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "offset": 4,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a61933009da9452f5ddaa4d2",
+            "db5e1f4c4ccef2e4231a90bd",
+            "4d53b5c9af0eb027b861cdb0",
+            "a865501664724ddaaac8b26d",
+            "08f15187a98047af4a28f511",
+            "cd67cf17e82df7568fac2e1e",
+            "411f22c663abb198694f602d",
+            "ac250ecf41d511a57e28aa8f",
+            "40e33e4831f1001bde16ad6a",
+            "598a511b7f89f07aafea8cd8",
+            "1d5240587443e206422c826d",
+            "5698c3e75a7b622f679597f3",
+            "2e6f5d1ccba30e41bd5b7129",
+            "553c5efe7a3decb51473bd9b",
+            "acb85a2546c5b8da150ef438"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/ai-evals/index.mdx",
+              "evidence_id": "a865501664724ddaaac8b26d",
+              "score": "0.028991596638655463"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "evidence_id": "08f15187a98047af4a28f511",
+              "score": "0.02784014343035668"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "evidence_id": "cd67cf17e82df7568fac2e1e",
+              "score": "0.02740335320958029"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/prompt-management/index.mdx",
+              "evidence_id": "411f22c663abb198694f602d",
+              "score": "0.027236652236652236"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+              "evidence_id": "ac250ecf41d511a57e28aa8f",
+              "score": "0.025561706284597852"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "evidence_id": "40e33e4831f1001bde16ad6a",
+              "score": "0.025452248878210793"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "evidence_id": "598a511b7f89f07aafea8cd8",
+              "score": "0.024493705528188286"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/logs/debug-logs-mcp.mdx",
+              "evidence_id": "1d5240587443e206422c826d",
+              "score": "0.023148148148148147"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/alerts/index.mdx",
+              "evidence_id": "5698c3e75a7b622f679597f3",
+              "score": "0.02250764525993884"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/customer-analytics/create-usage-metrics.mdx",
+              "evidence_id": "2e6f5d1ccba30e41bd5b7129",
+              "score": "0.021954236239950527"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/mcp-analytics/installation.mdx",
+              "evidence_id": "553c5efe7a3decb51473bd9b",
+              "score": "0.021657647302970803"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+              "evidence_id": "acb85a2546c5b8da150ef438",
+              "score": "0.02148217636022514"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/ai-evals/index.mdx",
+              "start": 270,
+              "end": 370,
+              "total_lines": 370
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "start": 178,
+              "end": 229,
+              "total_lines": 229
+            },
+            {
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "start": 4,
+              "end": 97,
+              "total_lines": 97
+            }
+          ],
+          "read_evidence_ids": [
+            "a61933009da9452f5ddaa4d2",
+            "db5e1f4c4ccef2e4231a90bd",
+            "4d53b5c9af0eb027b861cdb0"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What does the tools.yaml header note and the new skills say about the flag/scope cross-layer sync that users may need documented?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "products/mcp_analytics/mcp/tools.yaml",
+            "products/mcp_analytics/skills/exploring-mcp-tool-quality/SKILL.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "products/mcp_analytics/mcp/tools.yaml",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "products/mcp_analytics/skills/exploring-mcp-tool-quality/SKILL.md",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "4f9feee1930bb1f9acd5c7b6",
+            "629cad9c47483fcd3e505303"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "products/mcp_analytics/mcp/tools.yaml",
+              "start": 0,
+              "end": 108,
+              "total_lines": 108
+            },
+            {
+              "path": "products/mcp_analytics/skills/exploring-mcp-tool-quality/SKILL.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 126
+            }
+          ],
+          "read_evidence_ids": [
+            "4f9feee1930bb1f9acd5c7b6",
+            "629cad9c47483fcd3e505303"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "07c81bfbc49098b10cc9ff6e",
+        "08f15187a98047af4a28f511",
+        "1d5240587443e206422c826d",
+        "20863f8010d66213e4db418b",
+        "2e6f5d1ccba30e41bd5b7129",
+        "40e33e4831f1001bde16ad6a",
+        "411f22c663abb198694f602d",
+        "4d53b5c9af0eb027b861cdb0",
+        "4f9feee1930bb1f9acd5c7b6",
+        "553c5efe7a3decb51473bd9b",
+        "5698c3e75a7b622f679597f3",
+        "598a511b7f89f07aafea8cd8",
+        "629cad9c47483fcd3e505303",
+        "6ec86ec2d99111312a6b0bcb",
+        "7ab43d4ec55041eafb9d0398",
+        "7b298f14e438c716317d417a",
+        "91e5d6da55e086ca6544183f",
+        "93d273f05390ebd004319ec5",
+        "9f62e9b2eadcd3aba9d928bd",
+        "a61933009da9452f5ddaa4d2",
+        "a7eb1a5c17fbeaddd9a6d93b",
+        "a865501664724ddaaac8b26d",
+        "ac250ecf41d511a57e28aa8f",
+        "acb85a2546c5b8da150ef438",
+        "b057d6cbc977de0e918c4d75",
+        "cd67cf17e82df7568fac2e1e",
+        "d3eecad60e127b0dae6271fd",
+        "d4e79aa3c9cf0ebdf3f2ec54",
+        "db5e1f4c4ccef2e4231a90bd",
+        "e91d966a014a07de1ed44c89"
+      ],
+      "new_evidence_count": 30,
+      "new_path_count": 17
+    },
+    {
+      "signature": "11a1c4cac28d5c25be56a0f10b3137aeaaea40ee8c94e43355ebae1aca61c989",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Do the MCP analytics docs pages (missing-capability, feedback, or a tools reference) describe the MCP server tools for submitting feedback or reporting missing capabilities, and would the new mcp-feedback-submit / mcp-missing-capability-report tools need documenting there?",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ],
+          "paths": [
+            "contents/docs/mcp-analytics/missing-capability.mdx"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/prompt-management/index.mdx",
+              "offset": 34,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "1ff21b76cb9c071d6934db44",
+            "7643aa8fc6930cd7a50ae7eb",
+            "b69fb35d8f1b3cbe2fadb769",
+            "a865501664724ddaaac8b26d",
+            "acb85a2546c5b8da150ef438",
+            "411f22c663abb198694f602d",
+            "ac250ecf41d511a57e28aa8f",
+            "551c7d78b4a4200ad133c36a",
+            "80fba20f44cf4c22b744ac5f",
+            "9582dc2ccb991d3244f5bc82",
+            "d4cc0d47f1c87707c6234e0e",
+            "553c5efe7a3decb51473bd9b",
+            "5cf07daeba22c3e21ee81753",
+            "7f0a35f86992b4d271dfbd6c",
+            "58a9f6d53f5f9740856f8411"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/ai-evals/index.mdx",
+              "evidence_id": "a865501664724ddaaac8b26d",
+              "score": "0.039589058470384304"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+              "evidence_id": "acb85a2546c5b8da150ef438",
+              "score": "0.03714387464387464"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/prompt-management/index.mdx",
+              "evidence_id": "411f22c663abb198694f602d",
+              "score": "0.03602154179650454"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+              "evidence_id": "ac250ecf41d511a57e28aa8f",
+              "score": "0.03592247709894769"
+            },
+            {
+              "rank": 5,
+              "path": "contents/ko/newsletter/agent-first-product-engineering.md",
+              "evidence_id": "551c7d78b4a4200ad133c36a",
+              "score": "0.034377950816306985"
+            },
+            {
+              "rank": 6,
+              "path": "contents/ko/newsletter/agent-first-product-engineering.md",
+              "evidence_id": "80fba20f44cf4c22b744ac5f",
+              "score": "0.03355871677789486"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/replay-vision/mcp.mdx",
+              "evidence_id": "9582dc2ccb991d3244f5bc82",
+              "score": "0.03347781217750258"
+            },
+            {
+              "rank": 8,
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "evidence_id": "d4cc0d47f1c87707c6234e0e",
+              "score": "0.031985497141263426"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/mcp-analytics/installation.mdx",
+              "evidence_id": "553c5efe7a3decb51473bd9b",
+              "score": "0.031967787114845936"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/replay-vision/mcp.mdx",
+              "evidence_id": "5cf07daeba22c3e21ee81753",
+              "score": "0.03177745226124022"
+            },
+            {
+              "rank": 11,
+              "path": "contents/teams/surveys/objectives.mdx",
+              "evidence_id": "7f0a35f86992b4d271dfbd6c",
+              "score": "0.031549652118912086"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/surveys/implementing-custom-surveys.mdx",
+              "evidence_id": "58a9f6d53f5f9740856f8411",
+              "score": "0.031544957774465976"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "start": 0,
+              "end": 89,
+              "total_lines": 89
+            },
+            {
+              "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+              "start": 0,
+              "end": 47,
+              "total_lines": 47
+            },
+            {
+              "path": "contents/docs/prompt-management/index.mdx",
+              "start": 34,
+              "end": 154,
+              "total_lines": 260
+            }
+          ],
+          "read_evidence_ids": [
+            "1ff21b76cb9c071d6934db44",
+            "7643aa8fc6930cd7a50ae7eb",
+            "b69fb35d8f1b3cbe2fadb769"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is there a general MCP server tools reference page that lists available tools and their scopes/feature flags, where the two new tools and the mcp_analytics scope should be added?",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ],
+          "paths": [
+            "contents/docs/model-context-protocol/index.mdx"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/model-context-protocol/index.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "offset": 326,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "57b903b7fd19b4c597010ede",
+            "cd31efb93515c990f7d7b818",
+            "92826771128d868372fee95b",
+            "ec637b0dd6710abad07e610e",
+            "0a264677f23809f0c5788b7d",
+            "a481c187509edcf7217ac689",
+            "d4e79aa3c9cf0ebdf3f2ec54",
+            "20863f8010d66213e4db418b",
+            "eaef91412bfeeb7ff075fc8c",
+            "5fd1cfa8d211921aab213416",
+            "2506ad7c1103038cb2927bc0",
+            "868edd33fb3a78e0eb4fd7b3",
+            "ee93607c735247ec5851c4ca",
+            "b057d6cbc977de0e918c4d75",
+            "6ec86ec2d99111312a6b0bcb"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "evidence_id": "ec637b0dd6710abad07e610e",
+              "score": "0.030824720116442158"
+            },
+            {
+              "rank": 2,
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "evidence_id": "0a264677f23809f0c5788b7d",
+              "score": "0.03076310088735261"
+            },
+            {
+              "rank": 3,
+              "path": "contents/handbook/engineering/ai/products.md",
+              "evidence_id": "a481c187509edcf7217ac689",
+              "score": "0.02872297770256954"
+            },
+            {
+              "rank": 4,
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "evidence_id": "d4e79aa3c9cf0ebdf3f2ec54",
+              "score": "0.028579937037352163"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "evidence_id": "20863f8010d66213e4db418b",
+              "score": "0.02567844006366742"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/experiments/create-experiments-mcp.mdx",
+              "evidence_id": "eaef91412bfeeb7ff075fc8c",
+              "score": "0.02514926400609417"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/model-context-protocol/tools.mdx",
+              "evidence_id": "5fd1cfa8d211921aab213416",
+              "score": "0.02490402101434633"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "evidence_id": "2506ad7c1103038cb2927bc0",
+              "score": "0.02472239447262574"
+            },
+            {
+              "rank": 9,
+              "path": "contents/handbook/engineering/ai/products.md",
+              "evidence_id": "868edd33fb3a78e0eb4fd7b3",
+              "score": "0.024453780579271563"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/feature-flags/cleaning-up-stale-flags.mdx",
+              "evidence_id": "ee93607c735247ec5851c4ca",
+              "score": "0.02422715053763441"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "evidence_id": "b057d6cbc977de0e918c4d75",
+              "score": "0.02422520421560435"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "evidence_id": "6ec86ec2d99111312a6b0bcb",
+              "score": "0.023378150025714497"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/model-context-protocol/index.mdx",
+              "start": 0,
+              "end": 75,
+              "total_lines": 75
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "start": 15,
+              "end": 89,
+              "total_lines": 89
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "start": 326,
+              "end": 446,
+              "total_lines": 548
+            }
+          ],
+          "read_evidence_ids": [
+            "57b903b7fd19b4c597010ede",
+            "cd31efb93515c990f7d7b818",
+            "92826771128d868372fee95b"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0a264677f23809f0c5788b7d",
+        "1ff21b76cb9c071d6934db44",
+        "2506ad7c1103038cb2927bc0",
+        "551c7d78b4a4200ad133c36a",
+        "57b903b7fd19b4c597010ede",
+        "58a9f6d53f5f9740856f8411",
+        "5cf07daeba22c3e21ee81753",
+        "5fd1cfa8d211921aab213416",
+        "7643aa8fc6930cd7a50ae7eb",
+        "7f0a35f86992b4d271dfbd6c",
+        "80fba20f44cf4c22b744ac5f",
+        "868edd33fb3a78e0eb4fd7b3",
+        "92826771128d868372fee95b",
+        "9582dc2ccb991d3244f5bc82",
+        "a481c187509edcf7217ac689",
+        "b69fb35d8f1b3cbe2fadb769",
+        "cd31efb93515c990f7d7b818",
+        "d4cc0d47f1c87707c6234e0e",
+        "eaef91412bfeeb7ff075fc8c",
+        "ec637b0dd6710abad07e610e",
+        "ee93607c735247ec5851c4ca"
+      ],
+      "new_evidence_count": 21,
+      "new_path_count": 10
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "59f1c85a95dd696639464fec973546c767c44747",
+    "code": "072a9efdd97b53507b0965970800a962695c6c11"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:e5870300a0036ae5": 0,
+    "discover:Q1-2:91446cb088fd6fee": 362,
+    "discover:Q2-1:2e10c225e328f4e0": 0,
+    "discover:Q2-2:408b7caa095f2985": 233
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:e5870300a0036ae5": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 362,
+      "cache_hit": false
+    },
+    "discover:Q1-2:91446cb088fd6fee": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 395,
+      "cache_hit": false
+    },
+    "discover:Q1-1:3337bcf0fd94c73c": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 292,
+      "cache_hit": false
+    },
+    "discover:Q1-3:389e7beb3bc172dc": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 314,
+      "cache_hit": false
+    },
+    "discover:Q1-2:f25a5b16d7434250": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 334,
+      "cache_hit": false
+    },
+    "discover:Q2-1:2e10c225e328f4e0": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 233,
+      "cache_hit": false
+    },
+    "discover:Q2-2:408b7caa095f2985": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 230,
+      "cache_hit": false
+    },
+    "discover:Q2-2:b77806e83227fde6": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 225,
+      "cache_hit": false
+    },
+    "discover:Q2-1:61cadaa36bb68c02": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 258,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 1239,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "mcp-analytics-mcp-tools",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/mcp-analytics/index.mdx"
+      ],
+      "evidence_ids": [
+        "4f9feee1930bb1f9acd5c7b6",
+        "e91d966a014a07de1ed44c89",
+        "a7eb1a5c17fbeaddd9a6d93b",
+        "57b903b7fd19b4c597010ede",
+        "1ff21b76cb9c071d6934db44"
+      ],
+      "reason": "Add a section to the MCP analytics docs documenting the MCP server tools for MCP analytics (intent clusters, sessions, and the new `mcp-feedback-submit` and `mcp-missing-capability-report` submission tools), noting they require the `mcp_analytics:read`/`mcp_analytics:write` scopes and are gated behind the `mcp-analytics` feature flag."
+    },
+    {
+      "requirement_id": "mcp-analytics-feedback-tools",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/mcp-analytics/index.mdx"
+      ],
+      "evidence_ids": [
+        "4f9feee1930bb1f9acd5c7b6",
+        "e91d966a014a07de1ed44c89",
+        "a7eb1a5c17fbeaddd9a6d93b",
+        "57b903b7fd19b4c597010ede",
+        "1ff21b76cb9c071d6934db44"
+      ],
+      "reason": "Document the two new MCP tools `mcp-feedback-submit` (qualitative feedback about a workflow/tool result) and `mcp-missing-capability-report` (captures cases where no available tool suffices), including that they require the `mcp_analytics:write` scope and the `mcp-analytics` feature flag, and that internal transport fields are omitted from the exposed schema."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:07c81bfbc49098b10cc9ff6e",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/queries.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.028321075626648193",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "07c81bfbc49098b10cc9ff6e",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp analytics staff only",
+            "mcp_analytics scope",
+            "mcp analytics feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:08f15187a98047af4a28f511",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/start-here.mdx",
+        "heading": "contentMaxWidthClass: max-w-5xl",
+        "start_line": 183,
+        "end_line": 229,
+        "start_char": 6727,
+        "end_char": 8100,
+        "score": "0.02784014343035668",
+        "root": "docs",
+        "matched_terms": [
+          "capability",
+          "mcp",
+          "missing"
+        ],
+        "evidence_id": "08f15187a98047af4a28f511",
+        "source_type": "repository",
+        "content_hash": "5ef0408a8fddd8c1d864b175bb048dabef6c99eb73db5cc7d78dc38945184e73",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "missing-capability-report",
+            "MCP tools list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5ef0408a8fddd8c1d864b175bb048dabef6c99eb73db5cc7d78dc38945184e73",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0a264677f23809f0c5788b7d",
+        "type": "evidence",
+        "path": "contents/tutorials/mcp-analytics.mdx",
+        "heading": "- MCP > 6. Registering tools using withAnalytics()",
+        "start_line": 331,
+        "end_line": 380,
+        "start_char": 9729,
+        "end_char": 11137,
+        "score": "0.03076310088735261",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "0a264677f23809f0c5788b7d",
+        "source_type": "repository",
+        "content_hash": "e5cc62d1ae80acbe061921d4140a67babeb34832085ee63e250e8aaa70e35f29",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e5cc62d1ae80acbe061921d4140a67babeb34832085ee63e250e8aaa70e35f29",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1d5240587443e206422c826d",
+        "type": "evidence",
+        "path": "contents/docs/logs/debug-logs-mcp.mdx",
+        "heading": "title: Debug Logs with MCP",
+        "start_line": 2,
+        "end_line": 15,
+        "start_char": 4,
+        "end_char": 739,
+        "score": "0.023148148148148147",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tools"
+        ],
+        "evidence_id": "1d5240587443e206422c826d",
+        "source_type": "repository",
+        "content_hash": "41e66a294c18d04e7aac411f5c9289652471d894213894c3585a056f5f784f28",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "missing-capability-report",
+            "MCP tools list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "41e66a294c18d04e7aac411f5c9289652471d894213894c3585a056f5f784f28",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1ff21b76cb9c071d6934db44",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+        "start_line": 1,
+        "total_lines": 89,
+        "start_char": 0,
+        "end_char": 3267,
+        "evidence_id": "1ff21b76cb9c071d6934db44",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "05a42acc28fd9e9dcf1c7a90a75c8b6e1b780114a27c772529d731b116f49b32",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/prompt-management/index.mdx",
+              "offset": 34,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "05a42acc28fd9e9dcf1c7a90a75c8b6e1b780114a27c772529d731b116f49b32",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20863f8010d66213e4db418b",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/events.mdx",
+        "heading": "title: Event and property reference > Core properties",
+        "start_line": 25,
+        "end_line": 43,
+        "start_char": 2045,
+        "end_char": 3688,
+        "score": "0.02567844006366742",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "20863f8010d66213e4db418b",
+        "source_type": "repository",
+        "content_hash": "32cf6b8aa7173f45241413ae1bb3b85111261c02d297b872046ab1449ec0967e",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "32cf6b8aa7173f45241413ae1bb3b85111261c02d297b872046ab1449ec0967e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2506ad7c1103038cb2927bc0",
+        "type": "evidence",
+        "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+        "heading": "title: Manage Feature Flags with MCP",
+        "start_line": 2,
+        "end_line": 8,
+        "start_char": 4,
+        "end_char": 448,
+        "score": "0.02472239447262574",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "mcp",
+          "server"
+        ],
+        "evidence_id": "2506ad7c1103038cb2927bc0",
+        "source_type": "repository",
+        "content_hash": "a7bbb66eeb17fb83d0d7877cbff047b6b2555b91aa1819873e1e188c4282c4e2",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "a7bbb66eeb17fb83d0d7877cbff047b6b2555b91aa1819873e1e188c4282c4e2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2e6f5d1ccba30e41bd5b7129",
+        "type": "evidence",
+        "path": "contents/docs/customer-analytics/create-usage-metrics.mdx",
+        "heading": "showTitle: true > Manage usage metrics via MCP",
+        "start_line": 80,
+        "end_line": 101,
+        "start_char": 4281,
+        "end_char": 5502,
+        "score": "0.021954236239950527",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tools"
+        ],
+        "evidence_id": "2e6f5d1ccba30e41bd5b7129",
+        "source_type": "repository",
+        "content_hash": "6bebf95f8961a88472c7a093fb881bf55576fa818c31daeb143544ee502029f8",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "missing-capability-report",
+            "MCP tools list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6bebf95f8961a88472c7a093fb881bf55576fa818c31daeb143544ee502029f8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:40e33e4831f1001bde16ad6a",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/index.mdx",
+        "heading": "title: MCP analytics > Where to go next",
+        "start_line": 84,
+        "end_line": 97,
+        "start_char": 4347,
+        "end_char": 5563,
+        "score": "0.025452248878210793",
+        "root": "docs",
+        "matched_terms": [
+          "capability",
+          "mcp",
+          "missing"
+        ],
+        "evidence_id": "40e33e4831f1001bde16ad6a",
+        "source_type": "repository",
+        "content_hash": "e2b8356908001c9ce8cc9dadd101bddc1d00533b4677d082335a91b51939731a",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "missing-capability-report",
+            "MCP tools list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e2b8356908001c9ce8cc9dadd101bddc1d00533b4677d082335a91b51939731a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:411f22c663abb198694f602d",
+        "type": "evidence",
+        "path": "contents/docs/prompt-management/index.mdx",
+        "heading": "title: Prompt management > Managing prompts via MCP",
+        "start_line": 39,
+        "end_line": 53,
+        "start_char": 1771,
+        "end_char": 2439,
+        "score": "0.03602154179650454",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool"
+        ],
+        "evidence_id": "411f22c663abb198694f602d",
+        "source_type": "repository",
+        "content_hash": "69c5355e79f98c281183cbec7ccc892ddffb35a247464ed6f36d51b760561e47",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "69c5355e79f98c281183cbec7ccc892ddffb35a247464ed6f36d51b760561e47",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4d53b5c9af0eb027b861cdb0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/mcp-analytics/events.mdx",
+        "start_line": 5,
+        "total_lines": 97,
+        "start_char": 45,
+        "end_char": 7033,
+        "evidence_id": "4d53b5c9af0eb027b861cdb0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "b07397930fea2aebae888b18ce4daed813a171a379fc6b615c5ae0a1f9233c5c",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/ai-evals/index.mdx",
+              "offset": 270,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 178,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "offset": 4,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b07397930fea2aebae888b18ce4daed813a171a379fc6b615c5ae0a1f9233c5c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4f9feee1930bb1f9acd5c7b6",
+        "type": "evidence",
+        "root": "code",
+        "path": "products/mcp_analytics/mcp/tools.yaml",
+        "start_line": 1,
+        "total_lines": 108,
+        "start_char": 0,
+        "end_char": 4415,
+        "evidence_id": "4f9feee1930bb1f9acd5c7b6",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "85a4e36dbbddd711ec3dd833c027ff3fa839dfe528a34fe1d511eb5f247650a2",
+        "revision": "072a9efdd97b53507b0965970800a962695c6c11",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/mcp_analytics/mcp/tools.yaml",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "products/mcp_analytics/skills/exploring-mcp-tool-quality/SKILL.md",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "85a4e36dbbddd711ec3dd833c027ff3fa839dfe528a34fe1d511eb5f247650a2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:551c7d78b4a4200ad133c36a",
+        "type": "evidence",
+        "path": "contents/ko/newsletter/agent-first-product-engineering.md",
+        "heading": "AI 에이전트와 MCP 서버에서 잘 작동하는 제품을 만들기 위한 다섯 가지 원칙을 정리했습니다. > 1. 인간이 하면 에이전트도 할 수 있어야 한다 > 실제로는 이런 모습이다",
+        "start_line": 48,
+        "end_line": 66,
+        "start_char": 1749,
+        "end_char": 2348,
+        "score": "0.034377950816306985",
+        "root": "docs",
+        "matched_terms": [
+          "mcp"
+        ],
+        "evidence_id": "551c7d78b4a4200ad133c36a",
+        "source_type": "repository",
+        "content_hash": "d9cdec919d03c9dcaa1f7af9da0fa16a95063154ad7666073ce2bd69fa2e8912",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "d9cdec919d03c9dcaa1f7af9da0fa16a95063154ad7666073ce2bd69fa2e8912",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:553c5efe7a3decb51473bd9b",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/installation.mdx",
+        "heading": "title: Installing the MCP analytics SDK > Configuration",
+        "start_line": 75,
+        "end_line": 88,
+        "start_char": 2931,
+        "end_char": 4723,
+        "score": "0.031967787114845936",
+        "root": "docs",
+        "matched_terms": [
+          "capability",
+          "mcp",
+          "missing",
+          "tool"
+        ],
+        "evidence_id": "553c5efe7a3decb51473bd9b",
+        "source_type": "repository",
+        "content_hash": "cc2673a8d8d525d09d8dfd5a141433a65d831ea06e8445e68fce66135571ea60",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "cc2673a8d8d525d09d8dfd5a141433a65d831ea06e8445e68fce66135571ea60",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5698c3e75a7b622f679597f3",
+        "type": "evidence",
+        "path": "contents/docs/alerts/index.mdx",
+        "heading": "enterprise: full > Create alerts with PostHog AI > Manage alerts via MCP",
+        "start_line": 127,
+        "end_line": 137,
+        "start_char": 6009,
+        "end_char": 6470,
+        "score": "0.02250764525993884",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tools"
+        ],
+        "evidence_id": "5698c3e75a7b622f679597f3",
+        "source_type": "repository",
+        "content_hash": "f10887f7dc174d063ddabe7e96da6c18b435ba6af985c1c2b5cacdc602f8b3bc",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "missing-capability-report",
+            "MCP tools list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f10887f7dc174d063ddabe7e96da6c18b435ba6af985c1c2b5cacdc602f8b3bc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:57b903b7fd19b4c597010ede",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/model-context-protocol/index.mdx",
+        "start_line": 1,
+        "total_lines": 75,
+        "start_char": 0,
+        "end_char": 4279,
+        "evidence_id": "57b903b7fd19b4c597010ede",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "e1bd655cda8de98794007b2c4db414d837333d3c4e69abd2144052e4d1a801e0",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/model-context-protocol/index.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "offset": 326,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e1bd655cda8de98794007b2c4db414d837333d3c4e69abd2144052e4d1a801e0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:58a9f6d53f5f9740856f8411",
+        "type": "evidence",
+        "path": "contents/docs/surveys/implementing-custom-surveys.mdx",
+        "heading": "enterprise: full",
+        "start_line": 8,
+        "end_line": 57,
+        "start_char": 118,
+        "end_char": 1522,
+        "score": "0.031544957774465976",
+        "root": "docs",
+        "matched_terms": [
+          "feedback",
+          "submit"
+        ],
+        "evidence_id": "58a9f6d53f5f9740856f8411",
+        "source_type": "repository",
+        "content_hash": "fdf5e5da5b3f625e15280021fdb8c877cf9e64bf7361a7ebf74f108d914d46e7",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "fdf5e5da5b3f625e15280021fdb8c877cf9e64bf7361a7ebf74f108d914d46e7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:598a511b7f89f07aafea8cd8",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+        "heading": "title: Tracking missing capabilities > Enabling",
+        "start_line": 11,
+        "end_line": 20,
+        "start_char": 415,
+        "end_char": 783,
+        "score": "0.024493705528188286",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "tools"
+        ],
+        "evidence_id": "598a511b7f89f07aafea8cd8",
+        "source_type": "repository",
+        "content_hash": "f70a776a75ecdedac674848121e99bce0c6b3ebe897bf0b73ec942d72f2a6d2e",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "missing-capability-report",
+            "MCP tools list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f70a776a75ecdedac674848121e99bce0c6b3ebe897bf0b73ec942d72f2a6d2e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5cf07daeba22c3e21ee81753",
+        "type": "evidence",
+        "path": "contents/docs/replay-vision/mcp.mdx",
+        "heading": "title: MCP > Example prompts",
+        "start_line": 59,
+        "end_line": 69,
+        "start_char": 2751,
+        "end_char": 3529,
+        "score": "0.03177745226124022",
+        "root": "docs",
+        "matched_terms": [
+          "mcp"
+        ],
+        "evidence_id": "5cf07daeba22c3e21ee81753",
+        "source_type": "repository",
+        "content_hash": "1cc60acfcf4957aa5b8b05390210b1699770c771c4c6e9fb6a23cef44d569b19",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "1cc60acfcf4957aa5b8b05390210b1699770c771c4c6e9fb6a23cef44d569b19",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5fd1cfa8d211921aab213416",
+        "type": "evidence",
+        "path": "contents/docs/model-context-protocol/tools.mdx",
+        "heading": "showTitle: true",
+        "start_line": 5,
+        "end_line": 15,
+        "start_char": 73,
+        "end_char": 716,
+        "score": "0.02490402101434633",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "mcp",
+          "scope",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "5fd1cfa8d211921aab213416",
+        "source_type": "repository",
+        "content_hash": "8cd4d54e95db9e4b9f1cfd0725a55ba99b1cc14ecf00c79bceb1f607c90dc0b9",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8cd4d54e95db9e4b9f1cfd0725a55ba99b1cc14ecf00c79bceb1f607c90dc0b9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:629cad9c47483fcd3e505303",
+        "type": "evidence",
+        "root": "code",
+        "path": "products/mcp_analytics/skills/exploring-mcp-tool-quality/SKILL.md",
+        "start_line": 1,
+        "total_lines": 126,
+        "start_char": 0,
+        "end_char": 5281,
+        "evidence_id": "629cad9c47483fcd3e505303",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "4d6c3d81bed70b023e59a14e2c69bd99729c76e8cbe3c2a2d15060df4a4e0605",
+        "revision": "072a9efdd97b53507b0965970800a962695c6c11",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/mcp_analytics/mcp/tools.yaml",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "products/mcp_analytics/skills/exploring-mcp-tool-quality/SKILL.md",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4d6c3d81bed70b023e59a14e2c69bd99729c76e8cbe3c2a2d15060df4a4e0605",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6ec86ec2d99111312a6b0bcb",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/start-here.mdx",
+        "heading": "contentMaxWidthClass: max-w-5xl",
+        "start_line": 4,
+        "end_line": 35,
+        "start_char": 69,
+        "end_char": 1669,
+        "score": "0.023378150025714497",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "6ec86ec2d99111312a6b0bcb",
+        "source_type": "repository",
+        "content_hash": "0f91677d5cca2c5c2e46a2d671e12ab639024bffd40ec4ca885acbc51d55afd7",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0f91677d5cca2c5c2e46a2d671e12ab639024bffd40ec4ca885acbc51d55afd7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7643aa8fc6930cd7a50ae7eb",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+        "start_line": 1,
+        "total_lines": 47,
+        "start_char": 0,
+        "end_char": 2129,
+        "evidence_id": "7643aa8fc6930cd7a50ae7eb",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "e1bdf942cc9fab25b2a174590a1bdd85bfede92c0de4288e9ffe5e43fe3bf54e",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/prompt-management/index.mdx",
+              "offset": 34,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e1bdf942cc9fab25b2a174590a1bdd85bfede92c0de4288e9ffe5e43fe3bf54e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7ab43d4ec55041eafb9d0398",
+        "type": "evidence",
+        "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+        "heading": "title: Query web traffic with MCP",
+        "start_line": 2,
+        "end_line": 8,
+        "start_char": 4,
+        "end_char": 402,
+        "score": "0.02947247648116544",
+        "root": "docs",
+        "matched_terms": [
+          "analytics",
+          "mcp"
+        ],
+        "evidence_id": "7ab43d4ec55041eafb9d0398",
+        "source_type": "repository",
+        "content_hash": "6d707cbcf4b5673af879deeaace5df9fb20a9a558e7921407fa815704cde827f",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp analytics staff only",
+            "mcp_analytics scope",
+            "mcp analytics feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6d707cbcf4b5673af879deeaace5df9fb20a9a558e7921407fa815704cde827f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7b298f14e438c716317d417a",
+        "type": "evidence",
+        "path": "contents/tutorials/mcp-analytics.mdx",
+        "heading": "- MCP > 9. Create MCP analytics dashboards",
+        "start_line": 487,
+        "end_line": 536,
+        "start_char": 14381,
+        "end_char": 15645,
+        "score": "0.037336542441477216",
+        "root": "docs",
+        "matched_terms": [
+          "analytics",
+          "mcp"
+        ],
+        "evidence_id": "7b298f14e438c716317d417a",
+        "source_type": "repository",
+        "content_hash": "9990133a39a987569e1fa81a80fd73c7bddd3730f9be8130b2c67442a32be02c",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp analytics staff only",
+            "mcp_analytics scope",
+            "mcp analytics feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9990133a39a987569e1fa81a80fd73c7bddd3730f9be8130b2c67442a32be02c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f0a35f86992b4d271dfbd6c",
+        "type": "evidence",
+        "path": "contents/teams/surveys/objectives.mdx",
+        "heading": "📊 Goal 3: MCP analytics",
+        "start_line": 22,
+        "end_line": 32,
+        "start_char": 1135,
+        "end_char": 1640,
+        "score": "0.031549652118912086",
+        "root": "docs",
+        "matched_terms": [
+          "feedback",
+          "mcp"
+        ],
+        "evidence_id": "7f0a35f86992b4d271dfbd6c",
+        "source_type": "repository",
+        "content_hash": "bf518ed0db108db435b194ddc0eb0c4c3037b59152049aa90e13847187fa3bb3",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "bf518ed0db108db435b194ddc0eb0c4c3037b59152049aa90e13847187fa3bb3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:80fba20f44cf4c22b744ac5f",
+        "type": "evidence",
+        "path": "contents/ko/newsletter/agent-first-product-engineering.md",
+        "heading": "AI 에이전트와 MCP 서버에서 잘 작동하는 제품을 만들기 위한 다섯 가지 원칙을 정리했습니다. > 4. 스킬을 효과적으로 작성하라 > 실제로는 이런 모습이다",
+        "start_line": 145,
+        "end_line": 158,
+        "start_char": 5386,
+        "end_char": 6206,
+        "score": "0.03355871677789486",
+        "root": "docs",
+        "matched_terms": [
+          "mcp"
+        ],
+        "evidence_id": "80fba20f44cf4c22b744ac5f",
+        "source_type": "repository",
+        "content_hash": "b69aaa6ee16765b5a547f2c81f53c85ffce95607ddded0c042b7325846a3e490",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b69aaa6ee16765b5a547f2c81f53c85ffce95607ddded0c042b7325846a3e490",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:868edd33fb3a78e0eb4fd7b3",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/ai/products.md",
+        "heading": "showTitle: true > MCP: PostHog for third-party tools [General availability]",
+        "start_line": 406,
+        "end_line": 409,
+        "start_char": 27420,
+        "end_char": 27759,
+        "score": "0.024453780579271563",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "868edd33fb3a78e0eb4fd7b3",
+        "source_type": "repository",
+        "content_hash": "0fd2945c56f81ebdfddde58ee558dcd5d314977159ab35c2426e96cbca94a6f3",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0fd2945c56f81ebdfddde58ee558dcd5d314977159ab35c2426e96cbca94a6f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:91e5d6da55e086ca6544183f",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/index.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.03384529864643264",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "91e5d6da55e086ca6544183f",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp analytics staff only",
+            "mcp_analytics scope",
+            "mcp analytics feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:92826771128d868372fee95b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/tutorials/mcp-analytics.mdx",
+        "start_line": 327,
+        "total_lines": 548,
+        "start_char": 9718,
+        "end_char": 13275,
+        "evidence_id": "92826771128d868372fee95b",
+        "truncated": false,
+        "next_offset": 446,
+        "source_type": "repository",
+        "content_hash": "091cf11dde2eefa6407571771422061ca69d13240a3015a74d761e8afc7f8d48",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/model-context-protocol/index.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "offset": 326,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "091cf11dde2eefa6407571771422061ca69d13240a3015a74d761e8afc7f8d48",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:93d273f05390ebd004319ec5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/tutorials/mcp-analytics.mdx",
+        "start_line": 6,
+        "total_lines": 548,
+        "start_char": 97,
+        "end_char": 3700,
+        "evidence_id": "93d273f05390ebd004319ec5",
+        "truncated": false,
+        "next_offset": 125,
+        "source_type": "repository",
+        "content_hash": "c2c7885f2314533019f9b6a338de6f5531d1058cc821165a8c2edf948e6396a1",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "offset": 5,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c2c7885f2314533019f9b6a338de6f5531d1058cc821165a8c2edf948e6396a1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9582dc2ccb991d3244f5bc82",
+        "type": "evidence",
+        "path": "contents/docs/replay-vision/mcp.mdx",
+        "heading": "title: MCP",
+        "start_line": 2,
+        "end_line": 14,
+        "start_char": 4,
+        "end_char": 544,
+        "score": "0.03347781217750258",
+        "root": "docs",
+        "matched_terms": [
+          "mcp"
+        ],
+        "evidence_id": "9582dc2ccb991d3244f5bc82",
+        "source_type": "repository",
+        "content_hash": "547c2207cc7b7d3e089fd5f613e32eb68fa466283f0f55d238da7432c0b546d9",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "547c2207cc7b7d3e089fd5f613e32eb68fa466283f0f55d238da7432c0b546d9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9f62e9b2eadcd3aba9d928bd",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/installation.mdx",
+        "heading": "title: Installing the MCP analytics SDK > Requirements",
+        "start_line": 13,
+        "end_line": 18,
+        "start_char": 477,
+        "end_char": 791,
+        "score": "0.02807810747573191",
+        "root": "docs",
+        "matched_terms": [
+          "analytics",
+          "mcp"
+        ],
+        "evidence_id": "9f62e9b2eadcd3aba9d928bd",
+        "source_type": "repository",
+        "content_hash": "15bdce12c71af5a7af5362d375391191028f500aa658126cf48393da8d395c24",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp analytics staff only",
+            "mcp_analytics scope",
+            "mcp analytics feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "15bdce12c71af5a7af5362d375391191028f500aa658126cf48393da8d395c24",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a481c187509edcf7217ac689",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/ai/products.md",
+        "heading": "showTitle: true > MCP: PostHog for third-party tools [General availability] > How it works",
+        "start_line": 424,
+        "end_line": 437,
+        "start_char": 28766,
+        "end_char": 30251,
+        "score": "0.02872297770256954",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "mcp",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "a481c187509edcf7217ac689",
+        "source_type": "repository",
+        "content_hash": "9b2d8cc674e10d210dbb7608053e096a800c0f911205862dfcd4a81006cdd6a7",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9b2d8cc674e10d210dbb7608053e096a800c0f911205862dfcd4a81006cdd6a7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a61933009da9452f5ddaa4d2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/ai-evals/index.mdx",
+        "start_line": 271,
+        "total_lines": 370,
+        "start_char": 12371,
+        "end_char": 19178,
+        "evidence_id": "a61933009da9452f5ddaa4d2",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "711eb942b51cabdf90d95ddc9e0e4a7d3543cf69bb599b70c3c9d49a284279bc",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/ai-evals/index.mdx",
+              "offset": 270,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 178,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "offset": 4,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "711eb942b51cabdf90d95ddc9e0e4a7d3543cf69bb599b70c3c9d49a284279bc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a7eb1a5c17fbeaddd9a6d93b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/mcp-analytics/start-here.mdx",
+        "start_line": 1,
+        "total_lines": 229,
+        "start_char": 0,
+        "end_char": 4469,
+        "evidence_id": "a7eb1a5c17fbeaddd9a6d93b",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "c0fb16e6e9d2a9364dacac1c4894de1142f8a0b982c984fa8bb1cc5eb7dc405f",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "offset": 5,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c0fb16e6e9d2a9364dacac1c4894de1142f8a0b982c984fa8bb1cc5eb7dc405f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a865501664724ddaaac8b26d",
+        "type": "evidence",
+        "path": "contents/docs/ai-evals/index.mdx",
+        "heading": "title: Evaluations > Managing evaluations via MCP",
+        "start_line": 275,
+        "end_line": 291,
+        "start_char": 12529,
+        "end_char": 13604,
+        "score": "0.039589058470384304",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool"
+        ],
+        "evidence_id": "a865501664724ddaaac8b26d",
+        "source_type": "repository",
+        "content_hash": "6e4b1bcef0ac73654f50ce2eb9d3d78dc6c7452380802e110aaad17e7dd2302f",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "6e4b1bcef0ac73654f50ce2eb9d3d78dc6c7452380802e110aaad17e7dd2302f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ac250ecf41d511a57e28aa8f",
+        "type": "evidence",
+        "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+        "heading": "title: Search replays with MCP > Replay tools",
+        "start_line": 18,
+        "end_line": 26,
+        "start_char": 934,
+        "end_char": 1299,
+        "score": "0.03592247709894769",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool"
+        ],
+        "evidence_id": "ac250ecf41d511a57e28aa8f",
+        "source_type": "repository",
+        "content_hash": "ce249dc104a63dac6dd4e965140e38393134ba60cca3dfd614348fc167415d18",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "ce249dc104a63dac6dd4e965140e38393134ba60cca3dfd614348fc167415d18",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:acb85a2546c5b8da150ef438",
+        "type": "evidence",
+        "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+        "heading": "title: Search replays with MCP",
+        "start_line": 2,
+        "end_line": 8,
+        "start_char": 4,
+        "end_char": 436,
+        "score": "0.03714387464387464",
+        "root": "docs",
+        "matched_terms": [
+          "mcp"
+        ],
+        "evidence_id": "acb85a2546c5b8da150ef438",
+        "source_type": "repository",
+        "content_hash": "b6bc019b3f7b67bb03a92d2114a95d4eca4eae27c2992dae34e62f897bc77b2c",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b6bc019b3f7b67bb03a92d2114a95d4eca4eae27c2992dae34e62f897bc77b2c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b057d6cbc977de0e918c4d75",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/index.mdx",
+        "heading": "title: MCP analytics",
+        "start_line": 2,
+        "end_line": 20,
+        "start_char": 4,
+        "end_char": 1800,
+        "score": "0.02422520421560435",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "b057d6cbc977de0e918c4d75",
+        "source_type": "repository",
+        "content_hash": "28a7dff83cf3962378ee5699e1accc559f80df35073437bb5d7a0b3d679af147",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "28a7dff83cf3962378ee5699e1accc559f80df35073437bb5d7a0b3d679af147",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b69fb35d8f1b3cbe2fadb769",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/prompt-management/index.mdx",
+        "start_line": 35,
+        "total_lines": 260,
+        "start_char": 1587,
+        "end_char": 6025,
+        "evidence_id": "b69fb35d8f1b3cbe2fadb769",
+        "truncated": false,
+        "next_offset": 154,
+        "source_type": "repository",
+        "content_hash": "c854ad0b0260804598aa2aeeb315c220638ac9a094034e100ee3b692daa0b883",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/session-replay/search-replays-mcp.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/prompt-management/index.mdx",
+              "offset": 34,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "c854ad0b0260804598aa2aeeb315c220638ac9a094034e100ee3b692daa0b883",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cd31efb93515c990f7d7b818",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+        "start_line": 16,
+        "total_lines": 89,
+        "start_char": 963,
+        "end_char": 6156,
+        "evidence_id": "cd31efb93515c990f7d7b818",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "4c3634e25966cf7c90e96dc3bad2e06ec53106e3bf1a61675536161c540d23b6",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/model-context-protocol/index.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "offset": 326,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4c3634e25966cf7c90e96dc3bad2e06ec53106e3bf1a61675536161c540d23b6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cd67cf17e82df7568fac2e1e",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/events.mdx",
+        "heading": "title: Event and property reference > Events",
+        "start_line": 9,
+        "end_line": 23,
+        "start_char": 371,
+        "end_char": 2044,
+        "score": "0.02740335320958029",
+        "root": "docs",
+        "matched_terms": [
+          "capability",
+          "list",
+          "mcp",
+          "missing",
+          "tools"
+        ],
+        "evidence_id": "cd67cf17e82df7568fac2e1e",
+        "source_type": "repository",
+        "content_hash": "4116a6040cae9f026112421383fe944660a3c2c93afcccf51da4809ad51bd71c",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "missing-capability-report",
+            "MCP tools list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4116a6040cae9f026112421383fe944660a3c2c93afcccf51da4809ad51bd71c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d0b6dfd9a0f7cdfc8cc29fef",
+        "type": "evidence",
+        "evidence_id": "d0b6dfd9a0f7cdfc8cc29fef",
+        "source_type": "implementation",
+        "exported_content_sha256": "62370d3281ce6237418519e5d928ae93d916397ad15bc58916041abb5c372b3c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d3eecad60e127b0dae6271fd",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/build-insights-mcp.mdx",
+        "heading": "title: Build insights with MCP",
+        "start_line": 2,
+        "end_line": 8,
+        "start_char": 4,
+        "end_char": 330,
+        "score": "0.03130589585231683",
+        "root": "docs",
+        "matched_terms": [
+          "analytics",
+          "mcp"
+        ],
+        "evidence_id": "d3eecad60e127b0dae6271fd",
+        "source_type": "repository",
+        "content_hash": "2ff84e67b7f802cf2b792768575cd87787d4f6d2f39ca18053f8ba5cd0ecd276",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp analytics staff only",
+            "mcp_analytics scope",
+            "mcp analytics feature flag"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2ff84e67b7f802cf2b792768575cd87787d4f6d2f39ca18053f8ba5cd0ecd276",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d4cc0d47f1c87707c6234e0e",
+        "type": "evidence",
+        "path": "contents/tutorials/mcp-analytics.mdx",
+        "heading": "- MCP > 9. Create MCP analytics dashboards",
+        "start_line": 537,
+        "end_line": 540,
+        "start_char": 15645,
+        "end_char": 15710,
+        "score": "0.031985497141263426",
+        "root": "docs",
+        "matched_terms": [
+          "tool"
+        ],
+        "evidence_id": "d4cc0d47f1c87707c6234e0e",
+        "source_type": "repository",
+        "content_hash": "3c696954a76e07c4080cb41e54c5e1d3f569639e03e343abfbe3638c4bb86e01",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp-feedback-submit",
+            "mcp-missing-capability-report",
+            "feedback submit MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "3c696954a76e07c4080cb41e54c5e1d3f569639e03e343abfbe3638c4bb86e01",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d4e79aa3c9cf0ebdf3f2ec54",
+        "type": "evidence",
+        "path": "contents/tutorials/mcp-analytics.mdx",
+        "heading": "- MCP",
+        "start_line": 10,
+        "end_line": 24,
+        "start_char": 159,
+        "end_char": 874,
+        "score": "0.028579937037352163",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "d4e79aa3c9cf0ebdf3f2ec54",
+        "source_type": "repository",
+        "content_hash": "b2885276e6c61dd1371744fbca8ffec5b349a1def0ac61ce5ff758f255f549d4",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b2885276e6c61dd1371744fbca8ffec5b349a1def0ac61ce5ff758f255f549d4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:db5e1f4c4ccef2e4231a90bd",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/mcp-analytics/start-here.mdx",
+        "start_line": 179,
+        "total_lines": 229,
+        "start_char": 6663,
+        "end_char": 8100,
+        "evidence_id": "db5e1f4c4ccef2e4231a90bd",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "cf550d063e6d383619b131501acb6f9967a64373cb4a48ee2128014995a0b61e",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/ai-evals/index.mdx",
+              "offset": 270,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 178,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "offset": 4,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cf550d063e6d383619b131501acb6f9967a64373cb4a48ee2128014995a0b61e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e91d966a014a07de1ed44c89",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/mcp-analytics/index.mdx",
+        "start_line": 1,
+        "total_lines": 100,
+        "start_char": 0,
+        "end_char": 6007,
+        "evidence_id": "e91d966a014a07de1ed44c89",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "de83367487d7104780d1e05f52e8a7782993446417b64d170ff28d6296048620",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "offset": 5,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "de83367487d7104780d1e05f52e8a7782993446417b64d170ff28d6296048620",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eaef91412bfeeb7ff075fc8c",
+        "type": "evidence",
+        "path": "contents/docs/experiments/create-experiments-mcp.mdx",
+        "heading": "title: Create Experiments with MCP > Experiment tools",
+        "start_line": 18,
+        "end_line": 30,
+        "start_char": 910,
+        "end_char": 1639,
+        "score": "0.02514926400609417",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "flag",
+          "mcp",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "eaef91412bfeeb7ff075fc8c",
+        "source_type": "repository",
+        "content_hash": "e07fd89ed21601bac6d4b9919250969d09d7845754ad4be3aecffd05a8901b6d",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e07fd89ed21601bac6d4b9919250969d09d7845754ad4be3aecffd05a8901b6d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ec637b0dd6710abad07e610e",
+        "type": "evidence",
+        "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+        "heading": "title: Manage Feature Flags with MCP > Feature flag tools",
+        "start_line": 20,
+        "end_line": 31,
+        "start_char": 1373,
+        "end_char": 2446,
+        "score": "0.030824720116442158",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "flag",
+          "mcp",
+          "server",
+          "tools"
+        ],
+        "evidence_id": "ec637b0dd6710abad07e610e",
+        "source_type": "repository",
+        "content_hash": "f26125d3acc9b81e463ebcd30c941202f9ab6051d4358a7af9cf2a4e51119362",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "f26125d3acc9b81e463ebcd30c941202f9ab6051d4358a7af9cf2a4e51119362",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee93607c735247ec5851c4ca",
+        "type": "evidence",
+        "path": "contents/docs/feature-flags/cleaning-up-stale-flags.mdx",
+        "heading": "showTitle: true > 1. Finding stale flags > With the MCP server",
+        "start_line": 53,
+        "end_line": 62,
+        "start_char": 2587,
+        "end_char": 3035,
+        "score": "0.02422715053763441",
+        "root": "docs",
+        "matched_terms": [
+          "feature",
+          "flag",
+          "mcp",
+          "server"
+        ],
+        "evidence_id": "ee93607c735247ec5851c4ca",
+        "source_type": "repository",
+        "content_hash": "2550a18beb64a01892b2ccf0186771d6e17348e827fe03ddb9c569aed263435e",
+        "revision": "59f1c85a95dd696639464fec973546c767c44747",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "mcp_analytics:write scope",
+            "MCP server tools reference",
+            "feature flag gated MCP tools"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2550a18beb64a01892b2ccf0186771d6e17348e827fe03ddb9c569aed263435e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f3313b189033a18aaa2c2cbc",
+        "type": "evidence",
+        "evidence_id": "f3313b189033a18aaa2c2cbc",
+        "source_type": "task",
+        "exported_content_sha256": "e092b65ea72c17af13b6e806b8b89892f673360f5c29bb2987a32cd199be1c3d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:mcp-analytics-mcp-tools",
+        "type": "requirement",
+        "description": "Add a section to the MCP analytics docs documenting the MCP server tools for MCP analytics (intent clusters, sessions, and the new `mcp-feedback-submit` and `mcp-missing-capability-report` submission tools), noting they require the `mcp_analytics:read`/`mcp_analytics:write` scopes and are gated behind the `mcp-analytics` feature flag."
+      },
+      {
+        "id": "requirement:mcp-analytics-feedback-tools",
+        "type": "requirement",
+        "description": "Document the two new MCP tools `mcp-feedback-submit` (qualitative feedback about a workflow/tool result) and `mcp-missing-capability-report` (captures cases where no available tool suffices), including that they require the `mcp_analytics:write` scope and the `mcp-analytics` feature flag, and that internal transport fields are omitted from the exposed schema."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "contents/docs/mcp-analytics/index.mdx",
+        "hash": "20200e3119fe92288921c399833f751863bead24b44c30fbff260367b2c138af"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "mcp-analytics-mcp-tools",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/mcp-analytics/index.mdx"
+        ],
+        "evidence_ids": [
+          "4f9feee1930bb1f9acd5c7b6",
+          "e91d966a014a07de1ed44c89",
+          "a7eb1a5c17fbeaddd9a6d93b",
+          "57b903b7fd19b4c597010ede",
+          "1ff21b76cb9c071d6934db44"
+        ],
+        "reason": "Add a section to the MCP analytics docs documenting the MCP server tools for MCP analytics (intent clusters, sessions, and the new `mcp-feedback-submit` and `mcp-missing-capability-report` submission tools), noting they require the `mcp_analytics:read`/`mcp_analytics:write` scopes and are gated behind the `mcp-analytics` feature flag."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "mcp-analytics-feedback-tools",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/mcp-analytics/index.mdx"
+        ],
+        "evidence_ids": [
+          "4f9feee1930bb1f9acd5c7b6",
+          "e91d966a014a07de1ed44c89",
+          "a7eb1a5c17fbeaddd9a6d93b",
+          "57b903b7fd19b4c597010ede",
+          "1ff21b76cb9c071d6934db44"
+        ],
+        "reason": "Document the two new MCP tools `mcp-feedback-submit` (qualitative feedback about a workflow/tool result) and `mcp-missing-capability-report` (captures cases where no available tool suffices), including that they require the `mcp_analytics:write` scope and the `mcp-analytics` feature flag, and that internal transport fields are omitted from the exposed schema."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Do user-facing docs describe MCP analytics endpoints as staff-only or admin-restricted, or document the mcp_analytics scope/permissions?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Do docs describe the MCP feedback or missing-capability tools, or list available MCP tools?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What does the tools.yaml header note and the new skills say about the flag/scope cross-layer sync that users may need documented?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Do the MCP analytics docs pages (missing-capability, feedback, or a tools reference) describe the MCP server tools for submitting feedback or reporting missing capabilities, and would the new mcp-feedback-submit / mcp-missing-capability-report tools need documenting there?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is there a general MCP server tools reference page that lists available tools and their scopes/feature flags, where the two new tools and the mcp_analytics scope should be added?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:07c81bfbc49098b10cc9ff6e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:08f15187a98047af4a28f511",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:08f15187a98047af4a28f511",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0a264677f23809f0c5788b7d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1d5240587443e206422c826d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1ff21b76cb9c071d6934db44",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:20863f8010d66213e4db418b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:20863f8010d66213e4db418b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2506ad7c1103038cb2927bc0",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2e6f5d1ccba30e41bd5b7129",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:40e33e4831f1001bde16ad6a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:411f22c663abb198694f602d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:411f22c663abb198694f602d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4d53b5c9af0eb027b861cdb0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4f9feee1930bb1f9acd5c7b6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:551c7d78b4a4200ad133c36a",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:553c5efe7a3decb51473bd9b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:553c5efe7a3decb51473bd9b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:553c5efe7a3decb51473bd9b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5698c3e75a7b622f679597f3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:57b903b7fd19b4c597010ede",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:58a9f6d53f5f9740856f8411",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:598a511b7f89f07aafea8cd8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5cf07daeba22c3e21ee81753",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5fd1cfa8d211921aab213416",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:629cad9c47483fcd3e505303",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6ec86ec2d99111312a6b0bcb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6ec86ec2d99111312a6b0bcb",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7643aa8fc6930cd7a50ae7eb",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7ab43d4ec55041eafb9d0398",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7b298f14e438c716317d417a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f0a35f86992b4d271dfbd6c",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:80fba20f44cf4c22b744ac5f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:868edd33fb3a78e0eb4fd7b3",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:91e5d6da55e086ca6544183f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:92826771128d868372fee95b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:93d273f05390ebd004319ec5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9582dc2ccb991d3244f5bc82",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9f62e9b2eadcd3aba9d928bd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a481c187509edcf7217ac689",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a61933009da9452f5ddaa4d2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a7eb1a5c17fbeaddd9a6d93b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a865501664724ddaaac8b26d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a865501664724ddaaac8b26d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac250ecf41d511a57e28aa8f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac250ecf41d511a57e28aa8f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:acb85a2546c5b8da150ef438",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:acb85a2546c5b8da150ef438",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b057d6cbc977de0e918c4d75",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b057d6cbc977de0e918c4d75",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b69fb35d8f1b3cbe2fadb769",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd31efb93515c990f7d7b818",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd67cf17e82df7568fac2e1e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d3eecad60e127b0dae6271fd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d4cc0d47f1c87707c6234e0e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d4e79aa3c9cf0ebdf3f2ec54",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d4e79aa3c9cf0ebdf3f2ec54",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:db5e1f4c4ccef2e4231a90bd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e91d966a014a07de1ed44c89",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eaef91412bfeeb7ff075fc8c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec637b0dd6710abad07e610e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee93607c735247ec5851c4ca",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4f9feee1930bb1f9acd5c7b6",
+        "to": "requirement:mcp-analytics-mcp-tools",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:e91d966a014a07de1ed44c89",
+        "to": "requirement:mcp-analytics-mcp-tools",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:a7eb1a5c17fbeaddd9a6d93b",
+        "to": "requirement:mcp-analytics-mcp-tools",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:57b903b7fd19b4c597010ede",
+        "to": "requirement:mcp-analytics-mcp-tools",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:4f9feee1930bb1f9acd5c7b6",
+        "to": "requirement:mcp-analytics-feedback-tools",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:1ff21b76cb9c071d6934db44",
+        "to": "requirement:mcp-analytics-feedback-tools",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:a7eb1a5c17fbeaddd9a6d93b",
+        "to": "requirement:mcp-analytics-feedback-tools",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:mcp-analytics-mcp-tools",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "requirement:mcp-analytics-feedback-tools",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:4f9feee1930bb1f9acd5c7b6",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:e91d966a014a07de1ed44c89",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:a7eb1a5c17fbeaddd9a6d93b",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:57b903b7fd19b4c597010ede",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:1ff21b76cb9c071d6934db44",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:mcp-analytics-mcp-tools",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:4f9feee1930bb1f9acd5c7b6",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:e91d966a014a07de1ed44c89",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:a7eb1a5c17fbeaddd9a6d93b",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:57b903b7fd19b4c597010ede",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:1ff21b76cb9c071d6934db44",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:mcp-analytics-feedback-tools",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:4f9feee1930bb1f9acd5c7b6",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:e91d966a014a07de1ed44c89",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:a7eb1a5c17fbeaddd9a6d93b",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:57b903b7fd19b4c597010ede",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:1ff21b76cb9c071d6934db44",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "dc150f125f46446e7fa836b714d7747e7c8fe338a1c273016c6c64f3f83a03da"
+}

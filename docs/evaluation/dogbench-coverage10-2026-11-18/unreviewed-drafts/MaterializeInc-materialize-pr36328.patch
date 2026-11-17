@@ -1,0 +1,66 @@
+diff --git a/doc/user/content/reference/isolation-level.md b/doc/user/content/reference/isolation-level.md
+index 5dae9dc8609cafb475490def1103367e0e9abc09..856bf855eae10c4ec7db3fad9eeb218ff9b66dd8 100644
+--- a/doc/user/content/reference/isolation-level.md
++++ b/doc/user/content/reference/isolation-level.md
+@@ -24,6 +24,7 @@ Materialize accepts the following isolation levels:
+ | --- | --- |
+ | [**Strict Serializable**](#strict-serializable) | **Default.** Provides serializability and linearizability. |
+ | [**Serializable**](#serializable) | Provides serializability but not linearizability. |
++| [**Bounded Staleness**](#bounded-staleness) | Provides serializability with an explicit upper bound on staleness. |
+ | Read Uncommitted, Read Committed, Repeatable Read | Accepted for compatibility; treated as Serializable. |
+ 
+ ## Serializable
+@@ -142,6 +143,40 @@ made available to us (e.g., querying PostgreSQL for the replication slot's LSN).
+     Real-time recency queries return at least all data visible to Materialize
+     when our client connection communicates with the external system.
+ 
++## Bounded Staleness
++
++{{< public-preview />}}
++
++Bounded Staleness provides the guarantees of [Serializable](#serializable)
++while also placing an explicit upper bound on how stale the data returned by a
++query can be. It is useful when you want fresh data without paying the latency
++of waiting for every input to catch up, and you can tolerate a small, known
++amount of staleness.
++
++You specify the bound as a duration when setting the isolation level, for
++example `bounded staleness 5s`. The duration accepts humantime-style values
++such as `500ms`, `5s`, or `1m30s`. A duration of zero is rejected.
++
++Under Bounded Staleness, Materialize selects the most recent timestamp that
++does not require waiting on input frontiers, subject to the constraint that the
++chosen timestamp is at most the specified duration behind the timestamp oracle.
++If no such timestamp exists within that window, the query fails with a
++`BoundedStalenessExceeded` error (SQLSTATE `40001`) that reports the gap and the
++slowest input.
++
++### Restrictions
++
++-   Bounded Staleness sessions are **read-only**. Statements that write data
++    (`INSERT`, `UPDATE`, `DELETE`, and `COPY FROM`) are rejected.
++-   Bounded Staleness cannot be combined with
++    [`real_time_recency`](#real-time-recency). Setting `real_time_recency = on`
++    while using a Bounded Staleness isolation level is rejected.
++-   Queries that touch timelines other than the wall-clock
++    (`EpochMilliseconds`) timeline are not supported and return an error.
++-   The feature is gated behind the `enable_bounded_staleness_isolation`
++    feature flag. Until an operator enables it, setting the isolation level
++    errors.
++
+ ## Isolation levels and query latency
+ 
+ Strict Serializable provides stronger consistency guarantees but may have slower
+@@ -175,6 +210,12 @@ You can set the isolation level using the session-level [configuration parameter
+ SET TRANSACTION_ISOLATION TO 'STRICT SERIALIZABLE';
+ ```
+ 
++To use bounded staleness, specify the staleness bound as a duration:
++
++```mzsql
++SET TRANSACTION_ISOLATION TO 'bounded staleness 5s';
++```
++
+ You can also set the isolation level for an explicit transaction block as part
+ of the [`BEGIN` statement](/sql/begin); for example:
+ 

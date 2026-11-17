@@ -1,0 +1,1644 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "no-change",
+      "description": "The change is a pure Rust type-level refactor: it removes the generic parameter `T: TimestampManipulation` from `TimestampContext`, `TimestampDetermination`, `TimestampExplanation`, `InMemoryTimestampOracle`, `Session`, and related structs, hard-coding `mz_repr::Timestamp`. The framing explicitly states behavioral semantics are unchanged and only the type abstraction is removed. No user-facing SQL syntax, output format, or semantics change.\n\nThe user-facing docs for `EXPLAIN TIMESTAMP` (doc/user/content/sql/explain-timestamp.md) describe the output fields (query timestamp, oracle read, largest not in advance of upper, since, upper, can respond immediately, timeline) — none of which reference generic type parameters, and the output is unchanged. The developer design docs (doc/developer/platform/formalism.md Timestamp Oracle section, doc/developer/foundationdb.md) describe the oracle API and semantics, not Rust generics. The generated developer reference pages (doc/developer/generated/adapter/coord/timestamp_selection.md, .../explain_timestamp.md) describe behavior at a conceptual level and do not mention the generic parameter. No documentation update is warranted.",
+      "evidence_ids": [
+        "25d485acd8c1663c58042c66",
+        "d77e937b585e007e9bcfebaf",
+        "5f97e0b046a2242cb7409fb5",
+        "16189d4719ce4b5226b85dff",
+        "af8ef73c4b4a8cc9b42d71ab"
+      ],
+      "surfaces": [
+        "change"
+      ],
+      "dependencies": []
+    }
+  ],
+  "impact": {
+    "kind": "internal_only",
+    "evidence_ids": [
+      "25d485acd8c1663c58042c66",
+      "d77e937b585e007e9bcfebaf",
+      "5f97e0b046a2242cb7409fb5",
+      "16189d4719ce4b5226b85dff",
+      "af8ef73c4b4a8cc9b42d71ab"
+    ],
+    "reason": "The change is a pure Rust type-level refactor: it removes the generic parameter `T: TimestampManipulation` from `TimestampContext`, `TimestampDetermination`, `TimestampExplanation`, `InMemoryTimestampOracle`, `Session`, and related structs, hard-coding `mz_repr::Timestamp`. The framing explicitly states behavioral semantics are unchanged and only the type abstraction is removed. No user-facing SQL syntax, output format, or semantics change.\n\nThe user-facing docs for `EXPLAIN TIMESTAMP` (doc/user/content/sql/explain-timestamp.md) describe the output fields (query timestamp, oracle read, largest not in advance of upper, since, upper, can respond immediately, timeline) — none of which reference generic type parameters, and the output is unchanged. The developer design docs (doc/developer/platform/formalism.md Timestamp Oracle section, doc/developer/foundationdb.md) describe the oracle API and semantics, not Rust generics. The generated developer reference pages (doc/developer/generated/adapter/coord/timestamp_selection.md, .../explain_timestamp.md) describe behavior at a conceptual level and do not mention the generic parameter. No documentation update is warranted."
+  },
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "a8473f03bf915d63fbdcf8dffc1fb540f506ab9033d1638fd66b54ad4816f061",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Do the docs describe timestamp selection, timestamp oracles, or read/write timestamps in a way that references generic type parameters or the removed abstraction?",
+          "root": "docs",
+          "queries": [
+            "timestamp oracle",
+            "timestamp selection",
+            "read timestamp write timestamp"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/developer/foundationdb.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20231127_pv2_uci_logical_architecture.md",
+              "offset": 281,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "offset": 95,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "8ba06d3bfd667ccad4d51c4a",
+            "1f5eb4212b00d439501f5408",
+            "bfaf4e908a62519e71eaab32",
+            "7ba67d87d290ac5425ad14bd",
+            "09f8c38d7e230cb1b7383a2d",
+            "081311ab7b86e4056bca65d9",
+            "c82cc4abb8defbf2c43a12de",
+            "5f97e0b046a2242cb7409fb5",
+            "af8ef73c4b4a8cc9b42d71ab",
+            "bc2163990314e4762fcd0b74",
+            "cee58f7cda9af9bbfa8522c5",
+            "0a886d9755537c06230b48ec",
+            "7ba29cd02efe720934bc337b",
+            "fba51192cf18f084fc04be12",
+            "0da4f65e534459fab0c37be2"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/developer/foundationdb.md",
+              "evidence_id": "7ba67d87d290ac5425ad14bd",
+              "score": "0.045180702729116604"
+            },
+            {
+              "rank": 2,
+              "path": "doc/developer/design/20231127_pv2_uci_logical_architecture.md",
+              "evidence_id": "09f8c38d7e230cb1b7383a2d",
+              "score": "0.04074754901960784"
+            },
+            {
+              "rank": 3,
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "evidence_id": "081311ab7b86e4056bca65d9",
+              "score": "0.03883595604321347"
+            },
+            {
+              "rank": 4,
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "evidence_id": "c82cc4abb8defbf2c43a12de",
+              "score": "0.037716822048062995"
+            },
+            {
+              "rank": 5,
+              "path": "doc/developer/generated/adapter/coord/sequencer/inner/explain_timestamp.md",
+              "evidence_id": "5f97e0b046a2242cb7409fb5",
+              "score": "0.03657985191908496"
+            },
+            {
+              "rank": 6,
+              "path": "doc/developer/platform/formalism.md",
+              "evidence_id": "af8ef73c4b4a8cc9b42d71ab",
+              "score": "0.03615999048029868"
+            },
+            {
+              "rank": 7,
+              "path": "doc/developer/generated/adapter/coord/timestamp_selection.md",
+              "evidence_id": "bc2163990314e4762fcd0b74",
+              "score": "0.03557347670250896"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/generated/flows.md",
+              "evidence_id": "cee58f7cda9af9bbfa8522c5",
+              "score": "0.03535711783662604"
+            },
+            {
+              "rank": 9,
+              "path": "doc/developer/guide-adapter.md",
+              "evidence_id": "0a886d9755537c06230b48ec",
+              "score": "0.03526247848537005"
+            },
+            {
+              "rank": 10,
+              "path": "doc/developer/platform/formalism.md",
+              "evidence_id": "7ba29cd02efe720934bc337b",
+              "score": "0.03500704390032453"
+            },
+            {
+              "rank": 11,
+              "path": "doc/user/content/sql/types/timestamp.md",
+              "evidence_id": "fba51192cf18f084fc04be12",
+              "score": "0.03457972135769256"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/generated/timestamp-oracle/_crate.md",
+              "evidence_id": "0da4f65e534459fab0c37be2",
+              "score": "0.032505060189623944"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/developer/foundationdb.md",
+              "start": 39,
+              "end": 80,
+              "total_lines": 80
+            },
+            {
+              "path": "doc/developer/design/20231127_pv2_uci_logical_architecture.md",
+              "start": 281,
+              "end": 401,
+              "total_lines": 481
+            },
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "start": 95,
+              "end": 170,
+              "total_lines": 170
+            }
+          ],
+          "read_evidence_ids": [
+            "8ba06d3bfd667ccad4d51c4a",
+            "1f5eb4212b00d439501f5408",
+            "bfaf4e908a62519e71eaab32"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Do the docs describe EXPLAIN TIMESTAMP output or timestamp determination/explanation structures that could be affected?",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/repr/timestamp.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/adapter/coord/timestamp_selection.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "16189d4719ce4b5226b85dff",
+            "54915133fef6eb9842b128dd",
+            "d77e937b585e007e9bcfebaf",
+            "081311ab7b86e4056bca65d9",
+            "f3e2fdf46ebcaa78d106cd2c",
+            "b27d5b463a847974aa6ad920",
+            "7ba67d87d290ac5425ad14bd",
+            "bc2163990314e4762fcd0b74",
+            "68e2b8120133bddaa86b27f6",
+            "fba51192cf18f084fc04be12",
+            "b687bf53a0d10ff6d0348d32",
+            "2b60a174a0168e7f11a2452c",
+            "dcacd2e51936268fac95df0a",
+            "53e4037627f19203345c4ecf",
+            "b967f2af366192c72beca9a1"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "evidence_id": "081311ab7b86e4056bca65d9",
+              "score": "0.04550236900780379"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "evidence_id": "f3e2fdf46ebcaa78d106cd2c",
+              "score": "0.04476645849596669"
+            },
+            {
+              "rank": 3,
+              "path": "doc/developer/generated/repr/timestamp.md",
+              "evidence_id": "b27d5b463a847974aa6ad920",
+              "score": "0.043402777777777776"
+            },
+            {
+              "rank": 4,
+              "path": "doc/developer/foundationdb.md",
+              "evidence_id": "7ba67d87d290ac5425ad14bd",
+              "score": "0.04254442075337598"
+            },
+            {
+              "rank": 5,
+              "path": "doc/developer/generated/adapter/coord/timestamp_selection.md",
+              "evidence_id": "bc2163990314e4762fcd0b74",
+              "score": "0.04246293931486314"
+            },
+            {
+              "rank": 6,
+              "path": "doc/user/content/sql/types/timestamp.md",
+              "evidence_id": "68e2b8120133bddaa86b27f6",
+              "score": "0.04206999255398362"
+            },
+            {
+              "rank": 7,
+              "path": "doc/user/content/sql/types/timestamp.md",
+              "evidence_id": "fba51192cf18f084fc04be12",
+              "score": "0.04046677959721438"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/generated/repr/adt/timestamp.md",
+              "evidence_id": "b687bf53a0d10ff6d0348d32",
+              "score": "0.039084507042253525"
+            },
+            {
+              "rank": 9,
+              "path": "doc/user/content/headless/sql-command-privileges/explain-timestamp.md",
+              "evidence_id": "2b60a174a0168e7f11a2452c",
+              "score": "0.03848730948075432"
+            },
+            {
+              "rank": 10,
+              "path": "doc/developer/generated/expr/scalar/func/impls/timestamp.md",
+              "evidence_id": "dcacd2e51936268fac95df0a",
+              "score": "0.038201154639510806"
+            },
+            {
+              "rank": 11,
+              "path": "doc/developer/generated/repr/timestamp.md",
+              "evidence_id": "53e4037627f19203345c4ecf",
+              "score": "0.037416225283152874"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/generated/expr/scalar/func/impls/timestamp.md",
+              "evidence_id": "b967f2af366192c72beca9a1",
+              "score": "0.03715020369999332"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 170
+            },
+            {
+              "path": "doc/developer/generated/repr/timestamp.md",
+              "start": 1,
+              "end": 9,
+              "total_lines": 9
+            },
+            {
+              "path": "doc/developer/generated/adapter/coord/timestamp_selection.md",
+              "start": 1,
+              "end": 9,
+              "total_lines": 9
+            }
+          ],
+          "read_evidence_ids": [
+            "16189d4719ce4b5226b85dff",
+            "54915133fef6eb9842b128dd",
+            "d77e937b585e007e9bcfebaf"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "081311ab7b86e4056bca65d9",
+        "09f8c38d7e230cb1b7383a2d",
+        "0a886d9755537c06230b48ec",
+        "0da4f65e534459fab0c37be2",
+        "16189d4719ce4b5226b85dff",
+        "1f5eb4212b00d439501f5408",
+        "2b60a174a0168e7f11a2452c",
+        "53e4037627f19203345c4ecf",
+        "54915133fef6eb9842b128dd",
+        "5f97e0b046a2242cb7409fb5",
+        "68e2b8120133bddaa86b27f6",
+        "7ba29cd02efe720934bc337b",
+        "7ba67d87d290ac5425ad14bd",
+        "8ba06d3bfd667ccad4d51c4a",
+        "af8ef73c4b4a8cc9b42d71ab",
+        "b27d5b463a847974aa6ad920",
+        "b687bf53a0d10ff6d0348d32",
+        "b967f2af366192c72beca9a1",
+        "bc2163990314e4762fcd0b74",
+        "bfaf4e908a62519e71eaab32",
+        "c82cc4abb8defbf2c43a12de",
+        "cee58f7cda9af9bbfa8522c5",
+        "d77e937b585e007e9bcfebaf",
+        "dcacd2e51936268fac95df0a",
+        "f3e2fdf46ebcaa78d106cd2c",
+        "fba51192cf18f084fc04be12"
+      ],
+      "new_evidence_count": 26,
+      "new_path_count": 14
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+    "code": "a83da53bb232582da2bcd49f6ab307419773100f"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:f0c1b8e4e5f70668": 0,
+    "discover:Q1-2:9745a64bd808f01b": 279
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:f0c1b8e4e5f70668": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 279,
+      "cache_hit": false
+    },
+    "discover:Q1-2:9745a64bd808f01b": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 234,
+      "cache_hit": false
+    },
+    "discover:Q1-1:6107704ee34e161f": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 213,
+      "cache_hit": false
+    },
+    "discover:Q1-2:ada01751eed784fc": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 238,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "no-change",
+      "surface": "change",
+      "status": "no_change_supported",
+      "paths": [
+        "doc/developer/generated/adapter/coord/timestamp_selection.md",
+        "doc/developer/generated/adapter/coord/sequencer/inner/explain_timestamp.md",
+        "doc/user/content/sql/explain-timestamp.md",
+        "doc/developer/platform/formalism.md"
+      ],
+      "evidence_ids": [
+        "25d485acd8c1663c58042c66",
+        "d77e937b585e007e9bcfebaf",
+        "5f97e0b046a2242cb7409fb5",
+        "16189d4719ce4b5226b85dff",
+        "af8ef73c4b4a8cc9b42d71ab"
+      ],
+      "reason": "The change is a pure Rust type-level refactor: it removes the generic parameter `T: TimestampManipulation` from `TimestampContext`, `TimestampDetermination`, `TimestampExplanation`, `InMemoryTimestampOracle`, `Session`, and related structs, hard-coding `mz_repr::Timestamp`. The framing explicitly states behavioral semantics are unchanged and only the type abstraction is removed. No user-facing SQL syntax, output format, or semantics change.\n\nThe user-facing docs for `EXPLAIN TIMESTAMP` (doc/user/content/sql/explain-timestamp.md) describe the output fields (query timestamp, oracle read, largest not in advance of upper, since, upper, can respond immediately, timeline) — none of which reference generic type parameters, and the output is unchanged. The developer design docs (doc/developer/platform/formalism.md Timestamp Oracle section, doc/developer/foundationdb.md) describe the oracle API and semantics, not Rust generics. The generated developer reference pages (doc/developer/generated/adapter/coord/timestamp_selection.md, .../explain_timestamp.md) describe behavior at a conceptual level and do not mention the generic parameter. No documentation update is warranted."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:081311ab7b86e4056bca65d9",
+        "type": "evidence",
+        "path": "doc/user/content/sql/explain-timestamp.md",
+        "heading": "parent: commands > Examples",
+        "start_line": 100,
+        "end_line": 132,
+        "start_char": 4876,
+        "end_char": 6521,
+        "score": "0.04550236900780379",
+        "root": "docs",
+        "matched_terms": [
+          "timestamp"
+        ],
+        "evidence_id": "081311ab7b86e4056bca65d9",
+        "source_type": "repository",
+        "content_hash": "0d9de3724e3e79193ac3279fabe0e56b98f9f1194af771d20a4658ea6fdeb01d",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0d9de3724e3e79193ac3279fabe0e56b98f9f1194af771d20a4658ea6fdeb01d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:09f8c38d7e230cb1b7383a2d",
+        "type": "evidence",
+        "path": "doc/developer/design/20231127_pv2_uci_logical_architecture.md",
+        "heading": "Platform v2: Logical Architecture of a Fast/Scalable/Isolated Query/Control Layer > Logical Architecture Design > TIMESTAMP ORACLE",
+        "start_line": 286,
+        "end_line": 308,
+        "start_char": 14277,
+        "end_char": 15079,
+        "score": "0.04074754901960784",
+        "root": "docs",
+        "matched_terms": [
+          "oracle",
+          "read",
+          "timestamp",
+          "write"
+        ],
+        "evidence_id": "09f8c38d7e230cb1b7383a2d",
+        "source_type": "repository",
+        "content_hash": "d0301eca8946a0e579b778c71d0c71d690575d602dbc4e25e5897fbd11dc121f",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "timestamp oracle",
+            "timestamp selection",
+            "read timestamp write timestamp"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d0301eca8946a0e579b778c71d0c71d690575d602dbc4e25e5897fbd11dc121f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0a886d9755537c06230b48ec",
+        "type": "evidence",
+        "path": "doc/developer/guide-adapter.md",
+        "heading": "Adapter Guide > Correctness Invariants > Checklist for timestamp-related changes",
+        "start_line": 79,
+        "end_line": 98,
+        "start_char": 3872,
+        "end_char": 4834,
+        "score": "0.03526247848537005",
+        "root": "docs",
+        "matched_terms": [
+          "oracle",
+          "selection",
+          "timestamp",
+          "write"
+        ],
+        "evidence_id": "0a886d9755537c06230b48ec",
+        "source_type": "repository",
+        "content_hash": "c219d2f62be465cdddaa0c6dbefe61ad3fc638b9a20fae74c76ebad4b0acf7ad",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "timestamp oracle",
+            "timestamp selection",
+            "read timestamp write timestamp"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c219d2f62be465cdddaa0c6dbefe61ad3fc638b9a20fae74c76ebad4b0acf7ad",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0da4f65e534459fab0c37be2",
+        "type": "evidence",
+        "path": "doc/developer/generated/timestamp-oracle/_crate.md",
+        "heading": "mz-timestamp-oracle",
+        "start_line": 6,
+        "end_line": 16,
+        "start_char": 70,
+        "end_char": 1200,
+        "score": "0.032505060189623944",
+        "root": "docs",
+        "matched_terms": [
+          "oracle",
+          "read",
+          "timestamp",
+          "write"
+        ],
+        "evidence_id": "0da4f65e534459fab0c37be2",
+        "source_type": "repository",
+        "content_hash": "4b5a1f9e4cf5ea890386621ee5dcf25b10e31ac270d506e80483af9e0f330de0",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "timestamp oracle",
+            "timestamp selection",
+            "read timestamp write timestamp"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4b5a1f9e4cf5ea890386621ee5dcf25b10e31ac270d506e80483af9e0f330de0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:16189d4719ce4b5226b85dff",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/sql/explain-timestamp.md",
+        "start_line": 1,
+        "total_lines": 170,
+        "start_char": 0,
+        "end_char": 5822,
+        "evidence_id": "16189d4719ce4b5226b85dff",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "396830d095a3735dc8dcc80e408ca0fcfb8573f6e4b7e2d0b7347b50dc15bc0e",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/repr/timestamp.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/adapter/coord/timestamp_selection.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "396830d095a3735dc8dcc80e408ca0fcfb8573f6e4b7e2d0b7347b50dc15bc0e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1f5eb4212b00d439501f5408",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/design/20231127_pv2_uci_logical_architecture.md",
+        "start_line": 282,
+        "total_lines": 481,
+        "start_char": 14186,
+        "end_char": 19775,
+        "evidence_id": "1f5eb4212b00d439501f5408",
+        "truncated": false,
+        "next_offset": 401,
+        "source_type": "repository",
+        "content_hash": "0da6e1cc82805c9579a1e62e4a5d789fc76725265a94dfe1159b6cc90794ebda",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/foundationdb.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20231127_pv2_uci_logical_architecture.md",
+              "offset": 281,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "offset": 95,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0da6e1cc82805c9579a1e62e4a5d789fc76725265a94dfe1159b6cc90794ebda",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:25d485acd8c1663c58042c66",
+        "type": "evidence",
+        "evidence_id": "25d485acd8c1663c58042c66",
+        "source_type": "implementation",
+        "exported_content_sha256": "fa75e51039a1ae41993d3948c6ea2630e3e029af89db0df8e79a8c0a8ad145d3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2b60a174a0168e7f11a2452c",
+        "type": "evidence",
+        "path": "doc/user/content/headless/sql-command-privileges/explain-timestamp.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.03848730948075432",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "2b60a174a0168e7f11a2452c",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:53e4037627f19203345c4ecf",
+        "type": "evidence",
+        "path": "doc/developer/generated/repr/timestamp.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 38,
+        "score": "0.037416225283152874",
+        "root": "docs",
+        "matched_terms": [
+          "timestamp"
+        ],
+        "evidence_id": "53e4037627f19203345c4ecf",
+        "source_type": "repository",
+        "content_hash": "d563c2cef341620a8ea7f44f8aecc3591010a4ae9457404f46f980507b7dafbb",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d563c2cef341620a8ea7f44f8aecc3591010a4ae9457404f46f980507b7dafbb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:54915133fef6eb9842b128dd",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/repr/timestamp.md",
+        "start_line": 2,
+        "total_lines": 9,
+        "start_char": 4,
+        "end_char": 441,
+        "evidence_id": "54915133fef6eb9842b128dd",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "963b542c87dcc9c4674c5d812421b246b27d49c0f2c3469a1d1d714d62ef850d",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/repr/timestamp.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/adapter/coord/timestamp_selection.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "963b542c87dcc9c4674c5d812421b246b27d49c0f2c3469a1d1d714d62ef850d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5f97e0b046a2242cb7409fb5",
+        "type": "evidence",
+        "path": "doc/developer/generated/adapter/coord/sequencer/inner/explain_timestamp.md",
+        "heading": "adapter::coord::sequencer::inner::explain_timestamp",
+        "start_line": 6,
+        "end_line": 8,
+        "start_char": 97,
+        "end_char": 408,
+        "score": "0.03657985191908496",
+        "root": "docs",
+        "matched_terms": [
+          "oracle",
+          "read",
+          "selection",
+          "timestamp",
+          "write"
+        ],
+        "evidence_id": "5f97e0b046a2242cb7409fb5",
+        "source_type": "repository",
+        "content_hash": "d311dfbad27d7bb139bce1eb53de5082b9c9e678eaad19991f22860c2164781e",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "timestamp oracle",
+            "timestamp selection",
+            "read timestamp write timestamp"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d311dfbad27d7bb139bce1eb53de5082b9c9e678eaad19991f22860c2164781e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:68e2b8120133bddaa86b27f6",
+        "type": "evidence",
+        "path": "doc/user/content/sql/types/timestamp.md",
+        "heading": "- /sql/types/timestamptz > `timestamp` info",
+        "start_line": 14,
+        "end_line": 25,
+        "start_char": 234,
+        "end_char": 517,
+        "score": "0.04206999255398362",
+        "root": "docs",
+        "matched_terms": [
+          "timestamp"
+        ],
+        "evidence_id": "68e2b8120133bddaa86b27f6",
+        "source_type": "repository",
+        "content_hash": "4923f505ce854e2c32f93a9221703e42b466c1a8486992bc69c6af8f48a08f70",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4923f505ce854e2c32f93a9221703e42b466c1a8486992bc69c6af8f48a08f70",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7ba29cd02efe720934bc337b",
+        "type": "evidence",
+        "path": "doc/developer/platform/formalism.md",
+        "heading": "Adapter > Timestamp Oracle",
+        "start_line": 708,
+        "end_line": 713,
+        "start_char": 38060,
+        "end_char": 38260,
+        "score": "0.03500704390032453",
+        "root": "docs",
+        "matched_terms": [
+          "oracle",
+          "timestamp"
+        ],
+        "evidence_id": "7ba29cd02efe720934bc337b",
+        "source_type": "repository",
+        "content_hash": "5c14819deafa36472377d276ad7bfbd03dbb92f29321d06e4056e2b02a54e95d",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "timestamp oracle",
+            "timestamp selection",
+            "read timestamp write timestamp"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5c14819deafa36472377d276ad7bfbd03dbb92f29321d06e4056e2b02a54e95d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7ba67d87d290ac5425ad14bd",
+        "type": "evidence",
+        "path": "doc/developer/foundationdb.md",
+        "heading": "FoundationDB Developer Guide > Integration with Materialize > Timestamp Oracle",
+        "start_line": 44,
+        "end_line": 59,
+        "start_char": 2049,
+        "end_char": 2593,
+        "score": "0.04254442075337598",
+        "root": "docs",
+        "matched_terms": [
+          "timestamp"
+        ],
+        "evidence_id": "7ba67d87d290ac5425ad14bd",
+        "source_type": "repository",
+        "content_hash": "7dcd4688968edcccfcb88d2744d49bd62107f900141a24352165a0a86480bf8f",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7dcd4688968edcccfcb88d2744d49bd62107f900141a24352165a0a86480bf8f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8ba06d3bfd667ccad4d51c4a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/foundationdb.md",
+        "start_line": 40,
+        "total_lines": 80,
+        "start_char": 2009,
+        "end_char": 3835,
+        "evidence_id": "8ba06d3bfd667ccad4d51c4a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "848493f5ebc3fb2b4e513914b0b471440e2393d7a8282552f92422d227355daf",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/foundationdb.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20231127_pv2_uci_logical_architecture.md",
+              "offset": 281,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "offset": 95,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "848493f5ebc3fb2b4e513914b0b471440e2393d7a8282552f92422d227355daf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:af8ef73c4b4a8cc9b42d71ab",
+        "type": "evidence",
+        "path": "doc/developer/platform/formalism.md",
+        "heading": "Adapter > Timestamp Oracle",
+        "start_line": 678,
+        "end_line": 707,
+        "start_char": 36410,
+        "end_char": 38060,
+        "score": "0.03615999048029868",
+        "root": "docs",
+        "matched_terms": [
+          "oracle",
+          "read",
+          "timestamp",
+          "write"
+        ],
+        "evidence_id": "af8ef73c4b4a8cc9b42d71ab",
+        "source_type": "repository",
+        "content_hash": "aecf44284a1a6c6b4c821d98cdeb40c8e86aa50ce518172af5847ca81a45c497",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "timestamp oracle",
+            "timestamp selection",
+            "read timestamp write timestamp"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "aecf44284a1a6c6b4c821d98cdeb40c8e86aa50ce518172af5847ca81a45c497",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b27d5b463a847974aa6ad920",
+        "type": "evidence",
+        "path": "doc/developer/generated/repr/timestamp.md",
+        "heading": "mz-repr::timestamp",
+        "start_line": 6,
+        "end_line": 9,
+        "start_char": 64,
+        "end_char": 441,
+        "score": "0.043402777777777776",
+        "root": "docs",
+        "matched_terms": [
+          "timestamp"
+        ],
+        "evidence_id": "b27d5b463a847974aa6ad920",
+        "source_type": "repository",
+        "content_hash": "dd4d6ddce3aedf7e08835e001b7097a5eb811ec105de9282e11b7f0b027c9267",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "dd4d6ddce3aedf7e08835e001b7097a5eb811ec105de9282e11b7f0b027c9267",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b687bf53a0d10ff6d0348d32",
+        "type": "evidence",
+        "path": "doc/developer/generated/repr/adt/timestamp.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 42,
+        "score": "0.039084507042253525",
+        "root": "docs",
+        "matched_terms": [
+          "timestamp"
+        ],
+        "evidence_id": "b687bf53a0d10ff6d0348d32",
+        "source_type": "repository",
+        "content_hash": "44b299ad4358f0c0ba2e71952d2b73f7b2b170d7ad0d68a12f0fca71c20ab3ad",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "44b299ad4358f0c0ba2e71952d2b73f7b2b170d7ad0d68a12f0fca71c20ab3ad",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b967f2af366192c72beca9a1",
+        "type": "evidence",
+        "path": "doc/developer/generated/expr/scalar/func/impls/timestamp.md",
+        "heading": "mz-expr::scalar::func::impls::timestamp",
+        "start_line": 6,
+        "end_line": 8,
+        "start_char": 82,
+        "end_char": 371,
+        "score": "0.03715020369999332",
+        "root": "docs",
+        "matched_terms": [
+          "timestamp"
+        ],
+        "evidence_id": "b967f2af366192c72beca9a1",
+        "source_type": "repository",
+        "content_hash": "0a6d6d112dcc99668151da171456dbc558307a681d3aa5fb429d294329f18ba3",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0a6d6d112dcc99668151da171456dbc558307a681d3aa5fb429d294329f18ba3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bc2163990314e4762fcd0b74",
+        "type": "evidence",
+        "path": "doc/developer/generated/adapter/coord/timestamp_selection.md",
+        "heading": "adapter::coord::timestamp_selection",
+        "start_line": 6,
+        "end_line": 9,
+        "start_char": 83,
+        "end_char": 679,
+        "score": "0.04246293931486314",
+        "root": "docs",
+        "matched_terms": [
+          "explain",
+          "timestamp"
+        ],
+        "evidence_id": "bc2163990314e4762fcd0b74",
+        "source_type": "repository",
+        "content_hash": "c603c88ee34c118a9948956bf8cc1b9c313fe771ec08320987108c648b010fdc",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c603c88ee34c118a9948956bf8cc1b9c313fe771ec08320987108c648b010fdc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bfaf4e908a62519e71eaab32",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/sql/explain-timestamp.md",
+        "start_line": 96,
+        "total_lines": 170,
+        "start_char": 4680,
+        "end_char": 8462,
+        "evidence_id": "bfaf4e908a62519e71eaab32",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "32e6c49f3470bd0e99a308f7ca1c3d01145fcf4b911ef09f195aaa5fb25580ea",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/foundationdb.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20231127_pv2_uci_logical_architecture.md",
+              "offset": 281,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "offset": 95,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "32e6c49f3470bd0e99a308f7ca1c3d01145fcf4b911ef09f195aaa5fb25580ea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c82cc4abb8defbf2c43a12de",
+        "type": "evidence",
+        "path": "doc/user/content/sql/explain-timestamp.md",
+        "heading": "Timestamp",
+        "start_line": 152,
+        "end_line": 165,
+        "start_char": 7353,
+        "end_char": 8313,
+        "score": "0.037716822048062995",
+        "root": "docs",
+        "matched_terms": [
+          "oracle",
+          "read",
+          "timestamp",
+          "write"
+        ],
+        "evidence_id": "c82cc4abb8defbf2c43a12de",
+        "source_type": "repository",
+        "content_hash": "c73b216d36e53bdd8a589968d0329b30cd2786cde41e730d5cc5ced8657028ae",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "timestamp oracle",
+            "timestamp selection",
+            "read timestamp write timestamp"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c73b216d36e53bdd8a589968d0329b30cd2786cde41e730d5cc5ced8657028ae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cee58f7cda9af9bbfa8522c5",
+        "type": "evidence",
+        "path": "doc/developer/generated/flows.md",
+        "heading": "Cross-cutting flows > Timestamp selection",
+        "start_line": 94,
+        "end_line": 101,
+        "start_char": 5522,
+        "end_char": 6098,
+        "score": "0.03535711783662604",
+        "root": "docs",
+        "matched_terms": [
+          "oracle",
+          "read",
+          "selection",
+          "timestamp"
+        ],
+        "evidence_id": "cee58f7cda9af9bbfa8522c5",
+        "source_type": "repository",
+        "content_hash": "f1b8abc364a1077f4e2c836966a0574c22ed2956eb77707f7fae6868895c29a8",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "timestamp oracle",
+            "timestamp selection",
+            "read timestamp write timestamp"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f1b8abc364a1077f4e2c836966a0574c22ed2956eb77707f7fae6868895c29a8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d77e937b585e007e9bcfebaf",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/adapter/coord/timestamp_selection.md",
+        "start_line": 2,
+        "total_lines": 9,
+        "start_char": 4,
+        "end_char": 679,
+        "evidence_id": "d77e937b585e007e9bcfebaf",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "ec54ffff8428f396f65e6d80448a6339b6592e6a9b45e6d711e32eecdca54d70",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/explain-timestamp.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/repr/timestamp.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/adapter/coord/timestamp_selection.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ec54ffff8428f396f65e6d80448a6339b6592e6a9b45e6d711e32eecdca54d70",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dcacd2e51936268fac95df0a",
+        "type": "evidence",
+        "path": "doc/developer/generated/expr/scalar/func/impls/timestamp.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 56,
+        "score": "0.038201154639510806",
+        "root": "docs",
+        "matched_terms": [
+          "timestamp"
+        ],
+        "evidence_id": "dcacd2e51936268fac95df0a",
+        "source_type": "repository",
+        "content_hash": "6ad6e661b115096c32a3332b6fbd717f1a7104a8dc22abe67d7441d1879071ef",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6ad6e661b115096c32a3332b6fbd717f1a7104a8dc22abe67d7441d1879071ef",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e780fabea44bec4e6dab6b9f",
+        "type": "evidence",
+        "evidence_id": "e780fabea44bec4e6dab6b9f",
+        "source_type": "task",
+        "exported_content_sha256": "1afaa2ecc5dc9d4a1e16229f3901f0bf66ec882249afbb290d6b5c1af6a357a8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f3e2fdf46ebcaa78d106cd2c",
+        "type": "evidence",
+        "path": "doc/user/content/sql/explain-timestamp.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 5,
+        "start_char": 0,
+        "end_char": 135,
+        "score": "0.04476645849596669",
+        "root": "docs",
+        "matched_terms": [
+          "explain",
+          "timestamp"
+        ],
+        "evidence_id": "f3e2fdf46ebcaa78d106cd2c",
+        "source_type": "repository",
+        "content_hash": "d5d35b27df59de24171c75cec0d9bc4928993587c75387ca9798fab983e4b319",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d5d35b27df59de24171c75cec0d9bc4928993587c75387ca9798fab983e4b319",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fba51192cf18f084fc04be12",
+        "type": "evidence",
+        "path": "doc/user/content/sql/types/timestamp.md",
+        "heading": "- /sql/types/timestamptz > Examples > Return timestamp",
+        "start_line": 89,
+        "end_line": 99,
+        "start_char": 2778,
+        "end_char": 2931,
+        "score": "0.04046677959721438",
+        "root": "docs",
+        "matched_terms": [
+          "timestamp"
+        ],
+        "evidence_id": "fba51192cf18f084fc04be12",
+        "source_type": "repository",
+        "content_hash": "7019697070c1b683bfe741658f5cd4de4bedecb2cf0b8028285ab2e0c9ab767a",
+        "revision": "62b56ba3ccf33ab70aa711fc35962f6d438bdbbe",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "EXPLAIN TIMESTAMP",
+            "timestamp determination",
+            "timestamp explanation"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7019697070c1b683bfe741658f5cd4de4bedecb2cf0b8028285ab2e0c9ab767a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:no-change",
+        "type": "requirement",
+        "description": "The change is a pure Rust type-level refactor: it removes the generic parameter `T: TimestampManipulation` from `TimestampContext`, `TimestampDetermination`, `TimestampExplanation`, `InMemoryTimestampOracle`, `Session`, and related structs, hard-coding `mz_repr::Timestamp`. The framing explicitly states behavioral semantics are unchanged and only the type abstraction is removed. No user-facing SQL syntax, output format, or semantics change.\n\nThe user-facing docs for `EXPLAIN TIMESTAMP` (doc/user/content/sql/explain-timestamp.md) describe the output fields (query timestamp, oracle read, largest not in advance of upper, since, upper, can respond immediately, timeline) — none of which reference generic type parameters, and the output is unchanged. The developer design docs (doc/developer/platform/formalism.md Timestamp Oracle section, doc/developer/foundationdb.md) describe the oracle API and semantics, not Rust generics. The generated developer reference pages (doc/developer/generated/adapter/coord/timestamp_selection.md, .../explain_timestamp.md) describe behavior at a conceptual level and do not mention the generic parameter. No documentation update is warranted."
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "no-change",
+        "surface": "change",
+        "status": "no_change_supported",
+        "paths": [
+          "doc/developer/generated/adapter/coord/timestamp_selection.md",
+          "doc/developer/generated/adapter/coord/sequencer/inner/explain_timestamp.md",
+          "doc/user/content/sql/explain-timestamp.md",
+          "doc/developer/platform/formalism.md"
+        ],
+        "evidence_ids": [
+          "25d485acd8c1663c58042c66",
+          "d77e937b585e007e9bcfebaf",
+          "5f97e0b046a2242cb7409fb5",
+          "16189d4719ce4b5226b85dff",
+          "af8ef73c4b4a8cc9b42d71ab"
+        ],
+        "reason": "The change is a pure Rust type-level refactor: it removes the generic parameter `T: TimestampManipulation` from `TimestampContext`, `TimestampDetermination`, `TimestampExplanation`, `InMemoryTimestampOracle`, `Session`, and related structs, hard-coding `mz_repr::Timestamp`. The framing explicitly states behavioral semantics are unchanged and only the type abstraction is removed. No user-facing SQL syntax, output format, or semantics change.\n\nThe user-facing docs for `EXPLAIN TIMESTAMP` (doc/user/content/sql/explain-timestamp.md) describe the output fields (query timestamp, oracle read, largest not in advance of upper, since, upper, can respond immediately, timeline) — none of which reference generic type parameters, and the output is unchanged. The developer design docs (doc/developer/platform/formalism.md Timestamp Oracle section, doc/developer/foundationdb.md) describe the oracle API and semantics, not Rust generics. The generated developer reference pages (doc/developer/generated/adapter/coord/timestamp_selection.md, .../explain_timestamp.md) describe behavior at a conceptual level and do not mention the generic parameter. No documentation update is warranted."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Do the docs describe timestamp selection, timestamp oracles, or read/write timestamps in a way that references generic type parameters or the removed abstraction?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Do the docs describe EXPLAIN TIMESTAMP output or timestamp determination/explanation structures that could be affected?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:081311ab7b86e4056bca65d9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:081311ab7b86e4056bca65d9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:09f8c38d7e230cb1b7383a2d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0a886d9755537c06230b48ec",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0da4f65e534459fab0c37be2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:16189d4719ce4b5226b85dff",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1f5eb4212b00d439501f5408",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2b60a174a0168e7f11a2452c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:53e4037627f19203345c4ecf",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:54915133fef6eb9842b128dd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5f97e0b046a2242cb7409fb5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68e2b8120133bddaa86b27f6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7ba29cd02efe720934bc337b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7ba67d87d290ac5425ad14bd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7ba67d87d290ac5425ad14bd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8ba06d3bfd667ccad4d51c4a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:af8ef73c4b4a8cc9b42d71ab",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b27d5b463a847974aa6ad920",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b687bf53a0d10ff6d0348d32",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b967f2af366192c72beca9a1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bc2163990314e4762fcd0b74",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bc2163990314e4762fcd0b74",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bfaf4e908a62519e71eaab32",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c82cc4abb8defbf2c43a12de",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cee58f7cda9af9bbfa8522c5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d77e937b585e007e9bcfebaf",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dcacd2e51936268fac95df0a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f3e2fdf46ebcaa78d106cd2c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fba51192cf18f084fc04be12",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fba51192cf18f084fc04be12",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:25d485acd8c1663c58042c66",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:d77e937b585e007e9bcfebaf",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5f97e0b046a2242cb7409fb5",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:16189d4719ce4b5226b85dff",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:af8ef73c4b4a8cc9b42d71ab",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:no-change",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:25d485acd8c1663c58042c66",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:d77e937b585e007e9bcfebaf",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5f97e0b046a2242cb7409fb5",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:16189d4719ce4b5226b85dff",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:af8ef73c4b4a8cc9b42d71ab",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

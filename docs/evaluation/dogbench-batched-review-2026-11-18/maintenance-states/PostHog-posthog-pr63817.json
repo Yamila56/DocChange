@@ -1,0 +1,3697 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "no-change",
+      "description": "The change adds a new read-only API endpoint (GET .../signals/scout/runs/{run_id}/emissions/reports/) plus serializers, a ClickHouse helper, generated frontend types, and an MCP tool registration that is disabled by default. The scout harness viewsets are internal HTTP surfaces for MCP consumption (views.py docstring), and the new MCP tool is `enabled: false` in tools.yaml, so it is not part of any user-facing tool list. The user-facing Inbox docs (contents/docs/posthog-code/inbox/index.mdx and sources.mdx) describe the report→signals direction and the research flow but do not enumerate scout API endpoints or MCP tool tables, so there is no existing page that lists this endpoint or would need the reverse-lookup added. The actual user-visible chip lands in a follow-up desktop app PR (posthog/code), not in this repo's docs. No user-facing documentation update is warranted for this backend-only endpoint.",
+      "evidence_ids": [
+        "5a8d614c7d0a5d4f3c2e2c38",
+        "35886a6a91f093a07a903312",
+        "b34e081819ba59a9b5ffbb21",
+        "5c5b7595e14d6275802dd9e6",
+        "510786c2d1d4ce3cc886fd93"
+      ],
+      "surfaces": [
+        "change"
+      ],
+      "dependencies": []
+    }
+  ],
+  "impact": {
+    "kind": "internal_only",
+    "evidence_ids": [
+      "5a8d614c7d0a5d4f3c2e2c38",
+      "35886a6a91f093a07a903312",
+      "b34e081819ba59a9b5ffbb21",
+      "5c5b7595e14d6275802dd9e6",
+      "510786c2d1d4ce3cc886fd93"
+    ],
+    "reason": "The change adds a new read-only API endpoint (GET .../signals/scout/runs/{run_id}/emissions/reports/) plus serializers, a ClickHouse helper, generated frontend types, and an MCP tool registration that is disabled by default. The scout harness viewsets are internal HTTP surfaces for MCP consumption (views.py docstring), and the new MCP tool is `enabled: false` in tools.yaml, so it is not part of any user-facing tool list. The user-facing Inbox docs (contents/docs/posthog-code/inbox/index.mdx and sources.mdx) describe the report→signals direction and the research flow but do not enumerate scout API endpoints or MCP tool tables, so there is no existing page that lists this endpoint or would need the reverse-lookup added. The actual user-visible chip lands in a follow-up desktop app PR (posthog/code), not in this repo's docs. No user-facing documentation update is warranted for this backend-only endpoint."
+  },
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "7324f3149c61ea3eab1f2134af99fbf6c16c55078bdbafdfbbcba565741047dd",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Is there existing user-facing documentation for the Scout harness API endpoints (runs, emissions) that would need the new emission_reports endpoint added?",
+          "root": "docs",
+          "queries": [
+            "scout emissions",
+            "scout run emissions",
+            "signals scout API"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "contents/docs/signals"
+          ],
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "offset": 17,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a0f1bcf8d2ce642b395a5269",
+            "05533a65631126325538af42",
+            "510786c2d1d4ce3cc886fd93",
+            "43bb74a05db1c09869f2bc1f",
+            "9f6ad3d635f4324e90b3c182",
+            "0c007413f3318179c6b789cf",
+            "57b96323e8f67687155c2527",
+            "4be388535bb020e4a5068734",
+            "69d186f8d2f7b649bc668be3",
+            "6e80a2ecb43ca99820ff3aa8",
+            "2427c995181e401fed403232",
+            "22dcade0859cd86e23a2e685",
+            "0aa443db52392a0e7ac2af41",
+            "0f41fd2a8c8f8b06b1f62f6e",
+            "841d9325d15f8cfbc76e6b70"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "evidence_id": "43bb74a05db1c09869f2bc1f",
+              "score": "0.03202132149500571"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+              "evidence_id": "9f6ad3d635f4324e90b3c182",
+              "score": "0.029647484328319543"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "evidence_id": "0c007413f3318179c6b789cf",
+              "score": "0.027877197168535754"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/logs/alerts.mdx",
+              "evidence_id": "57b96323e8f67687155c2527",
+              "score": "0.025219941348973606"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+              "evidence_id": "4be388535bb020e4a5068734",
+              "score": "0.02431874483897605"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/distributed-tracing/start-here.mdx",
+              "evidence_id": "69d186f8d2f7b649bc668be3",
+              "score": "0.024108621105022786"
+            },
+            {
+              "rank": 7,
+              "path": "contents/handbook/growth/use-case-selling/release-engineering.md",
+              "evidence_id": "6e80a2ecb43ca99820ff3aa8",
+              "score": "0.023585285682059875"
+            },
+            {
+              "rank": 8,
+              "path": "contents/handbook/marketing/positioning/experiments.md",
+              "evidence_id": "2427c995181e401fed403232",
+              "score": "0.02327554916117628"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/experiments/running-experiments-without-feature-flags.mdx",
+              "evidence_id": "22dcade0859cd86e23a2e685",
+              "score": "0.02234567901234568"
+            },
+            {
+              "rank": 10,
+              "path": "contents/handbook/growth/use-case-selling/product-intelligence.md",
+              "evidence_id": "0aa443db52392a0e7ac2af41",
+              "score": "0.022326168089967832"
+            },
+            {
+              "rank": 11,
+              "path": "contents/ko/newsletter/agent-first-product-engineering.md",
+              "evidence_id": "0f41fd2a8c8f8b06b1f62f6e",
+              "score": "0.02222222222222222"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/logs/best-practices.mdx",
+              "evidence_id": "841d9325d15f8cfbc76e6b70",
+              "score": "0.021937185327259648"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "start": 81,
+              "end": 201,
+              "total_lines": 229
+            },
+            {
+              "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+              "start": 0,
+              "end": 43,
+              "total_lines": 43
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "start": 17,
+              "end": 81,
+              "total_lines": 81
+            }
+          ],
+          "read_evidence_ids": [
+            "a0f1bcf8d2ce642b395a5269",
+            "05533a65631126325538af42",
+            "510786c2d1d4ce3cc886fd93"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where are the scout harness viewsets and their existing endpoints documented, and is there an API reference listing operation_ids?",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ],
+          "paths": [
+            "products/signals/backend/scout_harness/views.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "products/signals/backend/scout_harness/views.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "products/signals/mcp/tools.yaml",
+              "offset": 239,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "5a8d614c7d0a5d4f3c2e2c38",
+            "35886a6a91f093a07a903312",
+            "c9f79f41dd82a0bc893cebac",
+            "77f6c8d7550e435f81a101c0",
+            "323346bfbd8b6378c75f45ed",
+            "acabbd3ae7a2a3c849f9a9fb",
+            "ac30627d5948e039ed4c0049",
+            "106778a8a74d86ce8856beef",
+            "ea1e4d0e83c781ac1ceb4593",
+            "ef266c0df4fc8adc66c4e42d",
+            "2fa2b46dfed2fef015a37984",
+            "e218fbdba9b3761234674487",
+            "ba8bd492644912050b2f2f7e",
+            "ee609c89b66d5ade74903265"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "products/signals/backend/scout_harness/views.py",
+              "evidence_id": "c9f79f41dd82a0bc893cebac",
+              "score": "0.035105605528839644"
+            },
+            {
+              "rank": 2,
+              "path": "products/signals/backend/scout_harness/views.py",
+              "evidence_id": "77f6c8d7550e435f81a101c0",
+              "score": "0.031099324975891997"
+            },
+            {
+              "rank": 3,
+              "path": "products/signals/mcp/tools.yaml",
+              "evidence_id": "323346bfbd8b6378c75f45ed",
+              "score": "0.02724014336917563"
+            },
+            {
+              "rank": 4,
+              "path": "products/signals/backend/routes.py",
+              "evidence_id": "acabbd3ae7a2a3c849f9a9fb",
+              "score": "0.02649122807017544"
+            },
+            {
+              "rank": 5,
+              "path": "products/signals/ARCHITECTURE.md",
+              "evidence_id": "ac30627d5948e039ed4c0049",
+              "score": "0.023676099747828524"
+            },
+            {
+              "rank": 6,
+              "path": "products/signals/backend/scout_harness/AGENTS.md",
+              "evidence_id": "106778a8a74d86ce8856beef",
+              "score": "0.016472971532146285"
+            },
+            {
+              "rank": 7,
+              "path": "products/signals/backend/routes.py",
+              "evidence_id": "ea1e4d0e83c781ac1ceb4593",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 8,
+              "path": "services/mcp/tests/unit/__snapshots__/tool-schemas/signals-scout-runs-emissions-list.json",
+              "evidence_id": "ef266c0df4fc8adc66c4e42d",
+              "score": "0.015625"
+            },
+            {
+              "rank": 9,
+              "path": "products/signals/backend/migrations/0034_signalscoutemission.py",
+              "evidence_id": "2fa2b46dfed2fef015a37984",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 10,
+              "path": ".github/scripts/monitor-github-rate-limit.test.js",
+              "evidence_id": "e218fbdba9b3761234674487",
+              "score": "0.014925373134328358"
+            },
+            {
+              "rank": 11,
+              "path": "products/signals/backend/test/test_scout_harness_api.py",
+              "evidence_id": "ba8bd492644912050b2f2f7e",
+              "score": "0.014285714285714285"
+            },
+            {
+              "rank": 12,
+              "path": "products/signals/frontend/generated/api.ts",
+              "evidence_id": "ee609c89b66d5ade74903265",
+              "score": "0.013888888888888888"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "products/signals/backend/scout_harness/views.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 886
+            },
+            {
+              "path": "products/signals/mcp/tools.yaml",
+              "start": 239,
+              "end": 359,
+              "total_lines": 371
+            }
+          ],
+          "read_evidence_ids": [
+            "5a8d614c7d0a5d4f3c2e2c38",
+            "35886a6a91f093a07a903312"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Does the MCP tools.yaml entry for the new endpoint need documentation, and is there a docs page describing MCP tools for signals?",
+          "root": "docs",
+          "queries": [
+            "MCP tools signals scout",
+            "scout emission reports tool"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "products/signals/mcp/tools.yaml"
+          ],
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+              "offset": 13,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a7eb1a5c17fbeaddd9a6d93b",
+            "b7727061e74621d85edf3900",
+            "e91d966a014a07de1ed44c89",
+            "43bb74a05db1c09869f2bc1f",
+            "6ec86ec2d99111312a6b0bcb",
+            "b4fb9b4aa19cd6592d3efc87",
+            "b057d6cbc977de0e918c4d75",
+            "ec637b0dd6710abad07e610e",
+            "0a264677f23809f0c5788b7d",
+            "cd67cf17e82df7568fac2e1e",
+            "7588334fc1e3ed2fdc4c8247",
+            "7b298f14e438c716317d417a",
+            "5fd1cfa8d211921aab213416",
+            "d93de7a0f2aa07b40ac9af41",
+            "a8948bbf6819f58488c8f36b"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "evidence_id": "43bb74a05db1c09869f2bc1f",
+              "score": "0.028665028665028666"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "evidence_id": "6ec86ec2d99111312a6b0bcb",
+              "score": "0.026200135226504394"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+              "evidence_id": "b4fb9b4aa19cd6592d3efc87",
+              "score": "0.023237179487179488"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "evidence_id": "b057d6cbc977de0e918c4d75",
+              "score": "0.023057644110275687"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "evidence_id": "ec637b0dd6710abad07e610e",
+              "score": "0.02226190476190476"
+            },
+            {
+              "rank": 6,
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "evidence_id": "0a264677f23809f0c5788b7d",
+              "score": "0.022144522144522144"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "evidence_id": "cd67cf17e82df7568fac2e1e",
+              "score": "0.021937185327259648"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/logs/debug-logs-mcp.mdx",
+              "evidence_id": "7588334fc1e3ed2fdc4c8247",
+              "score": "0.021718931475029037"
+            },
+            {
+              "rank": 9,
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "evidence_id": "7b298f14e438c716317d417a",
+              "score": "0.021665695981362844"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/model-context-protocol/tools.mdx",
+              "evidence_id": "5fd1cfa8d211921aab213416",
+              "score": "0.019510879338248518"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "evidence_id": "d93de7a0f2aa07b40ac9af41",
+              "score": "0.018217893217893216"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/ai-observability/tools.mdx",
+              "evidence_id": "a8948bbf6819f58488c8f36b",
+              "score": "0.017842717985269662"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "start": 0,
+              "end": 120,
+              "total_lines": 229
+            },
+            {
+              "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+              "start": 13,
+              "end": 49,
+              "total_lines": 49
+            },
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "start": 0,
+              "end": 100,
+              "total_lines": 100
+            }
+          ],
+          "read_evidence_ids": [
+            "a7eb1a5c17fbeaddd9a6d93b",
+            "b7727061e74621d85edf3900",
+            "e91d966a014a07de1ed44c89"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "05533a65631126325538af42",
+        "0a264677f23809f0c5788b7d",
+        "0aa443db52392a0e7ac2af41",
+        "0c007413f3318179c6b789cf",
+        "0f41fd2a8c8f8b06b1f62f6e",
+        "106778a8a74d86ce8856beef",
+        "22dcade0859cd86e23a2e685",
+        "2427c995181e401fed403232",
+        "2fa2b46dfed2fef015a37984",
+        "323346bfbd8b6378c75f45ed",
+        "35886a6a91f093a07a903312",
+        "43bb74a05db1c09869f2bc1f",
+        "4be388535bb020e4a5068734",
+        "510786c2d1d4ce3cc886fd93",
+        "57b96323e8f67687155c2527",
+        "5a8d614c7d0a5d4f3c2e2c38",
+        "5fd1cfa8d211921aab213416",
+        "69d186f8d2f7b649bc668be3",
+        "6e80a2ecb43ca99820ff3aa8",
+        "6ec86ec2d99111312a6b0bcb",
+        "7588334fc1e3ed2fdc4c8247",
+        "77f6c8d7550e435f81a101c0",
+        "7b298f14e438c716317d417a",
+        "841d9325d15f8cfbc76e6b70",
+        "9f6ad3d635f4324e90b3c182",
+        "a0f1bcf8d2ce642b395a5269",
+        "a7eb1a5c17fbeaddd9a6d93b",
+        "a8948bbf6819f58488c8f36b",
+        "ac30627d5948e039ed4c0049",
+        "acabbd3ae7a2a3c849f9a9fb",
+        "b057d6cbc977de0e918c4d75",
+        "b4fb9b4aa19cd6592d3efc87",
+        "b7727061e74621d85edf3900",
+        "ba8bd492644912050b2f2f7e",
+        "c9f79f41dd82a0bc893cebac",
+        "cd67cf17e82df7568fac2e1e",
+        "d93de7a0f2aa07b40ac9af41",
+        "e218fbdba9b3761234674487",
+        "e91d966a014a07de1ed44c89",
+        "ea1e4d0e83c781ac1ceb4593",
+        "ec637b0dd6710abad07e610e",
+        "ee609c89b66d5ade74903265",
+        "ef266c0df4fc8adc66c4e42d"
+      ],
+      "new_evidence_count": 43,
+      "new_path_count": 29
+    },
+    {
+      "signature": "a3273eee95762f13c24de0d8a30011b7609a907c9144514c7077ff8100560a16",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Is there any user-facing docs page describing the Scout page, scout findings, or the report↔signal link that would need the new reverse-lookup endpoint documented?",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ],
+          "paths": [
+            "contents/docs/posthog-code/inbox/sources.mdx"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/index.mdx",
+              "offset": 36,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/engineering/ai/products.md",
+              "offset": 93,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "b34e081819ba59a9b5ffbb21",
+            "5c5b7595e14d6275802dd9e6",
+            "efeacbc095322fef29823e37",
+            "afa517703302746513ded5fd",
+            "d6426b5941f7047f98e0e52d",
+            "57b96323e8f67687155c2527",
+            "2427c995181e401fed403232",
+            "b276c13cbb1e5c77bf02e560",
+            "0a3ceca1416d7d5a96b1dc31",
+            "4506f57f4df4e2a03ad00a39",
+            "434b30807a8014f7ccd88862",
+            "1637bd3504dd0678ad7bad70",
+            "efd4530ddffbeecda576f5c0",
+            "69d186f8d2f7b649bc668be3",
+            "a8be551c488dbc0725fe2a1e"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/posthog-code/inbox/index.mdx",
+              "evidence_id": "afa517703302746513ded5fd",
+              "score": "0.03306250935488699"
+            },
+            {
+              "rank": 2,
+              "path": "contents/handbook/engineering/ai/products.md",
+              "evidence_id": "d6426b5941f7047f98e0e52d",
+              "score": "0.02946236559139785"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/logs/alerts.mdx",
+              "evidence_id": "57b96323e8f67687155c2527",
+              "score": "0.02928692699490662"
+            },
+            {
+              "rank": 4,
+              "path": "contents/handbook/marketing/positioning/experiments.md",
+              "evidence_id": "2427c995181e401fed403232",
+              "score": "0.028165790606451926"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/posthog-code/inbox/research.mdx",
+              "evidence_id": "b276c13cbb1e5c77bf02e560",
+              "score": "0.02753611457182207"
+            },
+            {
+              "rank": 6,
+              "path": "contents/handbook/engineering/ai/products.md",
+              "evidence_id": "0a3ceca1416d7d5a96b1dc31",
+              "score": "0.027146130794993832"
+            },
+            {
+              "rank": 7,
+              "path": "contents/handbook/company/security-advisories.md",
+              "evidence_id": "4506f57f4df4e2a03ad00a39",
+              "score": "0.025833333333333333"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/posthog-ai/research-mode.mdx",
+              "evidence_id": "434b30807a8014f7ccd88862",
+              "score": "0.02548562548562549"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "evidence_id": "1637bd3504dd0678ad7bad70",
+              "score": "0.025396825396825397"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "evidence_id": "efd4530ddffbeecda576f5c0",
+              "score": "0.025057603686635944"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/distributed-tracing/start-here.mdx",
+              "evidence_id": "69d186f8d2f7b649bc668be3",
+              "score": "0.024331082550260633"
+            },
+            {
+              "rank": 12,
+              "path": "contents/handbook/company/security.md",
+              "evidence_id": "a8be551c488dbc0725fe2a1e",
+              "score": "0.024056467876692595"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "start": 0,
+              "end": 81,
+              "total_lines": 81
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/index.mdx",
+              "start": 36,
+              "end": 106,
+              "total_lines": 106
+            },
+            {
+              "path": "contents/handbook/engineering/ai/products.md",
+              "start": 93,
+              "end": 213,
+              "total_lines": 464
+            }
+          ],
+          "read_evidence_ids": [
+            "b34e081819ba59a9b5ffbb21",
+            "5c5b7595e14d6275802dd9e6",
+            "efeacbc095322fef29823e37"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the MCP tools.yaml entry for signals-scout-runs-emission-reports (disabled by default) have any user-facing MCP tool documentation listing signals-scout tools?",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "contents/docs/model-context-protocol.mdx"
+          ],
+          "reads": [
+            {
+              "path": "contents/teams/web-analytics/objectives.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "de08a8c39cbcd6668d174430",
+            "cd31efb93515c990f7d7b818",
+            "1ff21b76cb9c071d6934db44",
+            "e4a533e4e31040b8d9dd5184",
+            "43bb74a05db1c09869f2bc1f",
+            "6ec86ec2d99111312a6b0bcb",
+            "ec637b0dd6710abad07e610e",
+            "6ce25c9b37869cacb223ee51",
+            "57b96323e8f67687155c2527",
+            "411f22c663abb198694f602d",
+            "7588334fc1e3ed2fdc4c8247",
+            "cd67cf17e82df7568fac2e1e",
+            "5698c3e75a7b622f679597f3",
+            "0a264677f23809f0c5788b7d",
+            "2e6f5d1ccba30e41bd5b7129"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/teams/web-analytics/objectives.mdx",
+              "evidence_id": "e4a533e4e31040b8d9dd5184",
+              "score": "0.03347729743154717"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "evidence_id": "43bb74a05db1c09869f2bc1f",
+              "score": "0.03311864287474044"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "evidence_id": "6ec86ec2d99111312a6b0bcb",
+              "score": "0.03291726446676232"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "evidence_id": "ec637b0dd6710abad07e610e",
+              "score": "0.03248323754789272"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "evidence_id": "6ce25c9b37869cacb223ee51",
+              "score": "0.030949754901960787"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/logs/alerts.mdx",
+              "evidence_id": "57b96323e8f67687155c2527",
+              "score": "0.030740027832106002"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/prompt-management/index.mdx",
+              "evidence_id": "411f22c663abb198694f602d",
+              "score": "0.030309988518943745"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/logs/debug-logs-mcp.mdx",
+              "evidence_id": "7588334fc1e3ed2fdc4c8247",
+              "score": "0.029876219197996726"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/mcp-analytics/events.mdx",
+              "evidence_id": "cd67cf17e82df7568fac2e1e",
+              "score": "0.028756117907886784"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/alerts/index.mdx",
+              "evidence_id": "5698c3e75a7b622f679597f3",
+              "score": "0.027897562533785444"
+            },
+            {
+              "rank": 11,
+              "path": "contents/tutorials/mcp-analytics.mdx",
+              "evidence_id": "0a264677f23809f0c5788b7d",
+              "score": "0.02784172817828071"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/customer-analytics/create-usage-metrics.mdx",
+              "evidence_id": "2e6f5d1ccba30e41bd5b7129",
+              "score": "0.027783137179239824"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/teams/web-analytics/objectives.mdx",
+              "start": 0,
+              "end": 87,
+              "total_lines": 87
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "start": 15,
+              "end": 89,
+              "total_lines": 89
+            },
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "start": 0,
+              "end": 89,
+              "total_lines": 89
+            }
+          ],
+          "read_evidence_ids": [
+            "de08a8c39cbcd6668d174430",
+            "cd31efb93515c990f7d7b818",
+            "1ff21b76cb9c071d6934db44"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0a3ceca1416d7d5a96b1dc31",
+        "1637bd3504dd0678ad7bad70",
+        "1ff21b76cb9c071d6934db44",
+        "2e6f5d1ccba30e41bd5b7129",
+        "411f22c663abb198694f602d",
+        "434b30807a8014f7ccd88862",
+        "4506f57f4df4e2a03ad00a39",
+        "5698c3e75a7b622f679597f3",
+        "5c5b7595e14d6275802dd9e6",
+        "6ce25c9b37869cacb223ee51",
+        "a8be551c488dbc0725fe2a1e",
+        "afa517703302746513ded5fd",
+        "b276c13cbb1e5c77bf02e560",
+        "b34e081819ba59a9b5ffbb21",
+        "cd31efb93515c990f7d7b818",
+        "d6426b5941f7047f98e0e52d",
+        "de08a8c39cbcd6668d174430",
+        "e4a533e4e31040b8d9dd5184",
+        "efd4530ddffbeecda576f5c0",
+        "efeacbc095322fef29823e37"
+      ],
+      "new_evidence_count": 20,
+      "new_path_count": 11
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+    "code": "e34eabc1c36f5728797b377377220edc72cf7121"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:342ccd418f8252c2": 0,
+    "discover:Q1-3:167b8d28271a1b20": 311,
+    "discover:Q1-2:d118d3fa6cf8c559": 0,
+    "discover:Q2-1:e7d9f7689afc9462": 0,
+    "discover:Q2-2:0280cffd3d14e316": 1054
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-2:d118d3fa6cf8c559": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:342ccd418f8252c2": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 351,
+      "cache_hit": false
+    },
+    "discover:Q1-3:167b8d28271a1b20": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 228,
+      "cache_hit": false
+    },
+    "discover:Q1-2:d118d3fa6cf8c559": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 43908,
+      "cache_hit": false
+    },
+    "discover:Q1-2:ad2f8a75a3db269a": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 156,
+      "cache_hit": false
+    },
+    "discover:Q1-1:dd4184f6951f729c": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 179,
+      "cache_hit": false
+    },
+    "discover:Q1-3:c245a837df123d15": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 194,
+      "cache_hit": false
+    },
+    "discover:Q2-1:e7d9f7689afc9462": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 1054,
+      "cache_hit": false
+    },
+    "discover:Q2-2:0280cffd3d14e316": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 348,
+      "cache_hit": false
+    },
+    "discover:Q2-2:d7dcfc6ac7d280b9": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 208,
+      "cache_hit": false
+    },
+    "discover:Q2-1:d64854a6282474e3": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 274,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "no-change",
+      "surface": "change",
+      "status": "no_change_supported",
+      "paths": [
+        "contents/docs/posthog-code/inbox/sources.mdx",
+        "contents/docs/posthog-code/inbox/index.mdx"
+      ],
+      "evidence_ids": [
+        "5a8d614c7d0a5d4f3c2e2c38",
+        "35886a6a91f093a07a903312",
+        "b34e081819ba59a9b5ffbb21",
+        "5c5b7595e14d6275802dd9e6",
+        "510786c2d1d4ce3cc886fd93"
+      ],
+      "reason": "The change adds a new read-only API endpoint (GET .../signals/scout/runs/{run_id}/emissions/reports/) plus serializers, a ClickHouse helper, generated frontend types, and an MCP tool registration that is disabled by default. The scout harness viewsets are internal HTTP surfaces for MCP consumption (views.py docstring), and the new MCP tool is `enabled: false` in tools.yaml, so it is not part of any user-facing tool list. The user-facing Inbox docs (contents/docs/posthog-code/inbox/index.mdx and sources.mdx) describe the report→signals direction and the research flow but do not enumerate scout API endpoints or MCP tool tables, so there is no existing page that lists this endpoint or would need the reverse-lookup added. The actual user-visible chip lands in a follow-up desktop app PR (posthog/code), not in this repo's docs. No user-facing documentation update is warranted for this backend-only endpoint."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:05533a65631126325538af42",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+        "start_line": 1,
+        "total_lines": 43,
+        "start_char": 0,
+        "end_char": 878,
+        "evidence_id": "05533a65631126325538af42",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2bd5016b336b2483b026a96a16ff9a0723762e11e92682e7dcf47d1794e00eb0",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "offset": 17,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2bd5016b336b2483b026a96a16ff9a0723762e11e92682e7dcf47d1794e00eb0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0a264677f23809f0c5788b7d",
+        "type": "evidence",
+        "path": "contents/tutorials/mcp-analytics.mdx",
+        "heading": "- MCP > 6. Registering tools using withAnalytics()",
+        "start_line": 331,
+        "end_line": 380,
+        "start_char": 9729,
+        "end_char": 11137,
+        "score": "0.02784172817828071",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "0a264677f23809f0c5788b7d",
+        "source_type": "repository",
+        "content_hash": "e5cc62d1ae80acbe061921d4140a67babeb34832085ee63e250e8aaa70e35f29",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e5cc62d1ae80acbe061921d4140a67babeb34832085ee63e250e8aaa70e35f29",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0a3ceca1416d7d5a96b1dc31",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/ai/products.md",
+        "heading": "showTitle: true > Deep research [Under development] > How it works: Test-time diffusion",
+        "start_line": 82,
+        "end_line": 97,
+        "start_char": 5513,
+        "end_char": 6925,
+        "score": "0.027146130794993832",
+        "root": "docs",
+        "matched_terms": [
+          "findings",
+          "report",
+          "run"
+        ],
+        "evidence_id": "0a3ceca1416d7d5a96b1dc31",
+        "source_type": "repository",
+        "content_hash": "ec9e7bb163b775ec64ae3d32ad72a0f4d8edd0b0cf2961e0c1682947076b300c",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "ec9e7bb163b775ec64ae3d32ad72a0f4d8edd0b0cf2961e0c1682947076b300c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0aa443db52392a0e7ac2af41",
+        "type": "evidence",
+        "path": "contents/handbook/growth/use-case-selling/product-intelligence.md",
+        "heading": "hideAnchor: false > Signals in Vitally & PostHog > PostHog usage signals",
+        "start_line": 87,
+        "end_line": 96,
+        "start_char": 8021,
+        "end_char": 8942,
+        "score": "0.022326168089967832",
+        "root": "docs",
+        "matched_terms": [
+          "run",
+          "signals"
+        ],
+        "evidence_id": "0aa443db52392a0e7ac2af41",
+        "source_type": "repository",
+        "content_hash": "0bc6ba636f648da26c953bdf220fe842e4475e362632edd672263df140922a61",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout emissions",
+            "scout run emissions",
+            "signals scout API"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0bc6ba636f648da26c953bdf220fe842e4475e362632edd672263df140922a61",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c007413f3318179c6b789cf",
+        "type": "evidence",
+        "path": "contents/docs/posthog-code/inbox/sources.mdx",
+        "heading": "title: PostHog Code Inbox signal sources > PostHog sources",
+        "start_line": 22,
+        "end_line": 59,
+        "start_char": 829,
+        "end_char": 1782,
+        "score": "0.027877197168535754",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "0c007413f3318179c6b789cf",
+        "source_type": "repository",
+        "content_hash": "67bd057215991145e7bc2e887a3c5a04740284ab4c0e387bde431c66ca6f6c57",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout emissions",
+            "scout run emissions",
+            "signals scout API"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "67bd057215991145e7bc2e887a3c5a04740284ab4c0e387bde431c66ca6f6c57",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0f41fd2a8c8f8b06b1f62f6e",
+        "type": "evidence",
+        "path": "contents/ko/newsletter/agent-first-product-engineering.md",
+        "heading": "AI 에이전트와 MCP 서버에서 잘 작동하는 제품을 만들기 위한 다섯 가지 원칙을 정리했습니다. > 1. 인간이 하면 에이전트도 할 수 있어야 한다",
+        "start_line": 36,
+        "end_line": 47,
+        "start_char": 1038,
+        "end_char": 1749,
+        "score": "0.02222222222222222",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "0f41fd2a8c8f8b06b1f62f6e",
+        "source_type": "repository",
+        "content_hash": "170a9214756764930403af25ecb14097ec50bb2d5f1cff58e56afd695a0f3e62",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout emissions",
+            "scout run emissions",
+            "signals scout API"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "170a9214756764930403af25ecb14097ec50bb2d5f1cff58e56afd695a0f3e62",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:106778a8a74d86ce8856beef",
+        "type": "evidence",
+        "path": "products/signals/backend/scout_harness/AGENTS.md",
+        "heading": "Signals Agent Harness > What lives here",
+        "start_line": 69,
+        "end_line": 90,
+        "start_char": 4181,
+        "end_char": 5494,
+        "score": "0.016472971532146285",
+        "root": "code",
+        "matched_terms": [
+          "signalscoutrunviewset",
+          "views"
+        ],
+        "evidence_id": "106778a8a74d86ce8856beef",
+        "source_type": "repository",
+        "content_hash": "862d726932cc14401c5cdcc30f33e552ed9a798c12eaca0c74dcb9b7681298f7",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "862d726932cc14401c5cdcc30f33e552ed9a798c12eaca0c74dcb9b7681298f7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1637bd3504dd0678ad7bad70",
+        "type": "evidence",
+        "path": "contents/docs/posthog-code/inbox/sources.mdx",
+        "heading": "title: PostHog Code Inbox signal sources > External sources",
+        "start_line": 60,
+        "end_line": 69,
+        "start_char": 1782,
+        "end_char": 2672,
+        "score": "0.025396825396825397",
+        "root": "docs",
+        "matched_terms": [
+          "inbox",
+          "report",
+          "signals"
+        ],
+        "evidence_id": "1637bd3504dd0678ad7bad70",
+        "source_type": "repository",
+        "content_hash": "b191420323e923adfa512f0a152d207d84048abebcb9112974322cf70ab9da1f",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b191420323e923adfa512f0a152d207d84048abebcb9112974322cf70ab9da1f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1ff21b76cb9c071d6934db44",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+        "start_line": 1,
+        "total_lines": 89,
+        "start_char": 0,
+        "end_char": 3267,
+        "evidence_id": "1ff21b76cb9c071d6934db44",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "05a42acc28fd9e9dcf1c7a90a75c8b6e1b780114a27c772529d731b116f49b32",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/teams/web-analytics/objectives.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "05a42acc28fd9e9dcf1c7a90a75c8b6e1b780114a27c772529d731b116f49b32",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:22dcade0859cd86e23a2e685",
+        "type": "evidence",
+        "path": "contents/docs/experiments/running-experiments-without-feature-flags.mdx",
+        "heading": "title: \"How to run Experiments without Feature Flags\" > How PostHog processes experiment events > Exposure tracking",
+        "start_line": 179,
+        "end_line": 187,
+        "start_char": 5586,
+        "end_char": 5941,
+        "score": "0.02234567901234568",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "22dcade0859cd86e23a2e685",
+        "source_type": "repository",
+        "content_hash": "499644087cb16bd1892879d55e31a9c31d9b634d834746081c0f715de7b20210",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout emissions",
+            "scout run emissions",
+            "signals scout API"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "499644087cb16bd1892879d55e31a9c31d9b634d834746081c0f715de7b20210",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2427c995181e401fed403232",
+        "type": "evidence",
+        "path": "contents/handbook/marketing/positioning/experiments.md",
+        "heading": "showTitle: true > Messaging > Message 2: From flag to experiment to decision in one platform",
+        "start_line": 53,
+        "end_line": 64,
+        "start_char": 3455,
+        "end_char": 4386,
+        "score": "0.028165790606451926",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "2427c995181e401fed403232",
+        "source_type": "repository",
+        "content_hash": "978ef9a9642f80f5765f90b950cab198a7e1515bd7e2926368b8f01837b5994a",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "978ef9a9642f80f5765f90b950cab198a7e1515bd7e2926368b8f01837b5994a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2e6f5d1ccba30e41bd5b7129",
+        "type": "evidence",
+        "path": "contents/docs/customer-analytics/create-usage-metrics.mdx",
+        "heading": "showTitle: true > Manage usage metrics via MCP",
+        "start_line": 80,
+        "end_line": 101,
+        "start_char": 4281,
+        "end_char": 5502,
+        "score": "0.027783137179239824",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "2e6f5d1ccba30e41bd5b7129",
+        "source_type": "repository",
+        "content_hash": "6bebf95f8961a88472c7a093fb881bf55576fa818c31daeb143544ee502029f8",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6bebf95f8961a88472c7a093fb881bf55576fa818c31daeb143544ee502029f8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2fa2b46dfed2fef015a37984",
+        "type": "evidence",
+        "path": "products/signals/backend/migrations/0034_signalscoutemission.py",
+        "heading": "Generated by Django 5.2.14 on 2026-06-09 09:51",
+        "start_line": 47,
+        "end_line": 68,
+        "start_char": 1626,
+        "end_char": 2412,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "emissions"
+        ],
+        "evidence_id": "2fa2b46dfed2fef015a37984",
+        "source_type": "repository",
+        "content_hash": "bdf483a3b8984590e166f76fec69167dcf790e5fd1d39cb1e04b69ba15fdf11c",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "bdf483a3b8984590e166f76fec69167dcf790e5fd1d39cb1e04b69ba15fdf11c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:323346bfbd8b6378c75f45ed",
+        "type": "evidence",
+        "path": "products/signals/mcp/tools.yaml",
+        "heading": "All other fields (title, description, enrich_url, etc.) are yours to configure.",
+        "start_line": 244,
+        "end_line": 274,
+        "start_char": 11719,
+        "end_char": 13335,
+        "score": "0.02724014336917563",
+        "root": "code",
+        "matched_terms": [
+          "emissions",
+          "signals_scout_runs_emissions"
+        ],
+        "evidence_id": "323346bfbd8b6378c75f45ed",
+        "source_type": "repository",
+        "content_hash": "84c5b371047d586924ad8b7d99add6023fda3560679c4dce08cb4064eff76897",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "84c5b371047d586924ad8b7d99add6023fda3560679c4dce08cb4064eff76897",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:35886a6a91f093a07a903312",
+        "type": "evidence",
+        "root": "code",
+        "path": "products/signals/mcp/tools.yaml",
+        "start_line": 240,
+        "total_lines": 371,
+        "start_char": 11340,
+        "end_char": 17838,
+        "evidence_id": "35886a6a91f093a07a903312",
+        "truncated": false,
+        "next_offset": 359,
+        "source_type": "repository",
+        "content_hash": "de2211cd6545d3ac5f52f6af3cf1dd40e3b04744b322fbe0acd2d1dc461f8bcb",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/signals/backend/scout_harness/views.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "products/signals/mcp/tools.yaml",
+              "offset": 239,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "de2211cd6545d3ac5f52f6af3cf1dd40e3b04744b322fbe0acd2d1dc461f8bcb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:411f22c663abb198694f602d",
+        "type": "evidence",
+        "path": "contents/docs/prompt-management/index.mdx",
+        "heading": "title: Prompt management > Managing prompts via MCP",
+        "start_line": 39,
+        "end_line": 53,
+        "start_char": 1771,
+        "end_char": 2439,
+        "score": "0.030309988518943745",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "411f22c663abb198694f602d",
+        "source_type": "repository",
+        "content_hash": "69c5355e79f98c281183cbec7ccc892ddffb35a247464ed6f36d51b760561e47",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "69c5355e79f98c281183cbec7ccc892ddffb35a247464ed6f36d51b760561e47",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:434b30807a8014f7ccd88862",
+        "type": "evidence",
+        "path": "contents/docs/posthog-ai/research-mode.mdx",
+        "heading": "title: Research mode (Deep research) > How research mode works > Phase 2: Research execution",
+        "start_line": 47,
+        "end_line": 56,
+        "start_char": 2136,
+        "end_char": 2675,
+        "score": "0.02548562548562549",
+        "root": "docs",
+        "matched_terms": [
+          "findings",
+          "report",
+          "run"
+        ],
+        "evidence_id": "434b30807a8014f7ccd88862",
+        "source_type": "repository",
+        "content_hash": "fcb7e3965ac2d8df953696305b6cc52d81bb33dd6ef307ace02569195a56a0e5",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "fcb7e3965ac2d8df953696305b6cc52d81bb33dd6ef307ace02569195a56a0e5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:43bb74a05db1c09869f2bc1f",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/start-here.mdx",
+        "heading": "contentMaxWidthClass: max-w-5xl",
+        "start_line": 86,
+        "end_line": 132,
+        "start_char": 3493,
+        "end_char": 5164,
+        "score": "0.03311864287474044",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "43bb74a05db1c09869f2bc1f",
+        "source_type": "repository",
+        "content_hash": "476a2deb3a57ce06a03180203de56bfb6839cb19806bc8cb29143167fd99f7f4",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "476a2deb3a57ce06a03180203de56bfb6839cb19806bc8cb29143167fd99f7f4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4506f57f4df4e2a03ad00a39",
+        "type": "evidence",
+        "path": "contents/handbook/company/security-advisories.md",
+        "heading": "showTitle: true > Reporting security issues",
+        "start_line": 23,
+        "end_line": 26,
+        "start_char": 1163,
+        "end_char": 1499,
+        "score": "0.025833333333333333",
+        "root": "docs",
+        "matched_terms": [
+          "findings"
+        ],
+        "evidence_id": "4506f57f4df4e2a03ad00a39",
+        "source_type": "repository",
+        "content_hash": "59901110f508db719431ebe7b9ff62f363f23233e3e3bc93bd105de6876a766a",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "59901110f508db719431ebe7b9ff62f363f23233e3e3bc93bd105de6876a766a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4be388535bb020e4a5068734",
+        "type": "evidence",
+        "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+        "heading": "Segment backend libraries",
+        "start_line": 22,
+        "end_line": 43,
+        "start_char": 386,
+        "end_char": 878,
+        "score": "0.02431874483897605",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4be388535bb020e4a5068734",
+        "source_type": "repository",
+        "content_hash": "3d863d4ac3484fca37f9ad101b596abe0b6e32aecec6731a0652362a821f0778",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout emissions",
+            "scout run emissions",
+            "signals scout API"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "3d863d4ac3484fca37f9ad101b596abe0b6e32aecec6731a0652362a821f0778",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:510786c2d1d4ce3cc886fd93",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/posthog-code/inbox/sources.mdx",
+        "start_line": 18,
+        "total_lines": 81,
+        "start_char": 653,
+        "end_char": 3243,
+        "evidence_id": "510786c2d1d4ce3cc886fd93",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "367de2b6a8485a40057ca732d56655e9e84346fba7a7a8aae8905b5780615080",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "offset": 17,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "367de2b6a8485a40057ca732d56655e9e84346fba7a7a8aae8905b5780615080",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5698c3e75a7b622f679597f3",
+        "type": "evidence",
+        "path": "contents/docs/alerts/index.mdx",
+        "heading": "enterprise: full > Create alerts with PostHog AI > Manage alerts via MCP",
+        "start_line": 127,
+        "end_line": 137,
+        "start_char": 6009,
+        "end_char": 6470,
+        "score": "0.027897562533785444",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tools"
+        ],
+        "evidence_id": "5698c3e75a7b622f679597f3",
+        "source_type": "repository",
+        "content_hash": "f10887f7dc174d063ddabe7e96da6c18b435ba6af985c1c2b5cacdc602f8b3bc",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "f10887f7dc174d063ddabe7e96da6c18b435ba6af985c1c2b5cacdc602f8b3bc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:57b96323e8f67687155c2527",
+        "type": "evidence",
+        "path": "contents/docs/logs/alerts.mdx",
+        "heading": "title: Set up log alerts > Signals for PostHog Code Inbox",
+        "start_line": 63,
+        "end_line": 68,
+        "start_char": 3328,
+        "end_char": 3865,
+        "score": "0.030740027832106002",
+        "root": "docs",
+        "matched_terms": [
+          "inbox",
+          "signals"
+        ],
+        "evidence_id": "57b96323e8f67687155c2527",
+        "source_type": "repository",
+        "content_hash": "b0ab08f2655beb7cad0bfc661370e3af3263a22a7c77bef0e8fba61cbb37eb72",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b0ab08f2655beb7cad0bfc661370e3af3263a22a7c77bef0e8fba61cbb37eb72",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:58fa01e2cf311224f03e5c71",
+        "type": "evidence",
+        "evidence_id": "58fa01e2cf311224f03e5c71",
+        "source_type": "implementation",
+        "exported_content_sha256": "8aeb361dcab56808f9b4141cdb12def201dc07fec387b0a40520f217f345c406",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a8d614c7d0a5d4f3c2e2c38",
+        "type": "evidence",
+        "root": "code",
+        "path": "products/signals/backend/scout_harness/views.py",
+        "start_line": 1,
+        "total_lines": 886,
+        "start_char": 0,
+        "end_char": 5754,
+        "evidence_id": "5a8d614c7d0a5d4f3c2e2c38",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "50b4fc98cebafb8251d5a06c0ee514ac1cfb202183ba6830c30af89d56e9622e",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/signals/backend/scout_harness/views.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "products/signals/mcp/tools.yaml",
+              "offset": 239,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "50b4fc98cebafb8251d5a06c0ee514ac1cfb202183ba6830c30af89d56e9622e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5c5b7595e14d6275802dd9e6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/posthog-code/inbox/index.mdx",
+        "start_line": 37,
+        "total_lines": 106,
+        "start_char": 1558,
+        "end_char": 4384,
+        "evidence_id": "5c5b7595e14d6275802dd9e6",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "6617f73fe52923309b7730c58846311c5fca326f8e71272ce6a24f959c9db6e0",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/index.mdx",
+              "offset": 36,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/engineering/ai/products.md",
+              "offset": 93,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "6617f73fe52923309b7730c58846311c5fca326f8e71272ce6a24f959c9db6e0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5fd1cfa8d211921aab213416",
+        "type": "evidence",
+        "path": "contents/docs/model-context-protocol/tools.mdx",
+        "heading": "showTitle: true",
+        "start_line": 5,
+        "end_line": 15,
+        "start_char": 73,
+        "end_char": 716,
+        "score": "0.019510879338248518",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "5fd1cfa8d211921aab213416",
+        "source_type": "repository",
+        "content_hash": "8cd4d54e95db9e4b9f1cfd0725a55ba99b1cc14ecf00c79bceb1f607c90dc0b9",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "MCP tools signals scout",
+            "scout emission reports tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8cd4d54e95db9e4b9f1cfd0725a55ba99b1cc14ecf00c79bceb1f607c90dc0b9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:69d186f8d2f7b649bc668be3",
+        "type": "evidence",
+        "path": "contents/docs/distributed-tracing/start-here.mdx",
+        "heading": "contentMaxWidthClass: max-w-5xl",
+        "start_line": 45,
+        "end_line": 88,
+        "start_char": 1678,
+        "end_char": 3176,
+        "score": "0.024331082550260633",
+        "root": "docs",
+        "matched_terms": [
+          "run"
+        ],
+        "evidence_id": "69d186f8d2f7b649bc668be3",
+        "source_type": "repository",
+        "content_hash": "be9977adce1cb9db5a0d96bbe077979e404c78e96f10e85e776519ade6e9e62a",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "be9977adce1cb9db5a0d96bbe077979e404c78e96f10e85e776519ade6e9e62a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6ce25c9b37869cacb223ee51",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+        "heading": "title: Tracking missing capabilities",
+        "start_line": 2,
+        "end_line": 10,
+        "start_char": 4,
+        "end_char": 415,
+        "score": "0.030949754901960787",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "signals",
+          "tool"
+        ],
+        "evidence_id": "6ce25c9b37869cacb223ee51",
+        "source_type": "repository",
+        "content_hash": "31498148473eeff518d9430d84aa5de8ae1ab5f9726ce3756a7d30cee1117efb",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "31498148473eeff518d9430d84aa5de8ae1ab5f9726ce3756a7d30cee1117efb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6e80a2ecb43ca99820ff3aa8",
+        "type": "evidence",
+        "path": "contents/handbook/growth/use-case-selling/release-engineering.md",
+        "heading": "hideAnchor: false > Signals in Vitally & PostHog > PostHog usage signals",
+        "start_line": 81,
+        "end_line": 89,
+        "start_char": 7708,
+        "end_char": 8434,
+        "score": "0.023585285682059875",
+        "root": "docs",
+        "matched_terms": [
+          "signals"
+        ],
+        "evidence_id": "6e80a2ecb43ca99820ff3aa8",
+        "source_type": "repository",
+        "content_hash": "0330e3b4826339fe4119fb5e05868316c1f54d497b363e0ad397f3802fe2136b",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout emissions",
+            "scout run emissions",
+            "signals scout API"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0330e3b4826339fe4119fb5e05868316c1f54d497b363e0ad397f3802fe2136b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6ec86ec2d99111312a6b0bcb",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/start-here.mdx",
+        "heading": "contentMaxWidthClass: max-w-5xl",
+        "start_line": 4,
+        "end_line": 35,
+        "start_char": 69,
+        "end_char": 1669,
+        "score": "0.03291726446676232",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "6ec86ec2d99111312a6b0bcb",
+        "source_type": "repository",
+        "content_hash": "0f91677d5cca2c5c2e46a2d671e12ab639024bffd40ec4ca885acbc51d55afd7",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0f91677d5cca2c5c2e46a2d671e12ab639024bffd40ec4ca885acbc51d55afd7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7588334fc1e3ed2fdc4c8247",
+        "type": "evidence",
+        "path": "contents/docs/logs/debug-logs-mcp.mdx",
+        "heading": "title: Debug Logs with MCP > Logs tools",
+        "start_line": 26,
+        "end_line": 40,
+        "start_char": 1156,
+        "end_char": 2782,
+        "score": "0.029876219197996726",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "7588334fc1e3ed2fdc4c8247",
+        "source_type": "repository",
+        "content_hash": "e6f09060ee43742fda0faca197124d4823669ac371a19c0698a57712d1ec3b41",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e6f09060ee43742fda0faca197124d4823669ac371a19c0698a57712d1ec3b41",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:77f6c8d7550e435f81a101c0",
+        "type": "evidence",
+        "path": "products/signals/backend/scout_harness/views.py",
+        "heading": "`SignalScoutRunViewSet.lookup_field` is `run_id`, but the model's PK field is `id`, so",
+        "start_line": 93,
+        "end_line": 93,
+        "start_char": 4104,
+        "end_char": 4193,
+        "score": "0.031099324975891997",
+        "root": "code",
+        "matched_terms": [
+          "signalscoutrunviewset"
+        ],
+        "evidence_id": "77f6c8d7550e435f81a101c0",
+        "source_type": "repository",
+        "content_hash": "83405b5281de70b9fe69d51eea73620b60511ba3e4b909be1c42a906b8500465",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "83405b5281de70b9fe69d51eea73620b60511ba3e4b909be1c42a906b8500465",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7b298f14e438c716317d417a",
+        "type": "evidence",
+        "path": "contents/tutorials/mcp-analytics.mdx",
+        "heading": "- MCP > 9. Create MCP analytics dashboards",
+        "start_line": 487,
+        "end_line": 536,
+        "start_char": 14381,
+        "end_char": 15645,
+        "score": "0.021665695981362844",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool"
+        ],
+        "evidence_id": "7b298f14e438c716317d417a",
+        "source_type": "repository",
+        "content_hash": "9990133a39a987569e1fa81a80fd73c7bddd3730f9be8130b2c67442a32be02c",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "MCP tools signals scout",
+            "scout emission reports tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9990133a39a987569e1fa81a80fd73c7bddd3730f9be8130b2c67442a32be02c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:841d9325d15f8cfbc76e6b70",
+        "type": "evidence",
+        "path": "contents/docs/logs/best-practices.mdx",
+        "heading": "title: Logging best practices > Build events throughout the request lifecycle",
+        "start_line": 158,
+        "end_line": 204,
+        "start_char": 8040,
+        "end_char": 9688,
+        "score": "0.021937185327259648",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "841d9325d15f8cfbc76e6b70",
+        "source_type": "repository",
+        "content_hash": "e9ed24e66d2754572fe65f402122008c6f8092671c1d37b0e73d9dc2c02f3c67",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout emissions",
+            "scout run emissions",
+            "signals scout API"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e9ed24e66d2754572fe65f402122008c6f8092671c1d37b0e73d9dc2c02f3c67",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9f6ad3d635f4324e90b3c182",
+        "type": "evidence",
+        "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+        "heading": "Segment browser or mobile libraries",
+        "start_line": 1,
+        "end_line": 21,
+        "start_char": 0,
+        "end_char": 386,
+        "score": "0.029647484328319543",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "9f6ad3d635f4324e90b3c182",
+        "source_type": "repository",
+        "content_hash": "69fa9e0750d2e8ad6b4d82a02ca438c9e1f7d204d0370e35f52290a125a178ec",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout emissions",
+            "scout run emissions",
+            "signals scout API"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "69fa9e0750d2e8ad6b4d82a02ca438c9e1f7d204d0370e35f52290a125a178ec",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a0f1bcf8d2ce642b395a5269",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/mcp-analytics/start-here.mdx",
+        "start_line": 82,
+        "total_lines": 229,
+        "start_char": 3209,
+        "end_char": 7190,
+        "evidence_id": "a0f1bcf8d2ce642b395a5269",
+        "truncated": false,
+        "next_offset": 201,
+        "source_type": "repository",
+        "content_hash": "6dfe2f419e8fd22e6a3e4e47c8645d13455ce0bd3fdc697e96ea2206f593bd3d",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/snippets/groups-ingestion-segment.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "offset": 17,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6dfe2f419e8fd22e6a3e4e47c8645d13455ce0bd3fdc697e96ea2206f593bd3d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a7eb1a5c17fbeaddd9a6d93b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/mcp-analytics/start-here.mdx",
+        "start_line": 1,
+        "total_lines": 229,
+        "start_char": 0,
+        "end_char": 4469,
+        "evidence_id": "a7eb1a5c17fbeaddd9a6d93b",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "c0fb16e6e9d2a9364dacac1c4894de1142f8a0b982c984fa8bb1cc5eb7dc405f",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+              "offset": 13,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c0fb16e6e9d2a9364dacac1c4894de1142f8a0b982c984fa8bb1cc5eb7dc405f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a8948bbf6819f58488c8f36b",
+        "type": "evidence",
+        "path": "contents/docs/ai-observability/tools.mdx",
+        "heading": "title: Tools > Tool metrics",
+        "start_line": 20,
+        "end_line": 35,
+        "start_char": 997,
+        "end_char": 1681,
+        "score": "0.017842717985269662",
+        "root": "docs",
+        "matched_terms": [
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "a8948bbf6819f58488c8f36b",
+        "source_type": "repository",
+        "content_hash": "9ae3227ae4fa276dbe808c6eea5f3412ed90af1ac8dfcf696f787b9147ec0bc9",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "MCP tools signals scout",
+            "scout emission reports tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9ae3227ae4fa276dbe808c6eea5f3412ed90af1ac8dfcf696f787b9147ec0bc9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a8be551c488dbc0725fe2a1e",
+        "type": "evidence",
+        "path": "contents/handbook/company/security.md",
+        "heading": "showTitle: true > Responsible disclosure",
+        "start_line": 108,
+        "end_line": 113,
+        "start_char": 7860,
+        "end_char": 8297,
+        "score": "0.024056467876692595",
+        "root": "docs",
+        "matched_terms": [
+          "findings",
+          "page"
+        ],
+        "evidence_id": "a8be551c488dbc0725fe2a1e",
+        "source_type": "repository",
+        "content_hash": "f79ae6034ac9564212566c7998a002483714c14249bafe27ecab437acd8f09eb",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "f79ae6034ac9564212566c7998a002483714c14249bafe27ecab437acd8f09eb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ac30627d5948e039ed4c0049",
+        "type": "evidence",
+        "path": "products/signals/ARCHITECTURE.md",
+        "heading": "Signals System Architecture > API Layer > REST Endpoints > Signals Agent endpoints (`backend/scout_harness/views.py`)",
+        "start_line": 781,
+        "end_line": 796,
+        "start_char": 75332,
+        "end_char": 77018,
+        "score": "0.023676099747828524",
+        "root": "code",
+        "matched_terms": [
+          "scout_harness",
+          "signalscoutrunviewset",
+          "views"
+        ],
+        "evidence_id": "ac30627d5948e039ed4c0049",
+        "source_type": "repository",
+        "content_hash": "860dfee57e84061da75214c2b8b236fd567f430999b13fa351fec6fd99f74f0a",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "860dfee57e84061da75214c2b8b236fd567f430999b13fa351fec6fd99f74f0a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:acabbd3ae7a2a3c849f9a9fb",
+        "type": "evidence",
+        "path": "products/signals/backend/routes.py",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 37,
+        "start_char": 0,
+        "end_char": 1611,
+        "score": "0.02649122807017544",
+        "root": "code",
+        "matched_terms": [
+          "scout_harness",
+          "signalscoutrunviewset",
+          "views"
+        ],
+        "evidence_id": "acabbd3ae7a2a3c849f9a9fb",
+        "source_type": "repository",
+        "content_hash": "3f65083e42b726e1b28eb18fa3b233c7c0ce0ca1e1359439f776ec39f34c2e3c",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3f65083e42b726e1b28eb18fa3b233c7c0ce0ca1e1359439f776ec39f34c2e3c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:afa517703302746513ded5fd",
+        "type": "evidence",
+        "path": "contents/docs/posthog-code/inbox/index.mdx",
+        "heading": "contentMaxWidthClass: max-w-5xl",
+        "start_line": 41,
+        "end_line": 81,
+        "start_char": 1732,
+        "end_char": 3456,
+        "score": "0.03306250935488699",
+        "root": "docs",
+        "matched_terms": [
+          "inbox",
+          "report",
+          "signals"
+        ],
+        "evidence_id": "afa517703302746513ded5fd",
+        "source_type": "repository",
+        "content_hash": "587fce0d5bcfeda81aec49427d2116b938cf60da39e5bb7161450158f573f993",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "587fce0d5bcfeda81aec49427d2116b938cf60da39e5bb7161450158f573f993",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b057d6cbc977de0e918c4d75",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/index.mdx",
+        "heading": "title: MCP analytics",
+        "start_line": 2,
+        "end_line": 20,
+        "start_char": 4,
+        "end_char": 1800,
+        "score": "0.023057644110275687",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "b057d6cbc977de0e918c4d75",
+        "source_type": "repository",
+        "content_hash": "28a7dff83cf3962378ee5699e1accc559f80df35073437bb5d7a0b3d679af147",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "MCP tools signals scout",
+            "scout emission reports tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "28a7dff83cf3962378ee5699e1accc559f80df35073437bb5d7a0b3d679af147",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b276c13cbb1e5c77bf02e560",
+        "type": "evidence",
+        "path": "contents/docs/posthog-code/inbox/research.mdx",
+        "heading": "title: PostHog Code Inbox research tasks > Research tasks",
+        "start_line": 5,
+        "end_line": 9,
+        "start_char": 50,
+        "end_char": 208,
+        "score": "0.02753611457182207",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b276c13cbb1e5c77bf02e560",
+        "source_type": "repository",
+        "content_hash": "a8267f98f1456839363a78c3f0ef8e2f76825e4f8effd24b08addf4bd5842ea0",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a8267f98f1456839363a78c3f0ef8e2f76825e4f8effd24b08addf4bd5842ea0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b34e081819ba59a9b5ffbb21",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/posthog-code/inbox/sources.mdx",
+        "start_line": 1,
+        "total_lines": 81,
+        "start_char": 0,
+        "end_char": 3243,
+        "evidence_id": "b34e081819ba59a9b5ffbb21",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "bfb7fd7a5e2fc3ae6607aa0d5345cbb3cb690a53b680bfe4ae18b6b94766c903",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/index.mdx",
+              "offset": 36,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/engineering/ai/products.md",
+              "offset": 93,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "bfb7fd7a5e2fc3ae6607aa0d5345cbb3cb690a53b680bfe4ae18b6b94766c903",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b4fb9b4aa19cd6592d3efc87",
+        "type": "evidence",
+        "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+        "heading": "title: Query web traffic with MCP > Web Analytics tools",
+        "start_line": 18,
+        "end_line": 27,
+        "start_char": 897,
+        "end_char": 1465,
+        "score": "0.023237179487179488",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "b4fb9b4aa19cd6592d3efc87",
+        "source_type": "repository",
+        "content_hash": "b770027439895f6ebb27a86e3f76413944695a62b57f8cdf7c11753f1b5279ac",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "MCP tools signals scout",
+            "scout emission reports tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b770027439895f6ebb27a86e3f76413944695a62b57f8cdf7c11753f1b5279ac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b7727061e74621d85edf3900",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+        "start_line": 14,
+        "total_lines": 49,
+        "start_char": 570,
+        "end_char": 2291,
+        "evidence_id": "b7727061e74621d85edf3900",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "6355fedd34cea6bfcd1d0106a4a088e79b3599af022a2ca624452a8a6333b240",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+              "offset": 13,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6355fedd34cea6bfcd1d0106a4a088e79b3599af022a2ca624452a8a6333b240",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ba8bd492644912050b2f2f7e",
+        "type": "evidence",
+        "path": "products/signals/backend/test/test_scout_harness_api.py",
+        "heading": "",
+        "start_line": 214,
+        "end_line": 243,
+        "start_char": 9844,
+        "end_char": 11452,
+        "score": "0.014285714285714285",
+        "root": "code",
+        "matched_terms": [
+          "emissions"
+        ],
+        "evidence_id": "ba8bd492644912050b2f2f7e",
+        "source_type": "repository",
+        "content_hash": "111adeed6bc6e0caf96f82fadf6aef9c97ecf9a2c4f443804224588d83363d8f",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "111adeed6bc6e0caf96f82fadf6aef9c97ecf9a2c4f443804224588d83363d8f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c8ae09732b0ffd799a4848d5",
+        "type": "evidence",
+        "evidence_id": "c8ae09732b0ffd799a4848d5",
+        "source_type": "task",
+        "exported_content_sha256": "6ba576a6f9b012a89edb1c7313b11e9da06c8107a412771c1f88ef67a32c7d94",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c9f79f41dd82a0bc893cebac",
+        "type": "evidence",
+        "path": "products/signals/backend/scout_harness/views.py",
+        "heading": "`--fail-on-warn`). Declare the param explicitly on every detail action instead.",
+        "start_line": 246,
+        "end_line": 278,
+        "start_char": 12336,
+        "end_char": 13948,
+        "score": "0.035105605528839644",
+        "root": "code",
+        "matched_terms": [
+          "emissions",
+          "signals_scout_runs_emissions"
+        ],
+        "evidence_id": "c9f79f41dd82a0bc893cebac",
+        "source_type": "repository",
+        "content_hash": "1e88775f388ac5a80e9583146cbbd4d33bb86ead1760ec6603a0c1584c0a7c29",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1e88775f388ac5a80e9583146cbbd4d33bb86ead1760ec6603a0c1584c0a7c29",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cd31efb93515c990f7d7b818",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+        "start_line": 16,
+        "total_lines": 89,
+        "start_char": 963,
+        "end_char": 6156,
+        "evidence_id": "cd31efb93515c990f7d7b818",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "4c3634e25966cf7c90e96dc3bad2e06ec53106e3bf1a61675536161c540d23b6",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/teams/web-analytics/objectives.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4c3634e25966cf7c90e96dc3bad2e06ec53106e3bf1a61675536161c540d23b6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cd67cf17e82df7568fac2e1e",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/events.mdx",
+        "heading": "title: Event and property reference > Events",
+        "start_line": 9,
+        "end_line": 23,
+        "start_char": 371,
+        "end_char": 2044,
+        "score": "0.028756117907886784",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "cd67cf17e82df7568fac2e1e",
+        "source_type": "repository",
+        "content_hash": "4116a6040cae9f026112421383fe944660a3c2c93afcccf51da4809ad51bd71c",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4116a6040cae9f026112421383fe944660a3c2c93afcccf51da4809ad51bd71c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d6426b5941f7047f98e0e52d",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/ai/products.md",
+        "heading": "showTitle: true > Deep research [Under development] > Architecture diagram",
+        "start_line": 98,
+        "end_line": 138,
+        "start_char": 6925,
+        "end_char": 8180,
+        "score": "0.02946236559139785",
+        "root": "docs",
+        "matched_terms": [
+          "findings",
+          "report",
+          "run"
+        ],
+        "evidence_id": "d6426b5941f7047f98e0e52d",
+        "source_type": "repository",
+        "content_hash": "98e390c8a4d220c377773bd2a87a9586d6a4b573c53d3c569bcd1f65d3e11805",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "98e390c8a4d220c377773bd2a87a9586d6a4b573c53d3c569bcd1f65d3e11805",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d93de7a0f2aa07b40ac9af41",
+        "type": "evidence",
+        "path": "contents/docs/mcp-analytics/index.mdx",
+        "heading": "title: MCP analytics > How it works",
+        "start_line": 39,
+        "end_line": 57,
+        "start_char": 2454,
+        "end_char": 3621,
+        "score": "0.018217893217893216",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "d93de7a0f2aa07b40ac9af41",
+        "source_type": "repository",
+        "content_hash": "31bc7f0e92b2764c09a161f5c3967a5a7ac7dd3aaf81eac1bbe248d05b1eefa1",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "MCP tools signals scout",
+            "scout emission reports tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "31bc7f0e92b2764c09a161f5c3967a5a7ac7dd3aaf81eac1bbe248d05b1eefa1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:de08a8c39cbcd6668d174430",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/teams/web-analytics/objectives.mdx",
+        "start_line": 1,
+        "total_lines": 87,
+        "start_char": 0,
+        "end_char": 5311,
+        "evidence_id": "de08a8c39cbcd6668d174430",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "97d84c32940c06d9ca8ab0914c16308b2adf5794c57868d288eb1e6dd875e22c",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/teams/web-analytics/objectives.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+              "offset": 15,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/missing-capability.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "97d84c32940c06d9ca8ab0914c16308b2adf5794c57868d288eb1e6dd875e22c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e218fbdba9b3761234674487",
+        "type": "evidence",
+        "path": ".github/scripts/monitor-github-rate-limit.test.js",
+        "heading": "",
+        "start_line": 91,
+        "end_line": 129,
+        "start_char": 3232,
+        "end_char": 4847,
+        "score": "0.014925373134328358",
+        "root": "code",
+        "matched_terms": [
+          "emissions"
+        ],
+        "evidence_id": "e218fbdba9b3761234674487",
+        "source_type": "repository",
+        "content_hash": "1a1dbc1be9b7c1e675035bfa5095c0a7a17803403f1eeeab533ad941d104939c",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1a1dbc1be9b7c1e675035bfa5095c0a7a17803403f1eeeab533ad941d104939c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e4a533e4e31040b8d9dd5184",
+        "type": "evidence",
+        "path": "contents/teams/web-analytics/objectives.mdx",
+        "heading": "Q2 2026 objectives > Signals, Skills & MCP",
+        "start_line": 3,
+        "end_line": 15,
+        "start_char": 23,
+        "end_char": 861,
+        "score": "0.03347729743154717",
+        "root": "docs",
+        "matched_terms": [
+          "mcp",
+          "signals"
+        ],
+        "evidence_id": "e4a533e4e31040b8d9dd5184",
+        "source_type": "repository",
+        "content_hash": "0d88d1f469913f73febbdfe0540763756d4191252fe1194fb7b1e838d4669732",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0d88d1f469913f73febbdfe0540763756d4191252fe1194fb7b1e838d4669732",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e91d966a014a07de1ed44c89",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/mcp-analytics/index.mdx",
+        "start_line": 1,
+        "total_lines": 100,
+        "start_char": 0,
+        "end_char": 6007,
+        "evidence_id": "e91d966a014a07de1ed44c89",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "de83367487d7104780d1e05f52e8a7782993446417b64d170ff28d6296048620",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/mcp-analytics/start-here.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/web-analytics/query-traffic-mcp.mdx",
+              "offset": 13,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/mcp-analytics/index.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "de83367487d7104780d1e05f52e8a7782993446417b64d170ff28d6296048620",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ea1e4d0e83c781ac1ceb4593",
+        "type": "evidence",
+        "path": "products/signals/backend/routes.py",
+        "heading": "",
+        "start_line": 38,
+        "end_line": 53,
+        "start_char": 1611,
+        "end_char": 2295,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "signalscoutrunviewset"
+        ],
+        "evidence_id": "ea1e4d0e83c781ac1ceb4593",
+        "source_type": "repository",
+        "content_hash": "20fab217f2b511a56afa21637388e5b3bdd0fafc69a2b70ecad61026db2ff117",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "20fab217f2b511a56afa21637388e5b3bdd0fafc69a2b70ecad61026db2ff117",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ec637b0dd6710abad07e610e",
+        "type": "evidence",
+        "path": "contents/docs/feature-flags/create-flags-mcp.mdx",
+        "heading": "title: Manage Feature Flags with MCP > Feature flag tools",
+        "start_line": 20,
+        "end_line": 31,
+        "start_char": 1373,
+        "end_char": 2446,
+        "score": "0.03248323754789272",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "mcp",
+          "tool",
+          "tools"
+        ],
+        "evidence_id": "ec637b0dd6710abad07e610e",
+        "source_type": "repository",
+        "content_hash": "f26125d3acc9b81e463ebcd30c941202f9ab6051d4358a7af9cf2a4e51119362",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "signals-scout tools",
+            "signals scout MCP tools list",
+            "inbox reports MCP tool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "f26125d3acc9b81e463ebcd30c941202f9ab6051d4358a7af9cf2a4e51119362",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee609c89b66d5ade74903265",
+        "type": "evidence",
+        "path": "products/signals/frontend/generated/api.ts",
+        "heading": "",
+        "start_line": 337,
+        "end_line": 374,
+        "start_char": 13200,
+        "end_char": 15000,
+        "score": "0.013888888888888888",
+        "root": "code",
+        "matched_terms": [
+          "emissions"
+        ],
+        "evidence_id": "ee609c89b66d5ade74903265",
+        "source_type": "repository",
+        "content_hash": "a27ab767d16262e29260fb675d6cb03ba8bbc9aa6f53b58aaa63b8b26f0d5249",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a27ab767d16262e29260fb675d6cb03ba8bbc9aa6f53b58aaa63b8b26f0d5249",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ef266c0df4fc8adc66c4e42d",
+        "type": "evidence",
+        "path": "services/mcp/tests/unit/__snapshots__/tool-schemas/signals-scout-runs-emissions-list.json",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 11,
+        "start_char": 0,
+        "end_char": 273,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [],
+        "evidence_id": "ef266c0df4fc8adc66c4e42d",
+        "source_type": "repository",
+        "content_hash": "d99562f8a0df8a32b0c6f8d020219870f22de4b5c5dda1d13b5f84c2601637f8",
+        "revision": "e34eabc1c36f5728797b377377220edc72cf7121",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "SignalScoutRunViewSet emissions",
+            "signals_scout_runs_emissions",
+            "scout_harness views"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d99562f8a0df8a32b0c6f8d020219870f22de4b5c5dda1d13b5f84c2601637f8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:efd4530ddffbeecda576f5c0",
+        "type": "evidence",
+        "path": "contents/docs/posthog-code/inbox/sources.mdx",
+        "heading": "title: PostHog Code Inbox signal sources > What happens next",
+        "start_line": 70,
+        "end_line": 81,
+        "start_char": 2672,
+        "end_char": 3243,
+        "score": "0.025057603686635944",
+        "root": "docs",
+        "matched_terms": [
+          "inbox",
+          "report"
+        ],
+        "evidence_id": "efd4530ddffbeecda576f5c0",
+        "source_type": "repository",
+        "content_hash": "a8941dfb10fa31780730c0c4cca5a13e11aaa88ec79197d9c7b06e7339f2edcb",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "scout findings inbox report",
+            "scout run findings",
+            "signals scout page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a8941dfb10fa31780730c0c4cca5a13e11aaa88ec79197d9c7b06e7339f2edcb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:efeacbc095322fef29823e37",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/handbook/engineering/ai/products.md",
+        "start_line": 94,
+        "total_lines": 464,
+        "start_char": 6598,
+        "end_char": 13448,
+        "evidence_id": "efeacbc095322fef29823e37",
+        "truncated": false,
+        "next_offset": 213,
+        "source_type": "repository",
+        "content_hash": "8bee6f9bbd97349ed1a5533d8496cc9ca822333edec4ec0e9704ca48a31b4f36",
+        "revision": "4cb0af46158ef6dc77f9fbae585179facd12f053",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/posthog-code/inbox/sources.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/posthog-code/inbox/index.mdx",
+              "offset": 36,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/engineering/ai/products.md",
+              "offset": 93,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "8bee6f9bbd97349ed1a5533d8496cc9ca822333edec4ec0e9704ca48a31b4f36",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:no-change",
+        "type": "requirement",
+        "description": "The change adds a new read-only API endpoint (GET .../signals/scout/runs/{run_id}/emissions/reports/) plus serializers, a ClickHouse helper, generated frontend types, and an MCP tool registration that is disabled by default. The scout harness viewsets are internal HTTP surfaces for MCP consumption (views.py docstring), and the new MCP tool is `enabled: false` in tools.yaml, so it is not part of any user-facing tool list. The user-facing Inbox docs (contents/docs/posthog-code/inbox/index.mdx and sources.mdx) describe the report→signals direction and the research flow but do not enumerate scout API endpoints or MCP tool tables, so there is no existing page that lists this endpoint or would need the reverse-lookup added. The actual user-visible chip lands in a follow-up desktop app PR (posthog/code), not in this repo's docs. No user-facing documentation update is warranted for this backend-only endpoint."
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "no-change",
+        "surface": "change",
+        "status": "no_change_supported",
+        "paths": [
+          "contents/docs/posthog-code/inbox/sources.mdx",
+          "contents/docs/posthog-code/inbox/index.mdx"
+        ],
+        "evidence_ids": [
+          "5a8d614c7d0a5d4f3c2e2c38",
+          "35886a6a91f093a07a903312",
+          "b34e081819ba59a9b5ffbb21",
+          "5c5b7595e14d6275802dd9e6",
+          "510786c2d1d4ce3cc886fd93"
+        ],
+        "reason": "The change adds a new read-only API endpoint (GET .../signals/scout/runs/{run_id}/emissions/reports/) plus serializers, a ClickHouse helper, generated frontend types, and an MCP tool registration that is disabled by default. The scout harness viewsets are internal HTTP surfaces for MCP consumption (views.py docstring), and the new MCP tool is `enabled: false` in tools.yaml, so it is not part of any user-facing tool list. The user-facing Inbox docs (contents/docs/posthog-code/inbox/index.mdx and sources.mdx) describe the report→signals direction and the research flow but do not enumerate scout API endpoints or MCP tool tables, so there is no existing page that lists this endpoint or would need the reverse-lookup added. The actual user-visible chip lands in a follow-up desktop app PR (posthog/code), not in this repo's docs. No user-facing documentation update is warranted for this backend-only endpoint."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Is there existing user-facing documentation for the Scout harness API endpoints (runs, emissions) that would need the new emission_reports endpoint added?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where are the scout harness viewsets and their existing endpoints documented, and is there an API reference listing operation_ids?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Does the MCP tools.yaml entry for the new endpoint need documentation, and is there a docs page describing MCP tools for signals?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Is there any user-facing docs page describing the Scout page, scout findings, or the report↔signal link that would need the new reverse-lookup endpoint documented?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the MCP tools.yaml entry for signals-scout-runs-emission-reports (disabled by default) have any user-facing MCP tool documentation listing signals-scout tools?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:05533a65631126325538af42",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0a264677f23809f0c5788b7d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0a264677f23809f0c5788b7d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0a3ceca1416d7d5a96b1dc31",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0aa443db52392a0e7ac2af41",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c007413f3318179c6b789cf",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0f41fd2a8c8f8b06b1f62f6e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:106778a8a74d86ce8856beef",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1637bd3504dd0678ad7bad70",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1ff21b76cb9c071d6934db44",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22dcade0859cd86e23a2e685",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2427c995181e401fed403232",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2427c995181e401fed403232",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2e6f5d1ccba30e41bd5b7129",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2fa2b46dfed2fef015a37984",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:323346bfbd8b6378c75f45ed",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:35886a6a91f093a07a903312",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:411f22c663abb198694f602d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:434b30807a8014f7ccd88862",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:43bb74a05db1c09869f2bc1f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:43bb74a05db1c09869f2bc1f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:43bb74a05db1c09869f2bc1f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4506f57f4df4e2a03ad00a39",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4be388535bb020e4a5068734",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:510786c2d1d4ce3cc886fd93",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5698c3e75a7b622f679597f3",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:57b96323e8f67687155c2527",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:57b96323e8f67687155c2527",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:57b96323e8f67687155c2527",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a8d614c7d0a5d4f3c2e2c38",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5c5b7595e14d6275802dd9e6",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5fd1cfa8d211921aab213416",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:69d186f8d2f7b649bc668be3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:69d186f8d2f7b649bc668be3",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6ce25c9b37869cacb223ee51",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6e80a2ecb43ca99820ff3aa8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6ec86ec2d99111312a6b0bcb",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6ec86ec2d99111312a6b0bcb",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7588334fc1e3ed2fdc4c8247",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7588334fc1e3ed2fdc4c8247",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:77f6c8d7550e435f81a101c0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7b298f14e438c716317d417a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:841d9325d15f8cfbc76e6b70",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9f6ad3d635f4324e90b3c182",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a0f1bcf8d2ce642b395a5269",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a7eb1a5c17fbeaddd9a6d93b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a8948bbf6819f58488c8f36b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a8be551c488dbc0725fe2a1e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac30627d5948e039ed4c0049",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:acabbd3ae7a2a3c849f9a9fb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:afa517703302746513ded5fd",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b057d6cbc977de0e918c4d75",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b276c13cbb1e5c77bf02e560",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b34e081819ba59a9b5ffbb21",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b4fb9b4aa19cd6592d3efc87",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b7727061e74621d85edf3900",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ba8bd492644912050b2f2f7e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c9f79f41dd82a0bc893cebac",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd31efb93515c990f7d7b818",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd67cf17e82df7568fac2e1e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd67cf17e82df7568fac2e1e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d6426b5941f7047f98e0e52d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d93de7a0f2aa07b40ac9af41",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:de08a8c39cbcd6668d174430",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e218fbdba9b3761234674487",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e4a533e4e31040b8d9dd5184",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e91d966a014a07de1ed44c89",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ea1e4d0e83c781ac1ceb4593",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec637b0dd6710abad07e610e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec637b0dd6710abad07e610e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee609c89b66d5ade74903265",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef266c0df4fc8adc66c4e42d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:efd4530ddffbeecda576f5c0",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:efeacbc095322fef29823e37",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a8d614c7d0a5d4f3c2e2c38",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:35886a6a91f093a07a903312",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:b34e081819ba59a9b5ffbb21",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5c5b7595e14d6275802dd9e6",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:510786c2d1d4ce3cc886fd93",
+        "to": "requirement:no-change",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:no-change",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:5a8d614c7d0a5d4f3c2e2c38",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:35886a6a91f093a07a903312",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:b34e081819ba59a9b5ffbb21",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5c5b7595e14d6275802dd9e6",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:510786c2d1d4ce3cc886fd93",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

@@ -1,0 +1,17 @@
+diff --git a/README.md b/README.md
+index 884da64bf904535f0e6c81cc25182c467dc8182b..4b2656c110e732b218db962c1aaff6f526ae6a7a 100644
+--- a/README.md
++++ b/README.md
+@@ -49,6 +49,12 @@ By default, Doc Detective scans the current directory for valid tests, but you c
+ npx doc-detective --input doc-content-inline-tests.md
+ ```
+ 
++To run tests across multiple files, pass a comma-separated list of paths to `--input`. Each path is resolved to an absolute path, and URLs (beginning with `http://` or `https://`) are used as-is:
++
++```bash
++npx doc-detective --input file1.md,file2.md
++```
++
+ To customize your test, file type, and directory options, create a `.doc-detective.json` [config](https://doc-detective.com/docs/references/schemas/config.html) file. If a `.doc-detective.json` file exists in the directory when you run the comment, Doc Detective loads the config. Otherwise, you can specify a config path with the `--config` argument.
+ 
+ ```bash

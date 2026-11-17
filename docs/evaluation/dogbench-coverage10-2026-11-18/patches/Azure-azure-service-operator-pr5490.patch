@@ -1,0 +1,43 @@
+diff --git a/docs/hugo/content/guide/expressions.md b/docs/hugo/content/guide/expressions.md
+index 88f17c9045409a02d1bb763132b01d034e32376e..c95e99b00829f1fabc3bf4156176ba07612b3d62 100644
+--- a/docs/hugo/content/guide/expressions.md
++++ b/docs/hugo/content/guide/expressions.md
+@@ -67,6 +67,38 @@ Compare with [Kubernetes supported options](https://kubernetes.io/docs/reference
+ | [Cross Type Numeric comparisons](https://pkg.go.dev/github.com/google/cel-go/cel#CrossTypeNumericComparisons)       |
+ 
+ 
++### ASO functions
++
++In addition to the standard CEL functions, ASO provides the following built-in functions under the `aso` namespace.
++
++#### `aso.parseResourceId`
++
++`aso.parseResourceId(string)` parses an Azure Resource Manager (ARM) resource ID and returns a structured `ResourceID` object.
++This is useful for extracting individual components of a resource ID (such as the subscription ID) for use in your expressions.
++
++The returned `ResourceID` object exposes the following fields:
++
++| Field               | Type           | Description                                                                 |
++|---------------------|----------------|-----------------------------------------------------------------------------|
++| `subscriptionId`    | `string`       | The subscription ID.                                                        |
++| `resourceGroupName` | `string`       | The resource group name.                                                    |
++| `provider`          | `string`       | The resource provider.                                                      |
++| `location`          | `string`       | The resource location, if present.                                          |
++| `name`              | `string`       | The resource name.                                                          |
++| `resourceType`      | `ResourceType` | The resource type, with `namespace` and `type` fields.                      |
++| `parent`            | `ResourceID`   | The parent resource ID for hierarchical resources, or absent if there is none. |
++
++For example, to extract the subscription ID from a resource's ARM ID and write it to a secret:
++
++```yaml
++spec:
++  operatorSpec:
++    secretExpressions:
++    - name: mysecret
++      key: AZURE_SUBSCRIPTION_ID
++      value: aso.parseResourceId(self.status.id).subscriptionId
++```
++
+ ### Escaping
+ 
+ ASO follows the [same escaping rules as Kubernetes](https://kubernetes.io/docs/reference/using-api/cel/#escaping),

@@ -1,0 +1,19 @@
+diff --git a/docs/hugo/content/contributing/create-a-new-release.md b/docs/hugo/content/contributing/create-a-new-release.md
+index b6205878d63d89898a932b131cdc58938b3c8b49..936a9f1034208da820c381e724f0614d99c28609 100644
+--- a/docs/hugo/content/contributing/create-a-new-release.md
++++ b/docs/hugo/content/contributing/create-a-new-release.md
+@@ -74,6 +74,14 @@ Perform a simple smoke test to make sure the new release is capable of starting
+    task controller:make-sp-secret
+    ```
+ 
++   Alternatively, to smoke test with workload identity instead of a client secret, create a kind cluster with
++   workload identity support and provision a managed identity with a federated credential:
++   ``` bash
++   task controller:kind-create-wi
++   task controller:create-mi-for-workload-identity
++   ```
++   The managed identity client ID is written to `v2/out/kind-identity/azure/miclientid.txt`.
++
+ 6. Download asoctl
+ 
+    ``` bash 

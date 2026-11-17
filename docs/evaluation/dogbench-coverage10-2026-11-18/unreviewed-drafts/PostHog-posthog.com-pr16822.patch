@@ -1,0 +1,20 @@
+diff --git a/contents/docs/experiments/exposures.mdx b/contents/docs/experiments/exposures.mdx
+index 052a3980166fd73d93a2c7b9bb8ed67d2a18e899..d523521037d442634d648f1262e75188588ecff9 100644
+--- a/contents/docs/experiments/exposures.mdx
++++ b/contents/docs/experiments/exposures.mdx
+@@ -85,10 +85,12 @@ To configure a custom exposure event:
+ 
+ If you're using PostHog's SDKs and feature flags, variant tracking is handled automatically. However, if you're using custom exposure events or your own feature flag system, you need to ensure the correct properties are set:
+ 
+-- **Standard PostHog flags**: The SDK automatically populates `$feature_flag_response` in `$feature_flag_called` events
+-- **Custom exposure events**: You must manually include `$feature/<flag-key>` property with the variant value
++- **Standard PostHog flags**: The SDK automatically populates `$feature_flag` and `$feature_flag_response` in `$feature_flag_called` events
++- **Custom exposure events or external feature flag systems**: The event you use as the exposure must include the `$feature_flag` property with your experiment's flag key and the `$feature_flag_response` property with the variant value
+ 
+-For example, if your flag key is "new-checkout" and you're using a custom "viewed_checkout" event, that event must include the property `$feature/new-checkout` with values like "control" or "test".
++For example, if your flag key is "new-checkout" and you're using a custom "viewed_checkout" event, that event must include `$feature_flag` set to "new-checkout" and `$feature_flag_response` set to the variant, such as "control" or "test".
++
++If you're using an external feature flag system, capture a `$feature_flag_called` event with these two properties whenever you evaluate the flag, or select your own event as the custom exposure and include the same properties on it.
+ 
+ </CalloutBox>
+ 

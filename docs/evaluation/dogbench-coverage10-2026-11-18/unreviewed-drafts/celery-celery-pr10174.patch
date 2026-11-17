@@ -1,0 +1,58 @@
+diff --git a/docs/userguide/configuration.rst b/docs/userguide/configuration.rst
+index bd8e6ece101c1376d856b1ac09b1e4efb3d5358a..5f7877ee0e33b57a746b0dafa6d9f55ad3a1e194 100644
+--- a/docs/userguide/configuration.rst
++++ b/docs/userguide/configuration.rst
+@@ -80,6 +80,7 @@ have been moved into a new  ``task_`` prefix.
+ ``BROKER_HEARTBEAT``                       :setting:`broker_heartbeat`
+ ``BROKER_LOGIN_METHOD``                    :setting:`broker_login_method`
+ ``BROKER_NATIVE_DELAYED_DELIVERY_QUEUE_TYPE`` :setting:`broker_native_delayed_delivery_queue_type`
++``BROKER_POOL_ACQUIRE_TIMEOUT``            :setting:`broker_pool_acquire_timeout`
+ ``BROKER_POOL_LIMIT``                      :setting:`broker_pool_limit`
+ ``BROKER_USE_SSL``                         :setting:`broker_use_ssl`
+ ``CELERY_CACHE_BACKEND``                   :setting:`cache_backend`
+@@ -3154,6 +3155,28 @@ contention can arise and you should consider increasing the limit.
+ If set to :const:`None` or 0 the connection pool will be disabled and
+ connections will be established and closed for every use.
+ 
++.. setting:: broker_pool_acquire_timeout
++
++``broker_pool_acquire_timeout``
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++.. versionadded:: 5.6
++
++Default: :const:`None`.
++
++The maximum number of seconds to wait for a connection (or producer) to
++become available from the broker connection pool when sending a task.
++
++When the pool is exhausted, task dispatch blocks until a connection is
++released. If this setting is set to a number of seconds, the wait is limited
++to that many seconds; if no connection becomes available in time, an
++:exc:`~celery.exceptions.OperationalError` is raised. The default of
++:const:`None` blocks indefinitely.
++
++This setting complements :setting:`broker_pool_limit`: if you see errors
++about all connections being in use, consider increasing
++:setting:`broker_pool_limit` or this timeout.
++
+ .. setting:: broker_connection_timeout
+ 
+ ``broker_connection_timeout``
+diff --git a/docs/userguide/optimizing.rst b/docs/userguide/optimizing.rst
+index 7cc7b6357516d575fd87cc5bdd9be6c7ec794828..5b7392ba41c2a719ebd82af5bfd635d4b4b37779 100644
+--- a/docs/userguide/optimizing.rst
++++ b/docs/userguide/optimizing.rst
+@@ -57,6 +57,12 @@ You can tweak the :setting:`broker_pool_limit` setting to minimize
+ contention, and the value should be based on the number of
+ active threads/green-threads using broker connections.
+ 
++If the pool is exhausted, task dispatch blocks until a connection is
++released. You can limit how long it waits with
++:setting:`broker_pool_acquire_timeout` (default: :const:`None`, meaning
++block indefinitely); when the timeout is exceeded an
++:exc:`~celery.exceptions.OperationalError` is raised.
++
+ .. _optimizing-transient-queues:
+ 
+ Using Transient Queues

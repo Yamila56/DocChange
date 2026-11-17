@@ -1,0 +1,13 @@
+diff --git a/docs/content/release-notes/flink-1.20.md b/docs/content/release-notes/flink-1.20.md
+index ce945e4d2a88dcb7e8f5d5a279dbbc147e4a964c..1aab105ce76b4bdc5cd74a8d743613790402c88d 100644
+--- a/docs/content/release-notes/flink-1.20.md
++++ b/docs/content/release-notes/flink-1.20.md
+@@ -110,7 +110,7 @@ Firing timers can now be interrupted to speed up checkpointing. Timers that were
+ will be fired shortly after checkpoint completes. 
+ 
+ By default, this features is disabled. To enabled it please set `execution.checkpointing.unaligned.interruptible-timers.enabled` to `true`.
+-Currently supported only by all `TableStreamOperators` and `CepOperator`.
++Currently supported only by all `TableStreamOperators`, `CepOperator`, and interval joins.
+ 
+ #### Add numFiredTimers and numFiredTimersPerSecond metrics
+ 

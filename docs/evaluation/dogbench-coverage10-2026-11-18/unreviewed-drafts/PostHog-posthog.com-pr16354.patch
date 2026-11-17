@@ -1,0 +1,10 @@
+diff --git a/contents/docs/cdp/sources/stripe.md b/contents/docs/cdp/sources/stripe.md
+index 5702391613eeaffc4f9425db8ce36671bf08b2c6..fde21d4772e71d52f2d6f91ac88e66ef60ce459d 100644
+--- a/contents/docs/cdp/sources/stripe.md
++++ b/contents/docs/cdp/sources/stripe.md
+@@ -62,3 +62,5 @@ To set up a webhook:
+ 3. Click **Create webhook**.
+ 
+ PostHog automatically creates and registers the webhook on your Stripe account. Once set up, you can view the webhook status, including both PostHog's internal status and the Stripe-side webhook status, from the **Webhook** tab.
++
++Webhook events are written to object storage as Parquet files and ingested into your data warehouse from there, so real-time updates flow through the same tables as your scheduled syncs.

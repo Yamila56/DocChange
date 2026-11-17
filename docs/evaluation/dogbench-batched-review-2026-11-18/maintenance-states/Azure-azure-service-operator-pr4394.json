@@ -1,0 +1,3324 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "EDIT",
+  "tasks": [
+    {
+      "id": "web-ref-arm-types",
+      "description": "Update the generated web v1api20220301 API reference so the relocated ARM types are documented under the new `arm` sub-package without the `_ARM` suffix (e.g. `ServerFarm_Spec`, `Site_Spec`, `ExtendedLocation`, `SkuDescription`, `Capability`, `HostingEnvironmentProfile`, `KubeEnvironmentProfile`, `SkuCapacity`), replacing the old root-package `_ARM` entries and their cross-references.",
+      "evidence_ids": [
+        "cef70903eff30a7df1723175",
+        "f713f27532ad3a86a6c86f5b",
+        "cd33230a45809341eb93928f"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "web-versions-matrix",
+      "description": "Update `v2/api/web/versions_matrix.md` so the type list reflects the moved ARM types (new `arm` package names without `_ARM` suffix) rather than the removed root-package `_ARM` type names.",
+      "evidence_ids": [
+        "114c954d69bddbba9ff4f04d"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "557d21ef24a3c2f44c549590b8aa4d53e10f02458c5552b74aa5a9991da832b6",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the user-facing documentation describe ARM type naming conventions or the `_ARM` suffix that this change alters?",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/design/type-references-and-ownership.md",
+              "offset": 647,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+              "offset": 177,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "c66116ae3d69ebc5bfde1967",
+            "98488ef101fbe66c586f0ea1",
+            "78a7489f72d66cb38920b732",
+            "ea92db0fb071e27e3b3cc596",
+            "a75b6f625228943a3a4563ac",
+            "daa92aed42c6e97cd511f914",
+            "a3a3b1bce8714346a212b63d",
+            "930c27eb41840eec6d7632f6",
+            "63fb349c23c8ae85f0abe5c3",
+            "5e4cb9bb4760921dd00c6aae",
+            "b130df592b0fc1c5b912ee61",
+            "145857490997e4afbabb149b",
+            "b5af766d429f443e825ba253",
+            "4e370bcb65a9372383ee2a0c",
+            "466c0933a7d5738b6a882c8e"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/design/type-references-and-ownership.md",
+              "evidence_id": "ea92db0fb071e27e3b3cc596",
+              "score": "0.04240442212825934"
+            },
+            {
+              "rank": 2,
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "evidence_id": "a75b6f625228943a3a4563ac",
+              "score": "0.037840362786333764"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/design/type-references-and-ownership.md",
+              "evidence_id": "daa92aed42c6e97cd511f914",
+              "score": "0.03717479102094487"
+            },
+            {
+              "rank": 4,
+              "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+              "evidence_id": "a3a3b1bce8714346a212b63d",
+              "score": "0.03252247488101534"
+            },
+            {
+              "rank": 5,
+              "path": "docs/hugo/content/design/ADR-2021-06-API-Version-Recovery.md",
+              "evidence_id": "930c27eb41840eec6d7632f6",
+              "score": "0.03248173343411439"
+            },
+            {
+              "rank": 6,
+              "path": "v2/api/compute/v1api20200930/arm/structure.txt",
+              "evidence_id": "63fb349c23c8ae85f0abe5c3",
+              "score": "0.03026266416510319"
+            },
+            {
+              "rank": 7,
+              "path": "v2/api/insights/versions_matrix.md",
+              "evidence_id": "5e4cb9bb4760921dd00c6aae",
+              "score": "0.0301507981158509"
+            },
+            {
+              "rank": 8,
+              "path": "v2/api/compute/v1api20240302/arm/structure.txt",
+              "evidence_id": "b130df592b0fc1c5b912ee61",
+              "score": "0.028177321156773214"
+            },
+            {
+              "rank": 9,
+              "path": "v2/api/redhatopenshift/v1api20231122/arm/structure.txt",
+              "evidence_id": "145857490997e4afbabb149b",
+              "score": "0.0260373999026611"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/reference/documentdb/v1api20210515.md",
+              "evidence_id": "b5af766d429f443e825ba253",
+              "score": "0.025849212924606464"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+              "evidence_id": "4e370bcb65a9372383ee2a0c",
+              "score": "0.02533373786407767"
+            },
+            {
+              "rank": 12,
+              "path": "v2/api/devices/versions_matrix.md",
+              "evidence_id": "466c0933a7d5738b6a882c8e",
+              "score": "0.0246496745007172"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/design/type-references-and-ownership.md",
+              "start": 647,
+              "end": 678,
+              "total_lines": 678
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "start": 1,
+              "end": 20,
+              "total_lines": 20
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+              "start": 177,
+              "end": 187,
+              "total_lines": 187
+            }
+          ],
+          "read_evidence_ids": [
+            "c66116ae3d69ebc5bfde1967",
+            "98488ef101fbe66c586f0ea1",
+            "78a7489f72d66cb38920b732"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is there contributor/developer documentation describing the code generator package deny list or how ARM sub-packages are emitted?",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "package deny",
+            "code generator"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "offset": 982,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+              "offset": 11370,
+              "limit": 120
+            },
+            {
+              "path": "v2/api/keyvault/v1api20230701/arm/structure.txt",
+              "offset": 241,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f713f27532ad3a86a6c86f5b",
+            "0e57487e4dbd8ed97229d580",
+            "89385e193bde595d37c22061",
+            "b49e8218122ad4a08ac73b70",
+            "9286bc6eeec966617eaefd3a",
+            "9bea9ffd5b6d3a31775b4aa4",
+            "94f042480783e5fe97ef2a1d",
+            "0095449af2830090d8a113f7",
+            "0c03791a30fd0d1f8f386877",
+            "623cd90d5c03f98c85e72c5d",
+            "14a2d523b567e83a69d46b13",
+            "e62aac7e7aa8e319e234a50e",
+            "8bb67b957980234dc3a2b42d",
+            "8a67de58b2cfa9f0a316dbd4",
+            "0e9c55844c5ddd070a2afbca"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "evidence_id": "b49e8218122ad4a08ac73b70",
+              "score": "0.032018442622950824"
+            },
+            {
+              "rank": 2,
+              "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+              "evidence_id": "9286bc6eeec966617eaefd3a",
+              "score": "0.030834914611005692"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "evidence_id": "9bea9ffd5b6d3a31775b4aa4",
+              "score": "0.030776515151515152"
+            },
+            {
+              "rank": 4,
+              "path": "v2/api/keyvault/v1api20230701/arm/structure.txt",
+              "evidence_id": "94f042480783e5fe97ef2a1d",
+              "score": "0.030158730158730156"
+            },
+            {
+              "rank": 5,
+              "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+              "evidence_id": "0095449af2830090d8a113f7",
+              "score": "0.02928692699490662"
+            },
+            {
+              "rank": 6,
+              "path": "docs/hugo/content/reference/storage/v1api20220901.md",
+              "evidence_id": "0c03791a30fd0d1f8f386877",
+              "score": "0.02862400327131466"
+            },
+            {
+              "rank": 7,
+              "path": "v2/api/storage/v1api20220901/structure.txt",
+              "evidence_id": "623cd90d5c03f98c85e72c5d",
+              "score": "0.028373015873015873"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/reference/storage/v1api20220901.md",
+              "evidence_id": "14a2d523b567e83a69d46b13",
+              "score": "0.028083267871170464"
+            },
+            {
+              "rank": 9,
+              "path": "docs/hugo/content/reference/storage/v1api20210401.md",
+              "evidence_id": "e62aac7e7aa8e319e234a50e",
+              "score": "0.026742734890354787"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+              "evidence_id": "8bb67b957980234dc3a2b42d",
+              "score": "0.02606951871657754"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/reference/machinelearningservices/v1api20240401.md",
+              "evidence_id": "8a67de58b2cfa9f0a316dbd4",
+              "score": "0.025478740668614087"
+            },
+            {
+              "rank": 12,
+              "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+              "evidence_id": "0e9c55844c5ddd070a2afbca",
+              "score": "0.025093353248693055"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "start": 982,
+              "end": 1102,
+              "total_lines": 5604
+            },
+            {
+              "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+              "start": 11370,
+              "end": 11490,
+              "total_lines": 23948
+            },
+            {
+              "path": "v2/api/keyvault/v1api20230701/arm/structure.txt",
+              "start": 241,
+              "end": 267,
+              "total_lines": 267
+            }
+          ],
+          "read_evidence_ids": [
+            "f713f27532ad3a86a6c86f5b",
+            "0e57487e4dbd8ed97229d580",
+            "89385e193bde595d37c22061"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Do docs reference the web API package structure or ConvertToARM for ServerFarm/Site?",
+          "root": "docs",
+          "queries": [
+            "ConvertToARM",
+            "ServerFarm",
+            "v1api20220301"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "v2/api/web/versions_matrix.md",
+              "offset": 44,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "114c954d69bddbba9ff4f04d",
+            "2ba4f8756a3eb49570100d14",
+            "81fbb5501ce25ab33df2d57b",
+            "49f810f93bfbe089bfb48299",
+            "97856ee55e64396afcbe710e",
+            "f45aa0ccb2b94f8da1abca16",
+            "20cb46b6059549b0a346d662",
+            "a75b6f625228943a3a4563ac",
+            "9baa07685eca900f0e685886",
+            "991edfeac47f4248caa08c3d",
+            "68ee3b5fa224bd7ae3d66f61",
+            "013743b3d3dd08097fe9cb72",
+            "72328991b8d19e0666829e13",
+            "80a9aed25ad05eedeec9b644",
+            "583d875c79213cf0406018c5"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "v2/api/web/versions_matrix.md",
+              "evidence_id": "49f810f93bfbe089bfb48299",
+              "score": "0.028438886647841874"
+            },
+            {
+              "rank": 2,
+              "path": "v2/api/web/versions_matrix.md",
+              "evidence_id": "97856ee55e64396afcbe710e",
+              "score": "0.026856524873828405"
+            },
+            {
+              "rank": 3,
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "evidence_id": "f45aa0ccb2b94f8da1abca16",
+              "score": "0.026631393298059962"
+            },
+            {
+              "rank": 4,
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "evidence_id": "20cb46b6059549b0a346d662",
+              "score": "0.02574682290807064"
+            },
+            {
+              "rank": 5,
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "evidence_id": "a75b6f625228943a3a4563ac",
+              "score": "0.024675324675324677"
+            },
+            {
+              "rank": 6,
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "evidence_id": "9baa07685eca900f0e685886",
+              "score": "0.022657450076804916"
+            },
+            {
+              "rank": 7,
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "evidence_id": "991edfeac47f4248caa08c3d",
+              "score": "0.022291021671826623"
+            },
+            {
+              "rank": 8,
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "evidence_id": "68ee3b5fa224bd7ae3d66f61",
+              "score": "0.020347035736418093"
+            },
+            {
+              "rank": 9,
+              "path": ".github/pull_request_template.md",
+              "evidence_id": "013743b3d3dd08097fe9cb72",
+              "score": "0.019655072743038828"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/reference/_index.md",
+              "evidence_id": "72328991b8d19e0666829e13",
+              "score": "0.019289789648578325"
+            },
+            {
+              "rank": 11,
+              "path": ".github/pull_request_template.md",
+              "evidence_id": "80a9aed25ad05eedeec9b644",
+              "score": "0.019174311926605507"
+            },
+            {
+              "rank": 12,
+              "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+              "evidence_id": "583d875c79213cf0406018c5",
+              "score": "0.018581626430390644"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "v2/api/web/versions_matrix.md",
+              "start": 44,
+              "end": 118,
+              "total_lines": 118
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "start": 0,
+              "end": 37,
+              "total_lines": 37
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "start": 0,
+              "end": 19,
+              "total_lines": 19
+            }
+          ],
+          "read_evidence_ids": [
+            "114c954d69bddbba9ff4f04d",
+            "2ba4f8756a3eb49570100d14",
+            "81fbb5501ce25ab33df2d57b"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0095449af2830090d8a113f7",
+        "013743b3d3dd08097fe9cb72",
+        "0c03791a30fd0d1f8f386877",
+        "0e57487e4dbd8ed97229d580",
+        "0e9c55844c5ddd070a2afbca",
+        "114c954d69bddbba9ff4f04d",
+        "145857490997e4afbabb149b",
+        "14a2d523b567e83a69d46b13",
+        "20cb46b6059549b0a346d662",
+        "2ba4f8756a3eb49570100d14",
+        "466c0933a7d5738b6a882c8e",
+        "49f810f93bfbe089bfb48299",
+        "4e370bcb65a9372383ee2a0c",
+        "583d875c79213cf0406018c5",
+        "5e4cb9bb4760921dd00c6aae",
+        "623cd90d5c03f98c85e72c5d",
+        "63fb349c23c8ae85f0abe5c3",
+        "68ee3b5fa224bd7ae3d66f61",
+        "72328991b8d19e0666829e13",
+        "78a7489f72d66cb38920b732",
+        "80a9aed25ad05eedeec9b644",
+        "81fbb5501ce25ab33df2d57b",
+        "89385e193bde595d37c22061",
+        "8a67de58b2cfa9f0a316dbd4",
+        "8bb67b957980234dc3a2b42d",
+        "9286bc6eeec966617eaefd3a",
+        "930c27eb41840eec6d7632f6",
+        "94f042480783e5fe97ef2a1d",
+        "97856ee55e64396afcbe710e",
+        "98488ef101fbe66c586f0ea1",
+        "991edfeac47f4248caa08c3d",
+        "9baa07685eca900f0e685886",
+        "9bea9ffd5b6d3a31775b4aa4",
+        "a3a3b1bce8714346a212b63d",
+        "a75b6f625228943a3a4563ac",
+        "b130df592b0fc1c5b912ee61",
+        "b49e8218122ad4a08ac73b70",
+        "b5af766d429f443e825ba253",
+        "c66116ae3d69ebc5bfde1967",
+        "daa92aed42c6e97cd511f914",
+        "e62aac7e7aa8e319e234a50e",
+        "ea92db0fb071e27e3b3cc596",
+        "f45aa0ccb2b94f8da1abca16",
+        "f713f27532ad3a86a6c86f5b"
+      ],
+      "new_evidence_count": 44,
+      "new_path_count": 24
+    },
+    {
+      "signature": "77ca51e176a48d1e24b90cbbe9afb2c9de9e533e5f297e157c6612391446895a",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Do the generated web API reference docs (docs/hugo/content/reference/web/v1api20220301.md) list the removed `_ARM` types (e.g. ServerFarm_Spec_ARM, Site_Spec_ARM) that this change relocates/renames?",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ],
+          "paths": [
+            "docs/hugo/content/reference/web/v1api20220301.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/web/v1api20220301.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2021-06-API-Version-Recovery.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "cef70903eff30a7df1723175",
+            "1e173cf195a1b577b517c899",
+            "2fe2455bd93f4d40f623408f",
+            "f45aa0ccb2b94f8da1abca16",
+            "20cb46b6059549b0a346d662",
+            "a75b6f625228943a3a4563ac",
+            "9baa07685eca900f0e685886",
+            "991edfeac47f4248caa08c3d",
+            "930c27eb41840eec6d7632f6",
+            "68ee3b5fa224bd7ae3d66f61",
+            "e88a3e9f7e11c6bda76c7104",
+            "013743b3d3dd08097fe9cb72",
+            "4e270feb6f1125df1521d1c5",
+            "80a9aed25ad05eedeec9b644",
+            "1a4035abd5ddb3d713f46a05"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "evidence_id": "f45aa0ccb2b94f8da1abca16",
+              "score": "0.0430943872188354"
+            },
+            {
+              "rank": 2,
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "evidence_id": "20cb46b6059549b0a346d662",
+              "score": "0.04189001389716101"
+            },
+            {
+              "rank": 3,
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "evidence_id": "a75b6f625228943a3a4563ac",
+              "score": "0.036906802606119345"
+            },
+            {
+              "rank": 4,
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "evidence_id": "9baa07685eca900f0e685886",
+              "score": "0.03602941176470588"
+            },
+            {
+              "rank": 5,
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "evidence_id": "991edfeac47f4248caa08c3d",
+              "score": "0.035183627698345946"
+            },
+            {
+              "rank": 6,
+              "path": "docs/hugo/content/design/ADR-2021-06-API-Version-Recovery.md",
+              "evidence_id": "930c27eb41840eec6d7632f6",
+              "score": "0.03516032479848269"
+            },
+            {
+              "rank": 7,
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "evidence_id": "68ee3b5fa224bd7ae3d66f61",
+              "score": "0.03217893751232012"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/reference/web/v1api20220301.md",
+              "evidence_id": "e88a3e9f7e11c6bda76c7104",
+              "score": "0.032018442622950824"
+            },
+            {
+              "rank": 9,
+              "path": ".github/pull_request_template.md",
+              "evidence_id": "013743b3d3dd08097fe9cb72",
+              "score": "0.030970575318401406"
+            },
+            {
+              "rank": 10,
+              "path": "v2/api/compute/v1api20201201/arm/structure.txt",
+              "evidence_id": "4e270feb6f1125df1521d1c5",
+              "score": "0.03045857395518815"
+            },
+            {
+              "rank": 11,
+              "path": ".github/pull_request_template.md",
+              "evidence_id": "80a9aed25ad05eedeec9b644",
+              "score": "0.03034320953997778"
+            },
+            {
+              "rank": 12,
+              "path": "hack/crossplane/apis/_index.md",
+              "evidence_id": "1a4035abd5ddb3d713f46a05",
+              "score": "0.029777412130353308"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/reference/web/v1api20220301.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 17693
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2021-06-API-Version-Recovery.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 176
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "start": 0,
+              "end": 20,
+              "total_lines": 20
+            }
+          ],
+          "read_evidence_ids": [
+            "cef70903eff30a7df1723175",
+            "1e173cf195a1b577b517c899",
+            "2fe2455bd93f4d40f623408f"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the code generator documentation describe the package deny list or how ARM sub-packages are emitted, which this change modifies?",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ],
+          "paths": [
+            "docs/hugo/content/contributing/add-a-new-code-generated-resource.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/contributing/add-a-new-code-generated-resource.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "offset": 782,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+              "offset": 1497,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7d42e0e3b5f87d52de685dac",
+            "cd33230a45809341eb93928f",
+            "a32960a95eab02099c55a898",
+            "b49e8218122ad4a08ac73b70",
+            "94f042480783e5fe97ef2a1d",
+            "9286bc6eeec966617eaefd3a",
+            "9bea9ffd5b6d3a31775b4aa4",
+            "0095449af2830090d8a113f7",
+            "0c03791a30fd0d1f8f386877",
+            "623cd90d5c03f98c85e72c5d",
+            "14a2d523b567e83a69d46b13",
+            "9d243fad1a34ef6a6a2ef913",
+            "e62aac7e7aa8e319e234a50e",
+            "8bb67b957980234dc3a2b42d",
+            "a545e825cebd8838adc581e9"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "evidence_id": "b49e8218122ad4a08ac73b70",
+              "score": "0.032018442622950824"
+            },
+            {
+              "rank": 2,
+              "path": "v2/api/keyvault/v1api20230701/arm/structure.txt",
+              "evidence_id": "94f042480783e5fe97ef2a1d",
+              "score": "0.03167158946281488"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+              "evidence_id": "9286bc6eeec966617eaefd3a",
+              "score": "0.030834914611005692"
+            },
+            {
+              "rank": 4,
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "evidence_id": "9bea9ffd5b6d3a31775b4aa4",
+              "score": "0.030776515151515152"
+            },
+            {
+              "rank": 5,
+              "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+              "evidence_id": "0095449af2830090d8a113f7",
+              "score": "0.02928692699490662"
+            },
+            {
+              "rank": 6,
+              "path": "docs/hugo/content/reference/storage/v1api20220901.md",
+              "evidence_id": "0c03791a30fd0d1f8f386877",
+              "score": "0.02862400327131466"
+            },
+            {
+              "rank": 7,
+              "path": "v2/api/storage/v1api20220901/structure.txt",
+              "evidence_id": "623cd90d5c03f98c85e72c5d",
+              "score": "0.028373015873015873"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/reference/storage/v1api20220901.md",
+              "evidence_id": "14a2d523b567e83a69d46b13",
+              "score": "0.028083267871170464"
+            },
+            {
+              "rank": 9,
+              "path": "v2/api/subscription/versions_matrix.md",
+              "evidence_id": "9d243fad1a34ef6a6a2ef913",
+              "score": "0.02699859747545582"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/reference/storage/v1api20210401.md",
+              "evidence_id": "e62aac7e7aa8e319e234a50e",
+              "score": "0.026742734890354787"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+              "evidence_id": "8bb67b957980234dc3a2b42d",
+              "score": "0.02606951871657754"
+            },
+            {
+              "rank": 12,
+              "path": "docs/hugo/content/design/ADR-2022-01-Reconciler-Extensions.md",
+              "evidence_id": "a545e825cebd8838adc581e9",
+              "score": "0.025561706284597852"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/contributing/add-a-new-code-generated-resource.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 371
+            },
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "start": 782,
+              "end": 902,
+              "total_lines": 5604
+            },
+            {
+              "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+              "start": 1497,
+              "end": 1617,
+              "total_lines": 5027
+            }
+          ],
+          "read_evidence_ids": [
+            "7d42e0e3b5f87d52de685dac",
+            "cd33230a45809341eb93928f",
+            "a32960a95eab02099c55a898"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "1a4035abd5ddb3d713f46a05",
+        "1e173cf195a1b577b517c899",
+        "2fe2455bd93f4d40f623408f",
+        "4e270feb6f1125df1521d1c5",
+        "7d42e0e3b5f87d52de685dac",
+        "9d243fad1a34ef6a6a2ef913",
+        "a32960a95eab02099c55a898",
+        "a545e825cebd8838adc581e9",
+        "cd33230a45809341eb93928f",
+        "cef70903eff30a7df1723175",
+        "e88a3e9f7e11c6bda76c7104"
+      ],
+      "new_evidence_count": 11,
+      "new_path_count": 6
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+    "code": "501341a397b60fdbbac2220afa793a04bd4b7922"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:22948003b4db9f49": 0,
+    "discover:Q1-2:116e7140e40c81f1": 135,
+    "discover:Q1-3:23f49d1f3273d12f": 237,
+    "discover:Q2-1:8c2948f2670e3a2c": 0,
+    "discover:Q2-2:2db62a15be64e52c": 262
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:22948003b4db9f49": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 136,
+      "cache_hit": false
+    },
+    "discover:Q1-2:116e7140e40c81f1": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 101,
+      "cache_hit": false
+    },
+    "discover:Q1-3:23f49d1f3273d12f": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 82,
+      "cache_hit": false
+    },
+    "discover:Q1-3:b2e621baa99a8364": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 160,
+      "cache_hit": false
+    },
+    "discover:Q1-1:b20bfac7f4ad199f": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 188,
+      "cache_hit": false
+    },
+    "discover:Q1-2:ac1db72f406a8efb": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 256,
+      "cache_hit": false
+    },
+    "discover:Q2-1:8c2948f2670e3a2c": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 263,
+      "cache_hit": false
+    },
+    "discover:Q2-2:2db62a15be64e52c": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 196,
+      "cache_hit": false
+    },
+    "discover:Q2-1:3ff99f09558bc51c": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 244,
+      "cache_hit": false
+    },
+    "discover:Q2-2:8c30b08efa387eee": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 296,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0095449af2830090d8a113f7",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+        "heading": "title: containerregistry.azure.com/v1api20210901",
+        "start_line": 1502,
+        "end_line": 1551,
+        "start_char": 31111,
+        "end_char": 32169,
+        "score": "0.02928692699490662",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "0095449af2830090d8a113f7",
+        "source_type": "repository",
+        "content_hash": "64ceb764bd433cb25984e9ce3338b1d583c142d9e1ad290a6278612be5d19037",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "64ceb764bd433cb25984e9ce3338b1d583c142d9e1ad290a6278612be5d19037",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:013743b3d3dd08097fe9cb72",
+        "type": "evidence",
+        "path": ".github/pull_request_template.md",
+        "heading": "What this PR does",
+        "start_line": 2,
+        "end_line": 16,
+        "start_char": 1,
+        "end_char": 454,
+        "score": "0.030970575318401406",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "013743b3d3dd08097fe9cb72",
+        "source_type": "repository",
+        "content_hash": "0ccedcf21489d78ec74992fc6aa5da3da7a054c6c9133756455e87282cbc16e4",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "0ccedcf21489d78ec74992fc6aa5da3da7a054c6c9133756455e87282cbc16e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c03791a30fd0d1f8f386877",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/storage/v1api20220901.md",
+        "heading": "title: storage.azure.com/v1api20220901",
+        "start_line": 11176,
+        "end_line": 11225,
+        "start_char": 245411,
+        "end_char": 246515,
+        "score": "0.02862400327131466",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "0c03791a30fd0d1f8f386877",
+        "source_type": "repository",
+        "content_hash": "23696296418f5933fe17e80905dd95a17b8e62c7ba3b1006afcf4054e0f98f1a",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "23696296418f5933fe17e80905dd95a17b8e62c7ba3b1006afcf4054e0f98f1a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0e57487e4dbd8ed97229d580",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+        "start_line": 11371,
+        "total_lines": 23948,
+        "start_char": 250592,
+        "end_char": 253152,
+        "evidence_id": "0e57487e4dbd8ed97229d580",
+        "truncated": false,
+        "next_offset": 11490,
+        "source_type": "repository",
+        "content_hash": "9098a885f51cc24f31058177e63bf3533202b99d8d847a8f9ae079d16b00e777",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "offset": 982,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+              "offset": 11370,
+              "limit": 120
+            },
+            {
+              "path": "v2/api/keyvault/v1api20230701/arm/structure.txt",
+              "offset": 241,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9098a885f51cc24f31058177e63bf3533202b99d8d847a8f9ae079d16b00e777",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0e9c55844c5ddd070a2afbca",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+        "heading": "title: containerregistry.azure.com/v1api20210901",
+        "start_line": 1452,
+        "end_line": 1501,
+        "start_char": 29929,
+        "end_char": 31111,
+        "score": "0.025093353248693055",
+        "root": "docs",
+        "matched_terms": [
+          "code",
+          "deny"
+        ],
+        "evidence_id": "0e9c55844c5ddd070a2afbca",
+        "source_type": "repository",
+        "content_hash": "85ab99e29e33bd0a4d205361a117802d1a851bfc6b5da87f8b10af6e5542f95a",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "package deny",
+            "code generator"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "85ab99e29e33bd0a4d205361a117802d1a851bfc6b5da87f8b10af6e5542f95a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:114c954d69bddbba9ff4f04d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "v2/api/web/versions_matrix.md",
+        "start_line": 45,
+        "total_lines": 118,
+        "start_char": 2948,
+        "end_char": 7906,
+        "evidence_id": "114c954d69bddbba9ff4f04d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "291b2c085bcd22a2d2f8da14d4fe24fdbaae7e2f7c335e756b42af8ba5097c92",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "v2/api/web/versions_matrix.md",
+              "offset": 44,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "291b2c085bcd22a2d2f8da14d4fe24fdbaae7e2f7c335e756b42af8ba5097c92",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:145857490997e4afbabb149b",
+        "type": "evidence",
+        "path": "v2/api/redhatopenshift/v1api20231122/arm/structure.txt",
+        "heading": "github.com/Azure/azure-service-operator/v2/api/redhatopenshift/v1api20231122/arm",
+        "start_line": 142,
+        "end_line": 151,
+        "start_char": 4876,
+        "end_char": 5182,
+        "score": "0.0260373999026611",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "145857490997e4afbabb149b",
+        "source_type": "repository",
+        "content_hash": "f2e68b01ca3c8cbc406be7f7eec9764624b801661794c6bac2a026fba4b51814",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f2e68b01ca3c8cbc406be7f7eec9764624b801661794c6bac2a026fba4b51814",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:14a2d523b567e83a69d46b13",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/storage/v1api20220901.md",
+        "heading": "title: storage.azure.com/v1api20220901",
+        "start_line": 11326,
+        "end_line": 11375,
+        "start_char": 248758,
+        "end_char": 249823,
+        "score": "0.028083267871170464",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "14a2d523b567e83a69d46b13",
+        "source_type": "repository",
+        "content_hash": "9ac286f6d71fc4293a2831d3912ef834f49f28d7d895ae4f04d8a2e931538f62",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9ac286f6d71fc4293a2831d3912ef834f49f28d7d895ae4f04d8a2e931538f62",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a4035abd5ddb3d713f46a05",
+        "type": "evidence",
+        "path": "hack/crossplane/apis/_index.md",
+        "heading": "title: Supported Resources > Sql > Released",
+        "start_line": 17,
+        "end_line": 24,
+        "start_char": 477,
+        "end_char": 947,
+        "score": "0.029777412130353308",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "1a4035abd5ddb3d713f46a05",
+        "source_type": "repository",
+        "content_hash": "def85c90847d975f40e6368ba36e6b802d6290a2132aae29039030bb89a660ba",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "def85c90847d975f40e6368ba36e6b802d6290a2132aae29039030bb89a660ba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1e173cf195a1b577b517c899",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/design/ADR-2021-06-API-Version-Recovery.md",
+        "start_line": 1,
+        "total_lines": 176,
+        "start_char": 0,
+        "end_char": 5248,
+        "evidence_id": "1e173cf195a1b577b517c899",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "1b89e0a66f8adacfdb7797de46b14ccfc40ad899f562a13571282e32e82d6bc2",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/web/v1api20220301.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2021-06-API-Version-Recovery.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "1b89e0a66f8adacfdb7797de46b14ccfc40ad899f562a13571282e32e82d6bc2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20cb46b6059549b0a346d662",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+        "heading": "assignees: ''",
+        "start_line": 6,
+        "end_line": 8,
+        "start_char": 129,
+        "end_char": 148,
+        "score": "0.04189001389716101",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "20cb46b6059549b0a346d662",
+        "source_type": "repository",
+        "content_hash": "a927cf2c5aa9cbcce735d0736d4c0893fd2609c25d5051f3f3c2be7e77a23750",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a927cf2c5aa9cbcce735d0736d4c0893fd2609c25d5051f3f3c2be7e77a23750",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2ba4f8756a3eb49570100d14",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+        "start_line": 1,
+        "total_lines": 37,
+        "start_char": 0,
+        "end_char": 1160,
+        "evidence_id": "2ba4f8756a3eb49570100d14",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "93939e8dd07103e72c343a073e66d7314ee6a920fa79985273ab62aa0a1124d8",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "v2/api/web/versions_matrix.md",
+              "offset": 44,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "93939e8dd07103e72c343a073e66d7314ee6a920fa79985273ab62aa0a1124d8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2fe2455bd93f4d40f623408f",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+        "start_line": 1,
+        "total_lines": 20,
+        "start_char": 0,
+        "end_char": 1064,
+        "evidence_id": "2fe2455bd93f4d40f623408f",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "13304311046c91b0496055f040a223e74bdfac245e96a6ad5a1c76291fefe0bc",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/web/v1api20220301.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2021-06-API-Version-Recovery.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "13304311046c91b0496055f040a223e74bdfac245e96a6ad5a1c76291fefe0bc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:466c0933a7d5738b6a882c8e",
+        "type": "evidence",
+        "path": "v2/api/devices/versions_matrix.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 19,
+        "start_char": 0,
+        "end_char": 1653,
+        "score": "0.0246496745007172",
+        "root": "docs",
+        "matched_terms": [
+          "package"
+        ],
+        "evidence_id": "466c0933a7d5738b6a882c8e",
+        "source_type": "repository",
+        "content_hash": "1f230d2aed6d736c9550db412a2664ec2bd1be216537f52b8169c7a486d5ad2e",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1f230d2aed6d736c9550db412a2664ec2bd1be216537f52b8169c7a486d5ad2e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:49f810f93bfbe089bfb48299",
+        "type": "evidence",
+        "path": "v2/api/web/versions_matrix.md",
+        "heading": "",
+        "start_line": 49,
+        "end_line": 72,
+        "start_char": 3216,
+        "end_char": 4824,
+        "score": "0.028438886647841874",
+        "root": "docs",
+        "matched_terms": [
+          "serverfarm",
+          "v1api20220301"
+        ],
+        "evidence_id": "49f810f93bfbe089bfb48299",
+        "source_type": "repository",
+        "content_hash": "46c0dd254a1707a01956d0406f0d64bfcba48937a7b7f7765392edf0bedcda0d",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ConvertToARM",
+            "ServerFarm",
+            "v1api20220301"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "46c0dd254a1707a01956d0406f0d64bfcba48937a7b7f7765392edf0bedcda0d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4e270feb6f1125df1521d1c5",
+        "type": "evidence",
+        "path": "v2/api/compute/v1api20201201/arm/structure.txt",
+        "heading": "github.com/Azure/azure-service-operator/v2/api/compute/v1api20201201/arm",
+        "start_line": 599,
+        "end_line": 648,
+        "start_char": 26225,
+        "end_char": 27816,
+        "score": "0.03045857395518815",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4e270feb6f1125df1521d1c5",
+        "source_type": "repository",
+        "content_hash": "91efff1d3c64838e8373b97c52199740677c643b74d6f46178a2c1cef62c6ff3",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "91efff1d3c64838e8373b97c52199740677c643b74d6f46178a2c1cef62c6ff3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4e370bcb65a9372383ee2a0c",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+        "heading": "title: 2023-07 Package References > Context",
+        "start_line": 5,
+        "end_line": 39,
+        "start_char": 43,
+        "end_char": 1745,
+        "score": "0.02533373786407767",
+        "root": "docs",
+        "matched_terms": [
+          "arm",
+          "types"
+        ],
+        "evidence_id": "4e370bcb65a9372383ee2a0c",
+        "source_type": "repository",
+        "content_hash": "a28e61f799f0fd326452197ea0300fcd4cb875a65288a914ad148b967333e0ff",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a28e61f799f0fd326452197ea0300fcd4cb875a65288a914ad148b967333e0ff",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:583d875c79213cf0406018c5",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+        "heading": "description: \"Step by step walkthrough of upgrading a resource version\" > Conversion Fixing",
+        "start_line": 269,
+        "end_line": 307,
+        "start_char": 13664,
+        "end_char": 15464,
+        "score": "0.018581626430390644",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "583d875c79213cf0406018c5",
+        "source_type": "repository",
+        "content_hash": "a4dc7f2536c755ea5046ce76c856ad72d19f1e73b022410c5f0e4093fbd6f54b",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ConvertToARM",
+            "ServerFarm",
+            "v1api20220301"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a4dc7f2536c755ea5046ce76c856ad72d19f1e73b022410c5f0e4093fbd6f54b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5e4cb9bb4760921dd00c6aae",
+        "type": "evidence",
+        "path": "v2/api/insights/versions_matrix.md",
+        "heading": "",
+        "start_line": 21,
+        "end_line": 30,
+        "start_char": 3480,
+        "end_char": 5220,
+        "score": "0.0301507981158509",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "5e4cb9bb4760921dd00c6aae",
+        "source_type": "repository",
+        "content_hash": "8b6e155fd0b838e4a5a6af5eb83ed1ad480dbd73ad01f0e41fbed912902c18b7",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "8b6e155fd0b838e4a5a6af5eb83ed1ad480dbd73ad01f0e41fbed912902c18b7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:603fca58a0c3520f09be3a82",
+        "type": "evidence",
+        "evidence_id": "603fca58a0c3520f09be3a82",
+        "source_type": "task",
+        "exported_content_sha256": "fcd410570c53c59260e943d06d185e0dbee6b7f3e998f135cde3b679ae8840b2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:623cd90d5c03f98c85e72c5d",
+        "type": "evidence",
+        "path": "v2/api/storage/v1api20220901/structure.txt",
+        "heading": "github.com/Azure/azure-service-operator/v2/api/storage/v1api20220901",
+        "start_line": 130,
+        "end_line": 163,
+        "start_char": 4920,
+        "end_char": 6523,
+        "score": "0.028373015873015873",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "623cd90d5c03f98c85e72c5d",
+        "source_type": "repository",
+        "content_hash": "81052db47d749044948a4127412ed8cff9e750146b2310ab64a3eaeb02e6e7e5",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "81052db47d749044948a4127412ed8cff9e750146b2310ab64a3eaeb02e6e7e5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:63fb349c23c8ae85f0abe5c3",
+        "type": "evidence",
+        "path": "v2/api/compute/v1api20200930/arm/structure.txt",
+        "heading": "github.com/Azure/azure-service-operator/v2/api/compute/v1api20200930/arm",
+        "start_line": 332,
+        "end_line": 341,
+        "start_char": 11193,
+        "end_char": 11483,
+        "score": "0.03026266416510319",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "63fb349c23c8ae85f0abe5c3",
+        "source_type": "repository",
+        "content_hash": "54e66e70c436ccde7cc85b2c2581a0bb10143c9140e421d8d8c2e9beb9f3891f",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "54e66e70c436ccde7cc85b2c2581a0bb10143c9140e421d8d8c2e9beb9f3891f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:68ee3b5fa224bd7ae3d66f61",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 5,
+        "start_char": 0,
+        "end_char": 129,
+        "score": "0.03217893751232012",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "68ee3b5fa224bd7ae3d66f61",
+        "source_type": "repository",
+        "content_hash": "af5dced72270e003a2eeadc0c8ca42581a4cf7cef664366a2fec6df9d85149e0",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "af5dced72270e003a2eeadc0c8ca42581a4cf7cef664366a2fec6df9d85149e0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:72328991b8d19e0666829e13",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/_index.md",
+        "heading": "- render: always > Web > Released",
+        "start_line": 763,
+        "end_line": 771,
+        "start_char": 183569,
+        "end_char": 184940,
+        "score": "0.019289789648578325",
+        "root": "docs",
+        "matched_terms": [
+          "serverfarm",
+          "v1api20220301"
+        ],
+        "evidence_id": "72328991b8d19e0666829e13",
+        "source_type": "repository",
+        "content_hash": "de2a8a7e744f774f380afec721746157d624c2c5579668622b66f74cf136867a",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ConvertToARM",
+            "ServerFarm",
+            "v1api20220301"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "de2a8a7e744f774f380afec721746157d624c2c5579668622b66f74cf136867a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78a7489f72d66cb38920b732",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+        "start_line": 178,
+        "total_lines": 187,
+        "start_char": 7166,
+        "end_char": 7473,
+        "evidence_id": "78a7489f72d66cb38920b732",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "98da80c136bdffb052f42de080c13fa5359cb763a59c8e4f13d1103d34d4f909",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/design/type-references-and-ownership.md",
+              "offset": 647,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+              "offset": 177,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "98da80c136bdffb052f42de080c13fa5359cb763a59c8e4f13d1103d34d4f909",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7d42e0e3b5f87d52de685dac",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/contributing/add-a-new-code-generated-resource.md",
+        "start_line": 1,
+        "total_lines": 371,
+        "start_char": 0,
+        "end_char": 5682,
+        "evidence_id": "7d42e0e3b5f87d52de685dac",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "4aa91d53bf5e933da7335c24dd027f6e1965bcbd877078d8f399af007d41c51a",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/contributing/add-a-new-code-generated-resource.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "offset": 782,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+              "offset": 1497,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4aa91d53bf5e933da7335c24dd027f6e1965bcbd877078d8f399af007d41c51a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:80a9aed25ad05eedeec9b644",
+        "type": "evidence",
+        "path": ".github/pull_request_template.md",
+        "heading": "What this PR does > Special notes",
+        "start_line": 17,
+        "end_line": 21,
+        "start_char": 454,
+        "end_char": 612,
+        "score": "0.03034320953997778",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "80a9aed25ad05eedeec9b644",
+        "source_type": "repository",
+        "content_hash": "998d770489125544b99b76942321e0ff8c3a5896b8e387594cfb6b9a3e194a5d",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "998d770489125544b99b76942321e0ff8c3a5896b8e387594cfb6b9a3e194a5d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:81fbb5501ce25ab33df2d57b",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+        "start_line": 1,
+        "total_lines": 19,
+        "start_char": 0,
+        "end_char": 366,
+        "evidence_id": "81fbb5501ce25ab33df2d57b",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "449a93418dd7c35d5fdb99dd024c0383548e34fa3f4ef0f953e58049e59f5348",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "v2/api/web/versions_matrix.md",
+              "offset": 44,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "449a93418dd7c35d5fdb99dd024c0383548e34fa3f4ef0f953e58049e59f5348",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:89385e193bde595d37c22061",
+        "type": "evidence",
+        "root": "docs",
+        "path": "v2/api/keyvault/v1api20230701/arm/structure.txt",
+        "start_line": 242,
+        "total_lines": 267,
+        "start_char": 7835,
+        "end_char": 8711,
+        "evidence_id": "89385e193bde595d37c22061",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "42cbbf88b520757c94f74c0b30ecbd4fd094d622b14375d599927e74e55d0b57",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "offset": 982,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+              "offset": 11370,
+              "limit": 120
+            },
+            {
+              "path": "v2/api/keyvault/v1api20230701/arm/structure.txt",
+              "offset": 241,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "42cbbf88b520757c94f74c0b30ecbd4fd094d622b14375d599927e74e55d0b57",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8a67de58b2cfa9f0a316dbd4",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/machinelearningservices/v1api20240401.md",
+        "heading": "title: machinelearningservices.azure.com/v1api20240401",
+        "start_line": 27256,
+        "end_line": 27305,
+        "start_char": 568579,
+        "end_char": 570093,
+        "score": "0.025478740668614087",
+        "root": "docs",
+        "matched_terms": [
+          "code",
+          "deny"
+        ],
+        "evidence_id": "8a67de58b2cfa9f0a316dbd4",
+        "source_type": "repository",
+        "content_hash": "1d1d8da751d94cdf6482045a42f0f68b557b27182f2e3039bbacb28f273ffbfd",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "package deny",
+            "code generator"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1d1d8da751d94cdf6482045a42f0f68b557b27182f2e3039bbacb28f273ffbfd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8bb67b957980234dc3a2b42d",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+        "heading": "title: storage.azure.com/v1api20230101",
+        "start_line": 11125,
+        "end_line": 11174,
+        "start_char": 245272,
+        "end_char": 246288,
+        "score": "0.02606951871657754",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "8bb67b957980234dc3a2b42d",
+        "source_type": "repository",
+        "content_hash": "c35922c69ac1334554c9c7dc73ce0d0e006e2d4d3f7b9374ce8d574eb362abb1",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c35922c69ac1334554c9c7dc73ce0d0e006e2d4d3f7b9374ce8d574eb362abb1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9286bc6eeec966617eaefd3a",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+        "heading": "title: storage.azure.com/v1api20230101",
+        "start_line": 11375,
+        "end_line": 11424,
+        "start_char": 250671,
+        "end_char": 251808,
+        "score": "0.030834914611005692",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "9286bc6eeec966617eaefd3a",
+        "source_type": "repository",
+        "content_hash": "f278181a82a90e00b9640938c3f89c9d11bd405347940e700bcf2050eb6194c9",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "f278181a82a90e00b9640938c3f89c9d11bd405347940e700bcf2050eb6194c9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:930c27eb41840eec6d7632f6",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2021-06-API-Version-Recovery.md",
+        "heading": "title: '2021-06: API Version Recovery' > Context",
+        "start_line": 5,
+        "end_line": 22,
+        "start_char": 48,
+        "end_char": 1516,
+        "score": "0.03516032479848269",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "930c27eb41840eec6d7632f6",
+        "source_type": "repository",
+        "content_hash": "e3b1bdc5eaaf7d663c1f8d47734de44f9d16963b1624c9d665c6d6f8fa4b4e32",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e3b1bdc5eaaf7d663c1f8d47734de44f9d16963b1624c9d665c6d6f8fa4b4e32",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:94f042480783e5fe97ef2a1d",
+        "type": "evidence",
+        "path": "v2/api/keyvault/v1api20230701/arm/structure.txt",
+        "heading": "github.com/Azure/azure-service-operator/v2/api/keyvault/v1api20230701/arm",
+        "start_line": 246,
+        "end_line": 267,
+        "start_char": 7971,
+        "end_char": 8711,
+        "score": "0.03167158946281488",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "94f042480783e5fe97ef2a1d",
+        "source_type": "repository",
+        "content_hash": "7af3bdb1dca241471d1aa9558a2e5c02c544b34216e87c35b93355926d07d208",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "7af3bdb1dca241471d1aa9558a2e5c02c544b34216e87c35b93355926d07d208",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:97856ee55e64396afcbe710e",
+        "type": "evidence",
+        "path": "v2/api/web/versions_matrix.md",
+        "heading": "",
+        "start_line": 73,
+        "end_line": 96,
+        "start_char": 4824,
+        "end_char": 6432,
+        "score": "0.026856524873828405",
+        "root": "docs",
+        "matched_terms": [
+          "v1api20220301"
+        ],
+        "evidence_id": "97856ee55e64396afcbe710e",
+        "source_type": "repository",
+        "content_hash": "84f4b131138f86b4709927af44ce11cea0d9d3636a2f4563086536fde4b86b68",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ConvertToARM",
+            "ServerFarm",
+            "v1api20220301"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "84f4b131138f86b4709927af44ce11cea0d9d3636a2f4563086536fde4b86b68",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:98488ef101fbe66c586f0ea1",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+        "start_line": 2,
+        "total_lines": 20,
+        "start_char": 4,
+        "end_char": 1064,
+        "evidence_id": "98488ef101fbe66c586f0ea1",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "969c5d173ba2a30ff001677a925d0df2c6a1cf2f7043a4722b32a28c2fd5029f",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/design/type-references-and-ownership.md",
+              "offset": 647,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+              "offset": 177,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "969c5d173ba2a30ff001677a925d0df2c6a1cf2f7043a4722b32a28c2fd5029f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:991edfeac47f4248caa08c3d",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+        "heading": "assignees: ''",
+        "start_line": 6,
+        "end_line": 8,
+        "start_char": 117,
+        "end_char": 136,
+        "score": "0.035183627698345946",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "991edfeac47f4248caa08c3d",
+        "source_type": "repository",
+        "content_hash": "a927cf2c5aa9cbcce735d0736d4c0893fd2609c25d5051f3f3c2be7e77a23750",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a927cf2c5aa9cbcce735d0736d4c0893fd2609c25d5051f3f3c2be7e77a23750",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9baa07685eca900f0e685886",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 5,
+        "start_char": 0,
+        "end_char": 117,
+        "score": "0.03602941176470588",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "9baa07685eca900f0e685886",
+        "source_type": "repository",
+        "content_hash": "53bd270793976275e8dc84dbd480ca022edf407d8792977bc63f7671e6ecbd12",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "53bd270793976275e8dc84dbd480ca022edf407d8792977bc63f7671e6ecbd12",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9bea9ffd5b6d3a31775b4aa4",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+        "heading": "title: signalrservice.azure.com/v1api20211001",
+        "start_line": 787,
+        "end_line": 836,
+        "start_char": 21023,
+        "end_char": 22043,
+        "score": "0.030776515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "9bea9ffd5b6d3a31775b4aa4",
+        "source_type": "repository",
+        "content_hash": "06efc86ca0f6419ca86e21dc3b2d4e877cc9258e48c79125cf079f2f78fd2045",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "06efc86ca0f6419ca86e21dc3b2d4e877cc9258e48c79125cf079f2f78fd2045",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9d243fad1a34ef6a6a2ef913",
+        "type": "evidence",
+        "path": "v2/api/subscription/versions_matrix.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 16,
+        "start_char": 0,
+        "end_char": 1296,
+        "score": "0.02699859747545582",
+        "root": "docs",
+        "matched_terms": [
+          "package"
+        ],
+        "evidence_id": "9d243fad1a34ef6a6a2ef913",
+        "source_type": "repository",
+        "content_hash": "d25cb17908a605d92d44e28ff15fa8735736c66e06627e829723e72afda7e84f",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d25cb17908a605d92d44e28ff15fa8735736c66e06627e829723e72afda7e84f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a32960a95eab02099c55a898",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+        "start_line": 1498,
+        "total_lines": 5027,
+        "start_char": 30979,
+        "end_char": 33340,
+        "evidence_id": "a32960a95eab02099c55a898",
+        "truncated": false,
+        "next_offset": 1617,
+        "source_type": "repository",
+        "content_hash": "ae57569f4f7a72e0a134f5eed942a7c5220791172fa8493122b5be5977897985",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/contributing/add-a-new-code-generated-resource.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "offset": 782,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+              "offset": 1497,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ae57569f4f7a72e0a134f5eed942a7c5220791172fa8493122b5be5977897985",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a3a3b1bce8714346a212b63d",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+        "heading": "title: 2023-07 Package References > References",
+        "start_line": 182,
+        "end_line": 187,
+        "start_char": 7193,
+        "end_char": 7473,
+        "score": "0.03252247488101534",
+        "root": "docs",
+        "matched_terms": [
+          "arm",
+          "types"
+        ],
+        "evidence_id": "a3a3b1bce8714346a212b63d",
+        "source_type": "repository",
+        "content_hash": "4c6d629155b1631b2386e2253053d9c60d3bdbd43a4539b7fb41a530ae8385b9",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4c6d629155b1631b2386e2253053d9c60d3bdbd43a4539b7fb41a530ae8385b9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a545e825cebd8838adc581e9",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2022-01-Reconciler-Extensions.md",
+        "heading": "title: '2022-01: Reconciler Extensions' > Decision > Example",
+        "start_line": 52,
+        "end_line": 99,
+        "start_char": 4657,
+        "end_char": 6273,
+        "score": "0.025561706284597852",
+        "root": "docs",
+        "matched_terms": [
+          "arm",
+          "package"
+        ],
+        "evidence_id": "a545e825cebd8838adc581e9",
+        "source_type": "repository",
+        "content_hash": "b0fc7968d81572ea5a27e561a2cfd68705c9ed1b9300261902be906267ad8c9f",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b0fc7968d81572ea5a27e561a2cfd68705c9ed1b9300261902be906267ad8c9f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a75b6f625228943a3a4563ac",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+        "heading": "assignees: ''",
+        "start_line": 6,
+        "end_line": 20,
+        "start_char": 129,
+        "end_char": 1064,
+        "score": "0.036906802606119345",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a75b6f625228943a3a4563ac",
+        "source_type": "repository",
+        "content_hash": "e04f0a8ab0870991642ad36c38d21b78f063a16322a48113e07bb683c697724f",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e04f0a8ab0870991642ad36c38d21b78f063a16322a48113e07bb683c697724f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b130df592b0fc1c5b912ee61",
+        "type": "evidence",
+        "path": "v2/api/compute/v1api20240302/arm/structure.txt",
+        "heading": "github.com/Azure/azure-service-operator/v2/api/compute/v1api20240302/arm",
+        "start_line": 592,
+        "end_line": 602,
+        "start_char": 21016,
+        "end_char": 21350,
+        "score": "0.028177321156773214",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b130df592b0fc1c5b912ee61",
+        "source_type": "repository",
+        "content_hash": "1386d70cfb668486af3a89a4e47495af8f7a045d74f6e1c0e665754823a23ed9",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1386d70cfb668486af3a89a4e47495af8f7a045d74f6e1c0e665754823a23ed9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b49e8218122ad4a08ac73b70",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+        "heading": "title: signalrservice.azure.com/v1api20211001",
+        "start_line": 987,
+        "end_line": 1036,
+        "start_char": 25097,
+        "end_char": 26151,
+        "score": "0.032018442622950824",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "b49e8218122ad4a08ac73b70",
+        "source_type": "repository",
+        "content_hash": "bb6a4c87e3afdcec5e06989a545bb1e7e799a9c9e2f5dbf6053b1b085a0c102a",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "bb6a4c87e3afdcec5e06989a545bb1e7e799a9c9e2f5dbf6053b1b085a0c102a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b5af766d429f443e825ba253",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/documentdb/v1api20210515.md",
+        "heading": "title: documentdb.azure.com/v1api20210515",
+        "start_line": 9716,
+        "end_line": 9765,
+        "start_char": 188298,
+        "end_char": 189123,
+        "score": "0.025849212924606464",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b5af766d429f443e825ba253",
+        "source_type": "repository",
+        "content_hash": "9fa02fe04c3eb94856c97d69b3c7aceab1305a7b099898a9e07db3df23136e78",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9fa02fe04c3eb94856c97d69b3c7aceab1305a7b099898a9e07db3df23136e78",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c66116ae3d69ebc5bfde1967",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/design/type-references-and-ownership.md",
+        "start_line": 648,
+        "total_lines": 678,
+        "start_char": 34767,
+        "end_char": 36403,
+        "evidence_id": "c66116ae3d69ebc5bfde1967",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "50ffee4577364a2ff6ad11f3bbde80927d46c2f72e54bd3c3265262e2af7c7bc",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/design/type-references-and-ownership.md",
+              "offset": 647,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2023-07-PackageReferences/_index.md",
+              "offset": 177,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "50ffee4577364a2ff6ad11f3bbde80927d46c2f72e54bd3c3265262e2af7c7bc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cd33230a45809341eb93928f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+        "start_line": 783,
+        "total_lines": 5604,
+        "start_char": 20865,
+        "end_char": 23433,
+        "evidence_id": "cd33230a45809341eb93928f",
+        "truncated": false,
+        "next_offset": 902,
+        "source_type": "repository",
+        "content_hash": "3c6da404087af38b01840b1aaffd4889f72e7c837fddcef0f98f7d3381a9a958",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/contributing/add-a-new-code-generated-resource.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "offset": 782,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerregistry/v1api20210901.md",
+              "offset": 1497,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "3c6da404087af38b01840b1aaffd4889f72e7c837fddcef0f98f7d3381a9a958",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cef70903eff30a7df1723175",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/web/v1api20220301.md",
+        "start_line": 1,
+        "total_lines": 17693,
+        "start_char": 0,
+        "end_char": 2253,
+        "evidence_id": "cef70903eff30a7df1723175",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "89b625fb03cea97b526e2b041d8b82ff007add729b16683341a5ebc52845afb5",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/web/v1api20220301.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2021-06-API-Version-Recovery.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "89b625fb03cea97b526e2b041d8b82ff007add729b16683341a5ebc52845afb5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:daa92aed42c6e97cd511f914",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/type-references-and-ownership.md",
+        "heading": "The road not travelled > How to represent references > Use fully qualified ARM ID (a single string) for all references",
+        "start_line": 651,
+        "end_line": 651,
+        "start_char": 34824,
+        "end_char": 34892,
+        "score": "0.03717479102094487",
+        "root": "docs",
+        "matched_terms": [
+          "arm"
+        ],
+        "evidence_id": "daa92aed42c6e97cd511f914",
+        "source_type": "repository",
+        "content_hash": "f899849ecc730203ad7e1a68f4ea3ff6b2b6246608cb87432fa0eb801e1a4150",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f899849ecc730203ad7e1a68f4ea3ff6b2b6246608cb87432fa0eb801e1a4150",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e62aac7e7aa8e319e234a50e",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/storage/v1api20210401.md",
+        "heading": "title: storage.azure.com/v1api20210401",
+        "start_line": 8795,
+        "end_line": 8844,
+        "start_char": 187737,
+        "end_char": 188792,
+        "score": "0.026742734890354787",
+        "root": "docs",
+        "matched_terms": [
+          "deny"
+        ],
+        "evidence_id": "e62aac7e7aa8e319e234a50e",
+        "source_type": "repository",
+        "content_hash": "c96ca4d6cecdd3690ef4ca5e35eea66cdc7b52f85e36ee15f56eb4a37550ccbc",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deny list",
+            "arm sub-package",
+            "package deny"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c96ca4d6cecdd3690ef4ca5e35eea66cdc7b52f85e36ee15f56eb4a37550ccbc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e88a3e9f7e11c6bda76c7104",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/web/v1api20220301.md",
+        "heading": "title: web.azure.com/v1api20220301",
+        "start_line": 3202,
+        "end_line": 3251,
+        "start_char": 60661,
+        "end_char": 61605,
+        "score": "0.032018442622950824",
+        "root": "docs",
+        "matched_terms": [
+          "serverfarm_spec_arm",
+          "site_spec_arm"
+        ],
+        "evidence_id": "e88a3e9f7e11c6bda76c7104",
+        "source_type": "repository",
+        "content_hash": "0171fb3c8326cb5e9c6d630523ed86bed677f418fa28c100b2d0a253e402a7b9",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "0171fb3c8326cb5e9c6d630523ed86bed677f418fa28c100b2d0a253e402a7b9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ea92db0fb071e27e3b3cc596",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/type-references-and-ownership.md",
+        "heading": "The road not travelled > How to represent references > Use fully qualified ARM ID (a single string) for all references > Pros",
+        "start_line": 652,
+        "end_line": 654,
+        "start_char": 34892,
+        "end_char": 34992,
+        "score": "0.04240442212825934",
+        "root": "docs",
+        "matched_terms": [
+          "arm"
+        ],
+        "evidence_id": "ea92db0fb071e27e3b3cc596",
+        "source_type": "repository",
+        "content_hash": "869709b39ebe6bb44031b7152c5740139c378a1471426823777f081275817197",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "_ARM suffix",
+            "ARM types",
+            "arm sub-package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "869709b39ebe6bb44031b7152c5740139c378a1471426823777f081275817197",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f45aa0ccb2b94f8da1abca16",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 5,
+        "start_char": 0,
+        "end_char": 129,
+        "score": "0.0430943872188354",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "f45aa0ccb2b94f8da1abca16",
+        "source_type": "repository",
+        "content_hash": "4d2d409163cd8b89898838ca146915df0a467cbfa626508a0c59d6b36ed9cba6",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ServerFarm_Spec_ARM",
+            "Site_Spec_ARM",
+            "_ARM"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "4d2d409163cd8b89898838ca146915df0a467cbfa626508a0c59d6b36ed9cba6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f713f27532ad3a86a6c86f5b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+        "start_line": 983,
+        "total_lines": 5604,
+        "start_char": 25042,
+        "end_char": 27461,
+        "evidence_id": "f713f27532ad3a86a6c86f5b",
+        "truncated": false,
+        "next_offset": 1102,
+        "source_type": "repository",
+        "content_hash": "ac4941dd9a7f6e8bd41ef6353a448d54b9bb288666833aa747da9ee0798263bd",
+        "revision": "53a52f8770f6427daafea55f3d3855e4a4bec6e9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/signalrservice/v1api20211001.md",
+              "offset": 982,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/storage/v1api20230101.md",
+              "offset": 11370,
+              "limit": 120
+            },
+            {
+              "path": "v2/api/keyvault/v1api20230701/arm/structure.txt",
+              "offset": 241,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ac4941dd9a7f6e8bd41ef6353a448d54b9bb288666833aa747da9ee0798263bd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fb68ba23baaf2267cf718a20",
+        "type": "evidence",
+        "evidence_id": "fb68ba23baaf2267cf718a20",
+        "source_type": "implementation",
+        "exported_content_sha256": "dd2bc2910f79b8bc81d86c42469f3c4d8f8f446093badd19952521b955b4bf6c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:web-ref-arm-types",
+        "type": "requirement",
+        "description": "Update the generated web v1api20220301 API reference so the relocated ARM types are documented under the new `arm` sub-package without the `_ARM` suffix (e.g. `ServerFarm_Spec`, `Site_Spec`, `ExtendedLocation`, `SkuDescription`, `Capability`, `HostingEnvironmentProfile`, `KubeEnvironmentProfile`, `SkuCapacity`), replacing the old root-package `_ARM` entries and their cross-references."
+      },
+      {
+        "id": "requirement:web-versions-matrix",
+        "type": "requirement",
+        "description": "Update `v2/api/web/versions_matrix.md` so the type list reflects the moved ARM types (new `arm` package names without `_ARM` suffix) rather than the removed root-package `_ARM` type names."
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the user-facing documentation describe ARM type naming conventions or the `_ARM` suffix that this change alters?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is there contributor/developer documentation describing the code generator package deny list or how ARM sub-packages are emitted?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Do docs reference the web API package structure or ConvertToARM for ServerFarm/Site?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Do the generated web API reference docs (docs/hugo/content/reference/web/v1api20220301.md) list the removed `_ARM` types (e.g. ServerFarm_Spec_ARM, Site_Spec_ARM) that this change relocates/renames?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the code generator documentation describe the package deny list or how ARM sub-packages are emitted, which this change modifies?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0095449af2830090d8a113f7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0095449af2830090d8a113f7",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:013743b3d3dd08097fe9cb72",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:013743b3d3dd08097fe9cb72",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c03791a30fd0d1f8f386877",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c03791a30fd0d1f8f386877",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0e57487e4dbd8ed97229d580",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0e9c55844c5ddd070a2afbca",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:114c954d69bddbba9ff4f04d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:145857490997e4afbabb149b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:14a2d523b567e83a69d46b13",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:14a2d523b567e83a69d46b13",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a4035abd5ddb3d713f46a05",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1e173cf195a1b577b517c899",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:20cb46b6059549b0a346d662",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:20cb46b6059549b0a346d662",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2ba4f8756a3eb49570100d14",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2fe2455bd93f4d40f623408f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:466c0933a7d5738b6a882c8e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:49f810f93bfbe089bfb48299",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e270feb6f1125df1521d1c5",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e370bcb65a9372383ee2a0c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:583d875c79213cf0406018c5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5e4cb9bb4760921dd00c6aae",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:623cd90d5c03f98c85e72c5d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:623cd90d5c03f98c85e72c5d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:63fb349c23c8ae85f0abe5c3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68ee3b5fa224bd7ae3d66f61",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68ee3b5fa224bd7ae3d66f61",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:72328991b8d19e0666829e13",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78a7489f72d66cb38920b732",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7d42e0e3b5f87d52de685dac",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:80a9aed25ad05eedeec9b644",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:80a9aed25ad05eedeec9b644",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:81fbb5501ce25ab33df2d57b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:89385e193bde595d37c22061",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8a67de58b2cfa9f0a316dbd4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8bb67b957980234dc3a2b42d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8bb67b957980234dc3a2b42d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9286bc6eeec966617eaefd3a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9286bc6eeec966617eaefd3a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:930c27eb41840eec6d7632f6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:930c27eb41840eec6d7632f6",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:94f042480783e5fe97ef2a1d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:94f042480783e5fe97ef2a1d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:97856ee55e64396afcbe710e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:98488ef101fbe66c586f0ea1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:991edfeac47f4248caa08c3d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:991edfeac47f4248caa08c3d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9baa07685eca900f0e685886",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9baa07685eca900f0e685886",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9bea9ffd5b6d3a31775b4aa4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9bea9ffd5b6d3a31775b4aa4",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9d243fad1a34ef6a6a2ef913",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a32960a95eab02099c55a898",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a3a3b1bce8714346a212b63d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a545e825cebd8838adc581e9",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a75b6f625228943a3a4563ac",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a75b6f625228943a3a4563ac",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a75b6f625228943a3a4563ac",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b130df592b0fc1c5b912ee61",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b49e8218122ad4a08ac73b70",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b49e8218122ad4a08ac73b70",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b5af766d429f443e825ba253",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c66116ae3d69ebc5bfde1967",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd33230a45809341eb93928f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cef70903eff30a7df1723175",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:daa92aed42c6e97cd511f914",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e62aac7e7aa8e319e234a50e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e62aac7e7aa8e319e234a50e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e88a3e9f7e11c6bda76c7104",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ea92db0fb071e27e3b3cc596",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f45aa0ccb2b94f8da1abca16",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f45aa0ccb2b94f8da1abca16",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f713f27532ad3a86a6c86f5b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cef70903eff30a7df1723175",
+        "to": "requirement:web-ref-arm-types",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:f713f27532ad3a86a6c86f5b",
+        "to": "requirement:web-ref-arm-types",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:cd33230a45809341eb93928f",
+        "to": "requirement:web-ref-arm-types",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:114c954d69bddbba9ff4f04d",
+        "to": "requirement:web-versions-matrix",
+        "type": "motivates"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

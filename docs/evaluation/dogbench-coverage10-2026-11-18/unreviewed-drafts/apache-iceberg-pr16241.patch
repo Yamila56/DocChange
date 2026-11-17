@@ -1,0 +1,26 @@
+diff --git a/docs/docs/configuration.md b/docs/docs/configuration.md
+index 17bf1f8ac0a1281ee618fd49b0226597225bf755..c3231f5070e58ca6aabefdd6b216684ba1e6d9cf 100644
+--- a/docs/docs/configuration.md
++++ b/docs/docs/configuration.md
+@@ -50,7 +50,7 @@ Iceberg tables support table properties to configure table behavior, like the de
+ | write.parquet.dict-size-bytes                       | 2097152 (2 MB)              | Parquet dictionary page size                                                                                                                                                                                                                       |
+ | write.parquet.compression-codec                     | zstd                        | Parquet compression codec: zstd, brotli, lz4, gzip, snappy, uncompressed                                                                                                                                                                           |
+ | write.parquet.compression-level                     | null                        | Parquet compression level                                                                                                                                                                                                                          |
+-| write.parquet.shred-variants                        | false                       | When true, variant columns are written with shredded Parquet encoding for improved query performance                                                                                                                                               |
++| write.parquet.shred-variants                        | false                       | When true, variant columns are written with shredded Parquet encoding for improved query performance. The shredded schema is inferred from buffered rows; values that do not match the inferred schema are still written and remain readable          |
+ | write.parquet.variant-inference-buffer-size         | 100                         | Number of rows to buffer for schema inference when variant shredding is enabled                                                                                                                                                                    |
+ | write.parquet.bloom-filter-enabled.column.col1      | (not set)                   | Hint to parquet to write a bloom filter for the column: 'col1'                                                                                                                                                                                     |
+ | write.parquet.bloom-filter-max-bytes                | 1048576 (1 MB)              | The maximum number of bytes for a bloom filter bitset                                                                                                                                                                                              |
+diff --git a/docs/docs/spark-configuration.md b/docs/docs/spark-configuration.md
+index 5972aafc3d3994c7621ea85a59bdbc9e48967d74..e77c89ca7dd782b610ae2ecb86d2d2ffaebe0cf2 100644
+--- a/docs/docs/spark-configuration.md
++++ b/docs/docs/spark-configuration.md
+@@ -267,6 +267,8 @@ df.writeTo("catalog.db.table")
+ | shred-variants | false | Overrides this table's write.parquet.shred-variants for this write |
+ | variant-inference-buffer-size | 100 | Overrides this table's write.parquet.variant-inference-buffer-size for this write |
+ 
++Write options take precedence over session settings, which take precedence over table properties. For example, `shred-variants` overrides `spark.sql.iceberg.shred-variants`, which overrides `write.parquet.shred-variants`.
++
+ CommitMetadata provides an interface to add custom metadata to a snapshot summary during a SQL execution, which can be beneficial for purposes such as auditing or change tracking. If properties start with `snapshot-property.`, then that prefix will be removed from each property. Here is an example:
+ 
+ ```java

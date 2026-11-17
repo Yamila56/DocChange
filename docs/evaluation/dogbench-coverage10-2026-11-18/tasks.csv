@@ -1,0 +1,50 @@
+﻿instance_id,status,decision,runtime_status,runtime_decision,terminal_reason_code,model_turns,error_type,expected_outcome,decision_correct,score,blocking_p0,latency_ms,error
+Azure-azure-service-operator-pr4196,error,,error,,,10,DomainError,abstain,False,0.0,,70553.57899999944,Model-call budget exhausted
+Azure-azure-service-operator-pr4202,error,,error,,,10,DomainError,patch,False,0.0,,70916.54659999767,Model-call budget exhausted
+Azure-azure-service-operator-pr4394,error,,error,,,10,DomainError,abstain,False,0.0,,74434.41819999134,Model-call budget exhausted
+Azure-azure-service-operator-pr4003,completed,patch,completed,patch,,9,,patch,True,0.0,C1,77133.68929999706,
+Azure-azure-service-operator-pr5490,completed,patch,completed,patch,,10,,patch,True,22.2,C1;C5;C6,122461.29800000926,
+MaterializeInc-materialize-pr36075,completed,abstain,completed,abstain,,8,,abstain,True,100.0,,165608.09059999883,
+MaterializeInc-materialize-pr36328,error,,error,,,10,DomainError,patch,False,0.0,,171380.07810000272,Model-call budget exhausted
+MaterializeInc-materialize-pr36618,error,,error,,,10,DomainError,patch,False,0.0,,171709.0443999914,Model-call budget exhausted
+MaterializeInc-materialize-pr36803,error,,error,,,10,DomainError,abstain,False,0.0,,155144.3896000128,Model-call budget exhausted
+MaterializeInc-materialize-pr37023,error,,error,,,10,DomainError,patch,False,0.0,,159537.33869999996,Model-call budget exhausted
+PostHog-posthog-pr63817,error,,error,,,10,DomainError,abstain,False,0.0,,218159.74430000642,Model-call budget exhausted
+PostHog-posthog-pr63871,error,,error,,,10,DomainError,patch,False,0.0,,228374.47229999816,Model-call budget exhausted
+PostHog-posthog-pr63886,completed,abstain,completed,abstain,,10,,abstain,True,100.0,,203877.9649000062,
+PostHog-posthog.com-pr16714,error,,error,,,10,DomainError,patch,False,0.0,,196969.6699000051,Model-call budget exhausted
+PostHog-posthog.com-pr16354,error,,error,,,10,DomainError,patch,False,0.0,,219429.78390000644,Model-call budget exhausted
+PostHog-posthog.com-pr16752,completed,patch,completed,patch,,9,,patch,True,61.5,,213756.52719999198,
+apache-flink-pr27195,completed,patch,completed,patch,,10,,patch,True,7.1,C2;C4;C6;C10,115236.72849999275,
+PostHog-posthog.com-pr16822,error,,error,,,10,DomainError,patch,False,0.0,,221029.20239999366,Model-call budget exhausted
+PostHog-posthog.com-pr16939,error,,error,,,10,DomainError,patch,False,0.0,,231168.39299999992,Model-call budget exhausted
+apache-flink-pr27325,error,,error,,,10,DomainError,abstain,False,0.0,,105240.75700000685,Model-call budget exhausted
+apache-iceberg-pr15566,error,,error,,,10,DomainError,patch,False,0.0,,35465.25269999984,Model-call budget exhausted
+apache-iceberg-pr15634,error,,error,,,10,DomainError,abstain,False,0.0,,38823.17060000787,Model-call budget exhausted
+apache-flink-pr27345,error,,error,,,10,DomainError,abstain,False,0.0,,118365.23870000383,Model-call budget exhausted
+apache-iceberg-pr15667,error,,error,,,10,DomainError,abstain,False,0.0,,48400.43730000616,Model-call budget exhausted
+apache-iceberg-pr15814,error,,error,,,10,DomainError,patch,False,0.0,,54187.210699994466,Model-call budget exhausted
+apache-flink-pr28212,error,,error,,,10,DomainError,patch,False,0.0,,152111.96170000767,Model-call budget exhausted
+PostHog-posthog.com-pr17231,completed,patch,completed,patch,,7,,patch,True,20.0,,245106.88690000097,
+apache-iceberg-pr16241,error,,error,,,10,DomainError,abstain,False,0.0,,62315.88609999744,Model-call budget exhausted
+bentoml-bentoml-pr5465,completed,patch,completed,patch,,10,,patch,True,5.9,C1;C5;C9;C11,56636.95490000828,
+PostHog-posthog.com-pr17172,error,,error,,,10,DomainError,patch,False,0.0,,286688.1649999996,Model-call budget exhausted
+bentoml-bentoml-pr5518,error,,error,,,10,DomainError,patch,False,0.0,,45972.16540000227,Model-call budget exhausted
+apache-flink-pr28237,error,,error,,,10,DomainError,patch,False,0.0,,152219.55690000323,Model-call budget exhausted
+celery-celery-pr10135,completed,patch,completed,patch,,9,,patch,True,35.7,C2;C5;C10,59727.95380000025,
+astral-sh-ruff-pr21369,error,,error,,,10,DomainError,patch,False,0.0,,101480.5808999954,Model-call budget exhausted
+celery-celery-pr9879,error,,error,,,4,JSONDecodeError,patch,False,0.0,,27493.823699987843,Extra data: line 3 column 1 (char 162)
+celery-celery-pr10206,error,,error,,,4,JSONDecodeError,patch,False,0.0,,31997.423299995717,Extra data: line 3 column 1 (char 246)
+celery-celery-pr10150,completed,patch,completed,patch,,8,,patch,True,36.4,,62867.044800004805,
+celery-celery-pr10174,error,,error,,,10,DomainError,patch,False,0.0,,54019.56520001113,Model-call budget exhausted
+celery-celery-pr10238,error,,error,,,10,DomainError,patch,False,0.0,,48443.97619999654,Model-call budget exhausted
+doc-detective-common-pr63,error,,error,,,10,DomainError,patch,False,0.0,,25390.063300001202,Model-call budget exhausted
+dagworks-inc-hamilton-pr1445,completed,patch,completed,patch,,6,,patch,True,30.0,C1;C3;C5;C8,49834.29480000632,
+doc-detective-common-pr112,error,,error,,,10,DomainError,patch,False,0.0,,38276.70560000115,Model-call budget exhausted
+doc-detective-common-pr65,error,,error,,,10,DomainError,abstain,False,0.0,,33234.930400009034,Model-call budget exhausted
+dlt-hub-dlt-pr2500,error,,error,,,10,DomainError,patch,False,0.0,,55614.35619999247,Model-call budget exhausted
+doc-detective-doc-detective-pr146,error,,error,,,8,DomainError,patch,False,0.0,,23460.499900000286,Coverage review failed after repair
+dlt-hub-dlt-pr2836,error,,error,,,10,DomainError,patch,False,0.0,,57767.08960000542,Model-call budget exhausted
+doc-detective-common-pr78,error,,error,,,10,DomainError,patch,False,0.0,,36600.291499999,Model-call budget exhausted
+dlt-hub-dlt-pr2965,error,,error,,,10,DomainError,patch,False,0.0,,58419.58240000531,Model-call budget exhausted
+doc-detective-doc-detective-pr21,error,,error,,,10,DomainError,patch,False,0.0,,33828.99209999596,Model-call budget exhausted

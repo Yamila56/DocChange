@@ -1,0 +1,67 @@
+diff --git a/docs/hugo/content/design/ADR-2024-04-RoleAssignment-UUID-Generation.md b/docs/hugo/content/design/ADR-2024-04-RoleAssignment-UUID-Generation.md
+index 7f7662951274b40557048f471052df6523b334b1..35178d370f4aea45511881bcd0a1ba2741ebcab0 100644
+--- a/docs/hugo/content/design/ADR-2024-04-RoleAssignment-UUID-Generation.md
++++ b/docs/hugo/content/design/ADR-2024-04-RoleAssignment-UUID-Generation.md
+@@ -71,7 +71,7 @@ Adding an OperatorSpec property to the RoleAssignment resource. Which would enab
+ 
+ ``` yaml
+   operatorSpec:
+-    generationType: random/default
++    namingConvention: random/stable
+ ```
+ 
+ **Pro**: Backward compatible
+@@ -88,11 +88,17 @@ We retain how the resource shape looks like and suggest using OperatorSpec prope
+ 
+ ## Status
+ 
+-Proposed.
++Implemented.
+ 
+ ## Consequences
+ 
+-TBC
++The `operatorSpec.namingConvention` property is available on `RoleAssignment` in API versions `2020-08-01-preview`
++and `2022-04-01`, and on `RoleDefinition` in `2022-04-01`. It accepts `stable` (the default, producing the existing
++deterministic UUID-based name) or `random` (producing a new random UUID), and only applies when no AzureName is
++explicitly provided. The setting is operator-only and is not sent to Azure.
++
++Users choosing `random` must manage the AzureName themselves when exporting/importing or migrating resources, since
++a new UUID is generated on each creation.
+ 
+ ## Experience Report
+ 
+diff --git a/docs/hugo/content/guide/frequently-asked-questions.md b/docs/hugo/content/guide/frequently-asked-questions.md
+index 85fd06e4dc166079e630812405f276456010daa2..022ef5fda413ad32e1c625e967cc89dadab725d3 100644
+--- a/docs/hugo/content/guide/frequently-asked-questions.md
++++ b/docs/hugo/content/guide/frequently-asked-questions.md
+@@ -199,6 +199,29 @@ If this happens you may see an error like:
+ If you see this error, you can work around it by manually specifying a UUID for AzureName, or deleting the 
+ `RoleAssignment` which hit the error and creating it again with a different name.
+ 
++If you need each ASO instance to generate a different UUID for the same `RoleAssignment` name, you can set
++`operatorSpec.namingConvention` on the resource. This setting is available on `RoleAssignment` in API versions
++`2020-08-01-preview` and `2022-04-01`, and on `RoleDefinition` in `2022-04-01`, and only applies when no AzureName
++is explicitly provided:
++
++* `stable` (the default) generates the deterministic UUID (v5) described above.
++* `random` generates a new random UUID.
++
++```yaml
++apiVersion: authorization.azure.com/v1api20220401
++kind: RoleAssignment
++metadata:
++  name: my-assignment
++spec:
++  operatorSpec:
++    namingConvention: random
++  # ...
++```
++
++This is an operator-only setting: it is interpreted by ASO and is not sent to Azure. Note that with `random`, a new
++UUID is generated each time the resource is created, so the name will not be stable across recreation or migration
++between ASO instances. If you need a stable name in those scenarios, specify the AzureName explicitly.
++
+ If you're planning to move management of a `RoleAssignment` from one namespace to another (by setting the
+ reconcile-policy: skip on the old one, deleting it, and then creating the `RoleAssignment` in a different namespace 
+ allowing it to adopt the existing resource in Azure) you must manually specify the AzureName

@@ -1,0 +1,96 @@
+diff --git a/docs/content.zh/docs/dev/table/functions/ptfs.md b/docs/content.zh/docs/dev/table/functions/ptfs.md
+index 4190e9e3ba5a6302dc38a7bf8a1563a667e71155..2ce89350eb2f15f3a7106440fc9c22b683d47a9e 100644
+--- a/docs/content.zh/docs/dev/table/functions/ptfs.md
++++ b/docs/content.zh/docs/dev/table/functions/ptfs.md
+@@ -2275,6 +2275,43 @@ void testScalarOnly() throws Exception {
+ {{< /tab >}}
+ {{< /tabs >}}
+ 
++#### 测试有状态函数
++
++测试工具支持有状态的 PTF。状态参数（标量状态、`ListView`、`MapView` 以及 POJO/结构化类型）不再被拒绝。
++状态按分区键（partition key）存储，可以通过 `.withInitialStateForKey(stateName, partitionKey, state)`
++为指定键设置初始状态。
++
++{{< tabs "state" >}}
++{{< tab "Java" >}}
++```java
++public class CountPTF extends ProcessTableFunction<Row> {
++  public void eval(
++      @ArgumentHint({ArgumentTrait.SET_SEMANTIC_TABLE, ArgumentTrait.OPTIONAL_PARTITION_BY})
++          Row input,
++      @StateHint DataTypeHint("BIGINT") long count) {
++    count++;
++    collect(Row.of(count));
++  }
++}
++
++@Test
++void testStateful() throws Exception {
++  try (ProcessTableFunctionTestHarness<Row> harness =
++    ProcessTableFunctionTestHarness.ofClass(CountPTF.class)
++    .withTableArgument("input", DataTypes.of("ROW<value INT>"))
++    .withInitialStateForKey("count", Row.of(42), 10L)
++    .build()) {
++
++    harness.processElement(Row.of(1));
++    assertThat(harness.getOutput()).containsExactly(Row.of(11L));
++  }
++}
++```
++{{< /tab >}}
++{{< /tabs >}}
++
++**注意**：测试工具不支持状态 TTL。
++
+ #### Configuring Table Argument Types
+ 
+ In contexts where the harness can't infer the table argument types for table arguments (when using unannotated `Row` inputs,
+diff --git a/docs/content/docs/dev/table/functions/ptfs.md b/docs/content/docs/dev/table/functions/ptfs.md
+index 7181fc1a3d142838b75268a48ea16f7f6a8398c8..6381f574de7229b919327e599cd4e449715eaeac 100644
+--- a/docs/content/docs/dev/table/functions/ptfs.md
++++ b/docs/content/docs/dev/table/functions/ptfs.md
+@@ -2278,6 +2278,43 @@ void testScalarOnly() throws Exception {
+ {{< /tab >}}
+ {{< /tabs >}}
+ 
++#### Testing with State
++
++The harness supports stateful PTFs. State parameters (scalar state, `ListView`, `MapView`, and POJO/structured types)
++are no longer rejected. State is keyed by the partition key, and you can set the initial state for a given key
++via `.withInitialStateForKey(stateName, partitionKey, state)`.
++
++{{< tabs "state" >}}
++{{< tab "Java" >}}
++```java
++public class CountPTF extends ProcessTableFunction<Row> {
++  public void eval(
++      @ArgumentHint({ArgumentTrait.SET_SEMANTIC_TABLE, ArgumentTrait.OPTIONAL_PARTITION_BY})
++          Row input,
++      @StateHint DataTypeHint("BIGINT") long count) {
++    count++;
++    collect(Row.of(count));
++  }
++}
++
++@Test
++void testStateful() throws Exception {
++  try (ProcessTableFunctionTestHarness<Row> harness =
++    ProcessTableFunctionTestHarness.ofClass(CountPTF.class)
++    .withTableArgument("input", DataTypes.of("ROW<value INT>"))
++    .withInitialStateForKey("count", Row.of(42), 10L)
++    .build()) {
++
++    harness.processElement(Row.of(1));
++    assertThat(harness.getOutput()).containsExactly(Row.of(11L));
++  }
++}
++```
++{{< /tab >}}
++{{< /tabs >}}
++
++**Note**: State TTL is not supported by the test harness.
++
+ #### Configuring Table Argument Types
+ 
+ In contexts where the harness can't infer the table argument types for table arguments (when using unannotated `Row` inputs,

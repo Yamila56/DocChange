@@ -1,0 +1,3415 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "spec-manifests-parquet",
+      "description": "Update the Manifests section of format/spec.md: the current text states 'A manifest is an immutable Avro file' and describes metadata stored 'as properties in the Avro file's key-value metadata'. Revise to state that v1-v3 manifests are Avro, while v4 manifests may be Avro or Parquet (data and delete manifests), and describe how metadata is stored for Parquet manifests. Also note that unpartitioned manifests omit the partition field in Parquet since Parquet cannot store empty structs.",
+      "evidence_ids": [
+        "e82a86f5c42949e332c009c3",
+        "1a6f0b96c5ec451d96a969ce",
+        "034ece1e5d715aae25a91449",
+        "ef68e8560f8173ff81ef3fa8"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "spec-appendix-e-v4",
+      "description": "Add a 'Version 4' subsection to Appendix E: Format version changes in format/spec.md documenting that v4 tables write data and delete manifests as Parquet by default, that v4 readers/writers support both Avro and Parquet when explicitly selected, and the unpartitioned-manifest partition-field handling.",
+      "evidence_ids": [
+        "da9404e57e4db41304a74d23",
+        "ef68e8560f8173ff81ef3fa8",
+        "19c3bfc0626a5f79e4e168ad"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "a42825a51f802a978a77e1d0dab35bcf6626d10ad8bd830fe8f71c8ef29468f7",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the docs describe format version 4, its manifest file format, or manifest storage format (Avro vs Parquet) anywhere?",
+          "root": "docs",
+          "queries": [
+            "format version 4",
+            "manifest file format",
+            "Parquet manifest"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 603,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-queries.md",
+              "offset": 406,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/terms.md",
+              "offset": 60,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "034ece1e5d715aae25a91449",
+            "a009e6809c91914c891b7809",
+            "c27befebe8da3560865cdce0",
+            "c019e3bf6bb2b9334e2a53a3",
+            "83c26d0b1a50a018d0f5d5cf",
+            "83faf8862c5c6ae1d34f4013",
+            "fa42adbdcb76f7f090e61bab",
+            "6b959c3a173dbf991ed3382d",
+            "0d51b804d9b7c045d389dfbe",
+            "e283469e2f19d65b5e309499",
+            "ed15baedae1dc50237ed2ee3",
+            "146603bb3220b38a1d1c039e",
+            "357adec1f927afeb27572c28",
+            "556cf36123646a0882f1819a",
+            "8e3098f9c78b216853b69bbd"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "format/spec.md",
+              "evidence_id": "c019e3bf6bb2b9334e2a53a3",
+              "score": "0.0416326060072523"
+            },
+            {
+              "rank": 2,
+              "path": "format/spec.md",
+              "evidence_id": "83c26d0b1a50a018d0f5d5cf",
+              "score": "0.03527729581765446"
+            },
+            {
+              "rank": 3,
+              "path": "docs/docs/spark-queries.md",
+              "evidence_id": "83faf8862c5c6ae1d34f4013",
+              "score": "0.02881781600238038"
+            },
+            {
+              "rank": 4,
+              "path": "site/docs/terms.md",
+              "evidence_id": "fa42adbdcb76f7f090e61bab",
+              "score": "0.02821869488536155"
+            },
+            {
+              "rank": 5,
+              "path": "site/docs/terms.md",
+              "evidence_id": "6b959c3a173dbf991ed3382d",
+              "score": "0.027972027972027972"
+            },
+            {
+              "rank": 6,
+              "path": "docs/docs/flink-queries.md",
+              "evidence_id": "0d51b804d9b7c045d389dfbe",
+              "score": "0.024362132120752812"
+            },
+            {
+              "rank": 7,
+              "path": "docs/docs/flink-queries.md",
+              "evidence_id": "e283469e2f19d65b5e309499",
+              "score": "0.024209757053112388"
+            },
+            {
+              "rank": 8,
+              "path": "docs/docs/spark-queries.md",
+              "evidence_id": "ed15baedae1dc50237ed2ee3",
+              "score": "0.023859649122807018"
+            },
+            {
+              "rank": 9,
+              "path": "kafka-connect/kafka-connect-runtime/runtime-deps.txt",
+              "evidence_id": "146603bb3220b38a1d1c039e",
+              "score": "0.023812319120110767"
+            },
+            {
+              "rank": 10,
+              "path": "docs/docs/encryption.md",
+              "evidence_id": "357adec1f927afeb27572c28",
+              "score": "0.02350255170561375"
+            },
+            {
+              "rank": 11,
+              "path": "format/view-spec.md",
+              "evidence_id": "556cf36123646a0882f1819a",
+              "score": "0.022781005522319372"
+            },
+            {
+              "rank": 12,
+              "path": "flink/v1.20/flink-runtime/runtime-deps.txt",
+              "evidence_id": "8e3098f9c78b216853b69bbd",
+              "score": "0.022586573961786184"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "format/spec.md",
+              "start": 603,
+              "end": 693,
+              "total_lines": 2005
+            },
+            {
+              "path": "docs/docs/spark-queries.md",
+              "start": 406,
+              "end": 526,
+              "total_lines": 622
+            },
+            {
+              "path": "site/docs/terms.md",
+              "start": 60,
+              "end": 91,
+              "total_lines": 91
+            }
+          ],
+          "read_evidence_ids": [
+            "034ece1e5d715aae25a91449",
+            "a009e6809c91914c891b7809",
+            "c27befebe8da3560865cdce0"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where does the docs describe table format versions and their capabilities/requirements?",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 1916,
+              "limit": 120
+            },
+            {
+              "path": "format/view-spec.md",
+              "offset": 258,
+              "limit": 120
+            },
+            {
+              "path": "format/puffin-spec.md",
+              "offset": 30,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "130c7400c553d17abab1d684",
+            "5bae02079ece633144d41234",
+            "5b01ea6f42f42d45a7336310",
+            "0664177e250a21a62f99f2df",
+            "c0610301e27d0b2665d097ae",
+            "556cf36123646a0882f1819a",
+            "1365d760d5182143f3e5cd3c",
+            "c12329985bfa3573ae3d1648",
+            "e58c511bf3ba654ecbbee962",
+            "07f4255c2c8715e6c4344f40",
+            "f22df2a01a1c15a486b65547",
+            "05645ae55dd0b20a965fa4c3",
+            "56d59fa78611092d35debaba",
+            "daadda8f6ca154f51bca96f0",
+            "23a54ffa1e8353115ba5c503"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "format/spec.md",
+              "evidence_id": "0664177e250a21a62f99f2df",
+              "score": "0.04918032786885246"
+            },
+            {
+              "rank": 2,
+              "path": "format/spec.md",
+              "evidence_id": "c0610301e27d0b2665d097ae",
+              "score": "0.04838709677419355"
+            },
+            {
+              "rank": 3,
+              "path": "format/view-spec.md",
+              "evidence_id": "556cf36123646a0882f1819a",
+              "score": "0.046897546897546896"
+            },
+            {
+              "rank": 4,
+              "path": "format/view-spec.md",
+              "evidence_id": "1365d760d5182143f3e5cd3c",
+              "score": "0.04434349989184512"
+            },
+            {
+              "rank": 5,
+              "path": "format/puffin-spec.md",
+              "evidence_id": "c12329985bfa3573ae3d1648",
+              "score": "0.0414075286415712"
+            },
+            {
+              "rank": 6,
+              "path": "format/udf-spec.md",
+              "evidence_id": "e58c511bf3ba654ecbbee962",
+              "score": "0.03841041998936735"
+            },
+            {
+              "rank": 7,
+              "path": "format/puffin-spec.md",
+              "evidence_id": "07f4255c2c8715e6c4344f40",
+              "score": "0.03768852912688529"
+            },
+            {
+              "rank": 8,
+              "path": "format/udf-spec.md",
+              "evidence_id": "f22df2a01a1c15a486b65547",
+              "score": "0.03765822784810127"
+            },
+            {
+              "rank": 9,
+              "path": "site/docs/releases.md",
+              "evidence_id": "05645ae55dd0b20a965fa4c3",
+              "score": "0.034300467174821735"
+            },
+            {
+              "rank": 10,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "56d59fa78611092d35debaba",
+              "score": "0.02929038787757837"
+            },
+            {
+              "rank": 11,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "daadda8f6ca154f51bca96f0",
+              "score": "0.028456592987485436"
+            },
+            {
+              "rank": 12,
+              "path": "site/docs/contribute.md",
+              "evidence_id": "23a54ffa1e8353115ba5c503",
+              "score": "0.027663649297249973"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "format/spec.md",
+              "start": 1916,
+              "end": 2005,
+              "total_lines": 2005
+            },
+            {
+              "path": "format/view-spec.md",
+              "start": 258,
+              "end": 324,
+              "total_lines": 324
+            },
+            {
+              "path": "format/puffin-spec.md",
+              "start": 30,
+              "end": 150,
+              "total_lines": 198
+            }
+          ],
+          "read_evidence_ids": [
+            "130c7400c553d17abab1d684",
+            "5bae02079ece633144d41234",
+            "5b01ea6f42f42d45a7336310"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Does the docs describe manifest files, manifest lists, or their Avro storage format?",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "site/docs/terms.md",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "format/spec.md",
+              "offset": 588,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-queries.md",
+              "offset": 521,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a14347c8c6682e9ccb545f03",
+            "1a6f0b96c5ec451d96a969ce",
+            "35e38a2dad0b74037acfb492",
+            "6b959c3a173dbf991ed3382d",
+            "83c26d0b1a50a018d0f5d5cf",
+            "ffc3a8bc6a585676c4363fd7",
+            "fa42adbdcb76f7f090e61bab",
+            "e283469e2f19d65b5e309499",
+            "0d51b804d9b7c045d389dfbe",
+            "ed15baedae1dc50237ed2ee3",
+            "d680e91f11b98fbd3d304018",
+            "c2c268c77313345cdb160120",
+            "21839574eb22085815f45b83",
+            "d440b33ba86048af603671b4",
+            "fee321b6f5e5ce1aa7a406b5"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "site/docs/terms.md",
+              "evidence_id": "6b959c3a173dbf991ed3382d",
+              "score": "0.04771225838023"
+            },
+            {
+              "rank": 2,
+              "path": "format/spec.md",
+              "evidence_id": "83c26d0b1a50a018d0f5d5cf",
+              "score": "0.04741797364748185"
+            },
+            {
+              "rank": 3,
+              "path": "format/spec.md",
+              "evidence_id": "ffc3a8bc6a585676c4363fd7",
+              "score": "0.04583853930031804"
+            },
+            {
+              "rank": 4,
+              "path": "site/docs/terms.md",
+              "evidence_id": "fa42adbdcb76f7f090e61bab",
+              "score": "0.045327668234194096"
+            },
+            {
+              "rank": 5,
+              "path": "docs/docs/flink-queries.md",
+              "evidence_id": "e283469e2f19d65b5e309499",
+              "score": "0.04336895980731597"
+            },
+            {
+              "rank": 6,
+              "path": "docs/docs/flink-queries.md",
+              "evidence_id": "0d51b804d9b7c045d389dfbe",
+              "score": "0.043275418275418275"
+            },
+            {
+              "rank": 7,
+              "path": "docs/docs/spark-queries.md",
+              "evidence_id": "ed15baedae1dc50237ed2ee3",
+              "score": "0.04151875208820581"
+            },
+            {
+              "rank": 8,
+              "path": "docs/docs/spark-queries.md",
+              "evidence_id": "d680e91f11b98fbd3d304018",
+              "score": "0.04132325651312993"
+            },
+            {
+              "rank": 9,
+              "path": "docs/docs/performance.md",
+              "evidence_id": "c2c268c77313345cdb160120",
+              "score": "0.03917581405143594"
+            },
+            {
+              "rank": 10,
+              "path": "format/gcm-stream-spec.md",
+              "evidence_id": "21839574eb22085815f45b83",
+              "score": "0.03227785985318111"
+            },
+            {
+              "rank": 11,
+              "path": "docs/docs/spark-procedures.md",
+              "evidence_id": "d440b33ba86048af603671b4",
+              "score": "0.03217499433387851"
+            },
+            {
+              "rank": 12,
+              "path": "docs/docs/spark-procedures.md",
+              "evidence_id": "fee321b6f5e5ce1aa7a406b5",
+              "score": "0.03212340094362566"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "site/docs/terms.md",
+              "start": 54,
+              "end": 91,
+              "total_lines": 91
+            },
+            {
+              "path": "format/spec.md",
+              "start": 588,
+              "end": 676,
+              "total_lines": 2005
+            },
+            {
+              "path": "docs/docs/flink-queries.md",
+              "start": 521,
+              "end": 559,
+              "total_lines": 559
+            }
+          ],
+          "read_evidence_ids": [
+            "a14347c8c6682e9ccb545f03",
+            "1a6f0b96c5ec451d96a969ce",
+            "35e38a2dad0b74037acfb492"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "034ece1e5d715aae25a91449",
+        "05645ae55dd0b20a965fa4c3",
+        "0664177e250a21a62f99f2df",
+        "07f4255c2c8715e6c4344f40",
+        "0d51b804d9b7c045d389dfbe",
+        "130c7400c553d17abab1d684",
+        "1365d760d5182143f3e5cd3c",
+        "146603bb3220b38a1d1c039e",
+        "1a6f0b96c5ec451d96a969ce",
+        "21839574eb22085815f45b83",
+        "23a54ffa1e8353115ba5c503",
+        "357adec1f927afeb27572c28",
+        "35e38a2dad0b74037acfb492",
+        "556cf36123646a0882f1819a",
+        "56d59fa78611092d35debaba",
+        "5b01ea6f42f42d45a7336310",
+        "5bae02079ece633144d41234",
+        "6b959c3a173dbf991ed3382d",
+        "83c26d0b1a50a018d0f5d5cf",
+        "83faf8862c5c6ae1d34f4013",
+        "8e3098f9c78b216853b69bbd",
+        "a009e6809c91914c891b7809",
+        "a14347c8c6682e9ccb545f03",
+        "c019e3bf6bb2b9334e2a53a3",
+        "c0610301e27d0b2665d097ae",
+        "c12329985bfa3573ae3d1648",
+        "c27befebe8da3560865cdce0",
+        "c2c268c77313345cdb160120",
+        "d440b33ba86048af603671b4",
+        "d680e91f11b98fbd3d304018",
+        "daadda8f6ca154f51bca96f0",
+        "e283469e2f19d65b5e309499",
+        "e58c511bf3ba654ecbbee962",
+        "ed15baedae1dc50237ed2ee3",
+        "f22df2a01a1c15a486b65547",
+        "fa42adbdcb76f7f090e61bab",
+        "fee321b6f5e5ce1aa7a406b5",
+        "ffc3a8bc6a585676c4363fd7"
+      ],
+      "new_evidence_count": 38,
+      "new_path_count": 16
+    },
+    {
+      "signature": "adffe86b7885f3faecc23e16df36a5bb89512a376004d8cee4e3220e5aab5c9a",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the spec's Manifests section and Appendix E (format version changes) describe v4 or Parquet manifests, and what exact text states manifests are Avro-only?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "format/spec.md"
+          ],
+          "anchor": "A manifest is an immutable Avro file",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "query": "A manifest is an immutable Avro file",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "e82a86f5c42949e332c009c3"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "format/spec.md",
+              "start": 590,
+              "end": 678,
+              "total_lines": 2005
+            }
+          ],
+          "read_evidence_ids": [
+            "e82a86f5c42949e332c009c3"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the spec describe format version 4 anywhere (table metadata format-version, v4 requirements, Appendix E Version 4)?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "format/spec.md"
+          ],
+          "anchor": "Appendix E: Format version changes",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "query": "Appendix E: Format version changes",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "da9404e57e4db41304a74d23"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "format/spec.md",
+              "start": 1790,
+              "end": 1910,
+              "total_lines": 2005
+            }
+          ],
+          "read_evidence_ids": [
+            "da9404e57e4db41304a74d23"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Does the code define a minimum format version for Parquet manifests and how v4 selects Parquet vs Avro, to confirm the documented behavior?",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "core/src/test/java/org/apache/iceberg/util/TestManifestFileUtil.java",
+              "offset": 112,
+              "limit": 120
+            },
+            {
+              "path": "core/src/test/java/org/apache/iceberg/TestManifestReader.java",
+              "offset": 256,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "ef68e8560f8173ff81ef3fa8",
+            "19c3bfc0626a5f79e4e168ad",
+            "e73c512cf1ffed647319f146",
+            "203158a46afc9b609c9b8a9d",
+            "7e66dccefcaa2e1de3e3db62",
+            "75f7c43016943cd3ba71f119",
+            "e9189c603c3b8a1c8c3d0e00",
+            "3213b8e155f02340c2f4e748",
+            "69bd459fdbde5eef3cba6865",
+            "f15ec40389dc67f6fbd6f40d",
+            "782c2c29f47668b6c39e2674",
+            "4b4fe89ec44c5faef3c868aa",
+            "1d77215e048fc5eaf6faf833",
+            "31411f251ac3a5567d187a2c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "core/src/test/java/org/apache/iceberg/util/TestManifestFileUtil.java",
+              "evidence_id": "e73c512cf1ffed647319f146",
+              "score": "0.028068137824235385"
+            },
+            {
+              "rank": 2,
+              "path": "core/src/test/java/org/apache/iceberg/TestManifestReader.java",
+              "evidence_id": "203158a46afc9b609c9b8a9d",
+              "score": "0.02266725352112676"
+            },
+            {
+              "rank": 3,
+              "path": "core/src/test/java/org/apache/iceberg/TestSnapshotProducer.java",
+              "evidence_id": "7e66dccefcaa2e1de3e3db62",
+              "score": "0.01779893635271916"
+            },
+            {
+              "rank": 4,
+              "path": "core/src/main/java/org/apache/iceberg/TableProperties.java",
+              "evidence_id": "75f7c43016943cd3ba71f119",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 5,
+              "path": "core/src/test/java/org/apache/iceberg/TestSnapshotProducer.java",
+              "evidence_id": "e9189c603c3b8a1c8c3d0e00",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 6,
+              "path": "core/src/main/java/org/apache/iceberg/ManifestFiles.java",
+              "evidence_id": "3213b8e155f02340c2f4e748",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 7,
+              "path": "core/src/test/java/org/apache/iceberg/util/TestManifestFileUtil.java",
+              "evidence_id": "69bd459fdbde5eef3cba6865",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 8,
+              "path": "core/src/jmh/java/org/apache/iceberg/ManifestBenchmark.java",
+              "evidence_id": "f15ec40389dc67f6fbd6f40d",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 9,
+              "path": "core/src/main/java/org/apache/iceberg/ManifestFiles.java",
+              "evidence_id": "782c2c29f47668b6c39e2674",
+              "score": "0.015625"
+            },
+            {
+              "rank": 10,
+              "path": "core/src/test/java/org/apache/iceberg/TestBase.java",
+              "evidence_id": "4b4fe89ec44c5faef3c868aa",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 11,
+              "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/source/TestSparkDataWrite.java",
+              "evidence_id": "1d77215e048fc5eaf6faf833",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 12,
+              "path": "core/src/main/java/org/apache/iceberg/SnapshotProducer.java",
+              "evidence_id": "31411f251ac3a5567d187a2c",
+              "score": "0.015151515151515152"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "core/src/test/java/org/apache/iceberg/util/TestManifestFileUtil.java",
+              "start": 112,
+              "end": 148,
+              "total_lines": 148
+            },
+            {
+              "path": "core/src/test/java/org/apache/iceberg/TestManifestReader.java",
+              "start": 256,
+              "end": 287,
+              "total_lines": 287
+            }
+          ],
+          "read_evidence_ids": [
+            "ef68e8560f8173ff81ef3fa8",
+            "19c3bfc0626a5f79e4e168ad"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "19c3bfc0626a5f79e4e168ad",
+        "1d77215e048fc5eaf6faf833",
+        "203158a46afc9b609c9b8a9d",
+        "31411f251ac3a5567d187a2c",
+        "3213b8e155f02340c2f4e748",
+        "4b4fe89ec44c5faef3c868aa",
+        "69bd459fdbde5eef3cba6865",
+        "75f7c43016943cd3ba71f119",
+        "782c2c29f47668b6c39e2674",
+        "7e66dccefcaa2e1de3e3db62",
+        "da9404e57e4db41304a74d23",
+        "e73c512cf1ffed647319f146",
+        "e82a86f5c42949e332c009c3",
+        "e9189c603c3b8a1c8c3d0e00",
+        "ef68e8560f8173ff81ef3fa8",
+        "f15ec40389dc67f6fbd6f40d"
+      ],
+      "new_evidence_count": 16,
+      "new_path_count": 9
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+    "code": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:fbfbcdf7e5972c0b": 0,
+    "discover:Q1-2:f3e6048678eec149": 186,
+    "discover:Q1-3:0f105f700cb9859c": 406,
+    "discover:Q2-3:914515b2be63f980": 0
+  },
+  "index_slot_wait_ms": {
+    "discover:Q2-3:914515b2be63f980": 11283
+  },
+  "tool_metrics": {
+    "discover:Q1-1:fbfbcdf7e5972c0b": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 186,
+      "cache_hit": false
+    },
+    "discover:Q1-2:f3e6048678eec149": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 219,
+      "cache_hit": false
+    },
+    "discover:Q1-3:0f105f700cb9859c": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 181,
+      "cache_hit": false
+    },
+    "discover:Q1-1:d987441b20b084ce": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 281,
+      "cache_hit": false
+    },
+    "discover:Q1-3:b3a3557e3ab254a5": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 332,
+      "cache_hit": false
+    },
+    "discover:Q1-2:9d5123185af88511": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 791,
+      "cache_hit": false
+    },
+    "discover:Q2-3:914515b2be63f980": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 32478,
+      "cache_hit": false
+    },
+    "discover:Q2-1:4a09b22905ebf2bd": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 984,
+      "cache_hit": false
+    },
+    "discover:Q2-2:14be93c900c2d586": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 1278,
+      "cache_hit": false
+    },
+    "discover:Q2-3:9cdcd40bdb150d6d": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 1390,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 3187,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "spec-manifests-parquet",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "format/spec.md"
+      ],
+      "evidence_ids": [
+        "e82a86f5c42949e332c009c3",
+        "1a6f0b96c5ec451d96a969ce",
+        "034ece1e5d715aae25a91449",
+        "ef68e8560f8173ff81ef3fa8"
+      ],
+      "reason": "Update the Manifests section of format/spec.md: the current text states 'A manifest is an immutable Avro file' and describes metadata stored 'as properties in the Avro file's key-value metadata'. Revise to state that v1-v3 manifests are Avro, while v4 manifests may be Avro or Parquet (data and delete manifests), and describe how metadata is stored for Parquet manifests. Also note that unpartitioned manifests omit the partition field in Parquet since Parquet cannot store empty structs."
+    },
+    {
+      "requirement_id": "spec-appendix-e-v4",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "format/spec.md"
+      ],
+      "evidence_ids": [
+        "da9404e57e4db41304a74d23",
+        "ef68e8560f8173ff81ef3fa8",
+        "19c3bfc0626a5f79e4e168ad"
+      ],
+      "reason": "Add a 'Version 4' subsection to Appendix E: Format version changes in format/spec.md documenting that v4 tables write data and delete manifests as Parquet by default, that v4 readers/writers support both Avro and Parquet when explicitly selected, and the unpartitioned-manifest partition-field handling."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:034ece1e5d715aae25a91449",
+        "type": "evidence",
+        "root": "docs",
+        "path": "format/spec.md",
+        "start_line": 604,
+        "total_lines": 2005,
+        "start_char": 54818,
+        "end_char": 68818,
+        "evidence_id": "034ece1e5d715aae25a91449",
+        "truncated": true,
+        "next_offset": 693,
+        "source_type": "repository",
+        "content_hash": "1106cf4306e230739ddec6c51f5b0b918bd221f14ff5f94666056d70cf83bc08",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 603,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-queries.md",
+              "offset": 406,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/terms.md",
+              "offset": 60,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1106cf4306e230739ddec6c51f5b0b918bd221f14ff5f94666056d70cf83bc08",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:05645ae55dd0b20a965fa4c3",
+        "type": "evidence",
+        "path": "site/docs/releases.md",
+        "heading": "title: \"Releases\" > Past releases > 1.10.1 release",
+        "start_line": 309,
+        "end_line": 320,
+        "start_char": 27166,
+        "end_char": 28175,
+        "score": "0.034300467174821735",
+        "root": "docs",
+        "matched_terms": [
+          "format",
+          "table",
+          "version"
+        ],
+        "evidence_id": "05645ae55dd0b20a965fa4c3",
+        "source_type": "repository",
+        "content_hash": "a08eb459f8c741a1239f60ad2acf2dd19ffafc4f54e20c24b42680ad93bf724f",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a08eb459f8c741a1239f60ad2acf2dd19ffafc4f54e20c24b42680ad93bf724f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0664177e250a21a62f99f2df",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Appendix E: Format version changes > Version 2",
+        "start_line": 1921,
+        "end_line": 1921,
+        "start_char": 187219,
+        "end_char": 187229,
+        "score": "0.04918032786885246",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "0664177e250a21a62f99f2df",
+        "source_type": "repository",
+        "content_hash": "c72edd4da530484fc24c066041dc5d9f17174ea76dbd7cf9409dc74be68cb45d",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c72edd4da530484fc24c066041dc5d9f17174ea76dbd7cf9409dc74be68cb45d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:07f4255c2c8715e6c4344f40",
+        "type": "evidence",
+        "path": "format/puffin-spec.md",
+        "heading": "Puffin file format > Format specification > Common properties",
+        "start_line": 192,
+        "end_line": 198,
+        "start_char": 9304,
+        "end_char": 9599,
+        "score": "0.03768852912688529",
+        "root": "docs",
+        "matched_terms": [
+          "version"
+        ],
+        "evidence_id": "07f4255c2c8715e6c4344f40",
+        "source_type": "repository",
+        "content_hash": "5ba4a2f8d6e5a8d48894ac4620f05f6aa9408cef0327d428ff81d0717051843f",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5ba4a2f8d6e5a8d48894ac4620f05f6aa9408cef0327d428ff81d0717051843f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0d51b804d9b7c045d389dfbe",
+        "type": "evidence",
+        "path": "docs/docs/flink-queries.md",
+        "heading": "Flink Queries > Inspecting tables > Manifests",
+        "start_line": 465,
+        "end_line": 486,
+        "start_char": 20461,
+        "end_char": 21770,
+        "score": "0.043275418275418275",
+        "root": "docs",
+        "matched_terms": [
+          "avro",
+          "file",
+          "list",
+          "manifest"
+        ],
+        "evidence_id": "0d51b804d9b7c045d389dfbe",
+        "source_type": "repository",
+        "content_hash": "4f2a991807b191adc5e72ae6b4306bf80c1bacfc3d186ded3c3521c669990a26",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4f2a991807b191adc5e72ae6b4306bf80c1bacfc3d186ded3c3521c669990a26",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:130c7400c553d17abab1d684",
+        "type": "evidence",
+        "root": "docs",
+        "path": "format/spec.md",
+        "start_line": 1917,
+        "total_lines": 2005,
+        "start_char": 186845,
+        "end_char": 196865,
+        "evidence_id": "130c7400c553d17abab1d684",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "1a89292b39e684f40df2856bc8c58883964855931e4360e39fe3bffc0fbf3806",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 1916,
+              "limit": 120
+            },
+            {
+              "path": "format/view-spec.md",
+              "offset": 258,
+              "limit": 120
+            },
+            {
+              "path": "format/puffin-spec.md",
+              "offset": 30,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1a89292b39e684f40df2856bc8c58883964855931e4360e39fe3bffc0fbf3806",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1365d760d5182143f3e5cd3c",
+        "type": "evidence",
+        "path": "format/view-spec.md",
+        "heading": "Iceberg View Spec > Specification > View Metadata > Versions",
+        "start_line": 72,
+        "end_line": 87,
+        "start_char": 4395,
+        "end_char": 5663,
+        "score": "0.04434349989184512",
+        "root": "docs",
+        "matched_terms": [
+          "version"
+        ],
+        "evidence_id": "1365d760d5182143f3e5cd3c",
+        "source_type": "repository",
+        "content_hash": "458dd30ac72d7717a55f6519ddb5e8049f1cbf47c4953753a7ae56e1150e219c",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "458dd30ac72d7717a55f6519ddb5e8049f1cbf47c4953753a7ae56e1150e219c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:146603bb3220b38a1d1c039e",
+        "type": "evidence",
+        "path": "kafka-connect/kafka-connect-runtime/runtime-deps.txt",
+        "heading": "",
+        "start_line": 158,
+        "end_line": 199,
+        "start_char": 6331,
+        "end_char": 7964,
+        "score": "0.023812319120110767",
+        "root": "docs",
+        "matched_terms": [
+          "4",
+          "format",
+          "parquet"
+        ],
+        "evidence_id": "146603bb3220b38a1d1c039e",
+        "source_type": "repository",
+        "content_hash": "18bb67f824c4fb61bb549efcb274304b61086aec1cacc8319ee9ff2144957c66",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format version 4",
+            "manifest file format",
+            "Parquet manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "18bb67f824c4fb61bb549efcb274304b61086aec1cacc8319ee9ff2144957c66",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:19c3bfc0626a5f79e4e168ad",
+        "type": "evidence",
+        "root": "code",
+        "path": "core/src/test/java/org/apache/iceberg/TestManifestReader.java",
+        "start_line": 257,
+        "total_lines": 287,
+        "start_char": 11318,
+        "end_char": 12715,
+        "evidence_id": "19c3bfc0626a5f79e4e168ad",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "cc3c9338ae12ff4dc34483d093a8b4264de2edfdb481a9d85973a12c827d8bda",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "core/src/test/java/org/apache/iceberg/util/TestManifestFileUtil.java",
+              "offset": 112,
+              "limit": 120
+            },
+            {
+              "path": "core/src/test/java/org/apache/iceberg/TestManifestReader.java",
+              "offset": 256,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "cc3c9338ae12ff4dc34483d093a8b4264de2edfdb481a9d85973a12c827d8bda",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a6f0b96c5ec451d96a969ce",
+        "type": "evidence",
+        "root": "docs",
+        "path": "format/spec.md",
+        "start_line": 589,
+        "total_lines": 2005,
+        "start_char": 52775,
+        "end_char": 66775,
+        "evidence_id": "1a6f0b96c5ec451d96a969ce",
+        "truncated": true,
+        "next_offset": 676,
+        "source_type": "repository",
+        "content_hash": "08e79c802a6830e081dd36aa14f0506a657647f41e89ce881486bd9b5e891da6",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "site/docs/terms.md",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "format/spec.md",
+              "offset": 588,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-queries.md",
+              "offset": 521,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "08e79c802a6830e081dd36aa14f0506a657647f41e89ce881486bd9b5e891da6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1d77215e048fc5eaf6faf833",
+        "type": "evidence",
+        "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/source/TestSparkDataWrite.java",
+        "heading": "",
+        "start_line": 702,
+        "end_line": 745,
+        "start_char": 25877,
+        "end_char": 27490,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "4",
+          "format",
+          "manifest"
+        ],
+        "evidence_id": "1d77215e048fc5eaf6faf833",
+        "source_type": "repository",
+        "content_hash": "4db4937fbcd7206bd6b7eb085ab4008bc4d1c30363f91851f56be1b96831c035",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "4db4937fbcd7206bd6b7eb085ab4008bc4d1c30363f91851f56be1b96831c035",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:203158a46afc9b609c9b8a9d",
+        "type": "evidence",
+        "path": "core/src/test/java/org/apache/iceberg/TestManifestReader.java",
+        "heading": "",
+        "start_line": 261,
+        "end_line": 287,
+        "start_char": 11472,
+        "end_char": 12715,
+        "score": "0.02266725352112676",
+        "root": "code",
+        "matched_terms": [
+          "manifest",
+          "min_format_version_parquet_manifests",
+          "parquet"
+        ],
+        "evidence_id": "203158a46afc9b609c9b8a9d",
+        "source_type": "repository",
+        "content_hash": "e13b852a9fc1845124cc8099cc6d4bfadf091589e536b88a648f73a25ac21b21",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "e13b852a9fc1845124cc8099cc6d4bfadf091589e536b88a648f73a25ac21b21",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:21839574eb22085815f45b83",
+        "type": "evidence",
+        "path": "format/gcm-stream-spec.md",
+        "heading": "AES GCM Stream file format extension > Goals",
+        "start_line": 31,
+        "end_line": 37,
+        "start_char": 1679,
+        "end_char": 2041,
+        "score": "0.03227785985318111",
+        "root": "docs",
+        "matched_terms": [
+          "avro",
+          "manifest"
+        ],
+        "evidence_id": "21839574eb22085815f45b83",
+        "source_type": "repository",
+        "content_hash": "702c4c7d02c07d31949a71d2b59ca049f5eaecfa7dfef82b971c09edbf4e1249",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "702c4c7d02c07d31949a71d2b59ca049f5eaecfa7dfef82b971c09edbf4e1249",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:23a54ffa1e8353115ba5c503",
+        "type": "evidence",
+        "path": "site/docs/contribute.md",
+        "heading": "Contributing > Iceberg Code Contribution Guidelines > Style",
+        "start_line": 297,
+        "end_line": 305,
+        "start_char": 15893,
+        "end_char": 16615,
+        "score": "0.027663649297249973",
+        "root": "docs",
+        "matched_terms": [
+          "format",
+          "version"
+        ],
+        "evidence_id": "23a54ffa1e8353115ba5c503",
+        "source_type": "repository",
+        "content_hash": "3739b2732bcad4475fc8f69101f6e132208bcf280c9e2af041256a13996b2bb3",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3739b2732bcad4475fc8f69101f6e132208bcf280c9e2af041256a13996b2bb3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:31411f251ac3a5567d187a2c",
+        "type": "evidence",
+        "path": "core/src/main/java/org/apache/iceberg/SnapshotProducer.java",
+        "heading": "",
+        "start_line": 139,
+        "end_line": 188,
+        "start_char": 6460,
+        "end_char": 8054,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "min_format_version_parquet_manifests",
+          "parquet"
+        ],
+        "evidence_id": "31411f251ac3a5567d187a2c",
+        "source_type": "repository",
+        "content_hash": "0d5f3fe695445efca096bc19cc330c54a791a1e9bbb5b634343f96be3676152b",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "0d5f3fe695445efca096bc19cc330c54a791a1e9bbb5b634343f96be3676152b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3213b8e155f02340c2f4e748",
+        "type": "evidence",
+        "path": "core/src/main/java/org/apache/iceberg/ManifestFiles.java",
+        "heading": "",
+        "start_line": 301,
+        "end_line": 338,
+        "start_char": 11492,
+        "end_char": 13106,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "4",
+          "format",
+          "manifest",
+          "version"
+        ],
+        "evidence_id": "3213b8e155f02340c2f4e748",
+        "source_type": "repository",
+        "content_hash": "d002fd194d84aa8e7c7658e4a329aec103a48229c140af86d7c85a8cde9464d5",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "d002fd194d84aa8e7c7658e4a329aec103a48229c140af86d7c85a8cde9464d5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:357adec1f927afeb27572c28",
+        "type": "evidence",
+        "path": "docs/docs/encryption.md",
+        "heading": "Encryption > Appendix: Internals Overview",
+        "start_line": 121,
+        "end_line": 142,
+        "start_char": 5285,
+        "end_char": 6889,
+        "score": "0.02350255170561375",
+        "root": "docs",
+        "matched_terms": [
+          "file",
+          "format",
+          "manifest",
+          "parquet"
+        ],
+        "evidence_id": "357adec1f927afeb27572c28",
+        "source_type": "repository",
+        "content_hash": "c6423cb929b8d7adfeb3cd16e7e851c2396ba32bd01df2891ce042cd7d30da25",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format version 4",
+            "manifest file format",
+            "Parquet manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c6423cb929b8d7adfeb3cd16e7e851c2396ba32bd01df2891ce042cd7d30da25",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:35e38a2dad0b74037acfb492",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/flink-queries.md",
+        "start_line": 522,
+        "total_lines": 559,
+        "start_char": 24640,
+        "end_char": 27590,
+        "evidence_id": "35e38a2dad0b74037acfb492",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "dfdb1b4256daa06aa2ee890996395e19397686b40cab97cbc7fcb21503cc077b",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "site/docs/terms.md",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "format/spec.md",
+              "offset": 588,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-queries.md",
+              "offset": 521,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "dfdb1b4256daa06aa2ee890996395e19397686b40cab97cbc7fcb21503cc077b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4b4fe89ec44c5faef3c868aa",
+        "type": "evidence",
+        "path": "core/src/test/java/org/apache/iceberg/TestBase.java",
+        "heading": "",
+        "start_line": 286,
+        "end_line": 335,
+        "start_char": 11338,
+        "end_char": 12794,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "min_format_version_parquet_manifests",
+          "parquet",
+          "version"
+        ],
+        "evidence_id": "4b4fe89ec44c5faef3c868aa",
+        "source_type": "repository",
+        "content_hash": "4571f0286a17a71dd29fc0f93cf95701828abf78b2850c5111e9b7d18fb5d570",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "4571f0286a17a71dd29fc0f93cf95701828abf78b2850c5111e9b7d18fb5d570",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:556cf36123646a0882f1819a",
+        "type": "evidence",
+        "path": "format/view-spec.md",
+        "heading": "Iceberg View Spec > Appendix A: An Example",
+        "start_line": 263,
+        "end_line": 312,
+        "start_char": 11371,
+        "end_char": 12700,
+        "score": "0.046897546897546896",
+        "root": "docs",
+        "matched_terms": [
+          "format",
+          "version"
+        ],
+        "evidence_id": "556cf36123646a0882f1819a",
+        "source_type": "repository",
+        "content_hash": "a73033bf5389346c978c39467118b5e87cadf5ccfce0ac2f081b49f06d218dd8",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a73033bf5389346c978c39467118b5e87cadf5ccfce0ac2f081b49f06d218dd8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:56d59fa78611092d35debaba",
+        "type": "evidence",
+        "path": "docs/docs/configuration.md",
+        "heading": "Configuration > Table properties > Reserved table properties",
+        "start_line": 133,
+        "end_line": 140,
+        "start_char": 23376,
+        "end_char": 24064,
+        "score": "0.02929038787757837",
+        "root": "docs",
+        "matched_terms": [
+          "format",
+          "table",
+          "version"
+        ],
+        "evidence_id": "56d59fa78611092d35debaba",
+        "source_type": "repository",
+        "content_hash": "43cebacfb69aaa250ca6fb65466cf380bb1a7bb03a058fb494ae46059b24197d",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "43cebacfb69aaa250ca6fb65466cf380bb1a7bb03a058fb494ae46059b24197d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5b01ea6f42f42d45a7336310",
+        "type": "evidence",
+        "root": "docs",
+        "path": "format/puffin-spec.md",
+        "start_line": 31,
+        "total_lines": 198,
+        "start_char": 1293,
+        "end_char": 6757,
+        "evidence_id": "5b01ea6f42f42d45a7336310",
+        "truncated": false,
+        "next_offset": 150,
+        "source_type": "repository",
+        "content_hash": "4dbb03e64226407dc9a4942b0e1c0eec534785c0b3cf71a88c78cb6e9943f6b2",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 1916,
+              "limit": 120
+            },
+            {
+              "path": "format/view-spec.md",
+              "offset": 258,
+              "limit": 120
+            },
+            {
+              "path": "format/puffin-spec.md",
+              "offset": 30,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4dbb03e64226407dc9a4942b0e1c0eec534785c0b3cf71a88c78cb6e9943f6b2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5bae02079ece633144d41234",
+        "type": "evidence",
+        "root": "docs",
+        "path": "format/view-spec.md",
+        "start_line": 259,
+        "total_lines": 324,
+        "start_char": 11302,
+        "end_char": 12892,
+        "evidence_id": "5bae02079ece633144d41234",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "86ae30d6407d91c4a6b3dd6817675bd6c7842a29afd2c94bd4d8e1844b86f46e",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 1916,
+              "limit": 120
+            },
+            {
+              "path": "format/view-spec.md",
+              "offset": 258,
+              "limit": 120
+            },
+            {
+              "path": "format/puffin-spec.md",
+              "offset": 30,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "86ae30d6407d91c4a6b3dd6817675bd6c7842a29afd2c94bd4d8e1844b86f46e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:69bd459fdbde5eef3cba6865",
+        "type": "evidence",
+        "path": "core/src/test/java/org/apache/iceberg/util/TestManifestFileUtil.java",
+        "heading": "",
+        "start_line": 40,
+        "end_line": 78,
+        "start_char": 1668,
+        "end_char": 3294,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "4",
+          "min_format_version_parquet_manifests",
+          "parquet"
+        ],
+        "evidence_id": "69bd459fdbde5eef3cba6865",
+        "source_type": "repository",
+        "content_hash": "5d1156d9db54acfe073a534b94c9467e55e4042465a9b3c7253f2db448d0190d",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5d1156d9db54acfe073a534b94c9467e55e4042465a9b3c7253f2db448d0190d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6b959c3a173dbf991ed3382d",
+        "type": "evidence",
+        "path": "site/docs/terms.md",
+        "heading": "Terms > Manifest list",
+        "start_line": 59,
+        "end_line": 64,
+        "start_char": 4313,
+        "end_char": 4600,
+        "score": "0.04771225838023",
+        "root": "docs",
+        "matched_terms": [
+          "file",
+          "list",
+          "manifest"
+        ],
+        "evidence_id": "6b959c3a173dbf991ed3382d",
+        "source_type": "repository",
+        "content_hash": "deadf0ff99959438ad5cbf176bb18bb2cf676c2abf3df3edc54f52abf88a4939",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "deadf0ff99959438ad5cbf176bb18bb2cf676c2abf3df3edc54f52abf88a4939",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:75f7c43016943cd3ba71f119",
+        "type": "evidence",
+        "path": "core/src/main/java/org/apache/iceberg/TableProperties.java",
+        "heading": "",
+        "start_line": 112,
+        "end_line": 139,
+        "start_char": 4903,
+        "end_char": 6517,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "format",
+          "manifest",
+          "parquet",
+          "version"
+        ],
+        "evidence_id": "75f7c43016943cd3ba71f119",
+        "source_type": "repository",
+        "content_hash": "47cf7e92eae167b74d51347777bdab2912c0de91dc887661cee6ba172f501c95",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "47cf7e92eae167b74d51347777bdab2912c0de91dc887661cee6ba172f501c95",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:782c2c29f47668b6c39e2674",
+        "type": "evidence",
+        "path": "core/src/main/java/org/apache/iceberg/ManifestFiles.java",
+        "heading": "",
+        "start_line": 381,
+        "end_line": 416,
+        "start_char": 14767,
+        "end_char": 16370,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "4",
+          "format",
+          "manifest",
+          "version"
+        ],
+        "evidence_id": "782c2c29f47668b6c39e2674",
+        "source_type": "repository",
+        "content_hash": "ae47ae21ebcf305daed0249746be7c5e96f8743c33de373d29cd915884e99d74",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "ae47ae21ebcf305daed0249746be7c5e96f8743c33de373d29cd915884e99d74",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7e66dccefcaa2e1de3e3db62",
+        "type": "evidence",
+        "path": "core/src/test/java/org/apache/iceberg/TestSnapshotProducer.java",
+        "heading": "",
+        "start_line": 200,
+        "end_line": 245,
+        "start_char": 8178,
+        "end_char": 9861,
+        "score": "0.01779893635271916",
+        "root": "code",
+        "matched_terms": [
+          "manifest",
+          "min_format_version_parquet_manifests",
+          "parquet"
+        ],
+        "evidence_id": "7e66dccefcaa2e1de3e3db62",
+        "source_type": "repository",
+        "content_hash": "6c8e3c26324555d657e779de18ceb927d9ebe1e8f958abf8b12d65d2f9050598",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "6c8e3c26324555d657e779de18ceb927d9ebe1e8f958abf8b12d65d2f9050598",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f343b5c1224115fa273815b",
+        "type": "evidence",
+        "evidence_id": "7f343b5c1224115fa273815b",
+        "source_type": "task",
+        "exported_content_sha256": "d9cdea61a89aabfba1e20f121365156b34f25345fdc681a47ca2915fc0489fb1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83c26d0b1a50a018d0f5d5cf",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Specification > Manifests",
+        "start_line": 593,
+        "end_line": 607,
+        "start_char": 53478,
+        "end_char": 55225,
+        "score": "0.04741797364748185",
+        "root": "docs",
+        "matched_terms": [
+          "avro",
+          "file",
+          "list",
+          "manifest"
+        ],
+        "evidence_id": "83c26d0b1a50a018d0f5d5cf",
+        "source_type": "repository",
+        "content_hash": "f82e8e307804c594b2e84b35c8917e5f9147569c16cd361597da81b78062b9a7",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f82e8e307804c594b2e84b35c8917e5f9147569c16cd361597da81b78062b9a7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83faf8862c5c6ae1d34f4013",
+        "type": "evidence",
+        "path": "docs/docs/spark-queries.md",
+        "heading": "Spark Queries > Inspecting tables > Entries",
+        "start_line": 411,
+        "end_line": 432,
+        "start_char": 18106,
+        "end_char": 19649,
+        "score": "0.02881781600238038",
+        "root": "docs",
+        "matched_terms": [
+          "4",
+          "file",
+          "manifest",
+          "parquet"
+        ],
+        "evidence_id": "83faf8862c5c6ae1d34f4013",
+        "source_type": "repository",
+        "content_hash": "5b9200be5c18db954f306e26dff184b83d29213394984e0d156be14b9d6bce19",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format version 4",
+            "manifest file format",
+            "Parquet manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5b9200be5c18db954f306e26dff184b83d29213394984e0d156be14b9d6bce19",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8e3098f9c78b216853b69bbd",
+        "type": "evidence",
+        "path": "flink/v1.20/flink-runtime/runtime-deps.txt",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 31,
+        "start_char": 0,
+        "end_char": 1265,
+        "score": "0.022586573961786184",
+        "root": "docs",
+        "matched_terms": [
+          "4",
+          "format",
+          "parquet"
+        ],
+        "evidence_id": "8e3098f9c78b216853b69bbd",
+        "source_type": "repository",
+        "content_hash": "32e35a6f1aff14fee0a3d81fd9c6c67d6e8055a60480ad15a5c0bd7323bda3d9",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format version 4",
+            "manifest file format",
+            "Parquet manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "32e35a6f1aff14fee0a3d81fd9c6c67d6e8055a60480ad15a5c0bd7323bda3d9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9c02398b655df741a525a31e",
+        "type": "evidence",
+        "evidence_id": "9c02398b655df741a525a31e",
+        "source_type": "implementation",
+        "exported_content_sha256": "58e4d964bd879546c5d6711147c3b0dde46ce652903659d29ee50ffb09050e23",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a009e6809c91914c891b7809",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/spark-queries.md",
+        "start_line": 407,
+        "total_lines": 622,
+        "start_char": 17763,
+        "end_char": 27247,
+        "evidence_id": "a009e6809c91914c891b7809",
+        "truncated": false,
+        "next_offset": 526,
+        "source_type": "repository",
+        "content_hash": "701dd404df7080b29297a3bf12f9127ac252286d3aef075a6186b36c174b9853",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 603,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-queries.md",
+              "offset": 406,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/terms.md",
+              "offset": 60,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "701dd404df7080b29297a3bf12f9127ac252286d3aef075a6186b36c174b9853",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a14347c8c6682e9ccb545f03",
+        "type": "evidence",
+        "root": "docs",
+        "path": "site/docs/terms.md",
+        "start_line": 55,
+        "total_lines": 91,
+        "start_char": 3987,
+        "end_char": 6052,
+        "evidence_id": "a14347c8c6682e9ccb545f03",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "31dce88de42de560f0192c8c808c10140da2aa47ddf5ac57f138ac10deed5d46",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "site/docs/terms.md",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "format/spec.md",
+              "offset": 588,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-queries.md",
+              "offset": 521,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "31dce88de42de560f0192c8c808c10140da2aa47ddf5ac57f138ac10deed5d46",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c019e3bf6bb2b9334e2a53a3",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Specification > Manifests",
+        "start_line": 608,
+        "end_line": 616,
+        "start_char": 55225,
+        "end_char": 56512,
+        "score": "0.0416326060072523",
+        "root": "docs",
+        "matched_terms": [
+          "file",
+          "format",
+          "manifest",
+          "version"
+        ],
+        "evidence_id": "c019e3bf6bb2b9334e2a53a3",
+        "source_type": "repository",
+        "content_hash": "c232a4cd3946ce4b50f998f372659d1db1822811ab4112a730c74b3c98ed78aa",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format version 4",
+            "manifest file format",
+            "Parquet manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c232a4cd3946ce4b50f998f372659d1db1822811ab4112a730c74b3c98ed78aa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c0610301e27d0b2665d097ae",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Appendix E: Format version changes",
+        "start_line": 1795,
+        "end_line": 1796,
+        "start_char": 179312,
+        "end_char": 179351,
+        "score": "0.04838709677419355",
+        "root": "docs",
+        "matched_terms": [
+          "format",
+          "version"
+        ],
+        "evidence_id": "c0610301e27d0b2665d097ae",
+        "source_type": "repository",
+        "content_hash": "5f658ba43421b648e692161faf3dcb0c4f9806caec5ae59b77c90a00c941eb55",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5f658ba43421b648e692161faf3dcb0c4f9806caec5ae59b77c90a00c941eb55",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c12329985bfa3573ae3d1648",
+        "type": "evidence",
+        "path": "format/puffin-spec.md",
+        "heading": "Puffin file format > Format specification > Versions",
+        "start_line": 35,
+        "end_line": 38,
+        "start_char": 1399,
+        "end_char": 1495,
+        "score": "0.0414075286415712",
+        "root": "docs",
+        "matched_terms": [
+          "format",
+          "version"
+        ],
+        "evidence_id": "c12329985bfa3573ae3d1648",
+        "source_type": "repository",
+        "content_hash": "88d8b0340f6a8dcc7b7dcd5e048b83cb960cb2cc157733221e12530449d0719d",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "88d8b0340f6a8dcc7b7dcd5e048b83cb960cb2cc157733221e12530449d0719d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c27befebe8da3560865cdce0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "site/docs/terms.md",
+        "start_line": 61,
+        "total_lines": 91,
+        "start_char": 4331,
+        "end_char": 6052,
+        "evidence_id": "c27befebe8da3560865cdce0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "ad524c8efcdbdb5213b886b36c7a9cc9c7829ad81132d1edff8df22ff5185514",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 603,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-queries.md",
+              "offset": 406,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/terms.md",
+              "offset": 60,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ad524c8efcdbdb5213b886b36c7a9cc9c7829ad81132d1edff8df22ff5185514",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c2c268c77313345cdb160120",
+        "type": "evidence",
+        "path": "docs/docs/performance.md",
+        "heading": "Performance > Scan planning > Metadata filtering",
+        "start_line": 37,
+        "end_line": 47,
+        "start_char": 1659,
+        "end_char": 2448,
+        "score": "0.03917581405143594",
+        "root": "docs",
+        "matched_terms": [
+          "file",
+          "list",
+          "manifest"
+        ],
+        "evidence_id": "c2c268c77313345cdb160120",
+        "source_type": "repository",
+        "content_hash": "97e59fa4c100cc91473eac42d3f080eeb6c0393524fb632801f3908aa6138458",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "97e59fa4c100cc91473eac42d3f080eeb6c0393524fb632801f3908aa6138458",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d440b33ba86048af603671b4",
+        "type": "evidence",
+        "path": "docs/docs/spark-procedures.md",
+        "heading": "Spark Procedures > Table Replication > `rewrite_table_path` > Output > File List",
+        "start_line": 1054,
+        "end_line": 1070,
+        "start_char": 56186,
+        "end_char": 56739,
+        "score": "0.03217499433387851",
+        "root": "docs",
+        "matched_terms": [
+          "avro",
+          "file",
+          "list",
+          "manifest"
+        ],
+        "evidence_id": "d440b33ba86048af603671b4",
+        "source_type": "repository",
+        "content_hash": "9c86ee65bd2cef1069f76878b857b4f36cabddc416604028cdc30068cb82cdce",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9c86ee65bd2cef1069f76878b857b4f36cabddc416604028cdc30068cb82cdce",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d680e91f11b98fbd3d304018",
+        "type": "evidence",
+        "path": "docs/docs/spark-queries.md",
+        "heading": "Spark Queries > Inspecting tables > Manifests",
+        "start_line": 459,
+        "end_line": 480,
+        "start_char": 23142,
+        "end_char": 24318,
+        "score": "0.04132325651312993",
+        "root": "docs",
+        "matched_terms": [
+          "avro",
+          "file",
+          "list",
+          "manifest"
+        ],
+        "evidence_id": "d680e91f11b98fbd3d304018",
+        "source_type": "repository",
+        "content_hash": "2797ccfa9ae910f7b95c6900e82e082d20e5ed0577978c74ff4494e049dec01b",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2797ccfa9ae910f7b95c6900e82e082d20e5ed0577978c74ff4494e049dec01b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:da9404e57e4db41304a74d23",
+        "type": "evidence",
+        "root": "docs",
+        "path": "format/spec.md",
+        "start_line": 1791,
+        "total_lines": 2005,
+        "start_char": 178697,
+        "end_char": 186410,
+        "evidence_id": "da9404e57e4db41304a74d23",
+        "truncated": false,
+        "next_offset": 1910,
+        "source_type": "repository",
+        "content_hash": "9b32559dad3aac9520a960d7c413d479af0720838e000915f5b0bec148658300",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "query": "Appendix E: Format version changes",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9b32559dad3aac9520a960d7c413d479af0720838e000915f5b0bec148658300",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:daadda8f6ca154f51bca96f0",
+        "type": "evidence",
+        "path": "docs/docs/configuration.md",
+        "heading": "Configuration > Table properties > Compatibility flags",
+        "start_line": 149,
+        "end_line": 153,
+        "start_char": 24719,
+        "end_char": 25159,
+        "score": "0.028456592987485436",
+        "root": "docs",
+        "matched_terms": [
+          "format",
+          "version"
+        ],
+        "evidence_id": "daadda8f6ca154f51bca96f0",
+        "source_type": "repository",
+        "content_hash": "4a11eaa77c960b7415f812d6d3745de6c4ab20cca0ab6a266044f843f6ec2c87",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4a11eaa77c960b7415f812d6d3745de6c4ab20cca0ab6a266044f843f6ec2c87",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e283469e2f19d65b5e309499",
+        "type": "evidence",
+        "path": "docs/docs/flink-queries.md",
+        "heading": "Flink Queries > Inspecting tables > All Metadata Tables > All Manifests",
+        "start_line": 526,
+        "end_line": 547,
+        "start_char": 25697,
+        "end_char": 27010,
+        "score": "0.04336895980731597",
+        "root": "docs",
+        "matched_terms": [
+          "avro",
+          "file",
+          "list",
+          "manifest"
+        ],
+        "evidence_id": "e283469e2f19d65b5e309499",
+        "source_type": "repository",
+        "content_hash": "ca9247c751e6a8c2761f765051410b51a4fd0d674937f7f4b04243b4722a41d8",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ca9247c751e6a8c2761f765051410b51a4fd0d674937f7f4b04243b4722a41d8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e58c511bf3ba654ecbbee962",
+        "type": "evidence",
+        "path": "format/udf-spec.md",
+        "heading": "Iceberg UDF Spec > Specification > Definition Version",
+        "start_line": 134,
+        "end_line": 146,
+        "start_char": 8837,
+        "end_char": 10154,
+        "score": "0.03841041998936735",
+        "root": "docs",
+        "matched_terms": [
+          "version"
+        ],
+        "evidence_id": "e58c511bf3ba654ecbbee962",
+        "source_type": "repository",
+        "content_hash": "159b26b4e02280dc275c1545157f4d6666f2a3f1e2f3ec76a8d852e82169ef31",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "159b26b4e02280dc275c1545157f4d6666f2a3f1e2f3ec76a8d852e82169ef31",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e73c512cf1ffed647319f146",
+        "type": "evidence",
+        "path": "core/src/test/java/org/apache/iceberg/util/TestManifestFileUtil.java",
+        "heading": "",
+        "start_line": 117,
+        "end_line": 148,
+        "start_char": 4982,
+        "end_char": 6073,
+        "score": "0.028068137824235385",
+        "root": "code",
+        "matched_terms": [
+          "format",
+          "manifest",
+          "min_format_version_parquet_manifests",
+          "parquet"
+        ],
+        "evidence_id": "e73c512cf1ffed647319f146",
+        "source_type": "repository",
+        "content_hash": "390ea05eeb8b15030c02c037dd81ce7e95ece2099eeb364564d5f10174742613",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "390ea05eeb8b15030c02c037dd81ce7e95ece2099eeb364564d5f10174742613",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e82a86f5c42949e332c009c3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "format/spec.md",
+        "start_line": 591,
+        "total_lines": 2005,
+        "start_char": 53001,
+        "end_char": 67001,
+        "evidence_id": "e82a86f5c42949e332c009c3",
+        "truncated": true,
+        "next_offset": 678,
+        "source_type": "repository",
+        "content_hash": "91ba1fae59c5bc8b72b17ae9e75a6928aa211664e021d98ffbd543d19b1eb0b5",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "query": "A manifest is an immutable Avro file",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "91ba1fae59c5bc8b72b17ae9e75a6928aa211664e021d98ffbd543d19b1eb0b5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e9189c603c3b8a1c8c3d0e00",
+        "type": "evidence",
+        "path": "core/src/test/java/org/apache/iceberg/TestSnapshotProducer.java",
+        "heading": "",
+        "start_line": 246,
+        "end_line": 255,
+        "start_char": 9861,
+        "end_char": 10253,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "manifest",
+          "min_format_version_parquet_manifests"
+        ],
+        "evidence_id": "e9189c603c3b8a1c8c3d0e00",
+        "source_type": "repository",
+        "content_hash": "86ba5eaf4bfe01209cfc01d354a3e1b8ff60d93f03423ebbf49d0586a415d2c4",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "86ba5eaf4bfe01209cfc01d354a3e1b8ff60d93f03423ebbf49d0586a415d2c4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed15baedae1dc50237ed2ee3",
+        "type": "evidence",
+        "path": "docs/docs/spark-queries.md",
+        "heading": "Spark Queries > Inspecting tables > All Metadata Tables > All Manifests",
+        "start_line": 559,
+        "end_line": 580,
+        "start_char": 32006,
+        "end_char": 33144,
+        "score": "0.04151875208820581",
+        "root": "docs",
+        "matched_terms": [
+          "avro",
+          "file",
+          "list",
+          "manifest"
+        ],
+        "evidence_id": "ed15baedae1dc50237ed2ee3",
+        "source_type": "repository",
+        "content_hash": "cd8a160792e7b6c6133776c999600ae3feaa3dbdfe4f5fbd1a2a071ce1494e1b",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "cd8a160792e7b6c6133776c999600ae3feaa3dbdfe4f5fbd1a2a071ce1494e1b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ef68e8560f8173ff81ef3fa8",
+        "type": "evidence",
+        "root": "code",
+        "path": "core/src/test/java/org/apache/iceberg/util/TestManifestFileUtil.java",
+        "start_line": 113,
+        "total_lines": 148,
+        "start_char": 4757,
+        "end_char": 6073,
+        "evidence_id": "ef68e8560f8173ff81ef3fa8",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "222e27a743799979fcf2c245eabd2e0c6323c62121219bd83f9dddcddb9e7db0",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "core/src/test/java/org/apache/iceberg/util/TestManifestFileUtil.java",
+              "offset": 112,
+              "limit": 120
+            },
+            {
+              "path": "core/src/test/java/org/apache/iceberg/TestManifestReader.java",
+              "offset": 256,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "222e27a743799979fcf2c245eabd2e0c6323c62121219bd83f9dddcddb9e7db0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f15ec40389dc67f6fbd6f40d",
+        "type": "evidence",
+        "path": "core/src/jmh/java/org/apache/iceberg/ManifestBenchmark.java",
+        "heading": "",
+        "start_line": 40,
+        "end_line": 80,
+        "start_char": 1611,
+        "end_char": 3296,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "4",
+          "format",
+          "manifest",
+          "parquet",
+          "version"
+        ],
+        "evidence_id": "f15ec40389dc67f6fbd6f40d",
+        "source_type": "repository",
+        "content_hash": "58dfbf775e23ed1b2dee08f166de60b6c9f5cda6cb4acebf977c59b4e9a78b85",
+        "revision": "f2b6d4fc9273cdee3228263b28b9f3c4e4db7737",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "MIN_FORMAT_VERSION_PARQUET_MANIFESTS",
+            "Parquet manifest format version 4"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "58dfbf775e23ed1b2dee08f166de60b6c9f5cda6cb4acebf977c59b4e9a78b85",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f22df2a01a1c15a486b65547",
+        "type": "evidence",
+        "path": "format/udf-spec.md",
+        "heading": "Iceberg UDF Spec > Appendix A: Example – Overloaded Scalar Function",
+        "start_line": 244,
+        "end_line": 293,
+        "start_char": 14320,
+        "end_char": 15657,
+        "score": "0.03765822784810127",
+        "root": "docs",
+        "matched_terms": [
+          "version"
+        ],
+        "evidence_id": "f22df2a01a1c15a486b65547",
+        "source_type": "repository",
+        "content_hash": "64ab097d9fa9e8f1fffb265173008b31cb59af28263d0aa303f1b531cc38f649",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "format-version",
+            "format version",
+            "table format version"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "64ab097d9fa9e8f1fffb265173008b31cb59af28263d0aa303f1b531cc38f649",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fa42adbdcb76f7f090e61bab",
+        "type": "evidence",
+        "path": "site/docs/terms.md",
+        "heading": "Terms > Manifest file",
+        "start_line": 65,
+        "end_line": 70,
+        "start_char": 4600,
+        "end_char": 4932,
+        "score": "0.045327668234194096",
+        "root": "docs",
+        "matched_terms": [
+          "file",
+          "manifest"
+        ],
+        "evidence_id": "fa42adbdcb76f7f090e61bab",
+        "source_type": "repository",
+        "content_hash": "c1b7ae8051676a19f9a8ebd6e9d80c8a9c54400c2bce1c2ea9cc75dd8745445a",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c1b7ae8051676a19f9a8ebd6e9d80c8a9c54400c2bce1c2ea9cc75dd8745445a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fee321b6f5e5ce1aa7a406b5",
+        "type": "evidence",
+        "path": "docs/docs/spark-procedures.md",
+        "heading": "Spark Procedures > Metadata management > `rewrite_manifests` > Examples",
+        "start_line": 503,
+        "end_line": 520,
+        "start_char": 25572,
+        "end_char": 26211,
+        "score": "0.03212340094362566",
+        "root": "docs",
+        "matched_terms": [
+          "manifest"
+        ],
+        "evidence_id": "fee321b6f5e5ce1aa7a406b5",
+        "source_type": "repository",
+        "content_hash": "2daf082d43bddc103d84c33d53c10c99f8f9a3bddb75875545073b6be3b2c7cb",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2daf082d43bddc103d84c33d53c10c99f8f9a3bddb75875545073b6be3b2c7cb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ffc3a8bc6a585676c4363fd7",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Specification > Manifest Lists",
+        "start_line": 931,
+        "end_line": 948,
+        "start_char": 87849,
+        "end_char": 89634,
+        "score": "0.04583853930031804",
+        "root": "docs",
+        "matched_terms": [
+          "file",
+          "list",
+          "manifest"
+        ],
+        "evidence_id": "ffc3a8bc6a585676c4363fd7",
+        "source_type": "repository",
+        "content_hash": "cdf2d7e5898b12133ea6086d306778595cf443fa8b78174f74b9a197c16d9163",
+        "revision": "db2f55550469885dd96a5b296cfd41b5c46e5f31",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "manifest list",
+            "manifest file",
+            "Avro manifest"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "cdf2d7e5898b12133ea6086d306778595cf443fa8b78174f74b9a197c16d9163",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:spec-manifests-parquet",
+        "type": "requirement",
+        "description": "Update the Manifests section of format/spec.md: the current text states 'A manifest is an immutable Avro file' and describes metadata stored 'as properties in the Avro file's key-value metadata'. Revise to state that v1-v3 manifests are Avro, while v4 manifests may be Avro or Parquet (data and delete manifests), and describe how metadata is stored for Parquet manifests. Also note that unpartitioned manifests omit the partition field in Parquet since Parquet cannot store empty structs."
+      },
+      {
+        "id": "requirement:spec-appendix-e-v4",
+        "type": "requirement",
+        "description": "Add a 'Version 4' subsection to Appendix E: Format version changes in format/spec.md documenting that v4 tables write data and delete manifests as Parquet by default, that v4 readers/writers support both Avro and Parquet when explicitly selected, and the unpartitioned-manifest partition-field handling."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "format/spec.md",
+        "hash": "78dd9dff6db8ccfbf3f5fbc523b8598903d4b1f31cb6c236e5bcdfdb5d04bdae"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "format/spec.md",
+        "hash": "9c3d8da2824c3405cc92dbd41f32ec680f3bfa29590af649d86b1088e0eb8049"
+      },
+      {
+        "id": "edit:2",
+        "type": "edit",
+        "path": "format/spec.md",
+        "hash": "40ccfcdef2fdacd6b5062a52d08503c571db8ad5812372a0d9cfcebea0297775"
+      },
+      {
+        "id": "edit:3",
+        "type": "edit",
+        "path": "format/spec.md",
+        "hash": "672847e9654e48e2db9c0043019d07bfa90a1b19adc51ff92961a3775bede391"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "spec-manifests-parquet",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "format/spec.md"
+        ],
+        "evidence_ids": [
+          "e82a86f5c42949e332c009c3",
+          "1a6f0b96c5ec451d96a969ce",
+          "034ece1e5d715aae25a91449",
+          "ef68e8560f8173ff81ef3fa8"
+        ],
+        "reason": "Update the Manifests section of format/spec.md: the current text states 'A manifest is an immutable Avro file' and describes metadata stored 'as properties in the Avro file's key-value metadata'. Revise to state that v1-v3 manifests are Avro, while v4 manifests may be Avro or Parquet (data and delete manifests), and describe how metadata is stored for Parquet manifests. Also note that unpartitioned manifests omit the partition field in Parquet since Parquet cannot store empty structs."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "spec-appendix-e-v4",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "format/spec.md"
+        ],
+        "evidence_ids": [
+          "da9404e57e4db41304a74d23",
+          "ef68e8560f8173ff81ef3fa8",
+          "19c3bfc0626a5f79e4e168ad"
+        ],
+        "reason": "Add a 'Version 4' subsection to Appendix E: Format version changes in format/spec.md documenting that v4 tables write data and delete manifests as Parquet by default, that v4 readers/writers support both Avro and Parquet when explicitly selected, and the unpartitioned-manifest partition-field handling."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the docs describe format version 4, its manifest file format, or manifest storage format (Avro vs Parquet) anywhere?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where does the docs describe table format versions and their capabilities/requirements?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Does the docs describe manifest files, manifest lists, or their Avro storage format?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the spec's Manifests section and Appendix E (format version changes) describe v4 or Parquet manifests, and what exact text states manifests are Avro-only?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the spec describe format version 4 anywhere (table metadata format-version, v4 requirements, Appendix E Version 4)?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Does the code define a minimum format version for Parquet manifests and how v4 selects Parquet vs Avro, to confirm the documented behavior?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:034ece1e5d715aae25a91449",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:05645ae55dd0b20a965fa4c3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0664177e250a21a62f99f2df",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:07f4255c2c8715e6c4344f40",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d51b804d9b7c045d389dfbe",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d51b804d9b7c045d389dfbe",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:130c7400c553d17abab1d684",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1365d760d5182143f3e5cd3c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:146603bb3220b38a1d1c039e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:19c3bfc0626a5f79e4e168ad",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a6f0b96c5ec451d96a969ce",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1d77215e048fc5eaf6faf833",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:203158a46afc9b609c9b8a9d",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:21839574eb22085815f45b83",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:23a54ffa1e8353115ba5c503",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:31411f251ac3a5567d187a2c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3213b8e155f02340c2f4e748",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:357adec1f927afeb27572c28",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:35e38a2dad0b74037acfb492",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4b4fe89ec44c5faef3c868aa",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:556cf36123646a0882f1819a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:556cf36123646a0882f1819a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:56d59fa78611092d35debaba",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5b01ea6f42f42d45a7336310",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5bae02079ece633144d41234",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:69bd459fdbde5eef3cba6865",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6b959c3a173dbf991ed3382d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6b959c3a173dbf991ed3382d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:75f7c43016943cd3ba71f119",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:782c2c29f47668b6c39e2674",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7e66dccefcaa2e1de3e3db62",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83c26d0b1a50a018d0f5d5cf",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83c26d0b1a50a018d0f5d5cf",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83faf8862c5c6ae1d34f4013",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8e3098f9c78b216853b69bbd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a009e6809c91914c891b7809",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a14347c8c6682e9ccb545f03",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c019e3bf6bb2b9334e2a53a3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c0610301e27d0b2665d097ae",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c12329985bfa3573ae3d1648",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c27befebe8da3560865cdce0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c2c268c77313345cdb160120",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d440b33ba86048af603671b4",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d680e91f11b98fbd3d304018",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da9404e57e4db41304a74d23",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:daadda8f6ca154f51bca96f0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e283469e2f19d65b5e309499",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e283469e2f19d65b5e309499",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e58c511bf3ba654ecbbee962",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e73c512cf1ffed647319f146",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e82a86f5c42949e332c009c3",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e9189c603c3b8a1c8c3d0e00",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed15baedae1dc50237ed2ee3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed15baedae1dc50237ed2ee3",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef68e8560f8173ff81ef3fa8",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f15ec40389dc67f6fbd6f40d",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f22df2a01a1c15a486b65547",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fa42adbdcb76f7f090e61bab",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fa42adbdcb76f7f090e61bab",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fee321b6f5e5ce1aa7a406b5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ffc3a8bc6a585676c4363fd7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e82a86f5c42949e332c009c3",
+        "to": "requirement:spec-manifests-parquet",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:1a6f0b96c5ec451d96a969ce",
+        "to": "requirement:spec-manifests-parquet",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:034ece1e5d715aae25a91449",
+        "to": "requirement:spec-manifests-parquet",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:ef68e8560f8173ff81ef3fa8",
+        "to": "requirement:spec-manifests-parquet",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:da9404e57e4db41304a74d23",
+        "to": "requirement:spec-appendix-e-v4",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:ef68e8560f8173ff81ef3fa8",
+        "to": "requirement:spec-appendix-e-v4",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:19c3bfc0626a5f79e4e168ad",
+        "to": "requirement:spec-appendix-e-v4",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:spec-manifests-parquet",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:e82a86f5c42949e332c009c3",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:1a6f0b96c5ec451d96a969ce",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:spec-manifests-parquet",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:034ece1e5d715aae25a91449",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:e82a86f5c42949e332c009c3",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:spec-manifests-parquet",
+        "to": "edit:2",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:034ece1e5d715aae25a91449",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ef68e8560f8173ff81ef3fa8",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:spec-appendix-e-v4",
+        "to": "edit:3",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:da9404e57e4db41304a74d23",
+        "to": "edit:3",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ef68e8560f8173ff81ef3fa8",
+        "to": "edit:3",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:19c3bfc0626a5f79e4e168ad",
+        "to": "edit:3",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:spec-manifests-parquet",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:e82a86f5c42949e332c009c3",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:1a6f0b96c5ec451d96a969ce",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:034ece1e5d715aae25a91449",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ef68e8560f8173ff81ef3fa8",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:spec-appendix-e-v4",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:da9404e57e4db41304a74d23",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ef68e8560f8173ff81ef3fa8",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:19c3bfc0626a5f79e4e168ad",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:3",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "7911c850348d60aca4af49bbd5544fdd72bee4ba4fedc6d6249d560f0a12f4af"
+}

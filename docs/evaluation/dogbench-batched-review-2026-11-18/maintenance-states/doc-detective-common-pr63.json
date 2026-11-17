@@ -1,0 +1,5919 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REPAIR",
+  "tasks": [
+    {
+      "id": "httpRequest-openapi",
+      "description": "Update docs/references/schemas/httpRequest.md: make `url` optional (required only when no `openApi` reference is provided) and add an `openApi` field row describing the OpenAPI operation reference block (descriptionPath, operationId, server, validateAgainstSchema, useExample, mockResponse, statusCode).",
+      "evidence_ids": [
+        "c7ada9ae2d9ce8d3d619cced",
+        "f42ba8b25676ce98d34e55e9",
+        "e7a9b456354c923d6972f51a"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "openapi-schema-page",
+      "description": "Create a new reference page docs/references/schemas/openApi.md documenting the new `openApi` schema object: name, descriptionPath, operationId, server, validateAgainstSchema (enum request/response/both/none, default both), mockResponse, statusCode, useExample (enum, default none), and note it can be referenced at config, spec, test, and step levels.",
+      "evidence_ids": [
+        "e7a9b456354c923d6972f51a",
+        "6b0c07190d966ecf2325c286",
+        "230ea5b1c44d1d55e38520a2"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "b4fc3e926c949b3cfd5449c45f12ab4a90d8d1732d0463842fbce0efb99fa44f",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "What user-facing documentation exists for the public API (validate, readFile, resolvePaths) and how is it structured?",
+          "root": "docs",
+          "queries": [
+            "validate function",
+            "readFile",
+            "API reference"
+          ],
+          "paths": [
+            "README.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "README.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 24,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "1ba6a1688767228aec48ee73",
+            "fbe2406d84468345742357ae",
+            "8e62bc1636c73fa9d392318a",
+            "4ff03d4a4facde3b9d79b626",
+            "78238ed8a8ea8dd2498cffaa",
+            "575084cd9fbeb104ade7d906",
+            "5494c029987a030fc8a9b07b",
+            "26ffc3dd9b039e18e1a5d2df",
+            "83a1c5616a0884818e0b6100",
+            "ab298b22cb965cd3f6f3ddfa",
+            "5e40675119ff5bbae59e020b",
+            "55996cac1f95c12a96e9f388",
+            "d0a41e91ff60b0247a4f9929",
+            "6087d747ac472a85aaee0dba",
+            "1fd7d78e21041a056c1a3585"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.04624678588125292"
+            },
+            {
+              "rank": 2,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.04361566484517304"
+            },
+            {
+              "rank": 3,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "575084cd9fbeb104ade7d906",
+              "score": "0.03863225382212724"
+            },
+            {
+              "rank": 4,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.03807303807303808"
+            },
+            {
+              "rank": 5,
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "evidence_id": "26ffc3dd9b039e18e1a5d2df",
+              "score": "0.03714932126696833"
+            },
+            {
+              "rank": 6,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "83a1c5616a0884818e0b6100",
+              "score": "0.036701919310614964"
+            },
+            {
+              "rank": 7,
+              "path": "docs/contribute/index.md",
+              "evidence_id": "ab298b22cb965cd3f6f3ddfa",
+              "score": "0.03667996453900709"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/actions/httpRequest.md",
+              "evidence_id": "5e40675119ff5bbae59e020b",
+              "score": "0.03558663558663559"
+            },
+            {
+              "rank": 9,
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "evidence_id": "55996cac1f95c12a96e9f388",
+              "score": "0.03523232571131484"
+            },
+            {
+              "rank": 10,
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "evidence_id": "d0a41e91ff60b0247a4f9929",
+              "score": "0.03518334685180925"
+            },
+            {
+              "rank": 11,
+              "path": "docs/contribute/index.md",
+              "evidence_id": "6087d747ac472a85aaee0dba",
+              "score": "0.034598319645048614"
+            },
+            {
+              "rank": 12,
+              "path": "docs/get-started/actions/checkLink.md",
+              "evidence_id": "1fd7d78e21041a056c1a3585",
+              "score": "0.03444272445820433"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "README.md",
+              "start": 0,
+              "end": 23,
+              "total_lines": 23
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "start": 4,
+              "end": 12,
+              "total_lines": 12
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "start": 24,
+              "end": 44,
+              "total_lines": 44
+            }
+          ],
+          "read_evidence_ids": [
+            "1ba6a1688767228aec48ee73",
+            "fbe2406d84468345742357ae",
+            "8e62bc1636c73fa9d392318a"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "How is the httpRequest step and its url field documented, and is there existing OpenAPI documentation?",
+          "root": "docs",
+          "queries": [
+            "httpRequest url",
+            "openApi",
+            "step schema"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs"
+          ],
+          "reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/goTo.md",
+              "offset": 13,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f42ba8b25676ce98d34e55e9",
+            "cf73c175fd61f0cd797dd06d",
+            "fae43c03d2809235c2258a4b",
+            "8702882bebe35eac75855248",
+            "4ff03d4a4facde3b9d79b626",
+            "5494c029987a030fc8a9b07b",
+            "3e6a067cbf4cb5cdbcc796f4",
+            "c413e024cad6b96d566147e8",
+            "78238ed8a8ea8dd2498cffaa",
+            "5e40675119ff5bbae59e020b",
+            "d27e67fd678f4a398442524d",
+            "8c323a300eb132b36ac67f32",
+            "031b615e563913260d3f7d7f",
+            "63bab4ac7fc1667c501bd658",
+            "fc137a03cccff204f7df8da3"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/references/schemas/httpRequest.md",
+              "evidence_id": "8702882bebe35eac75855248",
+              "score": "0.039120502569960025"
+            },
+            {
+              "rank": 2,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.035938780223152285"
+            },
+            {
+              "rank": 3,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.034986696027158454"
+            },
+            {
+              "rank": 4,
+              "path": "docs/get-started/actions/goTo.md",
+              "evidence_id": "3e6a067cbf4cb5cdbcc796f4",
+              "score": "0.03467908902691511"
+            },
+            {
+              "rank": 5,
+              "path": "docs/get-started/actions/httpRequest.md",
+              "evidence_id": "c413e024cad6b96d566147e8",
+              "score": "0.03384809634809635"
+            },
+            {
+              "rank": 6,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.03337137131565031"
+            },
+            {
+              "rank": 7,
+              "path": "docs/get-started/actions/httpRequest.md",
+              "evidence_id": "5e40675119ff5bbae59e020b",
+              "score": "0.03325017882689557"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/concepts.md",
+              "evidence_id": "d27e67fd678f4a398442524d",
+              "score": "0.032499746886706496"
+            },
+            {
+              "rank": 9,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "8c323a300eb132b36ac67f32",
+              "score": "0.03246900838426124"
+            },
+            {
+              "rank": 10,
+              "path": "docs/references/schemas/httpRequest.md",
+              "evidence_id": "031b615e563913260d3f7d7f",
+              "score": "0.03193988880359178"
+            },
+            {
+              "rank": 11,
+              "path": "docs/references/schemas/checkLink.md",
+              "evidence_id": "63bab4ac7fc1667c501bd658",
+              "score": "0.031845817152040844"
+            },
+            {
+              "rank": 12,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "fc137a03cccff204f7df8da3",
+              "score": "0.031811691994758355"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "start": 1,
+              "end": 121,
+              "total_lines": 123
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "start": 0,
+              "end": 9,
+              "total_lines": 9
+            },
+            {
+              "path": "docs/get-started/actions/goTo.md",
+              "start": 13,
+              "end": 51,
+              "total_lines": 51
+            }
+          ],
+          "read_evidence_ids": [
+            "f42ba8b25676ce98d34e55e9",
+            "cf73c175fd61f0cd797dd06d",
+            "fae43c03d2809235c2258a4b"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What does the new openApi schema and httpRequest schema change look like in code?",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ],
+          "paths": [
+            "src/schemas/src_schemas/openApi_v2.schema.json",
+            "src/schemas/src_schemas/httpRequest_v2.schema.json"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "src/schemas/src_schemas/openApi_v2.schema.json",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/schemas/src_schemas/httpRequest_v2.schema.json",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "e7a9b456354c923d6972f51a",
+            "4682842de2470dac4badcbc9",
+            "cc80a11fdb7791d1440acbaa",
+            "60e2aee8a9794a9da798c5c2",
+            "c23b2f7954dcf323d79b873d",
+            "9292527ee43de9ac38b4cf9a",
+            "a9343cebe120b68f96dba887",
+            "3f944cc2d97ac06e512be571",
+            "f130f8679847d0132c46c290",
+            "2ee15fd17beda9a4ac2385ff",
+            "91c89a206e0fd7251bb8149a",
+            "fa370b12ed564216009f2a65",
+            "8f4dcfada9e17c1a812bb7cd",
+            "b411eeb3df81163cac527a64"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "src/schemas/dereferenceSchemas.js",
+              "evidence_id": "cc80a11fdb7791d1440acbaa",
+              "score": "0.031544957774465976"
+            },
+            {
+              "rank": 2,
+              "path": "src/schemas/src_schemas/config_v2.schema.json",
+              "evidence_id": "60e2aee8a9794a9da798c5c2",
+              "score": "0.03036576949620428"
+            },
+            {
+              "rank": 3,
+              "path": "src/schemas/src_schemas/httpRequest_v2.schema.json",
+              "evidence_id": "c23b2f7954dcf323d79b873d",
+              "score": "0.029051670471052088"
+            },
+            {
+              "rank": 4,
+              "path": "src/schemas/src_schemas/httpRequest_v2.schema.json",
+              "evidence_id": "9292527ee43de9ac38b4cf9a",
+              "score": "0.02904040404040404"
+            },
+            {
+              "rank": 5,
+              "path": "src/schemas/src_schemas/test_v2.schema.json",
+              "evidence_id": "a9343cebe120b68f96dba887",
+              "score": "0.02900988017658188"
+            },
+            {
+              "rank": 6,
+              "path": "src/schemas/output_schemas/httpRequest_v2.schema.json",
+              "evidence_id": "3f944cc2d97ac06e512be571",
+              "score": "0.028629032258064516"
+            },
+            {
+              "rank": 7,
+              "path": "src/schemas/src_schemas/find_v1.schema.json",
+              "evidence_id": "f130f8679847d0132c46c290",
+              "score": "0.02694394213381555"
+            },
+            {
+              "rank": 8,
+              "path": "src/schemas/dereferenceSchemas.js",
+              "evidence_id": "2ee15fd17beda9a4ac2385ff",
+              "score": "0.025859192525859193"
+            },
+            {
+              "rank": 9,
+              "path": "src/schemas/output_schemas/httpRequest_v2.schema.json",
+              "evidence_id": "91c89a206e0fd7251bb8149a",
+              "score": "0.025625000000000002"
+            },
+            {
+              "rank": 10,
+              "path": "src/schemas/src_schemas/spec_v2.schema.json",
+              "evidence_id": "fa370b12ed564216009f2a65",
+              "score": "0.025396825396825397"
+            },
+            {
+              "rank": 11,
+              "path": "src/schemas/src_schemas/config_v2.schema.json",
+              "evidence_id": "8f4dcfada9e17c1a812bb7cd",
+              "score": "0.02538152610441767"
+            },
+            {
+              "rank": 12,
+              "path": "src/schemas/src_schemas/find_v1.schema.json",
+              "evidence_id": "b411eeb3df81163cac527a64",
+              "score": "0.02506265664160401"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "src/schemas/src_schemas/openApi_v2.schema.json",
+              "start": 0,
+              "end": 64,
+              "total_lines": 64
+            },
+            {
+              "path": "src/schemas/src_schemas/httpRequest_v2.schema.json",
+              "start": 0,
+              "end": 120,
+              "total_lines": 284
+            }
+          ],
+          "read_evidence_ids": [
+            "e7a9b456354c923d6972f51a",
+            "4682842de2470dac4badcbc9"
+          ]
+        },
+        {
+          "id": "Q1-4",
+          "question": "What is the implementation of readFile and validate addDefaults in src?",
+          "root": "code",
+          "queries": [
+            "readFile",
+            "addDefaults"
+          ],
+          "paths": [
+            "src/files.js",
+            "src/validate.js"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "src/files.js",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/validate.js",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "c7ad1b4ccf950c7650c6c127",
+            "4c9c31f956859f8aa8c53644",
+            "8d2e43c6d4fa2b9a972455c0",
+            "eeb2a94bf6caaea0819d3e24",
+            "7b57c0fcd8f2dfea0be4cb16",
+            "db41a65d5a1d94b10ac54f8c",
+            "d18183d9d647797f6eef879c",
+            "a36b920918eb682bcacbc247",
+            "ac5de73eec4acbc6784cf82e"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "src/index.js",
+              "evidence_id": "8d2e43c6d4fa2b9a972455c0",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 2,
+              "path": "src/validate.js",
+              "evidence_id": "eeb2a94bf6caaea0819d3e24",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 3,
+              "path": "test/files.test.js",
+              "evidence_id": "7b57c0fcd8f2dfea0be4cb16",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 4,
+              "path": "test/files.test.js",
+              "evidence_id": "db41a65d5a1d94b10ac54f8c",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 5,
+              "path": "src/files.js",
+              "evidence_id": "d18183d9d647797f6eef879c",
+              "score": "0.015625"
+            },
+            {
+              "rank": 6,
+              "path": "src/files.js",
+              "evidence_id": "a36b920918eb682bcacbc247",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 7,
+              "path": "test/files.test.js",
+              "evidence_id": "ac5de73eec4acbc6784cf82e",
+              "score": "0.015384615384615385"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "src/files.js",
+              "start": 0,
+              "end": 64,
+              "total_lines": 64
+            },
+            {
+              "path": "src/validate.js",
+              "start": 0,
+              "end": 56,
+              "total_lines": 56
+            }
+          ],
+          "read_evidence_ids": [
+            "c7ad1b4ccf950c7650c6c127",
+            "4c9c31f956859f8aa8c53644"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "031b615e563913260d3f7d7f",
+        "1ba6a1688767228aec48ee73",
+        "1fd7d78e21041a056c1a3585",
+        "26ffc3dd9b039e18e1a5d2df",
+        "2ee15fd17beda9a4ac2385ff",
+        "3e6a067cbf4cb5cdbcc796f4",
+        "3f944cc2d97ac06e512be571",
+        "4682842de2470dac4badcbc9",
+        "4c9c31f956859f8aa8c53644",
+        "4ff03d4a4facde3b9d79b626",
+        "5494c029987a030fc8a9b07b",
+        "55996cac1f95c12a96e9f388",
+        "575084cd9fbeb104ade7d906",
+        "5e40675119ff5bbae59e020b",
+        "6087d747ac472a85aaee0dba",
+        "60e2aee8a9794a9da798c5c2",
+        "63bab4ac7fc1667c501bd658",
+        "78238ed8a8ea8dd2498cffaa",
+        "7b57c0fcd8f2dfea0be4cb16",
+        "83a1c5616a0884818e0b6100",
+        "8702882bebe35eac75855248",
+        "8c323a300eb132b36ac67f32",
+        "8d2e43c6d4fa2b9a972455c0",
+        "8e62bc1636c73fa9d392318a",
+        "8f4dcfada9e17c1a812bb7cd",
+        "91c89a206e0fd7251bb8149a",
+        "9292527ee43de9ac38b4cf9a",
+        "a36b920918eb682bcacbc247",
+        "a9343cebe120b68f96dba887",
+        "ab298b22cb965cd3f6f3ddfa",
+        "ac5de73eec4acbc6784cf82e",
+        "b411eeb3df81163cac527a64",
+        "c23b2f7954dcf323d79b873d",
+        "c413e024cad6b96d566147e8",
+        "c7ad1b4ccf950c7650c6c127",
+        "cc80a11fdb7791d1440acbaa",
+        "cf73c175fd61f0cd797dd06d",
+        "d0a41e91ff60b0247a4f9929",
+        "d18183d9d647797f6eef879c",
+        "d27e67fd678f4a398442524d",
+        "db41a65d5a1d94b10ac54f8c",
+        "e7a9b456354c923d6972f51a",
+        "eeb2a94bf6caaea0819d3e24",
+        "f130f8679847d0132c46c290",
+        "f42ba8b25676ce98d34e55e9",
+        "fa370b12ed564216009f2a65",
+        "fae43c03d2809235c2258a4b",
+        "fbe2406d84468345742357ae",
+        "fc137a03cccff204f7df8da3"
+      ],
+      "new_evidence_count": 49,
+      "new_path_count": 27
+    },
+    {
+      "signature": "752e1d3fb92bf635a7d96a068f205f238741094deb52f36fe5d6c5429ab77798",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Is there an existing reference page for the openApi schema, and how are schema reference pages structured/generated (e.g., httpRequest.md, config.md, spec.md, test.md)?",
+          "root": "docs",
+          "queries": [
+            "openApi reference",
+            "references/schemas",
+            "schema reference page"
+          ],
+          "paths": [
+            "docs/references/schemas/httpRequest.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "c7ada9ae2d9ce8d3d619cced",
+            "814a04e29170e26afb76c8b5",
+            "8113b46a3b18d056712a96d4",
+            "5494c029987a030fc8a9b07b",
+            "c54dbc7e4436d5b72ae9c28f",
+            "64af1816eaacef869fbd9aeb",
+            "0eb9f8a2fa975148401b140a",
+            "78238ed8a8ea8dd2498cffaa",
+            "4b83cfd00ca6e9c73d1bed5c",
+            "01b92c545fcf078fa347bf2b",
+            "0bfcfff5f5cc2b27b433bcf6",
+            "fc137a03cccff204f7df8da3",
+            "4ff03d4a4facde3b9d79b626",
+            "5e40675119ff5bbae59e020b",
+            "14bd506ff4020bb31c1e0d28"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.04225806451612903"
+            },
+            {
+              "rank": 2,
+              "path": "docs/references/schemas/context.md",
+              "evidence_id": "c54dbc7e4436d5b72ae9c28f",
+              "score": "0.041719979736681304"
+            },
+            {
+              "rank": 3,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "64af1816eaacef869fbd9aeb",
+              "score": "0.036962365591397844"
+            },
+            {
+              "rank": 4,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "0eb9f8a2fa975148401b140a",
+              "score": "0.03642412424740011"
+            },
+            {
+              "rank": 5,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.03531806900371755"
+            },
+            {
+              "rank": 6,
+              "path": "docs/references/schemas/config.md",
+              "evidence_id": "4b83cfd00ca6e9c73d1bed5c",
+              "score": "0.03524764150943396"
+            },
+            {
+              "rank": 7,
+              "path": "docs/references/schemas/config.md",
+              "evidence_id": "01b92c545fcf078fa347bf2b",
+              "score": "0.035220214568040656"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/actions/goTo.md",
+              "evidence_id": "0bfcfff5f5cc2b27b433bcf6",
+              "score": "0.03493576741041245"
+            },
+            {
+              "rank": 9,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "fc137a03cccff204f7df8da3",
+              "score": "0.03475624922273349"
+            },
+            {
+              "rank": 10,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.03426916221033868"
+            },
+            {
+              "rank": 11,
+              "path": "docs/get-started/actions/httpRequest.md",
+              "evidence_id": "5e40675119ff5bbae59e020b",
+              "score": "0.03426137808288838"
+            },
+            {
+              "rank": 12,
+              "path": "docs/get-started/actions/find.md",
+              "evidence_id": "14bd506ff4020bb31c1e0d28",
+              "score": "0.03420804208205783"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 123
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "start": 67,
+              "end": 75,
+              "total_lines": 75
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 126
+            }
+          ],
+          "read_evidence_ids": [
+            "c7ada9ae2d9ce8d3d619cced",
+            "814a04e29170e26afb76c8b5",
+            "8113b46a3b18d056712a96d4"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Do the config, spec, and test reference pages document the new openApi property at those levels?",
+          "root": "docs",
+          "queries": [
+            "openApi config",
+            "openApi spec",
+            "openApi test"
+          ],
+          "paths": [
+            "docs/references/schemas/config.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/references/schemas/spec.md"
+          ],
+          "reads": [
+            {
+              "path": "docs/references/schemas/config.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 361,
+              "limit": 120
+            },
+            {
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "6b0c07190d966ecf2325c286",
+            "141001efec92930817f96303",
+            "44e742b2e583cd5727315d3d",
+            "1fdff7dafb722fec7d68ebf5",
+            "55996cac1f95c12a96e9f388",
+            "801ef38d493d8857c1634f8e",
+            "ad166a2776eba2de5c84d8eb",
+            "779e86cd4b46796f79280190",
+            "e375098ac2dd3f8463bd6c81",
+            "5494c029987a030fc8a9b07b",
+            "1985fef3c897da24749457fd",
+            "9dc30d401cbb2b775c0bfb79",
+            "53d88a7164e724289248f5a7",
+            "0eb9f8a2fa975148401b140a",
+            "78238ed8a8ea8dd2498cffaa"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/get-started/config/contexts/index.md",
+              "evidence_id": "1fdff7dafb722fec7d68ebf5",
+              "score": "0.04229640825035562"
+            },
+            {
+              "rank": 2,
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "evidence_id": "55996cac1f95c12a96e9f388",
+              "score": "0.03632478632478632"
+            },
+            {
+              "rank": 3,
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "evidence_id": "801ef38d493d8857c1634f8e",
+              "score": "0.03625270697984341"
+            },
+            {
+              "rank": 4,
+              "path": "docs/references/schemas/config.md",
+              "evidence_id": "ad166a2776eba2de5c84d8eb",
+              "score": "0.035818247875631204"
+            },
+            {
+              "rank": 5,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "779e86cd4b46796f79280190",
+              "score": "0.03550357422640031"
+            },
+            {
+              "rank": 6,
+              "path": "docs/get-started/config/contexts/index.md",
+              "evidence_id": "e375098ac2dd3f8463bd6c81",
+              "score": "0.035163840310899135"
+            },
+            {
+              "rank": 7,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.03487814916071376"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/sample-tests.md",
+              "evidence_id": "1985fef3c897da24749457fd",
+              "score": "0.03468721335534764"
+            },
+            {
+              "rank": 9,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "9dc30d401cbb2b775c0bfb79",
+              "score": "0.034605462523305"
+            },
+            {
+              "rank": 10,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "53d88a7164e724289248f5a7",
+              "score": "0.034515220973466286"
+            },
+            {
+              "rank": 11,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "0eb9f8a2fa975148401b140a",
+              "score": "0.03384607196082606"
+            },
+            {
+              "rank": 12,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.03362873719675249"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/config.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 497
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "start": 361,
+              "end": 395,
+              "total_lines": 395
+            },
+            {
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "start": 0,
+              "end": 74,
+              "total_lines": 74
+            }
+          ],
+          "read_evidence_ids": [
+            "6b0c07190d966ecf2325c286",
+            "141001efec92930817f96303",
+            "44e742b2e583cd5727315d3d"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Is there any documentation of the public API functions (validate, resolvePaths, readFile) that would need readFile/addDefaults updates?",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "validate addDefaults",
+            "resolvePaths"
+          ],
+          "paths": [
+            "docs/references/schemas/test.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/index.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "230ea5b1c44d1d55e38520a2",
+            "ee4adc773217b3f184efb27c",
+            "62713e404b747953346a6f78",
+            "78238ed8a8ea8dd2498cffaa",
+            "4ff03d4a4facde3b9d79b626",
+            "26ffc3dd9b039e18e1a5d2df",
+            "575084cd9fbeb104ade7d906",
+            "76836b1f9a5093e8e7bd37da",
+            "ab298b22cb965cd3f6f3ddfa",
+            "83a1c5616a0884818e0b6100",
+            "d0a41e91ff60b0247a4f9929",
+            "8c323a300eb132b36ac67f32",
+            "cc8b6ee65832b308cf5dcb7a",
+            "113e759a8cec578dc1dce9e0",
+            "55996cac1f95c12a96e9f388"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.04630415690866511"
+            },
+            {
+              "rank": 2,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.04621952999562108"
+            },
+            {
+              "rank": 3,
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "evidence_id": "26ffc3dd9b039e18e1a5d2df",
+              "score": "0.043682819912328114"
+            },
+            {
+              "rank": 4,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "575084cd9fbeb104ade7d906",
+              "score": "0.04329838900734423"
+            },
+            {
+              "rank": 5,
+              "path": "README.md",
+              "evidence_id": "76836b1f9a5093e8e7bd37da",
+              "score": "0.042090774178955445"
+            },
+            {
+              "rank": 6,
+              "path": "docs/contribute/index.md",
+              "evidence_id": "ab298b22cb965cd3f6f3ddfa",
+              "score": "0.04053442028985507"
+            },
+            {
+              "rank": 7,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "83a1c5616a0884818e0b6100",
+              "score": "0.04002120890774125"
+            },
+            {
+              "rank": 8,
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "evidence_id": "d0a41e91ff60b0247a4f9929",
+              "score": "0.039428455748080946"
+            },
+            {
+              "rank": 9,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "8c323a300eb132b36ac67f32",
+              "score": "0.03798670465337132"
+            },
+            {
+              "rank": 10,
+              "path": "docs/contribute/repos/doc-detective.md",
+              "evidence_id": "cc8b6ee65832b308cf5dcb7a",
+              "score": "0.03750174556626169"
+            },
+            {
+              "rank": 11,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "113e759a8cec578dc1dce9e0",
+              "score": "0.03659408558631482"
+            },
+            {
+              "rank": 12,
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "evidence_id": "55996cac1f95c12a96e9f388",
+              "score": "0.03551255703336048"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 132
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "start": 0,
+              "end": 9,
+              "total_lines": 9
+            },
+            {
+              "path": "docs/contribute/index.md",
+              "start": 0,
+              "end": 29,
+              "total_lines": 29
+            }
+          ],
+          "read_evidence_ids": [
+            "230ea5b1c44d1d55e38520a2",
+            "ee4adc773217b3f184efb27c",
+            "62713e404b747953346a6f78"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "01b92c545fcf078fa347bf2b",
+        "0bfcfff5f5cc2b27b433bcf6",
+        "0eb9f8a2fa975148401b140a",
+        "113e759a8cec578dc1dce9e0",
+        "141001efec92930817f96303",
+        "14bd506ff4020bb31c1e0d28",
+        "1985fef3c897da24749457fd",
+        "1fdff7dafb722fec7d68ebf5",
+        "230ea5b1c44d1d55e38520a2",
+        "44e742b2e583cd5727315d3d",
+        "4b83cfd00ca6e9c73d1bed5c",
+        "53d88a7164e724289248f5a7",
+        "62713e404b747953346a6f78",
+        "64af1816eaacef869fbd9aeb",
+        "6b0c07190d966ecf2325c286",
+        "76836b1f9a5093e8e7bd37da",
+        "779e86cd4b46796f79280190",
+        "801ef38d493d8857c1634f8e",
+        "8113b46a3b18d056712a96d4",
+        "814a04e29170e26afb76c8b5",
+        "9dc30d401cbb2b775c0bfb79",
+        "ad166a2776eba2de5c84d8eb",
+        "c54dbc7e4436d5b72ae9c28f",
+        "c7ada9ae2d9ce8d3d619cced",
+        "cc8b6ee65832b308cf5dcb7a",
+        "e375098ac2dd3f8463bd6c81",
+        "ee4adc773217b3f184efb27c"
+      ],
+      "new_evidence_count": 27,
+      "new_path_count": 8
+    },
+    {
+      "signature": "3413c1cc3c75da7cc83d15dc3a7cdbf2ae68811d9bd0f847f0d283bddc46a1c5",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q3-1",
+          "question": "Does the httpRequest reference page document the new openApi block and optional url, and is there an openApi schema reference page?",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "descriptionPath",
+            "operationId"
+          ],
+          "paths": [
+            "docs/references/schemas/httpRequest.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/references/schemas/openApi.md"
+          ],
+          "reads": [
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "4c45a23f5ce9bec61d2a90b0",
+            "b11e8381f42d0c4f1e3eec36",
+            "659cc44e45913e34a6cec9e7",
+            "4ff03d4a4facde3b9d79b626",
+            "78238ed8a8ea8dd2498cffaa",
+            "575084cd9fbeb104ade7d906",
+            "83a1c5616a0884818e0b6100",
+            "26ffc3dd9b039e18e1a5d2df",
+            "ce7d5ae8af27484163e69378",
+            "8c323a300eb132b36ac67f32",
+            "a192007de53ce2f71b843f4a",
+            "ab298b22cb965cd3f6f3ddfa",
+            "5494c029987a030fc8a9b07b",
+            "76836b1f9a5093e8e7bd37da",
+            "b418b7cdbf2514fcf8c0fafc"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.048915917503966164"
+            },
+            {
+              "rank": 2,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.04813947436898257"
+            },
+            {
+              "rank": 3,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "575084cd9fbeb104ade7d906",
+              "score": "0.04450066062969289"
+            },
+            {
+              "rank": 4,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "83a1c5616a0884818e0b6100",
+              "score": "0.04297163710273466"
+            },
+            {
+              "rank": 5,
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "evidence_id": "26ffc3dd9b039e18e1a5d2df",
+              "score": "0.04288048552754435"
+            },
+            {
+              "rank": 6,
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "evidence_id": "ce7d5ae8af27484163e69378",
+              "score": "0.042056023634971004"
+            },
+            {
+              "rank": 7,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "8c323a300eb132b36ac67f32",
+              "score": "0.04159898072941551"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/actions/goTo.md",
+              "evidence_id": "a192007de53ce2f71b843f4a",
+              "score": "0.04118799452221546"
+            },
+            {
+              "rank": 9,
+              "path": "docs/contribute/index.md",
+              "evidence_id": "ab298b22cb965cd3f6f3ddfa",
+              "score": "0.0401634683724236"
+            },
+            {
+              "rank": 10,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.03837414658310181"
+            },
+            {
+              "rank": 11,
+              "path": "README.md",
+              "evidence_id": "76836b1f9a5093e8e7bd37da",
+              "score": "0.03805860805860806"
+            },
+            {
+              "rank": 12,
+              "path": "blog/_2021-02-28-greetings.md",
+              "evidence_id": "b418b7cdbf2514fcf8c0fafc",
+              "score": "0.03729980490903316"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "start": 0,
+              "end": 44,
+              "total_lines": 44
+            },
+            {
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "start": 0,
+              "end": 20,
+              "total_lines": 20
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "start": 0,
+              "end": 12,
+              "total_lines": 12
+            }
+          ],
+          "read_evidence_ids": [
+            "4c45a23f5ce9bec61d2a90b0",
+            "b11e8381f42d0c4f1e3eec36",
+            "659cc44e45913e34a6cec9e7"
+          ]
+        },
+        {
+          "id": "Q3-2",
+          "question": "Do config, spec, and test reference pages include the new openApi property at those levels?",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ],
+          "paths": [
+            "docs/references/schemas/config.md",
+            "docs/references/schemas/test.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 452,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/tests/index.md",
+              "offset": 308,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "77c781565398271fe9a63759",
+            "979b1ccd21d62ba6df7b4ff0",
+            "e3ee4f3a4b182f964afbacd8",
+            "5494c029987a030fc8a9b07b",
+            "55996cac1f95c12a96e9f388",
+            "78238ed8a8ea8dd2498cffaa",
+            "801ef38d493d8857c1634f8e",
+            "ad166a2776eba2de5c84d8eb",
+            "9dc30d401cbb2b775c0bfb79",
+            "1fdff7dafb722fec7d68ebf5",
+            "4cfce0a345f0028f2317bb21",
+            "113e759a8cec578dc1dce9e0",
+            "4ff03d4a4facde3b9d79b626",
+            "159fce0e378b67e32fce6c94",
+            "779e86cd4b46796f79280190"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.03625841141054123"
+            },
+            {
+              "rank": 2,
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "evidence_id": "55996cac1f95c12a96e9f388",
+              "score": "0.035783660783660784"
+            },
+            {
+              "rank": 3,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.03487066466818815"
+            },
+            {
+              "rank": 4,
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "evidence_id": "801ef38d493d8857c1634f8e",
+              "score": "0.034412010862038864"
+            },
+            {
+              "rank": 5,
+              "path": "docs/references/schemas/config.md",
+              "evidence_id": "ad166a2776eba2de5c84d8eb",
+              "score": "0.0338596053655555"
+            },
+            {
+              "rank": 6,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "9dc30d401cbb2b775c0bfb79",
+              "score": "0.03366838086333178"
+            },
+            {
+              "rank": 7,
+              "path": "docs/get-started/config/contexts/index.md",
+              "evidence_id": "1fdff7dafb722fec7d68ebf5",
+              "score": "0.03154945703084343"
+            },
+            {
+              "rank": 8,
+              "path": "docs/contribute/repos/doc-detective.md",
+              "evidence_id": "4cfce0a345f0028f2317bb21",
+              "score": "0.031486714187508535"
+            },
+            {
+              "rank": 9,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "113e759a8cec578dc1dce9e0",
+              "score": "0.03133794559099437"
+            },
+            {
+              "rank": 10,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.031201334816462735"
+            },
+            {
+              "rank": 11,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "159fce0e378b67e32fce6c94",
+              "score": "0.030587808417997096"
+            },
+            {
+              "rank": 12,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "779e86cd4b46796f79280190",
+              "score": "0.030416133844842284"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "start": 0,
+              "end": 9,
+              "total_lines": 9
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "start": 452,
+              "end": 497,
+              "total_lines": 497
+            },
+            {
+              "path": "docs/get-started/tests/index.md",
+              "start": 308,
+              "end": 410,
+              "total_lines": 410
+            }
+          ],
+          "read_evidence_ids": [
+            "77c781565398271fe9a63759",
+            "979b1ccd21d62ba6df7b4ff0",
+            "e3ee4f3a4b182f964afbacd8"
+          ]
+        },
+        {
+          "id": "Q3-3",
+          "question": "Is there any user-facing documentation of the public API functions (validate, readFile, resolvePaths) that needs updating for readFile and addDefaults?",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ],
+          "paths": [
+            "docs/contribute/repos/doc-detective-common.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "blog/_2021-02-28-greetings.md",
+              "offset": 8,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "890c2e3897e95353a9d60fec",
+            "4ff03d4a4facde3b9d79b626",
+            "575084cd9fbeb104ade7d906",
+            "78238ed8a8ea8dd2498cffaa",
+            "76836b1f9a5093e8e7bd37da",
+            "83a1c5616a0884818e0b6100",
+            "26ffc3dd9b039e18e1a5d2df",
+            "ab298b22cb965cd3f6f3ddfa",
+            "8c323a300eb132b36ac67f32",
+            "ce7d5ae8af27484163e69378",
+            "55996cac1f95c12a96e9f388",
+            "e746516af29854bebb24db2f",
+            "b557337a0a14b6180911906b"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.04788306451612903"
+            },
+            {
+              "rank": 2,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "575084cd9fbeb104ade7d906",
+              "score": "0.04329085624860273"
+            },
+            {
+              "rank": 3,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.04324028946979767"
+            },
+            {
+              "rank": 4,
+              "path": "README.md",
+              "evidence_id": "76836b1f9a5093e8e7bd37da",
+              "score": "0.04139777348595475"
+            },
+            {
+              "rank": 5,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "83a1c5616a0884818e0b6100",
+              "score": "0.04088164251207729"
+            },
+            {
+              "rank": 6,
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "evidence_id": "26ffc3dd9b039e18e1a5d2df",
+              "score": "0.040268874643874644"
+            },
+            {
+              "rank": 7,
+              "path": "docs/contribute/index.md",
+              "evidence_id": "ab298b22cb965cd3f6f3ddfa",
+              "score": "0.0393236301369863"
+            },
+            {
+              "rank": 8,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "8c323a300eb132b36ac67f32",
+              "score": "0.037673862619833604"
+            },
+            {
+              "rank": 9,
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "evidence_id": "ce7d5ae8af27484163e69378",
+              "score": "0.03704169767000773"
+            },
+            {
+              "rank": 10,
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "evidence_id": "55996cac1f95c12a96e9f388",
+              "score": "0.0352934891356082"
+            },
+            {
+              "rank": 11,
+              "path": "blog/_2021-02-28-greetings.md",
+              "evidence_id": "e746516af29854bebb24db2f",
+              "score": "0.034891429429128935"
+            },
+            {
+              "rank": 12,
+              "path": "docs/contribute/index.md",
+              "evidence_id": "b557337a0a14b6180911906b",
+              "score": "0.033828495801387366"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "blog/_2021-02-28-greetings.md",
+              "start": 8,
+              "end": 18,
+              "total_lines": 18
+            }
+          ],
+          "read_evidence_ids": [
+            "890c2e3897e95353a9d60fec"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "159fce0e378b67e32fce6c94",
+        "4c45a23f5ce9bec61d2a90b0",
+        "4cfce0a345f0028f2317bb21",
+        "659cc44e45913e34a6cec9e7",
+        "77c781565398271fe9a63759",
+        "890c2e3897e95353a9d60fec",
+        "979b1ccd21d62ba6df7b4ff0",
+        "a192007de53ce2f71b843f4a",
+        "b11e8381f42d0c4f1e3eec36",
+        "b418b7cdbf2514fcf8c0fafc",
+        "b557337a0a14b6180911906b",
+        "ce7d5ae8af27484163e69378",
+        "e3ee4f3a4b182f964afbacd8",
+        "e746516af29854bebb24db2f"
+      ],
+      "new_evidence_count": 14,
+      "new_path_count": 2
+    }
+  ],
+  "review": {
+    "kind": "local_repair",
+    "defects": [
+      {
+        "requirement_id": "openapi-schema-page",
+        "path": "docs/references/schemas/openApi.md",
+        "reason": "The new openApi schema page omits two documented properties present in the schema: `exampleKey` (string, default \"\") and `requestHeaders` (object of string values, request headers added to the request, step overrides config). Add rows for both so the reference page fully covers the schema."
+      }
+    ]
+  },
+  "repairs": 1,
+  "snapshot": {
+    "docs": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+    "code": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5"
+  },
+  "protocol_retries": {
+    "REASON": 1,
+    "REPAIR": 1
+  },
+  "protocol_feedback": {
+    "REPAIR": {
+      "errors": [
+        {
+          "type": "MISSING_EVIDENCE",
+          "msg": "Edit needs observations of its target path"
+        }
+      ],
+      "instruction": "Return a complete corrected decision using only observed evidence."
+    }
+  },
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:e614e766f283a34b": 0,
+    "discover:Q1-2:e117e14cabb661a3": 538,
+    "discover:Q1-3:6d604abd5fae6672": 0,
+    "discover:Q1-4:ef14b22729a0e062": 5040,
+    "discover:Q2-1:a5fc8d1a06150255": 0,
+    "discover:Q2-2:5f6c194ef53aaba5": 555,
+    "discover:Q2-3:7b9657f8d1e9642e": 872,
+    "discover:Q3-1:e466152dd226a782": 0,
+    "discover:Q3-2:b1dd71c13cfb1e78": 886,
+    "discover:Q3-3:dce3b9630c54dc03": 1290
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:6d604abd5fae6672": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:e614e766f283a34b": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 538,
+      "cache_hit": false
+    },
+    "discover:Q1-2:e117e14cabb661a3": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 367,
+      "cache_hit": false
+    },
+    "discover:Q1-3:6d604abd5fae6672": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 5578,
+      "cache_hit": false
+    },
+    "discover:Q1-4:ef14b22729a0e062": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 246,
+      "cache_hit": false
+    },
+    "discover:Q1-1:0ccda87a573b3607": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 310,
+      "cache_hit": false
+    },
+    "discover:Q1-3:5c9e71918e2c0b1c": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 427,
+      "cache_hit": false
+    },
+    "discover:Q1-2:7ffe97b1d483f200": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 467,
+      "cache_hit": false
+    },
+    "discover:Q1-4:b63bc874dc4af6cf": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 265,
+      "cache_hit": false
+    },
+    "discover:Q2-1:a5fc8d1a06150255": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 556,
+      "cache_hit": false
+    },
+    "discover:Q2-2:5f6c194ef53aaba5": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 316,
+      "cache_hit": false
+    },
+    "discover:Q2-3:7b9657f8d1e9642e": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 970,
+      "cache_hit": false
+    },
+    "discover:Q2-2:d669c94d8d7ed8d7": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 4068,
+      "cache_hit": false
+    },
+    "discover:Q2-3:3d4a5810289cbed8": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 4456,
+      "cache_hit": false
+    },
+    "discover:Q2-1:48e7658fb4d7a5aa": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 4727,
+      "cache_hit": false
+    },
+    "discover:Q3-1:e466152dd226a782": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 886,
+      "cache_hit": false
+    },
+    "discover:Q3-2:b1dd71c13cfb1e78": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 404,
+      "cache_hit": false
+    },
+    "discover:Q3-3:dce3b9630c54dc03": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 189,
+      "cache_hit": false
+    },
+    "discover:Q3-3:3829b0b807a31690": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 257,
+      "cache_hit": false
+    },
+    "discover:Q3-2:c647844d2a6ea0b5": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 300,
+      "cache_hit": false
+    },
+    "discover:Q3-1:258d7216263649d2": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 373,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2037,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "httpRequest-openapi",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/references/schemas/httpRequest.md"
+      ],
+      "evidence_ids": [
+        "c7ada9ae2d9ce8d3d619cced",
+        "f42ba8b25676ce98d34e55e9",
+        "e7a9b456354c923d6972f51a"
+      ],
+      "reason": "Update docs/references/schemas/httpRequest.md: make `url` optional (required only when no `openApi` reference is provided) and add an `openApi` field row describing the OpenAPI operation reference block (descriptionPath, operationId, server, validateAgainstSchema, useExample, mockResponse, statusCode)."
+    },
+    {
+      "requirement_id": "openapi-schema-page",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/references/schemas/openApi.md"
+      ],
+      "evidence_ids": [
+        "e7a9b456354c923d6972f51a",
+        "6b0c07190d966ecf2325c286",
+        "230ea5b1c44d1d55e38520a2"
+      ],
+      "reason": "Create a new reference page docs/references/schemas/openApi.md documenting the new `openApi` schema object: name, descriptionPath, operationId, server, validateAgainstSchema (enum request/response/both/none, default both), mockResponse, statusCode, useExample (enum, default none), and note it can be referenced at config, spec, test, and step levels."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:01b92c545fcf078fa347bf2b",
+        "type": "evidence",
+        "path": "docs/references/schemas/config.md",
+        "heading": "config > Examples",
+        "start_line": 357,
+        "end_line": 406,
+        "start_char": 14847,
+        "end_char": 15969,
+        "score": "0.035220214568040656",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "01b92c545fcf078fa347bf2b",
+        "source_type": "repository",
+        "content_hash": "e40c8438377e5b2f0ce51ce396e8de317ba3b797c13a29f5ba4d187c6a2b2977",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi reference",
+            "references/schemas",
+            "schema reference page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e40c8438377e5b2f0ce51ce396e8de317ba3b797c13a29f5ba4d187c6a2b2977",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:031b615e563913260d3f7d7f",
+        "type": "evidence",
+        "path": "docs/references/schemas/httpRequest.md",
+        "heading": "httpRequest > Examples",
+        "start_line": 33,
+        "end_line": 82,
+        "start_char": 3219,
+        "end_char": 3940,
+        "score": "0.03193988880359178",
+        "root": "docs",
+        "matched_terms": [
+          "httprequest",
+          "url"
+        ],
+        "evidence_id": "031b615e563913260d3f7d7f",
+        "source_type": "repository",
+        "content_hash": "c0d91f7303098bcb800a6e128044de7a63d62a85af9bf328517e72078efaf0f1",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "httpRequest url",
+            "openApi",
+            "step schema"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c0d91f7303098bcb800a6e128044de7a63d62a85af9bf328517e72078efaf0f1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0bfcfff5f5cc2b27b433bcf6",
+        "type": "evidence",
+        "path": "docs/get-started/actions/goTo.md",
+        "heading": "goTo",
+        "start_line": 10,
+        "end_line": 17,
+        "start_char": 128,
+        "end_char": 410,
+        "score": "0.03493576741041245",
+        "root": "docs",
+        "matched_terms": [
+          "page",
+          "reference",
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "0bfcfff5f5cc2b27b433bcf6",
+        "source_type": "repository",
+        "content_hash": "5ad32e698abd98d0f3b2f907c67119b4d4859ef5cc5de201dfac1a6fdbdef7d6",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi reference",
+            "references/schemas",
+            "schema reference page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "5ad32e698abd98d0f3b2f907c67119b4d4859ef5cc5de201dfac1a6fdbdef7d6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0eb9f8a2fa975148401b140a",
+        "type": "evidence",
+        "path": "docs/references/schemas/test.md",
+        "heading": "test > Fields",
+        "start_line": 6,
+        "end_line": 17,
+        "start_char": 32,
+        "end_char": 1832,
+        "score": "0.03384607196082606",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "spec",
+          "test"
+        ],
+        "evidence_id": "0eb9f8a2fa975148401b140a",
+        "source_type": "repository",
+        "content_hash": "6e73ceaaae6c4898e92952eff7686d7e7173df32ba51eb3e6816651221e6faf9",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi config",
+            "openApi spec",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6e73ceaaae6c4898e92952eff7686d7e7173df32ba51eb3e6816651221e6faf9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:113e759a8cec578dc1dce9e0",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective.github.io.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.03133794559099437",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "113e759a8cec578dc1dce9e0",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:141001efec92930817f96303",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/config/contexts/index.md",
+        "start_line": 362,
+        "total_lines": 395,
+        "start_char": 8195,
+        "end_char": 8709,
+        "evidence_id": "141001efec92930817f96303",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "24b6082e6ab5083b21c84d664b952bb65aac36e1ae7f239bd4e0c90f3deab42a",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/config.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 361,
+              "limit": 120
+            },
+            {
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "24b6082e6ab5083b21c84d664b952bb65aac36e1ae7f239bd4e0c90f3deab42a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:14bd506ff4020bb31c1e0d28",
+        "type": "evidence",
+        "path": "docs/get-started/actions/find.md",
+        "heading": "find",
+        "start_line": 10,
+        "end_line": 14,
+        "start_char": 148,
+        "end_char": 399,
+        "score": "0.03420804208205783",
+        "root": "docs",
+        "matched_terms": [
+          "reference",
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "14bd506ff4020bb31c1e0d28",
+        "source_type": "repository",
+        "content_hash": "e6043aa5eb21f6def0d823f58eb65e3e701baa0e219c508738cb5a34ea42223f",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi reference",
+            "references/schemas",
+            "schema reference page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e6043aa5eb21f6def0d823f58eb65e3e701baa0e219c508738cb5a34ea42223f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:159fce0e378b67e32fce6c94",
+        "type": "evidence",
+        "path": "docs/references/schemas/test.md",
+        "heading": "test > Examples",
+        "start_line": 69,
+        "end_line": 118,
+        "start_char": 2760,
+        "end_char": 3735,
+        "score": "0.030587808417997096",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "159fce0e378b67e32fce6c94",
+        "source_type": "repository",
+        "content_hash": "f3724c2d5aa95e026c36e3637d862b42740774473772b617afe32a908e2e8d8a",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "f3724c2d5aa95e026c36e3637d862b42740774473772b617afe32a908e2e8d8a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1985fef3c897da24749457fd",
+        "type": "evidence",
+        "path": "docs/get-started/sample-tests.md",
+        "heading": "Explore sample tests > Run tests",
+        "start_line": 15,
+        "end_line": 42,
+        "start_char": 455,
+        "end_char": 1658,
+        "score": "0.03468721335534764",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "spec",
+          "test"
+        ],
+        "evidence_id": "1985fef3c897da24749457fd",
+        "source_type": "repository",
+        "content_hash": "fe60bfb490e5c089657df53eb0c5286c07468f4c8d834b9a149bfc19b26a0c16",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi config",
+            "openApi spec",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "fe60bfb490e5c089657df53eb0c5286c07468f4c8d834b9a149bfc19b26a0c16",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1ba6a1688767228aec48ee73",
+        "type": "evidence",
+        "root": "docs",
+        "path": "README.md",
+        "start_line": 1,
+        "total_lines": 23,
+        "start_char": 0,
+        "end_char": 589,
+        "evidence_id": "1ba6a1688767228aec48ee73",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2242d35f2e6254412f4063daa79a98cecdcf05dbf57ab5c6cc3bbb4f2c1972f6",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "README.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 24,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2242d35f2e6254412f4063daa79a98cecdcf05dbf57ab5c6cc3bbb4f2c1972f6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1fd7d78e21041a056c1a3585",
+        "type": "evidence",
+        "path": "docs/get-started/actions/checkLink.md",
+        "heading": "checkLink > Examples > Check for one of a set of status code responses",
+        "start_line": 43,
+        "end_line": 61,
+        "start_char": 915,
+        "end_char": 1251,
+        "score": "0.03444272445820433",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "1fd7d78e21041a056c1a3585",
+        "source_type": "repository",
+        "content_hash": "dcf9452dfbfffa7d8f1e01debcc32e6ce67c7c66aff4e045a57d48e142877652",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "validate function",
+            "readFile",
+            "API reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "dcf9452dfbfffa7d8f1e01debcc32e6ce67c7c66aff4e045a57d48e142877652",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1fdff7dafb722fec7d68ebf5",
+        "type": "evidence",
+        "path": "docs/get-started/config/contexts/index.md",
+        "heading": "Contexts > Examples > In a test",
+        "start_line": 366,
+        "end_line": 395,
+        "start_char": 8206,
+        "end_char": 8709,
+        "score": "0.03154945703084343",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "test"
+        ],
+        "evidence_id": "1fdff7dafb722fec7d68ebf5",
+        "source_type": "repository",
+        "content_hash": "b63f12e0f9cee4bfb7512e46918a7d30ee1d1e750688a6e710336dab70165cd0",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "b63f12e0f9cee4bfb7512e46918a7d30ee1d1e750688a6e710336dab70165cd0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:230ea5b1c44d1d55e38520a2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/test.md",
+        "start_line": 1,
+        "total_lines": 132,
+        "start_char": 0,
+        "end_char": 3750,
+        "evidence_id": "230ea5b1c44d1d55e38520a2",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "31870ef38a28b46e0728687decf87fc660f73a5505f7a4d1d9dc0d794deb6ef4",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/index.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "31870ef38a28b46e0728687decf87fc660f73a5505f7a4d1d9dc0d794deb6ef4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:26ffc3dd9b039e18e1a5d2df",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective-common.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.040268874643874644",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "26ffc3dd9b039e18e1a5d2df",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3",
+          "Q3-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2ee15fd17beda9a4ac2385ff",
+        "type": "evidence",
+        "path": "src/schemas/dereferenceSchemas.js",
+        "heading": "",
+        "start_line": 51,
+        "end_line": 97,
+        "start_char": 1563,
+        "end_char": 3210,
+        "score": "0.025859192525859193",
+        "root": "code",
+        "matched_terms": [
+          "json",
+          "schema"
+        ],
+        "evidence_id": "2ee15fd17beda9a4ac2385ff",
+        "source_type": "repository",
+        "content_hash": "3506a745d39ac675df0631724b4128d23b7f7e69ea29e6de6072cafd264b83aa",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "3506a745d39ac675df0631724b4128d23b7f7e69ea29e6de6072cafd264b83aa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3e6a067cbf4cb5cdbcc796f4",
+        "type": "evidence",
+        "path": "docs/get-started/actions/goTo.md",
+        "heading": "goTo > Examples",
+        "start_line": 18,
+        "end_line": 51,
+        "start_char": 410,
+        "end_char": 881,
+        "score": "0.03467908902691511",
+        "root": "docs",
+        "matched_terms": [
+          "url"
+        ],
+        "evidence_id": "3e6a067cbf4cb5cdbcc796f4",
+        "source_type": "repository",
+        "content_hash": "e781faa9154029bf1f56e941d4bf8cd18ce3cf3816921765d3c1d9dd4ad913b7",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "httpRequest url",
+            "openApi",
+            "step schema"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e781faa9154029bf1f56e941d4bf8cd18ce3cf3816921765d3c1d9dd4ad913b7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3f944cc2d97ac06e512be571",
+        "type": "evidence",
+        "path": "src/schemas/output_schemas/httpRequest_v2.schema.json",
+        "heading": "",
+        "start_line": 211,
+        "end_line": 211,
+        "start_char": 8130,
+        "end_char": 8137,
+        "score": "0.028629032258064516",
+        "root": "code",
+        "matched_terms": [],
+        "evidence_id": "3f944cc2d97ac06e512be571",
+        "source_type": "repository",
+        "content_hash": "832edf9badad070adb882e3021a70f96e17002da61989696678fa7e627dcf643",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "832edf9badad070adb882e3021a70f96e17002da61989696678fa7e627dcf643",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:44e742b2e583cd5727315d3d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "styles/config/vocabularies/Docs/accept.txt",
+        "start_line": 1,
+        "total_lines": 74,
+        "start_char": 0,
+        "end_char": 626,
+        "evidence_id": "44e742b2e583cd5727315d3d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "407b36ed5bd94069bd1aec237a2ce3e6f3fd6e2128391f62f3b4df0fc8bf9cbd",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/config.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 361,
+              "limit": 120
+            },
+            {
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "407b36ed5bd94069bd1aec237a2ce3e6f3fd6e2128391f62f3b4df0fc8bf9cbd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4682842de2470dac4badcbc9",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/schemas/src_schemas/httpRequest_v2.schema.json",
+        "start_line": 1,
+        "total_lines": 284,
+        "start_char": 0,
+        "end_char": 4032,
+        "evidence_id": "4682842de2470dac4badcbc9",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "68b3cfd18cf495e8e4c38d9ab25186d61a374e3c2f0a7788fd8a3c9e7a828c0e",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/schemas/src_schemas/openApi_v2.schema.json",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/schemas/src_schemas/httpRequest_v2.schema.json",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "68b3cfd18cf495e8e4c38d9ab25186d61a374e3c2f0a7788fd8a3c9e7a828c0e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4b83cfd00ca6e9c73d1bed5c",
+        "type": "evidence",
+        "path": "docs/references/schemas/config.md",
+        "heading": "config > Fields",
+        "start_line": 44,
+        "end_line": 50,
+        "start_char": 6811,
+        "end_char": 8429,
+        "score": "0.03524764150943396",
+        "root": "docs",
+        "matched_terms": [
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "4b83cfd00ca6e9c73d1bed5c",
+        "source_type": "repository",
+        "content_hash": "7a46c8973751d9590c273a39f4bec04e7b90d096d10f5ba2406bb48ce97f5b1a",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi reference",
+            "references/schemas",
+            "schema reference page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "7a46c8973751d9590c273a39f4bec04e7b90d096d10f5ba2406bb48ce97f5b1a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4c45a23f5ce9bec61d2a90b0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "blog/_2019-05-29-long-blog-post.md",
+        "start_line": 1,
+        "total_lines": 44,
+        "start_char": 0,
+        "end_char": 3116,
+        "evidence_id": "4c45a23f5ce9bec61d2a90b0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "ba77a5c5beead41b7e662f6b867d369c972a3a3796c5e5489b20946a21ee4c36",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "ba77a5c5beead41b7e662f6b867d369c972a3a3796c5e5489b20946a21ee4c36",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4c9c31f956859f8aa8c53644",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/validate.js",
+        "start_line": 1,
+        "total_lines": 56,
+        "start_char": 0,
+        "end_char": 1734,
+        "evidence_id": "4c9c31f956859f8aa8c53644",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9c6e77323dacc228b4ef47cd7b969d8f126bbcf5a429c893f9ad1bbafd8d8c39",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/files.js",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/validate.js",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "9c6e77323dacc228b4ef47cd7b969d8f126bbcf5a429c893f9ad1bbafd8d8c39",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4cfce0a345f0028f2317bb21",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective.md",
+        "heading": "`doc-detective`",
+        "start_line": 5,
+        "end_line": 11,
+        "start_char": 29,
+        "end_char": 556,
+        "score": "0.031486714187508535",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4cfce0a345f0028f2317bb21",
+        "source_type": "repository",
+        "content_hash": "b5f559b5aca95b948041ff492f6fcadf0a1a88eeba9f70bc265dcd8f802019d4",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "b5f559b5aca95b948041ff492f6fcadf0a1a88eeba9f70bc265dcd8f802019d4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4ff03d4a4facde3b9d79b626",
+        "type": "evidence",
+        "path": "blog/_2019-05-28-first-blog-post.md",
+        "heading": "tags: [hola, docusaurus]",
+        "start_line": 9,
+        "end_line": 12,
+        "start_char": 180,
+        "end_char": 389,
+        "score": "0.04788306451612903",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4ff03d4a4facde3b9d79b626",
+        "source_type": "repository",
+        "content_hash": "ea7a06f1eca4fcfb7381af7f7c3a7acff8a7b9e3286c443ecb91c13d31e81aa4",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1",
+          "Q2-3",
+          "Q3-1",
+          "Q3-2",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "ea7a06f1eca4fcfb7381af7f7c3a7acff8a7b9e3286c443ecb91c13d31e81aa4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:53d88a7164e724289248f5a7",
+        "type": "evidence",
+        "path": "docs/references/schemas/specification.md",
+        "heading": "specification > Examples",
+        "start_line": 16,
+        "end_line": 65,
+        "start_char": 617,
+        "end_char": 1443,
+        "score": "0.034515220973466286",
+        "root": "docs",
+        "matched_terms": [
+          "spec",
+          "test"
+        ],
+        "evidence_id": "53d88a7164e724289248f5a7",
+        "source_type": "repository",
+        "content_hash": "2e7961c8e9c17380f0643d2a1d8857f8f62525057e5861e660e5281ce5fc382d",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi config",
+            "openApi spec",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2e7961c8e9c17380f0643d2a1d8857f8f62525057e5861e660e5281ce5fc382d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5494c029987a030fc8a9b07b",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective.github.io.md",
+        "heading": "`doc-detective.github.io`",
+        "start_line": 5,
+        "end_line": 9,
+        "start_char": 29,
+        "end_char": 427,
+        "score": "0.03625841141054123",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "5494c029987a030fc8a9b07b",
+        "source_type": "repository",
+        "content_hash": "dd688669454e8b7e6b80dd53b2d9689f4554901425bf35d15d177a90dbc0643b",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1",
+          "Q2-2",
+          "Q3-1",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "dd688669454e8b7e6b80dd53b2d9689f4554901425bf35d15d177a90dbc0643b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:55996cac1f95c12a96e9f388",
+        "type": "evidence",
+        "path": "styles/config/vocabularies/Docs/accept.txt",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 389,
+        "score": "0.0352934891356082",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "55996cac1f95c12a96e9f388",
+        "source_type": "repository",
+        "content_hash": "eaefcdbe9d0e16fa1bfdf9b812659f099292d201aab1d7923eadfad72d146ee6",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2",
+          "Q2-3",
+          "Q3-2",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "eaefcdbe9d0e16fa1bfdf9b812659f099292d201aab1d7923eadfad72d146ee6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:575084cd9fbeb104ade7d906",
+        "type": "evidence",
+        "path": "blog/_2019-05-29-long-blog-post.md",
+        "heading": "tags: [hello, docusaurus]",
+        "start_line": 29,
+        "end_line": 44,
+        "start_char": 1676,
+        "end_char": 3116,
+        "score": "0.04329085624860273",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "575084cd9fbeb104ade7d906",
+        "source_type": "repository",
+        "content_hash": "f4846920feba3bf4f32c66b4348817b74930883561142fa097b84d0d85091f84",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3",
+          "Q3-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "f4846920feba3bf4f32c66b4348817b74930883561142fa097b84d0d85091f84",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5e40675119ff5bbae59e020b",
+        "type": "evidence",
+        "path": "docs/get-started/actions/httpRequest.md",
+        "heading": "httpRequest",
+        "start_line": 10,
+        "end_line": 14,
+        "start_char": 161,
+        "end_char": 393,
+        "score": "0.03426137808288838",
+        "root": "docs",
+        "matched_terms": [
+          "reference",
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "5e40675119ff5bbae59e020b",
+        "source_type": "repository",
+        "content_hash": "468ec3c509e6d5018c13e3570afe689c320518eaa15b35305c8d3a3663b7ed10",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi reference",
+            "references/schemas",
+            "schema reference page"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "468ec3c509e6d5018c13e3570afe689c320518eaa15b35305c8d3a3663b7ed10",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6087d747ac472a85aaee0dba",
+        "type": "evidence",
+        "path": "docs/contribute/index.md",
+        "heading": "How to contribute > Contribute code or docs",
+        "start_line": 15,
+        "end_line": 26,
+        "start_char": 705,
+        "end_char": 1479,
+        "score": "0.034598319645048614",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "6087d747ac472a85aaee0dba",
+        "source_type": "repository",
+        "content_hash": "67e14a5867b8cd95e2b0622d1abc5511bb66396a2cde2fde4e9637c6daaef438",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "validate function",
+            "readFile",
+            "API reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "67e14a5867b8cd95e2b0622d1abc5511bb66396a2cde2fde4e9637c6daaef438",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:60e2aee8a9794a9da798c5c2",
+        "type": "evidence",
+        "path": "src/schemas/src_schemas/config_v2.schema.json",
+        "heading": "",
+        "start_line": 310,
+        "end_line": 351,
+        "start_char": 10904,
+        "end_char": 12531,
+        "score": "0.03036576949620428",
+        "root": "code",
+        "matched_terms": [
+          "httprequest_v2",
+          "json",
+          "schema"
+        ],
+        "evidence_id": "60e2aee8a9794a9da798c5c2",
+        "source_type": "repository",
+        "content_hash": "944d1d2657ea9a4dc77629673dcfe079520b761139d188869f0b645520ef0b61",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "944d1d2657ea9a4dc77629673dcfe079520b761139d188869f0b645520ef0b61",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:62713e404b747953346a6f78",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/contribute/index.md",
+        "start_line": 1,
+        "total_lines": 29,
+        "start_char": 0,
+        "end_char": 1681,
+        "evidence_id": "62713e404b747953346a6f78",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "91597517f760cc82d4ae1dfe62b118d16556b8b6f038d9b62f8125660202111c",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/index.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "91597517f760cc82d4ae1dfe62b118d16556b8b6f038d9b62f8125660202111c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:63bab4ac7fc1667c501bd658",
+        "type": "evidence",
+        "path": "docs/references/schemas/checkLink.md",
+        "heading": "checkLink > Fields",
+        "start_line": 6,
+        "end_line": 16,
+        "start_char": 84,
+        "end_char": 634,
+        "score": "0.031845817152040844",
+        "root": "docs",
+        "matched_terms": [
+          "step",
+          "url"
+        ],
+        "evidence_id": "63bab4ac7fc1667c501bd658",
+        "source_type": "repository",
+        "content_hash": "e4fe110ab87abff858fbe27bc663c6478f6148f7bfe580bff90cdfb94150a967",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "httpRequest url",
+            "openApi",
+            "step schema"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e4fe110ab87abff858fbe27bc663c6478f6148f7bfe580bff90cdfb94150a967",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:64af1816eaacef869fbd9aeb",
+        "type": "evidence",
+        "path": "docs/references/schemas/specification.md",
+        "heading": "specification",
+        "start_line": 2,
+        "end_line": 5,
+        "start_char": 1,
+        "end_char": 20,
+        "score": "0.036962365591397844",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "64af1816eaacef869fbd9aeb",
+        "source_type": "repository",
+        "content_hash": "6bbdd9b2e21ece5a7de2fa0e3ab04d65f162f1765bae4352b152dd12284fa231",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi reference",
+            "references/schemas",
+            "schema reference page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "6bbdd9b2e21ece5a7de2fa0e3ab04d65f162f1765bae4352b152dd12284fa231",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:659cc44e45913e34a6cec9e7",
+        "type": "evidence",
+        "root": "docs",
+        "path": "blog/_2019-05-28-first-blog-post.md",
+        "start_line": 1,
+        "total_lines": 12,
+        "start_char": 0,
+        "end_char": 389,
+        "evidence_id": "659cc44e45913e34a6cec9e7",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "7c0bdadb70edc5171291ef66a1043084b354ddac5224d66163b822d466c7924e",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "7c0bdadb70edc5171291ef66a1043084b354ddac5224d66163b822d466c7924e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6b0c07190d966ecf2325c286",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/config.md",
+        "start_line": 1,
+        "total_lines": 497,
+        "start_char": 0,
+        "end_char": 9921,
+        "evidence_id": "6b0c07190d966ecf2325c286",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "243291a859f57da8937a6894b8d3aae6e2753f5a2262b434c6b81b295aa1946d",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/config.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 361,
+              "limit": 120
+            },
+            {
+              "path": "styles/config/vocabularies/Docs/accept.txt",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "243291a859f57da8937a6894b8d3aae6e2753f5a2262b434c6b81b295aa1946d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:76836b1f9a5093e8e7bd37da",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Doc Detective documentation > Get started",
+        "start_line": 3,
+        "end_line": 23,
+        "start_char": 31,
+        "end_char": 589,
+        "score": "0.04139777348595475",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "76836b1f9a5093e8e7bd37da",
+        "source_type": "repository",
+        "content_hash": "2c221e59ce5e9066e201f799cb2b8aa892298efc667552e1901ad06cf2343886",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3",
+          "Q3-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "2c221e59ce5e9066e201f799cb2b8aa892298efc667552e1901ad06cf2343886",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:779e86cd4b46796f79280190",
+        "type": "evidence",
+        "path": "docs/get-started/tests/index.md",
+        "heading": "Tests > Define a test > Inline JSON",
+        "start_line": 98,
+        "end_line": 116,
+        "start_char": 3999,
+        "end_char": 5601,
+        "score": "0.030416133844842284",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "test"
+        ],
+        "evidence_id": "779e86cd4b46796f79280190",
+        "source_type": "repository",
+        "content_hash": "7549133ce78cf71269a49bb6f88f1075b0861663e4973850f5ee72717502946f",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "7549133ce78cf71269a49bb6f88f1075b0861663e4973850f5ee72717502946f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:77c781565398271fe9a63759",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/contribute/repos/doc-detective-core.md",
+        "start_line": 1,
+        "total_lines": 9,
+        "start_char": 0,
+        "end_char": 477,
+        "evidence_id": "77c781565398271fe9a63759",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "f580674d951c9d87073439d94da7ccfc7c80a2068bee88ec7c612ad05f5e1c1e",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 452,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/tests/index.md",
+              "offset": 308,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "f580674d951c9d87073439d94da7ccfc7c80a2068bee88ec7c612ad05f5e1c1e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78238ed8a8ea8dd2498cffaa",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Doc Detective documentation",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 31,
+        "score": "0.04324028946979767",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "78238ed8a8ea8dd2498cffaa",
+        "source_type": "repository",
+        "content_hash": "68e75a810c30988eadf8bc30ba33513bd82ee9a406c2a178577d614f257c66a6",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1",
+          "Q2-2",
+          "Q2-3",
+          "Q3-1",
+          "Q3-2",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "68e75a810c30988eadf8bc30ba33513bd82ee9a406c2a178577d614f257c66a6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7b57c0fcd8f2dfea0be4cb16",
+        "type": "evidence",
+        "path": "test/files.test.js",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1497,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "readfile"
+        ],
+        "evidence_id": "7b57c0fcd8f2dfea0be4cb16",
+        "source_type": "repository",
+        "content_hash": "0e0f02b4b0d214e46249f4f223c3ea1cb90d0d809fe5486411ad505434879015",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "readFile",
+            "addDefaults"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "0e0f02b4b0d214e46249f4f223c3ea1cb90d0d809fe5486411ad505434879015",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:801ef38d493d8857c1634f8e",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective-core.md",
+        "heading": "`doc-detective-core`",
+        "start_line": 5,
+        "end_line": 9,
+        "start_char": 29,
+        "end_char": 477,
+        "score": "0.034412010862038864",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "test"
+        ],
+        "evidence_id": "801ef38d493d8857c1634f8e",
+        "source_type": "repository",
+        "content_hash": "db773cd6f864b322d662f6e7a653b472dfa837fe410f66f43985fc9446b8664d",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "db773cd6f864b322d662f6e7a653b472dfa837fe410f66f43985fc9446b8664d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8113b46a3b18d056712a96d4",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/specification.md",
+        "start_line": 1,
+        "total_lines": 126,
+        "start_char": 0,
+        "end_char": 2670,
+        "evidence_id": "8113b46a3b18d056712a96d4",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "97ce776a713954dccca292cbdcfcec51181e05edafe78aa2b0b00a87d8ed3df2",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "97ce776a713954dccca292cbdcfcec51181e05edafe78aa2b0b00a87d8ed3df2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:814a04e29170e26afb76c8b5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/context.md",
+        "start_line": 68,
+        "total_lines": 75,
+        "start_char": 1819,
+        "end_char": 1917,
+        "evidence_id": "814a04e29170e26afb76c8b5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9c11bd8151d8c22f7218dcde5a670865f84facd285f4ed3ab353d32262536664",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "9c11bd8151d8c22f7218dcde5a670865f84facd285f4ed3ab353d32262536664",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83a1c5616a0884818e0b6100",
+        "type": "evidence",
+        "path": "blog/_2019-05-29-long-blog-post.md",
+        "heading": "tags: [hello, docusaurus]",
+        "start_line": 5,
+        "end_line": 28,
+        "start_char": 61,
+        "end_char": 1676,
+        "score": "0.04088164251207729",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "83a1c5616a0884818e0b6100",
+        "source_type": "repository",
+        "content_hash": "7274f9c7203570a14632a7370498961328b4425afc8f4d628b41468eaf7f1d09",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3",
+          "Q3-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "7274f9c7203570a14632a7370498961328b4425afc8f4d628b41468eaf7f1d09",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8702882bebe35eac75855248",
+        "type": "evidence",
+        "path": "docs/references/schemas/httpRequest.md",
+        "heading": "httpRequest > Fields",
+        "start_line": 6,
+        "end_line": 24,
+        "start_char": 72,
+        "end_char": 1862,
+        "score": "0.039120502569960025",
+        "root": "docs",
+        "matched_terms": [
+          "step",
+          "url"
+        ],
+        "evidence_id": "8702882bebe35eac75855248",
+        "source_type": "repository",
+        "content_hash": "1210d2ee148d8d02161495a74983e6df332b2b046c502e0723b65339cc060695",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "httpRequest url",
+            "openApi",
+            "step schema"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1210d2ee148d8d02161495a74983e6df332b2b046c502e0723b65339cc060695",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:890c2e3897e95353a9d60fec",
+        "type": "evidence",
+        "root": "docs",
+        "path": "blog/_2021-02-28-greetings.md",
+        "start_line": 9,
+        "total_lines": 18,
+        "start_char": 195,
+        "end_char": 474,
+        "evidence_id": "890c2e3897e95353a9d60fec",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2477d73ab05c0de25d521f04ad3cf61b3ed05338532d863dc166d57525581c95",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "blog/_2021-02-28-greetings.md",
+              "offset": 8,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "2477d73ab05c0de25d521f04ad3cf61b3ed05338532d863dc166d57525581c95",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8c323a300eb132b36ac67f32",
+        "type": "evidence",
+        "path": "blog/_2019-05-28-first-blog-post.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 8,
+        "start_char": 0,
+        "end_char": 180,
+        "score": "0.037673862619833604",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "8c323a300eb132b36ac67f32",
+        "source_type": "repository",
+        "content_hash": "5c896dd60d1368ba328b74d84d30ce8fe8069fd4f687b4aa2e57351b25c54692",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3",
+          "Q3-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "5c896dd60d1368ba328b74d84d30ce8fe8069fd4f687b4aa2e57351b25c54692",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8d2e43c6d4fa2b9a972455c0",
+        "type": "evidence",
+        "path": "src/index.js",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 11,
+        "start_char": 0,
+        "end_char": 253,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "readfile"
+        ],
+        "evidence_id": "8d2e43c6d4fa2b9a972455c0",
+        "source_type": "repository",
+        "content_hash": "5a9d1e7ac420c00e90cfaec8dbc3f51b2de14aa275a51e97c22067715074b091",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "readFile",
+            "addDefaults"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "5a9d1e7ac420c00e90cfaec8dbc3f51b2de14aa275a51e97c22067715074b091",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8e62bc1636c73fa9d392318a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "blog/_2019-05-29-long-blog-post.md",
+        "start_line": 25,
+        "total_lines": 44,
+        "start_char": 1316,
+        "end_char": 3116,
+        "evidence_id": "8e62bc1636c73fa9d392318a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "c1725205168c62397deaccb1cef749774c058c388c46acd02b0b2d776feb83d1",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "README.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 24,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c1725205168c62397deaccb1cef749774c058c388c46acd02b0b2d776feb83d1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8f4dcfada9e17c1a812bb7cd",
+        "type": "evidence",
+        "path": "src/schemas/src_schemas/config_v2.schema.json",
+        "heading": "",
+        "start_line": 277,
+        "end_line": 309,
+        "start_char": 9274,
+        "end_char": 10904,
+        "score": "0.02538152610441767",
+        "root": "code",
+        "matched_terms": [
+          "json",
+          "schema"
+        ],
+        "evidence_id": "8f4dcfada9e17c1a812bb7cd",
+        "source_type": "repository",
+        "content_hash": "ee51ed84d4713a993058255fffaf62bb825e5808c6b63ef4d189280dc4d531d4",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ee51ed84d4713a993058255fffaf62bb825e5808c6b63ef4d189280dc4d531d4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:91c89a206e0fd7251bb8149a",
+        "type": "evidence",
+        "path": "src/schemas/output_schemas/httpRequest_v2.schema.json",
+        "heading": "",
+        "start_line": 76,
+        "end_line": 76,
+        "start_char": 3299,
+        "end_char": 3388,
+        "score": "0.025625000000000002",
+        "root": "code",
+        "matched_terms": [],
+        "evidence_id": "91c89a206e0fd7251bb8149a",
+        "source_type": "repository",
+        "content_hash": "a6bb5a2c3b9e91ee1381e0cecd6e79e81e93430d193844fe74338a5f6ce4232c",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a6bb5a2c3b9e91ee1381e0cecd6e79e81e93430d193844fe74338a5f6ce4232c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9292527ee43de9ac38b4cf9a",
+        "type": "evidence",
+        "path": "src/schemas/src_schemas/httpRequest_v2.schema.json",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1235,
+        "score": "0.02904040404040404",
+        "root": "code",
+        "matched_terms": [
+          "json",
+          "openapi_v2",
+          "schema"
+        ],
+        "evidence_id": "9292527ee43de9ac38b4cf9a",
+        "source_type": "repository",
+        "content_hash": "6b28b3de9cc987e39464fce2f4bbed9b6e5ff5906199f9a090e0579250215dd6",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6b28b3de9cc987e39464fce2f4bbed9b6e5ff5906199f9a090e0579250215dd6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:979b1ccd21d62ba6df7b4ff0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/config.md",
+        "start_line": 453,
+        "total_lines": 497,
+        "start_char": 17079,
+        "end_char": 18096,
+        "evidence_id": "979b1ccd21d62ba6df7b4ff0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "fd1cbaa8d5ab966a920db013d9948a52b4dd2694b72bf51d0094be26892e5403",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 452,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/tests/index.md",
+              "offset": 308,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "fd1cbaa8d5ab966a920db013d9948a52b4dd2694b72bf51d0094be26892e5403",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9dc30d401cbb2b775c0bfb79",
+        "type": "evidence",
+        "path": "docs/get-started/tests/index.md",
+        "heading": "Tests > Define a test > Default actions > `httpRequest`",
+        "start_line": 313,
+        "end_line": 323,
+        "start_char": 10946,
+        "end_char": 11059,
+        "score": "0.03366838086333178",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "9dc30d401cbb2b775c0bfb79",
+        "source_type": "repository",
+        "content_hash": "dfcf6a17e2a28dbef35cca4d402a8b4712ed6f725ff30d6c1efbcd55d2b48053",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "dfcf6a17e2a28dbef35cca4d402a8b4712ed6f725ff30d6c1efbcd55d2b48053",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a192007de53ce2f71b843f4a",
+        "type": "evidence",
+        "path": "docs/get-started/actions/goTo.md",
+        "heading": "description: Navigate to a specified URL.",
+        "start_line": 7,
+        "end_line": 9,
+        "start_char": 81,
+        "end_char": 128,
+        "score": "0.04118799452221546",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a192007de53ce2f71b843f4a",
+        "source_type": "repository",
+        "content_hash": "78f182e53b2872de60f9c1918f2b9fbea33fecf23283b3af0817d6aef572c74e",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "descriptionPath",
+            "operationId"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "78f182e53b2872de60f9c1918f2b9fbea33fecf23283b3af0817d6aef572c74e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a36b920918eb682bcacbc247",
+        "type": "evidence",
+        "path": "src/files.js",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1532,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "readfile"
+        ],
+        "evidence_id": "a36b920918eb682bcacbc247",
+        "source_type": "repository",
+        "content_hash": "696422b230e5cc2cc30e5be649bbc028c09cfd14956fd305eefd028052f416d4",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "readFile",
+            "addDefaults"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "696422b230e5cc2cc30e5be649bbc028c09cfd14956fd305eefd028052f416d4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a9343cebe120b68f96dba887",
+        "type": "evidence",
+        "path": "src/schemas/src_schemas/test_v2.schema.json",
+        "heading": "",
+        "start_line": 51,
+        "end_line": 91,
+        "start_char": 1348,
+        "end_char": 2948,
+        "score": "0.02900988017658188",
+        "root": "code",
+        "matched_terms": [
+          "httprequest_v2",
+          "json",
+          "schema"
+        ],
+        "evidence_id": "a9343cebe120b68f96dba887",
+        "source_type": "repository",
+        "content_hash": "d1cb6a357cf5914b5e8e41b36f58e9357e3da303dc25ce8d1e8d0f93f696fbae",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d1cb6a357cf5914b5e8e41b36f58e9357e3da303dc25ce8d1e8d0f93f696fbae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aaa5fcee6d58a95368e3b394",
+        "type": "evidence",
+        "evidence_id": "aaa5fcee6d58a95368e3b394",
+        "source_type": "implementation",
+        "exported_content_sha256": "2a7d818bd2fa76a149e773edb9d9c4d858b8234ca02286975465324df9f4b438",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ab298b22cb965cd3f6f3ddfa",
+        "type": "evidence",
+        "path": "docs/contribute/index.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.0393236301369863",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ab298b22cb965cd3f6f3ddfa",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3",
+          "Q3-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ac5de73eec4acbc6784cf82e",
+        "type": "evidence",
+        "path": "test/files.test.js",
+        "heading": "",
+        "start_line": 98,
+        "end_line": 107,
+        "start_char": 3170,
+        "end_char": 3446,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "readfile"
+        ],
+        "evidence_id": "ac5de73eec4acbc6784cf82e",
+        "source_type": "repository",
+        "content_hash": "ed18d12da3bc43df9602db264de7c32b259bc6135cd88253a6e2a230ad9fd1e8",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "readFile",
+            "addDefaults"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "ed18d12da3bc43df9602db264de7c32b259bc6135cd88253a6e2a230ad9fd1e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ad166a2776eba2de5c84d8eb",
+        "type": "evidence",
+        "path": "docs/references/schemas/config.md",
+        "heading": "config > Examples",
+        "start_line": 457,
+        "end_line": 497,
+        "start_char": 17165,
+        "end_char": 18096,
+        "score": "0.0338596053655555",
+        "root": "docs",
+        "matched_terms": [
+          "test"
+        ],
+        "evidence_id": "ad166a2776eba2de5c84d8eb",
+        "source_type": "repository",
+        "content_hash": "9b0eb09a3c5ce579b5690b7fac976e886add7d8afe442a97ff2cf23738802f45",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "openApi config",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "9b0eb09a3c5ce579b5690b7fac976e886add7d8afe442a97ff2cf23738802f45",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b11e8381f42d0c4f1e3eec36",
+        "type": "evidence",
+        "root": "docs",
+        "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+        "start_line": 1,
+        "total_lines": 20,
+        "start_char": 0,
+        "end_char": 439,
+        "evidence_id": "b11e8381f42d0c4f1e3eec36",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "cf14a72f3db034cd77c16e9517ead52dfcc1d103d6bb8313f8988c0d8237111e",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "cf14a72f3db034cd77c16e9517ead52dfcc1d103d6bb8313f8988c0d8237111e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b411eeb3df81163cac527a64",
+        "type": "evidence",
+        "path": "src/schemas/src_schemas/find_v1.schema.json",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1429,
+        "score": "0.02506265664160401",
+        "root": "code",
+        "matched_terms": [
+          "json",
+          "schema"
+        ],
+        "evidence_id": "b411eeb3df81163cac527a64",
+        "source_type": "repository",
+        "content_hash": "81e68c5353caa81ebef0ce5e24d56e57a141ba9f165243c5fdbbc3b5a681c689",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "81e68c5353caa81ebef0ce5e24d56e57a141ba9f165243c5fdbbc3b5a681c689",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b418b7cdbf2514fcf8c0fafc",
+        "type": "evidence",
+        "path": "blog/_2021-02-28-greetings.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 12,
+        "start_char": 0,
+        "end_char": 338,
+        "score": "0.03729980490903316",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b418b7cdbf2514fcf8c0fafc",
+        "source_type": "repository",
+        "content_hash": "3531158e527e144aa34cc62e3d628e3130bd5b53a2d81fa0fab0f34889e8fb65",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi",
+            "descriptionPath",
+            "operationId"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "3531158e527e144aa34cc62e3d628e3130bd5b53a2d81fa0fab0f34889e8fb65",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b557337a0a14b6180911906b",
+        "type": "evidence",
+        "path": "docs/contribute/index.md",
+        "heading": "How to contribute",
+        "start_line": 5,
+        "end_line": 8,
+        "start_char": 29,
+        "end_char": 283,
+        "score": "0.033828495801387366",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b557337a0a14b6180911906b",
+        "source_type": "repository",
+        "content_hash": "78113c3061c969c78064ede7cbd62ba09034181a5b8984d80ea86af4e5312a79",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "78113c3061c969c78064ede7cbd62ba09034181a5b8984d80ea86af4e5312a79",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c23b2f7954dcf323d79b873d",
+        "type": "evidence",
+        "path": "src/schemas/src_schemas/httpRequest_v2.schema.json",
+        "heading": "",
+        "start_line": 280,
+        "end_line": 284,
+        "start_char": 8181,
+        "end_char": 8211,
+        "score": "0.029051670471052088",
+        "root": "code",
+        "matched_terms": [],
+        "evidence_id": "c23b2f7954dcf323d79b873d",
+        "source_type": "repository",
+        "content_hash": "dad483568fdeadd9e3e8ebb16b20955c48f2288cbf257618ac39cc760083e3be",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "dad483568fdeadd9e3e8ebb16b20955c48f2288cbf257618ac39cc760083e3be",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c413e024cad6b96d566147e8",
+        "type": "evidence",
+        "path": "docs/get-started/actions/httpRequest.md",
+        "heading": "description: Perform a generic HTTP request, for example to an API.",
+        "start_line": 7,
+        "end_line": 9,
+        "start_char": 88,
+        "end_char": 161,
+        "score": "0.03384809634809635",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "c413e024cad6b96d566147e8",
+        "source_type": "repository",
+        "content_hash": "0996984acc14591a9d8bab2487a2550ef79068e353191059048c0398a3fa309e",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "httpRequest url",
+            "openApi",
+            "step schema"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0996984acc14591a9d8bab2487a2550ef79068e353191059048c0398a3fa309e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c54dbc7e4436d5b72ae9c28f",
+        "type": "evidence",
+        "path": "docs/references/schemas/context.md",
+        "heading": "context > Examples",
+        "start_line": 72,
+        "end_line": 75,
+        "start_char": 1895,
+        "end_char": 1917,
+        "score": "0.041719979736681304",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "c54dbc7e4436d5b72ae9c28f",
+        "source_type": "repository",
+        "content_hash": "bf97e16486e744b0f1714eb75a000b33a0b2bcd9fc8a4b8de0c950fa4bd05b02",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi reference",
+            "references/schemas",
+            "schema reference page"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "bf97e16486e744b0f1714eb75a000b33a0b2bcd9fc8a4b8de0c950fa4bd05b02",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c7ad1b4ccf950c7650c6c127",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/files.js",
+        "start_line": 1,
+        "total_lines": 64,
+        "start_char": 0,
+        "end_char": 1795,
+        "evidence_id": "c7ad1b4ccf950c7650c6c127",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "eaa728449e62200fe2152a5a4796d6d4195dd3dba4c5bef3c3ecfb3bf98a9ab6",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/files.js",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/validate.js",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "eaa728449e62200fe2152a5a4796d6d4195dd3dba4c5bef3c3ecfb3bf98a9ab6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c7ada9ae2d9ce8d3d619cced",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/httpRequest.md",
+        "start_line": 1,
+        "total_lines": 123,
+        "start_char": 0,
+        "end_char": 4521,
+        "evidence_id": "c7ada9ae2d9ce8d3d619cced",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "56781e2d06ac94a329fa946a7fddc493d5eb99d12b515aa528e82f7ca090146b",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "56781e2d06ac94a329fa946a7fddc493d5eb99d12b515aa528e82f7ca090146b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cc80a11fdb7791d1440acbaa",
+        "type": "evidence",
+        "path": "src/schemas/dereferenceSchemas.js",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1563,
+        "score": "0.031544957774465976",
+        "root": "code",
+        "matched_terms": [
+          "httprequest_v2",
+          "json",
+          "openapi_v2",
+          "schema"
+        ],
+        "evidence_id": "cc80a11fdb7791d1440acbaa",
+        "source_type": "repository",
+        "content_hash": "cfc4a62f630db260d45a3a9136780073467e4c9664a7ec9c464d72b6d177b155",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "cfc4a62f630db260d45a3a9136780073467e4c9664a7ec9c464d72b6d177b155",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cc8b6ee65832b308cf5dcb7a",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.03750174556626169",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "cc8b6ee65832b308cf5dcb7a",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "validate addDefaults",
+            "resolvePaths"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ce7d5ae8af27484163e69378",
+        "type": "evidence",
+        "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+        "heading": "tags: [docusaurus]",
+        "start_line": 5,
+        "end_line": 20,
+        "start_char": 64,
+        "end_char": 439,
+        "score": "0.03704169767000773",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ce7d5ae8af27484163e69378",
+        "source_type": "repository",
+        "content_hash": "afdb92b6035cfb780a266cdb3cd0f061051a7c65e4cf596edb9935b8a33fb8ab",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "afdb92b6035cfb780a266cdb3cd0f061051a7c65e4cf596edb9935b8a33fb8ab",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cf73c175fd61f0cd797dd06d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/contribute/repos/doc-detective.github.io.md",
+        "start_line": 1,
+        "total_lines": 9,
+        "start_char": 0,
+        "end_char": 427,
+        "evidence_id": "cf73c175fd61f0cd797dd06d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "fd196c05f40e41037a8877b2d09f67b42f257ab1a1d474ce5c4085165422489c",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/goTo.md",
+              "offset": 13,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fd196c05f40e41037a8877b2d09f67b42f257ab1a1d474ce5c4085165422489c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d0a41e91ff60b0247a4f9929",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective-core.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.039428455748080946",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "d0a41e91ff60b0247a4f9929",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "validate addDefaults",
+            "resolvePaths"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d18183d9d647797f6eef879c",
+        "type": "evidence",
+        "path": "src/files.js",
+        "heading": "",
+        "start_line": 51,
+        "end_line": 64,
+        "start_char": 1532,
+        "end_char": 1795,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "readfile"
+        ],
+        "evidence_id": "d18183d9d647797f6eef879c",
+        "source_type": "repository",
+        "content_hash": "44607049eee0d98f0c6a777c6655276ed2d68e43b550a8d43ec4ea5a84b2ff40",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "readFile",
+            "addDefaults"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "44607049eee0d98f0c6a777c6655276ed2d68e43b550a8d43ec4ea5a84b2ff40",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d27e67fd678f4a398442524d",
+        "type": "evidence",
+        "path": "docs/get-started/concepts.md",
+        "heading": "Concepts > Action",
+        "start_line": 21,
+        "end_line": 31,
+        "start_char": 533,
+        "end_char": 2187,
+        "score": "0.032499746886706496",
+        "root": "docs",
+        "matched_terms": [
+          "httprequest",
+          "step",
+          "url"
+        ],
+        "evidence_id": "d27e67fd678f4a398442524d",
+        "source_type": "repository",
+        "content_hash": "370d69b7951c405ff373775099f681cec7c3896278bf98f6ead4ce162d10c652",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "httpRequest url",
+            "openApi",
+            "step schema"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "370d69b7951c405ff373775099f681cec7c3896278bf98f6ead4ce162d10c652",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:db41a65d5a1d94b10ac54f8c",
+        "type": "evidence",
+        "path": "test/files.test.js",
+        "heading": "",
+        "start_line": 51,
+        "end_line": 97,
+        "start_char": 1497,
+        "end_char": 3170,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "readfile"
+        ],
+        "evidence_id": "db41a65d5a1d94b10ac54f8c",
+        "source_type": "repository",
+        "content_hash": "940d443f57018e329fe2e161cb6766c5c19e6c72c236e88276b3ccf0faac67e4",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "readFile",
+            "addDefaults"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "940d443f57018e329fe2e161cb6766c5c19e6c72c236e88276b3ccf0faac67e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:de09913d06be1813c826b5aa",
+        "type": "evidence",
+        "evidence_id": "de09913d06be1813c826b5aa",
+        "source_type": "task",
+        "exported_content_sha256": "767c81f68d5a9de0cb3bd8e3e5c979ae648f72c7680a44f61508e2dd792c262c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e375098ac2dd3f8463bd6c81",
+        "type": "evidence",
+        "path": "docs/get-started/config/contexts/index.md",
+        "heading": "Contexts > Specifying contexts",
+        "start_line": 19,
+        "end_line": 55,
+        "start_char": 990,
+        "end_char": 2062,
+        "score": "0.035163840310899135",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "spec",
+          "test"
+        ],
+        "evidence_id": "e375098ac2dd3f8463bd6c81",
+        "source_type": "repository",
+        "content_hash": "52204a27cd4dc808c54d5fb55baf9842e1374e54dfeb37f43784b6678b9f7caf",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi config",
+            "openApi spec",
+            "openApi test"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "52204a27cd4dc808c54d5fb55baf9842e1374e54dfeb37f43784b6678b9f7caf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e3ee4f3a4b182f964afbacd8",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/tests/index.md",
+        "start_line": 309,
+        "total_lines": 410,
+        "start_char": 10924,
+        "end_char": 13057,
+        "evidence_id": "e3ee4f3a4b182f964afbacd8",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d95c89106da4f5a1eeed6f9d3ad25892b5a923388fdc420099565d266a1a8e08",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 452,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/tests/index.md",
+              "offset": 308,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "d95c89106da4f5a1eeed6f9d3ad25892b5a923388fdc420099565d266a1a8e08",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e746516af29854bebb24db2f",
+        "type": "evidence",
+        "path": "blog/_2021-02-28-greetings.md",
+        "heading": "tags: [greetings]",
+        "start_line": 13,
+        "end_line": 18,
+        "start_char": 338,
+        "end_char": 474,
+        "score": "0.034891429429128935",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "e746516af29854bebb24db2f",
+        "source_type": "repository",
+        "content_hash": "8129712d47e79ab79d959a6df612eb2de4332af6cc6e1b565fd6d3ee53efdea9",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "readFile",
+            "addDefaults",
+            "validate("
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "8129712d47e79ab79d959a6df612eb2de4332af6cc6e1b565fd6d3ee53efdea9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e7a9b456354c923d6972f51a",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/schemas/src_schemas/openApi_v2.schema.json",
+        "start_line": 1,
+        "total_lines": 64,
+        "start_char": 0,
+        "end_char": 3074,
+        "evidence_id": "e7a9b456354c923d6972f51a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "72e3957867055a61681eb7e72cf6b8064a1c8c50c01930c68fd6debe7b09fbc7",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/schemas/src_schemas/openApi_v2.schema.json",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/schemas/src_schemas/httpRequest_v2.schema.json",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "72e3957867055a61681eb7e72cf6b8064a1c8c50c01930c68fd6debe7b09fbc7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee4adc773217b3f184efb27c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/contribute/repos/doc-detective-common.md",
+        "start_line": 1,
+        "total_lines": 9,
+        "start_char": 0,
+        "end_char": 410,
+        "evidence_id": "ee4adc773217b3f184efb27c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "28d33af7adb8987ca7fbfcf02362d24abff0183245e9811b075dc17c25137551",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/index.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "28d33af7adb8987ca7fbfcf02362d24abff0183245e9811b075dc17c25137551",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eeb2a94bf6caaea0819d3e24",
+        "type": "evidence",
+        "path": "src/validate.js",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1645,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "adddefaults"
+        ],
+        "evidence_id": "eeb2a94bf6caaea0819d3e24",
+        "source_type": "repository",
+        "content_hash": "4a951046d8949a386e1b9440adb421db2e0547d6163a7806279eb1824dbca25b",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "readFile",
+            "addDefaults"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "4a951046d8949a386e1b9440adb421db2e0547d6163a7806279eb1824dbca25b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f130f8679847d0132c46c290",
+        "type": "evidence",
+        "path": "src/schemas/src_schemas/find_v1.schema.json",
+        "heading": "",
+        "start_line": 51,
+        "end_line": 100,
+        "start_char": 1429,
+        "end_char": 2731,
+        "score": "0.02694394213381555",
+        "root": "code",
+        "matched_terms": [
+          "json",
+          "schema"
+        ],
+        "evidence_id": "f130f8679847d0132c46c290",
+        "source_type": "repository",
+        "content_hash": "d5fc2d1b7cb3fc4c6e29af329a175be059d0376abb19a4682eddd81eaca98484",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d5fc2d1b7cb3fc4c6e29af329a175be059d0376abb19a4682eddd81eaca98484",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f42ba8b25676ce98d34e55e9",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/httpRequest.md",
+        "start_line": 2,
+        "total_lines": 123,
+        "start_char": 1,
+        "end_char": 4550,
+        "evidence_id": "f42ba8b25676ce98d34e55e9",
+        "truncated": false,
+        "next_offset": 121,
+        "source_type": "repository",
+        "content_hash": "06bbeab2e71e92e663daf0a61ba07d9cf094d08f82c38fcbfdb876201a75ba6b",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/goTo.md",
+              "offset": 13,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "06bbeab2e71e92e663daf0a61ba07d9cf094d08f82c38fcbfdb876201a75ba6b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fa370b12ed564216009f2a65",
+        "type": "evidence",
+        "path": "src/schemas/src_schemas/spec_v2.schema.json",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1272,
+        "score": "0.025396825396825397",
+        "root": "code",
+        "matched_terms": [
+          "json",
+          "openapi_v2",
+          "schema"
+        ],
+        "evidence_id": "fa370b12ed564216009f2a65",
+        "source_type": "repository",
+        "content_hash": "652b524eb85c09e2e48b990cfa77e89938bc3b57681f9a42f8f3c243c3e440a1",
+        "revision": "b96d739cc3d054c64e6aa54dc647ac7a24b890d5",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "openApi_v2.schema.json",
+            "httpRequest_v2.schema.json"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "652b524eb85c09e2e48b990cfa77e89938bc3b57681f9a42f8f3c243c3e440a1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fae43c03d2809235c2258a4b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/actions/goTo.md",
+        "start_line": 14,
+        "total_lines": 51,
+        "start_char": 237,
+        "end_char": 881,
+        "evidence_id": "fae43c03d2809235c2258a4b",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3c4df2d61338ed3bd679763c40b18bc7fe43bb93e0a10d151622693b06bb980d",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/httpRequest.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/goTo.md",
+              "offset": 13,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3c4df2d61338ed3bd679763c40b18bc7fe43bb93e0a10d151622693b06bb980d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fbe2406d84468345742357ae",
+        "type": "evidence",
+        "root": "docs",
+        "path": "blog/_2019-05-28-first-blog-post.md",
+        "start_line": 5,
+        "total_lines": 12,
+        "start_char": 58,
+        "end_char": 389,
+        "evidence_id": "fbe2406d84468345742357ae",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3e80c511a70b7c48d682c643c986050a9d70e2e1a443b15978b16dcd5c1058da",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "README.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 24,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "3e80c511a70b7c48d682c643c986050a9d70e2e1a443b15978b16dcd5c1058da",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fc137a03cccff204f7df8da3",
+        "type": "evidence",
+        "path": "docs/references/schemas/specification.md",
+        "heading": "specification > Examples",
+        "start_line": 66,
+        "end_line": 115,
+        "start_char": 1443,
+        "end_char": 2578,
+        "score": "0.03475624922273349",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "fc137a03cccff204f7df8da3",
+        "source_type": "repository",
+        "content_hash": "78ca30c8f134c1918b1acd5a4321faa514738b71217f01b82bc8c73ae71b4090",
+        "revision": "b7ead2fdb0a2e544bb504eb0ba9b66b2d6b324b9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "openApi reference",
+            "references/schemas",
+            "schema reference page"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "78ca30c8f134c1918b1acd5a4321faa514738b71217f01b82bc8c73ae71b4090",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:httpRequest-openapi",
+        "type": "requirement",
+        "description": "Update docs/references/schemas/httpRequest.md: make `url` optional (required only when no `openApi` reference is provided) and add an `openApi` field row describing the OpenAPI operation reference block (descriptionPath, operationId, server, validateAgainstSchema, useExample, mockResponse, statusCode)."
+      },
+      {
+        "id": "requirement:openapi-schema-page",
+        "type": "requirement",
+        "description": "Create a new reference page docs/references/schemas/openApi.md documenting the new `openApi` schema object: name, descriptionPath, operationId, server, validateAgainstSchema (enum request/response/both/none, default both), mockResponse, statusCode, useExample (enum, default none), and note it can be referenced at config, spec, test, and step levels."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/references/schemas/httpRequest.md",
+        "hash": "78d88caabddb98d949dced257ed78c7ae43346a269517985907790c6cdce806a"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/references/schemas/openApi.md",
+        "hash": "757a20739037b80ba381653615f8b936276aff4e14f5e595aa1031419a409c9d"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "httpRequest-openapi",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/references/schemas/httpRequest.md"
+        ],
+        "evidence_ids": [
+          "c7ada9ae2d9ce8d3d619cced",
+          "f42ba8b25676ce98d34e55e9",
+          "e7a9b456354c923d6972f51a"
+        ],
+        "reason": "Update docs/references/schemas/httpRequest.md: make `url` optional (required only when no `openApi` reference is provided) and add an `openApi` field row describing the OpenAPI operation reference block (descriptionPath, operationId, server, validateAgainstSchema, useExample, mockResponse, statusCode)."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "openapi-schema-page",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/references/schemas/openApi.md"
+        ],
+        "evidence_ids": [
+          "e7a9b456354c923d6972f51a",
+          "6b0c07190d966ecf2325c286",
+          "230ea5b1c44d1d55e38520a2"
+        ],
+        "reason": "Create a new reference page docs/references/schemas/openApi.md documenting the new `openApi` schema object: name, descriptionPath, operationId, server, validateAgainstSchema (enum request/response/both/none, default both), mockResponse, statusCode, useExample (enum, default none), and note it can be referenced at config, spec, test, and step levels."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "local_repair",
+        "defects": [
+          {
+            "requirement_id": "openapi-schema-page",
+            "path": "docs/references/schemas/openApi.md",
+            "reason": "The new openApi schema page omits two documented properties present in the schema: `exampleKey` (string, default \"\") and `requestHeaders` (object of string values, request headers added to the request, step overrides config). Add rows for both so the reference page fully covers the schema."
+          }
+        ]
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "What user-facing documentation exists for the public API (validate, readFile, resolvePaths) and how is it structured?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "How is the httpRequest step and its url field documented, and is there existing OpenAPI documentation?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What does the new openApi schema and httpRequest schema change look like in code?"
+      },
+      {
+        "id": "research:Q1-4",
+        "type": "research_question",
+        "description": "What is the implementation of readFile and validate addDefaults in src?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Is there an existing reference page for the openApi schema, and how are schema reference pages structured/generated (e.g., httpRequest.md, config.md, spec.md, test.md)?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Do the config, spec, and test reference pages document the new openApi property at those levels?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Is there any documentation of the public API functions (validate, resolvePaths, readFile) that would need readFile/addDefaults updates?"
+      },
+      {
+        "id": "research:Q3-1",
+        "type": "research_question",
+        "description": "Does the httpRequest reference page document the new openApi block and optional url, and is there an openApi schema reference page?"
+      },
+      {
+        "id": "research:Q3-2",
+        "type": "research_question",
+        "description": "Do config, spec, and test reference pages include the new openApi property at those levels?"
+      },
+      {
+        "id": "research:Q3-3",
+        "type": "research_question",
+        "description": "Is there any user-facing documentation of the public API functions (validate, readFile, resolvePaths) that needs updating for readFile and addDefaults?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:01b92c545fcf078fa347bf2b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:031b615e563913260d3f7d7f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0bfcfff5f5cc2b27b433bcf6",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0eb9f8a2fa975148401b140a",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0eb9f8a2fa975148401b140a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:113e759a8cec578dc1dce9e0",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:113e759a8cec578dc1dce9e0",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:141001efec92930817f96303",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:14bd506ff4020bb31c1e0d28",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:159fce0e378b67e32fce6c94",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1985fef3c897da24749457fd",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1ba6a1688767228aec48ee73",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1fd7d78e21041a056c1a3585",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1fdff7dafb722fec7d68ebf5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1fdff7dafb722fec7d68ebf5",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:230ea5b1c44d1d55e38520a2",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:26ffc3dd9b039e18e1a5d2df",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:26ffc3dd9b039e18e1a5d2df",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:26ffc3dd9b039e18e1a5d2df",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:26ffc3dd9b039e18e1a5d2df",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2ee15fd17beda9a4ac2385ff",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3e6a067cbf4cb5cdbcc796f4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3f944cc2d97ac06e512be571",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:44e742b2e583cd5727315d3d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4682842de2470dac4badcbc9",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4b83cfd00ca6e9c73d1bed5c",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4c45a23f5ce9bec61d2a90b0",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4c9c31f956859f8aa8c53644",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4cfce0a345f0028f2317bb21",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:53d88a7164e724289248f5a7",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:55996cac1f95c12a96e9f388",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:55996cac1f95c12a96e9f388",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:55996cac1f95c12a96e9f388",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:55996cac1f95c12a96e9f388",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:55996cac1f95c12a96e9f388",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:575084cd9fbeb104ade7d906",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:575084cd9fbeb104ade7d906",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:575084cd9fbeb104ade7d906",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:575084cd9fbeb104ade7d906",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5e40675119ff5bbae59e020b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5e40675119ff5bbae59e020b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5e40675119ff5bbae59e020b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6087d747ac472a85aaee0dba",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:60e2aee8a9794a9da798c5c2",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:62713e404b747953346a6f78",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:63bab4ac7fc1667c501bd658",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64af1816eaacef869fbd9aeb",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:659cc44e45913e34a6cec9e7",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6b0c07190d966ecf2325c286",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:76836b1f9a5093e8e7bd37da",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:76836b1f9a5093e8e7bd37da",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:76836b1f9a5093e8e7bd37da",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:779e86cd4b46796f79280190",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:779e86cd4b46796f79280190",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:77c781565398271fe9a63759",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7b57c0fcd8f2dfea0be4cb16",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:801ef38d493d8857c1634f8e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:801ef38d493d8857c1634f8e",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8113b46a3b18d056712a96d4",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:814a04e29170e26afb76c8b5",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83a1c5616a0884818e0b6100",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83a1c5616a0884818e0b6100",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83a1c5616a0884818e0b6100",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83a1c5616a0884818e0b6100",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8702882bebe35eac75855248",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:890c2e3897e95353a9d60fec",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8c323a300eb132b36ac67f32",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8c323a300eb132b36ac67f32",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8c323a300eb132b36ac67f32",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8c323a300eb132b36ac67f32",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8d2e43c6d4fa2b9a972455c0",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8e62bc1636c73fa9d392318a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8f4dcfada9e17c1a812bb7cd",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:91c89a206e0fd7251bb8149a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9292527ee43de9ac38b4cf9a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:979b1ccd21d62ba6df7b4ff0",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9dc30d401cbb2b775c0bfb79",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9dc30d401cbb2b775c0bfb79",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a192007de53ce2f71b843f4a",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a36b920918eb682bcacbc247",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a9343cebe120b68f96dba887",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ab298b22cb965cd3f6f3ddfa",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ab298b22cb965cd3f6f3ddfa",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ab298b22cb965cd3f6f3ddfa",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ab298b22cb965cd3f6f3ddfa",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac5de73eec4acbc6784cf82e",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ad166a2776eba2de5c84d8eb",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ad166a2776eba2de5c84d8eb",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b11e8381f42d0c4f1e3eec36",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b411eeb3df81163cac527a64",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b418b7cdbf2514fcf8c0fafc",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b557337a0a14b6180911906b",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c23b2f7954dcf323d79b873d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c413e024cad6b96d566147e8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c54dbc7e4436d5b72ae9c28f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c7ad1b4ccf950c7650c6c127",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c7ada9ae2d9ce8d3d619cced",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cc80a11fdb7791d1440acbaa",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cc8b6ee65832b308cf5dcb7a",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ce7d5ae8af27484163e69378",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ce7d5ae8af27484163e69378",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cf73c175fd61f0cd797dd06d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d0a41e91ff60b0247a4f9929",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d0a41e91ff60b0247a4f9929",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d18183d9d647797f6eef879c",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d27e67fd678f4a398442524d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:db41a65d5a1d94b10ac54f8c",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e375098ac2dd3f8463bd6c81",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e3ee4f3a4b182f964afbacd8",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e746516af29854bebb24db2f",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e7a9b456354c923d6972f51a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee4adc773217b3f184efb27c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eeb2a94bf6caaea0819d3e24",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f130f8679847d0132c46c290",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f42ba8b25676ce98d34e55e9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fa370b12ed564216009f2a65",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fae43c03d2809235c2258a4b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fbe2406d84468345742357ae",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fc137a03cccff204f7df8da3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fc137a03cccff204f7df8da3",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c7ada9ae2d9ce8d3d619cced",
+        "to": "requirement:httpRequest-openapi",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:f42ba8b25676ce98d34e55e9",
+        "to": "requirement:httpRequest-openapi",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:e7a9b456354c923d6972f51a",
+        "to": "requirement:httpRequest-openapi",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:e7a9b456354c923d6972f51a",
+        "to": "requirement:openapi-schema-page",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6b0c07190d966ecf2325c286",
+        "to": "requirement:openapi-schema-page",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:230ea5b1c44d1d55e38520a2",
+        "to": "requirement:openapi-schema-page",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:httpRequest-openapi",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:c7ada9ae2d9ce8d3d619cced",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f42ba8b25676ce98d34e55e9",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:e7a9b456354c923d6972f51a",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:openapi-schema-page",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:e7a9b456354c923d6972f51a",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6b0c07190d966ecf2325c286",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:230ea5b1c44d1d55e38520a2",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:httpRequest-openapi",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:c7ada9ae2d9ce8d3d619cced",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f42ba8b25676ce98d34e55e9",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:e7a9b456354c923d6972f51a",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:openapi-schema-page",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:e7a9b456354c923d6972f51a",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6b0c07190d966ecf2325c286",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:230ea5b1c44d1d55e38520a2",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "bde56f5e87bd5c8ed9612b657f9b61f5e59f8c5d1e81ae877cd2d4676ab524f7"
+}

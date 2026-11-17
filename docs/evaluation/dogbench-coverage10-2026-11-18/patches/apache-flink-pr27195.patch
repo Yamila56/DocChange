@@ -1,0 +1,19 @@
+diff --git a/docs/content/docs/dev/datastream/operators/asyncio.md b/docs/content/docs/dev/datastream/operators/asyncio.md
+index b587350ef3a343a2602faddfd06c247c5d8b4042..f6a1e08d1289e50432ae8be9b8785d9c96a92c0b 100644
+--- a/docs/content/docs/dev/datastream/operators/asyncio.md
++++ b/docs/content/docs/dev/datastream/operators/asyncio.md
+@@ -228,6 +228,14 @@ The retry support introduces a built-in mechanism for async operator which being
+     or to be forced to terminate the retry at the end of the task (in this case, the system takes the last execution result or exception as the final state).
+ 
+   - **AsyncRetryPredicate**: The retry condition can be triggered based on the return result or the execution exception.
++    The methods of `AsyncRetryPredicate` and `AsyncRetryStrategy` are abstract, so a subclass must implement all of them;
++    otherwise instantiating the subclass raises a `TypeError`.
++
++For convenience, the Python API provides three built-in predicate functions that can be used directly as retry conditions:
++
++  - `empty_result_predicate`: matches when the result collection is `None` or empty.
++  - `has_exception_predicate`: matches when an exception is present.
++  - `exception_type_predicate`: matches when the exception is an instance of a specific type.
+ 
+ 
+ ### Implementation Tips

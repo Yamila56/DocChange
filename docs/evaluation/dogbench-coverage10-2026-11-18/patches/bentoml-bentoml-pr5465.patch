@@ -1,0 +1,51 @@
+diff --git a/docs/source/build-with-bentoml/observability/metrics.rst b/docs/source/build-with-bentoml/observability/metrics.rst
+index 1142e46dc4e841f5d3800aeacf44cf0c286d33c2..ffc80200b7df6a75bdbfac8d7dffdf8f8ec1f8e6 100644
+--- a/docs/source/build-with-bentoml/observability/metrics.rst
++++ b/docs/source/build-with-bentoml/observability/metrics.rst
+@@ -273,6 +273,27 @@ To define custom metrics, use the metric classes from the ``prometheus_client``
+ 
+ For more information on ``prometheus_client``, see the `Prometheus Python client library documentation <https://prometheus.github.io/client_python/>`_.
+ 
++Customize the metrics output
++^^^^^^^^^^^^^^^^^^^^^^^^^^^^
++
++You can define a ``__metrics__`` method on your Service class to post-process the metrics exposed at the ``/metrics`` endpoint. It receives the raw Prometheus metrics text as a string and must return the modified text. This is useful for injecting additional metric lines into the response. The method can be synchronous or asynchronous.
++
++.. code-block:: python
++
++    import bentoml
++
++    @bentoml.service
++    class MetricsService:
++        def __metrics__(self, metrics_content: str) -> str:
++            # Append a custom metric line to the default metrics output
++            return metrics_content + '\nmy_custom_metric 1.0\n'
++
++        @bentoml.api
++        def predict(self, text: str) -> str:
++            return text
++
++The ``/metrics`` endpoint is only available when metrics are enabled (the default). See :doc:`/reference/bentoml/configurations` for the ``metrics`` configuration.
++
+ An example with custom metrics
+ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ 
+diff --git a/docs/source/reference/bentoml/configurations.rst b/docs/source/reference/bentoml/configurations.rst
+index 548ee861064d2a137f2585a8190a2f4f1437ac56..70735e3d751fdc7068aface173c2fc016c143bd2 100644
+--- a/docs/source/reference/bentoml/configurations.rst
++++ b/docs/source/reference/bentoml/configurations.rst
+@@ -237,6 +237,14 @@ By default, BentoML starts an HTTP server on port ``3000``. To change the port:
+     class MyService:
+         # Service implementation
+ 
++If your Service declares a custom command (via ``__command__``), BentoML serves it through an in-process reverse proxy that forwards incoming requests to the HTTP server started by that command. Use ``proxy_port`` to tell BentoML which port the custom command's server binds to. It defaults to ``8000``:
++
++.. code-block:: python
++
++    @bentoml.service(http={"proxy_port": 8000})
++    class MyService:
++        # Service implementation
++
+ You can configure `CORS <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>`_ settings if your Service needs to accept cross-origin requests. By default, CORS is disabled. If it is enabled, all fields under ``http.cors`` will be parsed to `CORSMiddleware <https://www.starlette.io/middleware/#corsmiddleware>`_. Here is an example:
+ 
+ .. code-block:: python

@@ -1,0 +1,3403 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "config-arazzo-field",
+      "description": "Add an `arazzo` field row to the config schema Fields table in docs/references/schemas/config.md, documenting it as an optional array of object(arazzo) entries where each entry requires `name` and `descriptionPath` and does not permit `workflowId`/`inputs` at the config level.",
+      "evidence_ids": [
+        "60a42b7fb5a290b98a9f3090",
+        "5e255f536c6f71bb97a76327",
+        "dc7b398b7c5b3625890e6c49"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "spec-tests-arazzo",
+      "description": "Update docs/references/schemas/specification.md so the `tests` field type notes items can be either object(test) or object(arazzo) workflow references, reflecting the widened anyOf union and that `workflowId`/`inputs` are allowed at the test level.",
+      "evidence_ids": [
+        "c3c9bb6772c532625635af13",
+        "5f7af4d5f15ce649f642e1f0",
+        "dc7b398b7c5b3625890e6c49"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "new-arazzo-schema-page",
+      "description": "Create a new schema reference page docs/references/schemas/arazzo.md documenting the arazzo object fields (`name`, `descriptionPath`, `workflowId`, `inputs`) with descriptions and examples, matching the structure of existing schema reference pages.",
+      "evidence_ids": [
+        "230ea5b1c44d1d55e38520a2",
+        "dc7b398b7c5b3625890e6c49"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "7e6e02a851e0f285ce991f00976a87f1c89a7a2c466ef72a89c6fde44896599c",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the existing documentation describe Arazzo support, the `arazzo` config field, or Arazzo workflow references in tests?",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 24,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "fbe2406d84468345742357ae",
+            "8e62bc1636c73fa9d392318a",
+            "1ba6a1688767228aec48ee73",
+            "4ff03d4a4facde3b9d79b626",
+            "8c323a300eb132b36ac67f32",
+            "575084cd9fbeb104ade7d906",
+            "78238ed8a8ea8dd2498cffaa",
+            "83a1c5616a0884818e0b6100",
+            "26ffc3dd9b039e18e1a5d2df",
+            "ce7d5ae8af27484163e69378",
+            "d0a41e91ff60b0247a4f9929",
+            "76836b1f9a5093e8e7bd37da",
+            "2eb792fde0dee325ab6fcadb",
+            "5494c029987a030fc8a9b07b",
+            "ab298b22cb965cd3f6f3ddfa"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.04865990111891751"
+            },
+            {
+              "rank": 2,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "8c323a300eb132b36ac67f32",
+              "score": "0.046511196246139225"
+            },
+            {
+              "rank": 3,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "575084cd9fbeb104ade7d906",
+              "score": "0.04540253653156879"
+            },
+            {
+              "rank": 4,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.04466027597918165"
+            },
+            {
+              "rank": 5,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "83a1c5616a0884818e0b6100",
+              "score": "0.04399522132796781"
+            },
+            {
+              "rank": 6,
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "evidence_id": "26ffc3dd9b039e18e1a5d2df",
+              "score": "0.04203160024055547"
+            },
+            {
+              "rank": 7,
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "evidence_id": "ce7d5ae8af27484163e69378",
+              "score": "0.04034364855260378"
+            },
+            {
+              "rank": 8,
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "evidence_id": "d0a41e91ff60b0247a4f9929",
+              "score": "0.04030721600381043"
+            },
+            {
+              "rank": 9,
+              "path": "README.md",
+              "evidence_id": "76836b1f9a5093e8e7bd37da",
+              "score": "0.03886178861788618"
+            },
+            {
+              "rank": 10,
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "evidence_id": "2eb792fde0dee325ab6fcadb",
+              "score": "0.038319704986371654"
+            },
+            {
+              "rank": 11,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.037089646464646464"
+            },
+            {
+              "rank": 12,
+              "path": "docs/contribute/index.md",
+              "evidence_id": "ab298b22cb965cd3f6f3ddfa",
+              "score": "0.036943164362519196"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "start": 4,
+              "end": 12,
+              "total_lines": 12
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "start": 24,
+              "end": 44,
+              "total_lines": 44
+            },
+            {
+              "path": "README.md",
+              "start": 0,
+              "end": 23,
+              "total_lines": 23
+            }
+          ],
+          "read_evidence_ids": [
+            "fbe2406d84468345742357ae",
+            "8e62bc1636c73fa9d392318a",
+            "1ba6a1688767228aec48ee73"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where in the docs are config schema fields (like `tests`, `mockResponse`) documented, so the new `arazzo` array can be added?",
+          "root": "docs",
+          "queries": [
+            "config schema",
+            "tests field",
+            "mockResponse"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 452,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d9d91eedaa9ac19781f573ee",
+            "5f7af4d5f15ce649f642e1f0",
+            "979b1ccd21d62ba6df7b4ff0",
+            "0eb9f8a2fa975148401b140a",
+            "f854a7e6894fb9cc598e9472",
+            "ad166a2776eba2de5c84d8eb",
+            "1fdff7dafb722fec7d68ebf5",
+            "3fa8e63f52e976bb3f4d46b9",
+            "1985fef3c897da24749457fd",
+            "a1b16d8180f5f7f397283140",
+            "159fce0e378b67e32fce6c94",
+            "8702882bebe35eac75855248",
+            "712f218aa9c1954376713935",
+            "5494c029987a030fc8a9b07b",
+            "315c2b787697e44c23a2d164"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "0eb9f8a2fa975148401b140a",
+              "score": "0.03648901189884796"
+            },
+            {
+              "rank": 2,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "f854a7e6894fb9cc598e9472",
+              "score": "0.033271506193621396"
+            },
+            {
+              "rank": 3,
+              "path": "docs/references/schemas/config.md",
+              "evidence_id": "ad166a2776eba2de5c84d8eb",
+              "score": "0.032783979733625734"
+            },
+            {
+              "rank": 4,
+              "path": "docs/get-started/config/contexts/index.md",
+              "evidence_id": "1fdff7dafb722fec7d68ebf5",
+              "score": "0.03232758620689655"
+            },
+            {
+              "rank": 5,
+              "path": "docs/references/schemas/config.md",
+              "evidence_id": "3fa8e63f52e976bb3f4d46b9",
+              "score": "0.03199238831129399"
+            },
+            {
+              "rank": 6,
+              "path": "docs/get-started/sample-tests.md",
+              "evidence_id": "1985fef3c897da24749457fd",
+              "score": "0.031689169570267135"
+            },
+            {
+              "rank": 7,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "a1b16d8180f5f7f397283140",
+              "score": "0.030946088794926004"
+            },
+            {
+              "rank": 8,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "159fce0e378b67e32fce6c94",
+              "score": "0.030637726560751852"
+            },
+            {
+              "rank": 9,
+              "path": "docs/references/schemas/httpRequest.md",
+              "evidence_id": "8702882bebe35eac75855248",
+              "score": "0.03042328042328042"
+            },
+            {
+              "rank": 10,
+              "path": "docs/references/schemas/httpRequest.md",
+              "evidence_id": "712f218aa9c1954376713935",
+              "score": "0.03000096871064613"
+            },
+            {
+              "rank": 11,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.029316706736061578"
+            },
+            {
+              "rank": 12,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "315c2b787697e44c23a2d164",
+              "score": "0.029098154154040493"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "start": 1,
+              "end": 121,
+              "total_lines": 132
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "start": 1,
+              "end": 121,
+              "total_lines": 126
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "start": 452,
+              "end": 497,
+              "total_lines": 497
+            }
+          ],
+          "read_evidence_ids": [
+            "d9d91eedaa9ac19781f573ee",
+            "5f7af4d5f15ce649f642e1f0",
+            "979b1ccd21d62ba6df7b4ff0"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Where in the docs are spec test items documented, to note that tests can now be Arazzo workflow references?",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/get-started/tests/index.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 361,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "offset": 190,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d19a037c1e37ebada4a10b13",
+            "141001efec92930817f96303",
+            "4c692ee119c3d684c5e9dca4",
+            "315c2b787697e44c23a2d164",
+            "1fdff7dafb722fec7d68ebf5",
+            "6dd776f5d8cdeeded57fb718",
+            "9d8be7113bc9f18732059882",
+            "0eb9f8a2fa975148401b140a",
+            "2c2eff8a60bdb472f0fcc9ae",
+            "ae5e7b028ee0556cd538c923",
+            "144fdcbae58baf5edefb8c13",
+            "53d88a7164e724289248f5a7",
+            "0fbba4fd2c28e70ac7967033",
+            "200d4ccb5fdfed9fa12f157c",
+            "61dab2ee0543aa804c64aa0d"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "315c2b787697e44c23a2d164",
+              "score": "0.04137162188136701"
+            },
+            {
+              "rank": 2,
+              "path": "docs/get-started/config/contexts/index.md",
+              "evidence_id": "1fdff7dafb722fec7d68ebf5",
+              "score": "0.03609787612048777"
+            },
+            {
+              "rank": 3,
+              "path": "docs/get-started/create-your-first-test.md",
+              "evidence_id": "6dd776f5d8cdeeded57fb718",
+              "score": "0.035141708822346865"
+            },
+            {
+              "rank": 4,
+              "path": "docs/get-started/concepts.md",
+              "evidence_id": "9d8be7113bc9f18732059882",
+              "score": "0.034432234432234435"
+            },
+            {
+              "rank": 5,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "0eb9f8a2fa975148401b140a",
+              "score": "0.03383293615953844"
+            },
+            {
+              "rank": 6,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "2c2eff8a60bdb472f0fcc9ae",
+              "score": "0.03359703613988463"
+            },
+            {
+              "rank": 7,
+              "path": "docs/get-started/sample-tests.md",
+              "evidence_id": "ae5e7b028ee0556cd538c923",
+              "score": "0.03340567478498513"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/config/contexts/index.md",
+              "evidence_id": "144fdcbae58baf5edefb8c13",
+              "score": "0.03209829386299975"
+            },
+            {
+              "rank": 9,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "53d88a7164e724289248f5a7",
+              "score": "0.031964809384164225"
+            },
+            {
+              "rank": 10,
+              "path": "docs/get-started/create-your-first-test.md",
+              "evidence_id": "0fbba4fd2c28e70ac7967033",
+              "score": "0.03150884683032426"
+            },
+            {
+              "rank": 11,
+              "path": "docs/get-started/concepts.md",
+              "evidence_id": "200d4ccb5fdfed9fa12f157c",
+              "score": "0.030211450880776355"
+            },
+            {
+              "rank": 12,
+              "path": "docs/get-started/actions/typeKeys.md",
+              "evidence_id": "61dab2ee0543aa804c64aa0d",
+              "score": "0.02972728241184617"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/get-started/tests/index.md",
+              "start": 1,
+              "end": 121,
+              "total_lines": 410
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "start": 361,
+              "end": 395,
+              "total_lines": 395
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "start": 190,
+              "end": 199,
+              "total_lines": 199
+            }
+          ],
+          "read_evidence_ids": [
+            "d19a037c1e37ebada4a10b13",
+            "141001efec92930817f96303",
+            "4c692ee119c3d684c5e9dca4"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0eb9f8a2fa975148401b140a",
+        "0fbba4fd2c28e70ac7967033",
+        "141001efec92930817f96303",
+        "144fdcbae58baf5edefb8c13",
+        "159fce0e378b67e32fce6c94",
+        "1985fef3c897da24749457fd",
+        "1ba6a1688767228aec48ee73",
+        "1fdff7dafb722fec7d68ebf5",
+        "200d4ccb5fdfed9fa12f157c",
+        "26ffc3dd9b039e18e1a5d2df",
+        "2c2eff8a60bdb472f0fcc9ae",
+        "2eb792fde0dee325ab6fcadb",
+        "315c2b787697e44c23a2d164",
+        "3fa8e63f52e976bb3f4d46b9",
+        "4c692ee119c3d684c5e9dca4",
+        "4ff03d4a4facde3b9d79b626",
+        "53d88a7164e724289248f5a7",
+        "5494c029987a030fc8a9b07b",
+        "575084cd9fbeb104ade7d906",
+        "5f7af4d5f15ce649f642e1f0",
+        "61dab2ee0543aa804c64aa0d",
+        "6dd776f5d8cdeeded57fb718",
+        "712f218aa9c1954376713935",
+        "76836b1f9a5093e8e7bd37da",
+        "78238ed8a8ea8dd2498cffaa",
+        "83a1c5616a0884818e0b6100",
+        "8702882bebe35eac75855248",
+        "8c323a300eb132b36ac67f32",
+        "8e62bc1636c73fa9d392318a",
+        "979b1ccd21d62ba6df7b4ff0",
+        "9d8be7113bc9f18732059882",
+        "a1b16d8180f5f7f397283140",
+        "ab298b22cb965cd3f6f3ddfa",
+        "ad166a2776eba2de5c84d8eb",
+        "ae5e7b028ee0556cd538c923",
+        "ce7d5ae8af27484163e69378",
+        "d0a41e91ff60b0247a4f9929",
+        "d19a037c1e37ebada4a10b13",
+        "d9d91eedaa9ac19781f573ee",
+        "f854a7e6894fb9cc598e9472",
+        "fbe2406d84468345742357ae"
+      ],
+      "new_evidence_count": 41,
+      "new_path_count": 18
+    },
+    {
+      "signature": "7821624952250227246dcf6b890e98751dc131d9aa33f51a47aee4b73aabb8da",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the config schema reference doc (docs/references/schemas/config.md) list fields like `tests`, `integrations`, `telemetry` in a Fields table where an `arazzo` field entry should be added?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/references/schemas/config.md"
+          ],
+          "anchor": "## Fields",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/references/schemas/config.md",
+              "query": "## Fields",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "60a42b7fb5a290b98a9f3090"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/config.md",
+              "start": 1,
+              "end": 121,
+              "total_lines": 497
+            }
+          ],
+          "read_evidence_ids": [
+            "60a42b7fb5a290b98a9f3090"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is there an existing schema reference page for arazzo, and how are schema reference pages structured (e.g., docs/references/schemas/test.md) so a new arazzo.md could be created and linked?",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ],
+          "paths": [
+            "docs/references/schemas/test.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "230ea5b1c44d1d55e38520a2",
+            "814a04e29170e26afb76c8b5",
+            "5e255f536c6f71bb97a76327",
+            "0eb9f8a2fa975148401b140a",
+            "c54dbc7e4436d5b72ae9c28f",
+            "64af1816eaacef869fbd9aeb",
+            "4b83cfd00ca6e9c73d1bed5c",
+            "f854a7e6894fb9cc598e9472",
+            "5494c029987a030fc8a9b07b",
+            "83b57b92328b3ed12df6d7cd",
+            "da6f559db982eae3fd1460d4",
+            "72c03f47b269cc3540232685",
+            "e375098ac2dd3f8463bd6c81",
+            "0bfcfff5f5cc2b27b433bcf6",
+            "200d4ccb5fdfed9fa12f157c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "0eb9f8a2fa975148401b140a",
+              "score": "0.032018442622950824"
+            },
+            {
+              "rank": 2,
+              "path": "docs/references/schemas/context.md",
+              "evidence_id": "c54dbc7e4436d5b72ae9c28f",
+              "score": "0.030834914611005692"
+            },
+            {
+              "rank": 3,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "64af1816eaacef869fbd9aeb",
+              "score": "0.03036576949620428"
+            },
+            {
+              "rank": 4,
+              "path": "docs/references/schemas/config.md",
+              "evidence_id": "4b83cfd00ca6e9c73d1bed5c",
+              "score": "0.029906956136464335"
+            },
+            {
+              "rank": 5,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "f854a7e6894fb9cc598e9472",
+              "score": "0.02871794871794872"
+            },
+            {
+              "rank": 6,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.027623285131627734"
+            },
+            {
+              "rank": 7,
+              "path": "docs/references/schemas/config.md",
+              "evidence_id": "83b57b92328b3ed12df6d7cd",
+              "score": "0.027402402402402402"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/concepts.md",
+              "evidence_id": "da6f559db982eae3fd1460d4",
+              "score": "0.026992753623188405"
+            },
+            {
+              "rank": 9,
+              "path": "docs/contribute/repos/doc-detective-common.md",
+              "evidence_id": "72c03f47b269cc3540232685",
+              "score": "0.023934382143337367"
+            },
+            {
+              "rank": 10,
+              "path": "docs/get-started/config/contexts/index.md",
+              "evidence_id": "e375098ac2dd3f8463bd6c81",
+              "score": "0.022809278350515466"
+            },
+            {
+              "rank": 11,
+              "path": "docs/get-started/actions/goTo.md",
+              "evidence_id": "0bfcfff5f5cc2b27b433bcf6",
+              "score": "0.02247681396617567"
+            },
+            {
+              "rank": 12,
+              "path": "docs/get-started/concepts.md",
+              "evidence_id": "200d4ccb5fdfed9fa12f157c",
+              "score": "0.021507785370225158"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 132
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "start": 67,
+              "end": 75,
+              "total_lines": 75
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "start": 39,
+              "end": 159,
+              "total_lines": 497
+            }
+          ],
+          "read_evidence_ids": [
+            "230ea5b1c44d1d55e38520a2",
+            "814a04e29170e26afb76c8b5",
+            "5e255f536c6f71bb97a76327"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Does the specification schema reference doc describe the `tests` array item type as only `test`, needing update to note Arazzo workflow references?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/references/schemas/specification.md"
+          ],
+          "anchor": "tests | array",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/references/schemas/specification.md",
+              "query": "tests | array",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "c3c9bb6772c532625635af13"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/specification.md",
+              "start": 9,
+              "end": 126,
+              "total_lines": 126
+            }
+          ],
+          "read_evidence_ids": [
+            "c3c9bb6772c532625635af13"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0bfcfff5f5cc2b27b433bcf6",
+        "230ea5b1c44d1d55e38520a2",
+        "4b83cfd00ca6e9c73d1bed5c",
+        "5e255f536c6f71bb97a76327",
+        "60a42b7fb5a290b98a9f3090",
+        "64af1816eaacef869fbd9aeb",
+        "72c03f47b269cc3540232685",
+        "814a04e29170e26afb76c8b5",
+        "83b57b92328b3ed12df6d7cd",
+        "c3c9bb6772c532625635af13",
+        "c54dbc7e4436d5b72ae9c28f",
+        "da6f559db982eae3fd1460d4",
+        "e375098ac2dd3f8463bd6c81"
+      ],
+      "new_evidence_count": 13,
+      "new_path_count": 2
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+    "code": "c8a73c8fa5995ecd932673a554d0109aa507b556"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:eed862f8d48d2a28": 0,
+    "discover:Q1-2:45fc3fc6e652fb71": 263,
+    "discover:Q1-3:f0248ec0326f118e": 486,
+    "discover:Q2-2:b0bd583068bfd716": 0
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:eed862f8d48d2a28": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 263,
+      "cache_hit": false
+    },
+    "discover:Q1-2:45fc3fc6e652fb71": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 222,
+      "cache_hit": false
+    },
+    "discover:Q1-3:f0248ec0326f118e": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 233,
+      "cache_hit": false
+    },
+    "discover:Q1-1:add3f50dcd7f9a55": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 353,
+      "cache_hit": false
+    },
+    "discover:Q1-3:f74ddf236d68485b": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 497,
+      "cache_hit": false
+    },
+    "discover:Q1-2:aab4a098114fd918": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 632,
+      "cache_hit": false
+    },
+    "discover:Q2-2:b0bd583068bfd716": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 187,
+      "cache_hit": false
+    },
+    "discover:Q2-3:ba3293f739051cdb": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 191,
+      "cache_hit": false
+    },
+    "discover:Q2-2:eff794cfa177264e": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 256,
+      "cache_hit": false
+    },
+    "discover:Q2-1:99a6ac1dd1cfd8d5": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 310,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2236,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "config-arazzo-field",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/references/schemas/config.md"
+      ],
+      "evidence_ids": [
+        "5e255f536c6f71bb97a76327",
+        "dc7b398b7c5b3625890e6c49"
+      ],
+      "reason": "Add an `arazzo` field row to the config schema Fields table in docs/references/schemas/config.md, documenting it as an optional array of object(arazzo) entries where each entry requires `name` and `descriptionPath` and does not permit `workflowId`/`inputs` at the config level."
+    },
+    {
+      "requirement_id": "spec-tests-arazzo",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/references/schemas/specification.md"
+      ],
+      "evidence_ids": [
+        "c3c9bb6772c532625635af13",
+        "5f7af4d5f15ce649f642e1f0",
+        "dc7b398b7c5b3625890e6c49"
+      ],
+      "reason": "Update docs/references/schemas/specification.md so the `tests` field type notes items can be either object(test) or object(arazzo) workflow references, reflecting the widened anyOf union and that `workflowId`/`inputs` are allowed at the test level."
+    },
+    {
+      "requirement_id": "new-arazzo-schema-page",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/references/schemas/arazzo.md"
+      ],
+      "evidence_ids": [
+        "230ea5b1c44d1d55e38520a2",
+        "dc7b398b7c5b3625890e6c49"
+      ],
+      "reason": "Create a new schema reference page docs/references/schemas/arazzo.md documenting the arazzo object fields (`name`, `descriptionPath`, `workflowId`, `inputs`) with descriptions and examples, matching the structure of existing schema reference pages."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0bfcfff5f5cc2b27b433bcf6",
+        "type": "evidence",
+        "path": "docs/get-started/actions/goTo.md",
+        "heading": "goTo",
+        "start_line": 10,
+        "end_line": 17,
+        "start_char": 128,
+        "end_char": 410,
+        "score": "0.02247681396617567",
+        "root": "docs",
+        "matched_terms": [
+          "docs",
+          "reference",
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "0bfcfff5f5cc2b27b433bcf6",
+        "source_type": "repository",
+        "content_hash": "5ad32e698abd98d0f3b2f907c67119b4d4859ef5cc5de201dfac1a6fdbdef7d6",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "5ad32e698abd98d0f3b2f907c67119b4d4859ef5cc5de201dfac1a6fdbdef7d6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0eb9f8a2fa975148401b140a",
+        "type": "evidence",
+        "path": "docs/references/schemas/test.md",
+        "heading": "test > Fields",
+        "start_line": 6,
+        "end_line": 17,
+        "start_char": 32,
+        "end_char": 1832,
+        "score": "0.032018442622950824",
+        "root": "docs",
+        "matched_terms": [
+          "docs",
+          "references",
+          "schema",
+          "schemas"
+        ],
+        "evidence_id": "0eb9f8a2fa975148401b140a",
+        "source_type": "repository",
+        "content_hash": "6e73ceaaae6c4898e92952eff7686d7e7173df32ba51eb3e6816651221e6faf9",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6e73ceaaae6c4898e92952eff7686d7e7173df32ba51eb3e6816651221e6faf9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0fbba4fd2c28e70ac7967033",
+        "type": "evidence",
+        "path": "docs/get-started/create-your-first-test.md",
+        "heading": "Create your first test > Steps",
+        "start_line": 24,
+        "end_line": 73,
+        "start_char": 1053,
+        "end_char": 2339,
+        "score": "0.03150884683032426",
+        "root": "docs",
+        "matched_terms": [
+          "spec",
+          "test",
+          "tests"
+        ],
+        "evidence_id": "0fbba4fd2c28e70ac7967033",
+        "source_type": "repository",
+        "content_hash": "a526d0eac6b09b59e78b37f6c9767799174645f57b75b094fe26e493f6b349e0",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a526d0eac6b09b59e78b37f6c9767799174645f57b75b094fe26e493f6b349e0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:141001efec92930817f96303",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/config/contexts/index.md",
+        "start_line": 362,
+        "total_lines": 395,
+        "start_char": 8195,
+        "end_char": 8709,
+        "evidence_id": "141001efec92930817f96303",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "24b6082e6ab5083b21c84d664b952bb65aac36e1ae7f239bd4e0c90f3deab42a",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/tests/index.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 361,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "offset": 190,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "24b6082e6ab5083b21c84d664b952bb65aac36e1ae7f239bd4e0c90f3deab42a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:144fdcbae58baf5edefb8c13",
+        "type": "evidence",
+        "path": "docs/get-started/config/contexts/index.md",
+        "heading": "description: A set of conditions that must be met for a test to run.",
+        "start_line": 6,
+        "end_line": 8,
+        "start_char": 71,
+        "end_char": 145,
+        "score": "0.03209829386299975",
+        "root": "docs",
+        "matched_terms": [
+          "test"
+        ],
+        "evidence_id": "144fdcbae58baf5edefb8c13",
+        "source_type": "repository",
+        "content_hash": "e5e9109ad3a607027f78325f3f4f0eeb42fea6488e2adf8eb0999bfbf8616c68",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "e5e9109ad3a607027f78325f3f4f0eeb42fea6488e2adf8eb0999bfbf8616c68",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:159fce0e378b67e32fce6c94",
+        "type": "evidence",
+        "path": "docs/references/schemas/test.md",
+        "heading": "test > Examples",
+        "start_line": 69,
+        "end_line": 118,
+        "start_char": 2760,
+        "end_char": 3735,
+        "score": "0.030637726560751852",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "159fce0e378b67e32fce6c94",
+        "source_type": "repository",
+        "content_hash": "f3724c2d5aa95e026c36e3637d862b42740774473772b617afe32a908e2e8d8a",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "config schema",
+            "tests field",
+            "mockResponse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f3724c2d5aa95e026c36e3637d862b42740774473772b617afe32a908e2e8d8a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1985fef3c897da24749457fd",
+        "type": "evidence",
+        "path": "docs/get-started/sample-tests.md",
+        "heading": "Explore sample tests > Run tests",
+        "start_line": 15,
+        "end_line": 42,
+        "start_char": 455,
+        "end_char": 1658,
+        "score": "0.031689169570267135",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "tests"
+        ],
+        "evidence_id": "1985fef3c897da24749457fd",
+        "source_type": "repository",
+        "content_hash": "fe60bfb490e5c089657df53eb0c5286c07468f4c8d834b9a149bfc19b26a0c16",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "config schema",
+            "tests field",
+            "mockResponse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fe60bfb490e5c089657df53eb0c5286c07468f4c8d834b9a149bfc19b26a0c16",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1ba6a1688767228aec48ee73",
+        "type": "evidence",
+        "root": "docs",
+        "path": "README.md",
+        "start_line": 1,
+        "total_lines": 23,
+        "start_char": 0,
+        "end_char": 589,
+        "evidence_id": "1ba6a1688767228aec48ee73",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2242d35f2e6254412f4063daa79a98cecdcf05dbf57ab5c6cc3bbb4f2c1972f6",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 24,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2242d35f2e6254412f4063daa79a98cecdcf05dbf57ab5c6cc3bbb4f2c1972f6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1fdff7dafb722fec7d68ebf5",
+        "type": "evidence",
+        "path": "docs/get-started/config/contexts/index.md",
+        "heading": "Contexts > Examples > In a test",
+        "start_line": 366,
+        "end_line": 395,
+        "start_char": 8206,
+        "end_char": 8709,
+        "score": "0.03609787612048777",
+        "root": "docs",
+        "matched_terms": [
+          "spec",
+          "test",
+          "tests"
+        ],
+        "evidence_id": "1fdff7dafb722fec7d68ebf5",
+        "source_type": "repository",
+        "content_hash": "b63f12e0f9cee4bfb7512e46918a7d30ee1d1e750688a6e710336dab70165cd0",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b63f12e0f9cee4bfb7512e46918a7d30ee1d1e750688a6e710336dab70165cd0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:200d4ccb5fdfed9fa12f157c",
+        "type": "evidence",
+        "path": "docs/get-started/concepts.md",
+        "heading": "Concepts > Test specification",
+        "start_line": 9,
+        "end_line": 12,
+        "start_char": 112,
+        "end_char": 288,
+        "score": "0.021507785370225158",
+        "root": "docs",
+        "matched_terms": [
+          "docs",
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "200d4ccb5fdfed9fa12f157c",
+        "source_type": "repository",
+        "content_hash": "994512782e5a4023e15782c1b0e244c6d166e7fff28ae7ed67a1aa9caf248ea6",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "994512782e5a4023e15782c1b0e244c6d166e7fff28ae7ed67a1aa9caf248ea6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:230ea5b1c44d1d55e38520a2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/test.md",
+        "start_line": 1,
+        "total_lines": 132,
+        "start_char": 0,
+        "end_char": 3750,
+        "evidence_id": "230ea5b1c44d1d55e38520a2",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "31870ef38a28b46e0728687decf87fc660f73a5505f7a4d1d9dc0d794deb6ef4",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "31870ef38a28b46e0728687decf87fc660f73a5505f7a4d1d9dc0d794deb6ef4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:26ffc3dd9b039e18e1a5d2df",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective-common.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.04203160024055547",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "26ffc3dd9b039e18e1a5d2df",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2c2eff8a60bdb472f0fcc9ae",
+        "type": "evidence",
+        "path": "docs/get-started/tests/index.md",
+        "heading": "Tests > Define a test > Detected tests",
+        "start_line": 220,
+        "end_line": 251,
+        "start_char": 9370,
+        "end_char": 9821,
+        "score": "0.03359703613988463",
+        "root": "docs",
+        "matched_terms": [
+          "test",
+          "tests"
+        ],
+        "evidence_id": "2c2eff8a60bdb472f0fcc9ae",
+        "source_type": "repository",
+        "content_hash": "0c7e82536f3acc22f7cc38c9d4778678644a086d2fc0f2d1c7eed99b0af7eb6a",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "0c7e82536f3acc22f7cc38c9d4778678644a086d2fc0f2d1c7eed99b0af7eb6a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2eb792fde0dee325ab6fcadb",
+        "type": "evidence",
+        "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 4,
+        "start_char": 0,
+        "end_char": 64,
+        "score": "0.038319704986371654",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "2eb792fde0dee325ab6fcadb",
+        "source_type": "repository",
+        "content_hash": "ab6880b6497b32cfe6b2e1492d77dd3ead933ffd1a6f91182572a4ceab2c9eb9",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ab6880b6497b32cfe6b2e1492d77dd3ead933ffd1a6f91182572a4ceab2c9eb9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:315c2b787697e44c23a2d164",
+        "type": "evidence",
+        "path": "docs/get-started/tests/index.md",
+        "heading": "Tests",
+        "start_line": 6,
+        "end_line": 23,
+        "start_char": 108,
+        "end_char": 1768,
+        "score": "0.04137162188136701",
+        "root": "docs",
+        "matched_terms": [
+          "spec",
+          "test",
+          "tests"
+        ],
+        "evidence_id": "315c2b787697e44c23a2d164",
+        "source_type": "repository",
+        "content_hash": "5433908deedb7ab2d549dc881f5914b520601f844bc3e612bb5d45801c8471e7",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5433908deedb7ab2d549dc881f5914b520601f844bc3e612bb5d45801c8471e7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3fa8e63f52e976bb3f4d46b9",
+        "type": "evidence",
+        "path": "docs/references/schemas/config.md",
+        "heading": "config > Fields",
+        "start_line": 6,
+        "end_line": 17,
+        "start_char": 64,
+        "end_char": 1730,
+        "score": "0.03199238831129399",
+        "root": "docs",
+        "matched_terms": [
+          "field",
+          "tests"
+        ],
+        "evidence_id": "3fa8e63f52e976bb3f4d46b9",
+        "source_type": "repository",
+        "content_hash": "db672da84c73c415a0db5e6736c37947e389371e5bf97a04eec3859ba640fec6",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "config schema",
+            "tests field",
+            "mockResponse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "db672da84c73c415a0db5e6736c37947e389371e5bf97a04eec3859ba640fec6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4b83cfd00ca6e9c73d1bed5c",
+        "type": "evidence",
+        "path": "docs/references/schemas/config.md",
+        "heading": "config > Fields",
+        "start_line": 44,
+        "end_line": 50,
+        "start_char": 6811,
+        "end_char": 8429,
+        "score": "0.029906956136464335",
+        "root": "docs",
+        "matched_terms": [
+          "docs",
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "4b83cfd00ca6e9c73d1bed5c",
+        "source_type": "repository",
+        "content_hash": "7a46c8973751d9590c273a39f4bec04e7b90d096d10f5ba2406bb48ce97f5b1a",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "7a46c8973751d9590c273a39f4bec04e7b90d096d10f5ba2406bb48ce97f5b1a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4c692ee119c3d684c5e9dca4",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/create-your-first-test.md",
+        "start_line": 191,
+        "total_lines": 199,
+        "start_char": 6710,
+        "end_char": 7193,
+        "evidence_id": "4c692ee119c3d684c5e9dca4",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9ee5c79cb89025781a32980808b2e4a7c3492547a3d86ab8042125ed1c26e9bf",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/tests/index.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 361,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "offset": 190,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9ee5c79cb89025781a32980808b2e4a7c3492547a3d86ab8042125ed1c26e9bf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4ff03d4a4facde3b9d79b626",
+        "type": "evidence",
+        "path": "blog/_2019-05-28-first-blog-post.md",
+        "heading": "tags: [hola, docusaurus]",
+        "start_line": 9,
+        "end_line": 12,
+        "start_char": 180,
+        "end_char": 389,
+        "score": "0.04865990111891751",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4ff03d4a4facde3b9d79b626",
+        "source_type": "repository",
+        "content_hash": "ea7a06f1eca4fcfb7381af7f7c3a7acff8a7b9e3286c443ecb91c13d31e81aa4",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ea7a06f1eca4fcfb7381af7f7c3a7acff8a7b9e3286c443ecb91c13d31e81aa4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:53d88a7164e724289248f5a7",
+        "type": "evidence",
+        "path": "docs/references/schemas/specification.md",
+        "heading": "specification > Examples",
+        "start_line": 16,
+        "end_line": 65,
+        "start_char": 617,
+        "end_char": 1443,
+        "score": "0.031964809384164225",
+        "root": "docs",
+        "matched_terms": [
+          "spec",
+          "test",
+          "tests"
+        ],
+        "evidence_id": "53d88a7164e724289248f5a7",
+        "source_type": "repository",
+        "content_hash": "2e7961c8e9c17380f0643d2a1d8857f8f62525057e5861e660e5281ce5fc382d",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2e7961c8e9c17380f0643d2a1d8857f8f62525057e5861e660e5281ce5fc382d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5494c029987a030fc8a9b07b",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective.github.io.md",
+        "heading": "`doc-detective.github.io`",
+        "start_line": 5,
+        "end_line": 9,
+        "start_char": 29,
+        "end_char": 427,
+        "score": "0.027623285131627734",
+        "root": "docs",
+        "matched_terms": [
+          "docs",
+          "references",
+          "schema"
+        ],
+        "evidence_id": "5494c029987a030fc8a9b07b",
+        "source_type": "repository",
+        "content_hash": "dd688669454e8b7e6b80dd53b2d9689f4554901425bf35d15d177a90dbc0643b",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "dd688669454e8b7e6b80dd53b2d9689f4554901425bf35d15d177a90dbc0643b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:575084cd9fbeb104ade7d906",
+        "type": "evidence",
+        "path": "blog/_2019-05-29-long-blog-post.md",
+        "heading": "tags: [hello, docusaurus]",
+        "start_line": 29,
+        "end_line": 44,
+        "start_char": 1676,
+        "end_char": 3116,
+        "score": "0.04540253653156879",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "575084cd9fbeb104ade7d906",
+        "source_type": "repository",
+        "content_hash": "f4846920feba3bf4f32c66b4348817b74930883561142fa097b84d0d85091f84",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f4846920feba3bf4f32c66b4348817b74930883561142fa097b84d0d85091f84",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5e255f536c6f71bb97a76327",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/config.md",
+        "start_line": 40,
+        "total_lines": 497,
+        "start_char": 6413,
+        "end_char": 10755,
+        "evidence_id": "5e255f536c6f71bb97a76327",
+        "truncated": false,
+        "next_offset": 159,
+        "source_type": "repository",
+        "content_hash": "1f346f1d71d8fc6977695efb5c90dd4ab607af278ee7ef7243684e34c967223d",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "1f346f1d71d8fc6977695efb5c90dd4ab607af278ee7ef7243684e34c967223d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5f7af4d5f15ce649f642e1f0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/specification.md",
+        "start_line": 2,
+        "total_lines": 126,
+        "start_char": 1,
+        "end_char": 2680,
+        "evidence_id": "5f7af4d5f15ce649f642e1f0",
+        "truncated": false,
+        "next_offset": 121,
+        "source_type": "repository",
+        "content_hash": "c98b903d28c82f8bf8adeee633474414c044ceb94dfc5695ff738073dfb6bf76",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 452,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c98b903d28c82f8bf8adeee633474414c044ceb94dfc5695ff738073dfb6bf76",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:60a42b7fb5a290b98a9f3090",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/config.md",
+        "start_line": 2,
+        "total_lines": 497,
+        "start_char": 1,
+        "end_char": 9932,
+        "evidence_id": "60a42b7fb5a290b98a9f3090",
+        "truncated": false,
+        "next_offset": 121,
+        "source_type": "repository",
+        "content_hash": "07793b0080c4be6c0cebbbab4a27d5d6a91760bb25cabac91b21ff4094f1b836",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/config.md",
+              "query": "## Fields",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "07793b0080c4be6c0cebbbab4a27d5d6a91760bb25cabac91b21ff4094f1b836",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:61dab2ee0543aa804c64aa0d",
+        "type": "evidence",
+        "path": "docs/get-started/actions/typeKeys.md",
+        "heading": "typeKeys > Examples > Perform a search",
+        "start_line": 85,
+        "end_line": 110,
+        "start_char": 3267,
+        "end_char": 3676,
+        "score": "0.02972728241184617",
+        "root": "docs",
+        "matched_terms": [
+          "tests"
+        ],
+        "evidence_id": "61dab2ee0543aa804c64aa0d",
+        "source_type": "repository",
+        "content_hash": "c1b81ac530f7b88a142b482532b83ef331193e62a09d818fafb8305320d9503a",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c1b81ac530f7b88a142b482532b83ef331193e62a09d818fafb8305320d9503a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:64af1816eaacef869fbd9aeb",
+        "type": "evidence",
+        "path": "docs/references/schemas/specification.md",
+        "heading": "specification",
+        "start_line": 2,
+        "end_line": 5,
+        "start_char": 1,
+        "end_char": 20,
+        "score": "0.03036576949620428",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "64af1816eaacef869fbd9aeb",
+        "source_type": "repository",
+        "content_hash": "6bbdd9b2e21ece5a7de2fa0e3ab04d65f162f1765bae4352b152dd12284fa231",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6bbdd9b2e21ece5a7de2fa0e3ab04d65f162f1765bae4352b152dd12284fa231",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:68bbd7a6a8e61d41ca90f2b0",
+        "type": "evidence",
+        "evidence_id": "68bbd7a6a8e61d41ca90f2b0",
+        "source_type": "task",
+        "exported_content_sha256": "d37ff29c516d748a780cd4cd07d314a5f24e4075c923934d5db797b2c75bc8ef",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6dd776f5d8cdeeded57fb718",
+        "type": "evidence",
+        "path": "docs/get-started/create-your-first-test.md",
+        "heading": "Create your first test > Next steps",
+        "start_line": 195,
+        "end_line": 199,
+        "start_char": 6925,
+        "end_char": 7193,
+        "score": "0.035141708822346865",
+        "root": "docs",
+        "matched_terms": [
+          "test",
+          "tests"
+        ],
+        "evidence_id": "6dd776f5d8cdeeded57fb718",
+        "source_type": "repository",
+        "content_hash": "7b19faa47e4840cecb6244cdc8e3cce2b12162ea524e4d5e0ddcbb9e34efcd13",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "7b19faa47e4840cecb6244cdc8e3cce2b12162ea524e4d5e0ddcbb9e34efcd13",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:712f218aa9c1954376713935",
+        "type": "evidence",
+        "path": "docs/references/schemas/httpRequest.md",
+        "heading": "httpRequest > Examples",
+        "start_line": 83,
+        "end_line": 123,
+        "start_char": 3940,
+        "end_char": 4556,
+        "score": "0.03000096871064613",
+        "root": "docs",
+        "matched_terms": [
+          "field"
+        ],
+        "evidence_id": "712f218aa9c1954376713935",
+        "source_type": "repository",
+        "content_hash": "0909a67ba810263a7f1f0933614301117a9c26c1f6b0eaf49a1d8f30d8c2ef84",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "config schema",
+            "tests field",
+            "mockResponse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0909a67ba810263a7f1f0933614301117a9c26c1f6b0eaf49a1d8f30d8c2ef84",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:72c03f47b269cc3540232685",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective-common.md",
+        "heading": "`doc-detective-common`",
+        "start_line": 5,
+        "end_line": 9,
+        "start_char": 29,
+        "end_char": 410,
+        "score": "0.023934382143337367",
+        "root": "docs",
+        "matched_terms": [
+          "schemas"
+        ],
+        "evidence_id": "72c03f47b269cc3540232685",
+        "source_type": "repository",
+        "content_hash": "2e5c58b72e842e2dde8608eed04bf352c9df3bcafa79ee2cd167df9aaf0366a5",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2e5c58b72e842e2dde8608eed04bf352c9df3bcafa79ee2cd167df9aaf0366a5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:76836b1f9a5093e8e7bd37da",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Doc Detective documentation > Get started",
+        "start_line": 3,
+        "end_line": 23,
+        "start_char": 31,
+        "end_char": 589,
+        "score": "0.03886178861788618",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "76836b1f9a5093e8e7bd37da",
+        "source_type": "repository",
+        "content_hash": "2c221e59ce5e9066e201f799cb2b8aa892298efc667552e1901ad06cf2343886",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2c221e59ce5e9066e201f799cb2b8aa892298efc667552e1901ad06cf2343886",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78238ed8a8ea8dd2498cffaa",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Doc Detective documentation",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 31,
+        "score": "0.04466027597918165",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "78238ed8a8ea8dd2498cffaa",
+        "source_type": "repository",
+        "content_hash": "68e75a810c30988eadf8bc30ba33513bd82ee9a406c2a178577d614f257c66a6",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "68e75a810c30988eadf8bc30ba33513bd82ee9a406c2a178577d614f257c66a6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:814a04e29170e26afb76c8b5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/context.md",
+        "start_line": 68,
+        "total_lines": 75,
+        "start_char": 1819,
+        "end_char": 1917,
+        "evidence_id": "814a04e29170e26afb76c8b5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9c11bd8151d8c22f7218dcde5a670865f84facd285f4ed3ab353d32262536664",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 67,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 39,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9c11bd8151d8c22f7218dcde5a670865f84facd285f4ed3ab353d32262536664",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83a1c5616a0884818e0b6100",
+        "type": "evidence",
+        "path": "blog/_2019-05-29-long-blog-post.md",
+        "heading": "tags: [hello, docusaurus]",
+        "start_line": 5,
+        "end_line": 28,
+        "start_char": 61,
+        "end_char": 1676,
+        "score": "0.04399522132796781",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "83a1c5616a0884818e0b6100",
+        "source_type": "repository",
+        "content_hash": "7274f9c7203570a14632a7370498961328b4425afc8f4d628b41468eaf7f1d09",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7274f9c7203570a14632a7370498961328b4425afc8f4d628b41468eaf7f1d09",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83b57b92328b3ed12df6d7cd",
+        "type": "evidence",
+        "path": "docs/references/schemas/config.md",
+        "heading": "config > Examples",
+        "start_line": 257,
+        "end_line": 306,
+        "start_char": 13002,
+        "end_char": 13793,
+        "score": "0.027402402402402402",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "83b57b92328b3ed12df6d7cd",
+        "source_type": "repository",
+        "content_hash": "164db27e6ce9a58d6741ecca02bc3370d2d432c809643b801458ef5d948729a2",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "164db27e6ce9a58d6741ecca02bc3370d2d432c809643b801458ef5d948729a2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8702882bebe35eac75855248",
+        "type": "evidence",
+        "path": "docs/references/schemas/httpRequest.md",
+        "heading": "httpRequest > Fields",
+        "start_line": 6,
+        "end_line": 24,
+        "start_char": 72,
+        "end_char": 1862,
+        "score": "0.03042328042328042",
+        "root": "docs",
+        "matched_terms": [
+          "field"
+        ],
+        "evidence_id": "8702882bebe35eac75855248",
+        "source_type": "repository",
+        "content_hash": "1210d2ee148d8d02161495a74983e6df332b2b046c502e0723b65339cc060695",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "config schema",
+            "tests field",
+            "mockResponse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1210d2ee148d8d02161495a74983e6df332b2b046c502e0723b65339cc060695",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8c323a300eb132b36ac67f32",
+        "type": "evidence",
+        "path": "blog/_2019-05-28-first-blog-post.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 8,
+        "start_char": 0,
+        "end_char": 180,
+        "score": "0.046511196246139225",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "8c323a300eb132b36ac67f32",
+        "source_type": "repository",
+        "content_hash": "5c896dd60d1368ba328b74d84d30ce8fe8069fd4f687b4aa2e57351b25c54692",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5c896dd60d1368ba328b74d84d30ce8fe8069fd4f687b4aa2e57351b25c54692",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8e62bc1636c73fa9d392318a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "blog/_2019-05-29-long-blog-post.md",
+        "start_line": 25,
+        "total_lines": 44,
+        "start_char": 1316,
+        "end_char": 3116,
+        "evidence_id": "8e62bc1636c73fa9d392318a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "c1725205168c62397deaccb1cef749774c058c388c46acd02b0b2d776feb83d1",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 24,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c1725205168c62397deaccb1cef749774c058c388c46acd02b0b2d776feb83d1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:979b1ccd21d62ba6df7b4ff0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/config.md",
+        "start_line": 453,
+        "total_lines": 497,
+        "start_char": 17079,
+        "end_char": 18096,
+        "evidence_id": "979b1ccd21d62ba6df7b4ff0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "fd1cbaa8d5ab966a920db013d9948a52b4dd2694b72bf51d0094be26892e5403",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 452,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fd1cbaa8d5ab966a920db013d9948a52b4dd2694b72bf51d0094be26892e5403",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9d8be7113bc9f18732059882",
+        "type": "evidence",
+        "path": "docs/get-started/concepts.md",
+        "heading": "Concepts > Test",
+        "start_line": 13,
+        "end_line": 16,
+        "start_char": 288,
+        "end_char": 414,
+        "score": "0.034432234432234435",
+        "root": "docs",
+        "matched_terms": [
+          "test",
+          "tests"
+        ],
+        "evidence_id": "9d8be7113bc9f18732059882",
+        "source_type": "repository",
+        "content_hash": "f45db2ded17dfadbe40075ee5633417a14d31ddf6cee37aaa196fb7f4f1f2ce3",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f45db2ded17dfadbe40075ee5633417a14d31ddf6cee37aaa196fb7f4f1f2ce3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a1b16d8180f5f7f397283140",
+        "type": "evidence",
+        "path": "docs/get-started/tests/index.md",
+        "heading": "Tests > Define a test > Standalone JSON",
+        "start_line": 87,
+        "end_line": 97,
+        "start_char": 3866,
+        "end_char": 3999,
+        "score": "0.030946088794926004",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a1b16d8180f5f7f397283140",
+        "source_type": "repository",
+        "content_hash": "14d250bd1af03f3d5c75b643ee92a5e6f3613d4394a716641b329e6796b7c488",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "config schema",
+            "tests field",
+            "mockResponse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "14d250bd1af03f3d5c75b643ee92a5e6f3613d4394a716641b329e6796b7c488",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ab298b22cb965cd3f6f3ddfa",
+        "type": "evidence",
+        "path": "docs/contribute/index.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.036943164362519196",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ab298b22cb965cd3f6f3ddfa",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ad166a2776eba2de5c84d8eb",
+        "type": "evidence",
+        "path": "docs/references/schemas/config.md",
+        "heading": "config > Examples",
+        "start_line": 457,
+        "end_line": 497,
+        "start_char": 17165,
+        "end_char": 18096,
+        "score": "0.032783979733625734",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ad166a2776eba2de5c84d8eb",
+        "source_type": "repository",
+        "content_hash": "9b0eb09a3c5ce579b5690b7fac976e886add7d8afe442a97ff2cf23738802f45",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "config schema",
+            "tests field",
+            "mockResponse"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9b0eb09a3c5ce579b5690b7fac976e886add7d8afe442a97ff2cf23738802f45",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ae5e7b028ee0556cd538c923",
+        "type": "evidence",
+        "path": "docs/get-started/sample-tests.md",
+        "heading": "Explore sample tests > Next steps",
+        "start_line": 61,
+        "end_line": 63,
+        "start_char": 2820,
+        "end_char": 2881,
+        "score": "0.03340567478498513",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ae5e7b028ee0556cd538c923",
+        "source_type": "repository",
+        "content_hash": "cee61d442aa1d92007f70b814aecac94857b448cbf1b69d26b1dc6bfcc443779",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "spec tests",
+            "test items",
+            "workflow"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "cee61d442aa1d92007f70b814aecac94857b448cbf1b69d26b1dc6bfcc443779",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c3c9bb6772c532625635af13",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/specification.md",
+        "start_line": 10,
+        "total_lines": 126,
+        "start_char": 90,
+        "end_char": 2704,
+        "evidence_id": "c3c9bb6772c532625635af13",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "a7d14e2c44326f56a3d829d2fba79e1adcb5a5d40da287cbc06f82982176520a",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/specification.md",
+              "query": "tests | array",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "a7d14e2c44326f56a3d829d2fba79e1adcb5a5d40da287cbc06f82982176520a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c54dbc7e4436d5b72ae9c28f",
+        "type": "evidence",
+        "path": "docs/references/schemas/context.md",
+        "heading": "context > Examples",
+        "start_line": 72,
+        "end_line": 75,
+        "start_char": 1895,
+        "end_char": 1917,
+        "score": "0.030834914611005692",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "c54dbc7e4436d5b72ae9c28f",
+        "source_type": "repository",
+        "content_hash": "bf97e16486e744b0f1714eb75a000b33a0b2bcd9fc8a4b8de0c950fa4bd05b02",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "bf97e16486e744b0f1714eb75a000b33a0b2bcd9fc8a4b8de0c950fa4bd05b02",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ce7d5ae8af27484163e69378",
+        "type": "evidence",
+        "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+        "heading": "tags: [docusaurus]",
+        "start_line": 5,
+        "end_line": 20,
+        "start_char": 64,
+        "end_char": 439,
+        "score": "0.04034364855260378",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ce7d5ae8af27484163e69378",
+        "source_type": "repository",
+        "content_hash": "afdb92b6035cfb780a266cdb3cd0f061051a7c65e4cf596edb9935b8a33fb8ab",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "afdb92b6035cfb780a266cdb3cd0f061051a7c65e4cf596edb9935b8a33fb8ab",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d0a41e91ff60b0247a4f9929",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective-core.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.04030721600381043",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "d0a41e91ff60b0247a4f9929",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo",
+            "descriptionPath",
+            "workflowId"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d19a037c1e37ebada4a10b13",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/tests/index.md",
+        "start_line": 2,
+        "total_lines": 410,
+        "start_char": 4,
+        "end_char": 5766,
+        "evidence_id": "d19a037c1e37ebada4a10b13",
+        "truncated": false,
+        "next_offset": 121,
+        "source_type": "repository",
+        "content_hash": "bb2bb8fc21c53b00144cc48f11cfe4533e14d35823d136bce07565c55db799ee",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/tests/index.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 361,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "offset": 190,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "bb2bb8fc21c53b00144cc48f11cfe4533e14d35823d136bce07565c55db799ee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d9d91eedaa9ac19781f573ee",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/test.md",
+        "start_line": 2,
+        "total_lines": 132,
+        "start_char": 1,
+        "end_char": 3756,
+        "evidence_id": "d9d91eedaa9ac19781f573ee",
+        "truncated": false,
+        "next_offset": 121,
+        "source_type": "repository",
+        "content_hash": "3d5120702a440e076c59601a779de5626d43a1681f65d079a240327589001baf",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/test.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/config.md",
+              "offset": 452,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3d5120702a440e076c59601a779de5626d43a1681f65d079a240327589001baf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:da6f559db982eae3fd1460d4",
+        "type": "evidence",
+        "path": "docs/get-started/concepts.md",
+        "heading": "Concepts > Context",
+        "start_line": 39,
+        "end_line": 42,
+        "start_char": 3508,
+        "end_char": 3635,
+        "score": "0.026992753623188405",
+        "root": "docs",
+        "matched_terms": [
+          "docs",
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "da6f559db982eae3fd1460d4",
+        "source_type": "repository",
+        "content_hash": "fdebfb3360d9d8eb7f4cf015ea9a2694994bea3c493bcf67fcb81f597822420b",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "fdebfb3360d9d8eb7f4cf015ea9a2694994bea3c493bcf67fcb81f597822420b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dc7b398b7c5b3625890e6c49",
+        "type": "evidence",
+        "evidence_id": "dc7b398b7c5b3625890e6c49",
+        "source_type": "implementation",
+        "exported_content_sha256": "afc6a1e2bd233fc1d9fc89d6694db9cb4633008daeb163030c3bd59f4143f68a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e375098ac2dd3f8463bd6c81",
+        "type": "evidence",
+        "path": "docs/get-started/config/contexts/index.md",
+        "heading": "Contexts > Specifying contexts",
+        "start_line": 19,
+        "end_line": 55,
+        "start_char": 990,
+        "end_char": 2062,
+        "score": "0.022809278350515466",
+        "root": "docs",
+        "matched_terms": [
+          "docs",
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "e375098ac2dd3f8463bd6c81",
+        "source_type": "repository",
+        "content_hash": "52204a27cd4dc808c54d5fb55baf9842e1374e54dfeb37f43784b6678b9f7caf",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "52204a27cd4dc808c54d5fb55baf9842e1374e54dfeb37f43784b6678b9f7caf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f854a7e6894fb9cc598e9472",
+        "type": "evidence",
+        "path": "docs/references/schemas/specification.md",
+        "heading": "specification > Fields",
+        "start_line": 6,
+        "end_line": 15,
+        "start_char": 20,
+        "end_char": 617,
+        "score": "0.02871794871794872",
+        "root": "docs",
+        "matched_terms": [
+          "docs",
+          "references",
+          "schemas"
+        ],
+        "evidence_id": "f854a7e6894fb9cc598e9472",
+        "source_type": "repository",
+        "content_hash": "64c186ee991845065557feeee119a8f652ab9b6fe58e925ffc25118d2cf670e9",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "arazzo schema reference",
+            "docs/references/schemas"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "64c186ee991845065557feeee119a8f652ab9b6fe58e925ffc25118d2cf670e9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fbe2406d84468345742357ae",
+        "type": "evidence",
+        "root": "docs",
+        "path": "blog/_2019-05-28-first-blog-post.md",
+        "start_line": 5,
+        "total_lines": 12,
+        "start_char": 58,
+        "end_char": 389,
+        "evidence_id": "fbe2406d84468345742357ae",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3e80c511a70b7c48d682c643c986050a9d70e2e1a443b15978b16dcd5c1058da",
+        "revision": "17797faf547aa0ef84c52005ce6dc95b7b24718c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "offset": 4,
+              "limit": 120
+            },
+            {
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "offset": 24,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "3e80c511a70b7c48d682c643c986050a9d70e2e1a443b15978b16dcd5c1058da",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:config-arazzo-field",
+        "type": "requirement",
+        "description": "Add an `arazzo` field row to the config schema Fields table in docs/references/schemas/config.md, documenting it as an optional array of object(arazzo) entries where each entry requires `name` and `descriptionPath` and does not permit `workflowId`/`inputs` at the config level."
+      },
+      {
+        "id": "requirement:spec-tests-arazzo",
+        "type": "requirement",
+        "description": "Update docs/references/schemas/specification.md so the `tests` field type notes items can be either object(test) or object(arazzo) workflow references, reflecting the widened anyOf union and that `workflowId`/`inputs` are allowed at the test level."
+      },
+      {
+        "id": "requirement:new-arazzo-schema-page",
+        "type": "requirement",
+        "description": "Create a new schema reference page docs/references/schemas/arazzo.md documenting the arazzo object fields (`name`, `descriptionPath`, `workflowId`, `inputs`) with descriptions and examples, matching the structure of existing schema reference pages."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/references/schemas/arazzo.md",
+        "hash": "e23bb96925bf242b3e90f20cd0301bb069fe2e7857c5a217dd603c79f8aaac3e"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/references/schemas/config.md",
+        "hash": "a658fc0d19f5e9a06713bdaae2b4355bc5211cc6063380d9a69aea1862a862b1"
+      },
+      {
+        "id": "edit:2",
+        "type": "edit",
+        "path": "docs/references/schemas/specification.md",
+        "hash": "4ba063f937430643e303464c4831c11880011c2457990f35aa281837b1e8450e"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "config-arazzo-field",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/references/schemas/config.md"
+        ],
+        "evidence_ids": [
+          "5e255f536c6f71bb97a76327",
+          "dc7b398b7c5b3625890e6c49"
+        ],
+        "reason": "Add an `arazzo` field row to the config schema Fields table in docs/references/schemas/config.md, documenting it as an optional array of object(arazzo) entries where each entry requires `name` and `descriptionPath` and does not permit `workflowId`/`inputs` at the config level."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "spec-tests-arazzo",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/references/schemas/specification.md"
+        ],
+        "evidence_ids": [
+          "c3c9bb6772c532625635af13",
+          "5f7af4d5f15ce649f642e1f0",
+          "dc7b398b7c5b3625890e6c49"
+        ],
+        "reason": "Update docs/references/schemas/specification.md so the `tests` field type notes items can be either object(test) or object(arazzo) workflow references, reflecting the widened anyOf union and that `workflowId`/`inputs` are allowed at the test level."
+      },
+      {
+        "id": "coverage:2",
+        "type": "coverage",
+        "requirement_id": "new-arazzo-schema-page",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/references/schemas/arazzo.md"
+        ],
+        "evidence_ids": [
+          "230ea5b1c44d1d55e38520a2",
+          "dc7b398b7c5b3625890e6c49"
+        ],
+        "reason": "Create a new schema reference page docs/references/schemas/arazzo.md documenting the arazzo object fields (`name`, `descriptionPath`, `workflowId`, `inputs`) with descriptions and examples, matching the structure of existing schema reference pages."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the existing documentation describe Arazzo support, the `arazzo` config field, or Arazzo workflow references in tests?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where in the docs are config schema fields (like `tests`, `mockResponse`) documented, so the new `arazzo` array can be added?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Where in the docs are spec test items documented, to note that tests can now be Arazzo workflow references?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the config schema reference doc (docs/references/schemas/config.md) list fields like `tests`, `integrations`, `telemetry` in a Fields table where an `arazzo` field entry should be added?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is there an existing schema reference page for arazzo, and how are schema reference pages structured (e.g., docs/references/schemas/test.md) so a new arazzo.md could be created and linked?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Does the specification schema reference doc describe the `tests` array item type as only `test`, needing update to note Arazzo workflow references?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0bfcfff5f5cc2b27b433bcf6",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0eb9f8a2fa975148401b140a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0eb9f8a2fa975148401b140a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0eb9f8a2fa975148401b140a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0fbba4fd2c28e70ac7967033",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:141001efec92930817f96303",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:144fdcbae58baf5edefb8c13",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:159fce0e378b67e32fce6c94",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1985fef3c897da24749457fd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1ba6a1688767228aec48ee73",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1fdff7dafb722fec7d68ebf5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1fdff7dafb722fec7d68ebf5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:200d4ccb5fdfed9fa12f157c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:200d4ccb5fdfed9fa12f157c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:230ea5b1c44d1d55e38520a2",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:26ffc3dd9b039e18e1a5d2df",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2c2eff8a60bdb472f0fcc9ae",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2eb792fde0dee325ab6fcadb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:315c2b787697e44c23a2d164",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:315c2b787697e44c23a2d164",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3fa8e63f52e976bb3f4d46b9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4b83cfd00ca6e9c73d1bed5c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4c692ee119c3d684c5e9dca4",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:53d88a7164e724289248f5a7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:575084cd9fbeb104ade7d906",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5e255f536c6f71bb97a76327",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5f7af4d5f15ce649f642e1f0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:60a42b7fb5a290b98a9f3090",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:61dab2ee0543aa804c64aa0d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64af1816eaacef869fbd9aeb",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6dd776f5d8cdeeded57fb718",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:712f218aa9c1954376713935",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:72c03f47b269cc3540232685",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:76836b1f9a5093e8e7bd37da",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:814a04e29170e26afb76c8b5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83a1c5616a0884818e0b6100",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83b57b92328b3ed12df6d7cd",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8702882bebe35eac75855248",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8c323a300eb132b36ac67f32",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8e62bc1636c73fa9d392318a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:979b1ccd21d62ba6df7b4ff0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9d8be7113bc9f18732059882",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a1b16d8180f5f7f397283140",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ab298b22cb965cd3f6f3ddfa",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ad166a2776eba2de5c84d8eb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ae5e7b028ee0556cd538c923",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3c9bb6772c532625635af13",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c54dbc7e4436d5b72ae9c28f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ce7d5ae8af27484163e69378",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d0a41e91ff60b0247a4f9929",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d19a037c1e37ebada4a10b13",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d9d91eedaa9ac19781f573ee",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da6f559db982eae3fd1460d4",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e375098ac2dd3f8463bd6c81",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f854a7e6894fb9cc598e9472",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f854a7e6894fb9cc598e9472",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fbe2406d84468345742357ae",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:60a42b7fb5a290b98a9f3090",
+        "to": "requirement:config-arazzo-field",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5e255f536c6f71bb97a76327",
+        "to": "requirement:config-arazzo-field",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:dc7b398b7c5b3625890e6c49",
+        "to": "requirement:config-arazzo-field",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c3c9bb6772c532625635af13",
+        "to": "requirement:spec-tests-arazzo",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5f7af4d5f15ce649f642e1f0",
+        "to": "requirement:spec-tests-arazzo",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:dc7b398b7c5b3625890e6c49",
+        "to": "requirement:spec-tests-arazzo",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:230ea5b1c44d1d55e38520a2",
+        "to": "requirement:new-arazzo-schema-page",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:dc7b398b7c5b3625890e6c49",
+        "to": "requirement:new-arazzo-schema-page",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:new-arazzo-schema-page",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:230ea5b1c44d1d55e38520a2",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:dc7b398b7c5b3625890e6c49",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:config-arazzo-field",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:5e255f536c6f71bb97a76327",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:dc7b398b7c5b3625890e6c49",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:spec-tests-arazzo",
+        "to": "edit:2",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:c3c9bb6772c532625635af13",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5f7af4d5f15ce649f642e1f0",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:dc7b398b7c5b3625890e6c49",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:config-arazzo-field",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:5e255f536c6f71bb97a76327",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:dc7b398b7c5b3625890e6c49",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:spec-tests-arazzo",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:c3c9bb6772c532625635af13",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5f7af4d5f15ce649f642e1f0",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:dc7b398b7c5b3625890e6c49",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:new-arazzo-schema-page",
+        "to": "coverage:2",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:230ea5b1c44d1d55e38520a2",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:dc7b398b7c5b3625890e6c49",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "c182f04ebba21b040605b347b36c68f98604d337701dfc68058b3dbb536e769f"
+}

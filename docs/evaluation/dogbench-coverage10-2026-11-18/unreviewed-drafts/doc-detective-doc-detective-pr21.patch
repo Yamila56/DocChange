@@ -1,0 +1,16 @@
+diff --git a/reference/schemas/config.md b/reference/schemas/config.md
+index 51dc89c011625d3fb84f43d0854330022c5490f6..8a8c22c1345deb67c8d0449dda3050794355bc0e 100644
+--- a/reference/schemas/config.md
++++ b/reference/schemas/config.md
+@@ -61,9 +61,9 @@ fileTypes.stepStatementClose | string |  Required. Close of an in-document step
+ fileTypes.markup | array of objects |  Required. Markup types and associated regex patterns to find in documentation source files. | 
+ fileTypes.markup.name | string |  Required. Name of the markup type. | 
+ fileTypes.markup.regex | array of strings |  Required. Regex patterns to find the markup type in documentation source files. | 
+-fileTypes.markup.actions | array of <br>- strings<br>- objects |  Optional. Actions that apply to the markup type. | 
++fileTypes.markup.actions | array of <br>- strings<br>- objects |  Optional. Actions that apply to the markup type. Each action can be a string (the action name) or an object with `name` and `params` fields. | 
+ fileTypes.markup.actions.name | string |  Required. Name of the action.<br><br>Accepted values: `checkLink`, `find`, `goTo`, `httpRequest`, `runShell`, `saveScreenshot`, `setVariables`, `typeKeys`, `wait` | 
+-fileTypes.markup.actions.params | object |  Optional. Parameters for the action. | 
++fileTypes.markup.actions.params | object |  Optional. Parameters for the action. For example, `saveScreenshot` accepts `path` and `directory` parameters to control where the screenshot is saved. | 
+ integrations | object |  Optional. Options for connecting to external services. | 
+ telemetry | object |  Optional. Options around sending telemetry for Doc Detective usage. | 
+ telemetry.send | boolean |  Required. If `true`, sends Doc Detective telemetry. | `false`

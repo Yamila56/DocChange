@@ -1,0 +1,54 @@
+diff --git a/contents/docs/cdp/sources/index.mdx b/contents/docs/cdp/sources/index.mdx
+index 95516a7e1b0f5830eecb12209f32f4c6850eaaf3..7a3030ad3f75a5df5b6cfb0a18935bdec5a56ab0 100644
+--- a/contents/docs/cdp/sources/index.mdx
++++ b/contents/docs/cdp/sources/index.mdx
+@@ -96,6 +96,12 @@ As with incremental syncing, selecting a nullable field as the cursor skips any
+ 
+ This reloads the whole table on every sync. This is great for tables with common data deletions or ones without an incrementing field (such as a `updated_at` timestamp).
+ 
++### Change data capture (CDC)
++
++CDC captures inserts, updates, and deletes from your source by reading the database's change log via database-level replication, keeping your data warehouse in sync without full table reloads. It's available on sources that support logical replication, such as Postgres.
++
++CDC has prerequisites that depend on the source. For Postgres, the database must run with `wal_level = logical`, and PostHog uses a replication slot and publication to stream changes. Tables need a primary key to capture updates and deletes. Because CDC reads from the write-ahead log, capture can be affected by WAL lag if PostHog falls behind. See the [Postgres source docs](/docs/cdp/sources/postgres) for details.
++
+ ## Syncing
+ 
+ Once you add a source, you can see its status, sync frequency, and last successful run in the [sources page](https://app.posthog.com/data-management/sources). You can also reload or delete sources here.
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index 0c82621568d86c7145da4288c5c07f03ef10aa40..04854dccf693160cbe5934b5e03a107d0bab5e54 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -33,6 +33,32 @@ To link Postgres:
+ 
+ The data warehouse then starts syncing your Postgres data. You can see details and progress in the [sources tab](https://app.posthog.com/data-management/sources).
+ 
++## Sync methods
++
++PostHog supports incremental, append-only, full table, and change data capture (CDC) syncs for Postgres. CDC captures inserts, updates, and deletes by reading the database's write-ahead log (WAL) through logical replication, so deletions and updates are reflected in your data warehouse without a full resync.
++
++### CDC prerequisites
++
++CDC relies on database-level replication mechanisms. Before enabling CDC on a Postgres source, make sure your database meets these requirements:
++
++- **Logical WAL level** - The database must run with `wal_level = logical`. This requires a restart of the Postgres instance to change.
++- **Replication slot** - PostHog creates and uses a logical replication slot to stream changes. The connecting user needs replication permissions, and the slot must be able to retain WAL until PostHog consumes it.
++- **Publication** - PostHog creates a publication for the tables you sync. Tables must have a primary key (or replica identity) so that updates and deletes can be identified.
++
++### Supported table modes
++
++CDC works with tables that have a primary key. Tables without a suitable replica identity can't be captured via CDC and should use incremental or full table syncs instead.
++
++### WAL lag and failure conditions
++
++CDC reads changes from the WAL, so capture behavior depends on how quickly PostHog consumes that log:
++
++- If PostHog falls behind, WAL accumulates on your database and can consume significant disk space.
++- If the replication slot's retained WAL exceeds your database's limits, Postgres may terminate the replication connection, which interrupts capture until the slot is re-established.
++- Changes made while CDC is not running are retained in the slot (subject to your WAL retention settings) and are captured once replication resumes, provided the WAL hasn't been discarded.
++
++Monitor replication slot lag on your database and ensure adequate disk space for WAL retention when using CDC.
++
+ ## Configuration
+ 
+ <SourceParameters />

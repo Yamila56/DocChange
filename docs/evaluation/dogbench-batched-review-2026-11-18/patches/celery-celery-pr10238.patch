@@ -1,0 +1,44 @@
+diff --git a/docs/faq.rst b/docs/faq.rst
+index 17e3dd5b338f9d9538e2564d5644a096b29e1399..2ab749aa10515d8af10b04c17f319a07f744fe25 100644
+--- a/docs/faq.rst
++++ b/docs/faq.rst
+@@ -823,6 +823,12 @@ Does Celery support task priorities?
+ **Answer**: Yes, RabbitMQ supports priorities since version 3.5.0,
+ and the Redis transport emulates priority support.
+ 
++In both cases higher numbers mean higher priority: for RabbitMQ (AMQP) a
++higher priority value is processed first, and for Redis the same holds since
++Celery 4.0, where priority 0 is the lowest and 9 is the highest. Before
++Celery 4.0 the Redis ordering was reversed (0 was the highest priority), so
++older guidance suggesting that 0 is the highest priority no longer applies.
++
+ You can also prioritize work by routing high priority tasks
+ to different workers. In the real world this usually works better
+ than per message priorities. You can use this in combination with rate
+diff --git a/docs/userguide/routing.rst b/docs/userguide/routing.rst
+index f88d64b0f29530ec7ad078927d1391eb8add756b..ba5e85a3e39247fc59c486c0bc1a588b0660cd2c 100644
+--- a/docs/userguide/routing.rst
++++ b/docs/userguide/routing.rst
+@@ -251,6 +251,10 @@ A default priority for all tasks can also be specified using the
+ 
+     app.conf.task_default_priority = 5
+ 
++Higher priority values mean higher priority: a task with priority 9 is
++processed before a task with priority 0, matching the AMQP semantics
++where higher numbers indicate higher priority.
++
+ .. _amqp-primer:
+ 
+ 
+@@ -262,6 +266,11 @@ While the Celery Redis transport does honor the priority field, Redis itself has
+ no notion of priorities. Please read this note before attempting to implement
+ priorities with Redis as you may experience some unexpected behavior.
+ 
++As with AMQP, higher priority values mean higher priority: priority 0 is the
++lowest and priority 9 is the highest. This ordering was reversed in Celery 4.0
++to be consistent with AMQP; older documentation stating that 0 is the highest
++priority no longer applies.
++
+ To start scheduling tasks based on priorities you need to configure queue_order_strategy transport option.
+ 
+ .. code-block:: python

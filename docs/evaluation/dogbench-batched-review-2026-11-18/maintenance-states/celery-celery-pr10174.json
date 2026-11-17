@@ -1,0 +1,2332 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REASON",
+  "tasks": [],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "15b2ab4fc6a08987b87ee652c5acc83554b9fe4ecab3bcf781fde0ad16772590",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where is broker_pool_limit documented in the configuration reference, so broker_pool_acquire_timeout can be added alongside it?",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ],
+          "paths": [
+            "docs/userguide/configuration.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "offset": 186,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a023399c55066a32826456d3",
+            "143a5a8dec2a030b473b24f1",
+            "b054826f9e42949eea5b8320",
+            "1b299b5fe601849f3cb9dd84",
+            "ed948878093dbf4634abdd9d",
+            "3e74a5ab23aac47d13739a53",
+            "6878deb778a1878db574cb5a",
+            "9b53f4174da1ad58c3d391ff",
+            "fccfcfe9e3f3cdbbcbb2ca37",
+            "013e6e96d45ca387adc3fe97",
+            "936d582f366a675d9f186b9b",
+            "f34d0a6a833674d3209874e6",
+            "ee52d52e8cd8ead22c20ef6a",
+            "c962bc7641e2e807fe4ac412",
+            "706cf032c69ac4a8113dda76"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "1b299b5fe601849f3cb9dd84",
+              "score": "0.030886196246139225"
+            },
+            {
+              "rank": 2,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "ed948878093dbf4634abdd9d",
+              "score": "0.03047794966520434"
+            },
+            {
+              "rank": 3,
+              "path": "docs/history/changelog-2.3.rst",
+              "evidence_id": "3e74a5ab23aac47d13739a53",
+              "score": "0.028782894736842105"
+            },
+            {
+              "rank": 4,
+              "path": ".github/ISSUE_TEMPLATE.md",
+              "evidence_id": "6878deb778a1878db574cb5a",
+              "score": "0.027364110201042444"
+            },
+            {
+              "rank": 5,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "9b53f4174da1ad58c3d391ff",
+              "score": "0.027271052146674038"
+            },
+            {
+              "rank": 6,
+              "path": "docs/userguide/optimizing.rst",
+              "evidence_id": "fccfcfe9e3f3cdbbcbb2ca37",
+              "score": "0.026881720430107527"
+            },
+            {
+              "rank": 7,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "013e6e96d45ca387adc3fe97",
+              "score": "0.024687641125997292"
+            },
+            {
+              "rank": 8,
+              "path": "docs/faq.rst",
+              "evidence_id": "936d582f366a675d9f186b9b",
+              "score": "0.024003097173828883"
+            },
+            {
+              "rank": 9,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "f34d0a6a833674d3209874e6",
+              "score": "0.022517394054395953"
+            },
+            {
+              "rank": 10,
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "evidence_id": "ee52d52e8cd8ead22c20ef6a",
+              "score": "0.021220609455903573"
+            },
+            {
+              "rank": 11,
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "evidence_id": "c962bc7641e2e807fe4ac412",
+              "score": "0.020890937019969278"
+            },
+            {
+              "rank": 12,
+              "path": "Changelog.rst",
+              "evidence_id": "706cf032c69ac4a8113dda76",
+              "score": "0.020258315640481243"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 4368
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "start": 39,
+              "end": 159,
+              "total_lines": 166
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "start": 186,
+              "end": 306,
+              "total_lines": 370
+            }
+          ],
+          "read_evidence_ids": [
+            "a023399c55066a32826456d3",
+            "143a5a8dec2a030b473b24f1",
+            "b054826f9e42949eea5b8320"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where is native delayed delivery / quorum queue routing documented, to note the eta=now behavior?",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ],
+          "paths": [
+            "docs/userguide/configuration.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+              "offset": 218,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.5.rst",
+              "offset": 228,
+              "limit": 120
+            },
+            {
+              "path": "Changelog.rst",
+              "offset": 409,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "eb7b529f271448079211f2a6",
+            "8baa7559e6d3bf473b657d30",
+            "a68c1241a6b952701648fea7",
+            "21bd425d73ad781cc67a99b4",
+            "d5471cb90844ea0e8137ab5a",
+            "c15e28ffc5210445e8b6e690",
+            "9e0b0c7bc278088ddef8fe2c",
+            "613a017ff8fee3b6a5dd1ea5",
+            "722b0fd9eb53159fda6a0575",
+            "f4f3d447734b0a85bf4e6d91",
+            "f5b2e26ddb46654aa191ebe4",
+            "6be4865cc5b046a0eadfe8f2",
+            "f61817539a89cf40bb6fc223",
+            "7060c8c2e5b76f7fc53b36d0",
+            "d8d1845758fa7dcc6925ab79"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+              "evidence_id": "21bd425d73ad781cc67a99b4",
+              "score": "0.037779359055450136"
+            },
+            {
+              "rank": 2,
+              "path": "docs/history/whatsnew-5.5.rst",
+              "evidence_id": "d5471cb90844ea0e8137ab5a",
+              "score": "0.03681644392998702"
+            },
+            {
+              "rank": 3,
+              "path": "Changelog.rst",
+              "evidence_id": "c15e28ffc5210445e8b6e690",
+              "score": "0.03641848347730701"
+            },
+            {
+              "rank": 4,
+              "path": "Changelog.rst",
+              "evidence_id": "9e0b0c7bc278088ddef8fe2c",
+              "score": "0.03356654161295151"
+            },
+            {
+              "rank": 5,
+              "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+              "evidence_id": "613a017ff8fee3b6a5dd1ea5",
+              "score": "0.03287822811864918"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/changelog-5.5.rst",
+              "evidence_id": "722b0fd9eb53159fda6a0575",
+              "score": "0.0326776558359258"
+            },
+            {
+              "rank": 7,
+              "path": "docs/django/first-steps-with-django.rst",
+              "evidence_id": "f4f3d447734b0a85bf4e6d91",
+              "score": "0.03256966014145021"
+            },
+            {
+              "rank": 8,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "f5b2e26ddb46654aa191ebe4",
+              "score": "0.029095281678216157"
+            },
+            {
+              "rank": 9,
+              "path": "docs/history/changelog-1.0.rst",
+              "evidence_id": "6be4865cc5b046a0eadfe8f2",
+              "score": "0.02884432434483525"
+            },
+            {
+              "rank": 10,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "f61817539a89cf40bb6fc223",
+              "score": "0.028814262023217248"
+            },
+            {
+              "rank": 11,
+              "path": "docs/history/whatsnew-5.5.rst",
+              "evidence_id": "7060c8c2e5b76f7fc53b36d0",
+              "score": "0.0282227928324901"
+            },
+            {
+              "rank": 12,
+              "path": "docs/getting-started/next-steps.rst",
+              "evidence_id": "d8d1845758fa7dcc6925ab79",
+              "score": "0.02771625000287513"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+              "start": 218,
+              "end": 257,
+              "total_lines": 257
+            },
+            {
+              "path": "docs/history/whatsnew-5.5.rst",
+              "start": 228,
+              "end": 348,
+              "total_lines": 360
+            },
+            {
+              "path": "Changelog.rst",
+              "start": 409,
+              "end": 529,
+              "total_lines": 2991
+            }
+          ],
+          "read_evidence_ids": [
+            "eb7b529f271448079211f2a6",
+            "8baa7559e6d3bf473b657d30",
+            "a68c1241a6b952701648fea7"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Does the code define broker_pool_acquire_timeout default and how it is consumed in connection_or_acquire/producer_or_acquire?",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ],
+          "paths": [
+            "celery/app/defaults.py",
+            "celery/app/base.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "celery/app/defaults.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "celery/app/base.py",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d0ec302c4b7575ec527d151b",
+            "03acc5046cce62ace1190622",
+            "ff87eaabc4fee58c30e270e4",
+            "939abdde2966c5fe8554e096",
+            "cd25628f3662bde527b485d0",
+            "2b5ea63bcb250f791ffb2c83",
+            "facf832d2c79c2865a35d96a",
+            "a4396b7f9dbad96549271995",
+            "c43dfc5b2711bcb0fdaf880e",
+            "0710187e443b01ee3b77c2f8",
+            "d59d9e7486de70b6950ae1fe",
+            "9613e08399754b6f303264db",
+            "6b56f60b7168768943d92642",
+            "ec97a82d98b425f5a30b6cf7"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "celery/app/defaults.py",
+              "evidence_id": "ff87eaabc4fee58c30e270e4",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 2,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "939abdde2966c5fe8554e096",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 3,
+              "path": "docs/faq.rst",
+              "evidence_id": "cd25628f3662bde527b485d0",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 4,
+              "path": "t/unit/app/test_app.py",
+              "evidence_id": "2b5ea63bcb250f791ffb2c83",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 5,
+              "path": "docs/userguide/optimizing.rst",
+              "evidence_id": "facf832d2c79c2865a35d96a",
+              "score": "0.015625"
+            },
+            {
+              "rank": 6,
+              "path": "t/unit/app/test_app.py",
+              "evidence_id": "a4396b7f9dbad96549271995",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 7,
+              "path": "t/unit/app/test_amqp.py",
+              "evidence_id": "c43dfc5b2711bcb0fdaf880e",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 8,
+              "path": "celery/app/base.py",
+              "evidence_id": "0710187e443b01ee3b77c2f8",
+              "score": "0.014925373134328358"
+            },
+            {
+              "rank": 9,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "d59d9e7486de70b6950ae1fe",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 10,
+              "path": "celery/app/base.py",
+              "evidence_id": "9613e08399754b6f303264db",
+              "score": "0.014492753623188406"
+            },
+            {
+              "rank": 11,
+              "path": "docs/history/whatsnew-2.5.rst",
+              "evidence_id": "6b56f60b7168768943d92642",
+              "score": "0.014285714285714285"
+            },
+            {
+              "rank": 12,
+              "path": "docs/history/changelog-2.3.rst",
+              "evidence_id": "ec97a82d98b425f5a30b6cf7",
+              "score": "0.013888888888888888"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "celery/app/defaults.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 447
+            },
+            {
+              "path": "celery/app/base.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 1577
+            }
+          ],
+          "read_evidence_ids": [
+            "d0ec302c4b7575ec527d151b",
+            "03acc5046cce62ace1190622"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "013e6e96d45ca387adc3fe97",
+        "03acc5046cce62ace1190622",
+        "0710187e443b01ee3b77c2f8",
+        "143a5a8dec2a030b473b24f1",
+        "1b299b5fe601849f3cb9dd84",
+        "21bd425d73ad781cc67a99b4",
+        "2b5ea63bcb250f791ffb2c83",
+        "3e74a5ab23aac47d13739a53",
+        "613a017ff8fee3b6a5dd1ea5",
+        "6878deb778a1878db574cb5a",
+        "6b56f60b7168768943d92642",
+        "6be4865cc5b046a0eadfe8f2",
+        "7060c8c2e5b76f7fc53b36d0",
+        "706cf032c69ac4a8113dda76",
+        "722b0fd9eb53159fda6a0575",
+        "8baa7559e6d3bf473b657d30",
+        "936d582f366a675d9f186b9b",
+        "939abdde2966c5fe8554e096",
+        "9613e08399754b6f303264db",
+        "9b53f4174da1ad58c3d391ff",
+        "9e0b0c7bc278088ddef8fe2c",
+        "a023399c55066a32826456d3",
+        "a4396b7f9dbad96549271995",
+        "a68c1241a6b952701648fea7",
+        "b054826f9e42949eea5b8320",
+        "c15e28ffc5210445e8b6e690",
+        "c43dfc5b2711bcb0fdaf880e",
+        "c962bc7641e2e807fe4ac412",
+        "cd25628f3662bde527b485d0",
+        "d0ec302c4b7575ec527d151b",
+        "d5471cb90844ea0e8137ab5a",
+        "d59d9e7486de70b6950ae1fe",
+        "d8d1845758fa7dcc6925ab79",
+        "eb7b529f271448079211f2a6",
+        "ec97a82d98b425f5a30b6cf7",
+        "ed948878093dbf4634abdd9d",
+        "ee52d52e8cd8ead22c20ef6a",
+        "f34d0a6a833674d3209874e6",
+        "f4f3d447734b0a85bf4e6d91",
+        "f5b2e26ddb46654aa191ebe4",
+        "f61817539a89cf40bb6fc223",
+        "facf832d2c79c2865a35d96a",
+        "fccfcfe9e3f3cdbbcbb2ca37",
+        "ff87eaabc4fee58c30e270e4"
+      ],
+      "new_evidence_count": 44,
+      "new_path_count": 24
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+    "code": "2e3f9e090d74c8212e7922b83edc21462c9817c1"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {
+    "REASON": {
+      "errors": [
+        {
+          "type": "string_too_long",
+          "loc": [
+            "ready_to_edit",
+            "targets",
+            0,
+            "description"
+          ],
+          "msg": "String should have at most 600 characters"
+        }
+      ],
+      "instruction": "Return a complete corrected decision using only observed evidence."
+    }
+  },
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:267dfa738f19c0b0": 0,
+    "discover:Q1-2:ab07c4fee4d41ce8": 123576,
+    "discover:Q1-3:782dfa85b121e26e": 0
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:782dfa85b121e26e": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:267dfa738f19c0b0": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 123576,
+      "cache_hit": false
+    },
+    "discover:Q1-2:ab07c4fee4d41ce8": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 139,
+      "cache_hit": false
+    },
+    "discover:Q1-3:782dfa85b121e26e": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 136364,
+      "cache_hit": false
+    },
+    "discover:Q1-3:34b6f1d972beb8b6": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 5295,
+      "cache_hit": false
+    },
+    "discover:Q1-2:a4fbbbab81759745": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 5681,
+      "cache_hit": false
+    },
+    "discover:Q1-1:1a6f659aa6c51a6e": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 5766,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:013e6e96d45ca387adc3fe97",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``broker_transport_options``",
+        "start_line": 3261,
+        "end_line": 3310,
+        "start_char": 94551,
+        "end_char": 95757,
+        "score": "0.024687641125997292",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "013e6e96d45ca387adc3fe97",
+        "source_type": "repository",
+        "content_hash": "5c9daa70a5858e0f47e23827a7b81db193806f578740fa0cd2b3423758efa413",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5c9daa70a5858e0f47e23827a7b81db193806f578740fa0cd2b3423758efa413",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:03acc5046cce62ace1190622",
+        "type": "evidence",
+        "root": "code",
+        "path": "celery/app/base.py",
+        "start_line": 1,
+        "total_lines": 1577,
+        "start_char": 0,
+        "end_char": 4508,
+        "evidence_id": "03acc5046cce62ace1190622",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "160ec420d1381deb952dee45e83ab7fd5d3795554b49ddecf0a5121a74d04bf1",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "celery/app/defaults.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "celery/app/base.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "160ec420d1381deb952dee45e83ab7fd5d3795554b49ddecf0a5121a74d04bf1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0710187e443b01ee3b77c2f8",
+        "type": "evidence",
+        "path": "celery/app/base.py",
+        "heading": "Load all builtin tasks",
+        "start_line": 1068,
+        "end_line": 1107,
+        "start_char": 42071,
+        "end_char": 43706,
+        "score": "0.014925373134328358",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "0710187e443b01ee3b77c2f8",
+        "source_type": "repository",
+        "content_hash": "b23983899e301085e6f07e5808a3abfa54b2645c8ab94b5e4bbb49317339a383",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b23983899e301085e6f07e5808a3abfa54b2645c8ab94b5e4bbb49317339a383",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:143a5a8dec2a030b473b24f1",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "start_line": 40,
+        "total_lines": 166,
+        "start_char": 1876,
+        "end_char": 5435,
+        "evidence_id": "143a5a8dec2a030b473b24f1",
+        "truncated": false,
+        "next_offset": 159,
+        "source_type": "repository",
+        "content_hash": "b1f103e4cdf7bfc056d67acf20ccf08ecbcb55e23a5615e15186acbad1582514",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "offset": 186,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b1f103e4cdf7bfc056d67acf20ccf08ecbcb55e23a5615e15186acbad1582514",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1b299b5fe601849f3cb9dd84",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``broker_pool_limit``",
+        "start_line": 3139,
+        "end_line": 3176,
+        "start_char": 90999,
+        "end_char": 92194,
+        "score": "0.030886196246139225",
+        "root": "docs",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "1b299b5fe601849f3cb9dd84",
+        "source_type": "repository",
+        "content_hash": "dd8fb9dea1ad06b5b6770b8d3a85feaf2a3632f27029d198cb5aaafa1c535cac",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "dd8fb9dea1ad06b5b6770b8d3a85feaf2a3632f27029d198cb5aaafa1c535cac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:21bd425d73ad781cc67a99b4",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+        "heading": "Limitations",
+        "start_line": 223,
+        "end_line": 242,
+        "start_char": 6507,
+        "end_char": 7431,
+        "score": "0.037779359055450136",
+        "root": "docs",
+        "matched_terms": [
+          "countdown",
+          "delayed",
+          "delivery",
+          "eta",
+          "native",
+          "queue",
+          "quorum"
+        ],
+        "evidence_id": "21bd425d73ad781cc67a99b4",
+        "source_type": "repository",
+        "content_hash": "625fd6f8e06b04b405b85c8e385e2277d414b9b8e908be355a428f1461d9f4c5",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "625fd6f8e06b04b405b85c8e385e2277d414b9b8e908be355a428f1461d9f4c5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2b5ea63bcb250f791ffb2c83",
+        "type": "evidence",
+        "path": "t/unit/app/test_app.py",
+        "heading": "",
+        "start_line": 1768,
+        "end_line": 1806,
+        "start_char": 63901,
+        "end_char": 65527,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "2b5ea63bcb250f791ffb2c83",
+        "source_type": "repository",
+        "content_hash": "da93a843b19a2c27cceb8e7a42a78272afbdbfeb4b322c68617200ee7f62e961",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "da93a843b19a2c27cceb8e7a42a78272afbdbfeb4b322c68617200ee7f62e961",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3e74a5ab23aac47d13739a53",
+        "type": "evidence",
+        "path": "docs/history/changelog-2.3.rst",
+        "heading": "News",
+        "start_line": 191,
+        "end_line": 231,
+        "start_char": 4887,
+        "end_char": 6491,
+        "score": "0.028782894736842105",
+        "root": "docs",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "3e74a5ab23aac47d13739a53",
+        "source_type": "repository",
+        "content_hash": "2a2120f2acf5c9a284cf189936b9631794b7a3680a1b2889cc65e187a5da8cb9",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2a2120f2acf5c9a284cf189936b9631794b7a3680a1b2889cc65e187a5da8cb9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:613a017ff8fee3b6a5dd1ea5",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+        "heading": "Native Delayed Delivery",
+        "start_line": 243,
+        "end_line": 257,
+        "start_char": 7431,
+        "end_char": 8145,
+        "score": "0.03287822811864918",
+        "root": "docs",
+        "matched_terms": [
+          "countdown",
+          "delayed",
+          "delivery",
+          "eta",
+          "native",
+          "quorum"
+        ],
+        "evidence_id": "613a017ff8fee3b6a5dd1ea5",
+        "source_type": "repository",
+        "content_hash": "6c5cc3d75c78e556ef9ef33331199165a829b47e6ee3d7385299bfcfd6e71294",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6c5cc3d75c78e556ef9ef33331199165a829b47e6ee3d7385299bfcfd6e71294",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6878deb778a1878db574cb5a",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 4,
+        "start_char": 0,
+        "end_char": 139,
+        "score": "0.027364110201042444",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "6878deb778a1878db574cb5a",
+        "source_type": "repository",
+        "content_hash": "5f46b005c3ca4d0a8a4c0987a8407b5d36ce534786453a153c7e803b178861fe",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5f46b005c3ca4d0a8a4c0987a8407b5d36ce534786453a153c7e803b178861fe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6b56f60b7168768943d92642",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-2.5.rst",
+        "heading": "Broker connection pool now enabled by default",
+        "start_line": 38,
+        "end_line": 51,
+        "start_char": 1047,
+        "end_char": 1576,
+        "score": "0.014285714285714285",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "6b56f60b7168768943d92642",
+        "source_type": "repository",
+        "content_hash": "c2740976e23b2efed6922d8045faeed764d7f8f30143d52f0a715d8913fba9a9",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c2740976e23b2efed6922d8045faeed764d7f8f30143d52f0a715d8913fba9a9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6be4865cc5b046a0eadfe8f2",
+        "type": "evidence",
+        "path": "docs/history/changelog-1.0.rst",
+        "heading": "News",
+        "start_line": 158,
+        "end_line": 206,
+        "start_char": 3882,
+        "end_char": 5529,
+        "score": "0.02884432434483525",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "6be4865cc5b046a0eadfe8f2",
+        "source_type": "repository",
+        "content_hash": "8a38b856f87fde09ca6241f57334c221a9ca317a2c71769ef0c14e1d53c258ae",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8a38b856f87fde09ca6241f57334c221a9ca317a2c71769ef0c14e1d53c258ae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7060c8c2e5b76f7fc53b36d0",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.5.rst",
+        "heading": "Django",
+        "start_line": 187,
+        "end_line": 232,
+        "start_char": 5457,
+        "end_char": 7131,
+        "score": "0.0282227928324901",
+        "root": "docs",
+        "matched_terms": [
+          "delayed",
+          "delivery",
+          "eta",
+          "native",
+          "queue",
+          "quorum"
+        ],
+        "evidence_id": "7060c8c2e5b76f7fc53b36d0",
+        "source_type": "repository",
+        "content_hash": "fe5508f006c866c2f0b2e54907cacd029a9a8ed0912ff2765ba5b4b3c1353a7b",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fe5508f006c866c2f0b2e54907cacd029a9a8ed0912ff2765ba5b4b3c1353a7b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:706cf032c69ac4a8113dda76",
+        "type": "evidence",
+        "path": "Changelog.rst",
+        "heading": "5.3.2 (Yanked)",
+        "start_line": 2413,
+        "end_line": 2423,
+        "start_char": 103682,
+        "end_char": 104120,
+        "score": "0.020258315640481243",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "706cf032c69ac4a8113dda76",
+        "source_type": "repository",
+        "content_hash": "946ebce2e2be818d98761eaaf9afdee9256406adb1d3e7ba7c9334cd6818e984",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "946ebce2e2be818d98761eaaf9afdee9256406adb1d3e7ba7c9334cd6818e984",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:722b0fd9eb53159fda6a0575",
+        "type": "evidence",
+        "path": "docs/history/changelog-5.5.rst",
+        "heading": "RabbitMQ Quorum Queues Support",
+        "start_line": 115,
+        "end_line": 142,
+        "start_char": 3530,
+        "end_char": 4777,
+        "score": "0.0326776558359258",
+        "root": "docs",
+        "matched_terms": [
+          "delayed",
+          "delivery",
+          "eta",
+          "native",
+          "queue",
+          "quorum"
+        ],
+        "evidence_id": "722b0fd9eb53159fda6a0575",
+        "source_type": "repository",
+        "content_hash": "928a1972c335377d60b501ac4570a519b2a96186f8a96cc14f16fd55b3e87dba",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "928a1972c335377d60b501ac4570a519b2a96186f8a96cc14f16fd55b3e87dba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:890befc69a4754107b8af1e0",
+        "type": "evidence",
+        "evidence_id": "890befc69a4754107b8af1e0",
+        "source_type": "task",
+        "exported_content_sha256": "7ea8fce81e2ce0d552180a5035b9df0a2dbf433e723835ff8ce5cf29a66a9385",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8baa7559e6d3bf473b657d30",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/whatsnew-5.5.rst",
+        "start_line": 229,
+        "total_lines": 360,
+        "start_char": 7021,
+        "end_char": 10955,
+        "evidence_id": "8baa7559e6d3bf473b657d30",
+        "truncated": false,
+        "next_offset": 348,
+        "source_type": "repository",
+        "content_hash": "113d84ab41482e5c61d44b4316bb1ac8f812d7ab8b86f5caa000ecec61c3bcaa",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+              "offset": 218,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.5.rst",
+              "offset": 228,
+              "limit": 120
+            },
+            {
+              "path": "Changelog.rst",
+              "offset": 409,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "113d84ab41482e5c61d44b4316bb1ac8f812d7ab8b86f5caa000ecec61c3bcaa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:936d582f366a675d9f186b9b",
+        "type": "evidence",
+        "path": "docs/faq.rst",
+        "heading": "How can I reuse the same connection when calling tasks?",
+        "start_line": 566,
+        "end_line": 573,
+        "start_char": 17671,
+        "end_char": 17930,
+        "score": "0.024003097173828883",
+        "root": "docs",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "936d582f366a675d9f186b9b",
+        "source_type": "repository",
+        "content_hash": "f1118a7904b589d8de636ebda9b337bfc501f649d8d49b9d72567f321ae611d8",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f1118a7904b589d8de636ebda9b337bfc501f649d8d49b9d72567f321ae611d8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:939abdde2966c5fe8554e096",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "New lowercase settings",
+        "start_line": 72,
+        "end_line": 93,
+        "start_char": 2571,
+        "end_char": 4227,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "939abdde2966c5fe8554e096",
+        "source_type": "repository",
+        "content_hash": "01407c985289e98aafa6a472aa424a885614b82c090094564e3af2b2d39a9a49",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "01407c985289e98aafa6a472aa424a885614b82c090094564e3af2b2d39a9a49",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9613e08399754b6f303264db",
+        "type": "evidence",
+        "path": "celery/app/base.py",
+        "heading": "Load all builtin tasks",
+        "start_line": 1108,
+        "end_line": 1149,
+        "start_char": 43706,
+        "end_char": 45313,
+        "score": "0.014492753623188406",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "9613e08399754b6f303264db",
+        "source_type": "repository",
+        "content_hash": "b8fd975d0fe7f208e95929e85e5f1758b2e44b860997e27c1e69fa12d65db24b",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b8fd975d0fe7f208e95929e85e5f1758b2e44b860997e27c1e69fa12d65db24b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9b53f4174da1ad58c3d391ff",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "Steps to Reproduce > Required Dependencies",
+        "start_line": 98,
+        "end_line": 108,
+        "start_char": 3767,
+        "end_char": 4263,
+        "score": "0.027271052146674038",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "9b53f4174da1ad58c3d391ff",
+        "source_type": "repository",
+        "content_hash": "49310281486b15db3a6c90600ddb52bd98a73dae890d4cc008fcdad5a3180076",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "49310281486b15db3a6c90600ddb52bd98a73dae890d4cc008fcdad5a3180076",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9e0b0c7bc278088ddef8fe2c",
+        "type": "evidence",
+        "path": "Changelog.rst",
+        "heading": "Complete Quorum Queues Support",
+        "start_line": 1060,
+        "end_line": 1073,
+        "start_char": 44171,
+        "end_char": 44695,
+        "score": "0.03356654161295151",
+        "root": "docs",
+        "matched_terms": [
+          "eta",
+          "quorum"
+        ],
+        "evidence_id": "9e0b0c7bc278088ddef8fe2c",
+        "source_type": "repository",
+        "content_hash": "accea82c30ed937d778f2f2fa5d9453115233c0f3645240bbf69d0d1704a2afe",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "accea82c30ed937d778f2f2fa5d9453115233c0f3645240bbf69d0d1704a2afe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a023399c55066a32826456d3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 1,
+        "total_lines": 4368,
+        "start_char": 0,
+        "end_char": 6174,
+        "evidence_id": "a023399c55066a32826456d3",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "5ce1a3f302d680c818f617445add26da6759f9589ea919a36224b4315f2b174e",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "offset": 186,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5ce1a3f302d680c818f617445add26da6759f9589ea919a36224b4315f2b174e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a4396b7f9dbad96549271995",
+        "type": "evidence",
+        "path": "t/unit/app/test_app.py",
+        "heading": "",
+        "start_line": 1733,
+        "end_line": 1767,
+        "start_char": 62289,
+        "end_char": 63901,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "a4396b7f9dbad96549271995",
+        "source_type": "repository",
+        "content_hash": "9a2594c8fdf39db96c4560003876d5608620016e30edfd17b6cbd6ca6e94bf02",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9a2594c8fdf39db96c4560003876d5608620016e30edfd17b6cbd6ca6e94bf02",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a68c1241a6b952701648fea7",
+        "type": "evidence",
+        "root": "docs",
+        "path": "Changelog.rst",
+        "start_line": 410,
+        "total_lines": 2991,
+        "start_char": 14391,
+        "end_char": 18928,
+        "evidence_id": "a68c1241a6b952701648fea7",
+        "truncated": false,
+        "next_offset": 529,
+        "source_type": "repository",
+        "content_hash": "0d355daafa3839538b43d7cd181cabd8710430e7acf14276f3ae6956b6faf174",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+              "offset": 218,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.5.rst",
+              "offset": 228,
+              "limit": 120
+            },
+            {
+              "path": "Changelog.rst",
+              "offset": 409,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0d355daafa3839538b43d7cd181cabd8710430e7acf14276f3ae6956b6faf174",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b054826f9e42949eea5b8320",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-2.3.rst",
+        "start_line": 187,
+        "total_lines": 370,
+        "start_char": 4854,
+        "end_char": 9155,
+        "evidence_id": "b054826f9e42949eea5b8320",
+        "truncated": false,
+        "next_offset": 306,
+        "source_type": "repository",
+        "content_hash": "bd9c43f48f3555e65826ae84d420dc7a18bd46addf031b8f2a1ba452fee703a3",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "offset": 39,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-2.3.rst",
+              "offset": 186,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "bd9c43f48f3555e65826ae84d420dc7a18bd46addf031b8f2a1ba452fee703a3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c15e28ffc5210445e8b6e690",
+        "type": "evidence",
+        "path": "Changelog.rst",
+        "heading": "RabbitMQ Quorum Queues Support",
+        "start_line": 414,
+        "end_line": 441,
+        "start_char": 14598,
+        "end_char": 15845,
+        "score": "0.03641848347730701",
+        "root": "docs",
+        "matched_terms": [
+          "delayed",
+          "delivery",
+          "eta",
+          "native",
+          "queue",
+          "quorum"
+        ],
+        "evidence_id": "c15e28ffc5210445e8b6e690",
+        "source_type": "repository",
+        "content_hash": "928a1972c335377d60b501ac4570a519b2a96186f8a96cc14f16fd55b3e87dba",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "928a1972c335377d60b501ac4570a519b2a96186f8a96cc14f16fd55b3e87dba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c43dfc5b2711bcb0fdaf880e",
+        "type": "evidence",
+        "path": "t/unit/app/test_amqp.py",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1341,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "c43dfc5b2711bcb0fdaf880e",
+        "source_type": "repository",
+        "content_hash": "5073125b6c27894641aa17b973608d8205108137ac2081856c70de52838b9f5f",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5073125b6c27894641aa17b973608d8205108137ac2081856c70de52838b9f5f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c962bc7641e2e807fe4ac412",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/redis.rst",
+        "heading": "Visibility timeout",
+        "start_line": 204,
+        "end_line": 239,
+        "start_char": 5916,
+        "end_char": 7519,
+        "score": "0.020890937019969278",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "c962bc7641e2e807fe4ac412",
+        "source_type": "repository",
+        "content_hash": "46954b50f8df772842116a08c20856cd114f4957506a34861e52d6a7843ba0c8",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "46954b50f8df772842116a08c20856cd114f4957506a34861e52d6a7843ba0c8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cd25628f3662bde527b485d0",
+        "type": "evidence",
+        "path": "docs/faq.rst",
+        "heading": "How can I reuse the same connection when calling tasks?",
+        "start_line": 566,
+        "end_line": 573,
+        "start_char": 17671,
+        "end_char": 17930,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "cd25628f3662bde527b485d0",
+        "source_type": "repository",
+        "content_hash": "f1118a7904b589d8de636ebda9b337bfc501f649d8d49b9d72567f321ae611d8",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f1118a7904b589d8de636ebda9b337bfc501f649d8d49b9d72567f321ae611d8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d0ec302c4b7575ec527d151b",
+        "type": "evidence",
+        "root": "code",
+        "path": "celery/app/defaults.py",
+        "start_line": 1,
+        "total_lines": 447,
+        "start_char": 0,
+        "end_char": 3988,
+        "evidence_id": "d0ec302c4b7575ec527d151b",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "6f85270acde16ed43475dd992a3b356d61bc80a39ca50d5fcf0ef0ec5f0e5f93",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "celery/app/defaults.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "celery/app/base.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6f85270acde16ed43475dd992a3b356d61bc80a39ca50d5fcf0ef0ec5f0e5f93",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d5471cb90844ea0e8137ab5a",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.5.rst",
+        "heading": "Django",
+        "start_line": 233,
+        "end_line": 273,
+        "start_char": 7131,
+        "end_char": 8740,
+        "score": "0.03681644392998702",
+        "root": "docs",
+        "matched_terms": [
+          "delayed",
+          "delivery",
+          "native",
+          "queue",
+          "quorum"
+        ],
+        "evidence_id": "d5471cb90844ea0e8137ab5a",
+        "source_type": "repository",
+        "content_hash": "ce83d9d1825a546b40830e26c28b9c22ac5b8632b42311c428fd1eae9978062b",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ce83d9d1825a546b40830e26c28b9c22ac5b8632b42311c428fd1eae9978062b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d59d9e7486de70b6950ae1fe",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``broker_pool_limit``",
+        "start_line": 3139,
+        "end_line": 3176,
+        "start_char": 90999,
+        "end_char": 92194,
+        "score": "0.014705882352941176",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "d59d9e7486de70b6950ae1fe",
+        "source_type": "repository",
+        "content_hash": "dd8fb9dea1ad06b5b6770b8d3a85feaf2a3632f27029d198cb5aaafa1c535cac",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "dd8fb9dea1ad06b5b6770b8d3a85feaf2a3632f27029d198cb5aaafa1c535cac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d8d1845758fa7dcc6925ab79",
+        "type": "evidence",
+        "path": "docs/getting-started/next-steps.rst",
+        "heading": "About the :option:`--app <celery --app>` argument",
+        "start_line": 274,
+        "end_line": 318,
+        "start_char": 8807,
+        "end_char": 10416,
+        "score": "0.02771625000287513",
+        "root": "docs",
+        "matched_terms": [
+          "countdown",
+          "queue"
+        ],
+        "evidence_id": "d8d1845758fa7dcc6925ab79",
+        "source_type": "repository",
+        "content_hash": "01ed2620035ed120c4e92ed9da6abc0fcc2c05c7dc043eea97f1219fb7554d20",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "01ed2620035ed120c4e92ed9da6abc0fcc2c05c7dc043eea97f1219fb7554d20",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eb351e162df1e3839a0d0b85",
+        "type": "evidence",
+        "evidence_id": "eb351e162df1e3839a0d0b85",
+        "source_type": "implementation",
+        "exported_content_sha256": "b2998471978935a763fbb1799eba2d4ab5333ae2b74b7555de1d342e6e8ab839",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eb7b529f271448079211f2a6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+        "start_line": 219,
+        "total_lines": 257,
+        "start_char": 6423,
+        "end_char": 8145,
+        "evidence_id": "eb7b529f271448079211f2a6",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "83f9a88ae5463a72de0e7648246e7d55280c3a03ff7c8d4e038ca0cca6b7d629",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/getting-started/backends-and-brokers/rabbitmq.rst",
+              "offset": 218,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.5.rst",
+              "offset": 228,
+              "limit": 120
+            },
+            {
+              "path": "Changelog.rst",
+              "offset": 409,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "83f9a88ae5463a72de0e7648246e7d55280c3a03ff7c8d4e038ca0cca6b7d629",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ec97a82d98b425f5a30b6cf7",
+        "type": "evidence",
+        "path": "docs/history/changelog-2.3.rst",
+        "heading": "News",
+        "start_line": 191,
+        "end_line": 231,
+        "start_char": 4887,
+        "end_char": 6491,
+        "score": "0.013888888888888888",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "ec97a82d98b425f5a30b6cf7",
+        "source_type": "repository",
+        "content_hash": "2a2120f2acf5c9a284cf189936b9631794b7a3680a1b2889cc65e187a5da8cb9",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2a2120f2acf5c9a284cf189936b9631794b7a3680a1b2889cc65e187a5da8cb9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed948878093dbf4634abdd9d",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "Checklist > Optional Debugging Information",
+        "start_line": 44,
+        "end_line": 61,
+        "start_char": 2050,
+        "end_char": 2899,
+        "score": "0.03047794966520434",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ed948878093dbf4634abdd9d",
+        "source_type": "repository",
+        "content_hash": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee52d52e8cd8ead22c20ef6a",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/redis.rst",
+        "heading": "Connection timeouts",
+        "start_line": 130,
+        "end_line": 147,
+        "start_char": 3448,
+        "end_char": 3929,
+        "score": "0.021220609455903573",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ee52d52e8cd8ead22c20ef6a",
+        "source_type": "repository",
+        "content_hash": "dd42f1abcaec990c2c8b213a2af5e0c8d70bb21d736d81f89f819fe6d2b13c16",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "dd42f1abcaec990c2c8b213a2af5e0c8d70bb21d736d81f89f819fe6d2b13c16",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f34d0a6a833674d3209874e6",
+        "type": "evidence",
+        "path": "docs/userguide/calling.rst",
+        "heading": "Retry Policy",
+        "start_line": 399,
+        "end_line": 416,
+        "start_char": 12218,
+        "end_char": 12763,
+        "score": "0.022517394054395953",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "f34d0a6a833674d3209874e6",
+        "source_type": "repository",
+        "content_hash": "d501482116abfea757d228a79b89eeb4733117cdf92c512769f4af0962640ddf",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d501482116abfea757d228a79b89eeb4733117cdf92c512769f4af0962640ddf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f4f3d447734b0a85bf4e6d91",
+        "type": "evidence",
+        "path": "docs/django/first-steps-with-django.rst",
+        "heading": "Trigger tasks at the end of the database transaction",
+        "start_line": 202,
+        "end_line": 218,
+        "start_char": 6784,
+        "end_char": 7661,
+        "score": "0.03256966014145021",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "f4f3d447734b0a85bf4e6d91",
+        "source_type": "repository",
+        "content_hash": "5cffc44e73f109dec3da89dd6ea78350e29be5fc8b702a13d315f4733574c0f3",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5cffc44e73f109dec3da89dd6ea78350e29be5fc8b702a13d315f4733574c0f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f5b2e26ddb46654aa191ebe4",
+        "type": "evidence",
+        "path": "docs/userguide/calling.rst",
+        "heading": "ETA and Countdown",
+        "start_line": 269,
+        "end_line": 299,
+        "start_char": 7922,
+        "end_char": 9525,
+        "score": "0.029095281678216157",
+        "root": "docs",
+        "matched_terms": [
+          "countdown",
+          "delivery",
+          "eta"
+        ],
+        "evidence_id": "f5b2e26ddb46654aa191ebe4",
+        "source_type": "repository",
+        "content_hash": "8164d1f70adef01090fde4b7c08e33d820b16821a1fcf878ab584b8da0746481",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8164d1f70adef01090fde4b7c08e33d820b16821a1fcf878ab584b8da0746481",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f61817539a89cf40bb6fc223",
+        "type": "evidence",
+        "path": "docs/userguide/calling.rst",
+        "heading": "ETA and Countdown",
+        "start_line": 300,
+        "end_line": 304,
+        "start_char": 9525,
+        "end_char": 9656,
+        "score": "0.028814262023217248",
+        "root": "docs",
+        "matched_terms": [
+          "delivery"
+        ],
+        "evidence_id": "f61817539a89cf40bb6fc223",
+        "source_type": "repository",
+        "content_hash": "c1aac405d2bcc63c31e0622a4a58110c24cbfddc966716c23c40d7222b551473",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "native delayed delivery",
+            "quorum queue eta countdown",
+            "celery_delayed_27"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c1aac405d2bcc63c31e0622a4a58110c24cbfddc966716c23c40d7222b551473",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:facf832d2c79c2865a35d96a",
+        "type": "evidence",
+        "path": "docs/userguide/optimizing.rst",
+        "heading": "Broker Connection Pools",
+        "start_line": 51,
+        "end_line": 61,
+        "start_char": 1587,
+        "end_char": 1921,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "facf832d2c79c2865a35d96a",
+        "source_type": "repository",
+        "content_hash": "4a593f56a39c223a94a1af2149241ef784b2ff2e205bce2f6bfeba56fff1efb9",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4a593f56a39c223a94a1af2149241ef784b2ff2e205bce2f6bfeba56fff1efb9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fccfcfe9e3f3cdbbcbb2ca37",
+        "type": "evidence",
+        "path": "docs/userguide/optimizing.rst",
+        "heading": "Broker Connection Pools",
+        "start_line": 51,
+        "end_line": 61,
+        "start_char": 1587,
+        "end_char": 1921,
+        "score": "0.026881720430107527",
+        "root": "docs",
+        "matched_terms": [
+          "broker_pool_limit"
+        ],
+        "evidence_id": "fccfcfe9e3f3cdbbcbb2ca37",
+        "source_type": "repository",
+        "content_hash": "4a593f56a39c223a94a1af2149241ef784b2ff2e205bce2f6bfeba56fff1efb9",
+        "revision": "d3abeecda79106bd4689452de9c91b4dc6924db9",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "broker_pool_limit",
+            "broker_pool_acquire_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4a593f56a39c223a94a1af2149241ef784b2ff2e205bce2f6bfeba56fff1efb9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ff87eaabc4fee58c30e270e4",
+        "type": "evidence",
+        "path": "celery/app/defaults.py",
+        "heading": "",
+        "start_line": 93,
+        "end_line": 136,
+        "start_char": 2943,
+        "end_char": 4563,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "pool_acquire_timeout"
+        ],
+        "evidence_id": "ff87eaabc4fee58c30e270e4",
+        "source_type": "repository",
+        "content_hash": "4f7ff697df2faf45d3d74a6ae6699de84e307c3bd23801ca5132f28ec6fa20a5",
+        "revision": "2e3f9e090d74c8212e7922b83edc21462c9817c1",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "pool_acquire_timeout",
+            "broker_pool_limit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4f7ff697df2faf45d3d74a6ae6699de84e307c3bd23801ca5132f28ec6fa20a5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where is broker_pool_limit documented in the configuration reference, so broker_pool_acquire_timeout can be added alongside it?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where is native delayed delivery / quorum queue routing documented, to note the eta=now behavior?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Does the code define broker_pool_acquire_timeout default and how it is consumed in connection_or_acquire/producer_or_acquire?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:013e6e96d45ca387adc3fe97",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:03acc5046cce62ace1190622",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0710187e443b01ee3b77c2f8",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:143a5a8dec2a030b473b24f1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1b299b5fe601849f3cb9dd84",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:21bd425d73ad781cc67a99b4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2b5ea63bcb250f791ffb2c83",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3e74a5ab23aac47d13739a53",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:613a017ff8fee3b6a5dd1ea5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6878deb778a1878db574cb5a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6b56f60b7168768943d92642",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6be4865cc5b046a0eadfe8f2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7060c8c2e5b76f7fc53b36d0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:706cf032c69ac4a8113dda76",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:722b0fd9eb53159fda6a0575",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8baa7559e6d3bf473b657d30",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:936d582f366a675d9f186b9b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:939abdde2966c5fe8554e096",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9613e08399754b6f303264db",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9b53f4174da1ad58c3d391ff",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9e0b0c7bc278088ddef8fe2c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a023399c55066a32826456d3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a4396b7f9dbad96549271995",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a68c1241a6b952701648fea7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b054826f9e42949eea5b8320",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c15e28ffc5210445e8b6e690",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c43dfc5b2711bcb0fdaf880e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c962bc7641e2e807fe4ac412",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd25628f3662bde527b485d0",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d0ec302c4b7575ec527d151b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d5471cb90844ea0e8137ab5a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d59d9e7486de70b6950ae1fe",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d8d1845758fa7dcc6925ab79",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eb7b529f271448079211f2a6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ec97a82d98b425f5a30b6cf7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed948878093dbf4634abdd9d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee52d52e8cd8ead22c20ef6a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f34d0a6a833674d3209874e6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f4f3d447734b0a85bf4e6d91",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f5b2e26ddb46654aa191ebe4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f61817539a89cf40bb6fc223",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:facf832d2c79c2865a35d96a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fccfcfe9e3f3cdbbcbb2ca37",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff87eaabc4fee58c30e270e4",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

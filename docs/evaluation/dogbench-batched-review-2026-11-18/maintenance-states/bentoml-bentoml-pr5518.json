@@ -1,0 +1,3056 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "runtime-env-build-include",
+      "description": "In docs/source/build-with-bentoml/runtime-environment.rst, under the 'Configuration methods' section of the Image class, add a new subsection documenting the `build_include(*file_paths)` method: it accepts one or more paths relative to the bento context root, appends them to the build include list, and returns self for chaining. Include a code example such as `bentoml.images.Image(python_version='3.11').build_include(\"data/\", \"config.yaml\")` and note that included files are copied into the image under ./src/<name>.",
+      "evidence_ids": [
+        "deb93edc42fe784640a61b7c",
+        "8a791fa767f0ca76aec09e9f",
+        "00d34f6d558d5bed47418b2c"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "1e8e39a3182a2ed414b1c53c77f44ab9533be9deffa992d1bf6da8bb998424ff",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where is the Image class and its methods (e.g. pip_install, system_packages, run) documented for users?",
+          "root": "docs",
+          "queries": [
+            "Image class build_include",
+            "Image( python_requirements",
+            "image = Image("
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "offset": 354,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/reference/bentoml/configurations.rst",
+              "offset": 80,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "offset": 40,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7659037a73f1156e2b331fd1",
+            "ac769600e177db1e07505356",
+            "deb93edc42fe784640a61b7c",
+            "e56ae9d61881b601dc1ad6d0",
+            "244ead636b0d309679d0b27e",
+            "ad51f108e3318f14bfe316db",
+            "9b0b381ad42296524201c07d",
+            "f05fd8b76f6e7f3c1b5bb855",
+            "a989cb01130533328642f271",
+            "8f589dfd5e98a5a2424bc170",
+            "d4cabd887cca81169a5d64fd",
+            "d409f53d7301275c5d99f5d5",
+            "40e3441367287cde5c63f4c5",
+            "d35755fddf7e2081f7cdfb86",
+            "28728f2ce6c415558289d0a1"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "evidence_id": "e56ae9d61881b601dc1ad6d0",
+              "score": "0.04918032786885246"
+            },
+            {
+              "rank": 2,
+              "path": "docs/source/reference/bentoml/configurations.rst",
+              "evidence_id": "244ead636b0d309679d0b27e",
+              "score": "0.04838709677419355"
+            },
+            {
+              "rank": 3,
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "evidence_id": "ad51f108e3318f14bfe316db",
+              "score": "0.04712301587301587"
+            },
+            {
+              "rank": 4,
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "evidence_id": "9b0b381ad42296524201c07d",
+              "score": "0.04510903806678455"
+            },
+            {
+              "rank": 5,
+              "path": "docs/source/examples/sdxl-turbo.rst",
+              "evidence_id": "f05fd8b76f6e7f3c1b5bb855",
+              "score": "0.04479638009049774"
+            },
+            {
+              "rank": 6,
+              "path": "docs/source/examples/mlflow.rst",
+              "evidence_id": "a989cb01130533328642f271",
+              "score": "0.04311675689450306"
+            },
+            {
+              "rank": 7,
+              "path": "docs/source/examples/sdxl-turbo.rst",
+              "evidence_id": "8f589dfd5e98a5a2424bc170",
+              "score": "0.042451768307782356"
+            },
+            {
+              "rank": 8,
+              "path": "docs/source/build-with-bentoml/clients.rst",
+              "evidence_id": "d4cabd887cca81169a5d64fd",
+              "score": "0.04214340198321892"
+            },
+            {
+              "rank": 9,
+              "path": "docs/source/examples/vllm.rst",
+              "evidence_id": "d409f53d7301275c5d99f5d5",
+              "score": "0.04148554148554148"
+            },
+            {
+              "rank": 10,
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "evidence_id": "40e3441367287cde5c63f4c5",
+              "score": "0.040516774891774895"
+            },
+            {
+              "rank": 11,
+              "path": "docs/source/examples/controlnet.rst",
+              "evidence_id": "d35755fddf7e2081f7cdfb86",
+              "score": "0.0393565248738284"
+            },
+            {
+              "rank": 12,
+              "path": "docs/source/examples/controlnet.rst",
+              "evidence_id": "28728f2ce6c415558289d0a1",
+              "score": "0.03889279574933583"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "start": 354,
+              "end": 474,
+              "total_lines": 656
+            },
+            {
+              "path": "docs/source/reference/bentoml/configurations.rst",
+              "start": 80,
+              "end": 200,
+              "total_lines": 338
+            },
+            {
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "start": 40,
+              "end": 160,
+              "total_lines": 356
+            }
+          ],
+          "read_evidence_ids": [
+            "7659037a73f1156e2b331fd1",
+            "ac769600e177db1e07505356",
+            "deb93edc42fe784640a61b7c"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where are custom build context / wheels / bento context files documented?",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/source/reference/bentoml/bento-build-options.rst",
+              "offset": 529,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/services.rst",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+              "offset": 13,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a9953ce483edec6f9328f920",
+            "e01b90b21864ce5dafe06f61",
+            "c47834e46df8d1f7c9d3aa81",
+            "b0a0b5708f397f2bc15b654b",
+            "ad8490bbecb417c43984fc1a",
+            "f38e7031cc24a2ff1c4af454",
+            "e99d1e6460ca94673989e98a",
+            "a03fcf95875c4ebf7055465c",
+            "d5632917d7dd70fa94d86bc3",
+            "0052aed085121573469a1bed",
+            "a5bef974a22fa277ccdd6de2",
+            "e8a009c61debaa792be67872",
+            "64846b09cfb38e2def0b30c4",
+            "eb3ee86be766559388d1eadf",
+            "0b0884528e48edd7b6639870"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/source/reference/bentoml/bento-build-options.rst",
+              "evidence_id": "b0a0b5708f397f2bc15b654b",
+              "score": "0.03613703236654057"
+            },
+            {
+              "rank": 2,
+              "path": "docs/source/build-with-bentoml/services.rst",
+              "evidence_id": "ad8490bbecb417c43984fc1a",
+              "score": "0.033894615230830746"
+            },
+            {
+              "rank": 3,
+              "path": "docs/source/reference/bentoml/bento-build-options.rst",
+              "evidence_id": "f38e7031cc24a2ff1c4af454",
+              "score": "0.03352590433979541"
+            },
+            {
+              "rank": 4,
+              "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+              "evidence_id": "e99d1e6460ca94673989e98a",
+              "score": "0.03337663274879123"
+            },
+            {
+              "rank": 5,
+              "path": "docs/source/build-with-bentoml/clients.rst",
+              "evidence_id": "a03fcf95875c4ebf7055465c",
+              "score": "0.032013373531230675"
+            },
+            {
+              "rank": 6,
+              "path": "docs/source/scale-with-bentocloud/codespaces.rst",
+              "evidence_id": "d5632917d7dd70fa94d86bc3",
+              "score": "0.03152801531553327"
+            },
+            {
+              "rank": 7,
+              "path": "docs/source/build-with-bentoml/lifecycle-hooks.rst",
+              "evidence_id": "0052aed085121573469a1bed",
+              "score": "0.028417516120558903"
+            },
+            {
+              "rank": 8,
+              "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+              "evidence_id": "a5bef974a22fa277ccdd6de2",
+              "score": "0.027993014361269046"
+            },
+            {
+              "rank": 9,
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "evidence_id": "e8a009c61debaa792be67872",
+              "score": "0.027720543345543344"
+            },
+            {
+              "rank": 10,
+              "path": "docs/source/build-with-bentoml/lifecycle-hooks.rst",
+              "evidence_id": "64846b09cfb38e2def0b30c4",
+              "score": "0.027477897809520393"
+            },
+            {
+              "rank": 11,
+              "path": "DEVELOPMENT.md",
+              "evidence_id": "eb3ee86be766559388d1eadf",
+              "score": "0.026221216349447723"
+            },
+            {
+              "rank": 12,
+              "path": "docs/source/get-started/packaging-for-deployment.rst",
+              "evidence_id": "0b0884528e48edd7b6639870",
+              "score": "0.026027555196864012"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/source/reference/bentoml/bento-build-options.rst",
+              "start": 529,
+              "end": 649,
+              "total_lines": 847
+            },
+            {
+              "path": "docs/source/build-with-bentoml/services.rst",
+              "start": 102,
+              "end": 222,
+              "total_lines": 376
+            },
+            {
+              "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+              "start": 13,
+              "end": 119,
+              "total_lines": 119
+            }
+          ],
+          "read_evidence_ids": [
+            "a9953ce483edec6f9328f920",
+            "e01b90b21864ce5dafe06f61",
+            "c47834e46df8d1f7c9d3aa81"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Does the Image API reference doc list methods that would need build_include added?",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/source/examples/sdxl-turbo.rst",
+              "offset": 73,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/examples/vllm.rst",
+              "offset": 69,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "offset": 452,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f60fc481f77816571c1a685f",
+            "c3a47e66ac2266bbcc6acaf6",
+            "ed68335f2a3580133fb7afd7",
+            "244ead636b0d309679d0b27e",
+            "e56ae9d61881b601dc1ad6d0",
+            "f05fd8b76f6e7f3c1b5bb855",
+            "d409f53d7301275c5d99f5d5",
+            "ad51f108e3318f14bfe316db",
+            "a989cb01130533328642f271",
+            "8f589dfd5e98a5a2424bc170",
+            "d4cabd887cca81169a5d64fd",
+            "2a43771fd44d6c323f09fb98",
+            "28728f2ce6c415558289d0a1",
+            "8d327812f13bbf3768a99c16",
+            "bbc74a11c8eea2ed8dc7e522"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/source/reference/bentoml/configurations.rst",
+              "evidence_id": "244ead636b0d309679d0b27e",
+              "score": "0.03200204813108039"
+            },
+            {
+              "rank": 2,
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "evidence_id": "e56ae9d61881b601dc1ad6d0",
+              "score": "0.03177805800756621"
+            },
+            {
+              "rank": 3,
+              "path": "docs/source/examples/sdxl-turbo.rst",
+              "evidence_id": "f05fd8b76f6e7f3c1b5bb855",
+              "score": "0.031024531024531024"
+            },
+            {
+              "rank": 4,
+              "path": "docs/source/examples/vllm.rst",
+              "evidence_id": "d409f53d7301275c5d99f5d5",
+              "score": "0.030776515151515152"
+            },
+            {
+              "rank": 5,
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "evidence_id": "ad51f108e3318f14bfe316db",
+              "score": "0.029418126757516764"
+            },
+            {
+              "rank": 6,
+              "path": "docs/source/examples/mlflow.rst",
+              "evidence_id": "a989cb01130533328642f271",
+              "score": "0.028577260665441927"
+            },
+            {
+              "rank": 7,
+              "path": "docs/source/examples/sdxl-turbo.rst",
+              "evidence_id": "8f589dfd5e98a5a2424bc170",
+              "score": "0.02817460317460317"
+            },
+            {
+              "rank": 8,
+              "path": "docs/source/build-with-bentoml/clients.rst",
+              "evidence_id": "d4cabd887cca81169a5d64fd",
+              "score": "0.027031963470319637"
+            },
+            {
+              "rank": 9,
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "evidence_id": "2a43771fd44d6c323f09fb98",
+              "score": "0.0253441802252816"
+            },
+            {
+              "rank": 10,
+              "path": "docs/source/examples/controlnet.rst",
+              "evidence_id": "28728f2ce6c415558289d0a1",
+              "score": "0.02483719521429653"
+            },
+            {
+              "rank": 11,
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "evidence_id": "8d327812f13bbf3768a99c16",
+              "score": "0.02473040977713875"
+            },
+            {
+              "rank": 12,
+              "path": "docs/source/examples/controlnet.rst",
+              "evidence_id": "bbc74a11c8eea2ed8dc7e522",
+              "score": "0.024422933730454205"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/source/examples/sdxl-turbo.rst",
+              "start": 73,
+              "end": 193,
+              "total_lines": 261
+            },
+            {
+              "path": "docs/source/examples/vllm.rst",
+              "start": 69,
+              "end": 189,
+              "total_lines": 259
+            },
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "start": 452,
+              "end": 572,
+              "total_lines": 656
+            }
+          ],
+          "read_evidence_ids": [
+            "f60fc481f77816571c1a685f",
+            "c3a47e66ac2266bbcc6acaf6",
+            "ed68335f2a3580133fb7afd7"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0052aed085121573469a1bed",
+        "0b0884528e48edd7b6639870",
+        "244ead636b0d309679d0b27e",
+        "28728f2ce6c415558289d0a1",
+        "2a43771fd44d6c323f09fb98",
+        "40e3441367287cde5c63f4c5",
+        "64846b09cfb38e2def0b30c4",
+        "7659037a73f1156e2b331fd1",
+        "8d327812f13bbf3768a99c16",
+        "8f589dfd5e98a5a2424bc170",
+        "9b0b381ad42296524201c07d",
+        "a03fcf95875c4ebf7055465c",
+        "a5bef974a22fa277ccdd6de2",
+        "a989cb01130533328642f271",
+        "a9953ce483edec6f9328f920",
+        "ac769600e177db1e07505356",
+        "ad51f108e3318f14bfe316db",
+        "ad8490bbecb417c43984fc1a",
+        "b0a0b5708f397f2bc15b654b",
+        "bbc74a11c8eea2ed8dc7e522",
+        "c3a47e66ac2266bbcc6acaf6",
+        "c47834e46df8d1f7c9d3aa81",
+        "d35755fddf7e2081f7cdfb86",
+        "d409f53d7301275c5d99f5d5",
+        "d4cabd887cca81169a5d64fd",
+        "d5632917d7dd70fa94d86bc3",
+        "deb93edc42fe784640a61b7c",
+        "e01b90b21864ce5dafe06f61",
+        "e56ae9d61881b601dc1ad6d0",
+        "e8a009c61debaa792be67872",
+        "e99d1e6460ca94673989e98a",
+        "eb3ee86be766559388d1eadf",
+        "ed68335f2a3580133fb7afd7",
+        "f05fd8b76f6e7f3c1b5bb855",
+        "f38e7031cc24a2ff1c4af454",
+        "f60fc481f77816571c1a685f"
+      ],
+      "new_evidence_count": 36,
+      "new_path_count": 15
+    },
+    {
+      "signature": "409a925c5f4983813c025141f3e1b3dfc3eba050990d928b02c47372aa06036c",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "What configuration methods are documented in the runtime-environment page's 'Configuration methods' section, and where would build_include() fit?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/source/build-with-bentoml/runtime-environment.rst"
+          ],
+          "anchor": "Configuration methods",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "query": "Configuration methods",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "8a791fa767f0ca76aec09e9f"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "start": 62,
+              "end": 182,
+              "total_lines": 356
+            }
+          ],
+          "read_evidence_ids": [
+            "8a791fa767f0ca76aec09e9f"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the Image class docstring/API reference exist in code that docs autodoc pulls from, and is there a reference page listing Image methods?",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ],
+          "paths": [
+            "src/_bentoml_sdk/images.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "src/_bentoml_sdk/images.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "typings/PIL/Image.pyi",
+              "offset": 96,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7aa143544125a51275d1b7b4",
+            "211e3b63169f5bea5507ee98",
+            "ea814ba88f2e276e403223a4",
+            "00d34f6d558d5bed47418b2c",
+            "daf7811da31c9bf348c65279",
+            "74deaca9698e8149054b5758",
+            "ac857027e5a48b3d1cb4854c",
+            "1116a6675a16cbdcf6b63df4",
+            "8bb87a3dd0bc745c6be467d5",
+            "726c3667d64aab3230b80d32",
+            "732c60ae28eb51c7cf6993c2",
+            "bfb1e97946e9f23d7218f887",
+            "5a9bdfa83a0bca615224138a",
+            "34baa80d0c8f6d2698f779d6"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "typings/PIL/Image.pyi",
+              "evidence_id": "ea814ba88f2e276e403223a4",
+              "score": "0.03622610266445883"
+            },
+            {
+              "rank": 2,
+              "path": "src/_bentoml_sdk/images.py",
+              "evidence_id": "00d34f6d558d5bed47418b2c",
+              "score": "0.03387460191583903"
+            },
+            {
+              "rank": 3,
+              "path": "src/_bentoml_sdk/images.py",
+              "evidence_id": "daf7811da31c9bf348c65279",
+              "score": "0.03353643966547192"
+            },
+            {
+              "rank": 4,
+              "path": "typings/PIL/Image.pyi",
+              "evidence_id": "74deaca9698e8149054b5758",
+              "score": "0.033204487698552144"
+            },
+            {
+              "rank": 5,
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "evidence_id": "ac857027e5a48b3d1cb4854c",
+              "score": "0.031896297256240234"
+            },
+            {
+              "rank": 6,
+              "path": "docs/source/reference/bentoml/configurations.rst",
+              "evidence_id": "1116a6675a16cbdcf6b63df4",
+              "score": "0.028629032258064516"
+            },
+            {
+              "rank": 7,
+              "path": "src/bentoml/_internal/io_descriptors/image.py",
+              "evidence_id": "8bb87a3dd0bc745c6be467d5",
+              "score": "0.027579737335834898"
+            },
+            {
+              "rank": 8,
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "evidence_id": "726c3667d64aab3230b80d32",
+              "score": "0.027445751903844386"
+            },
+            {
+              "rank": 9,
+              "path": "tests/e2e/bento_server_grpc/service.py",
+              "evidence_id": "732c60ae28eb51c7cf6993c2",
+              "score": "0.0268193109068541"
+            },
+            {
+              "rank": 10,
+              "path": "tests/e2e/bento_server_http/service.py",
+              "evidence_id": "bfb1e97946e9f23d7218f887",
+              "score": "0.02670289466064114"
+            },
+            {
+              "rank": 11,
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "evidence_id": "5a9bdfa83a0bca615224138a",
+              "score": "0.025678061306371368"
+            },
+            {
+              "rank": 12,
+              "path": "src/bentoml/_internal/io_descriptors/image.py",
+              "evidence_id": "34baa80d0c8f6d2698f779d6",
+              "score": "0.025240384615384616"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "src/_bentoml_sdk/images.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 417
+            },
+            {
+              "path": "typings/PIL/Image.pyi",
+              "start": 96,
+              "end": 203,
+              "total_lines": 203
+            }
+          ],
+          "read_evidence_ids": [
+            "7aa143544125a51275d1b7b4",
+            "211e3b63169f5bea5507ee98"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "00d34f6d558d5bed47418b2c",
+        "1116a6675a16cbdcf6b63df4",
+        "211e3b63169f5bea5507ee98",
+        "34baa80d0c8f6d2698f779d6",
+        "5a9bdfa83a0bca615224138a",
+        "726c3667d64aab3230b80d32",
+        "732c60ae28eb51c7cf6993c2",
+        "74deaca9698e8149054b5758",
+        "7aa143544125a51275d1b7b4",
+        "8a791fa767f0ca76aec09e9f",
+        "8bb87a3dd0bc745c6be467d5",
+        "ac857027e5a48b3d1cb4854c",
+        "bfb1e97946e9f23d7218f887",
+        "daf7811da31c9bf348c65279",
+        "ea814ba88f2e276e403223a4"
+      ],
+      "new_evidence_count": 15,
+      "new_path_count": 8
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+    "code": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:2450c40228552273": 0,
+    "discover:Q1-2:0e8e0223cd03a95a": 60,
+    "discover:Q1-3:7ad091dec4f78ae0": 121,
+    "discover:Q2-2:23dc7894cd07adc4": 0
+  },
+  "index_slot_wait_ms": {
+    "discover:Q2-2:23dc7894cd07adc4": 27857
+  },
+  "tool_metrics": {
+    "discover:Q1-1:2450c40228552273": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 60,
+      "cache_hit": false
+    },
+    "discover:Q1-2:0e8e0223cd03a95a": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 61,
+      "cache_hit": false
+    },
+    "discover:Q1-3:7ad091dec4f78ae0": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 56,
+      "cache_hit": false
+    },
+    "discover:Q1-2:0b29bd7d8dd72cc2": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 225,
+      "cache_hit": false
+    },
+    "discover:Q1-1:6bf7034a4ffdbc8d": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 254,
+      "cache_hit": false
+    },
+    "discover:Q1-3:72ad4eefee9a435b": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 302,
+      "cache_hit": false
+    },
+    "discover:Q2-2:23dc7894cd07adc4": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 11394,
+      "cache_hit": false
+    },
+    "discover:Q2-2:82c38042f9cf4bdb": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 555,
+      "cache_hit": false
+    },
+    "discover:Q2-1:079296f783c329ab": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 4298,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 1358,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "runtime-env-build-include",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/source/build-with-bentoml/runtime-environment.rst"
+      ],
+      "evidence_ids": [
+        "deb93edc42fe784640a61b7c",
+        "8a791fa767f0ca76aec09e9f",
+        "00d34f6d558d5bed47418b2c"
+      ],
+      "reason": "In docs/source/build-with-bentoml/runtime-environment.rst, under the 'Configuration methods' section of the Image class, add a new subsection documenting the `build_include(*file_paths)` method: it accepts one or more paths relative to the bento context root, appends them to the build include list, and returns self for chaining. Include a code example such as `bentoml.images.Image(python_version='3.11').build_include(\"data/\", \"config.yaml\")` and note that included files are copied into the image under ./src/<name>."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0052aed085121573469a1bed",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/lifecycle-hooks.rst",
+        "heading": "Configure lifecycle hooks",
+        "start_line": 2,
+        "end_line": 8,
+        "start_char": 26,
+        "end_char": 439,
+        "score": "0.028417516120558903",
+        "root": "docs",
+        "matched_terms": [
+          "build"
+        ],
+        "evidence_id": "0052aed085121573469a1bed",
+        "source_type": "repository",
+        "content_hash": "b71c834b867fb42d1a8452658a0a27f5bdfee297f16b87ca0bf6960dadbd2dfd",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b71c834b867fb42d1a8452658a0a27f5bdfee297f16b87ca0bf6960dadbd2dfd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:00d34f6d558d5bed47418b2c",
+        "type": "evidence",
+        "path": "src/_bentoml_sdk/images.py",
+        "heading": "",
+        "start_line": 331,
+        "end_line": 374,
+        "start_char": 13007,
+        "end_char": 14619,
+        "score": "0.03387460191583903",
+        "root": "code",
+        "matched_terms": [
+          "build_include",
+          "def",
+          "image"
+        ],
+        "evidence_id": "00d34f6d558d5bed47418b2c",
+        "source_type": "repository",
+        "content_hash": "0600097efffd61695fb9228695f8a26346b34fb2e53cb7da3863413dfbe4217e",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0600097efffd61695fb9228695f8a26346b34fb2e53cb7da3863413dfbe4217e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0b0884528e48edd7b6639870",
+        "type": "evidence",
+        "path": "docs/source/get-started/packaging-for-deployment.rst",
+        "heading": "Build a Bento",
+        "start_line": 44,
+        "end_line": 64,
+        "start_char": 1751,
+        "end_char": 2525,
+        "score": "0.026027555196864012",
+        "root": "docs",
+        "matched_terms": [
+          "bento",
+          "build"
+        ],
+        "evidence_id": "0b0884528e48edd7b6639870",
+        "source_type": "repository",
+        "content_hash": "1653042507d1cb70308cbe11f814758c95f2f4c270e30af47e00718465d2e1cf",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1653042507d1cb70308cbe11f814758c95f2f4c270e30af47e00718465d2e1cf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1116a6675a16cbdcf6b63df4",
+        "type": "evidence",
+        "path": "docs/source/reference/bentoml/configurations.rst",
+        "heading": "``image``",
+        "start_line": 85,
+        "end_line": 100,
+        "start_char": 4040,
+        "end_char": 4448,
+        "score": "0.028629032258064516",
+        "root": "code",
+        "matched_terms": [
+          "class",
+          "image"
+        ],
+        "evidence_id": "1116a6675a16cbdcf6b63df4",
+        "source_type": "repository",
+        "content_hash": "034e7f2bac015048458bb0abd43590528e891e20ddd003dd6ad6d9df4ba79ad9",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "034e7f2bac015048458bb0abd43590528e891e20ddd003dd6ad6d9df4ba79ad9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20b50fadea699d7562093385",
+        "type": "evidence",
+        "evidence_id": "20b50fadea699d7562093385",
+        "source_type": "task",
+        "exported_content_sha256": "8339d3605ec94b280b974cec2bf6e0bec0fb7dd222f74038e8f4c278900b56a8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:211e3b63169f5bea5507ee98",
+        "type": "evidence",
+        "root": "code",
+        "path": "typings/PIL/Image.pyi",
+        "start_line": 97,
+        "total_lines": 203,
+        "start_char": 2128,
+        "end_char": 5545,
+        "evidence_id": "211e3b63169f5bea5507ee98",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "e287db8f6dbc0e46bcdbb3920bb7699a7340696a06a5cc84f6ff07bf2ae58a92",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/_bentoml_sdk/images.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "typings/PIL/Image.pyi",
+              "offset": 96,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e287db8f6dbc0e46bcdbb3920bb7699a7340696a06a5cc84f6ff07bf2ae58a92",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:244ead636b0d309679d0b27e",
+        "type": "evidence",
+        "path": "docs/source/reference/bentoml/configurations.rst",
+        "heading": "``image``",
+        "start_line": 85,
+        "end_line": 100,
+        "start_char": 4040,
+        "end_char": 4448,
+        "score": "0.03200204813108039",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "244ead636b0d309679d0b27e",
+        "source_type": "repository",
+        "content_hash": "034e7f2bac015048458bb0abd43590528e891e20ddd003dd6ad6d9df4ba79ad9",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "034e7f2bac015048458bb0abd43590528e891e20ddd003dd6ad6d9df4ba79ad9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:28728f2ce6c415558289d0a1",
+        "type": "evidence",
+        "path": "docs/source/examples/controlnet.rst",
+        "heading": "Code explanations",
+        "start_line": 76,
+        "end_line": 113,
+        "start_char": 5410,
+        "end_char": 7205,
+        "score": "0.02483719521429653",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "28728f2ce6c415558289d0a1",
+        "source_type": "repository",
+        "content_hash": "9d84a423eb54a4ed6035195d3af31b533aa7d5ff123bc03464d149df1e2d0168",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9d84a423eb54a4ed6035195d3af31b533aa7d5ff123bc03464d149df1e2d0168",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2a43771fd44d6c323f09fb98",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+        "heading": "Basic usage",
+        "start_line": 20,
+        "end_line": 44,
+        "start_char": 884,
+        "end_char": 1655,
+        "score": "0.0253441802252816",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "2a43771fd44d6c323f09fb98",
+        "source_type": "repository",
+        "content_hash": "77d5fcce19687c9b5436d8b8bcd0bbad6fee9bb791ae2f1cf72d276fde81bbe3",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "77d5fcce19687c9b5436d8b8bcd0bbad6fee9bb791ae2f1cf72d276fde81bbe3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:335b4fd7d7bed9ba6dc25046",
+        "type": "evidence",
+        "evidence_id": "335b4fd7d7bed9ba6dc25046",
+        "source_type": "implementation",
+        "exported_content_sha256": "e2f01f72f27ac67c514fddb3d9621a6761296b11800e5a50b6a0f9f369e90373",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:34baa80d0c8f6d2698f779d6",
+        "type": "evidence",
+        "path": "src/bentoml/_internal/io_descriptors/image.py",
+        "heading": "that enable a new way to type hint an ndarray.",
+        "start_line": 232,
+        "end_line": 273,
+        "start_char": 8418,
+        "end_char": 10070,
+        "score": "0.025240384615384616",
+        "root": "code",
+        "matched_terms": [
+          "class",
+          "def",
+          "image"
+        ],
+        "evidence_id": "34baa80d0c8f6d2698f779d6",
+        "source_type": "repository",
+        "content_hash": "cfa00a5366274a1f63825ebe2afb899fd6d8e5b62289823822b4d3649b4f05e3",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "cfa00a5366274a1f63825ebe2afb899fd6d8e5b62289823822b4d3649b4f05e3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:40e3441367287cde5c63f4c5",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+        "heading": "Configuration methods",
+        "start_line": 67,
+        "end_line": 71,
+        "start_char": 2630,
+        "end_char": 2753,
+        "score": "0.040516774891774895",
+        "root": "docs",
+        "matched_terms": [
+          "class",
+          "image"
+        ],
+        "evidence_id": "40e3441367287cde5c63f4c5",
+        "source_type": "repository",
+        "content_hash": "f8b8a2341a84443d8874d500d0827fc74f56631ef055de43f804688393485d1c",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image class build_include",
+            "Image( python_requirements",
+            "image = Image("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f8b8a2341a84443d8874d500d0827fc74f56631ef055de43f804688393485d1c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a9bdfa83a0bca615224138a",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+        "heading": "``python_packages()``",
+        "start_line": 211,
+        "end_line": 238,
+        "start_char": 7983,
+        "end_char": 8673,
+        "score": "0.025678061306371368",
+        "root": "code",
+        "matched_terms": [
+          "class",
+          "image"
+        ],
+        "evidence_id": "5a9bdfa83a0bca615224138a",
+        "source_type": "repository",
+        "content_hash": "b9226f49eb3bbb32daaf484a4416c1263a361746102b75496ca9af0d9caf7d0f",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b9226f49eb3bbb32daaf484a4416c1263a361746102b75496ca9af0d9caf7d0f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:64846b09cfb38e2def0b30c4",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/lifecycle-hooks.rst",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 26,
+        "score": "0.027477897809520393",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "64846b09cfb38e2def0b30c4",
+        "source_type": "repository",
+        "content_hash": "016104fdbddf97bee58cdecfaec8a951c648518460b95338ed60146bdc65f956",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "016104fdbddf97bee58cdecfaec8a951c648518460b95338ed60146bdc65f956",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:726c3667d64aab3230b80d32",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/iotypes.rst",
+        "heading": "Compound",
+        "start_line": 457,
+        "end_line": 502,
+        "start_char": 19129,
+        "end_char": 20732,
+        "score": "0.027445751903844386",
+        "root": "code",
+        "matched_terms": [
+          "class",
+          "def",
+          "image"
+        ],
+        "evidence_id": "726c3667d64aab3230b80d32",
+        "source_type": "repository",
+        "content_hash": "1f062cbd3a3e77f5aeb4553419bbc3a45b33cc5f8c7b0e5dff1282a3e033af1a",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "1f062cbd3a3e77f5aeb4553419bbc3a45b33cc5f8c7b0e5dff1282a3e033af1a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:732c60ae28eb51c7cf6993c2",
+        "type": "evidence",
+        "path": "tests/e2e/bento_server_grpc/service.py",
+        "heading": "",
+        "start_line": 143,
+        "end_line": 192,
+        "start_char": 4556,
+        "end_char": 6104,
+        "score": "0.0268193109068541",
+        "root": "code",
+        "matched_terms": [
+          "def",
+          "image"
+        ],
+        "evidence_id": "732c60ae28eb51c7cf6993c2",
+        "source_type": "repository",
+        "content_hash": "1e94591d3aa33dfcece0bbdc82ac66bf8d5a68fce42f0e7ebc6247193f7d66a2",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "1e94591d3aa33dfcece0bbdc82ac66bf8d5a68fce42f0e7ebc6247193f7d66a2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:74deaca9698e8149054b5758",
+        "type": "evidence",
+        "path": "typings/PIL/Image.pyi",
+        "heading": "",
+        "start_line": 151,
+        "end_line": 197,
+        "start_char": 3715,
+        "end_char": 5316,
+        "score": "0.033204487698552144",
+        "root": "code",
+        "matched_terms": [
+          "def",
+          "image"
+        ],
+        "evidence_id": "74deaca9698e8149054b5758",
+        "source_type": "repository",
+        "content_hash": "9efef9c3a7b734a5835a883ceaf8ed8c19da0b3e2ac211af1137a05f0a93ee32",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9efef9c3a7b734a5835a883ceaf8ed8c19da0b3e2ac211af1137a05f0a93ee32",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7659037a73f1156e2b331fd1",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/build-with-bentoml/iotypes.rst",
+        "start_line": 355,
+        "total_lines": 656,
+        "start_char": 15768,
+        "end_char": 19701,
+        "evidence_id": "7659037a73f1156e2b331fd1",
+        "truncated": false,
+        "next_offset": 474,
+        "source_type": "repository",
+        "content_hash": "4ccbf470d28d2cc75ea0c496b2d30fe2b6adc4d1e0bde6a2518fbdc6c32e2e9a",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "offset": 354,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/reference/bentoml/configurations.rst",
+              "offset": 80,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "offset": 40,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4ccbf470d28d2cc75ea0c496b2d30fe2b6adc4d1e0bde6a2518fbdc6c32e2e9a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7aa143544125a51275d1b7b4",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/_bentoml_sdk/images.py",
+        "start_line": 1,
+        "total_lines": 417,
+        "start_char": 0,
+        "end_char": 4435,
+        "evidence_id": "7aa143544125a51275d1b7b4",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "efe07ff3a0466b3ce43b3a64071ac258e953a4b8e44fe7dbe5d1f13c07a31f06",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/_bentoml_sdk/images.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "typings/PIL/Image.pyi",
+              "offset": 96,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "efe07ff3a0466b3ce43b3a64071ac258e953a4b8e44fe7dbe5d1f13c07a31f06",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8a791fa767f0ca76aec09e9f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+        "start_line": 63,
+        "total_lines": 356,
+        "start_char": 2463,
+        "end_char": 7117,
+        "evidence_id": "8a791fa767f0ca76aec09e9f",
+        "truncated": false,
+        "next_offset": 182,
+        "source_type": "repository",
+        "content_hash": "af103b87ad1e89111e86c8201c826a3bc21f7ba91734b9f062c8c267fdae25e9",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "query": "Configuration methods",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "af103b87ad1e89111e86c8201c826a3bc21f7ba91734b9f062c8c267fdae25e9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8bb87a3dd0bc745c6be467d5",
+        "type": "evidence",
+        "path": "src/bentoml/_internal/io_descriptors/image.py",
+        "heading": "that enable a new way to type hint an ndarray.",
+        "start_line": 191,
+        "end_line": 231,
+        "start_char": 6779,
+        "end_char": 8418,
+        "score": "0.027579737335834898",
+        "root": "code",
+        "matched_terms": [
+          "class",
+          "def",
+          "image"
+        ],
+        "evidence_id": "8bb87a3dd0bc745c6be467d5",
+        "source_type": "repository",
+        "content_hash": "9c4d81f40e53deb1df19d9b57a23cce614975163a8dce6dfb9bf8706bdd24999",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9c4d81f40e53deb1df19d9b57a23cce614975163a8dce6dfb9bf8706bdd24999",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8d327812f13bbf3768a99c16",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+        "heading": "``requirements_file()``",
+        "start_line": 239,
+        "end_line": 250,
+        "start_char": 8673,
+        "end_char": 8999,
+        "score": "0.02473040977713875",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "8d327812f13bbf3768a99c16",
+        "source_type": "repository",
+        "content_hash": "18a50f11e9bff5e0fcd053bfb507479d2c47c51135c0fe80781ab839e820ba92",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "18a50f11e9bff5e0fcd053bfb507479d2c47c51135c0fe80781ab839e820ba92",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8f589dfd5e98a5a2424bc170",
+        "type": "evidence",
+        "path": "docs/source/examples/sdxl-turbo.rst",
+        "heading": "Code explanations",
+        "start_line": 127,
+        "end_line": 129,
+        "start_char": 6215,
+        "end_char": 6265,
+        "score": "0.02817460317460317",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "8f589dfd5e98a5a2424bc170",
+        "source_type": "repository",
+        "content_hash": "29a840e78f03b6b0eddfa69242b1762fd4d608dfce00d188f2168c5249a38aac",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "29a840e78f03b6b0eddfa69242b1762fd4d608dfce00d188f2168c5249a38aac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9b0b381ad42296524201c07d",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+        "heading": "Constructor parameters",
+        "start_line": 45,
+        "end_line": 66,
+        "start_char": 1655,
+        "end_char": 2630,
+        "score": "0.04510903806678455",
+        "root": "docs",
+        "matched_terms": [
+          "image"
+        ],
+        "evidence_id": "9b0b381ad42296524201c07d",
+        "source_type": "repository",
+        "content_hash": "9660a27f89deb2c5975d643c6326c3297abbaf71a7deeb7c1aa6ba27b39f88eb",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image class build_include",
+            "Image( python_requirements",
+            "image = Image("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9660a27f89deb2c5975d643c6326c3297abbaf71a7deeb7c1aa6ba27b39f88eb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a03fcf95875c4ebf7055465c",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/clients.rst",
+        "heading": "Use a context manager",
+        "start_line": 75,
+        "end_line": 101,
+        "start_char": 3438,
+        "end_char": 4250,
+        "score": "0.032013373531230675",
+        "root": "docs",
+        "matched_terms": [
+          "context"
+        ],
+        "evidence_id": "a03fcf95875c4ebf7055465c",
+        "source_type": "repository",
+        "content_hash": "43c26f1a651b8b4a2ed736c985c6802bfa1c48dd9ce880b96b60f36ba06d9ef4",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "43c26f1a651b8b4a2ed736c985c6802bfa1c48dd9ce880b96b60f36ba06d9ef4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a5bef974a22fa277ccdd6de2",
+        "type": "evidence",
+        "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+        "heading": "Pattern 1: Training and deployment in a single pipeline",
+        "start_line": 79,
+        "end_line": 97,
+        "start_char": 3091,
+        "end_char": 3647,
+        "score": "0.027993014361269046",
+        "root": "docs",
+        "matched_terms": [
+          "context"
+        ],
+        "evidence_id": "a5bef974a22fa277ccdd6de2",
+        "source_type": "repository",
+        "content_hash": "6675dfde07770a9780880f8b8fd8133f5ad8ec6faeba6708daaf901ae18e9e0d",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6675dfde07770a9780880f8b8fd8133f5ad8ec6faeba6708daaf901ae18e9e0d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a989cb01130533328642f271",
+        "type": "evidence",
+        "path": "docs/source/examples/mlflow.rst",
+        "heading": "service.py",
+        "start_line": 153,
+        "end_line": 168,
+        "start_char": 6390,
+        "end_char": 6714,
+        "score": "0.028577260665441927",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "a989cb01130533328642f271",
+        "source_type": "repository",
+        "content_hash": "4c2673f101bb986fa4b871d28e882de5af1f2c2fc7f9b819369ddae198a3e3b3",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4c2673f101bb986fa4b871d28e882de5af1f2c2fc7f9b819369ddae198a3e3b3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a9953ce483edec6f9328f920",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/reference/bentoml/bento-build-options.rst",
+        "start_line": 530,
+        "total_lines": 847,
+        "start_char": 19155,
+        "end_char": 23474,
+        "evidence_id": "a9953ce483edec6f9328f920",
+        "truncated": false,
+        "next_offset": 649,
+        "source_type": "repository",
+        "content_hash": "8c6ba996d06c1802786b04d4b846f05e814f65b4f6506b0b8619e4ac6511cf48",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/reference/bentoml/bento-build-options.rst",
+              "offset": 529,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/services.rst",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+              "offset": 13,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8c6ba996d06c1802786b04d4b846f05e814f65b4f6506b0b8619e4ac6511cf48",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ac769600e177db1e07505356",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/reference/bentoml/configurations.rst",
+        "start_line": 81,
+        "total_lines": 338,
+        "start_char": 3943,
+        "end_char": 8390,
+        "evidence_id": "ac769600e177db1e07505356",
+        "truncated": false,
+        "next_offset": 200,
+        "source_type": "repository",
+        "content_hash": "0a139fcbd13b8a3d0d831bec2b4a001122d518c08d6543b92ede94866c4c172e",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "offset": 354,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/reference/bentoml/configurations.rst",
+              "offset": 80,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "offset": 40,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0a139fcbd13b8a3d0d831bec2b4a001122d518c08d6543b92ede94866c4c172e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ac857027e5a48b3d1cb4854c",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/iotypes.rst",
+        "heading": "Images",
+        "start_line": 359,
+        "end_line": 403,
+        "start_char": 16013,
+        "end_char": 17298,
+        "score": "0.031896297256240234",
+        "root": "code",
+        "matched_terms": [
+          "class",
+          "def",
+          "image"
+        ],
+        "evidence_id": "ac857027e5a48b3d1cb4854c",
+        "source_type": "repository",
+        "content_hash": "6f89f39c5cb9625479b1561d7352ef5a369372f2fb5e0350f23345ac23e8f1c1",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6f89f39c5cb9625479b1561d7352ef5a369372f2fb5e0350f23345ac23e8f1c1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ad51f108e3318f14bfe316db",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/iotypes.rst",
+        "heading": "Compound",
+        "start_line": 457,
+        "end_line": 502,
+        "start_char": 19129,
+        "end_char": 20732,
+        "score": "0.029418126757516764",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "ad51f108e3318f14bfe316db",
+        "source_type": "repository",
+        "content_hash": "1f062cbd3a3e77f5aeb4553419bbc3a45b33cc5f8c7b0e5dff1282a3e033af1a",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "1f062cbd3a3e77f5aeb4553419bbc3a45b33cc5f8c7b0e5dff1282a3e033af1a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ad8490bbecb417c43984fc1a",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/services.rst",
+        "heading": "Inference context",
+        "start_line": 107,
+        "end_line": 141,
+        "start_char": 4693,
+        "end_char": 6104,
+        "score": "0.033894615230830746",
+        "root": "docs",
+        "matched_terms": [
+          "build",
+          "context"
+        ],
+        "evidence_id": "ad8490bbecb417c43984fc1a",
+        "source_type": "repository",
+        "content_hash": "d2dd6403acec815d8612dc9bcd041d09f02e157ee8f0faf7a1c884240e6b15ef",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d2dd6403acec815d8612dc9bcd041d09f02e157ee8f0faf7a1c884240e6b15ef",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b0a0b5708f397f2bc15b654b",
+        "type": "evidence",
+        "path": "docs/source/reference/bentoml/bento-build-options.rst",
+        "heading": "Python packages",
+        "start_line": 534,
+        "end_line": 539,
+        "start_char": 19583,
+        "end_char": 20119,
+        "score": "0.03613703236654057",
+        "root": "docs",
+        "matched_terms": [
+          "bento",
+          "wheels"
+        ],
+        "evidence_id": "b0a0b5708f397f2bc15b654b",
+        "source_type": "repository",
+        "content_hash": "42af4aeb75d598d52937265235189aafdd49acd836356de58ac7641ea68e8574",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "42af4aeb75d598d52937265235189aafdd49acd836356de58ac7641ea68e8574",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bbc74a11c8eea2ed8dc7e522",
+        "type": "evidence",
+        "path": "docs/source/examples/controlnet.rst",
+        "heading": "Code explanations",
+        "start_line": 57,
+        "end_line": 75,
+        "start_char": 3662,
+        "end_char": 5410,
+        "score": "0.024422933730454205",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images",
+          "reference"
+        ],
+        "evidence_id": "bbc74a11c8eea2ed8dc7e522",
+        "source_type": "repository",
+        "content_hash": "5e7d1286d403531275286e37abbb5a2ba2420bee6c175623e3c1008c3a6dd422",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5e7d1286d403531275286e37abbb5a2ba2420bee6c175623e3c1008c3a6dd422",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bfb1e97946e9f23d7218f887",
+        "type": "evidence",
+        "path": "tests/e2e/bento_server_http/service.py",
+        "heading": "",
+        "start_line": 151,
+        "end_line": 200,
+        "start_char": 4199,
+        "end_char": 5688,
+        "score": "0.02670289466064114",
+        "root": "code",
+        "matched_terms": [
+          "def",
+          "image"
+        ],
+        "evidence_id": "bfb1e97946e9f23d7218f887",
+        "source_type": "repository",
+        "content_hash": "85b01555a3b2539128626a3eb8cf5a8e917c8454c25e2b4c9b7a3a4e2c13838e",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "85b01555a3b2539128626a3eb8cf5a8e917c8454c25e2b4c9b7a3a4e2c13838e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c3a47e66ac2266bbcc6acaf6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/examples/vllm.rst",
+        "start_line": 70,
+        "total_lines": 259,
+        "start_char": 4739,
+        "end_char": 9751,
+        "evidence_id": "c3a47e66ac2266bbcc6acaf6",
+        "truncated": false,
+        "next_offset": 189,
+        "source_type": "repository",
+        "content_hash": "411e772cbf21af02ea7fb883251de6835ea3dc331a729a28811faaafa2f28fea",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/examples/sdxl-turbo.rst",
+              "offset": 73,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/examples/vllm.rst",
+              "offset": 69,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "offset": 452,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "411e772cbf21af02ea7fb883251de6835ea3dc331a729a28811faaafa2f28fea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c47834e46df8d1f7c9d3aa81",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+        "start_line": 14,
+        "total_lines": 119,
+        "start_char": 758,
+        "end_char": 4657,
+        "evidence_id": "c47834e46df8d1f7c9d3aa81",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8e813728ba734d2dabd1758a070d795e0f7d05b512a50ecb50acd8ff0179659f",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/reference/bentoml/bento-build-options.rst",
+              "offset": 529,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/services.rst",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+              "offset": 13,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8e813728ba734d2dabd1758a070d795e0f7d05b512a50ecb50acd8ff0179659f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d35755fddf7e2081f7cdfb86",
+        "type": "evidence",
+        "path": "docs/source/examples/controlnet.rst",
+        "heading": "Code explanations",
+        "start_line": 114,
+        "end_line": 147,
+        "start_char": 7205,
+        "end_char": 8334,
+        "score": "0.0393565248738284",
+        "root": "docs",
+        "matched_terms": [
+          "class",
+          "image"
+        ],
+        "evidence_id": "d35755fddf7e2081f7cdfb86",
+        "source_type": "repository",
+        "content_hash": "9d2f50609181c883d08a09811f61bfeb018f3f04a06e87bd95cf27ce71835b03",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image class build_include",
+            "Image( python_requirements",
+            "image = Image("
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9d2f50609181c883d08a09811f61bfeb018f3f04a06e87bd95cf27ce71835b03",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d409f53d7301275c5d99f5d5",
+        "type": "evidence",
+        "path": "docs/source/examples/vllm.rst",
+        "heading": "Code explanations",
+        "start_line": 74,
+        "end_line": 113,
+        "start_char": 5084,
+        "end_char": 6822,
+        "score": "0.030776515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images",
+          "reference"
+        ],
+        "evidence_id": "d409f53d7301275c5d99f5d5",
+        "source_type": "repository",
+        "content_hash": "7d8a9d384308c7cdfa6850edf276e3b4bca8c3337ad6e1564491d8f4e4dcf15a",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "7d8a9d384308c7cdfa6850edf276e3b4bca8c3337ad6e1564491d8f4e4dcf15a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d4cabd887cca81169a5d64fd",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/clients.rst",
+        "heading": "Files",
+        "start_line": 258,
+        "end_line": 307,
+        "start_char": 9891,
+        "end_char": 11465,
+        "score": "0.027031963470319637",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "d4cabd887cca81169a5d64fd",
+        "source_type": "repository",
+        "content_hash": "a18d84a8c15b6abd7c69ee0862f43978e166e41959994410f3e2009fdf5735bf",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a18d84a8c15b6abd7c69ee0862f43978e166e41959994410f3e2009fdf5735bf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d5632917d7dd70fa94d86bc3",
+        "type": "evidence",
+        "path": "docs/source/scale-with-bentocloud/codespaces.rst",
+        "heading": "Build your Bento",
+        "start_line": 62,
+        "end_line": 71,
+        "start_char": 3030,
+        "end_char": 3457,
+        "score": "0.03152801531553327",
+        "root": "docs",
+        "matched_terms": [
+          "bento",
+          "build"
+        ],
+        "evidence_id": "d5632917d7dd70fa94d86bc3",
+        "source_type": "repository",
+        "content_hash": "ab8676511698fc052a75a1e5fbb6380086148dde80efb5126c118957d6338d5e",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ab8676511698fc052a75a1e5fbb6380086148dde80efb5126c118957d6338d5e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:daf7811da31c9bf348c65279",
+        "type": "evidence",
+        "path": "src/_bentoml_sdk/images.py",
+        "heading": "",
+        "start_line": 134,
+        "end_line": 178,
+        "start_char": 4820,
+        "end_char": 6490,
+        "score": "0.03353643966547192",
+        "root": "code",
+        "matched_terms": [
+          "build_include",
+          "def",
+          "image"
+        ],
+        "evidence_id": "daf7811da31c9bf348c65279",
+        "source_type": "repository",
+        "content_hash": "ed36901af9e3f46b355fb11a8441466f544d28f140cea739d823edaa0fabe010",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ed36901af9e3f46b355fb11a8441466f544d28f140cea739d823edaa0fabe010",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:deb93edc42fe784640a61b7c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+        "start_line": 41,
+        "total_lines": 356,
+        "start_char": 1366,
+        "end_char": 6507,
+        "evidence_id": "deb93edc42fe784640a61b7c",
+        "truncated": false,
+        "next_offset": 160,
+        "source_type": "repository",
+        "content_hash": "d1f9274e46d17cdfb7f9410fe8e5a999950b58f97cfe5aacffdbd4212df864a3",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "offset": 354,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/reference/bentoml/configurations.rst",
+              "offset": 80,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+              "offset": 40,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d1f9274e46d17cdfb7f9410fe8e5a999950b58f97cfe5aacffdbd4212df864a3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e01b90b21864ce5dafe06f61",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/build-with-bentoml/services.rst",
+        "start_line": 103,
+        "total_lines": 376,
+        "start_char": 4627,
+        "end_char": 10124,
+        "evidence_id": "e01b90b21864ce5dafe06f61",
+        "truncated": false,
+        "next_offset": 222,
+        "source_type": "repository",
+        "content_hash": "7aa31638e43a46bf58bbfb589003c1b0fb75e733932f61e7d95398c7cb124e36",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/reference/bentoml/bento-build-options.rst",
+              "offset": 529,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/services.rst",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+              "offset": 13,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7aa31638e43a46bf58bbfb589003c1b0fb75e733932f61e7d95398c7cb124e36",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e56ae9d61881b601dc1ad6d0",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/iotypes.rst",
+        "heading": "Images",
+        "start_line": 359,
+        "end_line": 403,
+        "start_char": 16013,
+        "end_char": 17298,
+        "score": "0.03177805800756621",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "e56ae9d61881b601dc1ad6d0",
+        "source_type": "repository",
+        "content_hash": "6f89f39c5cb9625479b1561d7352ef5a369372f2fb5e0350f23345ac23e8f1c1",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6f89f39c5cb9625479b1561d7352ef5a369372f2fb5e0350f23345ac23e8f1c1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e8a009c61debaa792be67872",
+        "type": "evidence",
+        "path": "docs/source/build-with-bentoml/iotypes.rst",
+        "heading": "Root input",
+        "start_line": 404,
+        "end_line": 447,
+        "start_char": 17298,
+        "end_char": 18899,
+        "score": "0.027720543345543344",
+        "root": "docs",
+        "matched_terms": [
+          "build",
+          "context",
+          "root"
+        ],
+        "evidence_id": "e8a009c61debaa792be67872",
+        "source_type": "repository",
+        "content_hash": "c801f7cc128cc8375e7118a72244c406e55f122d500901eeab52b3aecefa30e2",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c801f7cc128cc8375e7118a72244c406e55f122d500901eeab52b3aecefa30e2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e99d1e6460ca94673989e98a",
+        "type": "evidence",
+        "path": "docs/source/scale-with-bentocloud/administering/split-staging-and-prod.rst",
+        "heading": "Switch between organizations in the BentoML CLI",
+        "start_line": 18,
+        "end_line": 52,
+        "start_char": 1043,
+        "end_char": 2065,
+        "score": "0.03337663274879123",
+        "root": "docs",
+        "matched_terms": [
+          "context"
+        ],
+        "evidence_id": "e99d1e6460ca94673989e98a",
+        "source_type": "repository",
+        "content_hash": "b43ea756b9b0305cbf2ad42a2938cc0712a34a7c819560e6dc825e1aab4c97a1",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b43ea756b9b0305cbf2ad42a2938cc0712a34a7c819560e6dc825e1aab4c97a1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ea814ba88f2e276e403223a4",
+        "type": "evidence",
+        "path": "typings/PIL/Image.pyi",
+        "heading": "",
+        "start_line": 101,
+        "end_line": 150,
+        "start_char": 2223,
+        "end_char": 3715,
+        "score": "0.03622610266445883",
+        "root": "code",
+        "matched_terms": [
+          "class",
+          "def",
+          "image"
+        ],
+        "evidence_id": "ea814ba88f2e276e403223a4",
+        "source_type": "repository",
+        "content_hash": "2632e41678383263330d8694d8214e1cdee1a23e5a977096b5c0fa65bd607f4b",
+        "revision": "fe1f027dce97d26c3070cdb17fb9187e6dfd923f",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class Image",
+            "def build_include",
+            "autoclass Image"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2632e41678383263330d8694d8214e1cdee1a23e5a977096b5c0fa65bd607f4b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eb3ee86be766559388d1eadf",
+        "type": "evidence",
+        "path": "DEVELOPMENT.md",
+        "heading": "Developer Guide > Deploy with your changes",
+        "start_line": 243,
+        "end_line": 254,
+        "start_char": 7602,
+        "end_char": 8184,
+        "score": "0.026221216349447723",
+        "root": "docs",
+        "matched_terms": [
+          "bento",
+          "build"
+        ],
+        "evidence_id": "eb3ee86be766559388d1eadf",
+        "source_type": "repository",
+        "content_hash": "54922db3f42be994f1ebe606d8501c99fee56c90b9fa69ad2345b84bf83d69a5",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "54922db3f42be994f1ebe606d8501c99fee56c90b9fa69ad2345b84bf83d69a5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed68335f2a3580133fb7afd7",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/build-with-bentoml/iotypes.rst",
+        "start_line": 453,
+        "total_lines": 656,
+        "start_char": 19013,
+        "end_char": 23904,
+        "evidence_id": "ed68335f2a3580133fb7afd7",
+        "truncated": false,
+        "next_offset": 572,
+        "source_type": "repository",
+        "content_hash": "ebc372522914349767f632a5a7b0bed0f5ecca08e97a30d10251f13eab8f7024",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/examples/sdxl-turbo.rst",
+              "offset": 73,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/examples/vllm.rst",
+              "offset": 69,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "offset": 452,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ebc372522914349767f632a5a7b0bed0f5ecca08e97a30d10251f13eab8f7024",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f05fd8b76f6e7f3c1b5bb855",
+        "type": "evidence",
+        "path": "docs/source/examples/sdxl-turbo.rst",
+        "heading": "Code explanations",
+        "start_line": 78,
+        "end_line": 126,
+        "start_char": 4575,
+        "end_char": 6215,
+        "score": "0.031024531024531024",
+        "root": "docs",
+        "matched_terms": [
+          "image",
+          "images"
+        ],
+        "evidence_id": "f05fd8b76f6e7f3c1b5bb855",
+        "source_type": "repository",
+        "content_hash": "5603e4cc4c165d92445c163e488298c4f3d065f4b905eb82b7aa0b26da889462",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Image methods reference",
+            "_bentoml_sdk.images"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5603e4cc4c165d92445c163e488298c4f3d065f4b905eb82b7aa0b26da889462",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f38e7031cc24a2ff1c4af454",
+        "type": "evidence",
+        "path": "docs/source/reference/bentoml/bento-build-options.rst",
+        "heading": "Custom build context",
+        "start_line": 810,
+        "end_line": 829,
+        "start_char": 28867,
+        "end_char": 29996,
+        "score": "0.03352590433979541",
+        "root": "docs",
+        "matched_terms": [
+          "build",
+          "context",
+          "root"
+        ],
+        "evidence_id": "f38e7031cc24a2ff1c4af454",
+        "source_type": "repository",
+        "content_hash": "0f027988044202cbe4c10641a973c081c30eed77e61458b7e268726eace2ba66",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "wheels",
+            "build context",
+            "bento context root"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0f027988044202cbe4c10641a973c081c30eed77e61458b7e268726eace2ba66",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f60fc481f77816571c1a685f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/source/examples/sdxl-turbo.rst",
+        "start_line": 74,
+        "total_lines": 261,
+        "start_char": 3913,
+        "end_char": 8610,
+        "evidence_id": "f60fc481f77816571c1a685f",
+        "truncated": false,
+        "next_offset": 193,
+        "source_type": "repository",
+        "content_hash": "023828b42d624f1bc2a7fc697096c939b4fa6de7f0d8848a8946681b38f0bec0",
+        "revision": "128127028c9a7d3e9082f83583e3c3750a2e5ced",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/source/examples/sdxl-turbo.rst",
+              "offset": 73,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/examples/vllm.rst",
+              "offset": 69,
+              "limit": 120
+            },
+            {
+              "path": "docs/source/build-with-bentoml/iotypes.rst",
+              "offset": 452,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "023828b42d624f1bc2a7fc697096c939b4fa6de7f0d8848a8946681b38f0bec0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:runtime-env-build-include",
+        "type": "requirement",
+        "description": "In docs/source/build-with-bentoml/runtime-environment.rst, under the 'Configuration methods' section of the Image class, add a new subsection documenting the `build_include(*file_paths)` method: it accepts one or more paths relative to the bento context root, appends them to the build include list, and returns self for chaining. Include a code example such as `bentoml.images.Image(python_version='3.11').build_include(\"data/\", \"config.yaml\")` and note that included files are copied into the image under ./src/<name>."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/source/build-with-bentoml/runtime-environment.rst",
+        "hash": "38812a631133e22347591e025cc722d0217483618261453aa2adc503aa31a01e"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "runtime-env-build-include",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/source/build-with-bentoml/runtime-environment.rst"
+        ],
+        "evidence_ids": [
+          "deb93edc42fe784640a61b7c",
+          "8a791fa767f0ca76aec09e9f",
+          "00d34f6d558d5bed47418b2c"
+        ],
+        "reason": "In docs/source/build-with-bentoml/runtime-environment.rst, under the 'Configuration methods' section of the Image class, add a new subsection documenting the `build_include(*file_paths)` method: it accepts one or more paths relative to the bento context root, appends them to the build include list, and returns self for chaining. Include a code example such as `bentoml.images.Image(python_version='3.11').build_include(\"data/\", \"config.yaml\")` and note that included files are copied into the image under ./src/<name>."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where is the Image class and its methods (e.g. pip_install, system_packages, run) documented for users?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where are custom build context / wheels / bento context files documented?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Does the Image API reference doc list methods that would need build_include added?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "What configuration methods are documented in the runtime-environment page's 'Configuration methods' section, and where would build_include() fit?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the Image class docstring/API reference exist in code that docs autodoc pulls from, and is there a reference page listing Image methods?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0052aed085121573469a1bed",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:00d34f6d558d5bed47418b2c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0b0884528e48edd7b6639870",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1116a6675a16cbdcf6b63df4",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:211e3b63169f5bea5507ee98",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:244ead636b0d309679d0b27e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:244ead636b0d309679d0b27e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:28728f2ce6c415558289d0a1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:28728f2ce6c415558289d0a1",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2a43771fd44d6c323f09fb98",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:34baa80d0c8f6d2698f779d6",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:40e3441367287cde5c63f4c5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a9bdfa83a0bca615224138a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64846b09cfb38e2def0b30c4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:726c3667d64aab3230b80d32",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:732c60ae28eb51c7cf6993c2",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:74deaca9698e8149054b5758",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7659037a73f1156e2b331fd1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7aa143544125a51275d1b7b4",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8a791fa767f0ca76aec09e9f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8bb87a3dd0bc745c6be467d5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8d327812f13bbf3768a99c16",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8f589dfd5e98a5a2424bc170",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8f589dfd5e98a5a2424bc170",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9b0b381ad42296524201c07d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a03fcf95875c4ebf7055465c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a5bef974a22fa277ccdd6de2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a989cb01130533328642f271",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a989cb01130533328642f271",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a9953ce483edec6f9328f920",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac769600e177db1e07505356",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac857027e5a48b3d1cb4854c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ad51f108e3318f14bfe316db",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ad51f108e3318f14bfe316db",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ad8490bbecb417c43984fc1a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b0a0b5708f397f2bc15b654b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bbc74a11c8eea2ed8dc7e522",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bfb1e97946e9f23d7218f887",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3a47e66ac2266bbcc6acaf6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c47834e46df8d1f7c9d3aa81",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d35755fddf7e2081f7cdfb86",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d409f53d7301275c5d99f5d5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d409f53d7301275c5d99f5d5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d4cabd887cca81169a5d64fd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d4cabd887cca81169a5d64fd",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d5632917d7dd70fa94d86bc3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:daf7811da31c9bf348c65279",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:deb93edc42fe784640a61b7c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e01b90b21864ce5dafe06f61",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e56ae9d61881b601dc1ad6d0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e56ae9d61881b601dc1ad6d0",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e8a009c61debaa792be67872",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e99d1e6460ca94673989e98a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ea814ba88f2e276e403223a4",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eb3ee86be766559388d1eadf",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed68335f2a3580133fb7afd7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f05fd8b76f6e7f3c1b5bb855",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f05fd8b76f6e7f3c1b5bb855",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f38e7031cc24a2ff1c4af454",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f60fc481f77816571c1a685f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:deb93edc42fe784640a61b7c",
+        "to": "requirement:runtime-env-build-include",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:8a791fa767f0ca76aec09e9f",
+        "to": "requirement:runtime-env-build-include",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:00d34f6d558d5bed47418b2c",
+        "to": "requirement:runtime-env-build-include",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:runtime-env-build-include",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:deb93edc42fe784640a61b7c",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:8a791fa767f0ca76aec09e9f",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:00d34f6d558d5bed47418b2c",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:runtime-env-build-include",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:deb93edc42fe784640a61b7c",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:8a791fa767f0ca76aec09e9f",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:00d34f6d558d5bed47418b2c",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "fa416d792f63dcb649753eee19c0e7e72b2ac0c2544730eac6fd218daf9d8ddb"
+}

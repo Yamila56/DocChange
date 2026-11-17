@@ -1,0 +1,144 @@
+diff --git a/doc/user/content/ingest-data/postgres/dedicated-replica.md b/doc/user/content/ingest-data/postgres/dedicated-replica.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..9e9b1563b504791076a4c913b8534fb0bb70b89d
+--- /dev/null
++++ b/doc/user/content/ingest-data/postgres/dedicated-replica.md
+@@ -0,0 +1,120 @@
++---
++title: "Use a dedicated replica for Materialize"
++description: "How to stand up a dedicated PostgreSQL replica via native logical replication and point a Materialize PostgreSQL source at it"
++menu:
++  main:
++    parent: "postgresql"
++    name: "Dedicated replica"
++    identifier: "pg-dedicated-replica"
++    weight: 60
++---
++
++This page shows you how to stand up a dedicated PostgreSQL replica using
++PostgreSQL's native [logical
++replication](https://www.postgresql.org/docs/current/logical-replication.html),
++and point a [PostgreSQL source](/sql/create-source/postgres/) at the replica
++instead of your production primary.
++
++Running Materialize against a dedicated replica isolates the load of change
++data capture (CDC) from your production primary: the primary only streams
++changes to the replica, and Materialize reads from the replica.
++
++## Before you begin
++
++- You need a PostgreSQL 11+ primary with logical replication enabled
++  (`wal_level = logical`). For details, see the [self-hosted PostgreSQL
++guide](/ingest-data/postgres/self-hosted/).
++- You need a second PostgreSQL instance to serve as the dedicated replica. It
++  must be able to connect to the primary over the network.
++
++## A. Create a publication on the primary
++
++On the **primary**, create a publication for the tables you want to replicate.
++
++```postgres
++CREATE PUBLICATION mz_publication FOR TABLE table_1, table_2;
++```
++
++You can also publish all tables in the database:
++
++```postgres
++CREATE PUBLICATION mz_publication FOR ALL TABLES;
++```
++
++## B. Create a subscription on the replica
++
++On the **dedicated replica**, create a subscription that consumes the
++publication from the primary. This uses PostgreSQL's native logical
++replication to keep the replica's tables up to date.
++
++```postgres
++CREATE SUBSCRIPTION mz_subscription
++  CONNECTION 'host=<primary_host> port=5432 dbname=<dbname> user=<replication_user> password=<password>'
++  PUBLICATION mz_publication;
++```
++
++The replica must already contain the tables included in the publication (for
++example, created via `pg_dump --schema-only` from the primary).
++
++## C. Configure the replica for Materialize
++
++Materialize reads from the replica using PostgreSQL's logical replication
++protocol, so the replica must also support logical replication:
++
++1. Set `wal_level = logical` on the replica and restart it.
++
++1. Create a publication on the replica for the tables Materialize should
++   ingest:
++
++    ```postgres
++    CREATE PUBLICATION mz_source FOR TABLE table_1, table_2;
++    ```
++
++1. Create a replication user on the replica with the `REPLICATION` and `LOGIN`
++   privileges, and grant it read access to the published tables.
++
++## D. Point Materialize at the replica
++
++Create a [connection](/sql/create-connection/#postgresql) that targets the
++**replica** instead of the primary, and then create a source using that
++connection.
++
++```mzsql
++CREATE SECRET pg_replica_password AS '<password>';
++
++CREATE CONNECTION pg_replica TO POSTGRES (
++  HOST '<replica_host>',
++  PORT 5432,
++  DATABASE '<dbname>',
++  USER '<replication_user>',
++  PASSWORD SECRET pg_replica_password
++);
++
++CREATE SOURCE mz_source
++  FROM POSTGRES CONNECTION pg_replica (PUBLICATION 'mz_source')
++  FOR ALL TABLES;
++```
++
++For more details on the source syntax and options, see the [`CREATE
++SOURCE`](/sql/create-source/postgres/) reference.
++
++## Caveats
++
++- **Do not write to the replica.** The replica is a read-only target for
++  Materialize. Writes, schema changes, or DDL on the replica are not
++  propagated back to the primary and can break replication.
++- **Do not use the replica for failover.** This replica is dedicated to
++  Materialize and is not a standby for high availability. Use a separate
++  physical standby if you need failover.
++- **Schema changes** must be applied on the primary and will flow to the
++  replica through the subscription. After a schema change, you may need to
++  [handle the change in Materialize](/sql/create-source/postgres/#handling-errors-and-schema-changes).
++- **Replication slots** are created on the replica by Materialize. Monitor
++  them as described in [PostgreSQL replication
++  slots](/sql/create-source/postgres/#postgresql-replication-slots).
++
++## Related pages
++
++- [Self-hosted PostgreSQL guide](/ingest-data/postgres/self-hosted/)
++- [`CREATE SOURCE`: PostgreSQL](/sql/create-source/postgres/)
++- [`CREATE CONNECTION`: PostgreSQL](/sql/create-connection/#postgresql)
+diff --git a/doc/user/content/ingest-data/postgres/self-hosted.md b/doc/user/content/ingest-data/postgres/self-hosted.md
+index 4fb4b852ba0c03d65daee7ff3cf8212629d7b8f9..7e86a22867fab339783d2683b70e6607b7d5c074 100644
+--- a/doc/user/content/ingest-data/postgres/self-hosted.md
++++ b/doc/user/content/ingest-data/postgres/self-hosted.md
+@@ -60,6 +60,13 @@ Enable your PostgreSQL's logical replication.
+ 
+ {{% include-from-yaml data="ingest_postgres" name="create-a-publication-other" %}}
+ 
++{{< tip >}}
++To avoid running logical replication directly against your production primary,
++you can stand up a dedicated PostgreSQL replica and point Materialize at it
++instead. For details, see [Use a dedicated replica for
++Materialize](/ingest-data/postgres/dedicated-replica/).
++{{< /tip >}}
++
+ ## B. (Optional) Configure network security
+ 
+ {{< note >}}

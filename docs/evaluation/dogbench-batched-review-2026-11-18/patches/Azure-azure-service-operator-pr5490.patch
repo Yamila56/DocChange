@@ -1,0 +1,77 @@
+diff --git a/docs/hugo/content/guide/expressions.md b/docs/hugo/content/guide/expressions.md
+index 88f17c9045409a02d1bb763132b01d034e32376e..ac3fbbe8c4af1ef5fd8cef427d19651914c06503 100644
+--- a/docs/hugo/content/guide/expressions.md
++++ b/docs/hugo/content/guide/expressions.md
+@@ -66,6 +66,40 @@ Compare with [Kubernetes supported options](https://kubernetes.io/docs/reference
+ | [Optional Types](https://pkg.go.dev/github.com/google/cel-go/cel#OptionalTypes)                                     |
+ | [Cross Type Numeric comparisons](https://pkg.go.dev/github.com/google/cel-go/cel#CrossTypeNumericComparisons)       |
+ 
++### ASO-specific functions
++
++In addition to the standard CEL functions and libraries above, ASO provides the following function under the `aso`
++namespace. The `aso` namespace is used to avoid collisions with any user-defined identifiers.
++
++#### `aso.parseResourceId`
++
++`aso.parseResourceId(string)` parses an ARM resource ID string and returns a `ResourceID` object. If the string is not a
++valid ARM resource ID, the expression fails with an error.
++
++The returned `ResourceID` object exposes the following fields:
++
++| Field               | Type           | Description                                                                 |
++|---------------------|----------------|-----------------------------------------------------------------------------|
++| `subscriptionId`    | `string`       | The subscription ID.                                                        |
++| `resourceGroupName` | `string`       | The resource group name.                                                    |
++| `provider`          | `string`       | The resource provider.                                                      |
++| `location`          | `string`       | The resource location, if present.                                          |
++| `name`              | `string`       | The resource name.                                                          |
++| `resourceType`      | `ResourceType` | The resource type, with nested `namespace` and `type` string fields.        |
++| `parent`            | `ResourceID`   | The parent resource ID for hierarchical IDs (recursive), if present.        |
++
++For example, to extract the subscription ID from a resource's ARM ID:
++
++```
++aso.parseResourceId(self.status.id).subscriptionId
++```
++
++Or to extract the resource type namespace:
++
++```
++aso.parseResourceId(self.status.id).resourceType.namespace
++```
++
+ 
+ ### Escaping
+ 
+diff --git a/docs/hugo/content/guide/frequently-asked-questions.md b/docs/hugo/content/guide/frequently-asked-questions.md
+index aa17c2c6114eed13d17b8a8e0e1bd6eaa74e6dc4..2c593f9274b60c4533e6353ad57fb272254effb1 100644
+--- a/docs/hugo/content/guide/frequently-asked-questions.md
++++ b/docs/hugo/content/guide/frequently-asked-questions.md
+@@ -358,6 +358,27 @@ or you can avoid running the Azure Workload Identity webhook entirely, but doing
+ include the `azure-identity` volume and volumeMount, as well as set the `AZURE_TENANT_ID` variable
+ alongside `AZURE_CLIENT_ID` in every pod that needs workload identity.
+ 
++You can also build a complete workload identity credential secret directly from the identity using
++`operatorSpec.secretExpressions`. The `aso.parseResourceId` CEL function can derive the subscription ID from the
++identity's ARM resource ID, alongside the `tenantId` and `clientId` from its status:
++
++```yaml
++operatorSpec:
++  secretExpressions:
++    - name: identity-details
++      key: AZURE_SUBSCRIPTION_ID
++      value: aso.parseResourceId(self.status.id).subscriptionId
++    - name: identity-details
++      key: AZURE_TENANT_ID
++      value: self.status.tenantId
++    - name: identity-details
++      key: AZURE_CLIENT_ID
++      value: self.status.clientId
++    - name: identity-details
++      key: USE_WORKLOAD_IDENTITY_AUTH
++      value: string(true)
++```
++
+ Sample VolumeMount:
+ 
+ ```yaml

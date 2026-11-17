@@ -1,0 +1,3614 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "hive-schema-evolution-hms-caveat",
+      "description": "In docs/docs/hive.md, under the '#### Schema evolution' section, add a note that Hive Metastore compatibility can affect Iceberg schema-evolution operations (e.g. column rename/type-change/reorder constraints imposed by the HMS version), and reference the supported HMS versions (Hive 2.3.10 or 3.1.3 or later) already stated in the Global Hive catalog section.",
+      "evidence_ids": [
+        "3967b53f3f445634413e2cd0",
+        "1eaa2eccb893e80cb1a41a62",
+        "83f72a967c63fb90d93e6b5e"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "evolution-schema-evolution-caveat",
+      "description": "In docs/docs/evolution.md, in the '## Schema evolution' section, add a brief caveat that when tables are managed through a Hive Metastore catalog, HMS version compatibility can constrain or affect schema-evolution operations, linking to the Hive docs page for details.",
+      "evidence_ids": [
+        "f2ec56acc78b4e30f8396038",
+        "3967b53f3f445634413e2cd0"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "c3a5dbe45091a8dc61459554ff3a37b48fa1e047b9e0b0a9785385dcc679d9d2",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where in the docs are Iceberg schema evolution and Hive Metastore compatibility discussed?",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs"
+          ],
+          "reads": [
+            {
+              "path": "docs/docs/evolution.md",
+              "offset": 16,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/hive.md",
+              "offset": 350,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/index.md",
+              "offset": 20,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f2ec56acc78b4e30f8396038",
+            "3967b53f3f445634413e2cd0",
+            "7e2f99cd0b9f25da940fb32d",
+            "2c8a3bea7bdea69856a04244",
+            "25c0d759dc6d7dad4440c2cf",
+            "a00368bff5682cd7e795ee10",
+            "2c92630009e8f994edeb571e",
+            "766c1ed56fdc50462cd046d4",
+            "e4c7eafccfc80fef48035403",
+            "9bbc0c6b22996a50b3d8431f",
+            "4dfb99258797516194b7afa4",
+            "f113c7a708dd6f47856f8cfc",
+            "85dd57664061a35e32ffa9d8",
+            "dba81252384069b9b9526516",
+            "74606e9ad37f6a8e9418534c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/docs/evolution.md",
+              "evidence_id": "2c8a3bea7bdea69856a04244",
+              "score": "0.03485475355978953"
+            },
+            {
+              "rank": 2,
+              "path": "docs/docs/hive.md",
+              "evidence_id": "25c0d759dc6d7dad4440c2cf",
+              "score": "0.034118773946360155"
+            },
+            {
+              "rank": 3,
+              "path": "docs/docs/evolution.md",
+              "evidence_id": "a00368bff5682cd7e795ee10",
+              "score": "0.03408464031414851"
+            },
+            {
+              "rank": 4,
+              "path": "docs/docs/index.md",
+              "evidence_id": "2c92630009e8f994edeb571e",
+              "score": "0.03263071854403901"
+            },
+            {
+              "rank": 5,
+              "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+              "evidence_id": "766c1ed56fdc50462cd046d4",
+              "score": "0.03225806451612903"
+            },
+            {
+              "rank": 6,
+              "path": "docs/docs/flink-writes.md",
+              "evidence_id": "e4c7eafccfc80fef48035403",
+              "score": "0.03055037313432836"
+            },
+            {
+              "rank": 7,
+              "path": "format/spec.md",
+              "evidence_id": "9bbc0c6b22996a50b3d8431f",
+              "score": "0.03055037313432836"
+            },
+            {
+              "rank": 8,
+              "path": "format/spec.md",
+              "evidence_id": "4dfb99258797516194b7afa4",
+              "score": "0.030536130536130537"
+            },
+            {
+              "rank": 9,
+              "path": "docs/docs/hive.md",
+              "evidence_id": "f113c7a708dd6f47856f8cfc",
+              "score": "0.028295314095891803"
+            },
+            {
+              "rank": 10,
+              "path": "docs/docs/spark-writes.md",
+              "evidence_id": "85dd57664061a35e32ffa9d8",
+              "score": "0.027984344422700584"
+            },
+            {
+              "rank": 11,
+              "path": "docs/docs/nessie.md",
+              "evidence_id": "dba81252384069b9b9526516",
+              "score": "0.027046783625730993"
+            },
+            {
+              "rank": 12,
+              "path": "site/docs/blog/posts/2026-01-26-iceberg-cpp-0.2.0-release.md",
+              "evidence_id": "74606e9ad37f6a8e9418534c",
+              "score": "0.026334026334026334"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/docs/evolution.md",
+              "start": 16,
+              "end": 100,
+              "total_lines": 100
+            },
+            {
+              "path": "docs/docs/hive.md",
+              "start": 350,
+              "end": 470,
+              "total_lines": 799
+            },
+            {
+              "path": "docs/docs/index.md",
+              "start": 20,
+              "end": 52,
+              "total_lines": 52
+            }
+          ],
+          "read_evidence_ids": [
+            "f2ec56acc78b4e30f8396038",
+            "3967b53f3f445634413e2cd0",
+            "7e2f99cd0b9f25da940fb32d"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is there an existing troubleshooting or known-issues page where a Hive Metastore compatibility caveat would belong?",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs"
+          ],
+          "reads": [
+            {
+              "path": "AGENTS.md",
+              "offset": 105,
+              "limit": 120
+            },
+            {
+              "path": ".baseline/copyright/copyright-header-java.txt",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 38,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "5cc929c79151608bcc0dfd59",
+            "c774edfed79902aad15c5465",
+            "6f5f5bc08e60262d4457021b",
+            "b2f1a317b241374eea76ea2b",
+            "d5dfbc8b257385b007a7fa05",
+            "bd908ed18d2ba3fc8d256ed8",
+            "543df1938173f66084afdd21",
+            "e96580ef60e6b793d1719141",
+            "467f2f2c0cb9fba0c74203bb",
+            "2d48559baef819543a40952d",
+            "e51894d2fe8b9cca08d1fb5e",
+            "a8c39d900e8ef2ed5678ecb3",
+            "78225ded0b36943a4d19c186",
+            "31cc35d009f93b2abbad654c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "AGENTS.md",
+              "evidence_id": "b2f1a317b241374eea76ea2b",
+              "score": "0.03563657517465893"
+            },
+            {
+              "rank": 2,
+              "path": ".baseline/copyright/copyright-header-java.txt",
+              "evidence_id": "c774edfed79902aad15c5465",
+              "score": "0.03367670562381381"
+            },
+            {
+              "rank": 3,
+              "path": "README.md",
+              "evidence_id": "d5dfbc8b257385b007a7fa05",
+              "score": "0.03296245863329533"
+            },
+            {
+              "rank": 4,
+              "path": "AGENTS.md",
+              "evidence_id": "bd908ed18d2ba3fc8d256ed8",
+              "score": "0.030868876466315268"
+            },
+            {
+              "rank": 5,
+              "path": "CONTRIBUTING.md",
+              "evidence_id": "543df1938173f66084afdd21",
+              "score": "0.029759034785192318"
+            },
+            {
+              "rank": 6,
+              "path": ".baseline/copyright/001_apache-2.0.txt",
+              "evidence_id": "e96580ef60e6b793d1719141",
+              "score": "0.029610344331006466"
+            },
+            {
+              "rank": 7,
+              "path": "docs/docs/maintenance.md",
+              "evidence_id": "467f2f2c0cb9fba0c74203bb",
+              "score": "0.028821603767574745"
+            },
+            {
+              "rank": 8,
+              "path": "docs/docs/flink-maintenance.md",
+              "evidence_id": "2d48559baef819543a40952d",
+              "score": "0.028545136460388674"
+            },
+            {
+              "rank": 9,
+              "path": "site/docs/community.md",
+              "evidence_id": "e51894d2fe8b9cca08d1fb5e",
+              "score": "0.026919758412424506"
+            },
+            {
+              "rank": 10,
+              "path": "site/docs/releases.md",
+              "evidence_id": "a8c39d900e8ef2ed5678ecb3",
+              "score": "0.026153846153846153"
+            },
+            {
+              "rank": 11,
+              "path": "docs/docs/flink-maintenance.md",
+              "evidence_id": "78225ded0b36943a4d19c186",
+              "score": "0.024846834581347857"
+            },
+            {
+              "rank": 12,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "31cc35d009f93b2abbad654c",
+              "score": "0.024495697939681343"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "AGENTS.md",
+              "start": 105,
+              "end": 172,
+              "total_lines": 172
+            },
+            {
+              "path": ".baseline/copyright/copyright-header-java.txt",
+              "start": 0,
+              "end": 18,
+              "total_lines": 18
+            },
+            {
+              "path": "README.md",
+              "start": 38,
+              "end": 113,
+              "total_lines": 113
+            }
+          ],
+          "read_evidence_ids": [
+            "5cc929c79151608bcc0dfd59",
+            "c774edfed79902aad15c5465",
+            "6f5f5bc08e60262d4457021b"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "25c0d759dc6d7dad4440c2cf",
+        "2c8a3bea7bdea69856a04244",
+        "2c92630009e8f994edeb571e",
+        "2d48559baef819543a40952d",
+        "31cc35d009f93b2abbad654c",
+        "3967b53f3f445634413e2cd0",
+        "467f2f2c0cb9fba0c74203bb",
+        "4dfb99258797516194b7afa4",
+        "543df1938173f66084afdd21",
+        "5cc929c79151608bcc0dfd59",
+        "6f5f5bc08e60262d4457021b",
+        "74606e9ad37f6a8e9418534c",
+        "766c1ed56fdc50462cd046d4",
+        "78225ded0b36943a4d19c186",
+        "7e2f99cd0b9f25da940fb32d",
+        "85dd57664061a35e32ffa9d8",
+        "9bbc0c6b22996a50b3d8431f",
+        "a00368bff5682cd7e795ee10",
+        "a8c39d900e8ef2ed5678ecb3",
+        "b2f1a317b241374eea76ea2b",
+        "bd908ed18d2ba3fc8d256ed8",
+        "c774edfed79902aad15c5465",
+        "d5dfbc8b257385b007a7fa05",
+        "dba81252384069b9b9526516",
+        "e4c7eafccfc80fef48035403",
+        "e51894d2fe8b9cca08d1fb5e",
+        "e96580ef60e6b793d1719141",
+        "f113c7a708dd6f47856f8cfc",
+        "f2ec56acc78b4e30f8396038"
+      ],
+      "new_evidence_count": 29,
+      "new_path_count": 19
+    },
+    {
+      "signature": "0c902ab49a76095dbcc67eff31262cf9d9168ea8eb4861e75f39a3e216b70bfe",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the Hive docs page (or a Hive catalog page) already describe Hive Metastore limitations affecting Iceberg schema evolution, such as column-name/type constraints or HMS version requirements?",
+          "root": "docs",
+          "queries": [
+            "hive metastore version requirement",
+            "hive catalog limitations",
+            "column name type hive metastore"
+          ],
+          "paths": [
+            "docs/docs/hive.md"
+          ],
+          "anchor": "#### Schema evolution",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/docs/hive.md",
+              "query": "#### Schema evolution",
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-ddl.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink.md",
+              "offset": 198,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "3967b53f3f445634413e2cd0",
+            "f8997cc9ebda7d7228c28738",
+            "59599d8e3ba4f206ad01edf6",
+            "0f38655926fb98b009cd787d",
+            "ca7269baddd16f9d0734e689",
+            "9747d20c8038983f98aed7b8",
+            "ba7ee2e9349a48afddf5f772",
+            "48209ada2a65e6ed9a1daa94",
+            "5c616d5cf1380568772a9be0",
+            "2da26510826b5fd4f9395645",
+            "64b4e4e961fedeebdc7e8857",
+            "e416af97151c311602665290",
+            "5fccdc8d4ffb3e1400815246",
+            "3cac5e82678f1a07b239df9b",
+            "09250a4719efae772aafb9c4"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/docs/flink-ddl.md",
+              "evidence_id": "0f38655926fb98b009cd787d",
+              "score": "0.04839549075403121"
+            },
+            {
+              "rank": 2,
+              "path": "docs/docs/flink.md",
+              "evidence_id": "ca7269baddd16f9d0734e689",
+              "score": "0.047379032258064516"
+            },
+            {
+              "rank": 3,
+              "path": "docs/docs/hive.md",
+              "evidence_id": "9747d20c8038983f98aed7b8",
+              "score": "0.04620389822595705"
+            },
+            {
+              "rank": 4,
+              "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+              "evidence_id": "ba7ee2e9349a48afddf5f772",
+              "score": "0.04600640126586831"
+            },
+            {
+              "rank": 5,
+              "path": "site/docs/status.md",
+              "evidence_id": "48209ada2a65e6ed9a1daa94",
+              "score": "0.0454033227995327"
+            },
+            {
+              "rank": 6,
+              "path": "docs/docs/flink-configuration.md",
+              "evidence_id": "5c616d5cf1380568772a9be0",
+              "score": "0.04381654381654382"
+            },
+            {
+              "rank": 7,
+              "path": "docs/docs/spark-configuration.md",
+              "evidence_id": "2da26510826b5fd4f9395645",
+              "score": "0.04174147336970295"
+            },
+            {
+              "rank": 8,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "64b4e4e961fedeebdc7e8857",
+              "score": "0.041732208398875065"
+            },
+            {
+              "rank": 9,
+              "path": "docs/docs/java-api-quickstart.md",
+              "evidence_id": "e416af97151c311602665290",
+              "score": "0.041246828747213915"
+            },
+            {
+              "rank": 10,
+              "path": "site/docs/status.md",
+              "evidence_id": "5fccdc8d4ffb3e1400815246",
+              "score": "0.040526035874873086"
+            },
+            {
+              "rank": 11,
+              "path": "docs/docs/kafka-connect.md",
+              "evidence_id": "3cac5e82678f1a07b239df9b",
+              "score": "0.0399647266313933"
+            },
+            {
+              "rank": 12,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "09250a4719efae772aafb9c4",
+              "score": "0.038779317697228144"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/docs/hive.md",
+              "start": 350,
+              "end": 470,
+              "total_lines": 799
+            },
+            {
+              "path": "docs/docs/flink-ddl.md",
+              "start": 20,
+              "end": 140,
+              "total_lines": 232
+            },
+            {
+              "path": "docs/docs/flink.md",
+              "start": 198,
+              "end": 318,
+              "total_lines": 407
+            }
+          ],
+          "read_evidence_ids": [
+            "3967b53f3f445634413e2cd0",
+            "f8997cc9ebda7d7228c28738",
+            "59599d8e3ba4f206ad01edf6"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is there a Hive catalog configuration page (e.g. hive-catalog.md) where a Hive Metastore compatibility caveat about schema evolution would belong?",
+          "root": "docs",
+          "queries": [
+            "hive catalog configuration",
+            "hive metastore uri",
+            "hive catalog"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/docs/hive-catalog.md"
+          ],
+          "reads": [
+            {
+              "path": "docs/docs/flink-configuration.md",
+              "offset": 45,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 18,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/hive.md",
+              "offset": 107,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d4c25c9ded45e3560f13d837",
+            "5a16952f19d1e32ffd3e0bc3",
+            "83f72a967c63fb90d93e6b5e",
+            "0f38655926fb98b009cd787d",
+            "ca7269baddd16f9d0734e689",
+            "5c616d5cf1380568772a9be0",
+            "2da26510826b5fd4f9395645",
+            "9747d20c8038983f98aed7b8",
+            "e416af97151c311602665290",
+            "b2acbf9385e6ec3d64043c05",
+            "ba7ee2e9349a48afddf5f772",
+            "48209ada2a65e6ed9a1daa94",
+            "3cac5e82678f1a07b239df9b",
+            "992d232dc8ce566b561e620c",
+            "4502975b6e74ca23deb4e56c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/docs/flink-ddl.md",
+              "evidence_id": "0f38655926fb98b009cd787d",
+              "score": "0.04839549075403121"
+            },
+            {
+              "rank": 2,
+              "path": "docs/docs/flink.md",
+              "evidence_id": "ca7269baddd16f9d0734e689",
+              "score": "0.04627081163075461"
+            },
+            {
+              "rank": 3,
+              "path": "docs/docs/flink-configuration.md",
+              "evidence_id": "5c616d5cf1380568772a9be0",
+              "score": "0.045005455609963815"
+            },
+            {
+              "rank": 4,
+              "path": "docs/docs/spark-configuration.md",
+              "evidence_id": "2da26510826b5fd4f9395645",
+              "score": "0.044415389395194696"
+            },
+            {
+              "rank": 5,
+              "path": "docs/docs/hive.md",
+              "evidence_id": "9747d20c8038983f98aed7b8",
+              "score": "0.04379960317460317"
+            },
+            {
+              "rank": 6,
+              "path": "docs/docs/java-api-quickstart.md",
+              "evidence_id": "e416af97151c311602665290",
+              "score": "0.04309997630893153"
+            },
+            {
+              "rank": 7,
+              "path": "docs/docs/kafka-connect.md",
+              "evidence_id": "b2acbf9385e6ec3d64043c05",
+              "score": "0.04272460093355616"
+            },
+            {
+              "rank": 8,
+              "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+              "evidence_id": "ba7ee2e9349a48afddf5f772",
+              "score": "0.04265566753128942"
+            },
+            {
+              "rank": 9,
+              "path": "site/docs/status.md",
+              "evidence_id": "48209ada2a65e6ed9a1daa94",
+              "score": "0.04238816738816739"
+            },
+            {
+              "rank": 10,
+              "path": "docs/docs/kafka-connect.md",
+              "evidence_id": "3cac5e82678f1a07b239df9b",
+              "score": "0.04222987385810344"
+            },
+            {
+              "rank": 11,
+              "path": "docs/docs/hive.md",
+              "evidence_id": "992d232dc8ce566b561e620c",
+              "score": "0.04215194551502033"
+            },
+            {
+              "rank": 12,
+              "path": "docs/docs/spark-configuration.md",
+              "evidence_id": "4502975b6e74ca23deb4e56c",
+              "score": "0.04069832064757763"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/docs/flink-configuration.md",
+              "start": 45,
+              "end": 112,
+              "total_lines": 201
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "start": 18,
+              "end": 138,
+              "total_lines": 279
+            },
+            {
+              "path": "docs/docs/hive.md",
+              "start": 107,
+              "end": 227,
+              "total_lines": 799
+            }
+          ],
+          "read_evidence_ids": [
+            "d4c25c9ded45e3560f13d837",
+            "5a16952f19d1e32ffd3e0bc3",
+            "83f72a967c63fb90d93e6b5e"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "09250a4719efae772aafb9c4",
+        "0f38655926fb98b009cd787d",
+        "2da26510826b5fd4f9395645",
+        "3cac5e82678f1a07b239df9b",
+        "4502975b6e74ca23deb4e56c",
+        "48209ada2a65e6ed9a1daa94",
+        "59599d8e3ba4f206ad01edf6",
+        "5a16952f19d1e32ffd3e0bc3",
+        "5c616d5cf1380568772a9be0",
+        "5fccdc8d4ffb3e1400815246",
+        "64b4e4e961fedeebdc7e8857",
+        "83f72a967c63fb90d93e6b5e",
+        "9747d20c8038983f98aed7b8",
+        "992d232dc8ce566b561e620c",
+        "b2acbf9385e6ec3d64043c05",
+        "ba7ee2e9349a48afddf5f772",
+        "ca7269baddd16f9d0734e689",
+        "d4c25c9ded45e3560f13d837",
+        "e416af97151c311602665290",
+        "f8997cc9ebda7d7228c28738"
+      ],
+      "new_evidence_count": 20,
+      "new_path_count": 7
+    },
+    {
+      "signature": "2fe38996b7ce70206f9615e2e5280961293c4d48eb5cfee60baeae2e3466c3d5",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q3-1",
+          "question": "Does the Hive docs page already contain a note about Hive Metastore version compatibility or limitations affecting Iceberg schema evolution (e.g. HMS 2.x vs 3.x column constraints)?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/docs/hive.md"
+          ],
+          "anchor": "HiveCatalog integration supports Hive 2.3.10 or 3.1.3 or later",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/docs/hive.md",
+              "query": "HiveCatalog integration supports Hive 2.3.10 or 3.1.3 or later",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "1eaa2eccb893e80cb1a41a62"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/docs/hive.md",
+              "start": 109,
+              "end": 229,
+              "total_lines": 799
+            }
+          ],
+          "read_evidence_ids": [
+            "1eaa2eccb893e80cb1a41a62"
+          ]
+        },
+        {
+          "id": "Q3-2",
+          "question": "Is there a known-issues/troubleshooting section anywhere in the docs where a Hive Metastore schema-evolution caveat would belong?",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 239,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/status.md",
+              "offset": 346,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+              "offset": 67,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "68dde8c67893cae67593b55a",
+            "6f89c6b3b65166606bd13f45",
+            "79035145538a1294d7c675e4",
+            "64b4e4e961fedeebdc7e8857",
+            "09250a4719efae772aafb9c4",
+            "5c616d5cf1380568772a9be0",
+            "5fccdc8d4ffb3e1400815246",
+            "48209ada2a65e6ed9a1daa94",
+            "ba7ee2e9349a48afddf5f772",
+            "e416af97151c311602665290",
+            "0f38655926fb98b009cd787d",
+            "944c521012a6d11d50ba6557",
+            "9747d20c8038983f98aed7b8",
+            "26bdbe69b379e595ada001b6",
+            "ca7269baddd16f9d0734e689"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "64b4e4e961fedeebdc7e8857",
+              "score": "0.034636639785877915"
+            },
+            {
+              "rank": 2,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "09250a4719efae772aafb9c4",
+              "score": "0.03370297890845836"
+            },
+            {
+              "rank": 3,
+              "path": "docs/docs/flink-configuration.md",
+              "evidence_id": "5c616d5cf1380568772a9be0",
+              "score": "0.03196104073713182"
+            },
+            {
+              "rank": 4,
+              "path": "site/docs/status.md",
+              "evidence_id": "5fccdc8d4ffb3e1400815246",
+              "score": "0.0319379033664748"
+            },
+            {
+              "rank": 5,
+              "path": "site/docs/status.md",
+              "evidence_id": "48209ada2a65e6ed9a1daa94",
+              "score": "0.031544957774465976"
+            },
+            {
+              "rank": 6,
+              "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+              "evidence_id": "ba7ee2e9349a48afddf5f772",
+              "score": "0.03128607812864883"
+            },
+            {
+              "rank": 7,
+              "path": "docs/docs/java-api-quickstart.md",
+              "evidence_id": "e416af97151c311602665290",
+              "score": "0.030762761208513942"
+            },
+            {
+              "rank": 8,
+              "path": "docs/docs/flink-ddl.md",
+              "evidence_id": "0f38655926fb98b009cd787d",
+              "score": "0.030535339348541593"
+            },
+            {
+              "rank": 9,
+              "path": "docs/docs/java-api-quickstart.md",
+              "evidence_id": "944c521012a6d11d50ba6557",
+              "score": "0.030282229639906136"
+            },
+            {
+              "rank": 10,
+              "path": "docs/docs/hive.md",
+              "evidence_id": "9747d20c8038983f98aed7b8",
+              "score": "0.02992861201679328"
+            },
+            {
+              "rank": 11,
+              "path": "site/docs/releases.md",
+              "evidence_id": "26bdbe69b379e595ada001b6",
+              "score": "0.029864650117814674"
+            },
+            {
+              "rank": 12,
+              "path": "docs/docs/flink.md",
+              "evidence_id": "ca7269baddd16f9d0734e689",
+              "score": "0.029422481441534906"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "start": 239,
+              "end": 265,
+              "total_lines": 265
+            },
+            {
+              "path": "site/docs/status.md",
+              "start": 346,
+              "end": 371,
+              "total_lines": 371
+            },
+            {
+              "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+              "start": 67,
+              "end": 143,
+              "total_lines": 143
+            }
+          ],
+          "read_evidence_ids": [
+            "68dde8c67893cae67593b55a",
+            "6f89c6b3b65166606bd13f45",
+            "79035145538a1294d7c675e4"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "1eaa2eccb893e80cb1a41a62",
+        "26bdbe69b379e595ada001b6",
+        "68dde8c67893cae67593b55a",
+        "6f89c6b3b65166606bd13f45",
+        "79035145538a1294d7c675e4",
+        "944c521012a6d11d50ba6557"
+      ],
+      "new_evidence_count": 6,
+      "new_path_count": 0
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:9393fdcd5d9968a9": 0,
+    "discover:Q1-2:4cb2b0ce5390e798": 218,
+    "discover:Q2-1:c69122c994cb9419": 0,
+    "discover:Q2-2:40566ccdb6080334": 212,
+    "discover:Q3-2:3b165333c850d23e": 0
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:9393fdcd5d9968a9": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 219,
+      "cache_hit": false
+    },
+    "discover:Q1-2:4cb2b0ce5390e798": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 131,
+      "cache_hit": false
+    },
+    "discover:Q1-2:cc4f1190b3cc1845": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 297,
+      "cache_hit": false
+    },
+    "discover:Q1-1:31112a002d9b46d7": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 357,
+      "cache_hit": false
+    },
+    "discover:Q2-1:c69122c994cb9419": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 212,
+      "cache_hit": false
+    },
+    "discover:Q2-2:40566ccdb6080334": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 131,
+      "cache_hit": false
+    },
+    "discover:Q2-1:3db802e38511750b": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 625,
+      "cache_hit": false
+    },
+    "discover:Q2-2:15bb74cc8f01b0de": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 691,
+      "cache_hit": false
+    },
+    "discover:Q3-2:3b165333c850d23e": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 107,
+      "cache_hit": false
+    },
+    "discover:Q3-1:bd6ee15cb1ad5108": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 191,
+      "cache_hit": false
+    },
+    "discover:Q3-2:aeefcf9374e18570": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 228,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 5706,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "hive-schema-evolution-hms-caveat",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/docs/hive.md"
+      ],
+      "evidence_ids": [
+        "3967b53f3f445634413e2cd0",
+        "1eaa2eccb893e80cb1a41a62",
+        "83f72a967c63fb90d93e6b5e"
+      ],
+      "reason": "In docs/docs/hive.md, under the '#### Schema evolution' section, add a note that Hive Metastore compatibility can affect Iceberg schema-evolution operations (e.g. column rename/type-change/reorder constraints imposed by the HMS version), and reference the supported HMS versions (Hive 2.3.10 or 3.1.3 or later) already stated in the Global Hive catalog section."
+    },
+    {
+      "requirement_id": "evolution-schema-evolution-caveat",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/docs/evolution.md"
+      ],
+      "evidence_ids": [
+        "f2ec56acc78b4e30f8396038",
+        "3967b53f3f445634413e2cd0"
+      ],
+      "reason": "In docs/docs/evolution.md, in the '## Schema evolution' section, add a brief caveat that when tables are managed through a Hive Metastore catalog, HMS version compatibility can constrain or affect schema-evolution operations, linking to the Hive docs page for details."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:09250a4719efae772aafb9c4",
+        "type": "evidence",
+        "path": "docs/docs/configuration.md",
+        "heading": "Configuration > Hadoop configuration > Hive Metastore Configuration",
+        "start_line": 226,
+        "end_line": 243,
+        "start_char": 32459,
+        "end_char": 34179,
+        "score": "0.03370297890845836",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "09250a4719efae772aafb9c4",
+        "source_type": "repository",
+        "content_hash": "e490b9a5cc4572f0161858dfbe03474bcbe7481a494b2b8699c131449225727e",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "e490b9a5cc4572f0161858dfbe03474bcbe7481a494b2b8699c131449225727e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0f38655926fb98b009cd787d",
+        "type": "evidence",
+        "path": "docs/docs/flink-ddl.md",
+        "heading": "title: \"Flink DDL\" > DDL commands > `CREATE Catalog` > Hive catalog",
+        "start_line": 25,
+        "end_line": 47,
+        "start_char": 870,
+        "end_char": 2255,
+        "score": "0.030535339348541593",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "0f38655926fb98b009cd787d",
+        "source_type": "repository",
+        "content_hash": "0d5b0ea1ffc09e0e84740ee1e85836a44f8df1fc66e6494900933cf57d910e83",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "0d5b0ea1ffc09e0e84740ee1e85836a44f8df1fc66e6494900933cf57d910e83",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1eaa2eccb893e80cb1a41a62",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/hive.md",
+        "start_line": 110,
+        "total_lines": 799,
+        "start_char": 5104,
+        "end_char": 9884,
+        "evidence_id": "1eaa2eccb893e80cb1a41a62",
+        "truncated": false,
+        "next_offset": 229,
+        "source_type": "repository",
+        "content_hash": "f2f91426b9d01dca02d4ac53889ab1c3fe946a989eeb148570a5c9c4c7dd0b95",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/hive.md",
+              "query": "HiveCatalog integration supports Hive 2.3.10 or 3.1.3 or later",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "f2f91426b9d01dca02d4ac53889ab1c3fe946a989eeb148570a5c9c4c7dd0b95",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20faf5132bd5393903a2a4e5",
+        "type": "evidence",
+        "evidence_id": "20faf5132bd5393903a2a4e5",
+        "source_type": "implementation",
+        "exported_content_sha256": "ef34b8c0ae348e7856c8fe5e47c94309f1a9757717a53758a8451dca777691e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:25c0d759dc6d7dad4440c2cf",
+        "type": "evidence",
+        "path": "docs/docs/hive.md",
+        "heading": "Hive > DDL Commands > ALTER TABLE > Schema evolution",
+        "start_line": 355,
+        "end_line": 387,
+        "start_char": 14894,
+        "end_char": 15935,
+        "score": "0.034118773946360155",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "hive",
+          "iceberg",
+          "schema"
+        ],
+        "evidence_id": "25c0d759dc6d7dad4440c2cf",
+        "source_type": "repository",
+        "content_hash": "06b2aa46709ee28e694ef00ccb234aac80505015c4b5a29edf8dd9150b9a0424",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "06b2aa46709ee28e694ef00ccb234aac80505015c4b5a29edf8dd9150b9a0424",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:26bdbe69b379e595ada001b6",
+        "type": "evidence",
+        "path": "site/docs/releases.md",
+        "heading": "title: \"Releases\" > Past releases > 0.12.0",
+        "start_line": 1393,
+        "end_line": 1404,
+        "start_char": 121095,
+        "end_char": 122754,
+        "score": "0.029864650117814674",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "26bdbe69b379e595ada001b6",
+        "source_type": "repository",
+        "content_hash": "affce307d6864178eb540890fb77ef8d7cb1789c173a7ade8f2a26b8795dc137",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "affce307d6864178eb540890fb77ef8d7cb1789c173a7ade8f2a26b8795dc137",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2c8a3bea7bdea69856a04244",
+        "type": "evidence",
+        "path": "docs/docs/evolution.md",
+        "heading": "Evolution",
+        "start_line": 21,
+        "end_line": 26,
+        "start_char": 829,
+        "end_char": 1544,
+        "score": "0.03485475355978953",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "hive",
+          "iceberg",
+          "schema"
+        ],
+        "evidence_id": "2c8a3bea7bdea69856a04244",
+        "source_type": "repository",
+        "content_hash": "fe79cc2aa91fa9fec4f577bf286711ef6e2867129f650133bed25c4b4066e10d",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "fe79cc2aa91fa9fec4f577bf286711ef6e2867129f650133bed25c4b4066e10d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2c92630009e8f994edeb571e",
+        "type": "evidence",
+        "path": "docs/docs/index.md",
+        "heading": "Documentation > User experience",
+        "start_line": 25,
+        "end_line": 34,
+        "start_char": 1091,
+        "end_char": 1938,
+        "score": "0.03263071854403901",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "iceberg",
+          "schema"
+        ],
+        "evidence_id": "2c92630009e8f994edeb571e",
+        "source_type": "repository",
+        "content_hash": "46ea59bbc3dc0abef003ac7148a8ccbf87120d16806f18a4e10d0d86c9c5c673",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "46ea59bbc3dc0abef003ac7148a8ccbf87120d16806f18a4e10d0d86c9c5c673",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2d48559baef819543a40952d",
+        "type": "evidence",
+        "path": "docs/docs/flink-maintenance.md",
+        "heading": "title: \"Flink TableMaintenance\" > Flink Table Maintenance StreamingMode > Troubleshooting",
+        "start_line": 513,
+        "end_line": 514,
+        "start_char": 26958,
+        "end_char": 26979,
+        "score": "0.028545136460388674",
+        "root": "docs",
+        "matched_terms": [
+          "troubleshooting"
+        ],
+        "evidence_id": "2d48559baef819543a40952d",
+        "source_type": "repository",
+        "content_hash": "440900242ab25efd735a54f2bec5db5563d71c82b38013051cb0e85b92eeeb42",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "440900242ab25efd735a54f2bec5db5563d71c82b38013051cb0e85b92eeeb42",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2da26510826b5fd4f9395645",
+        "type": "evidence",
+        "path": "docs/docs/spark-configuration.md",
+        "heading": "Spark Configuration > Catalogs",
+        "start_line": 23,
+        "end_line": 54,
+        "start_char": 858,
+        "end_char": 2184,
+        "score": "0.044415389395194696",
+        "root": "docs",
+        "matched_terms": [
+          "catalog",
+          "hive",
+          "metastore",
+          "uri"
+        ],
+        "evidence_id": "2da26510826b5fd4f9395645",
+        "source_type": "repository",
+        "content_hash": "069fd07161f946513aca69fa02946a4f39274b40a5168026ec0ab2032981f6ea",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hive catalog configuration",
+            "hive metastore uri",
+            "hive catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "069fd07161f946513aca69fa02946a4f39274b40a5168026ec0ab2032981f6ea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:31cc35d009f93b2abbad654c",
+        "type": "evidence",
+        "path": "docs/docs/configuration.md",
+        "heading": "title: \"Configuration\"",
+        "start_line": 2,
+        "end_line": 20,
+        "start_char": 4,
+        "end_char": 835,
+        "score": "0.024495697939681343",
+        "root": "docs",
+        "matched_terms": [
+          "limitations"
+        ],
+        "evidence_id": "31cc35d009f93b2abbad654c",
+        "source_type": "repository",
+        "content_hash": "8611d6723358a4c4e78b0b242f200c69ad9526e9d0a9ddfc34bb307343b6a8e4",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8611d6723358a4c4e78b0b242f200c69ad9526e9d0a9ddfc34bb307343b6a8e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3967b53f3f445634413e2cd0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/hive.md",
+        "start_line": 351,
+        "total_lines": 799,
+        "start_char": 14836,
+        "end_char": 18883,
+        "evidence_id": "3967b53f3f445634413e2cd0",
+        "truncated": false,
+        "next_offset": 470,
+        "source_type": "repository",
+        "content_hash": "e1d9349b20899f79cc60a356fbaa54f39d67ff82ae8c1caa78c0888025fbb71d",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/hive.md",
+              "query": "#### Schema evolution",
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-ddl.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink.md",
+              "offset": 198,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e1d9349b20899f79cc60a356fbaa54f39d67ff82ae8c1caa78c0888025fbb71d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3cac5e82678f1a07b239df9b",
+        "type": "evidence",
+        "path": "docs/docs/kafka-connect.md",
+        "heading": "Kafka Connect > Configuration > Catalog configuration",
+        "start_line": 105,
+        "end_line": 115,
+        "start_char": 7945,
+        "end_char": 8666,
+        "score": "0.04222987385810344",
+        "root": "docs",
+        "matched_terms": [
+          "catalog",
+          "configuration",
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "3cac5e82678f1a07b239df9b",
+        "source_type": "repository",
+        "content_hash": "8d5546fbabc2221fc5eab7d606c40cb1321beb1abb6383d6b86d004ea3b223dd",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hive catalog configuration",
+            "hive metastore uri",
+            "hive catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8d5546fbabc2221fc5eab7d606c40cb1321beb1abb6383d6b86d004ea3b223dd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4502975b6e74ca23deb4e56c",
+        "type": "evidence",
+        "path": "docs/docs/spark-configuration.md",
+        "heading": "Spark Configuration > Catalogs > Catalog configuration",
+        "start_line": 55,
+        "end_line": 69,
+        "start_char": 2184,
+        "end_char": 3818,
+        "score": "0.04069832064757763",
+        "root": "docs",
+        "matched_terms": [
+          "catalog",
+          "configuration",
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "4502975b6e74ca23deb4e56c",
+        "source_type": "repository",
+        "content_hash": "46cc9e0ecc7e6830711787aafe7ce17917848def289d89b6990aab59e3830971",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hive catalog configuration",
+            "hive metastore uri",
+            "hive catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "46cc9e0ecc7e6830711787aafe7ce17917848def289d89b6990aab59e3830971",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:467f2f2c0cb9fba0c74203bb",
+        "type": "evidence",
+        "path": "docs/docs/maintenance.md",
+        "heading": "title: Maintenance",
+        "start_line": 2,
+        "end_line": 20,
+        "start_char": 4,
+        "end_char": 831,
+        "score": "0.028821603767574745",
+        "root": "docs",
+        "matched_terms": [
+          "limitations"
+        ],
+        "evidence_id": "467f2f2c0cb9fba0c74203bb",
+        "source_type": "repository",
+        "content_hash": "34e9fe015815a4dac502719a9c301b82ae9700f8bf2eadcec22a85e08adfccdc",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "34e9fe015815a4dac502719a9c301b82ae9700f8bf2eadcec22a85e08adfccdc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:48209ada2a65e6ed9a1daa94",
+        "type": "evidence",
+        "path": "site/docs/status.md",
+        "heading": "Implementation Status > Catalogs > Hive Metastore Catalog",
+        "start_line": 325,
+        "end_line": 326,
+        "start_char": 14203,
+        "end_char": 14231,
+        "score": "0.031544957774465976",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "48209ada2a65e6ed9a1daa94",
+        "source_type": "repository",
+        "content_hash": "a77361ea45b51bd4e0bbcde64f5ef134637e724151d34625ba7348557d0f2ad6",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "a77361ea45b51bd4e0bbcde64f5ef134637e724151d34625ba7348557d0f2ad6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4dfb99258797516194b7afa4",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Specification > Schemas and Data Types > Schema Evolution",
+        "start_line": 288,
+        "end_line": 304,
+        "start_char": 24278,
+        "end_char": 25923,
+        "score": "0.030536130536130537",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "iceberg",
+          "schema"
+        ],
+        "evidence_id": "4dfb99258797516194b7afa4",
+        "source_type": "repository",
+        "content_hash": "3dedfbb477c2d7fb2278d78fa1d8324fdb4a694e7abe309273dac64eed22aad0",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "3dedfbb477c2d7fb2278d78fa1d8324fdb4a694e7abe309273dac64eed22aad0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:543df1938173f66084afdd21",
+        "type": "evidence",
+        "path": "CONTRIBUTING.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 19,
+        "start_char": 0,
+        "end_char": 829,
+        "score": "0.029759034785192318",
+        "root": "docs",
+        "matched_terms": [
+          "limitations"
+        ],
+        "evidence_id": "543df1938173f66084afdd21",
+        "source_type": "repository",
+        "content_hash": "da65a1cacdd5a754d11d2eeac8a3fe0120aa39636d3320d4c12d290c6ce22656",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "da65a1cacdd5a754d11d2eeac8a3fe0120aa39636d3320d4c12d290c6ce22656",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:59599d8e3ba4f206ad01edf6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/flink.md",
+        "start_line": 199,
+        "total_lines": 407,
+        "start_char": 11457,
+        "end_char": 15597,
+        "evidence_id": "59599d8e3ba4f206ad01edf6",
+        "truncated": false,
+        "next_offset": 318,
+        "source_type": "repository",
+        "content_hash": "f2cd440d94f24ad4722927f079acb9ffc75f0b336567994f91ba8240b1458fdb",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/hive.md",
+              "query": "#### Schema evolution",
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-ddl.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink.md",
+              "offset": 198,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "f2cd440d94f24ad4722927f079acb9ffc75f0b336567994f91ba8240b1458fdb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a16952f19d1e32ffd3e0bc3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/spark-configuration.md",
+        "start_line": 19,
+        "total_lines": 279,
+        "start_char": 829,
+        "end_char": 9470,
+        "evidence_id": "5a16952f19d1e32ffd3e0bc3",
+        "truncated": false,
+        "next_offset": 138,
+        "source_type": "repository",
+        "content_hash": "aa82d4dcddb4f233299622c63799d65b201fe8cb6acc47cb9c1b5b0b2c699f01",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/flink-configuration.md",
+              "offset": 45,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 18,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/hive.md",
+              "offset": 107,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "aa82d4dcddb4f233299622c63799d65b201fe8cb6acc47cb9c1b5b0b2c699f01",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5c616d5cf1380568772a9be0",
+        "type": "evidence",
+        "path": "docs/docs/flink-configuration.md",
+        "heading": "Flink Configuration > Catalog Configuration",
+        "start_line": 50,
+        "end_line": 53,
+        "start_char": 4271,
+        "end_char": 5955,
+        "score": "0.03196104073713182",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "5c616d5cf1380568772a9be0",
+        "source_type": "repository",
+        "content_hash": "e3f264921b84cb63fb939da58da85d5381ed3f74ef95908cda9589df6b111f24",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "e3f264921b84cb63fb939da58da85d5381ed3f74ef95908cda9589df6b111f24",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5cc929c79151608bcc0dfd59",
+        "type": "evidence",
+        "root": "docs",
+        "path": "AGENTS.md",
+        "start_line": 106,
+        "total_lines": 172,
+        "start_char": 6702,
+        "end_char": 10478,
+        "evidence_id": "5cc929c79151608bcc0dfd59",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "7bb86c22db0e7119b2dd32ac4d5d724ee250e6446e77e67605251c934e16c725",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "AGENTS.md",
+              "offset": 105,
+              "limit": 120
+            },
+            {
+              "path": ".baseline/copyright/copyright-header-java.txt",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 38,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7bb86c22db0e7119b2dd32ac4d5d724ee250e6446e77e67605251c934e16c725",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5ed1fd0f28c04da0c14b2aac",
+        "type": "evidence",
+        "evidence_id": "5ed1fd0f28c04da0c14b2aac",
+        "source_type": "task",
+        "exported_content_sha256": "7f6812e199e430e533922aa66384c36218a1d8c1e1519ee1809f4bc94315eb99",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5fccdc8d4ffb3e1400815246",
+        "type": "evidence",
+        "path": "site/docs/status.md",
+        "heading": "Implementation Status > Catalogs > Hive Metastore Catalog > View Spec V1",
+        "start_line": 351,
+        "end_line": 361,
+        "start_char": 15299,
+        "end_char": 15767,
+        "score": "0.0319379033664748",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "5fccdc8d4ffb3e1400815246",
+        "source_type": "repository",
+        "content_hash": "e37e4228927b6f0dc7a03957a90b729c10d820ff7e9ad6ddbcea07b154a3c67f",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "e37e4228927b6f0dc7a03957a90b729c10d820ff7e9ad6ddbcea07b154a3c67f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:64b4e4e961fedeebdc7e8857",
+        "type": "evidence",
+        "path": "docs/docs/configuration.md",
+        "heading": "Configuration > Hadoop configuration > Hive Metastore Configuration",
+        "start_line": 244,
+        "end_line": 260,
+        "start_char": 34179,
+        "end_char": 35799,
+        "score": "0.034636639785877915",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "issues",
+          "metastore"
+        ],
+        "evidence_id": "64b4e4e961fedeebdc7e8857",
+        "source_type": "repository",
+        "content_hash": "ac84d9685edda246059e0e349b8a80a5ce8f99d251b08782ebcbe9a00f19ec40",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "ac84d9685edda246059e0e349b8a80a5ce8f99d251b08782ebcbe9a00f19ec40",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:68dde8c67893cae67593b55a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/configuration.md",
+        "start_line": 240,
+        "total_lines": 265,
+        "start_char": 33607,
+        "end_char": 36165,
+        "evidence_id": "68dde8c67893cae67593b55a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3feee45433a761f8250f23601b8bc7c3c05e57f6feb84e310465d48665fbbda2",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 239,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/status.md",
+              "offset": 346,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+              "offset": 67,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "3feee45433a761f8250f23601b8bc7c3c05e57f6feb84e310465d48665fbbda2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6f5f5bc08e60262d4457021b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "README.md",
+        "start_line": 39,
+        "total_lines": 113,
+        "start_char": 1888,
+        "end_char": 5333,
+        "evidence_id": "6f5f5bc08e60262d4457021b",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "ec3c52e3a37e1baade1ccab6bff03b396ea1ecd8b61f23e1219f40688cc3a52c",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "AGENTS.md",
+              "offset": 105,
+              "limit": 120
+            },
+            {
+              "path": ".baseline/copyright/copyright-header-java.txt",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 38,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ec3c52e3a37e1baade1ccab6bff03b396ea1ecd8b61f23e1219f40688cc3a52c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6f89c6b3b65166606bd13f45",
+        "type": "evidence",
+        "root": "docs",
+        "path": "site/docs/status.md",
+        "start_line": 347,
+        "total_lines": 371,
+        "start_char": 15127,
+        "end_char": 16330,
+        "evidence_id": "6f89c6b3b65166606bd13f45",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "07d71d61d927e1d8de0a04ed701e27d12114b7d4e67acafbf586249543a2cc9f",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 239,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/status.md",
+              "offset": 346,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+              "offset": 67,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "07d71d61d927e1d8de0a04ed701e27d12114b7d4e67acafbf586249543a2cc9f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:74606e9ad37f6a8e9418534c",
+        "type": "evidence",
+        "path": "site/docs/blog/posts/2026-01-26-iceberg-cpp-0.2.0-release.md",
+        "heading": "- release > Release Highlights > Table Operations",
+        "start_line": 41,
+        "end_line": 45,
+        "start_char": 1731,
+        "end_char": 1950,
+        "score": "0.026334026334026334",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "schema"
+        ],
+        "evidence_id": "74606e9ad37f6a8e9418534c",
+        "source_type": "repository",
+        "content_hash": "2153ab2222a241a1cd14bd41e2c1b087d3f5e7e06c690f893a04840e08e2a7ce",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2153ab2222a241a1cd14bd41e2c1b087d3f5e7e06c690f893a04840e08e2a7ce",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:766c1ed56fdc50462cd046d4",
+        "type": "evidence",
+        "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+        "heading": "- release > Release Highlights > Schema Evolution",
+        "start_line": 58,
+        "end_line": 62,
+        "start_char": 3419,
+        "end_char": 3845,
+        "score": "0.03225806451612903",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "iceberg",
+          "schema"
+        ],
+        "evidence_id": "766c1ed56fdc50462cd046d4",
+        "source_type": "repository",
+        "content_hash": "5035f5f379bf370ff0c7da3a105420bac79fbe2a1f2beab22af5ac7a0489930b",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5035f5f379bf370ff0c7da3a105420bac79fbe2a1f2beab22af5ac7a0489930b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78225ded0b36943a4d19c186",
+        "type": "evidence",
+        "path": "docs/docs/flink-maintenance.md",
+        "heading": "title: \"Flink TableMaintenance\" > Flink Table Maintenance StreamingMode > Troubleshooting > Slow rewrite operations",
+        "start_line": 532,
+        "end_line": 540,
+        "start_char": 28107,
+        "end_char": 28794,
+        "score": "0.024846834581347857",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "78225ded0b36943a4d19c186",
+        "source_type": "repository",
+        "content_hash": "ae8ae7e3a3f06d6ea705ee208e61746aeb798f6360016f5092a861e2a6d555cd",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ae8ae7e3a3f06d6ea705ee208e61746aeb798f6360016f5092a861e2a6d555cd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:79035145538a1294d7c675e4",
+        "type": "evidence",
+        "root": "docs",
+        "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+        "start_line": 68,
+        "total_lines": 143,
+        "start_char": 4105,
+        "end_char": 10387,
+        "evidence_id": "79035145538a1294d7c675e4",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "29c5c4e38c2afb0bca485a7db444b4e50fc0cd971400d812f1ac78efdd9d229b",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 239,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/status.md",
+              "offset": 346,
+              "limit": 120
+            },
+            {
+              "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+              "offset": 67,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "29c5c4e38c2afb0bca485a7db444b4e50fc0cd971400d812f1ac78efdd9d229b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7e2f99cd0b9f25da940fb32d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/index.md",
+        "start_line": 21,
+        "total_lines": 52,
+        "start_char": 834,
+        "end_char": 3290,
+        "evidence_id": "7e2f99cd0b9f25da940fb32d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9ef77cea0daacc2e74243c584fca3d5d6605f97d3767438618cfb66a8524a3ac",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/evolution.md",
+              "offset": 16,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/hive.md",
+              "offset": 350,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/index.md",
+              "offset": 20,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9ef77cea0daacc2e74243c584fca3d5d6605f97d3767438618cfb66a8524a3ac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83f72a967c63fb90d93e6b5e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/hive.md",
+        "start_line": 108,
+        "total_lines": 799,
+        "start_char": 5030,
+        "end_char": 9868,
+        "evidence_id": "83f72a967c63fb90d93e6b5e",
+        "truncated": false,
+        "next_offset": 227,
+        "source_type": "repository",
+        "content_hash": "38cac59dbb2bf12c8b415b0c46b4aa88e5f516009f2fd9669fa1670505b7e2c6",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/flink-configuration.md",
+              "offset": 45,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 18,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/hive.md",
+              "offset": 107,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "38cac59dbb2bf12c8b415b0c46b4aa88e5f516009f2fd9669fa1670505b7e2c6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:85dd57664061a35e32ffa9d8",
+        "type": "evidence",
+        "path": "docs/docs/spark-writes.md",
+        "heading": "Spark Writes > Writing with DataFrames > Schema Merge",
+        "start_line": 369,
+        "end_line": 392,
+        "start_char": 15680,
+        "end_char": 16591,
+        "score": "0.027984344422700584",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "iceberg",
+          "schema"
+        ],
+        "evidence_id": "85dd57664061a35e32ffa9d8",
+        "source_type": "repository",
+        "content_hash": "2b8f3807fdca61c79971c3405ca7bfdbed894d1c4f0b896c49aba2bb4ddd9491",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2b8f3807fdca61c79971c3405ca7bfdbed894d1c4f0b896c49aba2bb4ddd9491",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:944c521012a6d11d50ba6557",
+        "type": "evidence",
+        "path": "docs/docs/java-api-quickstart.md",
+        "heading": "Java API Quickstart > Create a table > Using a Hadoop catalog",
+        "start_line": 65,
+        "end_line": 94,
+        "start_char": 2455,
+        "end_char": 3634,
+        "score": "0.030282229639906136",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore",
+          "schema"
+        ],
+        "evidence_id": "944c521012a6d11d50ba6557",
+        "source_type": "repository",
+        "content_hash": "bc330825242a04258bb83a4ef80b8c9a8885115d23e5af20d7c3e43c98002f58",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "bc330825242a04258bb83a4ef80b8c9a8885115d23e5af20d7c3e43c98002f58",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9747d20c8038983f98aed7b8",
+        "type": "evidence",
+        "path": "docs/docs/hive.md",
+        "heading": "Hive > Catalog Management > Global Hive catalog",
+        "start_line": 112,
+        "end_line": 134,
+        "start_char": 5127,
+        "end_char": 6610,
+        "score": "0.02992861201679328",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "9747d20c8038983f98aed7b8",
+        "source_type": "repository",
+        "content_hash": "096cf55a8122839a9aad64a32f354076e3b75f5b8140f57ba3ab3a2b90dbbf46",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "096cf55a8122839a9aad64a32f354076e3b75f5b8140f57ba3ab3a2b90dbbf46",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:992d232dc8ce566b561e620c",
+        "type": "evidence",
+        "path": "docs/docs/hive.md",
+        "heading": "Hive > Catalog Management",
+        "start_line": 110,
+        "end_line": 111,
+        "start_char": 5104,
+        "end_char": 5127,
+        "score": "0.04215194551502033",
+        "root": "docs",
+        "matched_terms": [
+          "catalog"
+        ],
+        "evidence_id": "992d232dc8ce566b561e620c",
+        "source_type": "repository",
+        "content_hash": "69c4200a2cc98a997944a0de83462852d36e1ed37d17745b4ed8e97f8e8819e0",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hive catalog configuration",
+            "hive metastore uri",
+            "hive catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "69c4200a2cc98a997944a0de83462852d36e1ed37d17745b4ed8e97f8e8819e0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9bbc0c6b22996a50b3d8431f",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Specification > Schemas and Data Types > Schema Evolution",
+        "start_line": 322,
+        "end_line": 322,
+        "start_char": 27723,
+        "end_char": 27771,
+        "score": "0.03055037313432836",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "9bbc0c6b22996a50b3d8431f",
+        "source_type": "repository",
+        "content_hash": "86f9f503d015355c454f47919f8f15ef78777242e0491677b77dcdba62cf7e9e",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "86f9f503d015355c454f47919f8f15ef78777242e0491677b77dcdba62cf7e9e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a00368bff5682cd7e795ee10",
+        "type": "evidence",
+        "path": "docs/docs/evolution.md",
+        "heading": "Evolution > Schema evolution",
+        "start_line": 27,
+        "end_line": 40,
+        "start_char": 1544,
+        "end_char": 2208,
+        "score": "0.03408464031414851",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "iceberg",
+          "schema"
+        ],
+        "evidence_id": "a00368bff5682cd7e795ee10",
+        "source_type": "repository",
+        "content_hash": "5e998e5f4c567b3d6a5069f0519feec798598ee869b93a84efc89e9b6206eb9e",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5e998e5f4c567b3d6a5069f0519feec798598ee869b93a84efc89e9b6206eb9e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a8c39d900e8ef2ed5678ecb3",
+        "type": "evidence",
+        "path": "site/docs/releases.md",
+        "heading": "title: \"Releases\" > Past releases > 0.14.1 release > Notable bug fixes",
+        "start_line": 1065,
+        "end_line": 1081,
+        "start_char": 86727,
+        "end_char": 87835,
+        "score": "0.026153846153846153",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a8c39d900e8ef2ed5678ecb3",
+        "source_type": "repository",
+        "content_hash": "2b8f7f5969eb86f294c68692ea54b2d7f81c8f0136dd2d3e8a39eba2bcbdcb10",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2b8f7f5969eb86f294c68692ea54b2d7f81c8f0136dd2d3e8a39eba2bcbdcb10",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b2acbf9385e6ec3d64043c05",
+        "type": "evidence",
+        "path": "docs/docs/kafka-connect.md",
+        "heading": "Kafka Connect > Configuration > Catalog configuration > Hive example",
+        "start_line": 125,
+        "end_line": 138,
+        "start_char": 8866,
+        "end_char": 9463,
+        "score": "0.04272460093355616",
+        "root": "docs",
+        "matched_terms": [
+          "catalog",
+          "hive",
+          "uri"
+        ],
+        "evidence_id": "b2acbf9385e6ec3d64043c05",
+        "source_type": "repository",
+        "content_hash": "43af93ba8bd847af5f7419257edcf2fa4e75635da5fdaeac1b544b641642f5fc",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hive catalog configuration",
+            "hive metastore uri",
+            "hive catalog"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "43af93ba8bd847af5f7419257edcf2fa4e75635da5fdaeac1b544b641642f5fc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b2f1a317b241374eea76ea2b",
+        "type": "evidence",
+        "path": "AGENTS.md",
+        "heading": "Apache Iceberg — Agent Instructions > Coding Conventions > Error Handling",
+        "start_line": 110,
+        "end_line": 117,
+        "start_char": 6941,
+        "end_char": 7367,
+        "score": "0.03563657517465893",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b2f1a317b241374eea76ea2b",
+        "source_type": "repository",
+        "content_hash": "b492b870403523b5c3e08189d308f4eea00c21d413e8715fde00d5f6cff5dc01",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b492b870403523b5c3e08189d308f4eea00c21d413e8715fde00d5f6cff5dc01",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ba7ee2e9349a48afddf5f772",
+        "type": "evidence",
+        "path": "site/docs/blog/posts/2026-03-05-iceberg-go-0.5.0-release.md",
+        "heading": "- release > Release Highlights > Hive Catalog",
+        "start_line": 72,
+        "end_line": 76,
+        "start_char": 4598,
+        "end_char": 4933,
+        "score": "0.03128607812864883",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "ba7ee2e9349a48afddf5f772",
+        "source_type": "repository",
+        "content_hash": "49f11937991304825f56150b9872c9985598c4d9c2d004255e7342f3fd49ad7a",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "49f11937991304825f56150b9872c9985598c4d9c2d004255e7342f3fd49ad7a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bd908ed18d2ba3fc8d256ed8",
+        "type": "evidence",
+        "path": "AGENTS.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 19,
+        "start_char": 0,
+        "end_char": 793,
+        "score": "0.030868876466315268",
+        "root": "docs",
+        "matched_terms": [
+          "limitations"
+        ],
+        "evidence_id": "bd908ed18d2ba3fc8d256ed8",
+        "source_type": "repository",
+        "content_hash": "13e61788740aa4b1327fb76225b397307f69a953e27da5745d73b0221cc1a8c9",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "13e61788740aa4b1327fb76225b397307f69a953e27da5745d73b0221cc1a8c9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c774edfed79902aad15c5465",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".baseline/copyright/copyright-header-java.txt",
+        "start_line": 1,
+        "total_lines": 18,
+        "start_char": 0,
+        "end_char": 808,
+        "evidence_id": "c774edfed79902aad15c5465",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "1af5402e214c2bdb70c2cc7b1324fb8ee7f98e68c78c5cd90bfbbf72b6515666",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "AGENTS.md",
+              "offset": 105,
+              "limit": 120
+            },
+            {
+              "path": ".baseline/copyright/copyright-header-java.txt",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 38,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1af5402e214c2bdb70c2cc7b1324fb8ee7f98e68c78c5cd90bfbbf72b6515666",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ca7269baddd16f9d0734e689",
+        "type": "evidence",
+        "path": "docs/docs/flink.md",
+        "heading": "title: \"Getting Started\" > Adding catalogs > Hive catalog",
+        "start_line": 203,
+        "end_line": 217,
+        "start_char": 11968,
+        "end_char": 12353,
+        "score": "0.029422481441534906",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore"
+        ],
+        "evidence_id": "ca7269baddd16f9d0734e689",
+        "source_type": "repository",
+        "content_hash": "89d279895f2eb09e0c9a65f5403036d652bb1069a13dd25722faeec2ac2f825c",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "89d279895f2eb09e0c9a65f5403036d652bb1069a13dd25722faeec2ac2f825c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d4c25c9ded45e3560f13d837",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/flink-configuration.md",
+        "start_line": 46,
+        "total_lines": 201,
+        "start_char": 3365,
+        "end_char": 17365,
+        "evidence_id": "d4c25c9ded45e3560f13d837",
+        "truncated": true,
+        "next_offset": 112,
+        "source_type": "repository",
+        "content_hash": "6afa3fde54f64730efcaf613c1c1178649a5e0d7a95411d5e9e662ecb7f2a64e",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/flink-configuration.md",
+              "offset": 45,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 18,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/hive.md",
+              "offset": 107,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6afa3fde54f64730efcaf613c1c1178649a5e0d7a95411d5e9e662ecb7f2a64e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d5dfbc8b257385b007a7fa05",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Collaboration",
+        "start_line": 43,
+        "end_line": 51,
+        "start_char": 1995,
+        "end_char": 2244,
+        "score": "0.03296245863329533",
+        "root": "docs",
+        "matched_terms": [
+          "issues"
+        ],
+        "evidence_id": "d5dfbc8b257385b007a7fa05",
+        "source_type": "repository",
+        "content_hash": "fb66d6d294169e77801561f6fadd78398002ab363baae526ecdb37e2e3db9a89",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fb66d6d294169e77801561f6fadd78398002ab363baae526ecdb37e2e3db9a89",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dba81252384069b9b9526516",
+        "type": "evidence",
+        "path": "docs/docs/nessie.md",
+        "heading": "Iceberg Nessie Integration > Nessie and Iceberg > Experimentation",
+        "start_line": 134,
+        "end_line": 141,
+        "start_char": 7383,
+        "end_char": 7954,
+        "score": "0.027046783625730993",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "schema"
+        ],
+        "evidence_id": "dba81252384069b9b9526516",
+        "source_type": "repository",
+        "content_hash": "ab23defd8a8a667a60a28e224764015978a5293ec2a6c025aef8a8cad4182dbd",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ab23defd8a8a667a60a28e224764015978a5293ec2a6c025aef8a8cad4182dbd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e416af97151c311602665290",
+        "type": "evidence",
+        "path": "docs/docs/java-api-quickstart.md",
+        "heading": "Java API Quickstart > Create a table > Using a Hive catalog",
+        "start_line": 27,
+        "end_line": 64,
+        "start_char": 1119,
+        "end_char": 2455,
+        "score": "0.030762761208513942",
+        "root": "docs",
+        "matched_terms": [
+          "hive",
+          "metastore",
+          "schema"
+        ],
+        "evidence_id": "e416af97151c311602665290",
+        "source_type": "repository",
+        "content_hash": "3bf5fdf838e5fe5cd9181061e2badbd45ba0dc016aaee7cc34edc58da801d4bf",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "known issues hive metastore",
+            "troubleshooting schema evolution",
+            "hive metastore limitation"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "3bf5fdf838e5fe5cd9181061e2badbd45ba0dc016aaee7cc34edc58da801d4bf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e4c7eafccfc80fef48035403",
+        "type": "evidence",
+        "path": "docs/docs/flink-writes.md",
+        "heading": "Flink Writes > Flink Dynamic Iceberg Sink > Schema Evolution",
+        "start_line": 491,
+        "end_line": 499,
+        "start_char": 22289,
+        "end_char": 23400,
+        "score": "0.03055037313432836",
+        "root": "docs",
+        "matched_terms": [
+          "evolution",
+          "schema"
+        ],
+        "evidence_id": "e4c7eafccfc80fef48035403",
+        "source_type": "repository",
+        "content_hash": "8d7487a3d3a60e893f803ca37dd68cef7208f5fed539ce2aa73d2944176689cb",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "8d7487a3d3a60e893f803ca37dd68cef7208f5fed539ce2aa73d2944176689cb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e51894d2fe8b9cca08d1fb5e",
+        "type": "evidence",
+        "path": "site/docs/community.md",
+        "heading": "Welcome! > Join the Discussion > Issues",
+        "start_line": 68,
+        "end_line": 80,
+        "start_char": 3571,
+        "end_char": 4006,
+        "score": "0.026919758412424506",
+        "root": "docs",
+        "matched_terms": [
+          "issues"
+        ],
+        "evidence_id": "e51894d2fe8b9cca08d1fb5e",
+        "source_type": "repository",
+        "content_hash": "03e90990dfd7dba1311ab96544d15c79984fc713bd95bc6830259bbfdf9b6239",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "03e90990dfd7dba1311ab96544d15c79984fc713bd95bc6830259bbfdf9b6239",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e96580ef60e6b793d1719141",
+        "type": "evidence",
+        "path": ".baseline/copyright/001_apache-2.0.txt",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 16,
+        "start_char": 0,
+        "end_char": 755,
+        "score": "0.029610344331006466",
+        "root": "docs",
+        "matched_terms": [
+          "limitations"
+        ],
+        "evidence_id": "e96580ef60e6b793d1719141",
+        "source_type": "repository",
+        "content_hash": "a9f2a039d4c5d974b4cd996c8766411dba19024fc4039bc9c9696320c1bede84",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "troubleshooting",
+            "known issues",
+            "limitations"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a9f2a039d4c5d974b4cd996c8766411dba19024fc4039bc9c9696320c1bede84",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f113c7a708dd6f47856f8cfc",
+        "type": "evidence",
+        "path": "docs/docs/hive.md",
+        "heading": "Hive > DML Commands > Type compatibility",
+        "start_line": 735,
+        "end_line": 744,
+        "start_char": 28748,
+        "end_char": 29494,
+        "score": "0.028295314095891803",
+        "root": "docs",
+        "matched_terms": [
+          "compatibility",
+          "hive",
+          "iceberg",
+          "schema"
+        ],
+        "evidence_id": "f113c7a708dd6f47856f8cfc",
+        "source_type": "repository",
+        "content_hash": "999f1ec154275821b569a19ec33e57cd461b5ba571991ad80c1a4594844cbaad",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "iceberg schema evolution",
+            "hive metastore",
+            "schema evolution compatibility"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "999f1ec154275821b569a19ec33e57cd461b5ba571991ad80c1a4594844cbaad",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f2ec56acc78b4e30f8396038",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/evolution.md",
+        "start_line": 17,
+        "total_lines": 100,
+        "start_char": 718,
+        "end_char": 5827,
+        "evidence_id": "f2ec56acc78b4e30f8396038",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "7d9ca075ba788193e21cadcdd3e1d7e3cf58f4b78869c76e373602b97ca45d1e",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/evolution.md",
+              "offset": 16,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/hive.md",
+              "offset": 350,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/index.md",
+              "offset": 20,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7d9ca075ba788193e21cadcdd3e1d7e3cf58f4b78869c76e373602b97ca45d1e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f8997cc9ebda7d7228c28738",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/flink-ddl.md",
+        "start_line": 21,
+        "total_lines": 232,
+        "start_char": 831,
+        "end_char": 4745,
+        "evidence_id": "f8997cc9ebda7d7228c28738",
+        "truncated": false,
+        "next_offset": 140,
+        "source_type": "repository",
+        "content_hash": "55847e242fee700140865f1c185584ae7dc72de7ae0add16ecf2c7181586d17a",
+        "revision": "2531dddd1b252e8736ed15bda22dfc0c866a0f0c",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/hive.md",
+              "query": "#### Schema evolution",
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink-ddl.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/flink.md",
+              "offset": 198,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "55847e242fee700140865f1c185584ae7dc72de7ae0add16ecf2c7181586d17a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:hive-schema-evolution-hms-caveat",
+        "type": "requirement",
+        "description": "In docs/docs/hive.md, under the '#### Schema evolution' section, add a note that Hive Metastore compatibility can affect Iceberg schema-evolution operations (e.g. column rename/type-change/reorder constraints imposed by the HMS version), and reference the supported HMS versions (Hive 2.3.10 or 3.1.3 or later) already stated in the Global Hive catalog section."
+      },
+      {
+        "id": "requirement:evolution-schema-evolution-caveat",
+        "type": "requirement",
+        "description": "In docs/docs/evolution.md, in the '## Schema evolution' section, add a brief caveat that when tables are managed through a Hive Metastore catalog, HMS version compatibility can constrain or affect schema-evolution operations, linking to the Hive docs page for details."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/docs/hive.md",
+        "hash": "f2b391c3a3726e7d68fe62760ffbc12920aafa445ed17c2fbd0780d6eeb3dbcd"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/docs/evolution.md",
+        "hash": "4388fea248bcf1cf706eddc52e18a4d3b065d527f97677ff136129176f5187b8"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "hive-schema-evolution-hms-caveat",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/docs/hive.md"
+        ],
+        "evidence_ids": [
+          "3967b53f3f445634413e2cd0",
+          "1eaa2eccb893e80cb1a41a62",
+          "83f72a967c63fb90d93e6b5e"
+        ],
+        "reason": "In docs/docs/hive.md, under the '#### Schema evolution' section, add a note that Hive Metastore compatibility can affect Iceberg schema-evolution operations (e.g. column rename/type-change/reorder constraints imposed by the HMS version), and reference the supported HMS versions (Hive 2.3.10 or 3.1.3 or later) already stated in the Global Hive catalog section."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "evolution-schema-evolution-caveat",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/docs/evolution.md"
+        ],
+        "evidence_ids": [
+          "f2ec56acc78b4e30f8396038",
+          "3967b53f3f445634413e2cd0"
+        ],
+        "reason": "In docs/docs/evolution.md, in the '## Schema evolution' section, add a brief caveat that when tables are managed through a Hive Metastore catalog, HMS version compatibility can constrain or affect schema-evolution operations, linking to the Hive docs page for details."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where in the docs are Iceberg schema evolution and Hive Metastore compatibility discussed?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is there an existing troubleshooting or known-issues page where a Hive Metastore compatibility caveat would belong?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the Hive docs page (or a Hive catalog page) already describe Hive Metastore limitations affecting Iceberg schema evolution, such as column-name/type constraints or HMS version requirements?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is there a Hive catalog configuration page (e.g. hive-catalog.md) where a Hive Metastore compatibility caveat about schema evolution would belong?"
+      },
+      {
+        "id": "research:Q3-1",
+        "type": "research_question",
+        "description": "Does the Hive docs page already contain a note about Hive Metastore version compatibility or limitations affecting Iceberg schema evolution (e.g. HMS 2.x vs 3.x column constraints)?"
+      },
+      {
+        "id": "research:Q3-2",
+        "type": "research_question",
+        "description": "Is there a known-issues/troubleshooting section anywhere in the docs where a Hive Metastore schema-evolution caveat would belong?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:09250a4719efae772aafb9c4",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:09250a4719efae772aafb9c4",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0f38655926fb98b009cd787d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0f38655926fb98b009cd787d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0f38655926fb98b009cd787d",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1eaa2eccb893e80cb1a41a62",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:25c0d759dc6d7dad4440c2cf",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:26bdbe69b379e595ada001b6",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2c8a3bea7bdea69856a04244",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2c92630009e8f994edeb571e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2d48559baef819543a40952d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2da26510826b5fd4f9395645",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2da26510826b5fd4f9395645",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:31cc35d009f93b2abbad654c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3967b53f3f445634413e2cd0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3967b53f3f445634413e2cd0",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3cac5e82678f1a07b239df9b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3cac5e82678f1a07b239df9b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4502975b6e74ca23deb4e56c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:467f2f2c0cb9fba0c74203bb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:48209ada2a65e6ed9a1daa94",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:48209ada2a65e6ed9a1daa94",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:48209ada2a65e6ed9a1daa94",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4dfb99258797516194b7afa4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:543df1938173f66084afdd21",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:59599d8e3ba4f206ad01edf6",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a16952f19d1e32ffd3e0bc3",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5c616d5cf1380568772a9be0",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5c616d5cf1380568772a9be0",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5c616d5cf1380568772a9be0",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5cc929c79151608bcc0dfd59",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5fccdc8d4ffb3e1400815246",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5fccdc8d4ffb3e1400815246",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64b4e4e961fedeebdc7e8857",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64b4e4e961fedeebdc7e8857",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68dde8c67893cae67593b55a",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6f5f5bc08e60262d4457021b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6f89c6b3b65166606bd13f45",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:74606e9ad37f6a8e9418534c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:766c1ed56fdc50462cd046d4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78225ded0b36943a4d19c186",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:79035145538a1294d7c675e4",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7e2f99cd0b9f25da940fb32d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83f72a967c63fb90d93e6b5e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:85dd57664061a35e32ffa9d8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:944c521012a6d11d50ba6557",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9747d20c8038983f98aed7b8",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9747d20c8038983f98aed7b8",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9747d20c8038983f98aed7b8",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:992d232dc8ce566b561e620c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9bbc0c6b22996a50b3d8431f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a00368bff5682cd7e795ee10",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a8c39d900e8ef2ed5678ecb3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b2acbf9385e6ec3d64043c05",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b2f1a317b241374eea76ea2b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ba7ee2e9349a48afddf5f772",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ba7ee2e9349a48afddf5f772",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ba7ee2e9349a48afddf5f772",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bd908ed18d2ba3fc8d256ed8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c774edfed79902aad15c5465",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ca7269baddd16f9d0734e689",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ca7269baddd16f9d0734e689",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ca7269baddd16f9d0734e689",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d4c25c9ded45e3560f13d837",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d5dfbc8b257385b007a7fa05",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dba81252384069b9b9526516",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e416af97151c311602665290",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e416af97151c311602665290",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e416af97151c311602665290",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e4c7eafccfc80fef48035403",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e51894d2fe8b9cca08d1fb5e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e96580ef60e6b793d1719141",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f113c7a708dd6f47856f8cfc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f2ec56acc78b4e30f8396038",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f8997cc9ebda7d7228c28738",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3967b53f3f445634413e2cd0",
+        "to": "requirement:hive-schema-evolution-hms-caveat",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:1eaa2eccb893e80cb1a41a62",
+        "to": "requirement:hive-schema-evolution-hms-caveat",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:83f72a967c63fb90d93e6b5e",
+        "to": "requirement:hive-schema-evolution-hms-caveat",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:f2ec56acc78b4e30f8396038",
+        "to": "requirement:evolution-schema-evolution-caveat",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:3967b53f3f445634413e2cd0",
+        "to": "requirement:evolution-schema-evolution-caveat",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:hive-schema-evolution-hms-caveat",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:3967b53f3f445634413e2cd0",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:1eaa2eccb893e80cb1a41a62",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:83f72a967c63fb90d93e6b5e",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:evolution-schema-evolution-caveat",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:f2ec56acc78b4e30f8396038",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3967b53f3f445634413e2cd0",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:hive-schema-evolution-hms-caveat",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:3967b53f3f445634413e2cd0",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:1eaa2eccb893e80cb1a41a62",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:83f72a967c63fb90d93e6b5e",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:evolution-schema-evolution-caveat",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:f2ec56acc78b4e30f8396038",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3967b53f3f445634413e2cd0",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "579c97294b33e3e94cf90dad1e37be4b1ecb8149dd906058bf6e51fa226bdd89"
+}

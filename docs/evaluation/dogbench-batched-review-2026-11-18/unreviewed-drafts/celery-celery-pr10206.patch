@@ -1,0 +1,43 @@
+diff --git a/docs/userguide/calling.rst b/docs/userguide/calling.rst
+index b014357e2b6970a6a9ac2bdc7ce8596e0407e073..2119c9873874c68e2ad97790cc06582ef5f47658 100644
+--- a/docs/userguide/calling.rst
++++ b/docs/userguide/calling.rst
+@@ -59,6 +59,9 @@ The API defines a standard set of execution options, as well as three methods:
+     - ``T.apply_async(task_id=f'my_own_task_id')``
+         sets the id of the task to my_own_task_id instead of a uuid that is normally generated
+ 
++    - ``T.apply_async(time_limit=10, soft_time_limit=8)``
++        sets the hard and soft time limits for this task invocation.
++
+ Example
+ -------
+ 
+diff --git a/docs/userguide/tasks.rst b/docs/userguide/tasks.rst
+index 0a29e0982d94eefb7bdb0a526fda180e5cb3e927..c2a889dd94650035e43f6677220ebf96c2869c45 100644
+--- a/docs/userguide/tasks.rst
++++ b/docs/userguide/tasks.rst
+@@ -351,6 +351,24 @@ The request defines the following attributes:
+ :timelimit: A tuple of the current ``(soft, hard)`` time limits active for
+             this task (if any).
+ 
++:time_limit: The hard time limit, in seconds, active for this task, or
++             :const:`None` if no hard time limit is configured. This is the
++             first element of :attr:`~@Task.request.timelimit` unpacked into a
++             dedicated attribute.
++
++:soft_time_limit: The soft time limit, in seconds, active for this task, or
++                  :const:`None` if no soft time limit is configured. This is
++                  the second element of :attr:`~@Task.request.timelimit`
++                  unpacked into a dedicated attribute.
++
++.. versionadded:: 5.7
++    The :attr:`~@Task.request.time_limit` and
++    :attr:`~@Task.request.soft_time_limit` request attributes. They are
++    :const:`None` when no limits are configured, reflect the values passed to
++    :meth:`~@Task.apply_async` (``time_limit`` / ``soft_time_limit``), and
++    reflect limits declared on the task class or via the
++    :setting:`task_time_limit` / :setting:`task_soft_time_limit` settings.
++
+ :callbacks: A list of signatures to be called if this task returns successfully.
+ 
+ :errbacks: A list of signatures to be called if this task fails.

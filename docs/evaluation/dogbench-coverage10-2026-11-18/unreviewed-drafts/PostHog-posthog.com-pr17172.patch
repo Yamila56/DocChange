@@ -1,0 +1,51 @@
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index e7a3ccf0f2d8bb9ccb2d33a08361469fdf9cd939..4521953b66124590cbf0dff9f5f273c8d416271a 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -33,7 +33,7 @@ To link Postgres:
+      - For password authentication, enter your SSH username and password.
+      - For key-based authentication, enter your SSH username, private key, and optional passphrase.
+    - **Require TLS through tunnel?** - Whether to require TLS encryption through the SSH tunnel. Enabled by default. Disable if your database does not support TLS.
+-5. Optional: enable **Change data capture (CDC)** if your database is prepared for logical replication.
++5. Optional: enable **Change data capture (CDC)** if your database is prepared for logical replication. You can also enable CDC later from the source's **Configuration** tab.
+ 6. Click **Next**, select the tables to sync, choose the sync method for each table, then click **Link**
+ 
+ The data warehouse then starts syncing your Postgres data. You can see details and progress in the [sources tab](https://app.posthog.com/data-management/sources).
+@@ -204,6 +204,8 @@ Every table you sync with CDC must have a primary key. PostHog uses the primary
+ 
+ Tables without a primary key won't be offered as CDC-capable tables in the setup flow.
+ 
++Once a CDC table has synced data, you can't change its primary key. PostHog uses the primary key as the merge key for updates and deletes, so changing it would corrupt the destination table. To use a different primary key, disable CDC for that table and re-enable it with a full resync.
++
+ ### Database user permissions
+ 
+ The PostHog database user needs schema `USAGE` and table `SELECT` permissions for every schema and table you want to sync. You don't need to grant access to `public` unless you're syncing tables from the `public` schema.
+@@ -292,6 +294,19 @@ ALTER PUBLICATION "posthog_pub" ADD TABLE "analytics"."new_table";
+ 
+ Avoid putting unrelated tables in the publication. PostHog filters out changes for tables that are not active CDC schemas, but the database still has to decode and send those changes.
+ 
++Change events are keyed by the schema-qualified `schema.table` name, so tables with the same name in different schemas (for example `analytics.users` and `billing.users`) are routed to the correct destination table.
++
++## Enabling and disabling CDC after source creation
++
++You don't have to decide on CDC when you first create the source. Open the source's **Configuration** tab to manage CDC at any time:
++
++- **Enable CDC** – choose a management mode (PostHog-managed or self-managed), run the prerequisite check, then enable. PostHog provisions the replication slot (and, in PostHog-managed mode, the publication) and starts the CDC extraction schedule.
++- **Monitor CDC** – see the current management mode, slot and publication names, whether the slot and publication still exist on your database, and the current WAL lag.
++- **Update settings** – change the lag warning and critical thresholds and the automatic slot protection setting.
++- **Disable CDC** – PostHog cancels any running CDC sync, removes the extraction schedule, drops the PostHog-managed replication slot (and publication in PostHog-managed mode; self-managed publications are never touched), and soft-deletes the `_cdc` history tables. CDC tables are paused and must pick a new sync method before they sync again.
++
++Disabling CDC is destructive for CDC state: the replication slot is dropped, so changes made while CDC is disabled can't be recovered from the slot. Re-enabling CDC starts a fresh slot and requires a full resync of the affected tables.
++
+ ## WAL lag protection
+ 
+ Replication slots retain WAL until the consumer advances the slot. If PostHog stops consuming changes, retained WAL can grow.
+@@ -305,6 +320,8 @@ For PostHog-managed sources, **automatic slot protection** is enabled by default
+ 
+ For self-managed sources, PostHog does not drop the slot or publication. It marks the source as errored at the critical threshold, but you remain responsible for cleanup.
+ 
++You can change the warning and critical thresholds, and toggle automatic slot protection, after CDC is enabled. Open the source's **Configuration** tab and edit the CDC settings. The warning threshold must be lower than the critical threshold.
++
+ You can monitor a Postgres slot yourself:
+ 
+ ```sql

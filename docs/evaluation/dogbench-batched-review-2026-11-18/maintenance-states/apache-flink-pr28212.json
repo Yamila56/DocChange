@@ -1,0 +1,1453 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "ptfs-testing-state-en",
+      "description": "In docs/content/docs/dev/table/functions/ptfs.md, under 'Testing Process Table Functions > Common Testing Scenarios', add a 'Testing with State' subsection documenting that the harness now supports stateful PTFs: state parameters (scalar, ListView, MapView, POJO/structured types) are no longer rejected, state is keyed by partition key, and the builder method `.withInitialStateForKey(stateName, partitionKey, state)` sets initial state per key. Note that state TTL is not supported. Include a short Java example of a stateful PTF test.",
+      "evidence_ids": [
+        "85c59b8f41e6cf6a095a95d9",
+        "66c5df2bf0f403f278c1250d",
+        "d8aa6eb1af34e2b8d77f2da9"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "ptfs-testing-state-zh",
+      "description": "Mirror the new 'Testing with State' subsection in docs/content.zh/docs/dev/table/functions/ptfs.md under 'Testing Process Table Functions > Common Testing Scenarios', describing state support (scalar, ListView, MapView, POJO), per-partition-key state via `.withInitialStateForKey(...)`, and the lack of state TTL support, with a short Java example.",
+      "evidence_ids": [
+        "56d7dace53967899fcfe8c42",
+        "66c5df2bf0f403f278c1250d",
+        "d8aa6eb1af34e2b8d77f2da9"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "82534b077534ee32544aee7db3d1f18f87274e7aaa195bd6e1b7f9321dac9ec5",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the docs tree document ProcessTableFunctionTestHarness or PTF test harness usage, including state support?",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/testing.md",
+              "offset": 174,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 2258,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 2255,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "fbe9da4c703f1a1bf3e7c956",
+            "120b1361544a7c3d318199aa",
+            "a291f17c8a847581e9bf4781",
+            "2a75dc862742a689b1e8b5a8",
+            "c21677843e17f168a6193315",
+            "2955551964a9435ca259e13e",
+            "15090a09b23824bb829360d8",
+            "b7eae73976060df4e1e238a3",
+            "592f343e114aefd8698f20cf",
+            "a7ea951d25d3f54da89d1423",
+            "ee699bbee3d6b0e3c7d36052",
+            "d07d81ccf709f2fc890aee65",
+            "caa50d11e86d30d3c61718eb",
+            "d47b01b6bd9b86c0685e3580",
+            "121aa9259a2f4b0d28ddf0d4"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/docs/dev/datastream/testing.md",
+              "evidence_id": "2a75dc862742a689b1e8b5a8",
+              "score": "0.044461580447186205"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "c21677843e17f168a6193315",
+              "score": "0.04428718076336828"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "2955551964a9435ca259e13e",
+              "score": "0.04405024090216472"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "15090a09b23824bb829360d8",
+              "score": "0.04399522132796781"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "b7eae73976060df4e1e238a3",
+              "score": "0.043844395866454694"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content.zh/docs/dev/datastream/testing.md",
+              "evidence_id": "592f343e114aefd8698f20cf",
+              "score": "0.03504818765911019"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content/docs/dev/datastream/testing.md",
+              "evidence_id": "a7ea951d25d3f54da89d1423",
+              "score": "0.034421280473912054"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content.zh/docs/dev/datastream/testing.md",
+              "evidence_id": "ee699bbee3d6b0e3c7d36052",
+              "score": "0.032138043896804004"
+            },
+            {
+              "rank": 9,
+              "path": "flink-table/flink-table-runtime/AGENTS.md",
+              "evidence_id": "d07d81ccf709f2fc890aee65",
+              "score": "0.02898058308767206"
+            },
+            {
+              "rank": 10,
+              "path": ".github/PULL_REQUEST_TEMPLATE.md",
+              "evidence_id": "caa50d11e86d30d3c61718eb",
+              "score": "0.026393627314538683"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content/docs/getting-started/table_api.md",
+              "evidence_id": "d47b01b6bd9b86c0685e3580",
+              "score": "0.023974659169244617"
+            },
+            {
+              "rank": 12,
+              "path": "AGENTS.md",
+              "evidence_id": "121aa9259a2f4b0d28ddf0d4",
+              "score": "0.02329411952842915"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/testing.md",
+              "start": 174,
+              "end": 294,
+              "total_lines": 309
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "start": 2258,
+              "end": 2358,
+              "total_lines": 2358
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "start": 2255,
+              "end": 2355,
+              "total_lines": 2355
+            }
+          ],
+          "read_evidence_ids": [
+            "fbe9da4c703f1a1bf3e7c956",
+            "120b1361544a7c3d318199aa",
+            "a291f17c8a847581e9bf4781"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is ProcessTableFunctionTestHarness a public/evolving API whose behavior change warrants user docs?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java"
+          ],
+          "anchor": "PublicEvolving",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java",
+              "query": "PublicEvolving",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d8aa6eb1af34e2b8d77f2da9"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java",
+              "start": 16,
+              "end": 136,
+              "total_lines": 1602
+            }
+          ],
+          "read_evidence_ids": [
+            "d8aa6eb1af34e2b8d77f2da9"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "120b1361544a7c3d318199aa",
+        "121aa9259a2f4b0d28ddf0d4",
+        "15090a09b23824bb829360d8",
+        "2955551964a9435ca259e13e",
+        "2a75dc862742a689b1e8b5a8",
+        "592f343e114aefd8698f20cf",
+        "a291f17c8a847581e9bf4781",
+        "a7ea951d25d3f54da89d1423",
+        "b7eae73976060df4e1e238a3",
+        "c21677843e17f168a6193315",
+        "caa50d11e86d30d3c61718eb",
+        "d07d81ccf709f2fc890aee65",
+        "d47b01b6bd9b86c0685e3580",
+        "d8aa6eb1af34e2b8d77f2da9",
+        "ee699bbee3d6b0e3c7d36052",
+        "fbe9da4c703f1a1bf3e7c956"
+      ],
+      "new_evidence_count": 16,
+      "new_path_count": 9
+    },
+    {
+      "signature": "9cdae75c8b933cfee9c0b35f19ebf9c9e20a12e425f28fb29e104be21f1c9ac0",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the PTF testing docs section (English) describe state support or stateful PTF testing, and where would a new 'Testing with State' subsection fit?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/content/docs/dev/table/functions/ptfs.md"
+          ],
+          "anchor": "Testing Process Table Functions",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "query": "Testing Process Table Functions",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "85c59b8f41e6cf6a095a95d9"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "start": 2036,
+              "end": 2156,
+              "total_lines": 2358
+            }
+          ],
+          "read_evidence_ids": [
+            "85c59b8f41e6cf6a095a95d9"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the Chinese PTF testing docs mirror the English structure and need a parallel state subsection?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/content.zh/docs/dev/table/functions/ptfs.md"
+          ],
+          "anchor": "Testing Process Table Functions",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "query": "Testing Process Table Functions",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "56d7dace53967899fcfe8c42"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "start": 2033,
+              "end": 2153,
+              "total_lines": 2355
+            }
+          ],
+          "read_evidence_ids": [
+            "56d7dace53967899fcfe8c42"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "What builder API does the harness expose for state (e.g., withState, partition-by) that users would document?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java"
+          ],
+          "anchor": "public Builder",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java",
+              "query": "public Builder",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "66c5df2bf0f403f278c1250d"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java",
+              "start": 566,
+              "end": 686,
+              "total_lines": 1602
+            }
+          ],
+          "read_evidence_ids": [
+            "66c5df2bf0f403f278c1250d"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "56d7dace53967899fcfe8c42",
+        "66c5df2bf0f403f278c1250d",
+        "85c59b8f41e6cf6a095a95d9"
+      ],
+      "new_evidence_count": 3,
+      "new_path_count": 0
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+    "code": "89a4bce8402da72552d583e3b07e815a34f6343e"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:df9ffaaf128208c0": 0
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:df9ffaaf128208c0": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 1361,
+      "cache_hit": false
+    },
+    "discover:Q1-2:a194070d3d5aaf30": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 222,
+      "cache_hit": false
+    },
+    "discover:Q1-1:d47f97d4798501e5": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 317,
+      "cache_hit": false
+    },
+    "discover:Q2-1:59e4bd76d4bd6d8e": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 124,
+      "cache_hit": false
+    },
+    "discover:Q2-2:d75a08232f43e289": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 157,
+      "cache_hit": false
+    },
+    "discover:Q2-3:67fb9f58fb38e13f": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 260,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 7680,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "ptfs-testing-state-en",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/content/docs/dev/table/functions/ptfs.md"
+      ],
+      "evidence_ids": [
+        "85c59b8f41e6cf6a095a95d9",
+        "66c5df2bf0f403f278c1250d",
+        "d8aa6eb1af34e2b8d77f2da9"
+      ],
+      "reason": "In docs/content/docs/dev/table/functions/ptfs.md, under 'Testing Process Table Functions > Common Testing Scenarios', add a 'Testing with State' subsection documenting that the harness now supports stateful PTFs: state parameters (scalar, ListView, MapView, POJO/structured types) are no longer rejected, state is keyed by partition key, and the builder method `.withInitialStateForKey(stateName, partitionKey, state)` sets initial state per key. Note that state TTL is not supported. Include a short Java example of a stateful PTF test."
+    },
+    {
+      "requirement_id": "ptfs-testing-state-zh",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/content.zh/docs/dev/table/functions/ptfs.md"
+      ],
+      "evidence_ids": [
+        "56d7dace53967899fcfe8c42",
+        "66c5df2bf0f403f278c1250d",
+        "d8aa6eb1af34e2b8d77f2da9"
+      ],
+      "reason": "Mirror the new 'Testing with State' subsection in docs/content.zh/docs/dev/table/functions/ptfs.md under 'Testing Process Table Functions > Common Testing Scenarios', describing state support (scalar, ListView, MapView, POJO), per-partition-key state via `.withInitialStateForKey(...)`, and the lack of state TTL support, with a short Java example."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:120b1361544a7c3d318199aa",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "start_line": 2259,
+        "total_lines": 2358,
+        "start_char": 89448,
+        "end_char": 92247,
+        "evidence_id": "120b1361544a7c3d318199aa",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "90c1d6c29670f26ffe4101898869b609270de808c678c0e7d985298a1b861176",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/testing.md",
+              "offset": 174,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 2258,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 2255,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "90c1d6c29670f26ffe4101898869b609270de808c678c0e7d985298a1b861176",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:121aa9259a2f4b0d28ddf0d4",
+        "type": "evidence",
+        "path": "AGENTS.md",
+        "heading": "Flink AI Agent Instructions > Commands > Testing",
+        "start_line": 43,
+        "end_line": 47,
+        "start_char": 1738,
+        "end_char": 1920,
+        "score": "0.02329411952842915",
+        "root": "docs",
+        "matched_terms": [
+          "test"
+        ],
+        "evidence_id": "121aa9259a2f4b0d28ddf0d4",
+        "source_type": "repository",
+        "content_hash": "94b67f97e5dfea5b33a047dca791be713b6e01b802ba750a5c60e06a9f37afb4",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "94b67f97e5dfea5b33a047dca791be713b6e01b802ba750a5c60e06a9f37afb4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:15090a09b23824bb829360d8",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "heading": "Testing Process Table Functions > Common Testing Scenarios > Testing Row-Semantic Tables",
+        "start_line": 2100,
+        "end_line": 2130,
+        "start_char": 84536,
+        "end_char": 85347,
+        "score": "0.04399522132796781",
+        "root": "docs",
+        "matched_terms": [
+          "harness",
+          "processtablefunctiontestharness",
+          "table",
+          "test"
+        ],
+        "evidence_id": "15090a09b23824bb829360d8",
+        "source_type": "repository",
+        "content_hash": "f2e1c058ffb6b4ca1ed07da5559501202af9ef4f460e2297aa22936952c88300",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f2e1c058ffb6b4ca1ed07da5559501202af9ef4f460e2297aa22936952c88300",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2955551964a9435ca259e13e",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "heading": "Testing Process Table Functions > Common Testing Scenarios > Testing with Scalar Arguments",
+        "start_line": 2260,
+        "end_line": 2277,
+        "start_char": 89074,
+        "end_char": 89517,
+        "score": "0.04405024090216472",
+        "root": "docs",
+        "matched_terms": [
+          "harness",
+          "process",
+          "processtablefunctiontestharness",
+          "test"
+        ],
+        "evidence_id": "2955551964a9435ca259e13e",
+        "source_type": "repository",
+        "content_hash": "ff073179a521b177e20606a914ca47070da9a5bcde52ad62aa015ade57a596fc",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ff073179a521b177e20606a914ca47070da9a5bcde52ad62aa015ade57a596fc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2a75dc862742a689b1e8b5a8",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/testing.md",
+        "heading": "Testing > Testing User-Defined Functions > Unit Testing Stateful or Timely UDFs & Custom Operators > Unit Testing ProcessFunction",
+        "start_line": 179,
+        "end_line": 215,
+        "start_char": 7097,
+        "end_char": 8697,
+        "score": "0.044461580447186205",
+        "root": "docs",
+        "matched_terms": [
+          "function",
+          "harness",
+          "test"
+        ],
+        "evidence_id": "2a75dc862742a689b1e8b5a8",
+        "source_type": "repository",
+        "content_hash": "ce66fdd690bef48b68f46408a312d2d3321cab431d9050b4df5800f78defd90d",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ce66fdd690bef48b68f46408a312d2d3321cab431d9050b4df5800f78defd90d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:56d7dace53967899fcfe8c42",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "start_line": 2034,
+        "total_lines": 2355,
+        "start_char": 82677,
+        "end_char": 86099,
+        "evidence_id": "56d7dace53967899fcfe8c42",
+        "truncated": false,
+        "next_offset": 2153,
+        "source_type": "repository",
+        "content_hash": "43e5caa19892fe6345da5a33a3583d65ba8b473649090d65954004c1a7d86c5b",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "query": "Testing Process Table Functions",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "43e5caa19892fe6345da5a33a3583d65ba8b473649090d65954004c1a7d86c5b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:592f343e114aefd8698f20cf",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/datastream/testing.md",
+        "heading": "测试 > 测试用户自定义函数 > 对有状态或及时 UDF 和自定义算子进行单元测试 > 单元测试 Process Function",
+        "start_line": 180,
+        "end_line": 221,
+        "start_char": 5680,
+        "end_char": 7168,
+        "score": "0.03504818765911019",
+        "root": "docs",
+        "matched_terms": [
+          "function",
+          "harness",
+          "process",
+          "test"
+        ],
+        "evidence_id": "592f343e114aefd8698f20cf",
+        "source_type": "repository",
+        "content_hash": "49370599a5dc5c3affbcb2282becc2e1ca2f46597daf7805204309d49dbcd866",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "49370599a5dc5c3affbcb2282becc2e1ca2f46597daf7805204309d49dbcd866",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:66c5df2bf0f403f278c1250d",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java",
+        "start_line": 567,
+        "total_lines": 1602,
+        "start_char": 23139,
+        "end_char": 28356,
+        "evidence_id": "66c5df2bf0f403f278c1250d",
+        "truncated": false,
+        "next_offset": 686,
+        "source_type": "repository",
+        "content_hash": "a4700ff2f3042193956bd519cfcce2df4f61a3ba9a47a33a2bf921f3dc603b91",
+        "revision": "89a4bce8402da72552d583e3b07e815a34f6343e",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java",
+              "query": "public Builder",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "a4700ff2f3042193956bd519cfcce2df4f61a3ba9a47a33a2bf921f3dc603b91",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:85c59b8f41e6cf6a095a95d9",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "start_line": 2037,
+        "total_lines": 2358,
+        "start_char": 83086,
+        "end_char": 86508,
+        "evidence_id": "85c59b8f41e6cf6a095a95d9",
+        "truncated": false,
+        "next_offset": 2156,
+        "source_type": "repository",
+        "content_hash": "43e5caa19892fe6345da5a33a3583d65ba8b473649090d65954004c1a7d86c5b",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "query": "Testing Process Table Functions",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "43e5caa19892fe6345da5a33a3583d65ba8b473649090d65954004c1a7d86c5b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a291f17c8a847581e9bf4781",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "start_line": 2256,
+        "total_lines": 2355,
+        "start_char": 89039,
+        "end_char": 91838,
+        "evidence_id": "a291f17c8a847581e9bf4781",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "90c1d6c29670f26ffe4101898869b609270de808c678c0e7d985298a1b861176",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/testing.md",
+              "offset": 174,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 2258,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 2255,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "90c1d6c29670f26ffe4101898869b609270de808c678c0e7d985298a1b861176",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a7ea951d25d3f54da89d1423",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/testing.md",
+        "heading": "Testing > Testing User-Defined Functions > Unit Testing Stateful or Timely UDFs & Custom Operators",
+        "start_line": 116,
+        "end_line": 158,
+        "start_char": 4602,
+        "end_char": 6259,
+        "score": "0.034421280473912054",
+        "root": "docs",
+        "matched_terms": [
+          "function",
+          "harness",
+          "test"
+        ],
+        "evidence_id": "a7ea951d25d3f54da89d1423",
+        "source_type": "repository",
+        "content_hash": "22f435cf490147b926db3544500e2c4c41bb5d7af6129d58167ddb4e32a28695",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "22f435cf490147b926db3544500e2c4c41bb5d7af6129d58167ddb4e32a28695",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b7eae73976060df4e1e238a3",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "heading": "Testing Process Table Functions > Quick Start",
+        "start_line": 2053,
+        "end_line": 2100,
+        "start_char": 83620,
+        "end_char": 84915,
+        "score": "0.043844395866454694",
+        "root": "docs",
+        "matched_terms": [
+          "harness",
+          "processtablefunctiontestharness",
+          "table",
+          "test"
+        ],
+        "evidence_id": "b7eae73976060df4e1e238a3",
+        "source_type": "repository",
+        "content_hash": "36c815bd13342227cc79e37479422f7ca17fb615327a61cdf2d3ad55e73f876b",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "36c815bd13342227cc79e37479422f7ca17fb615327a61cdf2d3ad55e73f876b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c21677843e17f168a6193315",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "heading": "Testing Process Table Functions > Common Testing Scenarios > Testing with Scalar Arguments",
+        "start_line": 2263,
+        "end_line": 2280,
+        "start_char": 89483,
+        "end_char": 89926,
+        "score": "0.04428718076336828",
+        "root": "docs",
+        "matched_terms": [
+          "harness",
+          "process",
+          "processtablefunctiontestharness",
+          "test"
+        ],
+        "evidence_id": "c21677843e17f168a6193315",
+        "source_type": "repository",
+        "content_hash": "ff073179a521b177e20606a914ca47070da9a5bcde52ad62aa015ade57a596fc",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ff073179a521b177e20606a914ca47070da9a5bcde52ad62aa015ade57a596fc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:caa50d11e86d30d3c61718eb",
+        "type": "evidence",
+        "path": ".github/PULL_REQUEST_TEMPLATE.md",
+        "heading": "Verifying this change",
+        "start_line": 40,
+        "end_line": 61,
+        "start_char": 2842,
+        "end_char": 3874,
+        "score": "0.026393627314538683",
+        "root": "docs",
+        "matched_terms": [
+          "test"
+        ],
+        "evidence_id": "caa50d11e86d30d3c61718eb",
+        "source_type": "repository",
+        "content_hash": "0ceaddc54ff54f3abfc401a3b490e49132c888aa6134995b0efc073cf1ce35ae",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0ceaddc54ff54f3abfc401a3b490e49132c888aa6134995b0efc073cf1ce35ae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d07d81ccf709f2fc890aee65",
+        "type": "evidence",
+        "path": "flink-table/flink-table-runtime/AGENTS.md",
+        "heading": "flink-table-runtime > Testing Patterns",
+        "start_line": 73,
+        "end_line": 78,
+        "start_char": 3992,
+        "end_char": 4644,
+        "score": "0.02898058308767206",
+        "root": "docs",
+        "matched_terms": [
+          "harness",
+          "state",
+          "test"
+        ],
+        "evidence_id": "d07d81ccf709f2fc890aee65",
+        "source_type": "repository",
+        "content_hash": "65a6e1b1aaeb83e7570eb89dae8c0ea6da55a11e38aa9c4cd9da90b66a2677f4",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "65a6e1b1aaeb83e7570eb89dae8c0ea6da55a11e38aa9c4cd9da90b66a2677f4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d47b01b6bd9b86c0685e3580",
+        "type": "evidence",
+        "path": "docs/content/docs/getting-started/table_api.md",
+        "heading": "Table API Tutorial > Testing",
+        "start_line": 405,
+        "end_line": 453,
+        "start_char": 14116,
+        "end_char": 15732,
+        "score": "0.023974659169244617",
+        "root": "docs",
+        "matched_terms": [
+          "function",
+          "table",
+          "test"
+        ],
+        "evidence_id": "d47b01b6bd9b86c0685e3580",
+        "source_type": "repository",
+        "content_hash": "1ffeaf78ff64885bdd2d80f8f0e2cdf0c7383b5f39cb0e32e973db9f82e9c2db",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1ffeaf78ff64885bdd2d80f8f0e2cdf0c7383b5f39cb0e32e973db9f82e9c2db",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d8aa6eb1af34e2b8d77f2da9",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java",
+        "start_line": 17,
+        "total_lines": 1602,
+        "start_char": 802,
+        "end_char": 5658,
+        "evidence_id": "d8aa6eb1af34e2b8d77f2da9",
+        "truncated": false,
+        "next_offset": 136,
+        "source_type": "repository",
+        "content_hash": "959e16851cf9a22ac85df935b67f0414ad6eb981b4fe9ac08435a48804f21082",
+        "revision": "89a4bce8402da72552d583e3b07e815a34f6343e",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-table/flink-table-test-utils/src/main/java/org/apache/flink/table/runtime/functions/ProcessTableFunctionTestHarness.java",
+              "query": "PublicEvolving",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "959e16851cf9a22ac85df935b67f0414ad6eb981b4fe9ac08435a48804f21082",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee699bbee3d6b0e3c7d36052",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/datastream/testing.md",
+        "heading": "测试 > 测试用户自定义函数 > 对有状态或及时 UDF 和自定义算子进行单元测试",
+        "start_line": 132,
+        "end_line": 178,
+        "start_char": 4022,
+        "end_char": 5679,
+        "score": "0.032138043896804004",
+        "root": "docs",
+        "matched_terms": [
+          "function",
+          "harness",
+          "test"
+        ],
+        "evidence_id": "ee699bbee3d6b0e3c7d36052",
+        "source_type": "repository",
+        "content_hash": "4715e575967c84742884ab5f71ab88c8c377ea02377b0408508ccfb69690f6b9",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "ProcessTableFunctionTestHarness",
+            "test harness process table function",
+            "state ListView MapView test harness"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4715e575967c84742884ab5f71ab88c8c377ea02377b0408508ccfb69690f6b9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f56356bdfd58e93e7954c02d",
+        "type": "evidence",
+        "evidence_id": "f56356bdfd58e93e7954c02d",
+        "source_type": "implementation",
+        "exported_content_sha256": "7825d5a10d783cad4c54d9c0f4210581e3c3950e0d9a9dbf12ccb28d83fed5ba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f8a5508d33fae5153d707cc2",
+        "type": "evidence",
+        "evidence_id": "f8a5508d33fae5153d707cc2",
+        "source_type": "task",
+        "exported_content_sha256": "fe9baf876639ca97d12beab1270fd3d9151065f934ea3f34c2ebf8bf55fb4e2c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fbe9da4c703f1a1bf3e7c956",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/datastream/testing.md",
+        "start_line": 175,
+        "total_lines": 309,
+        "start_char": 6719,
+        "end_char": 11244,
+        "evidence_id": "fbe9da4c703f1a1bf3e7c956",
+        "truncated": false,
+        "next_offset": 294,
+        "source_type": "repository",
+        "content_hash": "b7bb764d296237ab2fc51fc61cde0761f58897bf94100c1f97f791630158a16d",
+        "revision": "702fd4fc172e671981dbfd42b89a693889d1f7ac",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/testing.md",
+              "offset": 174,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 2258,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 2255,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b7bb764d296237ab2fc51fc61cde0761f58897bf94100c1f97f791630158a16d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:ptfs-testing-state-en",
+        "type": "requirement",
+        "description": "In docs/content/docs/dev/table/functions/ptfs.md, under 'Testing Process Table Functions > Common Testing Scenarios', add a 'Testing with State' subsection documenting that the harness now supports stateful PTFs: state parameters (scalar, ListView, MapView, POJO/structured types) are no longer rejected, state is keyed by partition key, and the builder method `.withInitialStateForKey(stateName, partitionKey, state)` sets initial state per key. Note that state TTL is not supported. Include a short Java example of a stateful PTF test."
+      },
+      {
+        "id": "requirement:ptfs-testing-state-zh",
+        "type": "requirement",
+        "description": "Mirror the new 'Testing with State' subsection in docs/content.zh/docs/dev/table/functions/ptfs.md under 'Testing Process Table Functions > Common Testing Scenarios', describing state support (scalar, ListView, MapView, POJO), per-partition-key state via `.withInitialStateForKey(...)`, and the lack of state TTL support, with a short Java example."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "hash": "e0f5df626a343bda5fd2bea9457456be1edd2ec9a7dc4401227007bf5c0f3139"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "hash": "c976df7bc869196c30428e5cc0ae06e8a7bf83f3cc6e6ae750ea703f34fc9109"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "ptfs-testing-state-en",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/content/docs/dev/table/functions/ptfs.md"
+        ],
+        "evidence_ids": [
+          "85c59b8f41e6cf6a095a95d9",
+          "66c5df2bf0f403f278c1250d",
+          "d8aa6eb1af34e2b8d77f2da9"
+        ],
+        "reason": "In docs/content/docs/dev/table/functions/ptfs.md, under 'Testing Process Table Functions > Common Testing Scenarios', add a 'Testing with State' subsection documenting that the harness now supports stateful PTFs: state parameters (scalar, ListView, MapView, POJO/structured types) are no longer rejected, state is keyed by partition key, and the builder method `.withInitialStateForKey(stateName, partitionKey, state)` sets initial state per key. Note that state TTL is not supported. Include a short Java example of a stateful PTF test."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "ptfs-testing-state-zh",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/content.zh/docs/dev/table/functions/ptfs.md"
+        ],
+        "evidence_ids": [
+          "56d7dace53967899fcfe8c42",
+          "66c5df2bf0f403f278c1250d",
+          "d8aa6eb1af34e2b8d77f2da9"
+        ],
+        "reason": "Mirror the new 'Testing with State' subsection in docs/content.zh/docs/dev/table/functions/ptfs.md under 'Testing Process Table Functions > Common Testing Scenarios', describing state support (scalar, ListView, MapView, POJO), per-partition-key state via `.withInitialStateForKey(...)`, and the lack of state TTL support, with a short Java example."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the docs tree document ProcessTableFunctionTestHarness or PTF test harness usage, including state support?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is ProcessTableFunctionTestHarness a public/evolving API whose behavior change warrants user docs?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the PTF testing docs section (English) describe state support or stateful PTF testing, and where would a new 'Testing with State' subsection fit?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the Chinese PTF testing docs mirror the English structure and need a parallel state subsection?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "What builder API does the harness expose for state (e.g., withState, partition-by) that users would document?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:120b1361544a7c3d318199aa",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:121aa9259a2f4b0d28ddf0d4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:15090a09b23824bb829360d8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2955551964a9435ca259e13e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2a75dc862742a689b1e8b5a8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:56d7dace53967899fcfe8c42",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:592f343e114aefd8698f20cf",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:66c5df2bf0f403f278c1250d",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:85c59b8f41e6cf6a095a95d9",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a291f17c8a847581e9bf4781",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a7ea951d25d3f54da89d1423",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b7eae73976060df4e1e238a3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c21677843e17f168a6193315",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:caa50d11e86d30d3c61718eb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d07d81ccf709f2fc890aee65",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d47b01b6bd9b86c0685e3580",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d8aa6eb1af34e2b8d77f2da9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee699bbee3d6b0e3c7d36052",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fbe9da4c703f1a1bf3e7c956",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:85c59b8f41e6cf6a095a95d9",
+        "to": "requirement:ptfs-testing-state-en",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:66c5df2bf0f403f278c1250d",
+        "to": "requirement:ptfs-testing-state-en",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:d8aa6eb1af34e2b8d77f2da9",
+        "to": "requirement:ptfs-testing-state-en",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:56d7dace53967899fcfe8c42",
+        "to": "requirement:ptfs-testing-state-zh",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:66c5df2bf0f403f278c1250d",
+        "to": "requirement:ptfs-testing-state-zh",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:d8aa6eb1af34e2b8d77f2da9",
+        "to": "requirement:ptfs-testing-state-zh",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:ptfs-testing-state-en",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:85c59b8f41e6cf6a095a95d9",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:66c5df2bf0f403f278c1250d",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:d8aa6eb1af34e2b8d77f2da9",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:ptfs-testing-state-zh",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:56d7dace53967899fcfe8c42",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:66c5df2bf0f403f278c1250d",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:d8aa6eb1af34e2b8d77f2da9",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:ptfs-testing-state-en",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:85c59b8f41e6cf6a095a95d9",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:66c5df2bf0f403f278c1250d",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:d8aa6eb1af34e2b8d77f2da9",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:ptfs-testing-state-zh",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:56d7dace53967899fcfe8c42",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:66c5df2bf0f403f278c1250d",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:d8aa6eb1af34e2b8d77f2da9",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "453b9ac09e149956a37e0aad810d9ed50986fa8d2c412e088ab197fa9cd53fd3"
+}

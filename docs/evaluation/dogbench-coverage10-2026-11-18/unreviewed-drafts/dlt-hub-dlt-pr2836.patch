@@ -1,0 +1,241 @@
+diff --git a/docs/website/docs/plus/ecosystem/iceberg.md b/docs/website/docs/plus/ecosystem/iceberg.md
+index fe9e1426ec7825b7b767dac6be0b5c3984154932..feda5da299f7771091eebb913837314ac8c23ac7 100644
+--- a/docs/website/docs/plus/ecosystem/iceberg.md
++++ b/docs/website/docs/plus/ecosystem/iceberg.md
+@@ -310,6 +310,236 @@ export DESTINATION__ICEBERG__CAPABILITIES__TABLE_LOCATION_LAYOUT={dataset_name}/
+ 
+ For more information, refer to the [Lakekeeper section above](#lakekeeper-catalog).
+ 
++### AWS S3 Tables and Glue catalogs
++
++AWS offers several ways to use Iceberg with S3 Tables and the Glue Data Catalog. All of them use the REST catalog (`catalog_type=rest`) with SigV4 request signing. Pick the setup that matches where your table metadata lives.
++
++#### S3 Tables REST catalog
++
++Use the S3 Tables REST catalog when your tables live in an [S3 Table bucket](https://docs.aws.amazon.com/AmazonS3/latest/userguide/s3-tables-buckets.html). The warehouse is the table bucket ARN, the endpoint is the S3 Tables Iceberg REST endpoint, and requests are signed with the `s3tables` SigV4 service.
++
++<Tabs
++  groupId="filesystem-type"
++  defaultValue="yml"
++  values={[
++    {"label": "dlt.yml", "value": "yml"},
++    {"label": "TOML files", "value": "toml"},
++    {"label": "Environment variables", "value": "env"}
++]}>
++
++<TabItem value="yml">
++
++```yaml
++# we recommend to put sensitive configurations to secrets.toml
++destinations:
++  iceberg_s3tables:
++    type: iceberg
++    catalog_type: rest
++    credentials:
++      uri: https://s3tables.<region>.amazonaws.com/iceberg
++      warehouse: arn:aws:s3tables:<region>:<account-id>:bucket/<bucket>
++      properties:
++        rest.sigv4-enabled: "true"
++        rest.signing-name: s3tables
++        rest.signing-region: <region>
++    filesystem:
++      bucket_url: "s3://<bucket>/"
++```
++</TabItem>
++
++<TabItem value="toml">
++
++```toml
++[destination.iceberg]
++catalog_type="rest"
++
++[destination.iceberg.credentials]
++uri="https://s3tables.<region>.amazonaws.com/iceberg"
++warehouse="arn:aws:s3tables:<region>:<account-id>:bucket/<bucket>"
++
++[destination.iceberg.credentials.properties]
++rest.sigv4-enabled="true"
++rest.signing-name="s3tables"
++rest.signing-region="<region>"
++
++[destination.iceberg.filesystem]
++bucket_url="s3://<bucket>/"
++```
++</TabItem>
++
++<TabItem value="env">
++
++```sh
++export DESTINATION__ICEBERG__CATALOG_TYPE=rest
++export DESTINATION__ICEBERG__CREDENTIALS__URI=https://s3tables.<region>.amazonaws.com/iceberg
++export DESTINATION__ICEBERG__CREDENTIALS__WAREHOUSE=arn:aws:s3tables:<region>:<account-id>:bucket/<bucket>
++export DESTINATION__ICEBERG__CREDENTIALS__PROPERTIES__REST.SIGV4-ENABLED=true
++export DESTINATION__ICEBERG__CREDENTIALS__PROPERTIES__REST.SIGNING-NAME=s3tables
++export DESTINATION__ICEBERG__CREDENTIALS__PROPERTIES__REST.SIGNING-REGION=<region>
++export DESTINATION__ICEBERG__FILESYSTEM__BUCKET_URL=s3://<bucket>/
++```
++</TabItem>
++
++</Tabs>
++
++* `credentials.uri` - the S3 Tables Iceberg REST endpoint: `https://s3tables.<region>.amazonaws.com/iceberg`.
++* `credentials.warehouse` - the ARN of your S3 Table bucket: `arn:aws:s3tables:<region>:<account-id>:bucket/<bucket>`.
++* `credentials.properties.rest.sigv4-enabled` - enables SigV4 request signing.
++* `credentials.properties.rest.signing-name` - the SigV4 service name, `s3tables` for the S3 Tables REST catalog.
++* `credentials.properties.rest.signing-region` - the AWS region used for signing.
++* `filesystem.bucket_url` - the S3 Table bucket where table data is stored.
++
++#### Glue REST catalog for S3 Tables
++
++You can also reach S3 Tables through the Glue Data Catalog REST endpoint. In this setup the warehouse identifier is `<account-id>:s3tablescatalog/<bucket>`, the endpoint is the Glue Iceberg REST endpoint, and requests are signed with the `glue` SigV4 service.
++
++Before configuring dlt, prepare the following in AWS:
++
++* IAM permissions to read and write the S3 Table bucket and to call the Glue and Lake Formation APIs.
++* The S3 Tables catalog integrated with Glue, and Lake Formation permissions granting access to the tables in the bucket.
++
++<Tabs
++  groupId="filesystem-type"
++  defaultValue="yml"
++  values={[
++    {"label": "dlt.yml", "value": "yml"},
++    {"label": "TOML files", "value": "toml"},
++    {"label": "Environment variables", "value": "env"}
++]}>
++
++<TabItem value="yml">
++
++```yaml
++# we recommend to put sensitive configurations to secrets.toml
++destinations:
++  iceberg_glue_rest:
++    type: iceberg
++    catalog_type: rest
++    credentials:
++      uri: https://glue.<region>.amazonaws.com/iceberg
++      warehouse: <account-id>:s3tablescatalog/<bucket>
++      properties:
++        rest.sigv4-enabled: "true"
++        rest.signing-name: glue
++        rest.signing-region: <region>
++    filesystem:
++      bucket_url: "s3://<bucket>/"
++```
++</TabItem>
++
++<TabItem value="toml">
++
++```toml
++[destination.iceberg]
++catalog_type="rest"
++
++[destination.iceberg.credentials]
++uri="https://glue.<region>.amazonaws.com/iceberg"
++warehouse="<account-id>:s3tablescatalog/<bucket>"
++
++[destination.iceberg.credentials.properties]
++rest.sigv4-enabled="true"
++rest.signing-name="glue"
++rest.signing-region="<region>"
++
++[destination.iceberg.filesystem]
++bucket_url="s3://<bucket>/"
++```
++</TabItem>
++
++<TabItem value="env">
++
++```sh
++export DESTINATION__ICEBERG__CATALOG_TYPE=rest
++export DESTINATION__ICEBERG__CREDENTIALS__URI=https://glue.<region>.amazonaws.com/iceberg
++export DESTINATION__ICEBERG__CREDENTIALS__WAREHOUSE=<account-id>:s3tablescatalog/<bucket>
++export DESTINATION__ICEBERG__CREDENTIALS__PROPERTIES__REST.SIGV4-ENABLED=true
++export DESTINATION__ICEBERG__CREDENTIALS__PROPERTIES__REST.SIGNING-NAME=glue
++export DESTINATION__ICEBERG__CREDENTIALS__PROPERTIES__REST.SIGNING-REGION=<region>
++export DESTINATION__ICEBERG__FILESYSTEM__BUCKET_URL=s3://<bucket>/
++```
++</TabItem>
++
++</Tabs>
++
++* `credentials.uri` - the Glue Iceberg REST endpoint: `https://glue.<region>.amazonaws.com/iceberg`.
++* `credentials.warehouse` - the S3 Tables catalog identifier: `<account-id>:s3tablescatalog/<bucket>`.
++* `credentials.properties.rest.signing-name` - the SigV4 service name, `glue` for the Glue REST catalog.
++* `filesystem.bucket_url` - the S3 Table bucket where table data is stored.
++
++#### Direct Glue Data Catalog
++
++If you want to use the Glue Data Catalog directly with a regular S3 bucket (not an S3 Table bucket), configure the Glue catalog as the warehouse and point `bucket_url` at your S3 bucket. Your IAM role or user needs access to both the S3 bucket and the Glue Data Catalog.
++
++<Tabs
++  groupId="filesystem-type"
++  defaultValue="yml"
++  values={[
++    {"label": "dlt.yml", "value": "yml"},
++    {"label": "TOML files", "value": "toml"},
++    {"label": "Environment variables", "value": "env"}
++]}>
++
++<TabItem value="yml">
++
++```yaml
++# we recommend to put sensitive configurations to secrets.toml
++destinations:
++  iceberg_glue:
++    type: iceberg
++    catalog_type: rest
++    credentials:
++      uri: https://glue.<region>.amazonaws.com/iceberg
++      warehouse: <account-id>
++      properties:
++        rest.sigv4-enabled: "true"
++        rest.signing-name: glue
++        rest.signing-region: <region>
++    filesystem:
++      bucket_url: "s3://<bucket>/"
++```
++</TabItem>
++
++<TabItem value="toml">
++
++```toml
++[destination.iceberg]
++catalog_type="rest"
++
++[destination.iceberg.credentials]
++uri="https://glue.<region>.amazonaws.com/iceberg"
++warehouse="<account-id>"
++
++[destination.iceberg.credentials.properties]
++rest.sigv4-enabled="true"
++rest.signing-name="glue"
++rest.signing-region="<region>"
++
++[destination.iceberg.filesystem]
++bucket_url="s3://<bucket>/"
++```
++</TabItem>
++
++<TabItem value="env">
++
++```sh
++export DESTINATION__ICEBERG__CATALOG_TYPE=rest
++export DESTINATION__ICEBERG__CREDENTIALS__URI=https://glue.<region>.amazonaws.com/iceberg
++export DESTINATION__ICEBERG__CREDENTIALS__WAREHOUSE=<account-id>
++export DESTINATION__ICEBERG__CREDENTIALS__PROPERTIES__REST.SIGV4-ENABLED=true
++export DESTINATION__ICEBERG__CREDENTIALS__PROPERTIES__REST.SIGNING-NAME=glue
++export DESTINATION__ICEBERG__CREDENTIALS__PROPERTIES__REST.SIGNING-REGION=<region>
++export DESTINATION__ICEBERG__FILESYSTEM__BUCKET_URL=s3://<bucket>/
++```
++</TabItem>
++
++</Tabs>
++
++* `credentials.uri` - the Glue Iceberg REST endpoint: `https://glue.<region>.amazonaws.com/iceberg`.
++* `credentials.warehouse` - the Glue Data Catalog warehouse (your AWS account ID).
++* `credentials.properties.rest.signing-name` - the SigV4 service name, `glue`.
++* `filesystem.bucket_url` - a regular S3 bucket where table data is stored. The IAM role or user must have read and write access to this bucket as well as access to the Glue Data Catalog.
++
+ ## Write dispositions
+ 
+ All [write dispositions](../../general-usage/incremental-loading.md) are supported.

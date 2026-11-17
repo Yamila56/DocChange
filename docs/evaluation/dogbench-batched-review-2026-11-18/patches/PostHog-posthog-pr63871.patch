@@ -1,0 +1,39 @@
+diff --git a/contents/docs/error-tracking/integrations.mdx b/contents/docs/error-tracking/integrations.mdx
+index c6637c141870cb427af429bbf7f42351ac6ac0f3..494576cd5221f3c51652ecc8cf2723c42afaeef1 100644
+--- a/contents/docs/error-tracking/integrations.mdx
++++ b/contents/docs/error-tracking/integrations.mdx
+@@ -68,6 +68,8 @@ To set up the Jira integration:
+ 2. Under **Jira**, click **Connect workspace**
+ 3. Authorize PostHog to access your Jira site
+ 
++Alternatively, connect from the shareable Jira landing page at [`/integrations/jira`](https://app.posthog.com/integrations/jira), which shows the integration's connection status and a connect button. The same pattern works for other integrations at `/integrations/<slug>`.
++
+ PostHog connects to Jira using OAuth 2.0. PostHog needs the following permissions:
+ 
+ - Create issues in your Jira projects
+diff --git a/contents/docs/session-replay/integrations.mdx b/contents/docs/session-replay/integrations.mdx
+index e469b4b3219653dcd6d4655ca288f5ae3f357915..ece9eb32b5272e3fa00c4ee6833fe0a5d8c7f997 100644
+--- a/contents/docs/session-replay/integrations.mdx
++++ b/contents/docs/session-replay/integrations.mdx
+@@ -16,6 +16,8 @@ Session replay integrates with issue tracking tools like **Linear**, **GitHub**,
+ 
+ To enable integrations, go to your project settings and connect your Linear, GitHub, GitLab, or Jira account. Once connected, you can select which projects or repositories you want to link issues to.
+ 
++You can also connect from the shareable per-integration landing pages at `/integrations/<slug>` – for example [`/integrations/linear`](https://app.posthog.com/integrations/linear), [`/integrations/github`](https://app.posthog.com/integrations/github), [`/integrations/gitlab`](https://app.posthog.com/integrations/gitlab), or [`/integrations/jira`](https://app.posthog.com/integrations/jira). Each page shows the integration's connection status and a connect action, making it a convenient link to share with teammates.
++
+ <ProductScreenshot
+     imageLight={ImgReplayIntegrationsLight}
+     alt="Integrations settings in PostHog"
+diff --git a/contents/docs/slack/setup.mdx b/contents/docs/slack/setup.mdx
+index 9c38c1c9e8eda67128b535fdf5a1c9364e7ecfec..ab4594bf1eeb98bc034b3d1909b57da6fd296f40 100644
+--- a/contents/docs/slack/setup.mdx
++++ b/contents/docs/slack/setup.mdx
+@@ -19,6 +19,8 @@ You need two integrations to use `@PostHog` in Slack: one workspace-wide Slack c
+ 
+ Head to [**Settings → Integrations**](https://app.posthog.com/settings/project-integrations #selectedSetting=integration-slack&setting=integration-slack) in your PostHog project and click **Add to Slack** in the Slack integration section. Approve the requested scopes – you'll need to be a project admin to install.
+ 
++You can also connect from the shareable Slack landing page at [`/integrations/slack`](https://app.posthog.com/integrations/slack). It shows the Slack logo, a description of what the integration can do, and a single **Connect** button, then switches to a success view once the OAuth round-trip completes.
++
+ <ProductScreenshot
+ imageLight="https://res.cloudinary.com/dmukukwp6/image/upload/q_auto,f_auto,w_800/slack_integration_settings_3396ec1b7d.png"
+ classes="rounded"

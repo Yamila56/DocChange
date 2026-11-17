@@ -1,0 +1,203 @@
+{
+  "errors": {
+    "ValidationError": 9,
+    "DomainError": 3,
+    "ReadError": 2
+  },
+  "unresolved": {
+    "MODEL_UNRESOLVED": 2,
+    "REPAIR_SCOPE": 2,
+    "MISSING_EVIDENCE": 1,
+    "UNBOUND_EDIT": 1
+  },
+  "phase_model_calls": {
+    "MAINTENANCE_B_REASON": 165,
+    "MAINTENANCE_B_EDIT": 40,
+    "MAINTENANCE_B_VERIFY": 33,
+    "MAINTENANCE_B_REPAIR": 6
+  },
+  "review_research_rounds_observed": 0,
+  "tasks": [
+    {
+      "instance_id": "apache-flink-pr27345",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ValidationError",
+      "reason": "1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.id\n  String should match pattern '^[A-Za-z0-9_-]{1,40}$' [type=string_pattern_mismatch, input_value='release-notes-2.2-interruptible-timers', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_pattern_mismatch",
+      "phase": "REASON"
+    },
+    {
+      "instance_id": "apache-flink-pr28237",
+      "status": "completed",
+      "decision": "unresolved",
+      "reason_code": "MODEL_UNRESOLVED",
+      "error_type": null,
+      "reason": "No implementation is available (has_implementation=false) and no code root is accessible, so I cannot verify the actual behavior change for sink primary-key conflicts when an updating table uses a different upsert key and multiple input records target the same sink row. Existing docs only mention SinkUpsertMaterializer in release notes (flink-2.2.md, flink-1.15.md) and general primary-key/upsert semantics in connectors/table/overview.md and sourcesSinks.md; none describe the specific conflict-handling behavior requested. Without implementation evidence I cannot substantiate a precise documentation target or confirm no-change. Recommend providing the implementation diff or code access to determine whether a new section (likely in docs/content/docs/dev/table/tuning.md or connectors/table/overview.md, plus zh counterparts) is warranted.",
+      "phase": "REASON"
+    },
+    {
+      "instance_id": "apache-iceberg-pr15566",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "DomainError",
+      "reason": "Exact occurrence count differs; reread target",
+      "phase": "EDIT"
+    },
+    {
+      "instance_id": "apache-iceberg-pr15667",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "DomainError",
+      "reason": "Exact occurrence count differs; reread target",
+      "phase": "EDIT"
+    },
+    {
+      "instance_id": "apache-iceberg-pr16241",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "DomainError",
+      "reason": "Exact occurrence count differs; reread target",
+      "phase": "EDIT"
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4003",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ValidationError",
+      "reason": "1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\ninvestigate.questions.1.queries\n  List should have at most 3 items after validation, not 4 [type=too_long, input_value=['integration test setup'...'make-mi-fic', 'cipool'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/too_long",
+      "phase": "REASON"
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4202",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ValidationError",
+      "reason": "1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\ninvestigate.questions.2.queries\n  List should have at most 3 items after validation, not 4 [type=too_long, input_value=['resource references', '...export', 'passing data'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/too_long",
+      "phase": "REASON"
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4394",
+      "status": "completed",
+      "decision": "unresolved",
+      "reason_code": "MODEL_UNRESOLVED",
+      "error_type": null,
+      "reason": "The requested documentation updates cannot be produced as supported patches from the available evidence. The web API reference (docs/hugo/content/reference/web/v1api20220301.md) is a 17,693-line generated file, and the supplied evidence only shows its opening lines plus unrelated excerpts from other services' reference pages; no observed source ranges contain the specific `ServerFarm_Spec_ARM`, `Site_Spec_ARM`, `ExtendedLocation_ARM`, `SkuDescription_ARM`, `Capability_ARM`, `HostingEnvironmentProfile_ARM`, `KubeEnvironmentProfile_ARM`, or `SkuCapacity_ARM` sections or their cross-references, so exact old/new text for those edits cannot be cited. Similarly, the versions_matrix.md evidence (lines 45-118) shows entries such as `ServerFarm_Spec`, `Serverfarm_Properties_Spec`, and `KubeEnvironmentProfile` already present without `_ARM` suffixes, and does not show the removed `_ARM` rows, so it is unclear whether that file actually requires changes. Additionally, these reference pages and the versions matrix appear to be generated artifacts rather than hand-maintained user documentation, so regenerating them from the updated code may be the correct action instead of manual edits. Recommend regenerating the web v1api20220301 reference and versions matrix from the post-change code, then re-running documentation review against the regenerated output.",
+      "phase": "EDIT"
+    },
+    {
+      "instance_id": "bentoml-bentoml-pr5465",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ValidationError",
+      "reason": "1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value=\"Update the 'Custom servi...'t apply automatically.\", input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+      "phase": "REASON"
+    },
+    {
+      "instance_id": "celery-celery-pr10135",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ReadError",
+      "reason": "",
+      "phase": "VERIFY"
+    },
+    {
+      "instance_id": "celery-celery-pr10150",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ReadError",
+      "reason": "",
+      "phase": "EDIT"
+    },
+    {
+      "instance_id": "celery-celery-pr10174",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ValidationError",
+      "reason": "1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value='Add a new ``broker_pool_...ionadded::`` directive.', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+      "phase": "REASON"
+    },
+    {
+      "instance_id": "celery-celery-pr10206",
+      "status": "completed",
+      "decision": "unresolved",
+      "reason_code": "REPAIR_SCOPE",
+      "error_type": null,
+      "reason": "Repair exceeded the permitted target/path scope",
+      "phase": "REPAIR"
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2836",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ValidationError",
+      "reason": "1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value=\"Add an 'AWS catalogs' se...on, rest.signing-name).\", input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+      "phase": "REASON"
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2965",
+      "status": "completed",
+      "decision": "unresolved",
+      "reason_code": "MISSING_EVIDENCE",
+      "error_type": null,
+      "reason": "Edit needs observations of its target path",
+      "phase": "EDIT"
+    },
+    {
+      "instance_id": "doc-detective-common-pr112",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ValidationError",
+      "reason": "1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\ninvestigate.questions.1.queries\n  List should have at most 3 items after validation, not 4 [type=too_long, input_value=['configPath', 'specPath'...', 'OpenAPI definition'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/too_long",
+      "phase": "REASON"
+    },
+    {
+      "instance_id": "doc-detective-common-pr63",
+      "status": "completed",
+      "decision": "unresolved",
+      "reason_code": "REPAIR_SCOPE",
+      "error_type": null,
+      "reason": "Repair exceeded the permitted target/path scope",
+      "phase": "REPAIR"
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr21",
+      "status": "completed",
+      "decision": "unresolved",
+      "reason_code": "UNBOUND_EDIT",
+      "error_type": null,
+      "reason": "Every material delivery target needs an edit",
+      "phase": "EDIT"
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36803",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ValidationError",
+      "reason": "1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value=\"Update the Workload Anon...parse failure or leaks.\", input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+      "phase": "REASON"
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16822",
+      "status": "error",
+      "decision": null,
+      "reason_code": null,
+      "error_type": "ValidationError",
+      "reason": "1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value=\"In contents/docs/experim...o property conventions.\", input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+      "phase": "REASON"
+    }
+  ],
+  "candidate_semantic_failures": "See official per-criterion judgments in scores.json"
+}

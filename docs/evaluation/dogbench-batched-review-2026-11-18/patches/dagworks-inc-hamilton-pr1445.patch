@@ -1,0 +1,44 @@
+diff --git a/docs/concepts/function-modifiers.rst b/docs/concepts/function-modifiers.rst
+index 6bbed9ebc6b58d4d3df420c74fb1a17b4abe4256..dced6e213245321fc67531930b1797491f8bf327 100644
+--- a/docs/concepts/function-modifiers.rst
++++ b/docs/concepts/function-modifiers.rst
+@@ -108,6 +108,8 @@ Customize visualization by tag
+ 
+ Tags are also accessible to the visualization styling feature, allowing you to highlight important nodes for your documentation. See :ref:`custom-visualization-style` for details.
+ 
++The special ``display_name`` tag controls the label shown for a node in graphviz visualizations, letting you use a human-readable string without renaming the function. See :ref:`custom-visualization-display-name` for details.
++
+ .. image:: ./_function-modifiers/custom_viz.png
+     :height: 250px
+ 
+diff --git a/docs/concepts/visualization.rst b/docs/concepts/visualization.rst
+index 407e7c6f35eae02c26e0babbabdd73228b3343be..ea830f0682940a8529099ac7791c1cdd18f8b31f 100644
+--- a/docs/concepts/visualization.rst
++++ b/docs/concepts/visualization.rst
+@@ -213,3 +213,26 @@ This `online graphviz editor <https://edotor.net/>`_ can help you get started!
+ 
+ 
+ See the `full code example <https://github.com/apache/hamilton/tree/main/examples/styling_visualization>`_ for more details.
++
++.. _custom-visualization-display-name:
++
++Customize node labels with ``display_name``
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++By default, each node is labeled with its Python identifier and type. To show a human-readable label without renaming the function, add a ``display_name`` tag with the ``@tag`` function modifier (learn more :ref:`tag-decorators`):
++
++.. code-block:: python
++
++    from hamilton.function_modifiers import tag
++
++    @tag(display_name="My Custom Display Name")
++    def node_with_display_name(input_a: int) -> int:
++        return input_a + 1
++
++The label is resolved in this order:
++
++1. An explicitly supplied name parameter (e.g., when calling the graphviz creation logic directly).
++2. The node's ``display_name`` tag value.
++3. The node's Python identifier.
++
++If ``display_name`` holds a list, the first element is used; an empty list falls back to the node name. All resolved display names are HTML-escaped before being embedded in the label, so special characters such as ``<``, ``>``, ``&``, and quotes render correctly.

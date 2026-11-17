@@ -1,0 +1,4005 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REASON",
+  "tasks": [],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "4918607e9891601ab1ea214282d59de55aa84fcf55a16c105a964f4df5d8de37",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the docs describe the config option for interruptible/splittable timers (e.g. execution.checkpointing.unaligned.enabled or a timer-related option) and which operators support it?",
+          "root": "docs",
+          "queries": [
+            "interruptible timers",
+            "splittable timers",
+            "unaligned checkpoint timers"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content/release-notes/flink-1.20.md",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-1.20.md",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 947,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "49d8cb6168f20a20bec122ee",
+            "0c9565ae98885b28a5716ed6",
+            "22cf609ff72c861376bdfe48",
+            "d34704636b0cd180e6611a88",
+            "6bdaa0e16f2087ad959ebd87",
+            "42857d08a3cbfc729b2ea229",
+            "f981fdb184bed2ec16ca6efb",
+            "e1ed409b7252a85ab60bb561",
+            "1d52b28c803d89d33c463e5a",
+            "9ec98271c0534eeccfd06f1a",
+            "9cf0011cc6d19cfff2ff0ac1",
+            "ee2dc9a022c344a286c73a87",
+            "78a2171efea7fd6691a9bf4b",
+            "51f973e679d38178ce80248a",
+            "01fb5285e96cecd8bd973e8c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/release-notes/flink-1.20.md",
+              "evidence_id": "d34704636b0cd180e6611a88",
+              "score": "0.04512062889671997"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content.zh/release-notes/flink-1.20.md",
+              "evidence_id": "6bdaa0e16f2087ad959ebd87",
+              "score": "0.04497070328839275"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "42857d08a3cbfc729b2ea229",
+              "score": "0.04056545116995937"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "f981fdb184bed2ec16ca6efb",
+              "score": "0.040441683919944786"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+              "evidence_id": "e1ed409b7252a85ab60bb561",
+              "score": "0.03935300663878123"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+              "evidence_id": "1d52b28c803d89d33c463e5a",
+              "score": "0.03809259501110095"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "9ec98271c0534eeccfd06f1a",
+              "score": "0.03708763910969794"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "9cf0011cc6d19cfff2ff0ac1",
+              "score": "0.036932505075235135"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content/docs/ops/state/large_state_tuning.md",
+              "evidence_id": "ee2dc9a022c344a286c73a87",
+              "score": "0.035293154790010134"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content/docs/ops/state/state_backends.md",
+              "evidence_id": "78a2171efea7fd6691a9bf4b",
+              "score": "0.03461163286602241"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content/docs/try-flink/datastream.md",
+              "evidence_id": "51f973e679d38178ce80248a",
+              "score": "0.03211410443481354"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content.zh/release-notes/flink-1.20.md",
+              "evidence_id": "01fb5285e96cecd8bd973e8c",
+              "score": "0.03061594202898551"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/release-notes/flink-1.20.md",
+              "start": 102,
+              "end": 222,
+              "total_lines": 433
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-1.20.md",
+              "start": 102,
+              "end": 222,
+              "total_lines": 433
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "start": 947,
+              "end": 1067,
+              "total_lines": 1866
+            }
+          ],
+          "read_evidence_ids": [
+            "49d8cb6168f20a20bec122ee",
+            "0c9565ae98885b28a5716ed6",
+            "22cf609ff72c861376bdfe48"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is there documentation of interval join behavior, watermark delay, or timer processing that would need updating?",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "offset": 333,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "offset": 333,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/concepts/time.md",
+              "offset": 164,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f3225ca79eef609a05096dc9",
+            "7f93677c4dd850ed2b2fb4d6",
+            "517cdd021bc15e9c256538d2",
+            "838d9b7f2f82f59eecfcd8b8",
+            "72436a9fd996e0d628d7d1db",
+            "f63057b1e54ee82beb32eb4d",
+            "51f973e679d38178ce80248a",
+            "5a5e3ce7c587cc15dd980d9f",
+            "686f2b53c33d4cab6bc274a9",
+            "263db1a97104e25e013c0c45",
+            "f981fdb184bed2ec16ca6efb",
+            "bb3aecfc5ebf2fac08f2ca44",
+            "42857d08a3cbfc729b2ea229",
+            "9ace10a0c9c25772ae4ce36e",
+            "e8987709dba031001749a09e"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "evidence_id": "838d9b7f2f82f59eecfcd8b8",
+              "score": "0.021462639109697933"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content.zh/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "evidence_id": "72436a9fd996e0d628d7d1db",
+              "score": "0.021077514035260515"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/docs/concepts/time.md",
+              "evidence_id": "f63057b1e54ee82beb32eb4d",
+              "score": "0.018903688524590165"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content/docs/try-flink/datastream.md",
+              "evidence_id": "51f973e679d38178ce80248a",
+              "score": "0.018350389785377435"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content/docs/dev/table/sql/create.md",
+              "evidence_id": "5a5e3ce7c587cc15dd980d9f",
+              "score": "0.01807834999685594"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content/docs/learn-flink/streaming_analytics.md",
+              "evidence_id": "686f2b53c33d4cab6bc274a9",
+              "score": "0.01768710368375289"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content/docs/dev/datastream/event-time/generating_watermarks.md",
+              "evidence_id": "263db1a97104e25e013c0c45",
+              "score": "0.01762175184993977"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "f981fdb184bed2ec16ca6efb",
+              "score": "0.017457018703948612"
+            },
+            {
+              "rank": 9,
+              "path": "flink-python/docs/reference/pyflink.datastream/timer.rst",
+              "evidence_id": "bb3aecfc5ebf2fac08f2ca44",
+              "score": "0.017182773037832694"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "42857d08a3cbfc729b2ea229",
+              "score": "0.01718112987769365"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content.zh/docs/connectors/table/overview.md",
+              "evidence_id": "9ace10a0c9c25772ae4ce36e",
+              "score": "0.01716723187403741"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "e8987709dba031001749a09e",
+              "score": "0.016959064327485382"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "start": 333,
+              "end": 429,
+              "total_lines": 429
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "start": 333,
+              "end": 429,
+              "total_lines": 429
+            },
+            {
+              "path": "docs/content.zh/docs/concepts/time.md",
+              "start": 164,
+              "end": 204,
+              "total_lines": 204
+            }
+          ],
+          "read_evidence_ids": [
+            "f3225ca79eef609a05096dc9",
+            "7f93677c4dd850ed2b2fb4d6",
+            "517cdd021bc15e9c256538d2"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What config option gates interruptible timers and how is it referenced in TimeIntervalJoin?",
+          "root": "code",
+          "queries": [
+            "ENABLE_UNALIGNED_INTERRUPTIBLE_TIMERS",
+            "useInterruptibleTimers"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+              "offset": 287,
+              "limit": 120
+            },
+            {
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractUdfStreamOperator.java",
+              "offset": 165,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "dc44d87bc8385996bed256b0",
+            "ede51b8c2f3fe495f129e3b5",
+            "f8e2b50620fda71fc70dad84",
+            "33fbd16e3114b61912511af8",
+            "a45e61c2246dbfd15bdab040",
+            "aa18f084f14c1ae12e4cfc03",
+            "22b8ddb976a1e54b7d949dd4",
+            "da3877d732f32dc09c64278d",
+            "4d0bfc0b5fc1c048818d7876",
+            "a252a2b1b4930ec62a959b88",
+            "a8b0a205f4910b3129e43115",
+            "3a827d12857c8533bdaf903e",
+            "171dde826a4d2e61ac2ad5bc",
+            "a2868e34df77470431f30e6c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+              "evidence_id": "f8e2b50620fda71fc70dad84",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 2,
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractUdfStreamOperator.java",
+              "evidence_id": "33fbd16e3114b61912511af8",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 3,
+              "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+              "evidence_id": "a45e61c2246dbfd15bdab040",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 4,
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperator.java",
+              "evidence_id": "aa18f084f14c1ae12e4cfc03",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 5,
+              "path": "flink-core/src/main/java/org/apache/flink/configuration/CheckpointingOptions.java",
+              "evidence_id": "22b8ddb976a1e54b7d949dd4",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 6,
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperatorV2.java",
+              "evidence_id": "da3877d732f32dc09c64278d",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 7,
+              "path": "flink-core/src/main/java/org/apache/flink/configuration/CheckpointingOptions.java",
+              "evidence_id": "4d0bfc0b5fc1c048818d7876",
+              "score": "0.015625"
+            },
+            {
+              "rank": 8,
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+              "evidence_id": "a252a2b1b4930ec62a959b88",
+              "score": "0.015625"
+            },
+            {
+              "rank": 9,
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/sort/BaseTemporalSortOperator.java",
+              "evidence_id": "a8b0a205f4910b3129e43115",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 10,
+              "path": "flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/operator/CepOperator.java",
+              "evidence_id": "3a827d12857c8533bdaf903e",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 11,
+              "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/runtime/io/checkpointing/UnalignedCheckpointsInterruptibleTimersTest.java",
+              "evidence_id": "171dde826a4d2e61ac2ad5bc",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 12,
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/environment/CheckpointConfig.java",
+              "evidence_id": "a2868e34df77470431f30e6c",
+              "score": "0.014925373134328358"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+              "start": 287,
+              "end": 331,
+              "total_lines": 331
+            },
+            {
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractUdfStreamOperator.java",
+              "start": 165,
+              "end": 194,
+              "total_lines": 194
+            }
+          ],
+          "read_evidence_ids": [
+            "dc44d87bc8385996bed256b0",
+            "ede51b8c2f3fe495f129e3b5"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "01fb5285e96cecd8bd973e8c",
+        "0c9565ae98885b28a5716ed6",
+        "171dde826a4d2e61ac2ad5bc",
+        "1d52b28c803d89d33c463e5a",
+        "22b8ddb976a1e54b7d949dd4",
+        "22cf609ff72c861376bdfe48",
+        "263db1a97104e25e013c0c45",
+        "33fbd16e3114b61912511af8",
+        "3a827d12857c8533bdaf903e",
+        "42857d08a3cbfc729b2ea229",
+        "49d8cb6168f20a20bec122ee",
+        "4d0bfc0b5fc1c048818d7876",
+        "517cdd021bc15e9c256538d2",
+        "51f973e679d38178ce80248a",
+        "5a5e3ce7c587cc15dd980d9f",
+        "686f2b53c33d4cab6bc274a9",
+        "6bdaa0e16f2087ad959ebd87",
+        "72436a9fd996e0d628d7d1db",
+        "78a2171efea7fd6691a9bf4b",
+        "7f93677c4dd850ed2b2fb4d6",
+        "838d9b7f2f82f59eecfcd8b8",
+        "9ace10a0c9c25772ae4ce36e",
+        "9cf0011cc6d19cfff2ff0ac1",
+        "9ec98271c0534eeccfd06f1a",
+        "a252a2b1b4930ec62a959b88",
+        "a2868e34df77470431f30e6c",
+        "a45e61c2246dbfd15bdab040",
+        "a8b0a205f4910b3129e43115",
+        "aa18f084f14c1ae12e4cfc03",
+        "bb3aecfc5ebf2fac08f2ca44",
+        "d34704636b0cd180e6611a88",
+        "da3877d732f32dc09c64278d",
+        "dc44d87bc8385996bed256b0",
+        "e1ed409b7252a85ab60bb561",
+        "e8987709dba031001749a09e",
+        "ede51b8c2f3fe495f129e3b5",
+        "ee2dc9a022c344a286c73a87",
+        "f3225ca79eef609a05096dc9",
+        "f63057b1e54ee82beb32eb4d",
+        "f8e2b50620fda71fc70dad84",
+        "f981fdb184bed2ec16ca6efb"
+      ],
+      "new_evidence_count": 41,
+      "new_path_count": 26
+    },
+    {
+      "signature": "af832b9fc6384354a1aa4f0a4b175074c15c54e97922203d53b0795f8d27e16f",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the current docs (unreleased/next release notes or config docs) list which operators support interruptible timers, and does it need updating to include interval joins?",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ],
+          "paths": [
+            "docs/content/docs/deployment/config.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content/docs/deployment/config.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 947,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+              "offset": 311,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "857aed6aa857a2b54bfc641f",
+            "1b44e3ecbcb7319b0fc54148",
+            "c2dce52ccac01601855c3983",
+            "6bdaa0e16f2087ad959ebd87",
+            "d34704636b0cd180e6611a88",
+            "f981fdb184bed2ec16ca6efb",
+            "e1ed409b7252a85ab60bb561",
+            "42857d08a3cbfc729b2ea229",
+            "f58f4fb98e9fca3304b2f383",
+            "1d52b28c803d89d33c463e5a",
+            "ee2dc9a022c344a286c73a87",
+            "78a2171efea7fd6691a9bf4b",
+            "eaf0f7b275b4c1d827ff0ec6",
+            "d12a54965a52d380515bb3a6",
+            "b5a241f19411f3407bb9dc24"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content.zh/release-notes/flink-1.20.md",
+              "evidence_id": "6bdaa0e16f2087ad959ebd87",
+              "score": "0.04891591750396616"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content/release-notes/flink-1.20.md",
+              "evidence_id": "d34704636b0cd180e6611a88",
+              "score": "0.048651507139079855"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "f981fdb184bed2ec16ca6efb",
+              "score": "0.04384369488536155"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+              "evidence_id": "e1ed409b7252a85ab60bb561",
+              "score": "0.04382350203245726"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "42857d08a3cbfc729b2ea229",
+              "score": "0.042774321266968326"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content/docs/internals/task_lifecycle.md",
+              "evidence_id": "f58f4fb98e9fca3304b2f383",
+              "score": "0.040568137824235385"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+              "evidence_id": "1d52b28c803d89d33c463e5a",
+              "score": "0.03988080985447096"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content/docs/ops/state/large_state_tuning.md",
+              "evidence_id": "ee2dc9a022c344a286c73a87",
+              "score": "0.0357446937906708"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content/docs/ops/state/state_backends.md",
+              "evidence_id": "78a2171efea7fd6691a9bf4b",
+              "score": "0.0338658255324922"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "eaf0f7b275b4c1d827ff0ec6",
+              "score": "0.0332646895070457"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content.zh/docs/dev/datastream/operators/process_function.md",
+              "evidence_id": "d12a54965a52d380515bb3a6",
+              "score": "0.032610835498858175"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "b5a241f19411f3407bb9dc24",
+              "score": "0.032167079692187295"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/docs/deployment/config.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 634
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "start": 947,
+              "end": 1067,
+              "total_lines": 1866
+            },
+            {
+              "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+              "start": 311,
+              "end": 412,
+              "total_lines": 412
+            }
+          ],
+          "read_evidence_ids": [
+            "857aed6aa857a2b54bfc641f",
+            "1b44e3ecbcb7319b0fc54148",
+            "c2dce52ccac01601855c3983"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is there a release notes file for the upcoming/unreleased version where this feature change should be recorded?",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/content/release-notes/"
+          ],
+          "reads": [
+            {
+              "path": "docs/content/_index.md",
+              "offset": 76,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/_index.md",
+              "offset": 76,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.0.md",
+              "offset": 18,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "4024ac27b629b27736864b94",
+            "a3ec94752407fbdc5d87c30e",
+            "46b405f9e6baa1accbb2744c",
+            "69a5b448a38fb4ed2bb12d92",
+            "c54616a76177fa3375720d2a",
+            "7c8556676bff95947cacb2f0",
+            "87cdaf33a39150cf26d705c5",
+            "a051716e633d6a1f2cce1483",
+            "99c298fcd76ae07f97028a2b",
+            "f6543af0dfb889fc9e146433",
+            "918500bdb8100edd80ba7708",
+            "b6c8ceb996cb2f66ade958c6",
+            "c634b99ab6e9a55c452bc789",
+            "ff002252346cff75636bac0b",
+            "4edaa2a331a8556fa4f5ff76"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/_index.md",
+              "evidence_id": "69a5b448a38fb4ed2bb12d92",
+              "score": "0.03896103896103896"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content.zh/_index.md",
+              "evidence_id": "c54616a76177fa3375720d2a",
+              "score": "0.03234582357533178"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/release-notes/flink-2.0.md",
+              "evidence_id": "7c8556676bff95947cacb2f0",
+              "score": "0.029604289940828404"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content/release-notes/flink-2.0.md",
+              "evidence_id": "87cdaf33a39150cf26d705c5",
+              "score": "0.028374318091997017"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content.zh/release-notes/flink-2.0.md",
+              "evidence_id": "a051716e633d6a1f2cce1483",
+              "score": "0.02781037384728445"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content/release-notes/flink-2.0.md",
+              "evidence_id": "99c298fcd76ae07f97028a2b",
+              "score": "0.026870921264513944"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content/release-notes/flink-1.20.md",
+              "evidence_id": "f6543af0dfb889fc9e146433",
+              "score": "0.02649070338943757"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "evidence_id": "918500bdb8100edd80ba7708",
+              "score": "0.025353952517312584"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content/release-notes/flink-1.10.md",
+              "evidence_id": "b6c8ceb996cb2f66ade958c6",
+              "score": "0.025282154876347714"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "evidence_id": "c634b99ab6e9a55c452bc789",
+              "score": "0.025120321929281104"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content.zh/release-notes/flink-1.20.md",
+              "evidence_id": "ff002252346cff75636bac0b",
+              "score": "0.025118047235103445"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content/release-notes/flink-1.18.md",
+              "evidence_id": "4edaa2a331a8556fa4f5ff76",
+              "score": "0.024749709484222757"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/_index.md",
+              "start": 76,
+              "end": 110,
+              "total_lines": 110
+            },
+            {
+              "path": "docs/content.zh/_index.md",
+              "start": 76,
+              "end": 109,
+              "total_lines": 109
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.0.md",
+              "start": 18,
+              "end": 138,
+              "total_lines": 1665
+            }
+          ],
+          "read_evidence_ids": [
+            "4024ac27b629b27736864b94",
+            "a3ec94752407fbdc5d87c30e",
+            "46b405f9e6baa1accbb2744c"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "How does TimeIntervalJoin gate interruptible timers and what config option does it check?",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ],
+          "paths": [
+            "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperator.java",
+              "offset": 364,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "445663f1a3aff864b8103f99",
+            "a4bcd336ac93e5ce61fd40fb",
+            "aa18f084f14c1ae12e4cfc03",
+            "da3877d732f32dc09c64278d",
+            "f8e2b50620fda71fc70dad84",
+            "a252a2b1b4930ec62a959b88",
+            "a45e61c2246dbfd15bdab040",
+            "33fbd16e3114b61912511af8",
+            "7844b330f850c1f51214fd81",
+            "de4ea4bf92c441ce84fa8ee1",
+            "a8b0a205f4910b3129e43115",
+            "29ef8392bb3aa41e3b6e52ad",
+            "3a827d12857c8533bdaf903e",
+            "138c9a81672308116a668c90"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperator.java",
+              "evidence_id": "aa18f084f14c1ae12e4cfc03",
+              "score": "0.031746031746031744"
+            },
+            {
+              "rank": 2,
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperatorV2.java",
+              "evidence_id": "da3877d732f32dc09c64278d",
+              "score": "0.03125"
+            },
+            {
+              "rank": 3,
+              "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+              "evidence_id": "f8e2b50620fda71fc70dad84",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 4,
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+              "evidence_id": "a252a2b1b4930ec62a959b88",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 5,
+              "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+              "evidence_id": "a45e61c2246dbfd15bdab040",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 6,
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractUdfStreamOperator.java",
+              "evidence_id": "33fbd16e3114b61912511af8",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 7,
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+              "evidence_id": "7844b330f850c1f51214fd81",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 8,
+              "path": "flink-architecture-tests/flink-architecture-tests-production/src/main/java/org/apache/flink/architecture/rules/CheckpointingConfigurationAccessRules.java",
+              "evidence_id": "de4ea4bf92c441ce84fa8ee1",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 9,
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/sort/BaseTemporalSortOperator.java",
+              "evidence_id": "a8b0a205f4910b3129e43115",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 10,
+              "path": "flink-architecture-tests/flink-architecture-tests-production/src/main/java/org/apache/flink/architecture/rules/CheckpointingConfigurationAccessRules.java",
+              "evidence_id": "29ef8392bb3aa41e3b6e52ad",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 11,
+              "path": "flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/operator/CepOperator.java",
+              "evidence_id": "3a827d12857c8533bdaf903e",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 12,
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/environment/CheckpointConfig.java",
+              "evidence_id": "138c9a81672308116a668c90",
+              "score": "0.014492753623188406"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+              "start": 0,
+              "end": 120,
+              "total_lines": 491
+            },
+            {
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperator.java",
+              "start": 364,
+              "end": 484,
+              "total_lines": 858
+            }
+          ],
+          "read_evidence_ids": [
+            "445663f1a3aff864b8103f99",
+            "a4bcd336ac93e5ce61fd40fb"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "138c9a81672308116a668c90",
+        "1b44e3ecbcb7319b0fc54148",
+        "29ef8392bb3aa41e3b6e52ad",
+        "4024ac27b629b27736864b94",
+        "445663f1a3aff864b8103f99",
+        "46b405f9e6baa1accbb2744c",
+        "4edaa2a331a8556fa4f5ff76",
+        "69a5b448a38fb4ed2bb12d92",
+        "7844b330f850c1f51214fd81",
+        "7c8556676bff95947cacb2f0",
+        "857aed6aa857a2b54bfc641f",
+        "87cdaf33a39150cf26d705c5",
+        "918500bdb8100edd80ba7708",
+        "99c298fcd76ae07f97028a2b",
+        "a051716e633d6a1f2cce1483",
+        "a3ec94752407fbdc5d87c30e",
+        "a4bcd336ac93e5ce61fd40fb",
+        "b5a241f19411f3407bb9dc24",
+        "b6c8ceb996cb2f66ade958c6",
+        "c2dce52ccac01601855c3983",
+        "c54616a76177fa3375720d2a",
+        "c634b99ab6e9a55c452bc789",
+        "d12a54965a52d380515bb3a6",
+        "de4ea4bf92c441ce84fa8ee1",
+        "eaf0f7b275b4c1d827ff0ec6",
+        "f58f4fb98e9fca3304b2f383",
+        "f6543af0dfb889fc9e146433",
+        "ff002252346cff75636bac0b"
+      ],
+      "new_evidence_count": 28,
+      "new_path_count": 12
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+    "code": "2c5653fbf5bcf0977f0c30839fa25a6a30983172"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {
+    "REASON": {
+      "errors": [
+        {
+          "type": "string_pattern_mismatch",
+          "loc": [
+            "ready_to_edit",
+            "targets",
+            0,
+            "id"
+          ],
+          "msg": "String should match pattern '^[A-Za-z0-9_-]{1,40}$'"
+        }
+      ],
+      "instruction": "Return a complete corrected decision using only observed evidence."
+    }
+  },
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:832951cab33ae4f6": 0,
+    "discover:Q1-2:2e05f271ceb08b3a": 365,
+    "discover:Q1-3:84bbebf51b25992a": 0,
+    "discover:Q2-3:90cab9673b73e4b1": 0,
+    "discover:Q2-1:c71b8bff4c321f75": 0,
+    "discover:Q2-2:03142f8513cb1b89": 758
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:84bbebf51b25992a": 19122
+  },
+  "tool_metrics": {
+    "discover:Q1-1:832951cab33ae4f6": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 365,
+      "cache_hit": false
+    },
+    "discover:Q1-2:2e05f271ceb08b3a": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 264,
+      "cache_hit": false
+    },
+    "discover:Q1-3:84bbebf51b25992a": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 58361,
+      "cache_hit": false
+    },
+    "discover:Q1-1:23078376cb1d8731": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 301,
+      "cache_hit": false
+    },
+    "discover:Q1-3:eb62b987ecef5f2b": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 325,
+      "cache_hit": false
+    },
+    "discover:Q1-2:b1e3ba3f0b617fff": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 406,
+      "cache_hit": false
+    },
+    "discover:Q2-3:90cab9673b73e4b1": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 527,
+      "cache_hit": false
+    },
+    "discover:Q2-1:c71b8bff4c321f75": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 758,
+      "cache_hit": false
+    },
+    "discover:Q2-2:03142f8513cb1b89": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 193,
+      "cache_hit": false
+    },
+    "discover:Q2-2:7172ab4c61c04176": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 283,
+      "cache_hit": false
+    },
+    "discover:Q2-3:e1051d50c75bb8b0": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 328,
+      "cache_hit": false
+    },
+    "discover:Q2-1:d0d7ae338a4ce832": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 427,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:01fb5285e96cecd8bd973e8c",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-1.20.md",
+        "heading": "Release notes - Flink 1.20 > Runtime & Coordination > Add numFiredTimers and numFiredTimersPerSecond metrics > [FLINK-35065](https://issues.apache.org/jira/browse/FLINK-35065)",
+        "start_line": 117,
+        "end_line": 127,
+        "start_char": 5772,
+        "end_char": 6318,
+        "score": "0.03061594202898551",
+        "root": "docs",
+        "matched_terms": [
+          "timers"
+        ],
+        "evidence_id": "01fb5285e96cecd8bd973e8c",
+        "source_type": "repository",
+        "content_hash": "0e297f5444e608114414b8a65f01d19fc585cd8b0dc0a3ca29f511ab046dc199",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible timers",
+            "splittable timers",
+            "unaligned checkpoint timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0e297f5444e608114414b8a65f01d19fc585cd8b0dc0a3ca29f511ab046dc199",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c55aec00e5744b2f16aa740",
+        "type": "evidence",
+        "evidence_id": "0c55aec00e5744b2f16aa740",
+        "source_type": "task",
+        "exported_content_sha256": "a559f32825303257c399794b78ed29bfed35069c6acb3c86b8301554d072f941",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c9565ae98885b28a5716ed6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/release-notes/flink-1.20.md",
+        "start_line": 103,
+        "total_lines": 433,
+        "start_char": 5074,
+        "end_char": 12154,
+        "evidence_id": "0c9565ae98885b28a5716ed6",
+        "truncated": false,
+        "next_offset": 222,
+        "source_type": "repository",
+        "content_hash": "bd153529a4a51ab08f20fa4d9d2fe8331cd221a3c194374236ca882172dee393",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/release-notes/flink-1.20.md",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-1.20.md",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 947,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "bd153529a4a51ab08f20fa4d9d2fe8331cd221a3c194374236ca882172dee393",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:138c9a81672308116a668c90",
+        "type": "evidence",
+        "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/environment/CheckpointConfig.java",
+        "heading": "",
+        "start_line": 444,
+        "end_line": 490,
+        "start_char": 19460,
+        "end_char": 21148,
+        "score": "0.014492753623188406",
+        "root": "code",
+        "matched_terms": [
+          "isunalignedcheckpointinterruptibletimersenabled"
+        ],
+        "evidence_id": "138c9a81672308116a668c90",
+        "source_type": "repository",
+        "content_hash": "d15ab478d93b23326f9e0f6d6a0b812e074564545fbfad95fdc72a1dbb4c7d10",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "d15ab478d93b23326f9e0f6d6a0b812e074564545fbfad95fdc72a1dbb4c7d10",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:171dde826a4d2e61ac2ad5bc",
+        "type": "evidence",
+        "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/runtime/io/checkpointing/UnalignedCheckpointsInterruptibleTimersTest.java",
+        "heading": "",
+        "start_line": 74,
+        "end_line": 101,
+        "start_char": 3332,
+        "end_char": 4977,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "enable_unaligned_interruptible_timers"
+        ],
+        "evidence_id": "171dde826a4d2e61ac2ad5bc",
+        "source_type": "repository",
+        "content_hash": "1e2bf6b2710b22caeda39d3aa37af27eec579351ce4719db703bbeda2be6c1f2",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "ENABLE_UNALIGNED_INTERRUPTIBLE_TIMERS",
+            "useInterruptibleTimers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "1e2bf6b2710b22caeda39d3aa37af27eec579351ce4719db703bbeda2be6c1f2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1b44e3ecbcb7319b0fc54148",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "start_line": 948,
+        "total_lines": 1866,
+        "start_char": 37694,
+        "end_char": 42803,
+        "evidence_id": "1b44e3ecbcb7319b0fc54148",
+        "truncated": false,
+        "next_offset": 1067,
+        "source_type": "repository",
+        "content_hash": "19dcf53e5c59505b80e715f57df85a6dcc1cf64bc444322e80c0d32ccd94c359",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/deployment/config.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 947,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+              "offset": 311,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "19dcf53e5c59505b80e715f57df85a6dcc1cf64bc444322e80c0d32ccd94c359",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1d52b28c803d89d33c463e5a",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+        "heading": "Process Function > Timers",
+        "start_line": 308,
+        "end_line": 315,
+        "start_char": 11704,
+        "end_char": 12217,
+        "score": "0.03988080985447096",
+        "root": "docs",
+        "matched_terms": [
+          "execution",
+          "timers"
+        ],
+        "evidence_id": "1d52b28c803d89d33c463e5a",
+        "source_type": "repository",
+        "content_hash": "41ec215589a096e3e893a5faf9236ed84a3b3411fbc928cbf16270806e6dbbbe",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "41ec215589a096e3e893a5faf9236ed84a3b3411fbc928cbf16270806e6dbbbe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:22b8ddb976a1e54b7d949dd4",
+        "type": "evidence",
+        "path": "flink-core/src/main/java/org/apache/flink/configuration/CheckpointingOptions.java",
+        "heading": "",
+        "start_line": 706,
+        "end_line": 744,
+        "start_char": 45711,
+        "end_char": 47187,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "enable_unaligned_interruptible_timers"
+        ],
+        "evidence_id": "22b8ddb976a1e54b7d949dd4",
+        "source_type": "repository",
+        "content_hash": "8c631e1e5d924d29fab0977a42d8e7019520422a6a43a727045fcb3daeed9cef",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "ENABLE_UNALIGNED_INTERRUPTIBLE_TIMERS",
+            "useInterruptibleTimers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8c631e1e5d924d29fab0977a42d8e7019520422a6a43a727045fcb3daeed9cef",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:22cf609ff72c861376bdfe48",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "start_line": 948,
+        "total_lines": 1866,
+        "start_char": 37694,
+        "end_char": 42803,
+        "evidence_id": "22cf609ff72c861376bdfe48",
+        "truncated": false,
+        "next_offset": 1067,
+        "source_type": "repository",
+        "content_hash": "19dcf53e5c59505b80e715f57df85a6dcc1cf64bc444322e80c0d32ccd94c359",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/release-notes/flink-1.20.md",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-1.20.md",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 947,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "19dcf53e5c59505b80e715f57df85a6dcc1cf64bc444322e80c0d32ccd94c359",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:263db1a97104e25e013c0c45",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/event-time/generating_watermarks.md",
+        "heading": "Generating Watermarks > Writing WatermarkGenerators > Writing a Periodic WatermarkGenerator",
+        "start_line": 365,
+        "end_line": 398,
+        "start_char": 15756,
+        "end_char": 16775,
+        "score": "0.01762175184993977",
+        "root": "docs",
+        "matched_terms": [
+          "delay",
+          "watermark"
+        ],
+        "evidence_id": "263db1a97104e25e013c0c45",
+        "source_type": "repository",
+        "content_hash": "349a151b3761e5d89f07bcba1f5d4d9f09d7a690d4d024a26476d3bb6be7053d",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "349a151b3761e5d89f07bcba1f5d4d9f09d7a690d4d024a26476d3bb6be7053d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:29ef8392bb3aa41e3b6e52ad",
+        "type": "evidence",
+        "path": "flink-architecture-tests/flink-architecture-tests-production/src/main/java/org/apache/flink/architecture/rules/CheckpointingConfigurationAccessRules.java",
+        "heading": "",
+        "start_line": 168,
+        "end_line": 189,
+        "start_char": 8269,
+        "end_char": 10020,
+        "score": "0.014705882352941176",
+        "root": "code",
+        "matched_terms": [
+          "isunalignedcheckpointinterruptibletimersenabled"
+        ],
+        "evidence_id": "29ef8392bb3aa41e3b6e52ad",
+        "source_type": "repository",
+        "content_hash": "ff7404dcc9f7747b67b2d911527b6e7e2df332479471e35fcb38cde8b7896a52",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "ff7404dcc9f7747b67b2d911527b6e7e2df332479471e35fcb38cde8b7896a52",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:33fbd16e3114b61912511af8",
+        "type": "evidence",
+        "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractUdfStreamOperator.java",
+        "heading": "",
+        "start_line": 170,
+        "end_line": 194,
+        "start_char": 6499,
+        "end_char": 7319,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "useinterruptibletimers"
+        ],
+        "evidence_id": "33fbd16e3114b61912511af8",
+        "source_type": "repository",
+        "content_hash": "2d39e40522e9bfa2efe25d6ae4f7286b4eee8e1c76363ad6e1a4e550e4c9ecca",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "2d39e40522e9bfa2efe25d6ae4f7286b4eee8e1c76363ad6e1a4e550e4c9ecca",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3a827d12857c8533bdaf903e",
+        "type": "evidence",
+        "path": "flink-libraries/flink-cep/src/main/java/org/apache/flink/cep/operator/CepOperator.java",
+        "heading": "",
+        "start_line": 148,
+        "end_line": 193,
+        "start_char": 6502,
+        "end_char": 8191,
+        "score": "0.014705882352941176",
+        "root": "code",
+        "matched_terms": [
+          "useinterruptibletimers"
+        ],
+        "evidence_id": "3a827d12857c8533bdaf903e",
+        "source_type": "repository",
+        "content_hash": "bd92436cb3f875febe8447fb6945c726bfdb85018236a931b2d97c66974ee4ee",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "bd92436cb3f875febe8447fb6945c726bfdb85018236a931b2d97c66974ee4ee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4024ac27b629b27736864b94",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/_index.md",
+        "start_line": 77,
+        "total_lines": 110,
+        "start_char": 2963,
+        "end_char": 4538,
+        "evidence_id": "4024ac27b629b27736864b94",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5dbf2fbb692016d228d3f9e94164ab210181645e784745aeb9203887376af1ba",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/_index.md",
+              "offset": 76,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/_index.md",
+              "offset": 76,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.0.md",
+              "offset": 18,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "5dbf2fbb692016d228d3f9e94164ab210181645e784745aeb9203887376af1ba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:42857d08a3cbfc729b2ea229",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "heading": "Time and Timers > Timers",
+        "start_line": 952,
+        "end_line": 987,
+        "start_char": 37840,
+        "end_char": 39453,
+        "score": "0.042774321266968326",
+        "root": "docs",
+        "matched_terms": [
+          "timers"
+        ],
+        "evidence_id": "42857d08a3cbfc729b2ea229",
+        "source_type": "repository",
+        "content_hash": "19cf6b5e6e62567dc44dedb4c49d3fbcca2a3a135515d9cab12f8cdd23801810",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "19cf6b5e6e62567dc44dedb4c49d3fbcca2a3a135515d9cab12f8cdd23801810",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:445663f1a3aff864b8103f99",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+        "start_line": 1,
+        "total_lines": 491,
+        "start_char": 0,
+        "end_char": 5418,
+        "evidence_id": "445663f1a3aff864b8103f99",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "2e7e82f97728e79e53d3f21c4aa8e7611c6015fc16fa94ed58d5c473b5122a8c",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperator.java",
+              "offset": 364,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "2e7e82f97728e79e53d3f21c4aa8e7611c6015fc16fa94ed58d5c473b5122a8c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:46b405f9e6baa1accbb2744c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/release-notes/flink-2.0.md",
+        "start_line": 19,
+        "total_lines": 1665,
+        "start_char": 728,
+        "end_char": 11174,
+        "evidence_id": "46b405f9e6baa1accbb2744c",
+        "truncated": false,
+        "next_offset": 138,
+        "source_type": "repository",
+        "content_hash": "02da6d95b70a437b9a7725b7e94aa9547ef19d841e735f88e50606d5a8fa01a5",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/_index.md",
+              "offset": 76,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/_index.md",
+              "offset": 76,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.0.md",
+              "offset": 18,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "02da6d95b70a437b9a7725b7e94aa9547ef19d841e735f88e50606d5a8fa01a5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:49d8cb6168f20a20bec122ee",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/release-notes/flink-1.20.md",
+        "start_line": 103,
+        "total_lines": 433,
+        "start_char": 5074,
+        "end_char": 12154,
+        "evidence_id": "49d8cb6168f20a20bec122ee",
+        "truncated": false,
+        "next_offset": 222,
+        "source_type": "repository",
+        "content_hash": "bd153529a4a51ab08f20fa4d9d2fe8331cd221a3c194374236ca882172dee393",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/release-notes/flink-1.20.md",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-1.20.md",
+              "offset": 102,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 947,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "bd153529a4a51ab08f20fa4d9d2fe8331cd221a3c194374236ca882172dee393",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4d0bfc0b5fc1c048818d7876",
+        "type": "evidence",
+        "path": "flink-core/src/main/java/org/apache/flink/configuration/CheckpointingOptions.java",
+        "heading": "",
+        "start_line": 588,
+        "end_line": 615,
+        "start_char": 39109,
+        "end_char": 40756,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "enable_unaligned_interruptible_timers"
+        ],
+        "evidence_id": "4d0bfc0b5fc1c048818d7876",
+        "source_type": "repository",
+        "content_hash": "40ae6dee28de6ab8bf2f5d2d33a756c780e17c56c311424d544dd627d8b25cdd",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "ENABLE_UNALIGNED_INTERRUPTIBLE_TIMERS",
+            "useInterruptibleTimers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "40ae6dee28de6ab8bf2f5d2d33a756c780e17c56c311424d544dd627d8b25cdd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4edaa2a331a8556fa4f5ff76",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-1.18.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.024749709484222757",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4edaa2a331a8556fa4f5ff76",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:517cdd021bc15e9c256538d2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/concepts/time.md",
+        "start_line": 165,
+        "total_lines": 204,
+        "start_char": 8174,
+        "end_char": 10415,
+        "evidence_id": "517cdd021bc15e9c256538d2",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "482cd3f8e9831e7f51c80bdf2940d9826be79b24c858fb9870d532e6f76e85e2",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "offset": 333,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "offset": 333,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/concepts/time.md",
+              "offset": 164,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "482cd3f8e9831e7f51c80bdf2940d9826be79b24c858fb9870d532e6f76e85e2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:51f973e679d38178ce80248a",
+        "type": "evidence",
+        "path": "docs/content/docs/try-flink/datastream.md",
+        "heading": "Fraud Detection with the DataStream API > Fraud Detector v2: State + Time = &#10084;&#65039;",
+        "start_line": 430,
+        "end_line": 479,
+        "start_char": 19343,
+        "end_char": 20950,
+        "score": "0.018350389785377435",
+        "root": "docs",
+        "matched_terms": [
+          "timer"
+        ],
+        "evidence_id": "51f973e679d38178ce80248a",
+        "source_type": "repository",
+        "content_hash": "1750ff04097e7093ce59d820e66d9a7893f56d88f9dede9ab2b1312e4e8b57ef",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1750ff04097e7093ce59d820e66d9a7893f56d88f9dede9ab2b1312e4e8b57ef",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a5e3ce7c587cc15dd980d9f",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/sql/create.md",
+        "heading": "CREATE Statements > CREATE TABLE > `WATERMARK`",
+        "start_line": 371,
+        "end_line": 394,
+        "start_char": 14722,
+        "end_char": 15762,
+        "score": "0.01807834999685594",
+        "root": "docs",
+        "matched_terms": [
+          "delay",
+          "interval",
+          "watermark"
+        ],
+        "evidence_id": "5a5e3ce7c587cc15dd980d9f",
+        "source_type": "repository",
+        "content_hash": "fc13b603b1c59955c407b1cec9211bd5f3ff2dcdbf61210bb1ec3ed18a3186da",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fc13b603b1c59955c407b1cec9211bd5f3ff2dcdbf61210bb1ec3ed18a3186da",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:686f2b53c33d4cab6bc274a9",
+        "type": "evidence",
+        "path": "docs/content/docs/learn-flink/streaming_analytics.md",
+        "heading": "Streaming Analytics > Event Time and Watermarks > Watermarks",
+        "start_line": 86,
+        "end_line": 103,
+        "start_char": 3892,
+        "end_char": 4910,
+        "score": "0.01768710368375289",
+        "root": "docs",
+        "matched_terms": [
+          "delay",
+          "watermark"
+        ],
+        "evidence_id": "686f2b53c33d4cab6bc274a9",
+        "source_type": "repository",
+        "content_hash": "9c6e5da1fa1805db87ca75411e4f2b7c130f5ec81181fdd3090255ea0543bb9a",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9c6e5da1fa1805db87ca75411e4f2b7c130f5ec81181fdd3090255ea0543bb9a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:69a5b448a38fb4ed2bb12d92",
+        "type": "evidence",
+        "path": "docs/content/_index.md",
+        "heading": "Apache Flink Documentation > Upgrade Flink",
+        "start_line": 81,
+        "end_line": 110,
+        "start_char": 3216,
+        "end_char": 4538,
+        "score": "0.03896103896103896",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "2",
+          "flink",
+          "notes",
+          "release"
+        ],
+        "evidence_id": "69a5b448a38fb4ed2bb12d92",
+        "source_type": "repository",
+        "content_hash": "927110d7edc9e17aa8f181032284c909737cc4d2e5f80fe3bbd2343f20a3a3d3",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "927110d7edc9e17aa8f181032284c909737cc4d2e5f80fe3bbd2343f20a3a3d3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6bdaa0e16f2087ad959ebd87",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-1.20.md",
+        "heading": "Release notes - Flink 1.20 > Runtime & Coordination > More fine-grained timer processing > [FLINK-20217](https://issues.apache.org/jira/browse/FLINK-20217)",
+        "start_line": 107,
+        "end_line": 114,
+        "start_char": 5262,
+        "end_char": 5711,
+        "score": "0.04891591750396616",
+        "root": "docs",
+        "matched_terms": [
+          "checkpointing",
+          "enabled",
+          "execution",
+          "interruptible",
+          "supported",
+          "timers",
+          "unaligned"
+        ],
+        "evidence_id": "6bdaa0e16f2087ad959ebd87",
+        "source_type": "repository",
+        "content_hash": "cab05760a880026a16eeb379a1611c30e3f682ca20b79394df5e72ed303a495c",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "cab05760a880026a16eeb379a1611c30e3f682ca20b79394df5e72ed303a495c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:72436a9fd996e0d628d7d1db",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+        "heading": "Event Timer Service > Handle Event-Time related Watermarks > Handle Event-Time related Watermarks by Custom ProcessFunction",
+        "start_line": 338,
+        "end_line": 376,
+        "start_char": 15554,
+        "end_char": 17160,
+        "score": "0.021077514035260515",
+        "root": "docs",
+        "matched_terms": [
+          "watermark"
+        ],
+        "evidence_id": "72436a9fd996e0d628d7d1db",
+        "source_type": "repository",
+        "content_hash": "32b5f04c8ccaf532853714105a50f654b31b2f5b04e60885bb4ea2222e059b15",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "32b5f04c8ccaf532853714105a50f654b31b2f5b04e60885bb4ea2222e059b15",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7844b330f850c1f51214fd81",
+        "type": "evidence",
+        "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+        "heading": "",
+        "start_line": 34,
+        "end_line": 71,
+        "start_char": 1631,
+        "end_char": 3256,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "timeintervaljoin"
+        ],
+        "evidence_id": "7844b330f850c1f51214fd81",
+        "source_type": "repository",
+        "content_hash": "62ea280ab549b5015c5f8e6e5ea20c35fd09de2e0f21ba08dcd9f85a4a959837",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "62ea280ab549b5015c5f8e6e5ea20c35fd09de2e0f21ba08dcd9f85a4a959837",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78a2171efea7fd6691a9bf4b",
+        "type": "evidence",
+        "path": "docs/content/docs/ops/state/state_backends.md",
+        "heading": "State Backends > RocksDB State Backend Details > Timers (Heap vs. RocksDB)",
+        "start_line": 277,
+        "end_line": 292,
+        "start_char": 18524,
+        "end_char": 19838,
+        "score": "0.0338658255324922",
+        "root": "docs",
+        "matched_terms": [
+          "checkpointing",
+          "operators",
+          "timers"
+        ],
+        "evidence_id": "78a2171efea7fd6691a9bf4b",
+        "source_type": "repository",
+        "content_hash": "5b44d494f53f1845a447c07e954567757a79e2d19d570682e07d1fb70a3c974f",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "5b44d494f53f1845a447c07e954567757a79e2d19d570682e07d1fb70a3c974f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7c8556676bff95947cacb2f0",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-2.0.md",
+        "heading": "Release notes - Flink 2.0",
+        "start_line": 23,
+        "end_line": 28,
+        "start_char": 808,
+        "end_char": 1074,
+        "score": "0.029604289940828404",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "2",
+          "flink",
+          "notes",
+          "release"
+        ],
+        "evidence_id": "7c8556676bff95947cacb2f0",
+        "source_type": "repository",
+        "content_hash": "06171eab5623bbdb82ba6497d9bf7254e24d83585b3b04a756e70c8afd8192f2",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "06171eab5623bbdb82ba6497d9bf7254e24d83585b3b04a756e70c8afd8192f2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f93677c4dd850ed2b2fb4d6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+        "start_line": 334,
+        "total_lines": 429,
+        "start_char": 15527,
+        "end_char": 19123,
+        "evidence_id": "7f93677c4dd850ed2b2fb4d6",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "314b21443c22f3e7f12d23ab533364893c97682cf537113e0ff45f03c95459c4",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "offset": 333,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "offset": 333,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/concepts/time.md",
+              "offset": 164,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "314b21443c22f3e7f12d23ab533364893c97682cf537113e0ff45f03c95459c4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:838d9b7f2f82f59eecfcd8b8",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+        "heading": "Event Timer Service > Handle Event-Time related Watermarks > Handle Event-Time related Watermarks by Custom ProcessFunction",
+        "start_line": 338,
+        "end_line": 376,
+        "start_char": 15554,
+        "end_char": 17160,
+        "score": "0.021462639109697933",
+        "root": "docs",
+        "matched_terms": [
+          "watermark"
+        ],
+        "evidence_id": "838d9b7f2f82f59eecfcd8b8",
+        "source_type": "repository",
+        "content_hash": "32b5f04c8ccaf532853714105a50f654b31b2f5b04e60885bb4ea2222e059b15",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "32b5f04c8ccaf532853714105a50f654b31b2f5b04e60885bb4ea2222e059b15",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:857aed6aa857a2b54bfc641f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/deployment/config.md",
+        "start_line": 1,
+        "total_lines": 634,
+        "start_char": 0,
+        "end_char": 6680,
+        "evidence_id": "857aed6aa857a2b54bfc641f",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "fa2d0481573626bb7e8ec96b1a07a762734d5de9fe911f162831bfa223af9b1b",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/deployment/config.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 947,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+              "offset": 311,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "fa2d0481573626bb7e8ec96b1a07a762734d5de9fe911f162831bfa223af9b1b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:87cdaf33a39150cf26d705c5",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-2.0.md",
+        "heading": "Release notes - Flink 2.0",
+        "start_line": 23,
+        "end_line": 28,
+        "start_char": 808,
+        "end_char": 1074,
+        "score": "0.028374318091997017",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "2",
+          "flink",
+          "notes",
+          "release"
+        ],
+        "evidence_id": "87cdaf33a39150cf26d705c5",
+        "source_type": "repository",
+        "content_hash": "06171eab5623bbdb82ba6497d9bf7254e24d83585b3b04a756e70c8afd8192f2",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "06171eab5623bbdb82ba6497d9bf7254e24d83585b3b04a756e70c8afd8192f2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:918500bdb8100edd80ba7708",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-2.1.md",
+        "heading": "Release notes - Flink 2.1",
+        "start_line": 24,
+        "end_line": 29,
+        "start_char": 809,
+        "end_char": 1073,
+        "score": "0.025353952517312584",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "2",
+          "flink",
+          "notes",
+          "release"
+        ],
+        "evidence_id": "918500bdb8100edd80ba7708",
+        "source_type": "repository",
+        "content_hash": "d968bdd6f01d15545288384bfdb38ef9c30058ca5052a8fbde8ff71643e1c4bb",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d968bdd6f01d15545288384bfdb38ef9c30058ca5052a8fbde8ff71643e1c4bb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:99c298fcd76ae07f97028a2b",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-2.0.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.026870921264513944",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "99c298fcd76ae07f97028a2b",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9ace10a0c9c25772ae4ce36e",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/connectors/table/overview.md",
+        "heading": "Schema Mapping > Time Attributes > Rowtime Attributes",
+        "start_line": 358,
+        "end_line": 377,
+        "start_char": 14156,
+        "end_char": 14748,
+        "score": "0.01716723187403741",
+        "root": "docs",
+        "matched_terms": [
+          "delay",
+          "interval",
+          "watermark"
+        ],
+        "evidence_id": "9ace10a0c9c25772ae4ce36e",
+        "source_type": "repository",
+        "content_hash": "8ec08ffadddffbdcf188b3c7376f91fde93d851484ccf054f894d75d37b48edd",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8ec08ffadddffbdcf188b3c7376f91fde93d851484ccf054f894d75d37b48edd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9cf0011cc6d19cfff2ff0ac1",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "heading": "Time and Timers > Efficiency and Design Principles",
+        "start_line": 1009,
+        "end_line": 1017,
+        "start_char": 40051,
+        "end_char": 40474,
+        "score": "0.036932505075235135",
+        "root": "docs",
+        "matched_terms": [
+          "timers"
+        ],
+        "evidence_id": "9cf0011cc6d19cfff2ff0ac1",
+        "source_type": "repository",
+        "content_hash": "408d82d816ef0c81aa7ec1a6f465459a48868e6239fcc638175af5041985a7a7",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible timers",
+            "splittable timers",
+            "unaligned checkpoint timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "408d82d816ef0c81aa7ec1a6f465459a48868e6239fcc638175af5041985a7a7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9ec98271c0534eeccfd06f1a",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "heading": "Time and Timers > Efficiency and Design Principles",
+        "start_line": 1009,
+        "end_line": 1017,
+        "start_char": 40051,
+        "end_char": 40474,
+        "score": "0.03708763910969794",
+        "root": "docs",
+        "matched_terms": [
+          "timers"
+        ],
+        "evidence_id": "9ec98271c0534eeccfd06f1a",
+        "source_type": "repository",
+        "content_hash": "408d82d816ef0c81aa7ec1a6f465459a48868e6239fcc638175af5041985a7a7",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible timers",
+            "splittable timers",
+            "unaligned checkpoint timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "408d82d816ef0c81aa7ec1a6f465459a48868e6239fcc638175af5041985a7a7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a051716e633d6a1f2cce1483",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-2.0.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.02781037384728445",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a051716e633d6a1f2cce1483",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a252a2b1b4930ec62a959b88",
+        "type": "evidence",
+        "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+        "heading": "",
+        "start_line": 477,
+        "end_line": 491,
+        "start_char": 22880,
+        "end_char": 23266,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "useinterruptibletimers"
+        ],
+        "evidence_id": "a252a2b1b4930ec62a959b88",
+        "source_type": "repository",
+        "content_hash": "6578853d6b060add5f7c57489bd7d05a2435bcab6ce56db7f0e2036e4296aaf6",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "6578853d6b060add5f7c57489bd7d05a2435bcab6ce56db7f0e2036e4296aaf6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a2868e34df77470431f30e6c",
+        "type": "evidence",
+        "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/environment/CheckpointConfig.java",
+        "heading": "",
+        "start_line": 603,
+        "end_line": 630,
+        "start_char": 26009,
+        "end_char": 27676,
+        "score": "0.014925373134328358",
+        "root": "code",
+        "matched_terms": [
+          "enable_unaligned_interruptible_timers"
+        ],
+        "evidence_id": "a2868e34df77470431f30e6c",
+        "source_type": "repository",
+        "content_hash": "2941d264c276a10422fd0efe93c6061f09829c49e04a9f86c1121411ad6ee8af",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "ENABLE_UNALIGNED_INTERRUPTIBLE_TIMERS",
+            "useInterruptibleTimers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2941d264c276a10422fd0efe93c6061f09829c49e04a9f86c1121411ad6ee8af",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a3ec94752407fbdc5d87c30e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/_index.md",
+        "start_line": 77,
+        "total_lines": 109,
+        "start_char": 2337,
+        "end_char": 3697,
+        "evidence_id": "a3ec94752407fbdc5d87c30e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "14cb684c9b058dd2e6f0e557c50a64b887f286bf810a8561ff01de88cf681adb",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/_index.md",
+              "offset": 76,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/_index.md",
+              "offset": 76,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.0.md",
+              "offset": 18,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "14cb684c9b058dd2e6f0e557c50a64b887f286bf810a8561ff01de88cf681adb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a45e61c2246dbfd15bdab040",
+        "type": "evidence",
+        "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+        "heading": "",
+        "start_line": 266,
+        "end_line": 291,
+        "start_char": 14795,
+        "end_char": 16398,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "isunalignedcheckpointinterruptibletimersenabled"
+        ],
+        "evidence_id": "a45e61c2246dbfd15bdab040",
+        "source_type": "repository",
+        "content_hash": "98a3799d359991f8d6451cb80a83283ee282ab3c14f9e6fbc7847571deab8e9a",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "98a3799d359991f8d6451cb80a83283ee282ab3c14f9e6fbc7847571deab8e9a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a4bcd336ac93e5ce61fd40fb",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperator.java",
+        "start_line": 365,
+        "total_lines": 858,
+        "start_char": 16114,
+        "end_char": 20233,
+        "evidence_id": "a4bcd336ac93e5ce61fd40fb",
+        "truncated": false,
+        "next_offset": 484,
+        "source_type": "repository",
+        "content_hash": "253c1737271ea0a8acacd8b6305c9b595a455af5a11428b005e732c8472b9e8e",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/interval/TimeIntervalJoin.java",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperator.java",
+              "offset": 364,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "253c1737271ea0a8acacd8b6305c9b595a455af5a11428b005e732c8472b9e8e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a8b0a205f4910b3129e43115",
+        "type": "evidence",
+        "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/sort/BaseTemporalSortOperator.java",
+        "heading": "",
+        "start_line": 34,
+        "end_line": 53,
+        "start_char": 1612,
+        "end_char": 2304,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "useinterruptibletimers"
+        ],
+        "evidence_id": "a8b0a205f4910b3129e43115",
+        "source_type": "repository",
+        "content_hash": "5e0cdeb1037e40690e34b2e59b2be0ee9e47d21bef2fcb166d055e66c391091d",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5e0cdeb1037e40690e34b2e59b2be0ee9e47d21bef2fcb166d055e66c391091d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aa18f084f14c1ae12e4cfc03",
+        "type": "evidence",
+        "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperator.java",
+        "heading": "",
+        "start_line": 369,
+        "end_line": 415,
+        "start_char": 16372,
+        "end_char": 18012,
+        "score": "0.031746031746031744",
+        "root": "code",
+        "matched_terms": [
+          "isunalignedcheckpointinterruptibletimersenabled",
+          "useinterruptibletimers"
+        ],
+        "evidence_id": "aa18f084f14c1ae12e4cfc03",
+        "source_type": "repository",
+        "content_hash": "c66d2685ba76a5977b6a2db5a1dc10c968fdd74efbf1c4ed8cb1ae17c9020505",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "c66d2685ba76a5977b6a2db5a1dc10c968fdd74efbf1c4ed8cb1ae17c9020505",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b5a241f19411f3407bb9dc24",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "heading": "Time and Timers > Timers",
+        "start_line": 988,
+        "end_line": 1008,
+        "start_char": 39453,
+        "end_char": 40051,
+        "score": "0.032167079692187295",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b5a241f19411f3407bb9dc24",
+        "source_type": "repository",
+        "content_hash": "14a4b1660f8c11403f44eb3f8390127cd2748b2ca34c8b12fa9406b36034bf66",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "14a4b1660f8c11403f44eb3f8390127cd2748b2ca34c8b12fa9406b36034bf66",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b6c8ceb996cb2f66ade958c6",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-1.10.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.025282154876347714",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b6c8ceb996cb2f66ade958c6",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bb3aecfc5ebf2fac08f2ca44",
+        "type": "evidence",
+        "path": "flink-python/docs/reference/pyflink.datastream/timer.rst",
+        "heading": "Timer",
+        "start_line": 21,
+        "end_line": 23,
+        "start_char": 996,
+        "end_char": 1009,
+        "score": "0.017182773037832694",
+        "root": "docs",
+        "matched_terms": [
+          "timer"
+        ],
+        "evidence_id": "bb3aecfc5ebf2fac08f2ca44",
+        "source_type": "repository",
+        "content_hash": "11fcd91a3be4bf2f509b6aae4849fbd89e9ab9b85954bd9986708cffefd21c99",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "11fcd91a3be4bf2f509b6aae4849fbd89e9ab9b85954bd9986708cffefd21c99",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bf0d13a61bb74d4ffeda0fb9",
+        "type": "evidence",
+        "evidence_id": "bf0d13a61bb74d4ffeda0fb9",
+        "source_type": "implementation",
+        "exported_content_sha256": "a68cd0830d1362bdd785f1549a6b5dcd0f4e73c6f3e0f0e1e6e3140fdc6da92a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c2dce52ccac01601855c3983",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+        "start_line": 312,
+        "total_lines": 412,
+        "start_char": 11846,
+        "end_char": 15519,
+        "evidence_id": "c2dce52ccac01601855c3983",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3e1e635a766536fdab127206b227b813542a414b95477cdb1e5dbef741d09075",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/deployment/config.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 947,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+              "offset": 311,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "3e1e635a766536fdab127206b227b813542a414b95477cdb1e5dbef741d09075",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c54616a76177fa3375720d2a",
+        "type": "evidence",
+        "path": "docs/content.zh/_index.md",
+        "heading": "Apache Flink 文档 > 升级 Flink",
+        "start_line": 81,
+        "end_line": 109,
+        "start_char": 2482,
+        "end_char": 3697,
+        "score": "0.03234582357533178",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "2",
+          "flink",
+          "notes",
+          "release"
+        ],
+        "evidence_id": "c54616a76177fa3375720d2a",
+        "source_type": "repository",
+        "content_hash": "0f6be14acee3e5d390369660c2279f5f9201c4db8bac877a33f816b5e25b5cf7",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0f6be14acee3e5d390369660c2279f5f9201c4db8bac877a33f816b5e25b5cf7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c634b99ab6e9a55c452bc789",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-2.1.md",
+        "heading": "Release notes - Flink 2.1",
+        "start_line": 24,
+        "end_line": 29,
+        "start_char": 809,
+        "end_char": 1073,
+        "score": "0.025120321929281104",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "2",
+          "flink",
+          "notes",
+          "release"
+        ],
+        "evidence_id": "c634b99ab6e9a55c452bc789",
+        "source_type": "repository",
+        "content_hash": "d968bdd6f01d15545288384bfdb38ef9c30058ca5052a8fbde8ff71643e1c4bb",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d968bdd6f01d15545288384bfdb38ef9c30058ca5052a8fbde8ff71643e1c4bb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d12a54965a52d380515bb3a6",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/datastream/operators/process_function.md",
+        "heading": "Process Function > Timers",
+        "start_line": 298,
+        "end_line": 305,
+        "start_char": 8866,
+        "end_char": 9091,
+        "score": "0.032610835498858175",
+        "root": "docs",
+        "matched_terms": [
+          "timers"
+        ],
+        "evidence_id": "d12a54965a52d380515bb3a6",
+        "source_type": "repository",
+        "content_hash": "7910e340d0fe3ee7491807a7b872533fd4363f5c61efdcccdb09d24ce5af82b6",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "7910e340d0fe3ee7491807a7b872533fd4363f5c61efdcccdb09d24ce5af82b6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d34704636b0cd180e6611a88",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-1.20.md",
+        "heading": "Release notes - Flink 1.20 > Runtime & Coordination > More fine-grained timer processing > [FLINK-20217](https://issues.apache.org/jira/browse/FLINK-20217)",
+        "start_line": 107,
+        "end_line": 114,
+        "start_char": 5262,
+        "end_char": 5711,
+        "score": "0.048651507139079855",
+        "root": "docs",
+        "matched_terms": [
+          "checkpointing",
+          "enabled",
+          "execution",
+          "interruptible",
+          "supported",
+          "timers",
+          "unaligned"
+        ],
+        "evidence_id": "d34704636b0cd180e6611a88",
+        "source_type": "repository",
+        "content_hash": "cab05760a880026a16eeb379a1611c30e3f682ca20b79394df5e72ed303a495c",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "cab05760a880026a16eeb379a1611c30e3f682ca20b79394df5e72ed303a495c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:da3877d732f32dc09c64278d",
+        "type": "evidence",
+        "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractStreamOperatorV2.java",
+        "heading": "",
+        "start_line": 242,
+        "end_line": 280,
+        "start_char": 11483,
+        "end_char": 13094,
+        "score": "0.03125",
+        "root": "code",
+        "matched_terms": [
+          "isunalignedcheckpointinterruptibletimersenabled",
+          "useinterruptibletimers"
+        ],
+        "evidence_id": "da3877d732f32dc09c64278d",
+        "source_type": "repository",
+        "content_hash": "8c3c9d78a47128f75c63fc44e7ac2ca6b54562c49f776bd617d7a69198d84f14",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "8c3c9d78a47128f75c63fc44e7ac2ca6b54562c49f776bd617d7a69198d84f14",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dc44d87bc8385996bed256b0",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+        "start_line": 288,
+        "total_lines": 331,
+        "start_char": 16228,
+        "end_char": 18712,
+        "evidence_id": "dc44d87bc8385996bed256b0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "a3d9179ce70d1b9822b4d5cb387ff8e5eef4adef4bc4fa2b72e0a6425c330c4f",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+              "offset": 287,
+              "limit": 120
+            },
+            {
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractUdfStreamOperator.java",
+              "offset": 165,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a3d9179ce70d1b9822b4d5cb387ff8e5eef4adef4bc4fa2b72e0a6425c330c4f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:de4ea4bf92c441ce84fa8ee1",
+        "type": "evidence",
+        "path": "flink-architecture-tests/flink-architecture-tests-production/src/main/java/org/apache/flink/architecture/rules/CheckpointingConfigurationAccessRules.java",
+        "heading": "",
+        "start_line": 77,
+        "end_line": 109,
+        "start_char": 3302,
+        "end_char": 4995,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "isunalignedcheckpointinterruptibletimersenabled"
+        ],
+        "evidence_id": "de4ea4bf92c441ce84fa8ee1",
+        "source_type": "repository",
+        "content_hash": "72267e896ada6dee62dcff74bba1b08dc60f2fe60f8080954d1f898364e17695",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "72267e896ada6dee62dcff74bba1b08dc60f2fe60f8080954d1f898364e17695",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e1ed409b7252a85ab60bb561",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/operators/process_function.md",
+        "heading": "Process Function > Timers > Fault Tolerance",
+        "start_line": 316,
+        "end_line": 330,
+        "start_char": 12217,
+        "end_char": 13103,
+        "score": "0.04382350203245726",
+        "root": "docs",
+        "matched_terms": [
+          "checkpointing",
+          "timers"
+        ],
+        "evidence_id": "e1ed409b7252a85ab60bb561",
+        "source_type": "repository",
+        "content_hash": "f43e3b0dc49b11fa257bef8e64fa636f5b8c3a2b73d5314446d74548686e2806",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "f43e3b0dc49b11fa257bef8e64fa636f5b8c3a2b73d5314446d74548686e2806",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e8987709dba031001749a09e",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "heading": "Time and Timers > Time > Current Watermark",
+        "start_line": 935,
+        "end_line": 951,
+        "start_char": 36971,
+        "end_char": 37840,
+        "score": "0.016959064327485382",
+        "root": "docs",
+        "matched_terms": [
+          "timer",
+          "watermark"
+        ],
+        "evidence_id": "e8987709dba031001749a09e",
+        "source_type": "repository",
+        "content_hash": "52b74724e0c2212e3a6fa6aad8a94bf279467deebf66cc2a0368045aef1fb76e",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "52b74724e0c2212e3a6fa6aad8a94bf279467deebf66cc2a0368045aef1fb76e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eaf0f7b275b4c1d827ff0ec6",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "heading": "Time and Timers > Timers",
+        "start_line": 988,
+        "end_line": 1008,
+        "start_char": 39453,
+        "end_char": 40051,
+        "score": "0.0332646895070457",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "eaf0f7b275b4c1d827ff0ec6",
+        "source_type": "repository",
+        "content_hash": "14a4b1660f8c11403f44eb3f8390127cd2748b2ca34c8b12fa9406b36034bf66",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "14a4b1660f8c11403f44eb3f8390127cd2748b2ca34c8b12fa9406b36034bf66",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ede51b8c2f3fe495f129e3b5",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractUdfStreamOperator.java",
+        "start_line": 166,
+        "total_lines": 194,
+        "start_char": 6321,
+        "end_char": 7319,
+        "evidence_id": "ede51b8c2f3fe495f129e3b5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "050337b28cd83eaca4542c24b22b81be4eed96765b427cafcb75703c13b69ec2",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+              "offset": 287,
+              "limit": 120
+            },
+            {
+              "path": "flink-runtime/src/main/java/org/apache/flink/streaming/api/operators/AbstractUdfStreamOperator.java",
+              "offset": 165,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "050337b28cd83eaca4542c24b22b81be4eed96765b427cafcb75703c13b69ec2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee2dc9a022c344a286c73a87",
+        "type": "evidence",
+        "path": "docs/content/docs/ops/state/large_state_tuning.md",
+        "heading": "Tuning Checkpoints and Large State > Tuning RocksDB or ForSt > Timers in RocksDB or on JVM Heap",
+        "start_line": 128,
+        "end_line": 136,
+        "start_char": 7406,
+        "end_char": 7961,
+        "score": "0.0357446937906708",
+        "root": "docs",
+        "matched_terms": [
+          "checkpointing",
+          "timers"
+        ],
+        "evidence_id": "ee2dc9a022c344a286c73a87",
+        "source_type": "repository",
+        "content_hash": "5e5c1bde8653539ca5ff2182f67f35464735380fef0b6a8d4b97b7ed80add5fa",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "5e5c1bde8653539ca5ff2182f67f35464735380fef0b6a8d4b97b7ed80add5fa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f3225ca79eef609a05096dc9",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+        "start_line": 334,
+        "total_lines": 429,
+        "start_char": 15527,
+        "end_char": 19123,
+        "evidence_id": "f3225ca79eef609a05096dc9",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "314b21443c22f3e7f12d23ab533364893c97682cf537113e0ff45f03c95459c4",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "offset": 333,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream-v2/time-processing/event_timer_service.md",
+              "offset": 333,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/concepts/time.md",
+              "offset": 164,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "314b21443c22f3e7f12d23ab533364893c97682cf537113e0ff45f03c95459c4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f58f4fb98e9fca3304b2f383",
+        "type": "evidence",
+        "path": "docs/content/docs/internals/task_lifecycle.md",
+        "heading": "Task Lifecycle > Task Lifecycle > Normal Execution",
+        "start_line": 162,
+        "end_line": 182,
+        "start_char": 9597,
+        "end_char": 11251,
+        "score": "0.040568137824235385",
+        "root": "docs",
+        "matched_terms": [
+          "checkpointing",
+          "enabled",
+          "execution",
+          "operators",
+          "timers"
+        ],
+        "evidence_id": "f58f4fb98e9fca3304b2f383",
+        "source_type": "repository",
+        "content_hash": "6d74aa9776d98cc4dd937c54ad0e8903631e86a31ee7f438a6ff09ae965b8538",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "6d74aa9776d98cc4dd937c54ad0e8903631e86a31ee7f438a6ff09ae965b8538",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f63057b1e54ee82beb32eb4d",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/concepts/time.md",
+        "heading": "及时流处理 > Lateness",
+        "start_line": 169,
+        "end_line": 185,
+        "start_char": 8380,
+        "end_char": 9372,
+        "score": "0.018903688524590165",
+        "root": "docs",
+        "matched_terms": [
+          "delay",
+          "watermark"
+        ],
+        "evidence_id": "f63057b1e54ee82beb32eb4d",
+        "source_type": "repository",
+        "content_hash": "b8da97819a2f2abdb3d15bc10720b48a3c5582cc9c6b235c8a3c6d0824723dfb",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interval join",
+            "watermark delay",
+            "timer"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b8da97819a2f2abdb3d15bc10720b48a3c5582cc9c6b235c8a3c6d0824723dfb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f6543af0dfb889fc9e146433",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-1.20.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.02649070338943757",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "f6543af0dfb889fc9e146433",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f8e2b50620fda71fc70dad84",
+        "type": "evidence",
+        "path": "flink-core/src/test/java/org/apache/flink/configuration/CheckpointingOptionsTest.java",
+        "heading": "",
+        "start_line": 292,
+        "end_line": 318,
+        "start_char": 16398,
+        "end_char": 18018,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "isunalignedcheckpointinterruptibletimersenabled"
+        ],
+        "evidence_id": "f8e2b50620fda71fc70dad84",
+        "source_type": "repository",
+        "content_hash": "82c50aeb445c3c927a0f1d4af4032295b33809ae61b70068ffe20ebf2e195718",
+        "revision": "2c5653fbf5bcf0977f0c30839fa25a6a30983172",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "useInterruptibleTimers TimeIntervalJoin",
+            "isUnalignedCheckpointInterruptibleTimersEnabled"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "82c50aeb445c3c927a0f1d4af4032295b33809ae61b70068ffe20ebf2e195718",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f981fdb184bed2ec16ca6efb",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "heading": "Time and Timers > Timers",
+        "start_line": 952,
+        "end_line": 987,
+        "start_char": 37840,
+        "end_char": 39453,
+        "score": "0.04384369488536155",
+        "root": "docs",
+        "matched_terms": [
+          "timers"
+        ],
+        "evidence_id": "f981fdb184bed2ec16ca6efb",
+        "source_type": "repository",
+        "content_hash": "19cf6b5e6e62567dc44dedb4c49d3fbcca2a3a135515d9cab12f8cdd23801810",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "interruptible-timers.enabled",
+            "interruptible timers supported operators",
+            "execution.checkpointing.unaligned.interruptible-timers"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "19cf6b5e6e62567dc44dedb4c49d3fbcca2a3a135515d9cab12f8cdd23801810",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ff002252346cff75636bac0b",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-1.20.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.025118047235103445",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ff002252346cff75636bac0b",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "a88c85d4749f354cd8b86d96fe1a45e1f1c92c3f",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "release notes unreleased",
+            "flink-2.0 release notes",
+            "FLINK-38810"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the docs describe the config option for interruptible/splittable timers (e.g. execution.checkpointing.unaligned.enabled or a timer-related option) and which operators support it?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is there documentation of interval join behavior, watermark delay, or timer processing that would need updating?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What config option gates interruptible timers and how is it referenced in TimeIntervalJoin?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the current docs (unreleased/next release notes or config docs) list which operators support interruptible timers, and does it need updating to include interval joins?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is there a release notes file for the upcoming/unreleased version where this feature change should be recorded?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "How does TimeIntervalJoin gate interruptible timers and what config option does it check?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:01fb5285e96cecd8bd973e8c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c9565ae98885b28a5716ed6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:138c9a81672308116a668c90",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:171dde826a4d2e61ac2ad5bc",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1b44e3ecbcb7319b0fc54148",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1d52b28c803d89d33c463e5a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1d52b28c803d89d33c463e5a",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22b8ddb976a1e54b7d949dd4",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22cf609ff72c861376bdfe48",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:263db1a97104e25e013c0c45",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:29ef8392bb3aa41e3b6e52ad",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:33fbd16e3114b61912511af8",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:33fbd16e3114b61912511af8",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3a827d12857c8533bdaf903e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3a827d12857c8533bdaf903e",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4024ac27b629b27736864b94",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:42857d08a3cbfc729b2ea229",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:42857d08a3cbfc729b2ea229",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:42857d08a3cbfc729b2ea229",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:445663f1a3aff864b8103f99",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:46b405f9e6baa1accbb2744c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:49d8cb6168f20a20bec122ee",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4d0bfc0b5fc1c048818d7876",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4edaa2a331a8556fa4f5ff76",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:517cdd021bc15e9c256538d2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:51f973e679d38178ce80248a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:51f973e679d38178ce80248a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a5e3ce7c587cc15dd980d9f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:686f2b53c33d4cab6bc274a9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:69a5b448a38fb4ed2bb12d92",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6bdaa0e16f2087ad959ebd87",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6bdaa0e16f2087ad959ebd87",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:72436a9fd996e0d628d7d1db",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7844b330f850c1f51214fd81",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78a2171efea7fd6691a9bf4b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78a2171efea7fd6691a9bf4b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7c8556676bff95947cacb2f0",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f93677c4dd850ed2b2fb4d6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:838d9b7f2f82f59eecfcd8b8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:857aed6aa857a2b54bfc641f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:87cdaf33a39150cf26d705c5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:918500bdb8100edd80ba7708",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:99c298fcd76ae07f97028a2b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9ace10a0c9c25772ae4ce36e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9cf0011cc6d19cfff2ff0ac1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9ec98271c0534eeccfd06f1a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a051716e633d6a1f2cce1483",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a252a2b1b4930ec62a959b88",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a252a2b1b4930ec62a959b88",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a2868e34df77470431f30e6c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a3ec94752407fbdc5d87c30e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a45e61c2246dbfd15bdab040",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a45e61c2246dbfd15bdab040",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a4bcd336ac93e5ce61fd40fb",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a8b0a205f4910b3129e43115",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a8b0a205f4910b3129e43115",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aa18f084f14c1ae12e4cfc03",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aa18f084f14c1ae12e4cfc03",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b5a241f19411f3407bb9dc24",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b6c8ceb996cb2f66ade958c6",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bb3aecfc5ebf2fac08f2ca44",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c2dce52ccac01601855c3983",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c54616a76177fa3375720d2a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c634b99ab6e9a55c452bc789",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d12a54965a52d380515bb3a6",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d34704636b0cd180e6611a88",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d34704636b0cd180e6611a88",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da3877d732f32dc09c64278d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da3877d732f32dc09c64278d",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dc44d87bc8385996bed256b0",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:de4ea4bf92c441ce84fa8ee1",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e1ed409b7252a85ab60bb561",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e1ed409b7252a85ab60bb561",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e8987709dba031001749a09e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eaf0f7b275b4c1d827ff0ec6",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ede51b8c2f3fe495f129e3b5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee2dc9a022c344a286c73a87",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee2dc9a022c344a286c73a87",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f3225ca79eef609a05096dc9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f58f4fb98e9fca3304b2f383",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f63057b1e54ee82beb32eb4d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f6543af0dfb889fc9e146433",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f8e2b50620fda71fc70dad84",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f8e2b50620fda71fc70dad84",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f981fdb184bed2ec16ca6efb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f981fdb184bed2ec16ca6efb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f981fdb184bed2ec16ca6efb",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff002252346cff75636bac0b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

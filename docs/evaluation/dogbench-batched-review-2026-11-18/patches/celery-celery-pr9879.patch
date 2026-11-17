@@ -1,0 +1,60 @@
+diff --git a/docs/userguide/configuration.rst b/docs/userguide/configuration.rst
+index fe01b6ecd959b985e9410ccacc9851f112506219..ec2db2f696d835d1c93b0c59abddc6ddb58dc294 100644
+--- a/docs/userguide/configuration.rst
++++ b/docs/userguide/configuration.rst
+@@ -1302,6 +1302,21 @@ The fields of the URL are defined as follows:
+     Database number to use. Default is 0.
+     The db can include an optional leading slash.
+ 
++#. ``credential_provider``
++
++    .. versionadded:: 5.6
++
++    Dotted path to a :class:`redis.CredentialProvider` subclass, which is
++    resolved and instantiated at connection setup time. When set, the
++    ``username`` and ``password`` fields are removed from the connection
++    parameters to avoid conflicts. An unresolvable path raises
++    :exc:`ImportError`, and a value that is not a ``CredentialProvider``
++    subclass raises :exc:`ValueError`.
++
++    Example::
++
++        result_backend = 'redis://host:port/db?credential_provider=redis.UsernamePasswordCredentialProvider'
++
+ When using a TLS connection (protocol is ``rediss://``), you may pass in all values in :setting:`broker_use_ssl` as query parameters. Paths to certificates must be URL encoded, and ``ssl_cert_reqs`` is required. Example:
+ 
+ .. code-block:: python
+@@ -1344,6 +1359,33 @@ the form of a dictionary. The valid key-value pairs are
+ the same as the ones mentioned in the ``redis`` sub-section
+ under :setting:`broker_use_ssl`.
+ 
++.. setting:: redis_backend_credential_provider
++
++.. versionadded:: 5.6
++
++``redis_backend_credential_provider``
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++Default: Not configured.
++
++The Redis backend supports credential providers. This value may be either
++a dotted-string path to a :class:`redis.CredentialProvider` subclass, which
++is resolved and instantiated at connection setup time, or a direct instance
++of a ``redis.CredentialProvider`` subclass.
++
++When a credential provider is active, the ``username`` and ``password``
++keys are automatically removed from the connection parameters to avoid
++conflicts.
++
++Passing a value that is neither a valid string path to a
++``CredentialProvider`` subclass nor an actual ``CredentialProvider``
++instance raises :exc:`ValueError`. An unresolvable string path raises
++:exc:`ImportError`.
++
++Example::
++
++    app.conf.redis_backend_credential_provider = 'redis.UsernamePasswordCredentialProvider'
++
+ .. setting:: redis_max_connections
+ 
+ ``redis_max_connections``

@@ -1,0 +1,3166 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "asyncio-retry-predicates",
+      "description": "In docs/content/docs/dev/datastream/operators/asyncio.md, under the 'Retry Support' section, document the new built-in Python predicate helpers (empty_result_predicate, has_exception_predicate, exception_type_predicate) from pyflink.datastream.async_retry_predicates, explaining what each matches and how to use them with AsyncRetryPredicate/AsyncRetryStrategy.",
+      "evidence_ids": [
+        "3e4042a304764260f480e263",
+        "fa42bc2ad65ec46e559806a6",
+        "6c1a67403f88bf4a73b466c5"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "asyncio-retry-predicates-zh",
+      "description": "Mirror the new built-in Python retry predicate helper documentation in docs/content.zh/docs/dev/datastream/operators/asyncio.md under the '重试支持' section, describing empty_result_predicate, has_exception_predicate, and exception_type_predicate.",
+      "evidence_ids": [
+        "1e89401bf7fd9f40ca2e9fbe",
+        "3e4042a304764260f480e263",
+        "6c1a67403f88bf4a73b466c5"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "asyncio-abstract-methods",
+      "description": "In docs/content/docs/dev/datastream/operators/asyncio.md 'Retry Support' section, note that AsyncRetryPredicate and AsyncRetryStrategy interface methods are abstract, so custom subclasses must implement all of them or instantiation raises TypeError.",
+      "evidence_ids": [
+        "f396f4c63448dc169f20f334",
+        "fa42bc2ad65ec46e559806a6",
+        "6c1a67403f88bf4a73b466c5"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "453b7acd5d5a4a4dfbf3c95089292b5f60670ee110b9abdd7da2546f506a699a",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the Python datastream documentation describe async retry predicates/strategies and where would new built-in predicate helpers be documented?",
+          "root": "docs",
+          "queries": [
+            "async retry predicate",
+            "AsyncRetryPredicate",
+            "async_retry"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/content/docs/dev/python/datastream/"
+          ],
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "offset": 216,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+              "offset": 184,
+              "limit": 120
+            },
+            {
+              "path": ".github/PULL_REQUEST_TEMPLATE.md",
+              "offset": 35,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "fa42bc2ad65ec46e559806a6",
+            "1e89401bf7fd9f40ca2e9fbe",
+            "bdf068f26499605b46666d9c",
+            "d7210b81aa584638b4ea4344",
+            "faa7b6cea841d26a5003c6f3",
+            "3837d73729656c3c5fb5de1f",
+            "caa50d11e86d30d3c61718eb",
+            "2993524aec92bfd6f5f5d185",
+            "ff1e58e595c8d4b607778aa0",
+            "5b548761a00d120012969441",
+            "34a44fb3fe2c51dacc743c82",
+            "e8baf0ace7e2194e21ac5b4b",
+            "03cf83f362f5ddac4b83aab7",
+            "5df336c4fbcbe3672d291320",
+            "3d368770475041bf25ea9024"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "evidence_id": "d7210b81aa584638b4ea4344",
+              "score": "0.04891591750396616"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "evidence_id": "faa7b6cea841d26a5003c6f3",
+              "score": "0.04623878536922015"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+              "evidence_id": "3837d73729656c3c5fb5de1f",
+              "score": "0.03803379416282642"
+            },
+            {
+              "rank": 4,
+              "path": ".github/PULL_REQUEST_TEMPLATE.md",
+              "evidence_id": "caa50d11e86d30d3c61718eb",
+              "score": "0.03610631080389145"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content.zh/docs/dev/table/functions/udfs.md",
+              "evidence_id": "2993524aec92bfd6f5f5d185",
+              "score": "0.035749912188268354"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content/docs/dev/table/functions/udfs.md",
+              "evidence_id": "ff1e58e595c8d4b607778aa0",
+              "score": "0.03515853515853516"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+              "evidence_id": "5b548761a00d120012969441",
+              "score": "0.03500663423264042"
+            },
+            {
+              "rank": 8,
+              "path": ".github/CONTRIBUTING.md",
+              "evidence_id": "34a44fb3fe2c51dacc743c82",
+              "score": "0.03496277138336239"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+              "evidence_id": "e8baf0ace7e2194e21ac5b4b",
+              "score": "0.034102222045237336"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+              "evidence_id": "03cf83f362f5ddac4b83aab7",
+              "score": "0.034094763261429926"
+            },
+            {
+              "rank": 11,
+              "path": ".github/CONTRIBUTING.md",
+              "evidence_id": "5df336c4fbcbe3672d291320",
+              "score": "0.03371493009635368"
+            },
+            {
+              "rank": 12,
+              "path": ".github/PULL_REQUEST_TEMPLATE.md",
+              "evidence_id": "3d368770475041bf25ea9024",
+              "score": "0.032798842907195674"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "start": 216,
+              "end": 283,
+              "total_lines": 283
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+              "start": 184,
+              "end": 241,
+              "total_lines": 241
+            },
+            {
+              "path": ".github/PULL_REQUEST_TEMPLATE.md",
+              "start": 35,
+              "end": 74,
+              "total_lines": 74
+            }
+          ],
+          "read_evidence_ids": [
+            "fa42bc2ad65ec46e559806a6",
+            "1e89401bf7fd9f40ca2e9fbe",
+            "bdf068f26499605b46666d9c"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "What is the existing docstring/API surface for AsyncRetryPredicate and AsyncRetryStrategy in functions.py, and is there a Python API reference that auto-generates from docstrings?",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ],
+          "paths": [
+            "flink-python/pyflink/datastream/functions.py",
+            "flink-python/pyflink/datastream/async_retry_predicates.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "flink-python/pyflink/datastream/functions.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink-python/pyflink/datastream/async_retry_predicates.py",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f396f4c63448dc169f20f334",
+            "3e4042a304764260f480e263",
+            "6c1a67403f88bf4a73b466c5",
+            "9c9518c50a450a3d8cfaeeb7",
+            "64689e1434752f8235987068",
+            "7f2f2babc26d89db36491572",
+            "6b4f13af717adf91414360cd",
+            "76d1aaa7405bcc5da2819e1a",
+            "5051a820cff8406a2409d8c3",
+            "47aca62ac620bcd26de8e2ad",
+            "1e2e2c112bf4a9caf406e04d",
+            "d1d65b5dd80d084d2e3b350a",
+            "7062dcec21ddd2efa29b5306",
+            "35a05ae14ae7815c827e6e97"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "flink-python/pyflink/datastream/async_retry_strategies.py",
+              "evidence_id": "6c1a67403f88bf4a73b466c5",
+              "score": "0.03047794966520434"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "evidence_id": "9c9518c50a450a3d8cfaeeb7",
+              "score": "0.02797067901234568"
+            },
+            {
+              "rank": 3,
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/lookup/ResultRetryStrategy.java",
+              "evidence_id": "64689e1434752f8235987068",
+              "score": "0.027799227799227798"
+            },
+            {
+              "rank": 4,
+              "path": "flink-python/pyflink/datastream/__init__.py",
+              "evidence_id": "7f2f2babc26d89db36491572",
+              "score": "0.027432808155699723"
+            },
+            {
+              "rank": 5,
+              "path": "flink-streaming-java/src/main/java/org/apache/flink/streaming/util/retryable/AsyncRetryStrategies.java",
+              "evidence_id": "6b4f13af717adf91414360cd",
+              "score": "0.02668564312399929"
+            },
+            {
+              "rank": 6,
+              "path": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/functions/async/AsyncRetryStrategy.java",
+              "evidence_id": "76d1aaa7405bcc5da2819e1a",
+              "score": "0.026161328190508135"
+            },
+            {
+              "rank": 7,
+              "path": "flink-streaming-java/src/main/java/org/apache/flink/streaming/util/retryable/AsyncRetryStrategies.java",
+              "evidence_id": "5051a820cff8406a2409d8c3",
+              "score": "0.025974025974025976"
+            },
+            {
+              "rank": 8,
+              "path": "flink-python/pyflink/datastream/async_retry_strategies.py",
+              "evidence_id": "47aca62ac620bcd26de8e2ad",
+              "score": "0.025816993464052286"
+            },
+            {
+              "rank": 9,
+              "path": "flink-python/pyflink/datastream/functions.py",
+              "evidence_id": "1e2e2c112bf4a9caf406e04d",
+              "score": "0.024766899766899768"
+            },
+            {
+              "rank": 10,
+              "path": "flink-python/pyflink/datastream/__init__.py",
+              "evidence_id": "d1d65b5dd80d084d2e3b350a",
+              "score": "0.024758454106280192"
+            },
+            {
+              "rank": 11,
+              "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/lookup/ResultRetryStrategy.java",
+              "evidence_id": "7062dcec21ddd2efa29b5306",
+              "score": "0.024562989752863168"
+            },
+            {
+              "rank": 12,
+              "path": "flink-python/pyflink/datastream/functions.py",
+              "evidence_id": "35a05ae14ae7815c827e6e97",
+              "score": "0.024336928009326728"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "flink-python/pyflink/datastream/functions.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 1752
+            },
+            {
+              "path": "flink-python/pyflink/datastream/async_retry_predicates.py",
+              "start": 0,
+              "end": 29,
+              "total_lines": 29
+            }
+          ],
+          "read_evidence_ids": [
+            "f396f4c63448dc169f20f334",
+            "3e4042a304764260f480e263"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "03cf83f362f5ddac4b83aab7",
+        "1e2e2c112bf4a9caf406e04d",
+        "1e89401bf7fd9f40ca2e9fbe",
+        "2993524aec92bfd6f5f5d185",
+        "34a44fb3fe2c51dacc743c82",
+        "35a05ae14ae7815c827e6e97",
+        "3837d73729656c3c5fb5de1f",
+        "3d368770475041bf25ea9024",
+        "3e4042a304764260f480e263",
+        "47aca62ac620bcd26de8e2ad",
+        "5051a820cff8406a2409d8c3",
+        "5b548761a00d120012969441",
+        "5df336c4fbcbe3672d291320",
+        "64689e1434752f8235987068",
+        "6b4f13af717adf91414360cd",
+        "6c1a67403f88bf4a73b466c5",
+        "7062dcec21ddd2efa29b5306",
+        "76d1aaa7405bcc5da2819e1a",
+        "7f2f2babc26d89db36491572",
+        "9c9518c50a450a3d8cfaeeb7",
+        "bdf068f26499605b46666d9c",
+        "caa50d11e86d30d3c61718eb",
+        "d1d65b5dd80d084d2e3b350a",
+        "d7210b81aa584638b4ea4344",
+        "e8baf0ace7e2194e21ac5b4b",
+        "f396f4c63448dc169f20f334",
+        "fa42bc2ad65ec46e559806a6",
+        "faa7b6cea841d26a5003c6f3",
+        "ff1e58e595c8d4b607778aa0"
+      ],
+      "new_evidence_count": 29,
+      "new_path_count": 15
+    },
+    {
+      "signature": "358b7617a1a3f4037090d55f30be6df721e52eb82c8224ecb474f57d62f25a56",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the Python asyncio docs page (or a Python-specific async I/O page) document retry predicates/strategies and where would the new built-in predicate helpers be surfaced?",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/content/docs/dev/python/datastream/operators/asyncio.md"
+          ],
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+              "offset": 438,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/sql/queries/hints.md",
+              "offset": 471,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/deployment/config.md",
+              "offset": 215,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "66945bbcc5c2e77957629cfb",
+            "ce999802a62363da4b0e249b",
+            "60bae44fa0cb733e2c630510",
+            "d7210b81aa584638b4ea4344",
+            "e8baf0ace7e2194e21ac5b4b",
+            "55776f7b5580f65532dca7f2",
+            "d9daa25097591bb084cb3709",
+            "45d74a8c3277bdda8a395ed3",
+            "b1d4c94489ec7eebb275cf19",
+            "2993524aec92bfd6f5f5d185",
+            "287ed4e02722d0313ed3a9c5",
+            "ff1e58e595c8d4b607778aa0",
+            "528f20f70fe5efbb17b1fa40",
+            "f211e8221dd3ebd77b79e231",
+            "7adbbab813d97c28d495cfb3"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "evidence_id": "d7210b81aa584638b4ea4344",
+              "score": "0.04670343114189456"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+              "evidence_id": "e8baf0ace7e2194e21ac5b4b",
+              "score": "0.04366421568627451"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+              "evidence_id": "55776f7b5580f65532dca7f2",
+              "score": "0.04270851031356818"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content.zh/docs/dev/table/sql/queries/hints.md",
+              "evidence_id": "d9daa25097591bb084cb3709",
+              "score": "0.04001992159886897"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content.zh/docs/deployment/config.md",
+              "evidence_id": "45d74a8c3277bdda8a395ed3",
+              "score": "0.03986411020104244"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "evidence_id": "b1d4c94489ec7eebb275cf19",
+              "score": "0.03837372386574905"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content.zh/docs/dev/table/functions/udfs.md",
+              "evidence_id": "2993524aec92bfd6f5f5d185",
+              "score": "0.03836859226930149"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "evidence_id": "287ed4e02722d0313ed3a9c5",
+              "score": "0.037222222222222226"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content/docs/dev/table/functions/udfs.md",
+              "evidence_id": "ff1e58e595c8d4b607778aa0",
+              "score": "0.03684750469768984"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "528f20f70fe5efbb17b1fa40",
+              "score": "0.035759785759785764"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content/docs/deployment/config.md",
+              "evidence_id": "f211e8221dd3ebd77b79e231",
+              "score": "0.035682822301267146"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content/docs/deployment/ha/zookeeper_ha.md",
+              "evidence_id": "7adbbab813d97c28d495cfb3",
+              "score": "0.03478176363019174"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+              "start": 438,
+              "end": 558,
+              "total_lines": 785
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/sql/queries/hints.md",
+              "start": 471,
+              "end": 591,
+              "total_lines": 720
+            },
+            {
+              "path": "docs/content.zh/docs/deployment/config.md",
+              "start": 215,
+              "end": 335,
+              "total_lines": 632
+            }
+          ],
+          "read_evidence_ids": [
+            "66945bbcc5c2e77957629cfb",
+            "ce999802a62363da4b0e249b",
+            "60bae44fa0cb733e2c630510"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is async_retry_predicates exported in pyflink.datastream __init__ and referenced anywhere in docs, indicating a public API surface needing documentation?",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ],
+          "paths": [
+            "flink-python/pyflink/datastream/__init__.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "flink-python/pyflink/datastream/__init__.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/api/operators/async/AsyncWaitOperatorTest.java",
+              "offset": 95,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "bac65dee3529e3ec4b300b72",
+            "24fd18ee8648ca7fa175645c",
+            "35c5fd76d101d26e1461951b",
+            "71fd850836661b3ece85d2df",
+            "5ba38ded6d94494c38d7ccb6",
+            "42fa407058ebfcbdccd75507",
+            "09b1017e81b7c6f7161490cf",
+            "11050ef119d57e9a52ae126e",
+            "f8fe592c81d3d6ea660a190f",
+            "8b773cecbb1464051b771b96",
+            "5a93dccdf221e8713bfd0bf2"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "flink-python/pyflink/datastream/async_retry_predicates.py",
+              "evidence_id": "35c5fd76d101d26e1461951b",
+              "score": "0.04918032786885246"
+            },
+            {
+              "rank": 2,
+              "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/api/operators/async/AsyncWaitOperatorTest.java",
+              "evidence_id": "71fd850836661b3ece85d2df",
+              "score": "0.03149801587301587"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "evidence_id": "5ba38ded6d94494c38d7ccb6",
+              "score": "0.030776515151515152"
+            },
+            {
+              "rank": 4,
+              "path": "flink-streaming-java/src/main/java/org/apache/flink/streaming/util/retryable/RetryPredicates.java",
+              "evidence_id": "42fa407058ebfcbdccd75507",
+              "score": "0.030309988518943745"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+              "evidence_id": "09b1017e81b7c6f7161490cf",
+              "score": "0.029857397504456328"
+            },
+            {
+              "rank": 6,
+              "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/api/operators/async/AsyncWaitOperatorTest.java",
+              "evidence_id": "11050ef119d57e9a52ae126e",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 7,
+              "path": "flink-table/flink-table-planner/src/main/java/org/apache/flink/table/planner/plan/utils/LookupJoinUtil.java",
+              "evidence_id": "f8fe592c81d3d6ea660a190f",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 8,
+              "path": "flink-table/flink-table-runtime/src/test/java/org/apache/flink/table/runtime/operators/join/RetryableLookupFunctionDelegatorTest.java",
+              "evidence_id": "8b773cecbb1464051b771b96",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 9,
+              "path": "flink-table/flink-table-runtime/src/test/java/org/apache/flink/table/runtime/operators/join/RetryableAsyncLookupFunctionDelegatorTest.java",
+              "evidence_id": "5a93dccdf221e8713bfd0bf2",
+              "score": "0.015384615384615385"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "flink-python/pyflink/datastream/__init__.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 350
+            },
+            {
+              "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/api/operators/async/AsyncWaitOperatorTest.java",
+              "start": 95,
+              "end": 215,
+              "total_lines": 1664
+            }
+          ],
+          "read_evidence_ids": [
+            "bac65dee3529e3ec4b300b72",
+            "24fd18ee8648ca7fa175645c"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "09b1017e81b7c6f7161490cf",
+        "11050ef119d57e9a52ae126e",
+        "24fd18ee8648ca7fa175645c",
+        "287ed4e02722d0313ed3a9c5",
+        "35c5fd76d101d26e1461951b",
+        "42fa407058ebfcbdccd75507",
+        "45d74a8c3277bdda8a395ed3",
+        "528f20f70fe5efbb17b1fa40",
+        "55776f7b5580f65532dca7f2",
+        "5a93dccdf221e8713bfd0bf2",
+        "5ba38ded6d94494c38d7ccb6",
+        "60bae44fa0cb733e2c630510",
+        "66945bbcc5c2e77957629cfb",
+        "71fd850836661b3ece85d2df",
+        "7adbbab813d97c28d495cfb3",
+        "8b773cecbb1464051b771b96",
+        "b1d4c94489ec7eebb275cf19",
+        "bac65dee3529e3ec4b300b72",
+        "ce999802a62363da4b0e249b",
+        "d9daa25097591bb084cb3709",
+        "f211e8221dd3ebd77b79e231",
+        "f8fe592c81d3d6ea660a190f"
+      ],
+      "new_evidence_count": 22,
+      "new_path_count": 12
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+    "code": "bc4cb2cc55c517eadae5ebee5136e05dd542276a"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:463f42683df3aaa6": 0,
+    "discover:Q1-2:3966c2e90f423956": 0,
+    "discover:Q2-2:6f24beb0a58986f9": 0,
+    "discover:Q2-1:708a7f9e7dfae8bd": 0
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-2:3966c2e90f423956": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:463f42683df3aaa6": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 251,
+      "cache_hit": false
+    },
+    "discover:Q1-2:3966c2e90f423956": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 36766,
+      "cache_hit": false
+    },
+    "discover:Q1-2:546cb855f04d6383": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 159,
+      "cache_hit": false
+    },
+    "discover:Q1-1:286848c9afe53b74": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 257,
+      "cache_hit": false
+    },
+    "discover:Q2-2:6f24beb0a58986f9": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 626,
+      "cache_hit": false
+    },
+    "discover:Q2-1:708a7f9e7dfae8bd": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 1593,
+      "cache_hit": false
+    },
+    "discover:Q2-2:8a58d88cb4018f34": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 473,
+      "cache_hit": false
+    },
+    "discover:Q2-1:b1ba6a03bdf845bf": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 543,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2472,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "asyncio-retry-predicates",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/content/docs/dev/datastream/operators/asyncio.md"
+      ],
+      "evidence_ids": [
+        "3e4042a304764260f480e263",
+        "fa42bc2ad65ec46e559806a6",
+        "6c1a67403f88bf4a73b466c5",
+        "f396f4c63448dc169f20f334"
+      ],
+      "reason": "In docs/content/docs/dev/datastream/operators/asyncio.md, under the 'Retry Support' section, document the new built-in Python predicate helpers (empty_result_predicate, has_exception_predicate, exception_type_predicate) from pyflink.datastream.async_retry_predicates, explaining what each matches and how to use them with AsyncRetryPredicate/AsyncRetryStrategy."
+    },
+    {
+      "requirement_id": "asyncio-retry-predicates-zh",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/content.zh/docs/dev/datastream/operators/asyncio.md"
+      ],
+      "evidence_ids": [
+        "1e89401bf7fd9f40ca2e9fbe",
+        "3e4042a304764260f480e263",
+        "6c1a67403f88bf4a73b466c5",
+        "f396f4c63448dc169f20f334"
+      ],
+      "reason": "Mirror the new built-in Python retry predicate helper documentation in docs/content.zh/docs/dev/datastream/operators/asyncio.md under the '重试支持' section, describing empty_result_predicate, has_exception_predicate, and exception_type_predicate."
+    },
+    {
+      "requirement_id": "asyncio-abstract-methods",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/content/docs/dev/datastream/operators/asyncio.md"
+      ],
+      "evidence_ids": [
+        "3e4042a304764260f480e263",
+        "fa42bc2ad65ec46e559806a6",
+        "6c1a67403f88bf4a73b466c5",
+        "f396f4c63448dc169f20f334"
+      ],
+      "reason": "In docs/content/docs/dev/datastream/operators/asyncio.md 'Retry Support' section, note that AsyncRetryPredicate and AsyncRetryStrategy interface methods are abstract, so custom subclasses must implement all of them or instantiation raises TypeError."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:03cf83f362f5ddac4b83aab7",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+        "heading": "用于外部数据访问的异步 I/O > 异步 I/O API > 警告",
+        "start_line": 207,
+        "end_line": 241,
+        "start_char": 6716,
+        "end_char": 7675,
+        "score": "0.034094763261429926",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "03cf83f362f5ddac4b83aab7",
+        "source_type": "repository",
+        "content_hash": "26fe14a0b96c4a4be1694bcd7cf90f1d746a2dea76ec404769c22034f3812202",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "async retry predicate",
+            "AsyncRetryPredicate",
+            "async_retry"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "26fe14a0b96c4a4be1694bcd7cf90f1d746a2dea76ec404769c22034f3812202",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:09b1017e81b7c6f7161490cf",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+        "heading": "用于外部数据访问的异步 I/O > 异步 I/O API",
+        "start_line": 107,
+        "end_line": 147,
+        "start_char": 3308,
+        "end_char": 4686,
+        "score": "0.029857397504456328",
+        "root": "code",
+        "matched_terms": [
+          "empty_result_predicate",
+          "has_exception_predicate"
+        ],
+        "evidence_id": "09b1017e81b7c6f7161490cf",
+        "source_type": "repository",
+        "content_hash": "643578a5f8f512d9da25d48473d98eff79afc87412b9ca9e31d9e3d2c2bc7843",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "643578a5f8f512d9da25d48473d98eff79afc87412b9ca9e31d9e3d2c2bc7843",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:11050ef119d57e9a52ae126e",
+        "type": "evidence",
+        "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/api/operators/async/AsyncWaitOperatorTest.java",
+        "heading": "",
+        "start_line": 1252,
+        "end_line": 1291,
+        "start_char": 52323,
+        "end_char": 53968,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "has_exception_predicate"
+        ],
+        "evidence_id": "11050ef119d57e9a52ae126e",
+        "source_type": "repository",
+        "content_hash": "af320af12fa4b7882d63e69c8e6277de2f8f1392a750a51c807bdae6cc98de5c",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "af320af12fa4b7882d63e69c8e6277de2f8f1392a750a51c807bdae6cc98de5c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1e2e2c112bf4a9caf406e04d",
+        "type": "evidence",
+        "path": "flink-python/pyflink/datastream/functions.py",
+        "heading": "limitations under the License.",
+        "start_line": 900,
+        "end_line": 949,
+        "start_char": 32381,
+        "end_char": 33841,
+        "score": "0.024766899766899768",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "1e2e2c112bf4a9caf406e04d",
+        "source_type": "repository",
+        "content_hash": "d8e212039e6394ca2c937bb4d8fa4f6186c6f0f472c9957515405b39657fd514",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d8e212039e6394ca2c937bb4d8fa4f6186c6f0f472c9957515405b39657fd514",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1e89401bf7fd9f40ca2e9fbe",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+        "start_line": 185,
+        "total_lines": 241,
+        "start_char": 5956,
+        "end_char": 7675,
+        "evidence_id": "1e89401bf7fd9f40ca2e9fbe",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8fa85ec29f76d16c715baf21754afaccf70a01498b733f1b562316220d7cf8c8",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "offset": 216,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+              "offset": 184,
+              "limit": 120
+            },
+            {
+              "path": ".github/PULL_REQUEST_TEMPLATE.md",
+              "offset": 35,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "8fa85ec29f76d16c715baf21754afaccf70a01498b733f1b562316220d7cf8c8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:24fd18ee8648ca7fa175645c",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/api/operators/async/AsyncWaitOperatorTest.java",
+        "start_line": 96,
+        "total_lines": 1664,
+        "start_char": 4738,
+        "end_char": 9147,
+        "evidence_id": "24fd18ee8648ca7fa175645c",
+        "truncated": false,
+        "next_offset": 215,
+        "source_type": "repository",
+        "content_hash": "f50e76ccd054bf1ce2ebe3cd2b3619cd79fc8cda6d108229c51efbee44d9933d",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-python/pyflink/datastream/__init__.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/api/operators/async/AsyncWaitOperatorTest.java",
+              "offset": 95,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "f50e76ccd054bf1ce2ebe3cd2b3619cd79fc8cda6d108229c51efbee44d9933d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:287ed4e02722d0313ed3a9c5",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Runtime & Coordination > Integrate retry strategy for cleanup stage",
+        "start_line": 427,
+        "end_line": 428,
+        "start_char": 17851,
+        "end_char": 17901,
+        "score": "0.037222222222222226",
+        "root": "docs",
+        "matched_terms": [
+          "retry"
+        ],
+        "evidence_id": "287ed4e02722d0313ed3a9c5",
+        "source_type": "repository",
+        "content_hash": "9a78657709fd86ac41b859821ab29d06ace7cf94fbfeabed0209a4fe66b0bc11",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "9a78657709fd86ac41b859821ab29d06ace7cf94fbfeabed0209a4fe66b0bc11",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2993524aec92bfd6f5f5d185",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/udfs.md",
+        "heading": "Asynchronous Scalar Functions > Error Handling",
+        "start_line": 1074,
+        "end_line": 1076,
+        "start_char": 32957,
+        "end_char": 33990,
+        "score": "0.03836859226930149",
+        "root": "docs",
+        "matched_terms": [
+          "async",
+          "retry"
+        ],
+        "evidence_id": "2993524aec92bfd6f5f5d185",
+        "source_type": "repository",
+        "content_hash": "a01d48bfa4bcf4c45b3490b62a3e5776495f7366d8f7fa09ba10b2275961e96f",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a01d48bfa4bcf4c45b3490b62a3e5776495f7366d8f7fa09ba10b2275961e96f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:34a44fb3fe2c51dacc743c82",
+        "type": "evidence",
+        "path": ".github/CONTRIBUTING.md",
+        "heading": "How to contribute to Apache Flink",
+        "start_line": 1,
+        "end_line": 6,
+        "start_char": 0,
+        "end_char": 397,
+        "score": "0.03496277138336239",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "34a44fb3fe2c51dacc743c82",
+        "source_type": "repository",
+        "content_hash": "a719859c3f3932df30b2053ba006c664da8571c9023f095468d55fe331a03c71",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "async retry predicate",
+            "AsyncRetryPredicate",
+            "async_retry"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a719859c3f3932df30b2053ba006c664da8571c9023f095468d55fe331a03c71",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:35a05ae14ae7815c827e6e97",
+        "type": "evidence",
+        "path": "flink-python/pyflink/datastream/functions.py",
+        "heading": "limitations under the License.",
+        "start_line": 16,
+        "end_line": 65,
+        "start_char": 844,
+        "end_char": 2365,
+        "score": "0.024336928009326728",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "35a05ae14ae7815c827e6e97",
+        "source_type": "repository",
+        "content_hash": "a84f420ddcfa8e6629a950935a96fb012686fd16acd21001e097c205bfd7f05f",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a84f420ddcfa8e6629a950935a96fb012686fd16acd21001e097c205bfd7f05f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:35c5fd76d101d26e1461951b",
+        "type": "evidence",
+        "path": "flink-python/pyflink/datastream/async_retry_predicates.py",
+        "heading": "limitations under the License.",
+        "start_line": 16,
+        "end_line": 29,
+        "start_char": 844,
+        "end_char": 1225,
+        "score": "0.04918032786885246",
+        "root": "code",
+        "matched_terms": [
+          "empty_result_predicate",
+          "exception_type_predicate",
+          "has_exception_predicate"
+        ],
+        "evidence_id": "35c5fd76d101d26e1461951b",
+        "source_type": "repository",
+        "content_hash": "d29bd560b419d0ca3fcb9bdfb3848721b7a89699bdb6dd0b1d037b8df0b59a91",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d29bd560b419d0ca3fcb9bdfb3848721b7a89699bdb6dd0b1d037b8df0b59a91",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3837d73729656c3c5fb5de1f",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+        "heading": "用于外部数据访问的异步 I/O > 异步 I/O API > 重试支持",
+        "start_line": 189,
+        "end_line": 198,
+        "start_char": 6026,
+        "end_char": 6355,
+        "score": "0.03803379416282642",
+        "root": "docs",
+        "matched_terms": [
+          "asyncretrypredicate"
+        ],
+        "evidence_id": "3837d73729656c3c5fb5de1f",
+        "source_type": "repository",
+        "content_hash": "768df3fda21afcc2845c6680f3ca83eb6aa0834f5ab09cc5ea6dc5ccc7678400",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "async retry predicate",
+            "AsyncRetryPredicate",
+            "async_retry"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "768df3fda21afcc2845c6680f3ca83eb6aa0834f5ab09cc5ea6dc5ccc7678400",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3d368770475041bf25ea9024",
+        "type": "evidence",
+        "path": ".github/PULL_REQUEST_TEMPLATE.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 5,
+        "start_char": 0,
+        "end_char": 817,
+        "score": "0.032798842907195674",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "3d368770475041bf25ea9024",
+        "source_type": "repository",
+        "content_hash": "d5ab66a3270c5f30a592193468ccf3f77408c3adfc3c73f7f19058fc7699b3db",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "async retry predicate",
+            "AsyncRetryPredicate",
+            "async_retry"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d5ab66a3270c5f30a592193468ccf3f77408c3adfc3c73f7f19058fc7699b3db",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3e4042a304764260f480e263",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-python/pyflink/datastream/async_retry_predicates.py",
+        "start_line": 1,
+        "total_lines": 29,
+        "start_char": 0,
+        "end_char": 1225,
+        "evidence_id": "3e4042a304764260f480e263",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "953b8e0ec4e46dc1b319373c2542ddd33dfae255654f9d602e5715c670a0f646",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-python/pyflink/datastream/functions.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink-python/pyflink/datastream/async_retry_predicates.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "953b8e0ec4e46dc1b319373c2542ddd33dfae255654f9d602e5715c670a0f646",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:42fa407058ebfcbdccd75507",
+        "type": "evidence",
+        "path": "flink-streaming-java/src/main/java/org/apache/flink/streaming/util/retryable/RetryPredicates.java",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 42,
+        "start_char": 0,
+        "end_char": 1670,
+        "score": "0.030309988518943745",
+        "root": "code",
+        "matched_terms": [
+          "empty_result_predicate",
+          "has_exception_predicate"
+        ],
+        "evidence_id": "42fa407058ebfcbdccd75507",
+        "source_type": "repository",
+        "content_hash": "9437f616cca7238088d3a464bb119cae1bd90d7082a2938b8e9205da59e493f8",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9437f616cca7238088d3a464bb119cae1bd90d7082a2938b8e9205da59e493f8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:45d74a8c3277bdda8a395ed3",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/deployment/config.md",
+        "heading": "Common Setup Options > Retryable Cleanup",
+        "start_line": 220,
+        "end_line": 233,
+        "start_char": 11602,
+        "end_char": 12094,
+        "score": "0.03986411020104244",
+        "root": "docs",
+        "matched_terms": [
+          "retry"
+        ],
+        "evidence_id": "45d74a8c3277bdda8a395ed3",
+        "source_type": "repository",
+        "content_hash": "f2fbee5b79b17a1e4d790be2354bf8d328808061614227a4324316cece75714b",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "f2fbee5b79b17a1e4d790be2354bf8d328808061614227a4324316cece75714b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:47aca62ac620bcd26de8e2ad",
+        "type": "evidence",
+        "path": "flink-python/pyflink/datastream/async_retry_strategies.py",
+        "heading": "limitations under the License.",
+        "start_line": 99,
+        "end_line": 121,
+        "start_char": 4028,
+        "end_char": 4940,
+        "score": "0.025816993464052286",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "47aca62ac620bcd26de8e2ad",
+        "source_type": "repository",
+        "content_hash": "eabb2a48568ac479ce50b2d69684198d687ff54056af31c9ac5a1d747c1a43ef",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "eabb2a48568ac479ce50b2d69684198d687ff54056af31c9ac5a1d747c1a43ef",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5051a820cff8406a2409d8c3",
+        "type": "evidence",
+        "path": "flink-streaming-java/src/main/java/org/apache/flink/streaming/util/retryable/AsyncRetryStrategies.java",
+        "heading": "",
+        "start_line": 42,
+        "end_line": 90,
+        "start_char": 1662,
+        "end_char": 3314,
+        "score": "0.025974025974025976",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "5051a820cff8406a2409d8c3",
+        "source_type": "repository",
+        "content_hash": "17cb3505e9c15863c4abbc32e3d6017ad4bdafa231d619bd2a949804155fb1de",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "17cb3505e9c15863c4abbc32e3d6017ad4bdafa231d619bd2a949804155fb1de",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:528f20f70fe5efbb17b1fa40",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Runtime & Coordination > Integrate retry strategy for cleanup stage",
+        "start_line": 427,
+        "end_line": 428,
+        "start_char": 17851,
+        "end_char": 17901,
+        "score": "0.035759785759785764",
+        "root": "docs",
+        "matched_terms": [
+          "retry"
+        ],
+        "evidence_id": "528f20f70fe5efbb17b1fa40",
+        "source_type": "repository",
+        "content_hash": "9a78657709fd86ac41b859821ab29d06ace7cf94fbfeabed0209a4fe66b0bc11",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "9a78657709fd86ac41b859821ab29d06ace7cf94fbfeabed0209a4fe66b0bc11",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:55776f7b5580f65532dca7f2",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+        "heading": "SQL Hints > Query Hints > Join Hints > Note On Lookup Keys And 'retry-predicate'='lookup_miss' Retry Conditions",
+        "start_line": 546,
+        "end_line": 577,
+        "start_char": 21072,
+        "end_char": 22723,
+        "score": "0.04270851031356818",
+        "root": "docs",
+        "matched_terms": [
+          "async",
+          "retry"
+        ],
+        "evidence_id": "55776f7b5580f65532dca7f2",
+        "source_type": "repository",
+        "content_hash": "adb4e7d96c9f7704aadb0315188fdee7a922b3dc4821beb703019b1578a1845d",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "adb4e7d96c9f7704aadb0315188fdee7a922b3dc4821beb703019b1578a1845d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a93dccdf221e8713bfd0bf2",
+        "type": "evidence",
+        "path": "flink-table/flink-table-runtime/src/test/java/org/apache/flink/table/runtime/operators/join/RetryableAsyncLookupFunctionDelegatorTest.java",
+        "heading": "",
+        "start_line": 33,
+        "end_line": 75,
+        "start_char": 1647,
+        "end_char": 3281,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "empty_result_predicate"
+        ],
+        "evidence_id": "5a93dccdf221e8713bfd0bf2",
+        "source_type": "repository",
+        "content_hash": "91f7ebbb0162fe39fb8af6213a99c8a66f8aa6b7d25efe3ffaf82a46c1f13d6e",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "91f7ebbb0162fe39fb8af6213a99c8a66f8aa6b7d25efe3ffaf82a46c1f13d6e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5b548761a00d120012969441",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+        "heading": "SQL Hints > Query Hints > Join Hints > Trouble Shooting",
+        "start_line": 602,
+        "end_line": 619,
+        "start_char": 23548,
+        "end_char": 24671,
+        "score": "0.03500663423264042",
+        "root": "docs",
+        "matched_terms": [
+          "async",
+          "retry"
+        ],
+        "evidence_id": "5b548761a00d120012969441",
+        "source_type": "repository",
+        "content_hash": "638d63b49a4bf9ad9650a8e5a71e8af831430e4dd0b84b107834a595d79ae11f",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "async retry predicate",
+            "AsyncRetryPredicate",
+            "async_retry"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "638d63b49a4bf9ad9650a8e5a71e8af831430e4dd0b84b107834a595d79ae11f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5ba38ded6d94494c38d7ccb6",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+        "heading": "Asynchronous I/O for External Data Access > Async I/O API",
+        "start_line": 109,
+        "end_line": 147,
+        "start_char": 5214,
+        "end_char": 6851,
+        "score": "0.030776515151515152",
+        "root": "code",
+        "matched_terms": [
+          "empty_result_predicate",
+          "has_exception_predicate"
+        ],
+        "evidence_id": "5ba38ded6d94494c38d7ccb6",
+        "source_type": "repository",
+        "content_hash": "e6c3aaf29ff765926001f91b72bd6af39c8f3552495a61e61b6bbe9e290def92",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e6c3aaf29ff765926001f91b72bd6af39c8f3552495a61e61b6bbe9e290def92",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5df336c4fbcbe3672d291320",
+        "type": "evidence",
+        "path": ".github/CONTRIBUTING.md",
+        "heading": "How to contribute to Apache Flink > Contribution Guidelines",
+        "start_line": 7,
+        "end_line": 11,
+        "start_char": 397,
+        "end_char": 924,
+        "score": "0.03371493009635368",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "5df336c4fbcbe3672d291320",
+        "source_type": "repository",
+        "content_hash": "a42b3f266d37d78e99e0bc9e01f405b92b7c0f93e6f9ca3e0a0d7ac654041bc6",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "async retry predicate",
+            "AsyncRetryPredicate",
+            "async_retry"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a42b3f266d37d78e99e0bc9e01f405b92b7c0f93e6f9ca3e0a0d7ac654041bc6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:60bae44fa0cb733e2c630510",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/deployment/config.md",
+        "start_line": 216,
+        "total_lines": 632,
+        "start_char": 11504,
+        "end_char": 16294,
+        "evidence_id": "60bae44fa0cb733e2c630510",
+        "truncated": false,
+        "next_offset": 335,
+        "source_type": "repository",
+        "content_hash": "ccacc687b37b592190b6663f8d9d9787c06ec28f52de34c9c2809a3040839153",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+              "offset": 438,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/sql/queries/hints.md",
+              "offset": 471,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/deployment/config.md",
+              "offset": 215,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "ccacc687b37b592190b6663f8d9d9787c06ec28f52de34c9c2809a3040839153",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:64689e1434752f8235987068",
+        "type": "evidence",
+        "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/lookup/ResultRetryStrategy.java",
+        "heading": "",
+        "start_line": 36,
+        "end_line": 71,
+        "start_char": 1625,
+        "end_char": 2881,
+        "score": "0.027799227799227798",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "64689e1434752f8235987068",
+        "source_type": "repository",
+        "content_hash": "fce6121fb8e8e06b286a9f7fb0b85a4341b4dc44a1cef82c5759579fe3bb6f35",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fce6121fb8e8e06b286a9f7fb0b85a4341b4dc44a1cef82c5759579fe3bb6f35",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:66945bbcc5c2e77957629cfb",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+        "start_line": 439,
+        "total_lines": 785,
+        "start_char": 16157,
+        "end_char": 21375,
+        "evidence_id": "66945bbcc5c2e77957629cfb",
+        "truncated": false,
+        "next_offset": 558,
+        "source_type": "repository",
+        "content_hash": "9545f461cfc3977e70e713139ac7ee9cabc151e5210d7505b157a84c7d9de091",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+              "offset": 438,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/sql/queries/hints.md",
+              "offset": 471,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/deployment/config.md",
+              "offset": 215,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "9545f461cfc3977e70e713139ac7ee9cabc151e5210d7505b157a84c7d9de091",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6b4f13af717adf91414360cd",
+        "type": "evidence",
+        "path": "flink-streaming-java/src/main/java/org/apache/flink/streaming/util/retryable/AsyncRetryStrategies.java",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 41,
+        "start_char": 0,
+        "end_char": 1662,
+        "score": "0.02668564312399929",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "6b4f13af717adf91414360cd",
+        "source_type": "repository",
+        "content_hash": "81bdd3a32d4c205fbfcf9696810825868459531b5f8becf9f31e8e2f806946bb",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "81bdd3a32d4c205fbfcf9696810825868459531b5f8becf9f31e8e2f806946bb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6c1a67403f88bf4a73b466c5",
+        "type": "evidence",
+        "path": "flink-python/pyflink/datastream/async_retry_strategies.py",
+        "heading": "limitations under the License.",
+        "start_line": 16,
+        "end_line": 65,
+        "start_char": 844,
+        "end_char": 2405,
+        "score": "0.03047794966520434",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "6c1a67403f88bf4a73b466c5",
+        "source_type": "repository",
+        "content_hash": "608dee0bdca9b59a4a4133333ad75f20801725b3e7dc0e39161c6c613a7642ee",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "608dee0bdca9b59a4a4133333ad75f20801725b3e7dc0e39161c6c613a7642ee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7062dcec21ddd2efa29b5306",
+        "type": "evidence",
+        "path": "flink-table/flink-table-runtime/src/main/java/org/apache/flink/table/runtime/operators/join/lookup/ResultRetryStrategy.java",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 35,
+        "start_char": 0,
+        "end_char": 1625,
+        "score": "0.024562989752863168",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "7062dcec21ddd2efa29b5306",
+        "source_type": "repository",
+        "content_hash": "b8d7ea09d268fed5902696b10181602881b26f9067527da17ed33787b7314474",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b8d7ea09d268fed5902696b10181602881b26f9067527da17ed33787b7314474",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:71fd850836661b3ece85d2df",
+        "type": "evidence",
+        "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/api/operators/async/AsyncWaitOperatorTest.java",
+        "heading": "",
+        "start_line": 100,
+        "end_line": 141,
+        "start_char": 4923,
+        "end_char": 6531,
+        "score": "0.03149801587301587",
+        "root": "code",
+        "matched_terms": [
+          "empty_result_predicate",
+          "has_exception_predicate"
+        ],
+        "evidence_id": "71fd850836661b3ece85d2df",
+        "source_type": "repository",
+        "content_hash": "0a6f7835272258db94f667aa898244326e8cdc3c8e605783d555608ed241b4a9",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0a6f7835272258db94f667aa898244326e8cdc3c8e605783d555608ed241b4a9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:76d1aaa7405bcc5da2819e1a",
+        "type": "evidence",
+        "path": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/functions/async/AsyncRetryStrategy.java",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 43,
+        "start_char": 0,
+        "end_char": 1454,
+        "score": "0.026161328190508135",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "76d1aaa7405bcc5da2819e1a",
+        "source_type": "repository",
+        "content_hash": "1484e0352c62f098ac983a3b916a8d7de1a9e303b0ab2c273d271073340b3577",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1484e0352c62f098ac983a3b916a8d7de1a9e303b0ab2c273d271073340b3577",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7adbbab813d97c28d495cfb3",
+        "type": "evidence",
+        "path": "docs/content/docs/deployment/ha/zookeeper_ha.md",
+        "heading": "ZooKeeper HA Services > Advanced Configuration > ZooKeeper Client Retry Configuration",
+        "start_line": 110,
+        "end_line": 122,
+        "start_char": 5048,
+        "end_char": 6317,
+        "score": "0.03478176363019174",
+        "root": "docs",
+        "matched_terms": [
+          "retry"
+        ],
+        "evidence_id": "7adbbab813d97c28d495cfb3",
+        "source_type": "repository",
+        "content_hash": "c4e38cef39584b41166e1005b85c58dbe98d00997238e8f544a3aa92849fc3d3",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "c4e38cef39584b41166e1005b85c58dbe98d00997238e8f544a3aa92849fc3d3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f2f2babc26d89db36491572",
+        "type": "evidence",
+        "path": "flink-python/pyflink/datastream/__init__.py",
+        "heading": "limitations under the License.",
+        "start_line": 309,
+        "end_line": 350,
+        "start_char": 17114,
+        "end_char": 18121,
+        "score": "0.027432808155699723",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "7f2f2babc26d89db36491572",
+        "source_type": "repository",
+        "content_hash": "b3373012e150795fb1f2caa326fe752b643c80ff993ede4b0a3deec2fc008644",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b3373012e150795fb1f2caa326fe752b643c80ff993ede4b0a3deec2fc008644",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8b773cecbb1464051b771b96",
+        "type": "evidence",
+        "path": "flink-table/flink-table-runtime/src/test/java/org/apache/flink/table/runtime/operators/join/RetryableLookupFunctionDelegatorTest.java",
+        "heading": "",
+        "start_line": 36,
+        "end_line": 78,
+        "start_char": 1614,
+        "end_char": 3229,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "empty_result_predicate"
+        ],
+        "evidence_id": "8b773cecbb1464051b771b96",
+        "source_type": "repository",
+        "content_hash": "4797fb67d7ab15a5c672c09b1ce2996efc33dc88aec7d522549204f2f7cc85e5",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4797fb67d7ab15a5c672c09b1ce2996efc33dc88aec7d522549204f2f7cc85e5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9c9518c50a450a3d8cfaeeb7",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+        "heading": "Asynchronous I/O for External Data Access > Async I/O API > Retry Support",
+        "start_line": 221,
+        "end_line": 232,
+        "start_char": 11325,
+        "end_char": 12148,
+        "score": "0.02797067901234568",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "9c9518c50a450a3d8cfaeeb7",
+        "source_type": "repository",
+        "content_hash": "2ace9f288bc3f8d872e59ac7bbfbdf999ff90469c7dc2272784d41911d3d25dd",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2ace9f288bc3f8d872e59ac7bbfbdf999ff90469c7dc2272784d41911d3d25dd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b1d4c94489ec7eebb275cf19",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+        "heading": "Asynchronous I/O for External Data Access > Async I/O API > Caveats",
+        "start_line": 277,
+        "end_line": 283,
+        "start_char": 14484,
+        "end_char": 15086,
+        "score": "0.03837372386574905",
+        "root": "docs",
+        "matched_terms": [
+          "retry"
+        ],
+        "evidence_id": "b1d4c94489ec7eebb275cf19",
+        "source_type": "repository",
+        "content_hash": "933fd519e2ee45f9673c111fbc975e464c904075329b76964442555e5a7f1034",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "933fd519e2ee45f9673c111fbc975e464c904075329b76964442555e5a7f1034",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bac65dee3529e3ec4b300b72",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-python/pyflink/datastream/__init__.py",
+        "start_line": 1,
+        "total_lines": 350,
+        "start_char": 0,
+        "end_char": 6381,
+        "evidence_id": "bac65dee3529e3ec4b300b72",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "4e5176cb91ebf6d84e7b9acd99bb788ba8d1d1114a39e380b5700e0800a3c68d",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-python/pyflink/datastream/__init__.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink-streaming-java/src/test/java/org/apache/flink/streaming/api/operators/async/AsyncWaitOperatorTest.java",
+              "offset": 95,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4e5176cb91ebf6d84e7b9acd99bb788ba8d1d1114a39e380b5700e0800a3c68d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bdf068f26499605b46666d9c",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/PULL_REQUEST_TEMPLATE.md",
+        "start_line": 36,
+        "total_lines": 74,
+        "start_char": 2715,
+        "end_char": 4626,
+        "evidence_id": "bdf068f26499605b46666d9c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "bdf4165c9583d8a699eaeea75b50f3169bca0f96e674f4521715f3273e154994",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "offset": 216,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+              "offset": 184,
+              "limit": 120
+            },
+            {
+              "path": ".github/PULL_REQUEST_TEMPLATE.md",
+              "offset": 35,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "bdf4165c9583d8a699eaeea75b50f3169bca0f96e674f4521715f3273e154994",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c2f6cfc39046c068ad4d4845",
+        "type": "evidence",
+        "evidence_id": "c2f6cfc39046c068ad4d4845",
+        "source_type": "task",
+        "exported_content_sha256": "6460a1bea3f427e05fd20535179519fcfe83a291d6a4e8e5a8f67e5e22fad15e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:caa50d11e86d30d3c61718eb",
+        "type": "evidence",
+        "path": ".github/PULL_REQUEST_TEMPLATE.md",
+        "heading": "Verifying this change",
+        "start_line": 40,
+        "end_line": 61,
+        "start_char": 2842,
+        "end_char": 3874,
+        "score": "0.03610631080389145",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "caa50d11e86d30d3c61718eb",
+        "source_type": "repository",
+        "content_hash": "0ceaddc54ff54f3abfc401a3b490e49132c888aa6134995b0efc073cf1ce35ae",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "async retry predicate",
+            "AsyncRetryPredicate",
+            "async_retry"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0ceaddc54ff54f3abfc401a3b490e49132c888aa6134995b0efc073cf1ce35ae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ce999802a62363da4b0e249b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/dev/table/sql/queries/hints.md",
+        "start_line": 472,
+        "total_lines": 720,
+        "start_char": 12464,
+        "end_char": 16573,
+        "evidence_id": "ce999802a62363da4b0e249b",
+        "truncated": false,
+        "next_offset": 591,
+        "source_type": "repository",
+        "content_hash": "b300d2ce789adb96a913c1e4af8b1e089cd9d635ab9de811133621efd9ce98a9",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+              "offset": 438,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/sql/queries/hints.md",
+              "offset": 471,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/deployment/config.md",
+              "offset": 215,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b300d2ce789adb96a913c1e4af8b1e089cd9d635ab9de811133621efd9ce98a9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d1d65b5dd80d084d2e3b350a",
+        "type": "evidence",
+        "path": "flink-python/pyflink/datastream/__init__.py",
+        "heading": "limitations under the License.",
+        "start_line": 274,
+        "end_line": 308,
+        "start_char": 15495,
+        "end_char": 17114,
+        "score": "0.024758454106280192",
+        "root": "code",
+        "matched_terms": [
+          "asyncretrypredicate",
+          "asyncretrystrategy"
+        ],
+        "evidence_id": "d1d65b5dd80d084d2e3b350a",
+        "source_type": "repository",
+        "content_hash": "9d15dc5276b00bdc5dc9ce33f45e11a6de7c89beb7a398d73db96efb468b331f",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "AsyncRetryPredicate",
+            "AsyncRetryStrategy",
+            "async_retry_predicates"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9d15dc5276b00bdc5dc9ce33f45e11a6de7c89beb7a398d73db96efb468b331f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d7210b81aa584638b4ea4344",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+        "heading": "Asynchronous I/O for External Data Access > Async I/O API > Retry Support",
+        "start_line": 221,
+        "end_line": 232,
+        "start_char": 11325,
+        "end_char": 12148,
+        "score": "0.04670343114189456",
+        "root": "docs",
+        "matched_terms": [
+          "async",
+          "retry"
+        ],
+        "evidence_id": "d7210b81aa584638b4ea4344",
+        "source_type": "repository",
+        "content_hash": "2ace9f288bc3f8d872e59ac7bbfbdf999ff90469c7dc2272784d41911d3d25dd",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "2ace9f288bc3f8d872e59ac7bbfbdf999ff90469c7dc2272784d41911d3d25dd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d9daa25097591bb084cb3709",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/sql/queries/hints.md",
+        "heading": "提示 > 查询提示 > 联接提示 > 关于查找键及 'retry-predicate'='lookup_miss' 重试条件的说明",
+        "start_line": 476,
+        "end_line": 525,
+        "start_char": 12807,
+        "end_char": 14191,
+        "score": "0.04001992159886897",
+        "root": "docs",
+        "matched_terms": [
+          "retry"
+        ],
+        "evidence_id": "d9daa25097591bb084cb3709",
+        "source_type": "repository",
+        "content_hash": "a009c85567012327a03f0ee8115c1033d3e242ac713c93bdc36f003dd9859096",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a009c85567012327a03f0ee8115c1033d3e242ac713c93bdc36f003dd9859096",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e8baf0ace7e2194e21ac5b4b",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/sql/queries/hints.md",
+        "heading": "SQL Hints > Query Hints > Join Hints > 3. Enable Delayed Retry Strategy For Lookup",
+        "start_line": 443,
+        "end_line": 474,
+        "start_char": 16386,
+        "end_char": 17703,
+        "score": "0.04366421568627451",
+        "root": "docs",
+        "matched_terms": [
+          "async",
+          "retry"
+        ],
+        "evidence_id": "e8baf0ace7e2194e21ac5b4b",
+        "source_type": "repository",
+        "content_hash": "b794cb9a9f3068aad8c0c6e20456f47a110b2349796af01946b31ddf4f91a227",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b794cb9a9f3068aad8c0c6e20456f47a110b2349796af01946b31ddf4f91a227",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f211e8221dd3ebd77b79e231",
+        "type": "evidence",
+        "path": "docs/content/docs/deployment/config.md",
+        "heading": "Common Setup Options > Retryable Cleanup",
+        "start_line": 221,
+        "end_line": 234,
+        "start_char": 13709,
+        "end_char": 14201,
+        "score": "0.035682822301267146",
+        "root": "docs",
+        "matched_terms": [
+          "retry"
+        ],
+        "evidence_id": "f211e8221dd3ebd77b79e231",
+        "source_type": "repository",
+        "content_hash": "f2fbee5b79b17a1e4d790be2354bf8d328808061614227a4324316cece75714b",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "f2fbee5b79b17a1e4d790be2354bf8d328808061614227a4324316cece75714b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f396f4c63448dc169f20f334",
+        "type": "evidence",
+        "root": "code",
+        "path": "flink-python/pyflink/datastream/functions.py",
+        "start_line": 1,
+        "total_lines": 1752,
+        "start_char": 0,
+        "end_char": 4559,
+        "evidence_id": "f396f4c63448dc169f20f334",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "fa56111fa0f4342a84d7f342d30aacefb55ad95a3263388603a764994acb55a3",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "flink-python/pyflink/datastream/functions.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "flink-python/pyflink/datastream/async_retry_predicates.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fa56111fa0f4342a84d7f342d30aacefb55ad95a3263388603a764994acb55a3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f8fe592c81d3d6ea660a190f",
+        "type": "evidence",
+        "path": "flink-table/flink-table-planner/src/main/java/org/apache/flink/table/planner/plan/utils/LookupJoinUtil.java",
+        "heading": "",
+        "start_line": 191,
+        "end_line": 229,
+        "start_char": 9796,
+        "end_char": 11405,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "empty_result_predicate"
+        ],
+        "evidence_id": "f8fe592c81d3d6ea660a190f",
+        "source_type": "repository",
+        "content_hash": "17a36696be97fcb37e9037e8618fb2aa7e84004d7df671dcf193182f0525e630",
+        "revision": "bc4cb2cc55c517eadae5ebee5136e05dd542276a",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "empty_result_predicate",
+            "has_exception_predicate",
+            "exception_type_predicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "17a36696be97fcb37e9037e8618fb2aa7e84004d7df671dcf193182f0525e630",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fa42bc2ad65ec46e559806a6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+        "start_line": 217,
+        "total_lines": 283,
+        "start_char": 11097,
+        "end_char": 15086,
+        "evidence_id": "fa42bc2ad65ec46e559806a6",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "c193ceeb52c5b1d71cd85a7fd6b15d0d1831faad1bcf2ad271e7fd3e0bacf6af",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+              "offset": 216,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+              "offset": 184,
+              "limit": 120
+            },
+            {
+              "path": ".github/PULL_REQUEST_TEMPLATE.md",
+              "offset": 35,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c193ceeb52c5b1d71cd85a7fd6b15d0d1831faad1bcf2ad271e7fd3e0bacf6af",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:faa7b6cea841d26a5003c6f3",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+        "heading": "Asynchronous I/O for External Data Access > Async I/O API",
+        "start_line": 109,
+        "end_line": 147,
+        "start_char": 5214,
+        "end_char": 6851,
+        "score": "0.04623878536922015",
+        "root": "docs",
+        "matched_terms": [
+          "async",
+          "retry"
+        ],
+        "evidence_id": "faa7b6cea841d26a5003c6f3",
+        "source_type": "repository",
+        "content_hash": "e6c3aaf29ff765926001f91b72bd6af39c8f3552495a61e61b6bbe9e290def92",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "async retry predicate",
+            "AsyncRetryPredicate",
+            "async_retry"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e6c3aaf29ff765926001f91b72bd6af39c8f3552495a61e61b6bbe9e290def92",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fdc6bbabfbe6e3aa3d0542f0",
+        "type": "evidence",
+        "evidence_id": "fdc6bbabfbe6e3aa3d0542f0",
+        "source_type": "implementation",
+        "exported_content_sha256": "11274994c56d6370a5c51fa4cec259824df91439fe3338fda9ba560d2f94a1cb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ff1e58e595c8d4b607778aa0",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/udfs.md",
+        "heading": "Asynchronous Scalar Functions > Error Handling",
+        "start_line": 1116,
+        "end_line": 1118,
+        "start_char": 44932,
+        "end_char": 45965,
+        "score": "0.03684750469768984",
+        "root": "docs",
+        "matched_terms": [
+          "async",
+          "retry"
+        ],
+        "evidence_id": "ff1e58e595c8d4b607778aa0",
+        "source_type": "repository",
+        "content_hash": "a01d48bfa4bcf4c45b3490b62a3e5776495f7366d8f7fa09ba10b2275961e96f",
+        "revision": "d9765be3177467538053e2bed5f2c7387e8dfb24",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "python async retry",
+            "unordered_wait_with_retry",
+            "RetryPredicate"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "a01d48bfa4bcf4c45b3490b62a3e5776495f7366d8f7fa09ba10b2275961e96f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:asyncio-retry-predicates",
+        "type": "requirement",
+        "description": "In docs/content/docs/dev/datastream/operators/asyncio.md, under the 'Retry Support' section, document the new built-in Python predicate helpers (empty_result_predicate, has_exception_predicate, exception_type_predicate) from pyflink.datastream.async_retry_predicates, explaining what each matches and how to use them with AsyncRetryPredicate/AsyncRetryStrategy."
+      },
+      {
+        "id": "requirement:asyncio-retry-predicates-zh",
+        "type": "requirement",
+        "description": "Mirror the new built-in Python retry predicate helper documentation in docs/content.zh/docs/dev/datastream/operators/asyncio.md under the '重试支持' section, describing empty_result_predicate, has_exception_predicate, and exception_type_predicate."
+      },
+      {
+        "id": "requirement:asyncio-abstract-methods",
+        "type": "requirement",
+        "description": "In docs/content/docs/dev/datastream/operators/asyncio.md 'Retry Support' section, note that AsyncRetryPredicate and AsyncRetryStrategy interface methods are abstract, so custom subclasses must implement all of them or instantiation raises TypeError."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/content/docs/dev/datastream/operators/asyncio.md",
+        "hash": "35c4143c8b67fc3e3cace535e481f1ccd9d0faa990bf2e9b20750b013baad669"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+        "hash": "67912d0157728637b93fe65ea2bc00924e342f676c7343e1a03731e39b20efe6"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "asyncio-retry-predicates",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/content/docs/dev/datastream/operators/asyncio.md"
+        ],
+        "evidence_ids": [
+          "3e4042a304764260f480e263",
+          "fa42bc2ad65ec46e559806a6",
+          "6c1a67403f88bf4a73b466c5",
+          "f396f4c63448dc169f20f334"
+        ],
+        "reason": "In docs/content/docs/dev/datastream/operators/asyncio.md, under the 'Retry Support' section, document the new built-in Python predicate helpers (empty_result_predicate, has_exception_predicate, exception_type_predicate) from pyflink.datastream.async_retry_predicates, explaining what each matches and how to use them with AsyncRetryPredicate/AsyncRetryStrategy."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "asyncio-retry-predicates-zh",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/content.zh/docs/dev/datastream/operators/asyncio.md"
+        ],
+        "evidence_ids": [
+          "1e89401bf7fd9f40ca2e9fbe",
+          "3e4042a304764260f480e263",
+          "6c1a67403f88bf4a73b466c5",
+          "f396f4c63448dc169f20f334"
+        ],
+        "reason": "Mirror the new built-in Python retry predicate helper documentation in docs/content.zh/docs/dev/datastream/operators/asyncio.md under the '重试支持' section, describing empty_result_predicate, has_exception_predicate, and exception_type_predicate."
+      },
+      {
+        "id": "coverage:2",
+        "type": "coverage",
+        "requirement_id": "asyncio-abstract-methods",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/content/docs/dev/datastream/operators/asyncio.md"
+        ],
+        "evidence_ids": [
+          "3e4042a304764260f480e263",
+          "fa42bc2ad65ec46e559806a6",
+          "6c1a67403f88bf4a73b466c5",
+          "f396f4c63448dc169f20f334"
+        ],
+        "reason": "In docs/content/docs/dev/datastream/operators/asyncio.md 'Retry Support' section, note that AsyncRetryPredicate and AsyncRetryStrategy interface methods are abstract, so custom subclasses must implement all of them or instantiation raises TypeError."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the Python datastream documentation describe async retry predicates/strategies and where would new built-in predicate helpers be documented?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "What is the existing docstring/API surface for AsyncRetryPredicate and AsyncRetryStrategy in functions.py, and is there a Python API reference that auto-generates from docstrings?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the Python asyncio docs page (or a Python-specific async I/O page) document retry predicates/strategies and where would the new built-in predicate helpers be surfaced?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is async_retry_predicates exported in pyflink.datastream __init__ and referenced anywhere in docs, indicating a public API surface needing documentation?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:03cf83f362f5ddac4b83aab7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:09b1017e81b7c6f7161490cf",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:11050ef119d57e9a52ae126e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1e2e2c112bf4a9caf406e04d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1e89401bf7fd9f40ca2e9fbe",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:24fd18ee8648ca7fa175645c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:287ed4e02722d0313ed3a9c5",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2993524aec92bfd6f5f5d185",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2993524aec92bfd6f5f5d185",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:34a44fb3fe2c51dacc743c82",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:35a05ae14ae7815c827e6e97",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:35c5fd76d101d26e1461951b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3837d73729656c3c5fb5de1f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3d368770475041bf25ea9024",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3e4042a304764260f480e263",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:42fa407058ebfcbdccd75507",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:45d74a8c3277bdda8a395ed3",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:47aca62ac620bcd26de8e2ad",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5051a820cff8406a2409d8c3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:528f20f70fe5efbb17b1fa40",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:55776f7b5580f65532dca7f2",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a93dccdf221e8713bfd0bf2",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5b548761a00d120012969441",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5ba38ded6d94494c38d7ccb6",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5df336c4fbcbe3672d291320",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:60bae44fa0cb733e2c630510",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64689e1434752f8235987068",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:66945bbcc5c2e77957629cfb",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6b4f13af717adf91414360cd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6c1a67403f88bf4a73b466c5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7062dcec21ddd2efa29b5306",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:71fd850836661b3ece85d2df",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:76d1aaa7405bcc5da2819e1a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7adbbab813d97c28d495cfb3",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f2f2babc26d89db36491572",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8b773cecbb1464051b771b96",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9c9518c50a450a3d8cfaeeb7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b1d4c94489ec7eebb275cf19",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bac65dee3529e3ec4b300b72",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bdf068f26499605b46666d9c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:caa50d11e86d30d3c61718eb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ce999802a62363da4b0e249b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d1d65b5dd80d084d2e3b350a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d7210b81aa584638b4ea4344",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d7210b81aa584638b4ea4344",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d9daa25097591bb084cb3709",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e8baf0ace7e2194e21ac5b4b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e8baf0ace7e2194e21ac5b4b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f211e8221dd3ebd77b79e231",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f396f4c63448dc169f20f334",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f8fe592c81d3d6ea660a190f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fa42bc2ad65ec46e559806a6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:faa7b6cea841d26a5003c6f3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff1e58e595c8d4b607778aa0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff1e58e595c8d4b607778aa0",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3e4042a304764260f480e263",
+        "to": "requirement:asyncio-retry-predicates",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:fa42bc2ad65ec46e559806a6",
+        "to": "requirement:asyncio-retry-predicates",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6c1a67403f88bf4a73b466c5",
+        "to": "requirement:asyncio-retry-predicates",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:1e89401bf7fd9f40ca2e9fbe",
+        "to": "requirement:asyncio-retry-predicates-zh",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:3e4042a304764260f480e263",
+        "to": "requirement:asyncio-retry-predicates-zh",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6c1a67403f88bf4a73b466c5",
+        "to": "requirement:asyncio-retry-predicates-zh",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:f396f4c63448dc169f20f334",
+        "to": "requirement:asyncio-abstract-methods",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:fa42bc2ad65ec46e559806a6",
+        "to": "requirement:asyncio-abstract-methods",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6c1a67403f88bf4a73b466c5",
+        "to": "requirement:asyncio-abstract-methods",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:asyncio-retry-predicates",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "requirement:asyncio-abstract-methods",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:3e4042a304764260f480e263",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:fa42bc2ad65ec46e559806a6",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6c1a67403f88bf4a73b466c5",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f396f4c63448dc169f20f334",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:asyncio-retry-predicates-zh",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:1e89401bf7fd9f40ca2e9fbe",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3e4042a304764260f480e263",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6c1a67403f88bf4a73b466c5",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f396f4c63448dc169f20f334",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:asyncio-retry-predicates",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:3e4042a304764260f480e263",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:fa42bc2ad65ec46e559806a6",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6c1a67403f88bf4a73b466c5",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f396f4c63448dc169f20f334",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:asyncio-retry-predicates-zh",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:1e89401bf7fd9f40ca2e9fbe",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:3e4042a304764260f480e263",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6c1a67403f88bf4a73b466c5",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f396f4c63448dc169f20f334",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:asyncio-abstract-methods",
+        "to": "coverage:2",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:3e4042a304764260f480e263",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:fa42bc2ad65ec46e559806a6",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6c1a67403f88bf4a73b466c5",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f396f4c63448dc169f20f334",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "2bedaf032c0ba7807e75b6fe7767096fcb19c6a3371260c7672b37c0c8a79dd6"
+}

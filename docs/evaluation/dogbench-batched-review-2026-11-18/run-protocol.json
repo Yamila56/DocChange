@@ -1,0 +1,25 @@
+{
+  "implementation_commit": "03c1115c8058745bf2abe6b6bcb53ad2be5b8dde",
+  "formal_batches": [
+    "dogbench-batched-review-20261118-r2",
+    "dogbench-coverage10-20261118-r2"
+  ],
+  "generation_model_requested": "deepseek-flash",
+  "development_cohort": 49,
+  "initial_preflight_attempts": [
+    {
+      "reason": "Pre-existing unreachable source objects",
+      "finished_input_errors": 6,
+      "api_receipts": 0
+    },
+    {
+      "reason": "Windows git ownership check in unnecessary pruning invocation",
+      "finished_input_errors": 98,
+      "api_receipts": 0
+    }
+  ],
+  "recovery": "Clean sealed benchmark repositories were pruned with WSL and all 49 inputs reverified. New output directories and ledgers used for formal runs.",
+  "formal_run_attempts_per_policy": 1,
+  "review_research_rounds_observed": 0,
+  "retrieval_rerun": false
+}

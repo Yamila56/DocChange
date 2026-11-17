@@ -1,0 +1,3117 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "funnels-breakdown-path-cleaning",
+      "description": "In contents/docs/product-analytics/funnels.mdx, in the Breakdowns section, note that event-property breakdowns (e.g. $pathname/$current_url) can apply the project's global path cleaning rules via the 'Apply global path URL cleaning' toggle, and link to /docs/product-analytics/path-cleaning for configuring rules.",
+      "evidence_ids": [
+        "2aa477cf93ed44cb68bd7cb9",
+        "6be192b3aea871f6c55e0718",
+        "578b82a5d78c2fd3ef7750e9",
+        "5a252ddf0dc83add909c384a",
+        "ef617b638ec896d17dd34cfc"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "path-cleaning-scope-funnels",
+      "description": "In contents/docs/_snippets/path-cleaning.mdx, update the 'where path cleaning applies' scope so it also lists funnel breakdowns (event property breakdowns) alongside web analytics paths and path breakdowns, since funnels now honor the configured rules.",
+      "evidence_ids": [
+        "ef617b638ec896d17dd34cfc",
+        "2aa477cf93ed44cb68bd7cb9",
+        "6be192b3aea871f6c55e0718"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "5219b9eed987ff43784d1abb81d8429f11790ea1cd75905095aa5abfdf6377bc",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does the docs describe funnel breakdown path cleaning or the breakdown_path_cleaning filter field, and where is path cleaning documented for trends/paths?",
+          "root": "docs",
+          "queries": [
+            "path cleaning",
+            "breakdown_path_cleaning",
+            "breakdown normalize url funnel"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/_snippets/path-cleaning.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/paths.mdx",
+              "offset": 183,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/web-analytics/path-cleaning.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "ef617b638ec896d17dd34cfc",
+            "5a252ddf0dc83add909c384a",
+            "5d51bc56d9f81872d71ae57f",
+            "43542a22dcffa26a17ef1fd7",
+            "2032bb4e59764570f9b9762b",
+            "d1a5d127695992ac28fa169a",
+            "1382582aaa7b49fda45d23ad",
+            "e4a5f342107b8c8efac552f5",
+            "a1cacc567cec2ccd21c9eb09",
+            "ee4192be593636bbf9259627",
+            "dd561eca22a476ea4a1b14d7",
+            "ed46e11e54fc77f89191ce7d",
+            "4d94591af8f82a6c0a2f5a05",
+            "578b82a5d78c2fd3ef7750e9",
+            "064eb416450d14b3419bba13"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/_snippets/path-cleaning.mdx",
+              "evidence_id": "43542a22dcffa26a17ef1fd7",
+              "score": "0.044143111790170615"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/_snippets/path-cleaning.mdx",
+              "evidence_id": "2032bb4e59764570f9b9762b",
+              "score": "0.04050925925925926"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/product-analytics/paths.mdx",
+              "evidence_id": "d1a5d127695992ac28fa169a",
+              "score": "0.03787006846390304"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/web-analytics/path-cleaning.mdx",
+              "evidence_id": "1382582aaa7b49fda45d23ad",
+              "score": "0.03283490529867342"
+            },
+            {
+              "rank": 5,
+              "path": "contents/blog/the-posthog-array-1-42-0.md",
+              "evidence_id": "e4a5f342107b8c8efac552f5",
+              "score": "0.031048590457467398"
+            },
+            {
+              "rank": 6,
+              "path": "contents/tutorials/regex-basics.md",
+              "evidence_id": "a1cacc567cec2ccd21c9eb09",
+              "score": "0.03071671974380246"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/product-analytics/path-cleaning.mdx",
+              "evidence_id": "ee4192be593636bbf9259627",
+              "score": "0.030601625258125986"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/product-analytics/path-cleaning.mdx",
+              "evidence_id": "dd561eca22a476ea4a1b14d7",
+              "score": "0.02762316199342746"
+            },
+            {
+              "rank": 9,
+              "path": "contents/blog/the-posthog-array-1-32-0.md",
+              "evidence_id": "ed46e11e54fc77f89191ce7d",
+              "score": "0.027587118834727968"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/web-analytics/path-cleaning.mdx",
+              "evidence_id": "4d94591af8f82a6c0a2f5a05",
+              "score": "0.02683633574449499"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "evidence_id": "578b82a5d78c2fd3ef7750e9",
+              "score": "0.02547482665058788"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/feature-flags/cleaning-up-stale-flags.mdx",
+              "evidence_id": "064eb416450d14b3419bba13",
+              "score": "0.024322344322344324"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/_snippets/path-cleaning.mdx",
+              "start": 0,
+              "end": 79,
+              "total_lines": 79
+            },
+            {
+              "path": "contents/docs/product-analytics/paths.mdx",
+              "start": 183,
+              "end": 250,
+              "total_lines": 250
+            },
+            {
+              "path": "contents/docs/web-analytics/path-cleaning.mdx",
+              "start": 0,
+              "end": 14,
+              "total_lines": 14
+            }
+          ],
+          "read_evidence_ids": [
+            "ef617b638ec896d17dd34cfc",
+            "5a252ddf0dc83add909c384a",
+            "5d51bc56d9f81872d71ae57f"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where is get_breakdown_expr and apply_path_cleaning implemented, and how is breakdown_path_cleaning defined in the schema?",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "posthog/hogql_queries/insights/funnels/utils.py",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "posthog/hogql_queries/insights/funnels/funnel_event_query.py",
+              "offset": 391,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d29d225649cbfd5befa290d1",
+            "2aa477cf93ed44cb68bd7cb9",
+            "aab2648af130d6d4ddd065c0",
+            "6be192b3aea871f6c55e0718",
+            "f9b5edc506061e87f4d866ed",
+            "11edd2f6e5541fecb2a63d72",
+            "1f196a68f5f0f1631d930741",
+            "36ad48d3d8662b46eb2cefc6",
+            "c3469d54d30f030fcf2feac2",
+            "c65413eff83fd14bd93b5e32",
+            "cdd3480b54960ce026a50e5b",
+            "0d600d9463097bb0af727210",
+            "5602e3a1a90ac9bdc49feddc",
+            "8883cb08d029cfaf5676bf4c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "posthog/hogql_queries/insights/funnels/utils.py",
+              "evidence_id": "aab2648af130d6d4ddd065c0",
+              "score": "0.03057889822595705"
+            },
+            {
+              "rank": 2,
+              "path": "posthog/hogql_queries/insights/funnels/utils.py",
+              "evidence_id": "6be192b3aea871f6c55e0718",
+              "score": "0.029877369007803793"
+            },
+            {
+              "rank": 3,
+              "path": "posthog/hogql_queries/insights/funnels/funnel_event_query.py",
+              "evidence_id": "f9b5edc506061e87f4d866ed",
+              "score": "0.027623285131627734"
+            },
+            {
+              "rank": 4,
+              "path": "frontend/src/queries/validators.js",
+              "evidence_id": "11edd2f6e5541fecb2a63d72",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 5,
+              "path": "posthog/hogql_queries/insights/funnels/funnel_event_query.py",
+              "evidence_id": "1f196a68f5f0f1631d930741",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 6,
+              "path": "products/web_analytics/backend/hogql_queries/web_stats_frustration_lazy_precompute.py",
+              "evidence_id": "36ad48d3d8662b46eb2cefc6",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 7,
+              "path": "posthog/hogql_queries/insights/trends/breakdown.py",
+              "evidence_id": "c3469d54d30f030fcf2feac2",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 8,
+              "path": "products/web_analytics/backend/hogql_queries/web_stats_paths_lazy_precompute.py",
+              "evidence_id": "c65413eff83fd14bd93b5e32",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 9,
+              "path": "frontend/src/queries/schema.json",
+              "evidence_id": "cdd3480b54960ce026a50e5b",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 10,
+              "path": "posthog/hogql/property.py",
+              "evidence_id": "0d600d9463097bb0af727210",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 11,
+              "path": "frontend/src/scenes/web-analytics/webAnalyticsLogic.tsx",
+              "evidence_id": "5602e3a1a90ac9bdc49feddc",
+              "score": "0.015625"
+            },
+            {
+              "rank": 12,
+              "path": "products/web_analytics/skills/managing-path-cleaning-rules/SKILL.md",
+              "evidence_id": "8883cb08d029cfaf5676bf4c",
+              "score": "0.015625"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "posthog/hogql_queries/insights/funnels/utils.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 140
+            },
+            {
+              "path": "posthog/hogql_queries/insights/funnels/funnel_event_query.py",
+              "start": 391,
+              "end": 511,
+              "total_lines": 667
+            }
+          ],
+          "read_evidence_ids": [
+            "d29d225649cbfd5befa290d1",
+            "2aa477cf93ed44cb68bd7cb9"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "064eb416450d14b3419bba13",
+        "0d600d9463097bb0af727210",
+        "11edd2f6e5541fecb2a63d72",
+        "1382582aaa7b49fda45d23ad",
+        "1f196a68f5f0f1631d930741",
+        "2032bb4e59764570f9b9762b",
+        "2aa477cf93ed44cb68bd7cb9",
+        "36ad48d3d8662b46eb2cefc6",
+        "43542a22dcffa26a17ef1fd7",
+        "4d94591af8f82a6c0a2f5a05",
+        "5602e3a1a90ac9bdc49feddc",
+        "578b82a5d78c2fd3ef7750e9",
+        "5a252ddf0dc83add909c384a",
+        "5d51bc56d9f81872d71ae57f",
+        "6be192b3aea871f6c55e0718",
+        "8883cb08d029cfaf5676bf4c",
+        "a1cacc567cec2ccd21c9eb09",
+        "aab2648af130d6d4ddd065c0",
+        "c3469d54d30f030fcf2feac2",
+        "c65413eff83fd14bd93b5e32",
+        "cdd3480b54960ce026a50e5b",
+        "d1a5d127695992ac28fa169a",
+        "d29d225649cbfd5befa290d1",
+        "dd561eca22a476ea4a1b14d7",
+        "e4a5f342107b8c8efac552f5",
+        "ed46e11e54fc77f89191ce7d",
+        "ee4192be593636bbf9259627",
+        "ef617b638ec896d17dd34cfc",
+        "f9b5edc506061e87f4d866ed"
+      ],
+      "new_evidence_count": 29,
+      "new_path_count": 19
+    },
+    {
+      "signature": "8d6e847e81625ad3d9764f042ba3379666607886e09b759f8f50810700786cb9",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the path-cleaning snippet's 'Where path cleaning applies' section mention funnels, and is there a funnels breakdown docs page that should note path cleaning support?",
+          "root": "docs",
+          "queries": [
+            "funnel breakdown path cleaning",
+            "funnels breakdown",
+            "breakdown normalize url"
+          ],
+          "paths": [
+            "contents/docs/_snippets/path-cleaning.mdx"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/blog/the-posthog-array-1-32-0.md",
+              "offset": 57,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "offset": 145,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-38-0.mdx",
+              "offset": 87,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "ff5db5727157c7ccc4893234",
+            "b6305c0cf8e9989462ec7cc2",
+            "954245b84288ea69ef02e0f6",
+            "ed46e11e54fc77f89191ce7d",
+            "578b82a5d78c2fd3ef7750e9",
+            "9def9ac80e21db51a3795451",
+            "e4a5f342107b8c8efac552f5",
+            "76a8ab8a05dde2bd785d91cd",
+            "1725bd5fbb233d5682c43f9e",
+            "1ca6aa0e97e6a9c063ff7bf5",
+            "cdf4c91162e867662360963d",
+            "6160dd326554de6387956e07",
+            "43542a22dcffa26a17ef1fd7",
+            "def1781e1f3b260051864048",
+            "98b3d5414554e46a9356888f"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/blog/the-posthog-array-1-32-0.md",
+              "evidence_id": "ed46e11e54fc77f89191ce7d",
+              "score": "0.045433846663354864"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "evidence_id": "578b82a5d78c2fd3ef7750e9",
+              "score": "0.04486461251167133"
+            },
+            {
+              "rank": 3,
+              "path": "contents/blog/the-posthog-array-1-38-0.mdx",
+              "evidence_id": "9def9ac80e21db51a3795451",
+              "score": "0.04337143403716014"
+            },
+            {
+              "rank": 4,
+              "path": "contents/blog/the-posthog-array-1-42-0.md",
+              "evidence_id": "e4a5f342107b8c8efac552f5",
+              "score": "0.04286403085824494"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/experiments/analyzing-results.mdx",
+              "evidence_id": "76a8ab8a05dde2bd785d91cd",
+              "score": "0.042312875574407924"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/product-analytics/retention.mdx",
+              "evidence_id": "1725bd5fbb233d5682c43f9e",
+              "score": "0.04027714761040532"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/product-analytics/trends/breakdowns.mdx",
+              "evidence_id": "1ca6aa0e97e6a9c063ff7bf5",
+              "score": "0.036734172906739276"
+            },
+            {
+              "rank": 8,
+              "path": "contents/blog/alerts-examples.mdx",
+              "evidence_id": "cdf4c91162e867662360963d",
+              "score": "0.03594277507320986"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "evidence_id": "6160dd326554de6387956e07",
+              "score": "0.035644463063817904"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/_snippets/path-cleaning.mdx",
+              "evidence_id": "43542a22dcffa26a17ef1fd7",
+              "score": "0.03341687552213868"
+            },
+            {
+              "rank": 11,
+              "path": "contents/tutorials/hogql-breakdowns.mdx",
+              "evidence_id": "def1781e1f3b260051864048",
+              "score": "0.03314261874962751"
+            },
+            {
+              "rank": 12,
+              "path": "contents/tutorials/array-filter-breakdown.md",
+              "evidence_id": "98b3d5414554e46a9356888f",
+              "score": "0.032834507042253526"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/blog/the-posthog-array-1-32-0.md",
+              "start": 57,
+              "end": 139,
+              "total_lines": 139
+            },
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "start": 145,
+              "end": 265,
+              "total_lines": 377
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-38-0.mdx",
+              "start": 87,
+              "end": 159,
+              "total_lines": 159
+            }
+          ],
+          "read_evidence_ids": [
+            "ff5db5727157c7ccc4893234",
+            "b6305c0cf8e9989462ec7cc2",
+            "954245b84288ea69ef02e0f6"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is there a funnels product-analytics docs page describing breakdown options where path cleaning support should be documented?",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ],
+          "paths": [
+            "contents/docs/product-analytics/funnels.mdx"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/insights.mdx",
+              "offset": 43,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/analyzing-results.mdx",
+              "offset": 194,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "fbc6ca42210f686fa01f7c4f",
+            "ef779a6d57ca10e4b0689d16",
+            "d8ff8975d9110caee6d56e7b",
+            "578b82a5d78c2fd3ef7750e9",
+            "ed46e11e54fc77f89191ce7d",
+            "02809d4a9a0ef20435831d3e",
+            "c44c4e310a2f6d46d79e778c",
+            "76a8ab8a05dde2bd785d91cd",
+            "9def9ac80e21db51a3795451",
+            "def1781e1f3b260051864048",
+            "ccf4bbc8a2f3c2b2ce3d291e",
+            "bfe63fc94abcc06c74448bb8",
+            "ff22fcae290f9087a9dd00bd",
+            "1ca6aa0e97e6a9c063ff7bf5",
+            "967c8a7855de07a7c04bacd3"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "evidence_id": "578b82a5d78c2fd3ef7750e9",
+              "score": "0.03566781904018438"
+            },
+            {
+              "rank": 2,
+              "path": "contents/blog/the-posthog-array-1-32-0.md",
+              "evidence_id": "ed46e11e54fc77f89191ce7d",
+              "score": "0.03480037920903356"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "evidence_id": "02809d4a9a0ef20435831d3e",
+              "score": "0.03383928571428572"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/product-analytics/insights.mdx",
+              "evidence_id": "c44c4e310a2f6d46d79e778c",
+              "score": "0.032755392808430414"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/experiments/analyzing-results.mdx",
+              "evidence_id": "76a8ab8a05dde2bd785d91cd",
+              "score": "0.03211914559647039"
+            },
+            {
+              "rank": 6,
+              "path": "contents/blog/the-posthog-array-1-38-0.mdx",
+              "evidence_id": "9def9ac80e21db51a3795451",
+              "score": "0.030308735717680117"
+            },
+            {
+              "rank": 7,
+              "path": "contents/tutorials/hogql-breakdowns.mdx",
+              "evidence_id": "def1781e1f3b260051864048",
+              "score": "0.030244215574288923"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/glossary.mdx",
+              "evidence_id": "ccf4bbc8a2f3c2b2ce3d291e",
+              "score": "0.029968374446552815"
+            },
+            {
+              "rank": 9,
+              "path": "contents/blog/how-to-find-and-fix-app-onboarding-drop-off.mdx",
+              "evidence_id": "bfe63fc94abcc06c74448bb8",
+              "score": "0.028337412916588214"
+            },
+            {
+              "rank": 10,
+              "path": "contents/blog/the-posthog-array-1-27-0.md",
+              "evidence_id": "ff22fcae290f9087a9dd00bd",
+              "score": "0.027808888359347077"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/product-analytics/trends/breakdowns.mdx",
+              "evidence_id": "1ca6aa0e97e6a9c063ff7bf5",
+              "score": "0.027607003054157524"
+            },
+            {
+              "rank": 12,
+              "path": "contents/handbook/support/troubleshooting-tips.md",
+              "evidence_id": "967c8a7855de07a7c04bacd3",
+              "score": "0.02664326458973234"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "start": 0,
+              "end": 120,
+              "total_lines": 377
+            },
+            {
+              "path": "contents/docs/product-analytics/insights.mdx",
+              "start": 43,
+              "end": 134,
+              "total_lines": 134
+            },
+            {
+              "path": "contents/docs/experiments/analyzing-results.mdx",
+              "start": 194,
+              "end": 216,
+              "total_lines": 216
+            }
+          ],
+          "read_evidence_ids": [
+            "fbc6ca42210f686fa01f7c4f",
+            "ef779a6d57ca10e4b0689d16",
+            "d8ff8975d9110caee6d56e7b"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "02809d4a9a0ef20435831d3e",
+        "1725bd5fbb233d5682c43f9e",
+        "1ca6aa0e97e6a9c063ff7bf5",
+        "6160dd326554de6387956e07",
+        "76a8ab8a05dde2bd785d91cd",
+        "954245b84288ea69ef02e0f6",
+        "967c8a7855de07a7c04bacd3",
+        "98b3d5414554e46a9356888f",
+        "9def9ac80e21db51a3795451",
+        "b6305c0cf8e9989462ec7cc2",
+        "bfe63fc94abcc06c74448bb8",
+        "c44c4e310a2f6d46d79e778c",
+        "ccf4bbc8a2f3c2b2ce3d291e",
+        "cdf4c91162e867662360963d",
+        "d8ff8975d9110caee6d56e7b",
+        "def1781e1f3b260051864048",
+        "ef779a6d57ca10e4b0689d16",
+        "fbc6ca42210f686fa01f7c4f",
+        "ff22fcae290f9087a9dd00bd",
+        "ff5db5727157c7ccc4893234"
+      ],
+      "new_evidence_count": 20,
+      "new_path_count": 12
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+    "code": "29379bbaee20ab5e3bc7f6dcccb567baec894165"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:d099ad04e19639ab": 0,
+    "discover:Q1-2:a9bdb0ebd3a92fa3": 0,
+    "discover:Q2-1:ed8ccece622a5e3e": 0,
+    "discover:Q2-2:389fc471fe14e897": 558
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-2:a9bdb0ebd3a92fa3": 30521
+  },
+  "tool_metrics": {
+    "discover:Q1-1:d099ad04e19639ab": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 4721,
+      "cache_hit": false
+    },
+    "discover:Q1-2:a9bdb0ebd3a92fa3": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 53167,
+      "cache_hit": false
+    },
+    "discover:Q1-2:f8444307dba89a9e": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 1076,
+      "cache_hit": false
+    },
+    "discover:Q1-1:f19ca42d3dcd4ba9": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 1138,
+      "cache_hit": false
+    },
+    "discover:Q2-1:ed8ccece622a5e3e": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 558,
+      "cache_hit": false
+    },
+    "discover:Q2-2:389fc471fe14e897": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 431,
+      "cache_hit": false
+    },
+    "discover:Q2-2:05ff209656005151": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 332,
+      "cache_hit": false
+    },
+    "discover:Q2-1:f646dfce61092b73": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 379,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2030,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "funnels-breakdown-path-cleaning",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/product-analytics/funnels.mdx"
+      ],
+      "evidence_ids": [
+        "578b82a5d78c2fd3ef7750e9",
+        "2aa477cf93ed44cb68bd7cb9",
+        "6be192b3aea871f6c55e0718",
+        "5a252ddf0dc83add909c384a",
+        "ef617b638ec896d17dd34cfc"
+      ],
+      "reason": "In contents/docs/product-analytics/funnels.mdx, in the Breakdowns section, note that event-property breakdowns (e.g. $pathname/$current_url) can apply the project's global path cleaning rules via the 'Apply global path URL cleaning' toggle, and link to /docs/product-analytics/path-cleaning for configuring rules."
+    },
+    {
+      "requirement_id": "path-cleaning-scope-funnels",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/_snippets/path-cleaning.mdx"
+      ],
+      "evidence_ids": [
+        "ef617b638ec896d17dd34cfc",
+        "2aa477cf93ed44cb68bd7cb9",
+        "6be192b3aea871f6c55e0718"
+      ],
+      "reason": "In contents/docs/_snippets/path-cleaning.mdx, update the 'where path cleaning applies' scope so it also lists funnel breakdowns (event property breakdowns) alongside web analytics paths and path breakdowns, since funnels now honor the configured rules."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:02809d4a9a0ef20435831d3e",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/funnels.mdx",
+        "heading": "enterprise: true > How to create a funnel > Breakdowns > Attribution types",
+        "start_line": 172,
+        "end_line": 177,
+        "start_char": 11320,
+        "end_char": 11712,
+        "score": "0.03383928571428572",
+        "root": "docs",
+        "matched_terms": [
+          "by",
+          "funnel",
+          "funnels"
+        ],
+        "evidence_id": "02809d4a9a0ef20435831d3e",
+        "source_type": "repository",
+        "content_hash": "9864841db7841d1f0dfbc7e76bb253531275cf43365a1690a2d91f258b41fd8b",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9864841db7841d1f0dfbc7e76bb253531275cf43365a1690a2d91f258b41fd8b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:064eb416450d14b3419bba13",
+        "type": "evidence",
+        "path": "contents/docs/feature-flags/cleaning-up-stale-flags.mdx",
+        "heading": "showTitle: true > 4. Automating cleanup with CI > Cleaning up code references",
+        "start_line": 203,
+        "end_line": 214,
+        "start_char": 9084,
+        "end_char": 10150,
+        "score": "0.024322344322344324",
+        "root": "docs",
+        "matched_terms": [
+          "cleaning",
+          "path"
+        ],
+        "evidence_id": "064eb416450d14b3419bba13",
+        "source_type": "repository",
+        "content_hash": "821ba802050c089c4e918823c590c906aac21e9f08ee211d1f6094110b3e3ef2",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "path cleaning",
+            "breakdown_path_cleaning",
+            "breakdown normalize url funnel"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "821ba802050c089c4e918823c590c906aac21e9f08ee211d1f6094110b3e3ef2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0d600d9463097bb0af727210",
+        "type": "evidence",
+        "path": "posthog/hogql/property.py",
+        "heading": "zeros, optional 'v' prefix, optional pre-release / build suffix).",
+        "start_line": 613,
+        "end_line": 645,
+        "start_char": 24831,
+        "end_char": 26471,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "apply_path_cleaning"
+        ],
+        "evidence_id": "0d600d9463097bb0af727210",
+        "source_type": "repository",
+        "content_hash": "52c961a4611b7658981e43c1147a45017aede17158d7fb83302b98c2342511be",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "52c961a4611b7658981e43c1147a45017aede17158d7fb83302b98c2342511be",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:11edd2f6e5541fecb2a63d72",
+        "type": "evidence",
+        "path": "frontend/src/queries/validators.js",
+        "heading": "",
+        "start_line": 6730,
+        "end_line": 6753,
+        "start_char": 353457,
+        "end_char": 355113,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "breakdown_path_cleaning"
+        ],
+        "evidence_id": "11edd2f6e5541fecb2a63d72",
+        "source_type": "repository",
+        "content_hash": "b498dc38d09919fcff67e1d138195cdf092a525b27ad0d6c2dfb9018b3addf04",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b498dc38d09919fcff67e1d138195cdf092a525b27ad0d6c2dfb9018b3addf04",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1382582aaa7b49fda45d23ad",
+        "type": "evidence",
+        "path": "contents/docs/web-analytics/path-cleaning.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 39,
+        "score": "0.03283490529867342",
+        "root": "docs",
+        "matched_terms": [
+          "cleaning",
+          "path"
+        ],
+        "evidence_id": "1382582aaa7b49fda45d23ad",
+        "source_type": "repository",
+        "content_hash": "b00c2a3ecf43b140a24c5305f61f56f0d526fb60e9c1aa25fa1a1b6a72233c42",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "path cleaning",
+            "breakdown_path_cleaning",
+            "breakdown normalize url funnel"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b00c2a3ecf43b140a24c5305f61f56f0d526fb60e9c1aa25fa1a1b6a72233c42",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1725bd5fbb233d5682c43f9e",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/retention.mdx",
+        "heading": "enterprise: full > Breakdowns",
+        "start_line": 170,
+        "end_line": 179,
+        "start_char": 11007,
+        "end_char": 11642,
+        "score": "0.04027714761040532",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown"
+        ],
+        "evidence_id": "1725bd5fbb233d5682c43f9e",
+        "source_type": "repository",
+        "content_hash": "f5923dd6af53b0601cf8765ba864bf98f92d219c0a0b9ea7906c0e1a02bb8db1",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnel breakdown path cleaning",
+            "funnels breakdown",
+            "breakdown normalize url"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "f5923dd6af53b0601cf8765ba864bf98f92d219c0a0b9ea7906c0e1a02bb8db1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1ca6aa0e97e6a9c063ff7bf5",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/trends/breakdowns.mdx",
+        "heading": "enterprise: full",
+        "start_line": 51,
+        "end_line": 72,
+        "start_char": 3623,
+        "end_char": 4729,
+        "score": "0.027607003054157524",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown",
+          "breakdowns",
+          "by",
+          "funnels"
+        ],
+        "evidence_id": "1ca6aa0e97e6a9c063ff7bf5",
+        "source_type": "repository",
+        "content_hash": "122b95ce687181135c404f2ba95fd4475f5be6be05872ab61df50eda19912936",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "122b95ce687181135c404f2ba95fd4475f5be6be05872ab61df50eda19912936",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1f196a68f5f0f1631d930741",
+        "type": "evidence",
+        "path": "posthog/hogql_queries/insights/funnels/funnel_event_query.py",
+        "heading": "",
+        "start_line": 437,
+        "end_line": 466,
+        "start_char": 17939,
+        "end_char": 19563,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "get_breakdown_expr"
+        ],
+        "evidence_id": "1f196a68f5f0f1631d930741",
+        "source_type": "repository",
+        "content_hash": "18c8d6fc431f33e351f1a569bdff3ae37f0d44f49a82815b92534af31a87a06b",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "18c8d6fc431f33e351f1a569bdff3ae37f0d44f49a82815b92534af31a87a06b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2032bb4e59764570f9b9762b",
+        "type": "evidence",
+        "path": "contents/docs/_snippets/path-cleaning.mdx",
+        "heading": "Where path cleaning applies",
+        "start_line": 68,
+        "end_line": 79,
+        "start_char": 2894,
+        "end_char": 3782,
+        "score": "0.04050925925925926",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown",
+          "cleaning",
+          "path",
+          "url"
+        ],
+        "evidence_id": "2032bb4e59764570f9b9762b",
+        "source_type": "repository",
+        "content_hash": "cc71f8fe719aea65ab2a6bca578066ddc535ed57e02789bf03fc4a32032f7fd4",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "path cleaning",
+            "breakdown_path_cleaning",
+            "breakdown normalize url funnel"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "cc71f8fe719aea65ab2a6bca578066ddc535ed57e02789bf03fc4a32032f7fd4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2aa477cf93ed44cb68bd7cb9",
+        "type": "evidence",
+        "root": "code",
+        "path": "posthog/hogql_queries/insights/funnels/funnel_event_query.py",
+        "start_line": 392,
+        "total_lines": 667,
+        "start_char": 16016,
+        "end_char": 21412,
+        "evidence_id": "2aa477cf93ed44cb68bd7cb9",
+        "truncated": false,
+        "next_offset": 511,
+        "source_type": "repository",
+        "content_hash": "07dfa093758e9ffa6b91a6de2f291f2752f2339fe19b44dde0bad3d0b0cad2a4",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "posthog/hogql_queries/insights/funnels/utils.py",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "posthog/hogql_queries/insights/funnels/funnel_event_query.py",
+              "offset": 391,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "07dfa093758e9ffa6b91a6de2f291f2752f2339fe19b44dde0bad3d0b0cad2a4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:36ad48d3d8662b46eb2cefc6",
+        "type": "evidence",
+        "path": "products/web_analytics/backend/hogql_queries/web_stats_frustration_lazy_precompute.py",
+        "heading": "`replaceRegexpAll` calls — see `apply_path_cleaning` — and ClickHouse",
+        "start_line": 273,
+        "end_line": 273,
+        "start_char": 11030,
+        "end_char": 11102,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "apply_path_cleaning"
+        ],
+        "evidence_id": "36ad48d3d8662b46eb2cefc6",
+        "source_type": "repository",
+        "content_hash": "a673370897fa7510d2c323ab7b63503441711e25c86104840c401336c67315c3",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a673370897fa7510d2c323ab7b63503441711e25c86104840c401336c67315c3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:43542a22dcffa26a17ef1fd7",
+        "type": "evidence",
+        "path": "contents/docs/_snippets/path-cleaning.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 10,
+        "start_char": 0,
+        "end_char": 672,
+        "score": "0.03341687552213868",
+        "root": "docs",
+        "matched_terms": [
+          "cleaning",
+          "normalize",
+          "path"
+        ],
+        "evidence_id": "43542a22dcffa26a17ef1fd7",
+        "source_type": "repository",
+        "content_hash": "4dfdd0f0b862af97f6bc10dadb55c7ee72006bb4730fa75def6b6f25c9dced2d",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnel breakdown path cleaning",
+            "funnels breakdown",
+            "breakdown normalize url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "4dfdd0f0b862af97f6bc10dadb55c7ee72006bb4730fa75def6b6f25c9dced2d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4d94591af8f82a6c0a2f5a05",
+        "type": "evidence",
+        "path": "contents/docs/web-analytics/path-cleaning.mdx",
+        "heading": "showTitle: true > Further reading",
+        "start_line": 11,
+        "end_line": 14,
+        "start_char": 137,
+        "end_char": 283,
+        "score": "0.02683633574449499",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4d94591af8f82a6c0a2f5a05",
+        "source_type": "repository",
+        "content_hash": "25eda560902d0118c1681806091c41c181e082a93d7c71ef4dce11963e91cefc",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "path cleaning",
+            "breakdown_path_cleaning",
+            "breakdown normalize url funnel"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "25eda560902d0118c1681806091c41c181e082a93d7c71ef4dce11963e91cefc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5602e3a1a90ac9bdc49feddc",
+        "type": "evidence",
+        "path": "frontend/src/scenes/web-analytics/webAnalyticsLogic.tsx",
+        "heading": "",
+        "start_line": 1226,
+        "end_line": 1259,
+        "start_char": 50048,
+        "end_char": 51707,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "breakdown_path_cleaning"
+        ],
+        "evidence_id": "5602e3a1a90ac9bdc49feddc",
+        "source_type": "repository",
+        "content_hash": "e9b95f29a686efca6a9b7e103ca4a9e9f09e1d743c50f29ade994a47eeb6e148",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e9b95f29a686efca6a9b7e103ca4a9e9f09e1d743c50f29ade994a47eeb6e148",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:578b82a5d78c2fd3ef7750e9",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/funnels.mdx",
+        "heading": "enterprise: true > How to create a funnel > Breakdowns",
+        "start_line": 150,
+        "end_line": 171,
+        "start_char": 10410,
+        "end_char": 11320,
+        "score": "0.03566781904018438",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown",
+          "breakdowns",
+          "by",
+          "funnel"
+        ],
+        "evidence_id": "578b82a5d78c2fd3ef7750e9",
+        "source_type": "repository",
+        "content_hash": "9fc255608f59825c2ee21394d993b6dcd53a90991d145a61eb51f78a1d3f80e5",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9fc255608f59825c2ee21394d993b6dcd53a90991d145a61eb51f78a1d3f80e5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a252ddf0dc83add909c384a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/product-analytics/paths.mdx",
+        "start_line": 184,
+        "total_lines": 250,
+        "start_char": 8883,
+        "end_char": 13298,
+        "evidence_id": "5a252ddf0dc83add909c384a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5d0797d598ebc3c185cef5668e39412f09172e03545bd83afce8a01a82ef333d",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/_snippets/path-cleaning.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/paths.mdx",
+              "offset": 183,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/web-analytics/path-cleaning.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5d0797d598ebc3c185cef5668e39412f09172e03545bd83afce8a01a82ef333d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5d51bc56d9f81872d71ae57f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/web-analytics/path-cleaning.mdx",
+        "start_line": 1,
+        "total_lines": 14,
+        "start_char": 0,
+        "end_char": 283,
+        "evidence_id": "5d51bc56d9f81872d71ae57f",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "537cb5e52df43b61708f6b155582036addc5ba9cda819557ffbd8192270996f9",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/_snippets/path-cleaning.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/paths.mdx",
+              "offset": 183,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/web-analytics/path-cleaning.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "537cb5e52df43b61708f6b155582036addc5ba9cda819557ffbd8192270996f9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6160dd326554de6387956e07",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/funnels.mdx",
+        "heading": "enterprise: true > How to create a funnel > Breakdowns > Attribution types > 4. Specific step",
+        "start_line": 220,
+        "end_line": 247,
+        "start_char": 13243,
+        "end_char": 14913,
+        "score": "0.035644463063817904",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown",
+          "funnel",
+          "url"
+        ],
+        "evidence_id": "6160dd326554de6387956e07",
+        "source_type": "repository",
+        "content_hash": "84c3921f8bca412754253f5f4ed10a13f24f94cc1b20f199721bcce8e196d0fb",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnel breakdown path cleaning",
+            "funnels breakdown",
+            "breakdown normalize url"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "84c3921f8bca412754253f5f4ed10a13f24f94cc1b20f199721bcce8e196d0fb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6be192b3aea871f6c55e0718",
+        "type": "evidence",
+        "path": "posthog/hogql_queries/insights/funnels/utils.py",
+        "heading": "",
+        "start_line": 51,
+        "end_line": 93,
+        "start_char": 1575,
+        "end_char": 3182,
+        "score": "0.029877369007803793",
+        "root": "code",
+        "matched_terms": [
+          "apply_path_cleaning",
+          "get_breakdown_expr"
+        ],
+        "evidence_id": "6be192b3aea871f6c55e0718",
+        "source_type": "repository",
+        "content_hash": "62a2d910887f1b1c4ebb1ba91dbc6f0412fa0afcf25549976119d20306408ea2",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "62a2d910887f1b1c4ebb1ba91dbc6f0412fa0afcf25549976119d20306408ea2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:76a8ab8a05dde2bd785d91cd",
+        "type": "evidence",
+        "path": "contents/docs/experiments/analyzing-results.mdx",
+        "heading": "enterprise: full > Funnel metrics analysis",
+        "start_line": 199,
+        "end_line": 216,
+        "start_char": 11311,
+        "end_char": 12058,
+        "score": "0.03211914559647039",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown",
+          "by",
+          "funnel",
+          "funnels"
+        ],
+        "evidence_id": "76a8ab8a05dde2bd785d91cd",
+        "source_type": "repository",
+        "content_hash": "6f99da0dc7045bcfe9e7b8a2177de951f11970d43f5d93c3af17c83536881c35",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "6f99da0dc7045bcfe9e7b8a2177de951f11970d43f5d93c3af17c83536881c35",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8883cb08d029cfaf5676bf4c",
+        "type": "evidence",
+        "path": "products/web_analytics/skills/managing-path-cleaning-rules/SKILL.md",
+        "heading": "Managing path cleaning rules > Where the rules apply",
+        "start_line": 151,
+        "end_line": 161,
+        "start_char": 6033,
+        "end_char": 6402,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "apply_path_cleaning"
+        ],
+        "evidence_id": "8883cb08d029cfaf5676bf4c",
+        "source_type": "repository",
+        "content_hash": "0eed7913af5523264231bd433e0dfe07a2475e60467f50308ccfd240f912e590",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0eed7913af5523264231bd433e0dfe07a2475e60467f50308ccfd240f912e590",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:954245b84288ea69ef02e0f6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/blog/the-posthog-array-1-38-0.mdx",
+        "start_line": 88,
+        "total_lines": 159,
+        "start_char": 5264,
+        "end_char": 11546,
+        "evidence_id": "954245b84288ea69ef02e0f6",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "fa0ba94bb797947c2b1d15e85159070535a77f4177b8e4cf398cc37d5705cc2a",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/blog/the-posthog-array-1-32-0.md",
+              "offset": 57,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "offset": 145,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-38-0.mdx",
+              "offset": 87,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "fa0ba94bb797947c2b1d15e85159070535a77f4177b8e4cf398cc37d5705cc2a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:967c8a7855de07a7c04bacd3",
+        "type": "evidence",
+        "path": "contents/handbook/support/troubleshooting-tips.md",
+        "heading": "showTitle: true > Funnels",
+        "start_line": 23,
+        "end_line": 35,
+        "start_char": 1239,
+        "end_char": 3039,
+        "score": "0.02664326458973234",
+        "root": "docs",
+        "matched_terms": [
+          "analytics",
+          "breakdown",
+          "by",
+          "funnel",
+          "funnels",
+          "product"
+        ],
+        "evidence_id": "967c8a7855de07a7c04bacd3",
+        "source_type": "repository",
+        "content_hash": "39b3420bd6d3f600c691744e13d3b9d81087663c6642c37006875fba9631adf4",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "39b3420bd6d3f600c691744e13d3b9d81087663c6642c37006875fba9631adf4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:98b3d5414554e46a9356888f",
+        "type": "evidence",
+        "path": "contents/tutorials/array-filter-breakdown.md",
+        "heading": "- insights > Breaking down arrays",
+        "start_line": 33,
+        "end_line": 58,
+        "start_char": 1393,
+        "end_char": 3157,
+        "score": "0.032834507042253526",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown"
+        ],
+        "evidence_id": "98b3d5414554e46a9356888f",
+        "source_type": "repository",
+        "content_hash": "2348e6147e34be87cc20d9f79847237eb42160536bfec2d71f6fae5e03a5d4bc",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnel breakdown path cleaning",
+            "funnels breakdown",
+            "breakdown normalize url"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "2348e6147e34be87cc20d9f79847237eb42160536bfec2d71f6fae5e03a5d4bc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9def9ac80e21db51a3795451",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-38-0.mdx",
+        "heading": "- Release notes > PostHog 1.38.0 release notes > Improved: Funnel breakdown attribution",
+        "start_line": 92,
+        "end_line": 94,
+        "start_char": 5696,
+        "end_char": 6102,
+        "score": "0.030308735717680117",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown",
+          "funnel",
+          "funnels"
+        ],
+        "evidence_id": "9def9ac80e21db51a3795451",
+        "source_type": "repository",
+        "content_hash": "9f3e258c8acec977d4c3cfcf46a69c5db7547255828940b848edb70f61442d5f",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9f3e258c8acec977d4c3cfcf46a69c5db7547255828940b848edb70f61442d5f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a1cacc567cec2ccd21c9eb09",
+        "type": "evidence",
+        "path": "contents/tutorials/regex-basics.md",
+        "heading": "- product analytics > Using regex in PostHog > Adding path cleaning rules",
+        "start_line": 62,
+        "end_line": 69,
+        "start_char": 4073,
+        "end_char": 4716,
+        "score": "0.03071671974380246",
+        "root": "docs",
+        "matched_terms": [
+          "cleaning",
+          "path"
+        ],
+        "evidence_id": "a1cacc567cec2ccd21c9eb09",
+        "source_type": "repository",
+        "content_hash": "5281ddeb3289427529f19ffbb9aba6dfb20b2f2aa42848aba7b5c388397bc353",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "path cleaning",
+            "breakdown_path_cleaning",
+            "breakdown normalize url funnel"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5281ddeb3289427529f19ffbb9aba6dfb20b2f2aa42848aba7b5c388397bc353",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aab2648af130d6d4ddd065c0",
+        "type": "evidence",
+        "path": "posthog/hogql_queries/insights/funnels/utils.py",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1575,
+        "score": "0.03057889822595705",
+        "root": "code",
+        "matched_terms": [
+          "apply_path_cleaning",
+          "get_breakdown_expr"
+        ],
+        "evidence_id": "aab2648af130d6d4ddd065c0",
+        "source_type": "repository",
+        "content_hash": "34351cea9840f9a99cf02bb6f83560088e6ed2469e8be5c60b449af0dff8f729",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "34351cea9840f9a99cf02bb6f83560088e6ed2469e8be5c60b449af0dff8f729",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b6305c0cf8e9989462ec7cc2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/product-analytics/funnels.mdx",
+        "start_line": 146,
+        "total_lines": 377,
+        "start_char": 10343,
+        "end_char": 16061,
+        "evidence_id": "b6305c0cf8e9989462ec7cc2",
+        "truncated": false,
+        "next_offset": 265,
+        "source_type": "repository",
+        "content_hash": "e86e614e856e4745cb60733243e27db2dbd15e634084d958caac7f49f5fde4db",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/blog/the-posthog-array-1-32-0.md",
+              "offset": 57,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "offset": 145,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-38-0.mdx",
+              "offset": 87,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e86e614e856e4745cb60733243e27db2dbd15e634084d958caac7f49f5fde4db",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bfe63fc94abcc06c74448bb8",
+        "type": "evidence",
+        "path": "contents/blog/how-to-find-and-fix-app-onboarding-drop-off.mdx",
+        "heading": "metaDescription: 'A step-by-step recipe for finding where users drop off during your product onboarding, understanding why it happens, and improving activation rates.' > Step 2: Build a funnel",
+        "start_line": 138,
+        "end_line": 171,
+        "start_char": 8221,
+        "end_char": 9759,
+        "score": "0.028337412916588214",
+        "root": "docs",
+        "matched_terms": [
+          "analytics",
+          "funnel",
+          "funnels",
+          "product"
+        ],
+        "evidence_id": "bfe63fc94abcc06c74448bb8",
+        "source_type": "repository",
+        "content_hash": "e896acae2f2d49b508a4a085e632404075ce92294edcb97f3bcfae88f040d351",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e896acae2f2d49b508a4a085e632404075ce92294edcb97f3bcfae88f040d351",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c3469d54d30f030fcf2feac2",
+        "type": "evidence",
+        "path": "posthog/hogql_queries/insights/trends/breakdown.py",
+        "heading": "",
+        "start_line": 257,
+        "end_line": 287,
+        "start_char": 9662,
+        "end_char": 11322,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "breakdown_path_cleaning"
+        ],
+        "evidence_id": "c3469d54d30f030fcf2feac2",
+        "source_type": "repository",
+        "content_hash": "075f3591f3473a46049f9134d2060ce83edb48f09c8e755d000e413de096e564",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "075f3591f3473a46049f9134d2060ce83edb48f09c8e755d000e413de096e564",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c44c4e310a2f6d46d79e778c",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/insights.mdx",
+        "heading": "enterprise: full > Types of insight > Funnels",
+        "start_line": 48,
+        "end_line": 58,
+        "start_char": 3132,
+        "end_char": 3453,
+        "score": "0.032755392808430414",
+        "root": "docs",
+        "matched_terms": [
+          "analytics",
+          "funnels",
+          "product"
+        ],
+        "evidence_id": "c44c4e310a2f6d46d79e778c",
+        "source_type": "repository",
+        "content_hash": "d42e06f5a11e809793c0bdbc602bbd53cfb700e6d9c117af7b91c0a6aec6e0eb",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d42e06f5a11e809793c0bdbc602bbd53cfb700e6d9c117af7b91c0a6aec6e0eb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c65413eff83fd14bd93b5e32",
+        "type": "evidence",
+        "path": "products/web_analytics/backend/hogql_queries/web_stats_paths_lazy_precompute.py",
+        "heading": "`replaceRegexpAll` calls (see `apply_path_cleaning`), and ClickHouse",
+        "start_line": 345,
+        "end_line": 345,
+        "start_char": 14285,
+        "end_char": 14356,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "apply_path_cleaning"
+        ],
+        "evidence_id": "c65413eff83fd14bd93b5e32",
+        "source_type": "repository",
+        "content_hash": "31d19ee881207ba93b0d74e61f29f6471a59c8d5f1aaab17bf5b7f4b2a7b5eb3",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "31d19ee881207ba93b0d74e61f29f6471a59c8d5f1aaab17bf5b7f4b2a7b5eb3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ccf4bbc8a2f3c2b2ce3d291e",
+        "type": "evidence",
+        "path": "contents/docs/glossary.mdx",
+        "heading": "showTitle: true > F > Funnel",
+        "start_line": 131,
+        "end_line": 133,
+        "start_char": 10785,
+        "end_char": 11058,
+        "score": "0.029968374446552815",
+        "root": "docs",
+        "matched_terms": [
+          "funnel",
+          "funnels"
+        ],
+        "evidence_id": "ccf4bbc8a2f3c2b2ce3d291e",
+        "source_type": "repository",
+        "content_hash": "b41b212511b85b30e65ec8b9537e023be91e60d2708920146ffee0f68340178b",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b41b212511b85b30e65ec8b9537e023be91e60d2708920146ffee0f68340178b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cdd3480b54960ce026a50e5b",
+        "type": "evidence",
+        "path": "frontend/src/queries/schema.json",
+        "heading": "",
+        "start_line": 4732,
+        "end_line": 4780,
+        "start_char": 217260,
+        "end_char": 218861,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "breakdown_path_cleaning"
+        ],
+        "evidence_id": "cdd3480b54960ce026a50e5b",
+        "source_type": "repository",
+        "content_hash": "8e7e392ec612132a88ba8e9852f5abc274e2d96e7046ac39e0acd3efbe3c4d78",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8e7e392ec612132a88ba8e9852f5abc274e2d96e7046ac39e0acd3efbe3c4d78",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cdf4c91162e867662360963d",
+        "type": "evidence",
+        "path": "contents/blog/alerts-examples.mdx",
+        "heading": "- Product updates > Practical uses for alerts > 5. Alert on breakdown in referral sources",
+        "start_line": 175,
+        "end_line": 200,
+        "start_char": 9329,
+        "end_char": 10676,
+        "score": "0.03594277507320986",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown"
+        ],
+        "evidence_id": "cdf4c91162e867662360963d",
+        "source_type": "repository",
+        "content_hash": "f584cdd4e9d80c5f76303a0425d55c4af598406195635e44158639fd5cd0480b",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnel breakdown path cleaning",
+            "funnels breakdown",
+            "breakdown normalize url"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "f584cdd4e9d80c5f76303a0425d55c4af598406195635e44158639fd5cd0480b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d1a5d127695992ac28fa169a",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/paths.mdx",
+        "heading": "enterprise: true > Configuration options > Path cleaning rules",
+        "start_line": 188,
+        "end_line": 197,
+        "start_char": 9226,
+        "end_char": 10100,
+        "score": "0.03787006846390304",
+        "root": "docs",
+        "matched_terms": [
+          "cleaning",
+          "path",
+          "url"
+        ],
+        "evidence_id": "d1a5d127695992ac28fa169a",
+        "source_type": "repository",
+        "content_hash": "c532b06cae124a2c38022710e00e1ef3e2a0509cbe51b4807715ba910b366c47",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "path cleaning",
+            "breakdown_path_cleaning",
+            "breakdown normalize url funnel"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c532b06cae124a2c38022710e00e1ef3e2a0509cbe51b4807715ba910b366c47",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d29d225649cbfd5befa290d1",
+        "type": "evidence",
+        "root": "code",
+        "path": "posthog/hogql_queries/insights/funnels/utils.py",
+        "start_line": 1,
+        "total_lines": 140,
+        "start_char": 0,
+        "end_char": 4162,
+        "evidence_id": "d29d225649cbfd5befa290d1",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "0240b248fec9247219cdabd591f5c7f5e273ffd6faedb261811eed75b466c832",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "posthog/hogql_queries/insights/funnels/utils.py",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "posthog/hogql_queries/insights/funnels/funnel_event_query.py",
+              "offset": 391,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0240b248fec9247219cdabd591f5c7f5e273ffd6faedb261811eed75b466c832",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d3c7ac975f5899188418624d",
+        "type": "evidence",
+        "evidence_id": "d3c7ac975f5899188418624d",
+        "source_type": "task",
+        "exported_content_sha256": "0efa98a68cfc3f9598b65f5397fcac803cc2b26fe18ab877aada018e1c92bb92",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d8ff8975d9110caee6d56e7b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/experiments/analyzing-results.mdx",
+        "start_line": 195,
+        "total_lines": 216,
+        "start_char": 10981,
+        "end_char": 12058,
+        "evidence_id": "d8ff8975d9110caee6d56e7b",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "287c3aa40e196203aa6868649c799d22dba37dc3ffde5695d2ac75ede4813ddf",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/insights.mdx",
+              "offset": 43,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/analyzing-results.mdx",
+              "offset": 194,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "287c3aa40e196203aa6868649c799d22dba37dc3ffde5695d2ac75ede4813ddf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d98e939a9af40a202d30b221",
+        "type": "evidence",
+        "evidence_id": "d98e939a9af40a202d30b221",
+        "source_type": "implementation",
+        "exported_content_sha256": "934a86de34d7ea39fc10e1c070096c70a59071e69898700f5363c5f596e8e001",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dd561eca22a476ea4a1b14d7",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/path-cleaning.mdx",
+        "heading": "showTitle: true > Further reading",
+        "start_line": 11,
+        "end_line": 14,
+        "start_char": 137,
+        "end_char": 248,
+        "score": "0.02762316199342746",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "dd561eca22a476ea4a1b14d7",
+        "source_type": "repository",
+        "content_hash": "431c1f6924dfafa16c564c45ee22d38ff3d0d3f07557e5fd183ae00b62067339",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "path cleaning",
+            "breakdown_path_cleaning",
+            "breakdown normalize url funnel"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "431c1f6924dfafa16c564c45ee22d38ff3d0d3f07557e5fd183ae00b62067339",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:def1781e1f3b260051864048",
+        "type": "evidence",
+        "path": "contents/tutorials/hogql-breakdowns.mdx",
+        "heading": "tags: ['sql', 'trends', 'product analytics']",
+        "start_line": 8,
+        "end_line": 19,
+        "start_char": 116,
+        "end_char": 1173,
+        "score": "0.030244215574288923",
+        "root": "docs",
+        "matched_terms": [
+          "analytics",
+          "breakdown",
+          "breakdowns",
+          "by",
+          "funnels",
+          "product"
+        ],
+        "evidence_id": "def1781e1f3b260051864048",
+        "source_type": "repository",
+        "content_hash": "b43b329a4da8290503da6bff44bde3de0eeef0e82f4f1745c325432b39e232ac",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b43b329a4da8290503da6bff44bde3de0eeef0e82f4f1745c325432b39e232ac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e4a5f342107b8c8efac552f5",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-42-0.md",
+        "heading": "- Release notes > PostHog 1.42.0 release notes > New: URL breakdown normalisations",
+        "start_line": 43,
+        "end_line": 50,
+        "start_char": 2004,
+        "end_char": 2542,
+        "score": "0.04286403085824494",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown",
+          "funnels",
+          "url"
+        ],
+        "evidence_id": "e4a5f342107b8c8efac552f5",
+        "source_type": "repository",
+        "content_hash": "b416c02e9540707101bccad334f37b94be38a688c538ebf29da0a1c66952845a",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnel breakdown path cleaning",
+            "funnels breakdown",
+            "breakdown normalize url"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b416c02e9540707101bccad334f37b94be38a688c538ebf29da0a1c66952845a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed46e11e54fc77f89191ce7d",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-32-0.md",
+        "heading": "- Release notes > PostHog 1.32.0 release notes > Funnels vertical breakdown",
+        "start_line": 62,
+        "end_line": 69,
+        "start_char": 3235,
+        "end_char": 3683,
+        "score": "0.03480037920903356",
+        "root": "docs",
+        "matched_terms": [
+          "breakdown",
+          "breakdowns",
+          "funnel",
+          "funnels"
+        ],
+        "evidence_id": "ed46e11e54fc77f89191ce7d",
+        "source_type": "repository",
+        "content_hash": "9974bc6eb8f95dc3b70b95d4026502f59604d03dfdea78a67fe5f5019c0e4ce6",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9974bc6eb8f95dc3b70b95d4026502f59604d03dfdea78a67fe5f5019c0e4ce6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee4192be593636bbf9259627",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/path-cleaning.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 39,
+        "score": "0.030601625258125986",
+        "root": "docs",
+        "matched_terms": [
+          "cleaning",
+          "path"
+        ],
+        "evidence_id": "ee4192be593636bbf9259627",
+        "source_type": "repository",
+        "content_hash": "b00c2a3ecf43b140a24c5305f61f56f0d526fb60e9c1aa25fa1a1b6a72233c42",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "path cleaning",
+            "breakdown_path_cleaning",
+            "breakdown normalize url funnel"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b00c2a3ecf43b140a24c5305f61f56f0d526fb60e9c1aa25fa1a1b6a72233c42",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ef617b638ec896d17dd34cfc",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/_snippets/path-cleaning.mdx",
+        "start_line": 1,
+        "total_lines": 79,
+        "start_char": 0,
+        "end_char": 3782,
+        "evidence_id": "ef617b638ec896d17dd34cfc",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3a5a6145eded53d072821e2ffe26675c97d1fd88fd52f159bbb14bc9abc424e2",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/_snippets/path-cleaning.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/paths.mdx",
+              "offset": 183,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/web-analytics/path-cleaning.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "3a5a6145eded53d072821e2ffe26675c97d1fd88fd52f159bbb14bc9abc424e2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ef779a6d57ca10e4b0689d16",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/product-analytics/insights.mdx",
+        "start_line": 44,
+        "total_lines": 134,
+        "start_char": 2994,
+        "end_char": 6029,
+        "evidence_id": "ef779a6d57ca10e4b0689d16",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9152f9ee77de81d66d7c2c30280053f4a1105e469f580ba1329aae9d9ab784da",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/insights.mdx",
+              "offset": 43,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/analyzing-results.mdx",
+              "offset": 194,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9152f9ee77de81d66d7c2c30280053f4a1105e469f580ba1329aae9d9ab784da",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f9b5edc506061e87f4d866ed",
+        "type": "evidence",
+        "path": "posthog/hogql_queries/insights/funnels/funnel_event_query.py",
+        "heading": "",
+        "start_line": 396,
+        "end_line": 436,
+        "start_char": 16275,
+        "end_char": 17939,
+        "score": "0.027623285131627734",
+        "root": "code",
+        "matched_terms": [
+          "breakdown_path_cleaning",
+          "get_breakdown_expr"
+        ],
+        "evidence_id": "f9b5edc506061e87f4d866ed",
+        "source_type": "repository",
+        "content_hash": "8bc5067ff303a9a31b0d66f9c93e8786de47df11b3046d62f1fed34dd929eda5",
+        "revision": "29379bbaee20ab5e3bc7f6dcccb567baec894165",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "get_breakdown_expr",
+            "breakdown_path_cleaning",
+            "apply_path_cleaning"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8bc5067ff303a9a31b0d66f9c93e8786de47df11b3046d62f1fed34dd929eda5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fbc6ca42210f686fa01f7c4f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/product-analytics/funnels.mdx",
+        "start_line": 1,
+        "total_lines": 377,
+        "start_char": 0,
+        "end_char": 9185,
+        "evidence_id": "fbc6ca42210f686fa01f7c4f",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "4f2280f230dd5a5ed9d15bff13f641c719f1df6c99a6fb630c0ab771a01c9326",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/insights.mdx",
+              "offset": 43,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/analyzing-results.mdx",
+              "offset": 194,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "4f2280f230dd5a5ed9d15bff13f641c719f1df6c99a6fb630c0ab771a01c9326",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ff22fcae290f9087a9dd00bd",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-27-0.md",
+        "heading": "- Release notes > PostHog 1.27.0 Release Notes > New Funnels Experience",
+        "start_line": 50,
+        "end_line": 67,
+        "start_char": 2606,
+        "end_char": 3882,
+        "score": "0.027808888359347077",
+        "root": "docs",
+        "matched_terms": [
+          "breakdowns",
+          "funnel",
+          "funnels"
+        ],
+        "evidence_id": "ff22fcae290f9087a9dd00bd",
+        "source_type": "repository",
+        "content_hash": "09879814abd21ae8190078e110e9e0dfebc87443a630b71de63ced23ffa6262d",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "funnels breakdown by URL",
+            "funnel breakdowns",
+            "product analytics funnels"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "09879814abd21ae8190078e110e9e0dfebc87443a630b71de63ced23ffa6262d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ff5db5727157c7ccc4893234",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/blog/the-posthog-array-1-32-0.md",
+        "start_line": 58,
+        "total_lines": 139,
+        "start_char": 2935,
+        "end_char": 9195,
+        "evidence_id": "ff5db5727157c7ccc4893234",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5cf30344a8a2cfb5b88bc6d24dd7a75395decc1e66502f024e94cb2abba4756b",
+        "revision": "3a89e2c0004d39741adb0dfff1fede86d8b01bd7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/blog/the-posthog-array-1-32-0.md",
+              "offset": 57,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/funnels.mdx",
+              "offset": 145,
+              "limit": 120
+            },
+            {
+              "path": "contents/blog/the-posthog-array-1-38-0.mdx",
+              "offset": 87,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "5cf30344a8a2cfb5b88bc6d24dd7a75395decc1e66502f024e94cb2abba4756b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:funnels-breakdown-path-cleaning",
+        "type": "requirement",
+        "description": "In contents/docs/product-analytics/funnels.mdx, in the Breakdowns section, note that event-property breakdowns (e.g. $pathname/$current_url) can apply the project's global path cleaning rules via the 'Apply global path URL cleaning' toggle, and link to /docs/product-analytics/path-cleaning for configuring rules."
+      },
+      {
+        "id": "requirement:path-cleaning-scope-funnels",
+        "type": "requirement",
+        "description": "In contents/docs/_snippets/path-cleaning.mdx, update the 'where path cleaning applies' scope so it also lists funnel breakdowns (event property breakdowns) alongside web analytics paths and path breakdowns, since funnels now honor the configured rules."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "contents/docs/product-analytics/funnels.mdx",
+        "hash": "2848f8ca8d09bea066369223e1aa02bb44978f60131fe8c9c73951a4f4cabe77"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "contents/docs/_snippets/path-cleaning.mdx",
+        "hash": "a28f6dd1ffa8d20b09007ad4e4ceabf1ffc6ee5e917ca03cdd5315f1950f3b23"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "funnels-breakdown-path-cleaning",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/product-analytics/funnels.mdx"
+        ],
+        "evidence_ids": [
+          "578b82a5d78c2fd3ef7750e9",
+          "2aa477cf93ed44cb68bd7cb9",
+          "6be192b3aea871f6c55e0718",
+          "5a252ddf0dc83add909c384a",
+          "ef617b638ec896d17dd34cfc"
+        ],
+        "reason": "In contents/docs/product-analytics/funnels.mdx, in the Breakdowns section, note that event-property breakdowns (e.g. $pathname/$current_url) can apply the project's global path cleaning rules via the 'Apply global path URL cleaning' toggle, and link to /docs/product-analytics/path-cleaning for configuring rules."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "path-cleaning-scope-funnels",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/_snippets/path-cleaning.mdx"
+        ],
+        "evidence_ids": [
+          "ef617b638ec896d17dd34cfc",
+          "2aa477cf93ed44cb68bd7cb9",
+          "6be192b3aea871f6c55e0718"
+        ],
+        "reason": "In contents/docs/_snippets/path-cleaning.mdx, update the 'where path cleaning applies' scope so it also lists funnel breakdowns (event property breakdowns) alongside web analytics paths and path breakdowns, since funnels now honor the configured rules."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does the docs describe funnel breakdown path cleaning or the breakdown_path_cleaning filter field, and where is path cleaning documented for trends/paths?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where is get_breakdown_expr and apply_path_cleaning implemented, and how is breakdown_path_cleaning defined in the schema?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the path-cleaning snippet's 'Where path cleaning applies' section mention funnels, and is there a funnels breakdown docs page that should note path cleaning support?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is there a funnels product-analytics docs page describing breakdown options where path cleaning support should be documented?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:02809d4a9a0ef20435831d3e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:064eb416450d14b3419bba13",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d600d9463097bb0af727210",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:11edd2f6e5541fecb2a63d72",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1382582aaa7b49fda45d23ad",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1725bd5fbb233d5682c43f9e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1ca6aa0e97e6a9c063ff7bf5",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1ca6aa0e97e6a9c063ff7bf5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1f196a68f5f0f1631d930741",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2032bb4e59764570f9b9762b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2aa477cf93ed44cb68bd7cb9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:36ad48d3d8662b46eb2cefc6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:43542a22dcffa26a17ef1fd7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:43542a22dcffa26a17ef1fd7",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4d94591af8f82a6c0a2f5a05",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5602e3a1a90ac9bdc49feddc",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:578b82a5d78c2fd3ef7750e9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:578b82a5d78c2fd3ef7750e9",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:578b82a5d78c2fd3ef7750e9",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a252ddf0dc83add909c384a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d51bc56d9f81872d71ae57f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6160dd326554de6387956e07",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6be192b3aea871f6c55e0718",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:76a8ab8a05dde2bd785d91cd",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:76a8ab8a05dde2bd785d91cd",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8883cb08d029cfaf5676bf4c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:954245b84288ea69ef02e0f6",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:967c8a7855de07a7c04bacd3",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:98b3d5414554e46a9356888f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9def9ac80e21db51a3795451",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9def9ac80e21db51a3795451",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a1cacc567cec2ccd21c9eb09",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aab2648af130d6d4ddd065c0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b6305c0cf8e9989462ec7cc2",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bfe63fc94abcc06c74448bb8",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3469d54d30f030fcf2feac2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c44c4e310a2f6d46d79e778c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c65413eff83fd14bd93b5e32",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ccf4bbc8a2f3c2b2ce3d291e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cdd3480b54960ce026a50e5b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cdf4c91162e867662360963d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d1a5d127695992ac28fa169a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d29d225649cbfd5befa290d1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d8ff8975d9110caee6d56e7b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dd561eca22a476ea4a1b14d7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:def1781e1f3b260051864048",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:def1781e1f3b260051864048",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e4a5f342107b8c8efac552f5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e4a5f342107b8c8efac552f5",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed46e11e54fc77f89191ce7d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed46e11e54fc77f89191ce7d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed46e11e54fc77f89191ce7d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee4192be593636bbf9259627",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef617b638ec896d17dd34cfc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef779a6d57ca10e4b0689d16",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f9b5edc506061e87f4d866ed",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fbc6ca42210f686fa01f7c4f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff22fcae290f9087a9dd00bd",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff5db5727157c7ccc4893234",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2aa477cf93ed44cb68bd7cb9",
+        "to": "requirement:funnels-breakdown-path-cleaning",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6be192b3aea871f6c55e0718",
+        "to": "requirement:funnels-breakdown-path-cleaning",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:578b82a5d78c2fd3ef7750e9",
+        "to": "requirement:funnels-breakdown-path-cleaning",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5a252ddf0dc83add909c384a",
+        "to": "requirement:funnels-breakdown-path-cleaning",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:ef617b638ec896d17dd34cfc",
+        "to": "requirement:funnels-breakdown-path-cleaning",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:ef617b638ec896d17dd34cfc",
+        "to": "requirement:path-cleaning-scope-funnels",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:2aa477cf93ed44cb68bd7cb9",
+        "to": "requirement:path-cleaning-scope-funnels",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6be192b3aea871f6c55e0718",
+        "to": "requirement:path-cleaning-scope-funnels",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:funnels-breakdown-path-cleaning",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:578b82a5d78c2fd3ef7750e9",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2aa477cf93ed44cb68bd7cb9",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6be192b3aea871f6c55e0718",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5a252ddf0dc83add909c384a",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ef617b638ec896d17dd34cfc",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:path-cleaning-scope-funnels",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:ef617b638ec896d17dd34cfc",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2aa477cf93ed44cb68bd7cb9",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6be192b3aea871f6c55e0718",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:funnels-breakdown-path-cleaning",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:578b82a5d78c2fd3ef7750e9",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2aa477cf93ed44cb68bd7cb9",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6be192b3aea871f6c55e0718",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:5a252ddf0dc83add909c384a",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ef617b638ec896d17dd34cfc",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:path-cleaning-scope-funnels",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:ef617b638ec896d17dd34cfc",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2aa477cf93ed44cb68bd7cb9",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:6be192b3aea871f6c55e0718",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "b5d23dc88b8397db9b64832bbd05c7c7341736cc0f44c420008fe6fbc857ee2a"
+}

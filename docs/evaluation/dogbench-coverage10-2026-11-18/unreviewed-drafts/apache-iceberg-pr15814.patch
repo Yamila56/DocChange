@@ -1,0 +1,19 @@
+diff --git a/docs/docs/hive.md b/docs/docs/hive.md
+index 0531e9b04a15abbdb508e1e03177c0e47ac1d8f8..8cd2577135e483873ea6f5fc777ac13e453e70e9 100644
+--- a/docs/docs/hive.md
++++ b/docs/docs/hive.md
+@@ -356,6 +356,14 @@ ALTER TABLE t SET TBLPROPERTIES('...'='...');
+ The Hive table schema is kept in sync with the Iceberg table. If an outside source (Impala/Spark/Java API/etc)
+ changes the schema, the Hive table immediately reflects the changes. You alter the table schema using Hive commands:
+ 
++!!! warning
++    The Hive Metastore stores the Hive table schema separately from the Iceberg table metadata. If the Hive table
++    schema is changed directly in the Hive Metastore (for example, by a Hive version or tool that is not aware of
++    Iceberg), the two schemas can diverge. Subsequent Iceberg schema-evolution operations may then fail or produce
++    unexpected results because the Hive schema no longer matches the Iceberg schema. To avoid this, perform schema
++    changes through an Iceberg-aware engine (such as Hive 4.0.0 or later with Iceberg integration, Spark, or the
++    Iceberg Java API) so that both schemas are updated together.
++
+ * Rename a table
+ ```sql
+ ALTER TABLE orders RENAME TO renamed_orders;

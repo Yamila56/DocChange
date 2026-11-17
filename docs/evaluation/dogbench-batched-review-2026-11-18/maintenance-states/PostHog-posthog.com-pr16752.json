@@ -1,0 +1,2228 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "subscriptions-pause-enable",
+      "description": "In contents/docs/product-analytics/subscriptions.mdx, add a section documenting the new enabled/pause capability: users can toggle a subscription off (pause delivery without deleting) and back on from the subscription list and detail views; re-enabling triggers an immediate confirmation delivery. Note that disabled subscriptions are skipped by the scheduler and that test delivery returns an error (409) for disabled subscriptions, so users must re-enable first.",
+      "evidence_ids": [
+        "6c0df08ed1e0649873bdea98",
+        "509e38ab91f5513dd39aafb7",
+        "2bcc98d15746c9f2590033a5",
+        "77a70c428c524127d192b6e8"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "subscriptions-auto-disable",
+      "description": "In contents/docs/product-analytics/subscriptions.mdx, document auto-disable behavior: when a subscription's delivery target becomes permanently invalid (e.g. the Slack integration is disconnected/removed, or the delivery channel is unsupported), the subscription is automatically disabled and the owner is emailed with the reason and a link to manage it. Explain that re-enabling is blocked until the underlying issue is fixed (e.g. reconnect Slack), and that re-enabling a subscription whose schedule has ended requires extending until_date or removing count.",
+      "evidence_ids": [
+        "54b2fd92ab7d4e05b464bd7a",
+        "2f0bb50d23b5ca4b73195cf1",
+        "509e38ab91f5513dd39aafb7"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "ee8fa7a8d00815bf7a22fcd9a059220f0df22f645283b5473dc528a5a4f7b0b0",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where are subscriptions documented in the docs tree (API, delivery, Slack integration, pausing/disabling)?",
+          "root": "docs",
+          "queries": [
+            "subscription",
+            "subscriptions delivery",
+            "subscription Slack integration"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "offset": 141,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/trends/overview.mdx",
+              "offset": 242,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/libraries/slack.mdx",
+              "offset": 43,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "2bcc98d15746c9f2590033a5",
+            "5a4e2dc27a8a07851912eef4",
+            "c5f2042421c6f8167c832613",
+            "c688611702cdfbf8e130a8c1",
+            "51c8edf16b5ac46dd7d7da8c",
+            "0c274f0d17503743b15a480c",
+            "fcbc707c4ca28ce01ed763f2",
+            "28ca039c5a1e983a9da2d88d",
+            "debfa3d942e9c741997aef2d",
+            "201c28747bd489e5f9eca12f",
+            "4b51c5eb40c649113e514822",
+            "1b15a49b7b65c423d20afeff",
+            "3bb50b1de919bb55ae84ad65",
+            "308b32e7b8e8b54afcd8dd95",
+            "af1703abfb65c30ab8446aa1"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "evidence_id": "c688611702cdfbf8e130a8c1",
+              "score": "0.04765107388058208"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "evidence_id": "51c8edf16b5ac46dd7d7da8c",
+              "score": "0.04518383201814552"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/product-analytics/trends/overview.mdx",
+              "evidence_id": "0c274f0d17503743b15a480c",
+              "score": "0.04511453950444133"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/libraries/slack.mdx",
+              "evidence_id": "fcbc707c4ca28ce01ed763f2",
+              "score": "0.04103920770587437"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/customer-analytics/configure-your-dashboard.mdx",
+              "evidence_id": "28ca039c5a1e983a9da2d88d",
+              "score": "0.03775252525252525"
+            },
+            {
+              "rank": 6,
+              "path": "contents/handbook/growth/sales/automations.md",
+              "evidence_id": "debfa3d942e9c741997aef2d",
+              "score": "0.03488425925925926"
+            },
+            {
+              "rank": 7,
+              "path": "contents/tutorials/next-steps-after-installing.md",
+              "evidence_id": "201c28747bd489e5f9eca12f",
+              "score": "0.034798822032864586"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/revenue-analytics/managed-views.mdx",
+              "evidence_id": "4b51c5eb40c649113e514822",
+              "score": "0.03428627566558601"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/revenue-analytics/connect-to-customers.mdx",
+              "evidence_id": "1b15a49b7b65c423d20afeff",
+              "score": "0.032750677506775065"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/revenue-analytics/connect-to-customers.mdx",
+              "evidence_id": "3bb50b1de919bb55ae84ad65",
+              "score": "0.032638414217361585"
+            },
+            {
+              "rank": 11,
+              "path": "contents/handbook/growth/sales/billing.md",
+              "evidence_id": "308b32e7b8e8b54afcd8dd95",
+              "score": "0.03156475919529393"
+            },
+            {
+              "rank": 12,
+              "path": "contents/handbook/growth/sales/trials.md",
+              "evidence_id": "af1703abfb65c30ab8446aa1",
+              "score": "0.03136355700637848"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "start": 141,
+              "end": 150,
+              "total_lines": 150
+            },
+            {
+              "path": "contents/docs/product-analytics/trends/overview.mdx",
+              "start": 242,
+              "end": 253,
+              "total_lines": 253
+            },
+            {
+              "path": "contents/docs/libraries/slack.mdx",
+              "start": 43,
+              "end": 104,
+              "total_lines": 104
+            }
+          ],
+          "read_evidence_ids": [
+            "2bcc98d15746c9f2590033a5",
+            "5a4e2dc27a8a07851912eef4",
+            "c5f2042421c6f8167c832613"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Does existing subscription documentation describe the deleted/soft-delete vs enabled distinction or any pause behavior?",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/handbook/growth/sales/billing.md",
+              "offset": 93,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/customer-analytics/configure-your-dashboard.mdx",
+              "offset": 41,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "19a56ee6131c03f383520baa",
+            "77a70c428c524127d192b6e8",
+            "74fb0b5fbe8dcd79e15801d4",
+            "b63ec88839e430757b8ac299",
+            "61996248170c54c2850d6a0f",
+            "1004668bbb124bf4d56aae35",
+            "c688611702cdfbf8e130a8c1",
+            "28ca039c5a1e983a9da2d88d",
+            "0c274f0d17503743b15a480c",
+            "e17e968df98d35233e66f725",
+            "af1703abfb65c30ab8446aa1",
+            "debfa3d942e9c741997aef2d",
+            "4b51c5eb40c649113e514822",
+            "cdfc020f004c96c8b8ba63ff",
+            "6d6844da87a6532b3b1d8d0a"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/handbook/growth/sales/billing.md",
+              "evidence_id": "b63ec88839e430757b8ac299",
+              "score": "0.04814747488101534"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "evidence_id": "61996248170c54c2850d6a0f",
+              "score": "0.047907090265630725"
+            },
+            {
+              "rank": 3,
+              "path": "contents/handbook/growth/sales/billing.md",
+              "evidence_id": "1004668bbb124bf4d56aae35",
+              "score": "0.046459914611005695"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "evidence_id": "c688611702cdfbf8e130a8c1",
+              "score": "0.04616113053613054"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/customer-analytics/configure-your-dashboard.mdx",
+              "evidence_id": "28ca039c5a1e983a9da2d88d",
+              "score": "0.0454615036704589"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/product-analytics/trends/overview.mdx",
+              "evidence_id": "0c274f0d17503743b15a480c",
+              "score": "0.0444502765384578"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/product-analytics/group-analytics.mdx",
+              "evidence_id": "e17e968df98d35233e66f725",
+              "score": "0.044337137840210705"
+            },
+            {
+              "rank": 8,
+              "path": "contents/handbook/growth/sales/trials.md",
+              "evidence_id": "af1703abfb65c30ab8446aa1",
+              "score": "0.042291981422416206"
+            },
+            {
+              "rank": 9,
+              "path": "contents/handbook/growth/sales/automations.md",
+              "evidence_id": "debfa3d942e9c741997aef2d",
+              "score": "0.04077015016625281"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/revenue-analytics/managed-views.mdx",
+              "evidence_id": "4b51c5eb40c649113e514822",
+              "score": "0.04031746031746032"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/_snippets/setting-group-properties.mdx",
+              "evidence_id": "cdfc020f004c96c8b8ba63ff",
+              "score": "0.038490586736200774"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/_snippets/setting-group-properties.mdx",
+              "evidence_id": "6d6844da87a6532b3b1d8d0a",
+              "score": "0.03444206299682574"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/handbook/growth/sales/billing.md",
+              "start": 93,
+              "end": 213,
+              "total_lines": 230
+            },
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "start": 48,
+              "end": 150,
+              "total_lines": 150
+            },
+            {
+              "path": "contents/docs/customer-analytics/configure-your-dashboard.mdx",
+              "start": 41,
+              "end": 56,
+              "total_lines": 56
+            }
+          ],
+          "read_evidence_ids": [
+            "19a56ee6131c03f383520baa",
+            "77a70c428c524127d192b6e8",
+            "74fb0b5fbe8dcd79e15801d4"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What does the Subscription model and serializer expose for enabled, and what are the auto-disable reasons/messages?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "posthog/models/subscription.py",
+            "ee/tasks/subscriptions/auto_disable.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "posthog/models/subscription.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "ee/tasks/subscriptions/auto_disable.py",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "9cadf6122a3c8d5204a8b45f",
+            "54b2fd92ab7d4e05b464bd7a"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "posthog/models/subscription.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 364
+            },
+            {
+              "path": "ee/tasks/subscriptions/auto_disable.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 130
+            }
+          ],
+          "read_evidence_ids": [
+            "9cadf6122a3c8d5204a8b45f",
+            "54b2fd92ab7d4e05b464bd7a"
+          ]
+        },
+        {
+          "id": "Q1-4",
+          "question": "What user-facing behavior do the frontend toggle and test-delivery 409 produce?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "frontend/src/lib/components/Subscriptions/toggleSubscriptionEnabled.ts",
+            "ee/api/subscription.py"
+          ],
+          "anchor": "test-delivery",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "frontend/src/lib/components/Subscriptions/toggleSubscriptionEnabled.ts",
+              "query": "test-delivery",
+              "limit": 120
+            },
+            {
+              "path": "ee/api/subscription.py",
+              "query": "test-delivery",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "509e38ab91f5513dd39aafb7"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "ee/api/subscription.py",
+              "start": 737,
+              "end": 857,
+              "total_lines": 919
+            }
+          ],
+          "read_evidence_ids": [
+            "509e38ab91f5513dd39aafb7"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0c274f0d17503743b15a480c",
+        "1004668bbb124bf4d56aae35",
+        "19a56ee6131c03f383520baa",
+        "1b15a49b7b65c423d20afeff",
+        "201c28747bd489e5f9eca12f",
+        "28ca039c5a1e983a9da2d88d",
+        "2bcc98d15746c9f2590033a5",
+        "308b32e7b8e8b54afcd8dd95",
+        "3bb50b1de919bb55ae84ad65",
+        "4b51c5eb40c649113e514822",
+        "509e38ab91f5513dd39aafb7",
+        "51c8edf16b5ac46dd7d7da8c",
+        "54b2fd92ab7d4e05b464bd7a",
+        "5a4e2dc27a8a07851912eef4",
+        "61996248170c54c2850d6a0f",
+        "6d6844da87a6532b3b1d8d0a",
+        "74fb0b5fbe8dcd79e15801d4",
+        "77a70c428c524127d192b6e8",
+        "9cadf6122a3c8d5204a8b45f",
+        "af1703abfb65c30ab8446aa1",
+        "b63ec88839e430757b8ac299",
+        "c5f2042421c6f8167c832613",
+        "c688611702cdfbf8e130a8c1",
+        "cdfc020f004c96c8b8ba63ff",
+        "debfa3d942e9c741997aef2d",
+        "e17e968df98d35233e66f725",
+        "fcbc707c4ca28ce01ed763f2"
+      ],
+      "new_evidence_count": 27,
+      "new_path_count": 15
+    },
+    {
+      "signature": "969b482d637304380b9923297dc7c6985d2d9cc6845e34ac62eeb905dec51dae",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "What does the subscriptions.mdx page currently say about managing/deleting subscriptions and the list view, so we can place a pause/enable section correctly?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "contents/docs/product-analytics/subscriptions.mdx"
+          ],
+          "anchor": "## Testing subscriptions",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "query": "## Testing subscriptions",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "2bcc98d15746c9f2590033a5"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "start": 141,
+              "end": 150,
+              "total_lines": 150
+            }
+          ],
+          "read_evidence_ids": [
+            "2bcc98d15746c9f2590033a5"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "What exact user-facing copy does the frontend toggle and toast use (labels, success/failure messages) for pausing/resuming a subscription?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "frontend/src/lib/components/Subscriptions/toggleSubscriptionEnabled.ts",
+            "frontend/src/scenes/subscriptions/components/SubscriptionsTable.tsx"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "frontend/src/lib/components/Subscriptions/toggleSubscriptionEnabled.ts",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/scenes/subscriptions/components/SubscriptionsTable.tsx",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "6c0df08ed1e0649873bdea98",
+            "e2cd56b0f87b7acd34ee9e7e"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "frontend/src/lib/components/Subscriptions/toggleSubscriptionEnabled.ts",
+              "start": 0,
+              "end": 16,
+              "total_lines": 16
+            },
+            {
+              "path": "frontend/src/scenes/subscriptions/components/SubscriptionsTable.tsx",
+              "start": 0,
+              "end": 120,
+              "total_lines": 248
+            }
+          ],
+          "read_evidence_ids": [
+            "6c0df08ed1e0649873bdea98",
+            "e2cd56b0f87b7acd34ee9e7e"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "What does the disabled-subscription email tell the owner (reason text, re-enable instructions) that should be reflected in docs?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "posthog/templates/email/subscription_disabled.html",
+            "ee/tasks/subscriptions/auto_disable.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "posthog/templates/email/subscription_disabled.html",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "2f0bb50d23b5ca4b73195cf1"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "posthog/templates/email/subscription_disabled.html",
+              "start": 0,
+              "end": 15,
+              "total_lines": 15
+            }
+          ],
+          "read_evidence_ids": [
+            "2f0bb50d23b5ca4b73195cf1"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "2f0bb50d23b5ca4b73195cf1",
+        "6c0df08ed1e0649873bdea98",
+        "e2cd56b0f87b7acd34ee9e7e"
+      ],
+      "new_evidence_count": 3,
+      "new_path_count": 3
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "fb937a072ce56289acd4cd249832de873c9ec718",
+    "code": "73cbbdc00ef0e9f1a7dd611994c14dc00a0ec406"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:467d6ad0d16608b0": 0,
+    "discover:Q1-2:e159d7b29b6b49fc": 278
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:467d6ad0d16608b0": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 278,
+      "cache_hit": false
+    },
+    "discover:Q1-2:e159d7b29b6b49fc": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 264,
+      "cache_hit": false
+    },
+    "discover:Q1-3:32d3f27100267f22": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 167,
+      "cache_hit": false
+    },
+    "discover:Q1-1:2fc9dee0424f14c7": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 205,
+      "cache_hit": false
+    },
+    "discover:Q1-2:e45acd5f7326c990": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 230,
+      "cache_hit": false
+    },
+    "discover:Q1-4:a4853c2f07939bf5": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 114,
+      "cache_hit": false
+    },
+    "discover:Q2-3:16856d549563f047": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 88,
+      "cache_hit": false
+    },
+    "discover:Q2-1:f29b9e2e696f082b": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 151,
+      "cache_hit": false
+    },
+    "discover:Q2-2:c699f74d096e1160": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 244,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 1268,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "subscriptions-pause-enable",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/product-analytics/subscriptions.mdx"
+      ],
+      "evidence_ids": [
+        "6c0df08ed1e0649873bdea98",
+        "509e38ab91f5513dd39aafb7",
+        "2bcc98d15746c9f2590033a5",
+        "77a70c428c524127d192b6e8",
+        "54b2fd92ab7d4e05b464bd7a",
+        "2f0bb50d23b5ca4b73195cf1"
+      ],
+      "reason": "In contents/docs/product-analytics/subscriptions.mdx, add a section documenting the new enabled/pause capability: users can toggle a subscription off (pause delivery without deleting) and back on from the subscription list and detail views; re-enabling triggers an immediate confirmation delivery. Note that disabled subscriptions are skipped by the scheduler and that test delivery returns an error (409) for disabled subscriptions, so users must re-enable first."
+    },
+    {
+      "requirement_id": "subscriptions-auto-disable",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/product-analytics/subscriptions.mdx"
+      ],
+      "evidence_ids": [
+        "6c0df08ed1e0649873bdea98",
+        "509e38ab91f5513dd39aafb7",
+        "2bcc98d15746c9f2590033a5",
+        "77a70c428c524127d192b6e8",
+        "54b2fd92ab7d4e05b464bd7a",
+        "2f0bb50d23b5ca4b73195cf1"
+      ],
+      "reason": "In contents/docs/product-analytics/subscriptions.mdx, document auto-disable behavior: when a subscription's delivery target becomes permanently invalid (e.g. the Slack integration is disconnected/removed, or the delivery channel is unsupported), the subscription is automatically disabled and the owner is emailed with the reason and a link to manage it. Explain that re-enabling is blocked until the underlying issue is fixed (e.g. reconnect Slack), and that re-enabling a subscription whose schedule has ended requires extending until_date or removing count."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0c274f0d17503743b15a480c",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/trends/overview.mdx",
+        "heading": "enterprise: full > Getting started > 5. Saving and sharing your insight > Create a subscription",
+        "start_line": 247,
+        "end_line": 253,
+        "start_char": 14964,
+        "end_char": 15317,
+        "score": "0.0444502765384578",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "0c274f0d17503743b15a480c",
+        "source_type": "repository",
+        "content_hash": "7e0424242fde54a666283a9bd6397f6bcdd61717bad2e198b97118b3f6138839",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7e0424242fde54a666283a9bd6397f6bcdd61717bad2e198b97118b3f6138839",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1004668bbb124bf4d56aae35",
+        "type": "evidence",
+        "path": "contents/handbook/growth/sales/billing.md",
+        "heading": "showTitle: true > Managing billing > Failed/late payments > Step 4 - 1 day before cancelling their subscription",
+        "start_line": 92,
+        "end_line": 97,
+        "start_char": 9113,
+        "end_char": 9471,
+        "score": "0.046459914611005695",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "1004668bbb124bf4d56aae35",
+        "source_type": "repository",
+        "content_hash": "c883c5ce5134fa26be871a487567d389f85700a8b56c98fcda5c9cde244ebade",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c883c5ce5134fa26be871a487567d389f85700a8b56c98fcda5c9cde244ebade",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:19a56ee6131c03f383520baa",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/handbook/growth/sales/billing.md",
+        "start_line": 94,
+        "total_lines": 230,
+        "start_char": 9171,
+        "end_char": 18804,
+        "evidence_id": "19a56ee6131c03f383520baa",
+        "truncated": false,
+        "next_offset": 213,
+        "source_type": "repository",
+        "content_hash": "82038757d905313afd5b1914b38d9295c1f05ed777df1edfc3f176ad3c9f5a06",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/handbook/growth/sales/billing.md",
+              "offset": 93,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/customer-analytics/configure-your-dashboard.mdx",
+              "offset": 41,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "82038757d905313afd5b1914b38d9295c1f05ed777df1edfc3f176ad3c9f5a06",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1b15a49b7b65c423d20afeff",
+        "type": "evidence",
+        "path": "contents/docs/revenue-analytics/connect-to-customers.mdx",
+        "heading": "showTitle: true > Step 2: Tag existing customers via charges, subscriptions, or invoices > Subscriptions",
+        "start_line": 84,
+        "end_line": 133,
+        "start_char": 2500,
+        "end_char": 3779,
+        "score": "0.032750677506775065",
+        "root": "docs",
+        "matched_terms": [
+          "subscription",
+          "subscriptions"
+        ],
+        "evidence_id": "1b15a49b7b65c423d20afeff",
+        "source_type": "repository",
+        "content_hash": "9e736d9d87e61050638e766193c0a8f424cf3199521e5cd6eb72f82f9691cfa6",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription",
+            "subscriptions delivery",
+            "subscription Slack integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9e736d9d87e61050638e766193c0a8f424cf3199521e5cd6eb72f82f9691cfa6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:201574a30c8737bf33e01d61",
+        "type": "evidence",
+        "evidence_id": "201574a30c8737bf33e01d61",
+        "source_type": "task",
+        "exported_content_sha256": "c6c97a094d5931b3e959692bf2c4b4dc83951199c36cb0f9cbd6b19a8a8570a1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:201c28747bd489e5f9eca12f",
+        "type": "evidence",
+        "path": "contents/tutorials/next-steps-after-installing.md",
+        "heading": "- product os > 4. Create subscriptions to important events, actions, and dashboards",
+        "start_line": 145,
+        "end_line": 155,
+        "start_char": 6697,
+        "end_char": 8497,
+        "score": "0.034798822032864586",
+        "root": "docs",
+        "matched_terms": [
+          "integration",
+          "slack",
+          "subscription",
+          "subscriptions"
+        ],
+        "evidence_id": "201c28747bd489e5f9eca12f",
+        "source_type": "repository",
+        "content_hash": "93939e407f48e88fd1dd82051d19874b65c89cb8628449fe7c18b9371c881eef",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription",
+            "subscriptions delivery",
+            "subscription Slack integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "93939e407f48e88fd1dd82051d19874b65c89cb8628449fe7c18b9371c881eef",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:28ca039c5a1e983a9da2d88d",
+        "type": "evidence",
+        "path": "contents/docs/customer-analytics/configure-your-dashboard.mdx",
+        "heading": "showTitle: true > Subscription event",
+        "start_line": 46,
+        "end_line": 49,
+        "start_char": 2566,
+        "end_char": 2915,
+        "score": "0.0454615036704589",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "28ca039c5a1e983a9da2d88d",
+        "source_type": "repository",
+        "content_hash": "1b3f391b962516158d746fc32bab5603a8763b7a405122d073bce7a0cb5d6ba2",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1b3f391b962516158d746fc32bab5603a8763b7a405122d073bce7a0cb5d6ba2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2bcc98d15746c9f2590033a5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/product-analytics/subscriptions.mdx",
+        "start_line": 142,
+        "total_lines": 150,
+        "start_char": 6785,
+        "end_char": 7538,
+        "evidence_id": "2bcc98d15746c9f2590033a5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "55df55e69a552bda6f02bc497ba2487fa47c1240dc6d28ee15cb364b0392ef68",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "query": "## Testing subscriptions",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "55df55e69a552bda6f02bc497ba2487fa47c1240dc6d28ee15cb364b0392ef68",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2f0bb50d23b5ca4b73195cf1",
+        "type": "evidence",
+        "root": "code",
+        "path": "posthog/templates/email/subscription_disabled.html",
+        "start_line": 1,
+        "total_lines": 15,
+        "start_char": 0,
+        "end_char": 585,
+        "evidence_id": "2f0bb50d23b5ca4b73195cf1",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d35bac2fc89d3da72a049d9f62db884fe8faa581ed50c7667c5b6070dbc4bd1a",
+        "revision": "73cbbdc00ef0e9f1a7dd611994c14dc00a0ec406",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "posthog/templates/email/subscription_disabled.html",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "d35bac2fc89d3da72a049d9f62db884fe8faa581ed50c7667c5b6070dbc4bd1a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:308b32e7b8e8b54afcd8dd95",
+        "type": "evidence",
+        "path": "contents/handbook/growth/sales/billing.md",
+        "heading": "showTitle: true > Managing billing > Updating subscriptions",
+        "start_line": 205,
+        "end_line": 223,
+        "start_char": 18241,
+        "end_char": 19457,
+        "score": "0.03156475919529393",
+        "root": "docs",
+        "matched_terms": [
+          "subscription",
+          "subscriptions"
+        ],
+        "evidence_id": "308b32e7b8e8b54afcd8dd95",
+        "source_type": "repository",
+        "content_hash": "c032089ad22dc8fd9a58ec7600cdb56bada23591c4340a1f186dd8281b130e32",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription",
+            "subscriptions delivery",
+            "subscription Slack integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c032089ad22dc8fd9a58ec7600cdb56bada23591c4340a1f186dd8281b130e32",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3209b5e0a86ec08a0bb7cb3d",
+        "type": "evidence",
+        "evidence_id": "3209b5e0a86ec08a0bb7cb3d",
+        "source_type": "implementation",
+        "exported_content_sha256": "2624bc481df14f6c7846bc2560acc44a03e72ea6ee5d85d3dc4d7c776da2f5f5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3bb50b1de919bb55ae84ad65",
+        "type": "evidence",
+        "path": "contents/docs/revenue-analytics/connect-to-customers.mdx",
+        "heading": "showTitle: true > Step 2: Tag existing customers via charges, subscriptions, or invoices > Subscriptions",
+        "start_line": 134,
+        "end_line": 157,
+        "start_char": 3779,
+        "end_char": 4455,
+        "score": "0.032638414217361585",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "3bb50b1de919bb55ae84ad65",
+        "source_type": "repository",
+        "content_hash": "6022de1d3c21f57a00ffd4e35eb8f8ccb8cf1366507fe10768048ba9c1aa4751",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription",
+            "subscriptions delivery",
+            "subscription Slack integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6022de1d3c21f57a00ffd4e35eb8f8ccb8cf1366507fe10768048ba9c1aa4751",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4b51c5eb40c649113e514822",
+        "type": "evidence",
+        "path": "contents/docs/revenue-analytics/managed-views.mdx",
+        "heading": "showTitle: true > View types > Subscription",
+        "start_line": 62,
+        "end_line": 72,
+        "start_char": 3488,
+        "end_char": 4108,
+        "score": "0.04031746031746032",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "4b51c5eb40c649113e514822",
+        "source_type": "repository",
+        "content_hash": "8f00e6d881dc9e3f6e062d44e4957e67efc407ef14f94aaea981151080011c59",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8f00e6d881dc9e3f6e062d44e4957e67efc407ef14f94aaea981151080011c59",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:509e38ab91f5513dd39aafb7",
+        "type": "evidence",
+        "root": "code",
+        "path": "ee/api/subscription.py",
+        "start_line": 738,
+        "total_lines": 919,
+        "start_char": 33091,
+        "end_char": 38332,
+        "evidence_id": "509e38ab91f5513dd39aafb7",
+        "truncated": false,
+        "next_offset": 857,
+        "source_type": "repository",
+        "content_hash": "6ce1b38b75a112d801cefc2e1270a7a1fffa380ddd098e1b242a1e10cfe9a559",
+        "revision": "73cbbdc00ef0e9f1a7dd611994c14dc00a0ec406",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "frontend/src/lib/components/Subscriptions/toggleSubscriptionEnabled.ts",
+              "query": "test-delivery",
+              "limit": 120
+            },
+            {
+              "path": "ee/api/subscription.py",
+              "query": "test-delivery",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "6ce1b38b75a112d801cefc2e1270a7a1fffa380ddd098e1b242a1e10cfe9a559",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:51c8edf16b5ac46dd7d7da8c",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/subscriptions.mdx",
+        "heading": "enterprise: true > Slack subscriptions",
+        "start_line": 92,
+        "end_line": 99,
+        "start_char": 5000,
+        "end_char": 5235,
+        "score": "0.04518383201814552",
+        "root": "docs",
+        "matched_terms": [
+          "slack",
+          "subscription",
+          "subscriptions"
+        ],
+        "evidence_id": "51c8edf16b5ac46dd7d7da8c",
+        "source_type": "repository",
+        "content_hash": "44287570ffa9dac3af4ba38411d82d9cf9b32a903d56d95882375df50d7cd053",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription",
+            "subscriptions delivery",
+            "subscription Slack integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "44287570ffa9dac3af4ba38411d82d9cf9b32a903d56d95882375df50d7cd053",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:54b2fd92ab7d4e05b464bd7a",
+        "type": "evidence",
+        "root": "code",
+        "path": "ee/tasks/subscriptions/auto_disable.py",
+        "start_line": 1,
+        "total_lines": 130,
+        "start_char": 0,
+        "end_char": 5035,
+        "evidence_id": "54b2fd92ab7d4e05b464bd7a",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "13a310066d7977bba900f65548cf8e722c4b2736047a7d652ca1e69b380548ec",
+        "revision": "73cbbdc00ef0e9f1a7dd611994c14dc00a0ec406",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "posthog/models/subscription.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "ee/tasks/subscriptions/auto_disable.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "13a310066d7977bba900f65548cf8e722c4b2736047a7d652ca1e69b380548ec",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a4e2dc27a8a07851912eef4",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/product-analytics/trends/overview.mdx",
+        "start_line": 243,
+        "total_lines": 253,
+        "start_char": 14806,
+        "end_char": 15317,
+        "evidence_id": "5a4e2dc27a8a07851912eef4",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3b6a709a72d0cbc0193b63922404c0ab0335d9cf2942156b180aa02c143f9c9a",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "offset": 141,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/trends/overview.mdx",
+              "offset": 242,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/libraries/slack.mdx",
+              "offset": 43,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "3b6a709a72d0cbc0193b63922404c0ab0335d9cf2942156b180aa02c143f9c9a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:61996248170c54c2850d6a0f",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/subscriptions.mdx",
+        "heading": "enterprise: true > Creating a subscription",
+        "start_line": 53,
+        "end_line": 63,
+        "start_char": 2718,
+        "end_char": 3011,
+        "score": "0.047907090265630725",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "61996248170c54c2850d6a0f",
+        "source_type": "repository",
+        "content_hash": "74f5326d97af523fc524aa9298f81bbf8414aacd6f0d0131abece2d57f2a8c37",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "74f5326d97af523fc524aa9298f81bbf8414aacd6f0d0131abece2d57f2a8c37",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6c0df08ed1e0649873bdea98",
+        "type": "evidence",
+        "root": "code",
+        "path": "frontend/src/lib/components/Subscriptions/toggleSubscriptionEnabled.ts",
+        "start_line": 1,
+        "total_lines": 16,
+        "start_char": 0,
+        "end_char": 672,
+        "evidence_id": "6c0df08ed1e0649873bdea98",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "1e4f210df42e076794289dcb9851426fc84d2191a54086cd6b3cbc42b5b6913c",
+        "revision": "73cbbdc00ef0e9f1a7dd611994c14dc00a0ec406",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "frontend/src/lib/components/Subscriptions/toggleSubscriptionEnabled.ts",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/scenes/subscriptions/components/SubscriptionsTable.tsx",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "1e4f210df42e076794289dcb9851426fc84d2191a54086cd6b3cbc42b5b6913c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6d6844da87a6532b3b1d8d0a",
+        "type": "evidence",
+        "path": "contents/docs/_snippets/setting-group-properties.mdx",
+        "heading": "",
+        "start_line": 98,
+        "end_line": 147,
+        "start_char": 2898,
+        "end_char": 4288,
+        "score": "0.03444206299682574",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "6d6844da87a6532b3b1d8d0a",
+        "source_type": "repository",
+        "content_hash": "c590ec630e34af620e02e189bb1c8db9e589a7478a77df9d7beaa7d964b36ab3",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c590ec630e34af620e02e189bb1c8db9e589a7478a77df9d7beaa7d964b36ab3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:74fb0b5fbe8dcd79e15801d4",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/customer-analytics/configure-your-dashboard.mdx",
+        "start_line": 42,
+        "total_lines": 56,
+        "start_char": 2168,
+        "end_char": 3361,
+        "evidence_id": "74fb0b5fbe8dcd79e15801d4",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "a9623424d8ddf634faf93e4bfdb59e98167785b1a23ecb6313f69fbc20a1307c",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/handbook/growth/sales/billing.md",
+              "offset": 93,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/customer-analytics/configure-your-dashboard.mdx",
+              "offset": 41,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a9623424d8ddf634faf93e4bfdb59e98167785b1a23ecb6313f69fbc20a1307c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:77a70c428c524127d192b6e8",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/product-analytics/subscriptions.mdx",
+        "start_line": 49,
+        "total_lines": 150,
+        "start_char": 2492,
+        "end_char": 7538,
+        "evidence_id": "77a70c428c524127d192b6e8",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "108fc3d7c2154131d53eb9bbbcf549b2f8a14a00c0e39dbd7b4db3cdce97c7aa",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/handbook/growth/sales/billing.md",
+              "offset": 93,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/customer-analytics/configure-your-dashboard.mdx",
+              "offset": 41,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "108fc3d7c2154131d53eb9bbbcf549b2f8a14a00c0e39dbd7b4db3cdce97c7aa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9cadf6122a3c8d5204a8b45f",
+        "type": "evidence",
+        "root": "code",
+        "path": "posthog/models/subscription.py",
+        "start_line": 1,
+        "total_lines": 364,
+        "start_char": 0,
+        "end_char": 3897,
+        "evidence_id": "9cadf6122a3c8d5204a8b45f",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "daac9036134d0e3efaaa0295ef19cae2bdb3788fff9c175988c114d6e9e3984c",
+        "revision": "73cbbdc00ef0e9f1a7dd611994c14dc00a0ec406",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "posthog/models/subscription.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "ee/tasks/subscriptions/auto_disable.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "daac9036134d0e3efaaa0295ef19cae2bdb3788fff9c175988c114d6e9e3984c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:af1703abfb65c30ab8446aa1",
+        "type": "evidence",
+        "path": "contents/handbook/growth/sales/trials.md",
+        "heading": "showTitle: true",
+        "start_line": 34,
+        "end_line": 40,
+        "start_char": 1693,
+        "end_char": 2394,
+        "score": "0.042291981422416206",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "af1703abfb65c30ab8446aa1",
+        "source_type": "repository",
+        "content_hash": "a572f14c81c48f057cf048fbff6a03974b758ddbd7cba663a1263caa71686b7c",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "a572f14c81c48f057cf048fbff6a03974b758ddbd7cba663a1263caa71686b7c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b63ec88839e430757b8ac299",
+        "type": "evidence",
+        "path": "contents/handbook/growth/sales/billing.md",
+        "heading": "showTitle: true > Managing billing > Failed/late payments > Step 5 - Cancelling their subscription",
+        "start_line": 98,
+        "end_line": 103,
+        "start_char": 9471,
+        "end_char": 9776,
+        "score": "0.04814747488101534",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "b63ec88839e430757b8ac299",
+        "source_type": "repository",
+        "content_hash": "503f2966e70d690001ddf20400ba18c2daa14d5910ad252fc42a318f758dcc1a",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "503f2966e70d690001ddf20400ba18c2daa14d5910ad252fc42a318f758dcc1a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c5f2042421c6f8167c832613",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/libraries/slack.mdx",
+        "start_line": 44,
+        "total_lines": 104,
+        "start_char": 1642,
+        "end_char": 4677,
+        "evidence_id": "c5f2042421c6f8167c832613",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "6e306c48c639a702a1378565da850a61695fb39b55cdf41b3a20e75f08b29f65",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/product-analytics/subscriptions.mdx",
+              "offset": 141,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/product-analytics/trends/overview.mdx",
+              "offset": 242,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/libraries/slack.mdx",
+              "offset": 43,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6e306c48c639a702a1378565da850a61695fb39b55cdf41b3a20e75f08b29f65",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c688611702cdfbf8e130a8c1",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/subscriptions.mdx",
+        "heading": "enterprise: true > Testing subscriptions",
+        "start_line": 146,
+        "end_line": 150,
+        "start_char": 7108,
+        "end_char": 7538,
+        "score": "0.04616113053613054",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "c688611702cdfbf8e130a8c1",
+        "source_type": "repository",
+        "content_hash": "10eb115332c4ad8cd04edc0bd0428720028c43df06d0a487b550ac1579ac245c",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "10eb115332c4ad8cd04edc0bd0428720028c43df06d0a487b550ac1579ac245c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cdfc020f004c96c8b8ba63ff",
+        "type": "evidence",
+        "path": "contents/docs/_snippets/setting-group-properties.mdx",
+        "heading": "",
+        "start_line": 48,
+        "end_line": 97,
+        "start_char": 1626,
+        "end_char": 2898,
+        "score": "0.038490586736200774",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "cdfc020f004c96c8b8ba63ff",
+        "source_type": "repository",
+        "content_hash": "ad9f20fbf44649a9e06f11703426b3f46442b1a2f558f1907eedb7d88fb16cda",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ad9f20fbf44649a9e06f11703426b3f46442b1a2f558f1907eedb7d88fb16cda",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:debfa3d942e9c741997aef2d",
+        "type": "evidence",
+        "path": "contents/handbook/growth/sales/automations.md",
+        "heading": "Automations > Annual Plan Automation > Schedule Subscription",
+        "start_line": 237,
+        "end_line": 244,
+        "start_char": 14517,
+        "end_char": 15162,
+        "score": "0.04077015016625281",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "debfa3d942e9c741997aef2d",
+        "source_type": "repository",
+        "content_hash": "f2c8b27494073f4dcb665a012c6d256411f37c2e2e3e9babaf790502846a659c",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f2c8b27494073f4dcb665a012c6d256411f37c2e2e3e9babaf790502846a659c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e17e968df98d35233e66f725",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/group-analytics.mdx",
+        "heading": "enterprise: full > Set up group analytics > Set group properties",
+        "start_line": 354,
+        "end_line": 403,
+        "start_char": 13380,
+        "end_char": 14731,
+        "score": "0.044337137840210705",
+        "root": "docs",
+        "matched_terms": [
+          "subscription"
+        ],
+        "evidence_id": "e17e968df98d35233e66f725",
+        "source_type": "repository",
+        "content_hash": "68fd3abbb3f3061a625a96a45d76a31fbb6057da6a382c98e7ee09f7d99ea20b",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription deleted",
+            "pause subscription",
+            "disable subscription"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "68fd3abbb3f3061a625a96a45d76a31fbb6057da6a382c98e7ee09f7d99ea20b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e2cd56b0f87b7acd34ee9e7e",
+        "type": "evidence",
+        "root": "code",
+        "path": "frontend/src/scenes/subscriptions/components/SubscriptionsTable.tsx",
+        "start_line": 1,
+        "total_lines": 248,
+        "start_char": 0,
+        "end_char": 4572,
+        "evidence_id": "e2cd56b0f87b7acd34ee9e7e",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "8cd6aeeebcde0a2469b36bec64e865d02d4f934f1424f62249521a2543b5f1a6",
+        "revision": "73cbbdc00ef0e9f1a7dd611994c14dc00a0ec406",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "frontend/src/lib/components/Subscriptions/toggleSubscriptionEnabled.ts",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/scenes/subscriptions/components/SubscriptionsTable.tsx",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8cd6aeeebcde0a2469b36bec64e865d02d4f934f1424f62249521a2543b5f1a6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fcbc707c4ca28ce01ed763f2",
+        "type": "evidence",
+        "path": "contents/docs/libraries/slack.mdx",
+        "heading": "platformLogo: slack > Subscribing to insights and dashboards",
+        "start_line": 48,
+        "end_line": 62,
+        "start_char": 1740,
+        "end_char": 2412,
+        "score": "0.04103920770587437",
+        "root": "docs",
+        "matched_terms": [
+          "slack",
+          "subscription",
+          "subscriptions"
+        ],
+        "evidence_id": "fcbc707c4ca28ce01ed763f2",
+        "source_type": "repository",
+        "content_hash": "2f8b2988de948d030121d4a97e68df6ace273887a23fd8bb83d1af0be936b61b",
+        "revision": "fb937a072ce56289acd4cd249832de873c9ec718",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "subscription",
+            "subscriptions delivery",
+            "subscription Slack integration"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2f8b2988de948d030121d4a97e68df6ace273887a23fd8bb83d1af0be936b61b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:subscriptions-pause-enable",
+        "type": "requirement",
+        "description": "In contents/docs/product-analytics/subscriptions.mdx, add a section documenting the new enabled/pause capability: users can toggle a subscription off (pause delivery without deleting) and back on from the subscription list and detail views; re-enabling triggers an immediate confirmation delivery. Note that disabled subscriptions are skipped by the scheduler and that test delivery returns an error (409) for disabled subscriptions, so users must re-enable first."
+      },
+      {
+        "id": "requirement:subscriptions-auto-disable",
+        "type": "requirement",
+        "description": "In contents/docs/product-analytics/subscriptions.mdx, document auto-disable behavior: when a subscription's delivery target becomes permanently invalid (e.g. the Slack integration is disconnected/removed, or the delivery channel is unsupported), the subscription is automatically disabled and the owner is emailed with the reason and a link to manage it. Explain that re-enabling is blocked until the underlying issue is fixed (e.g. reconnect Slack), and that re-enabling a subscription whose schedule has ended requires extending until_date or removing count."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "contents/docs/product-analytics/subscriptions.mdx",
+        "hash": "77412601fa83bb2228107c6f7fa7d2c9c2480649cc246fc273b9992dc18dcbf6"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "subscriptions-pause-enable",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/product-analytics/subscriptions.mdx"
+        ],
+        "evidence_ids": [
+          "6c0df08ed1e0649873bdea98",
+          "509e38ab91f5513dd39aafb7",
+          "2bcc98d15746c9f2590033a5",
+          "77a70c428c524127d192b6e8",
+          "54b2fd92ab7d4e05b464bd7a",
+          "2f0bb50d23b5ca4b73195cf1"
+        ],
+        "reason": "In contents/docs/product-analytics/subscriptions.mdx, add a section documenting the new enabled/pause capability: users can toggle a subscription off (pause delivery without deleting) and back on from the subscription list and detail views; re-enabling triggers an immediate confirmation delivery. Note that disabled subscriptions are skipped by the scheduler and that test delivery returns an error (409) for disabled subscriptions, so users must re-enable first."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "subscriptions-auto-disable",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/product-analytics/subscriptions.mdx"
+        ],
+        "evidence_ids": [
+          "6c0df08ed1e0649873bdea98",
+          "509e38ab91f5513dd39aafb7",
+          "2bcc98d15746c9f2590033a5",
+          "77a70c428c524127d192b6e8",
+          "54b2fd92ab7d4e05b464bd7a",
+          "2f0bb50d23b5ca4b73195cf1"
+        ],
+        "reason": "In contents/docs/product-analytics/subscriptions.mdx, document auto-disable behavior: when a subscription's delivery target becomes permanently invalid (e.g. the Slack integration is disconnected/removed, or the delivery channel is unsupported), the subscription is automatically disabled and the owner is emailed with the reason and a link to manage it. Explain that re-enabling is blocked until the underlying issue is fixed (e.g. reconnect Slack), and that re-enabling a subscription whose schedule has ended requires extending until_date or removing count."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where are subscriptions documented in the docs tree (API, delivery, Slack integration, pausing/disabling)?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Does existing subscription documentation describe the deleted/soft-delete vs enabled distinction or any pause behavior?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What does the Subscription model and serializer expose for enabled, and what are the auto-disable reasons/messages?"
+      },
+      {
+        "id": "research:Q1-4",
+        "type": "research_question",
+        "description": "What user-facing behavior do the frontend toggle and test-delivery 409 produce?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "What does the subscriptions.mdx page currently say about managing/deleting subscriptions and the list view, so we can place a pause/enable section correctly?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "What exact user-facing copy does the frontend toggle and toast use (labels, success/failure messages) for pausing/resuming a subscription?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "What does the disabled-subscription email tell the owner (reason text, re-enable instructions) that should be reflected in docs?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0c274f0d17503743b15a480c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c274f0d17503743b15a480c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1004668bbb124bf4d56aae35",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:19a56ee6131c03f383520baa",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1b15a49b7b65c423d20afeff",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:201c28747bd489e5f9eca12f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:28ca039c5a1e983a9da2d88d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:28ca039c5a1e983a9da2d88d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2bcc98d15746c9f2590033a5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2bcc98d15746c9f2590033a5",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2f0bb50d23b5ca4b73195cf1",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:308b32e7b8e8b54afcd8dd95",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3bb50b1de919bb55ae84ad65",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4b51c5eb40c649113e514822",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4b51c5eb40c649113e514822",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:509e38ab91f5513dd39aafb7",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:51c8edf16b5ac46dd7d7da8c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:54b2fd92ab7d4e05b464bd7a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a4e2dc27a8a07851912eef4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:61996248170c54c2850d6a0f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6c0df08ed1e0649873bdea98",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6d6844da87a6532b3b1d8d0a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:74fb0b5fbe8dcd79e15801d4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:77a70c428c524127d192b6e8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9cadf6122a3c8d5204a8b45f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:af1703abfb65c30ab8446aa1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:af1703abfb65c30ab8446aa1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b63ec88839e430757b8ac299",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c5f2042421c6f8167c832613",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c688611702cdfbf8e130a8c1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c688611702cdfbf8e130a8c1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cdfc020f004c96c8b8ba63ff",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:debfa3d942e9c741997aef2d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:debfa3d942e9c741997aef2d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e17e968df98d35233e66f725",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e2cd56b0f87b7acd34ee9e7e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fcbc707c4ca28ce01ed763f2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6c0df08ed1e0649873bdea98",
+        "to": "requirement:subscriptions-pause-enable",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:509e38ab91f5513dd39aafb7",
+        "to": "requirement:subscriptions-pause-enable",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:2bcc98d15746c9f2590033a5",
+        "to": "requirement:subscriptions-pause-enable",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:77a70c428c524127d192b6e8",
+        "to": "requirement:subscriptions-pause-enable",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:54b2fd92ab7d4e05b464bd7a",
+        "to": "requirement:subscriptions-auto-disable",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:2f0bb50d23b5ca4b73195cf1",
+        "to": "requirement:subscriptions-auto-disable",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:509e38ab91f5513dd39aafb7",
+        "to": "requirement:subscriptions-auto-disable",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:subscriptions-pause-enable",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "requirement:subscriptions-auto-disable",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:6c0df08ed1e0649873bdea98",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:509e38ab91f5513dd39aafb7",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2bcc98d15746c9f2590033a5",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:77a70c428c524127d192b6e8",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:54b2fd92ab7d4e05b464bd7a",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2f0bb50d23b5ca4b73195cf1",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:subscriptions-pause-enable",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:6c0df08ed1e0649873bdea98",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:509e38ab91f5513dd39aafb7",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2bcc98d15746c9f2590033a5",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:77a70c428c524127d192b6e8",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:54b2fd92ab7d4e05b464bd7a",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2f0bb50d23b5ca4b73195cf1",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:subscriptions-auto-disable",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:6c0df08ed1e0649873bdea98",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:509e38ab91f5513dd39aafb7",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2bcc98d15746c9f2590033a5",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:77a70c428c524127d192b6e8",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:54b2fd92ab7d4e05b464bd7a",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:2f0bb50d23b5ca4b73195cf1",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "ddd48ddd127025a80169b7a50a97f729fb519b4f1f4ed664c06f4192d8b4f958"
+}

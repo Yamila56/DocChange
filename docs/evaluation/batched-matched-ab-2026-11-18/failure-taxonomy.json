@@ -1,0 +1,626 @@
+{
+  "Azure-azure-service-operator-pr4003": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: 1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\ninvestigate.questions.1.queries\n  List should have at most 3 items after validation, not 4 [type=too_long, input_value=['integration test setup'...'make-mi-fic', 'cipool'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/too_long",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "docs/hugo/content/contributing/developer-setup.md",
+      "docs/hugo/content/contributing/running-a-development-version.md",
+      "docs/hugo/content/guide/installing-from-yaml.md",
+      "docs/hugo/content/reference/_index.md",
+      "docs/hugo/content/reference/documentdb/_index.md"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "Azure-azure-service-operator-pr4196": {
+    "primary": "C",
+    "secondary": [],
+    "observed_reason": "Final edit/no-change direction is wrong under the official outcome",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "Azure-azure-service-operator-pr4202": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: 1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\ninvestigate.questions.2.queries\n  List should have at most 3 items after validation, not 4 [type=too_long, input_value=['resource references', '...export', 'passing data'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/too_long",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "docs/hugo/content/guide/best-practices/_index.md",
+      "docs/hugo/content/guide/diagnosing-problems.md"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "Azure-azure-service-operator-pr4394": {
+    "primary": "C",
+    "secondary": [],
+    "observed_reason": "Unresolved decision: MODEL_UNRESOLVED",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "Azure-azure-service-operator-pr5490": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "docs/faq.md",
+      "docs/hugo/content/guide/authentication/_index.md",
+      "docs/hugo/content/guide/configmaps.md",
+      "docs/hugo/content/guide/secrets.md",
+      "v2/samples/managedidentity/v1api20230131/v1api20230131_userassignedidentity.yaml"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "MaterializeInc-materialize-pr36075": {
+    "primary": null,
+    "secondary": [],
+    "observed_reason": "Direction correct; no blocking P0",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "MaterializeInc-materialize-pr36328": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "MaterializeInc-materialize-pr36618": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "MaterializeInc-materialize-pr36803": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: 1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value=\"Update the Workload Anon...parse failure or leaks.\", input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "MaterializeInc-materialize-pr37023": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "doc/user/content/ingest-data/postgres/logical-replica.md"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog-pr63817": {
+    "primary": null,
+    "secondary": [],
+    "observed_reason": "Direction correct; no blocking P0",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog-pr63871": {
+    "primary": "D",
+    "secondary": [],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "contents/docs/support/github.mdx",
+      "contents/docs/workflows/_snippets/add-posthog-to-slack-workspace.mdx"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog-pr63886": {
+    "primary": "C",
+    "secondary": [],
+    "observed_reason": "Final edit/no-change direction is wrong under the official outcome",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog.com-pr16354": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog.com-pr16714": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog.com-pr16752": {
+    "primary": "D",
+    "secondary": [],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog.com-pr16822": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: 1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value=\"In contents/docs/experim...o property conventions.\", input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog.com-pr16939": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog.com-pr17172": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "PostHog-posthog.com-pr17231": {
+    "primary": "D",
+    "secondary": [],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-flink-pr27195": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "flink-python/docs/reference/pyflink.common/index.rst",
+      "flink-python/docs/reference/pyflink.common/time.rst",
+      "flink-python/docs/reference/pyflink.datastream/asyncio.rst",
+      "flink-python/docs/reference/pyflink.datastream/functions.rst",
+      "flink-python/docs/reference/pyflink.datastream/index.rst"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-flink-pr27325": {
+    "primary": null,
+    "secondary": [],
+    "observed_reason": "Direction correct; no blocking P0",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-flink-pr27345": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: 1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.id\n  String should match pattern '^[A-Za-z0-9_-]{1,40}$' [type=string_pattern_mismatch, input_value='release-notes-2.2-interruptible-timers', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_pattern_mismatch",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-flink-pr28212": {
+    "primary": "D",
+    "secondary": [],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-flink-pr28237": {
+    "primary": "C",
+    "secondary": [],
+    "observed_reason": "Unresolved decision: MODEL_UNRESOLVED",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "docs/content.zh/docs/sql/reference/dml/insert.md",
+      "docs/content/docs/sql/reference/dml/insert.md"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-iceberg-pr15566": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: Exact occurrence count differs; reread target",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-iceberg-pr15634": {
+    "primary": "C",
+    "secondary": [],
+    "observed_reason": "Final edit/no-change direction is wrong under the official outcome",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-iceberg-pr15667": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: Exact occurrence count differs; reread target",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-iceberg-pr15814": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "docs/docs/spark-ddl.md"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "apache-iceberg-pr16241": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: Exact occurrence count differs; reread target",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "astral-sh-ruff-pr21369": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "bentoml-bentoml-pr5465": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: 1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value=\"Update the 'Custom servi...'t apply automatically.\", input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "bentoml-bentoml-pr5518": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "celery-celery-pr10135": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: ReadError",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "celery-celery-pr10150": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: ReadError",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "celery-celery-pr10174": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: 1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value='Add a new ``broker_pool_...ionadded::`` directive.', input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "celery-celery-pr10206": {
+    "primary": "F",
+    "secondary": [],
+    "observed_reason": "Unresolved decision: REPAIR_SCOPE",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "celery-celery-pr10238": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "celery-celery-pr9879": {
+    "primary": "D",
+    "secondary": [],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "dagworks-inc-hamilton-pr1445": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "examples/hello_world/my_dag.png",
+      "examples/hello_world/my_functions.py"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "dlt-hub-dlt-pr2500": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "docs/website/docs/dlt-ecosystem/transformations/add-map.md",
+      "docs/website/docs/dlt-ecosystem/transformations/dbt/dbt.md",
+      "docs/website/docs/dlt-ecosystem/transformations/dbt/dbt_cloud.md",
+      "docs/website/sidebars.js"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "dlt-hub-dlt-pr2836": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: 1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\nready_to_edit.targets.0.description\n  String should have at most 600 characters [type=string_too_long, input_value=\"Add an 'AWS catalogs' se...on, rest.signing-name).\", input_type=str]\n    For further information visit https://errors.pydantic.dev/2.14/v/string_too_long",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "dlt-hub-dlt-pr2965": {
+    "primary": "C",
+    "secondary": [],
+    "observed_reason": "Unresolved decision: MISSING_EVIDENCE",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [
+      "docs/website/docs/general-usage/dataset-access/dashboard.md",
+      "docs/website/docs/general-usage/dataset-access/sql-client.md",
+      "docs/website/docs/general-usage/destination-tables.md",
+      "docs/website/docs/plus/getting-started/advanced_tutorial.md",
+      "docs/website/docs/reference/explainers/how-dlt-works.md",
+      "docs/website/docs/tutorial/filesystem.md",
+      "docs/website/docs/tutorial/rest-api.md",
+      "docs/website/docs/tutorial/sql-database.md",
+      "docs/website/docs/walkthroughs/adjust-a-schema.md",
+      "docs/website/docs/walkthroughs/create-a-pipeline.md",
+      "docs/website/sidebars.js"
+    ],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "doc-detective-common-pr112": {
+    "primary": "G",
+    "secondary": [],
+    "observed_reason": "Runtime/protocol/budget failure: 1 validation error for tagged-union[Investigate,ReadyToEdit,NoChange,UnresolvedDecision]\ninvestigate.questions.1.queries\n  List should have at most 3 items after validation, not 4 [type=too_long, input_value=['configPath', 'specPath'...', 'OpenAPI definition'], input_type=list]\n    For further information visit https://errors.pydantic.dev/2.14/v/too_long",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "doc-detective-common-pr63": {
+    "primary": "F",
+    "secondary": [],
+    "observed_reason": "Unresolved decision: REPAIR_SCOPE",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "doc-detective-common-pr65": {
+    "primary": "C",
+    "secondary": [],
+    "observed_reason": "Final edit/no-change direction is wrong under the official outcome",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "doc-detective-common-pr78": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "doc-detective-doc-detective-pr146": {
+    "primary": "D",
+    "secondary": [
+      "E"
+    ],
+    "observed_reason": "Delivered patch has documented quality gaps under the official rubric",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  },
+  "doc-detective-doc-detective-pr21": {
+    "primary": "C",
+    "secondary": [],
+    "observed_reason": "Unresolved decision: UNBOUND_EDIT",
+    "interpretation": "Observable stage/quality gap; semantic root cause may be ambiguous",
+    "false_rejection_proven": false,
+    "diagnostic_candidate_quality": null,
+    "diagnostic_candidate_p0_clean": null,
+    "human_changed_paths_not_observed": [],
+    "path_diagnostic_note": "Proxy only: new paths cannot be read; a path miss cannot distinguish A from B"
+  }
+}

@@ -1,0 +1,2227 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "EDIT",
+  "tasks": [
+    {
+      "id": "spark-config-write-options",
+      "description": "In docs/docs/spark-configuration.md, the Write options table already lists shred-variants and variant-inference-buffer-size. Verify the descriptions match the implementation: shred-variants overrides write.parquet.shred-variants (default false), variant-inference-buffer-size overrides write.parquet.variant-inference-buffer-size (default 100). No change needed if accurate.",
+      "evidence_ids": [
+        "e2299db4b2b2f670ce073056",
+        "36551b6df300c27160c74af5",
+        "b59473ad82ee6744fa6c85ae"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "config-table-properties",
+      "description": "In docs/docs/configuration.md, the Write properties table already documents write.parquet.shred-variants (default false) and write.parquet.variant-inference-buffer-size (default 100). Confirm defaults match TableProperties constants; no change needed if accurate.",
+      "evidence_ids": [
+        "7b287332e4fda5be617385e2",
+        "7741dad71a507717fc382e61"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "ca4cd00dcb52cfcf0af6a59c0957370ac02ce57d60febc61daa9267789e21e56",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where in the docs are Spark write options, session configs, and table properties for Parquet documented (e.g., write options table, configuration page)?",
+          "root": "docs",
+          "queries": [
+            "shred-variants",
+            "variant-inference-buffer-size",
+            "write.parquet"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 47,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 257,
+              "limit": 120
+            },
+            {
+              "path": "format/spec.md",
+              "offset": 1301,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7b287332e4fda5be617385e2",
+            "e2299db4b2b2f670ce073056",
+            "83b97ffadd9c5c9822dff395",
+            "7741dad71a507717fc382e61",
+            "36551b6df300c27160c74af5",
+            "16906daaa91c1d3121c96cf0",
+            "99139f7d75e835018308bdde",
+            "1a540fb4a4a80a3da76c33db",
+            "c61500ba64198b0ec66fdad6",
+            "ba336fdcce6c639dc82de654",
+            "989ff7df7c75b9a4fbf4e891",
+            "45bf944c5a74982234ec4b65",
+            "5feb2bd111486b4c3c7f3e49",
+            "1eddddfe92fe73f22a40491c",
+            "d109b9ea39d9aaf4a9bf454c"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "7741dad71a507717fc382e61",
+              "score": "0.04918032786885246"
+            },
+            {
+              "rank": 2,
+              "path": "docs/docs/spark-configuration.md",
+              "evidence_id": "36551b6df300c27160c74af5",
+              "score": "0.04410984848484849"
+            },
+            {
+              "rank": 3,
+              "path": "format/spec.md",
+              "evidence_id": "16906daaa91c1d3121c96cf0",
+              "score": "0.04230390290870821"
+            },
+            {
+              "rank": 4,
+              "path": "docs/docs/spark-configuration.md",
+              "evidence_id": "99139f7d75e835018308bdde",
+              "score": "0.038146603973953155"
+            },
+            {
+              "rank": 5,
+              "path": "format/spec.md",
+              "evidence_id": "1a540fb4a4a80a3da76c33db",
+              "score": "0.03602753653156879"
+            },
+            {
+              "rank": 6,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "c61500ba64198b0ec66fdad6",
+              "score": "0.033708477829396497"
+            },
+            {
+              "rank": 7,
+              "path": "docs/docs/flink-writes.md",
+              "evidence_id": "ba336fdcce6c639dc82de654",
+              "score": "0.02868497088370408"
+            },
+            {
+              "rank": 8,
+              "path": "docs/docs/spark-procedures.md",
+              "evidence_id": "989ff7df7c75b9a4fbf4e891",
+              "score": "0.02827770058422395"
+            },
+            {
+              "rank": 9,
+              "path": "AGENTS.md",
+              "evidence_id": "45bf944c5a74982234ec4b65",
+              "score": "0.027246039969010486"
+            },
+            {
+              "rank": 10,
+              "path": "site/docs/releases.md",
+              "evidence_id": "5feb2bd111486b4c3c7f3e49",
+              "score": "0.026739019961911532"
+            },
+            {
+              "rank": 11,
+              "path": "docs/docs/spark-procedures.md",
+              "evidence_id": "1eddddfe92fe73f22a40491c",
+              "score": "0.026616182775489626"
+            },
+            {
+              "rank": 12,
+              "path": "docs/docs/aws.md",
+              "evidence_id": "d109b9ea39d9aaf4a9bf454c",
+              "score": "0.024934933487565068"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "start": 47,
+              "end": 89,
+              "total_lines": 145
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "start": 257,
+              "end": 283,
+              "total_lines": 283
+            },
+            {
+              "path": "format/spec.md",
+              "start": 1301,
+              "end": 1396,
+              "total_lines": 1848
+            }
+          ],
+          "read_evidence_ids": [
+            "7b287332e4fda5be617385e2",
+            "e2299db4b2b2f670ce073056",
+            "83b97ffadd9c5c9822dff395"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is there existing documentation for variant columns / variant shredding in Spark or Parquet?",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 180,
+              "limit": 120
+            },
+            {
+              "path": "AGENTS.md",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 190,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "9046b3b613b091fc3c41566d",
+            "484327f16943fa4134458f65",
+            "2db922d1162ce6ff4724e81a",
+            "1a540fb4a4a80a3da76c33db",
+            "7741dad71a507717fc382e61",
+            "c6e4e991258c451128c1110a",
+            "45bf944c5a74982234ec4b65",
+            "99139f7d75e835018308bdde",
+            "b5d52d9d0885c511912f7940",
+            "64720d6b906b8b6a1d563eb9",
+            "d7b743b782ecb4cadca9714d",
+            "806c23b6d3110f28100dc467",
+            "e902d3790424a0db2ffd617c",
+            "18cf4ac94d121189bdbdb23b",
+            "989ff7df7c75b9a4fbf4e891"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "format/spec.md",
+              "evidence_id": "1a540fb4a4a80a3da76c33db",
+              "score": "0.04046317980744211"
+            },
+            {
+              "rank": 2,
+              "path": "docs/docs/configuration.md",
+              "evidence_id": "7741dad71a507717fc382e61",
+              "score": "0.035379617738158196"
+            },
+            {
+              "rank": 3,
+              "path": "format/spec.md",
+              "evidence_id": "c6e4e991258c451128c1110a",
+              "score": "0.03508904888215233"
+            },
+            {
+              "rank": 4,
+              "path": "AGENTS.md",
+              "evidence_id": "45bf944c5a74982234ec4b65",
+              "score": "0.03415923882286361"
+            },
+            {
+              "rank": 5,
+              "path": "docs/docs/spark-configuration.md",
+              "evidence_id": "99139f7d75e835018308bdde",
+              "score": "0.032523864809081524"
+            },
+            {
+              "rank": 6,
+              "path": "docs/docs/flink.md",
+              "evidence_id": "b5d52d9d0885c511912f7940",
+              "score": "0.030644586894586896"
+            },
+            {
+              "rank": 7,
+              "path": "format/udf-spec.md",
+              "evidence_id": "64720d6b906b8b6a1d563eb9",
+              "score": "0.029147881207851657"
+            },
+            {
+              "rank": 8,
+              "path": "docs/docs/spark-getting-started.md",
+              "evidence_id": "d7b743b782ecb4cadca9714d",
+              "score": "0.027612424844494655"
+            },
+            {
+              "rank": 9,
+              "path": "docs/docs/spark-configuration.md",
+              "evidence_id": "806c23b6d3110f28100dc467",
+              "score": "0.02630877492269965"
+            },
+            {
+              "rank": 10,
+              "path": "AGENTS.md",
+              "evidence_id": "e902d3790424a0db2ffd617c",
+              "score": "0.02604465513287691"
+            },
+            {
+              "rank": 11,
+              "path": "site/docs/status.md",
+              "evidence_id": "18cf4ac94d121189bdbdb23b",
+              "score": "0.02528735632183908"
+            },
+            {
+              "rank": 12,
+              "path": "docs/docs/spark-procedures.md",
+              "evidence_id": "989ff7df7c75b9a4fbf4e891",
+              "score": "0.024679420028257237"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "format/spec.md",
+              "start": 180,
+              "end": 300,
+              "total_lines": 1848
+            },
+            {
+              "path": "AGENTS.md",
+              "start": 42,
+              "end": 162,
+              "total_lines": 172
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "start": 190,
+              "end": 283,
+              "total_lines": 283
+            }
+          ],
+          "read_evidence_ids": [
+            "9046b3b613b091fc3c41566d",
+            "484327f16943fa4134458f65",
+            "2db922d1162ce6ff4724e81a"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What are the exact table property names and defaults for PARQUET_SHRED_VARIANTS and PARQUET_VARIANT_BUFFER_SIZE?",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "spark/v4.0/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "offset": 735,
+              "limit": 120
+            },
+            {
+              "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "offset": 738,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "567f57001b73d1d5fd50e440",
+            "34392eb2939ff81faa7f63ee",
+            "7b872f2f129557948ac59918",
+            "5b98a5dd3934d23c1bdb35a8",
+            "b59473ad82ee6744fa6c85ae",
+            "9764719fada9192cf0510eab",
+            "f0cee745bf7915fe8844f5bf",
+            "955baf092112610cd2210c1b",
+            "1fce5ec122daffa858a5163a",
+            "19163b628c0787217623bf1d",
+            "6d46adc5236f35ba88dab059",
+            "93c68df501204e93a38aff33",
+            "808df0489a60eaa93b502336",
+            "f66c0967ddc32a42ed1b5293"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "spark/v4.0/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "evidence_id": "7b872f2f129557948ac59918",
+              "score": "0.032266458495966696"
+            },
+            {
+              "rank": 2,
+              "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "evidence_id": "5b98a5dd3934d23c1bdb35a8",
+              "score": "0.03128054740957967"
+            },
+            {
+              "rank": 3,
+              "path": "spark/v4.1/spark/src/main/java/org/apache/iceberg/spark/SparkWriteConf.java",
+              "evidence_id": "b59473ad82ee6744fa6c85ae",
+              "score": "0.030776515151515152"
+            },
+            {
+              "rank": 4,
+              "path": "spark/v4.1/spark/src/main/java/org/apache/iceberg/spark/SparkWriteConf.java",
+              "evidence_id": "9764719fada9192cf0510eab",
+              "score": "0.02946912242686891"
+            },
+            {
+              "rank": 5,
+              "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "evidence_id": "f0cee745bf7915fe8844f5bf",
+              "score": "0.02862400327131466"
+            },
+            {
+              "rank": 6,
+              "path": "spark/v4.0/spark/src/main/java/org/apache/iceberg/spark/SparkWriteConf.java",
+              "evidence_id": "955baf092112610cd2210c1b",
+              "score": "0.02821939586645469"
+            },
+            {
+              "rank": 7,
+              "path": "spark/v4.0/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "evidence_id": "1fce5ec122daffa858a5163a",
+              "score": "0.02782608695652174"
+            },
+            {
+              "rank": 8,
+              "path": "parquet/src/test/java/org/apache/iceberg/parquet/TestParquetDataWriter.java",
+              "evidence_id": "19163b628c0787217623bf1d",
+              "score": "0.027443609022556388"
+            },
+            {
+              "rank": 9,
+              "path": "parquet/src/main/java/org/apache/iceberg/parquet/ParquetFormatModel.java",
+              "evidence_id": "6d46adc5236f35ba88dab059",
+              "score": "0.027071520029266508"
+            },
+            {
+              "rank": 10,
+              "path": "core/src/main/java/org/apache/iceberg/TableProperties.java",
+              "evidence_id": "93c68df501204e93a38aff33",
+              "score": "0.026709401709401708"
+            },
+            {
+              "rank": 11,
+              "path": "spark/v4.0/spark/src/main/java/org/apache/iceberg/spark/SparkWriteConf.java",
+              "evidence_id": "808df0489a60eaa93b502336",
+              "score": "0.02604430914933198"
+            },
+            {
+              "rank": 12,
+              "path": "parquet/src/test/java/org/apache/iceberg/parquet/TestParquetDataWriter.java",
+              "evidence_id": "f66c0967ddc32a42ed1b5293",
+              "score": "0.015873015873015872"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "spark/v4.0/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "start": 735,
+              "end": 774,
+              "total_lines": 774
+            },
+            {
+              "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "start": 738,
+              "end": 785,
+              "total_lines": 785
+            }
+          ],
+          "read_evidence_ids": [
+            "567f57001b73d1d5fd50e440",
+            "34392eb2939ff81faa7f63ee"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "16906daaa91c1d3121c96cf0",
+        "18cf4ac94d121189bdbdb23b",
+        "19163b628c0787217623bf1d",
+        "1a540fb4a4a80a3da76c33db",
+        "1eddddfe92fe73f22a40491c",
+        "1fce5ec122daffa858a5163a",
+        "2db922d1162ce6ff4724e81a",
+        "34392eb2939ff81faa7f63ee",
+        "36551b6df300c27160c74af5",
+        "45bf944c5a74982234ec4b65",
+        "484327f16943fa4134458f65",
+        "567f57001b73d1d5fd50e440",
+        "5b98a5dd3934d23c1bdb35a8",
+        "5feb2bd111486b4c3c7f3e49",
+        "64720d6b906b8b6a1d563eb9",
+        "6d46adc5236f35ba88dab059",
+        "7741dad71a507717fc382e61",
+        "7b287332e4fda5be617385e2",
+        "7b872f2f129557948ac59918",
+        "806c23b6d3110f28100dc467",
+        "808df0489a60eaa93b502336",
+        "83b97ffadd9c5c9822dff395",
+        "9046b3b613b091fc3c41566d",
+        "93c68df501204e93a38aff33",
+        "955baf092112610cd2210c1b",
+        "9764719fada9192cf0510eab",
+        "989ff7df7c75b9a4fbf4e891",
+        "99139f7d75e835018308bdde",
+        "b59473ad82ee6744fa6c85ae",
+        "b5d52d9d0885c511912f7940",
+        "ba336fdcce6c639dc82de654",
+        "c61500ba64198b0ec66fdad6",
+        "c6e4e991258c451128c1110a",
+        "d109b9ea39d9aaf4a9bf454c",
+        "d7b743b782ecb4cadca9714d",
+        "e2299db4b2b2f670ce073056",
+        "e902d3790424a0db2ffd617c",
+        "f0cee745bf7915fe8844f5bf",
+        "f66c0967ddc32a42ed1b5293"
+      ],
+      "new_evidence_count": 39,
+      "new_path_count": 19
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+    "code": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:bf4eeb9415062953": 0,
+    "discover:Q1-2:8d9d9e0559ae7515": 3368,
+    "discover:Q1-3:05293632d1160843": 0
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:05293632d1160843": 10370
+  },
+  "tool_metrics": {
+    "discover:Q1-1:bf4eeb9415062953": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 3369,
+      "cache_hit": false
+    },
+    "discover:Q1-2:8d9d9e0559ae7515": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 514,
+      "cache_hit": false
+    },
+    "discover:Q1-3:05293632d1160843": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 15322,
+      "cache_hit": false
+    },
+    "discover:Q1-1:18174cf4a51126e8": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 300,
+      "cache_hit": false
+    },
+    "discover:Q1-2:c11be545ffeab047": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 347,
+      "cache_hit": false
+    },
+    "discover:Q1-3:e62641b5f7a006ef": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 378,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:16906daaa91c1d3121c96cf0",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Appendix A: Format-specific Requirements > Parquet",
+        "start_line": 1306,
+        "end_line": 1311,
+        "start_char": 141843,
+        "end_char": 143643,
+        "score": "0.04230390290870821",
+        "root": "docs",
+        "matched_terms": [
+          "parquet",
+          "variant"
+        ],
+        "evidence_id": "16906daaa91c1d3121c96cf0",
+        "source_type": "repository",
+        "content_hash": "4cd334b9bafdc16cf367fb58cd7f1bd3be99ea65aa89d5b50f65d486292f7b69",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "shred-variants",
+            "variant-inference-buffer-size",
+            "write.parquet"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4cd334b9bafdc16cf367fb58cd7f1bd3be99ea65aa89d5b50f65d486292f7b69",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:18cf4ac94d121189bdbdb23b",
+        "type": "evidence",
+        "path": "site/docs/status.md",
+        "heading": "Implementation Status > Data Types",
+        "start_line": 36,
+        "end_line": 63,
+        "start_char": 1372,
+        "end_char": 2788,
+        "score": "0.02528735632183908",
+        "root": "docs",
+        "matched_terms": [
+          "variant"
+        ],
+        "evidence_id": "18cf4ac94d121189bdbdb23b",
+        "source_type": "repository",
+        "content_hash": "40acb34bc70aa5d877853c75a69472e07bc7441f733e90531b2d1e40a2fd5c4e",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "40acb34bc70aa5d877853c75a69472e07bc7441f733e90531b2d1e40a2fd5c4e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:19163b628c0787217623bf1d",
+        "type": "evidence",
+        "path": "parquet/src/test/java/org/apache/iceberg/parquet/TestParquetDataWriter.java",
+        "heading": "",
+        "start_line": 452,
+        "end_line": 488,
+        "start_char": 17893,
+        "end_char": 19505,
+        "score": "0.027443609022556388",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "19163b628c0787217623bf1d",
+        "source_type": "repository",
+        "content_hash": "60724c05d728239ddb38b412d9e095ff16c54b444da533c4743d6dbed0575d3f",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "60724c05d728239ddb38b412d9e095ff16c54b444da533c4743d6dbed0575d3f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a540fb4a4a80a3da76c33db",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Specification > Schemas and Data Types > Semi-structured Types",
+        "start_line": 185,
+        "end_line": 200,
+        "start_char": 13477,
+        "end_char": 14600,
+        "score": "0.04046317980744211",
+        "root": "docs",
+        "matched_terms": [
+          "variant"
+        ],
+        "evidence_id": "1a540fb4a4a80a3da76c33db",
+        "source_type": "repository",
+        "content_hash": "3b2069fbb30ca7f251caf8a5a828059565ba271050362528c34c700b9faa8392",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3b2069fbb30ca7f251caf8a5a828059565ba271050362528c34c700b9faa8392",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1eddddfe92fe73f22a40491c",
+        "type": "evidence",
+        "path": "docs/docs/spark-procedures.md",
+        "heading": "Spark Procedures > Metadata management > `rewrite_data_files` > Options > Options for sort strategy",
+        "start_line": 424,
+        "end_line": 430,
+        "start_char": 20780,
+        "end_char": 21716,
+        "score": "0.026616182775489626",
+        "root": "docs",
+        "matched_terms": [
+          "size"
+        ],
+        "evidence_id": "1eddddfe92fe73f22a40491c",
+        "source_type": "repository",
+        "content_hash": "c98a6ca3b246b1ab66a3350ec81e7e999d5efa997ae54910b6a3a22d2f137bde",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "shred-variants",
+            "variant-inference-buffer-size",
+            "write.parquet"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c98a6ca3b246b1ab66a3350ec81e7e999d5efa997ae54910b6a3a22d2f137bde",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1fce5ec122daffa858a5163a",
+        "type": "evidence",
+        "path": "spark/v4.0/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+        "heading": "",
+        "start_line": 699,
+        "end_line": 739,
+        "start_char": 27731,
+        "end_char": 29385,
+        "score": "0.02782608695652174",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "1fce5ec122daffa858a5163a",
+        "source_type": "repository",
+        "content_hash": "81838fe4c71ece6443a8dd811e433ec0178deaa4605f7b46a72312dd9e2e39ad",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "81838fe4c71ece6443a8dd811e433ec0178deaa4605f7b46a72312dd9e2e39ad",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2db922d1162ce6ff4724e81a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/spark-configuration.md",
+        "start_line": 191,
+        "total_lines": 283,
+        "start_char": 13334,
+        "end_char": 25753,
+        "evidence_id": "2db922d1162ce6ff4724e81a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "67e558f54bfcd109a8241e5f06913411d5f8e711720a6c9b76b3c308cb9949aa",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 180,
+              "limit": 120
+            },
+            {
+              "path": "AGENTS.md",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 190,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "67e558f54bfcd109a8241e5f06913411d5f8e711720a6c9b76b3c308cb9949aa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:34392eb2939ff81faa7f63ee",
+        "type": "evidence",
+        "root": "code",
+        "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+        "start_line": 739,
+        "total_lines": 785,
+        "start_char": 29063,
+        "end_char": 30951,
+        "evidence_id": "34392eb2939ff81faa7f63ee",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "73911a1ded5a427b4970b2698f41515ec33a942cae9ff799865a6351270ef442",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "spark/v4.0/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "offset": 735,
+              "limit": 120
+            },
+            {
+              "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "offset": 738,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "73911a1ded5a427b4970b2698f41515ec33a942cae9ff799865a6351270ef442",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:36551b6df300c27160c74af5",
+        "type": "evidence",
+        "path": "docs/docs/spark-configuration.md",
+        "heading": "Spark Configuration > Runtime configuration > Write options",
+        "start_line": 262,
+        "end_line": 283,
+        "start_char": 24183,
+        "end_char": 25753,
+        "score": "0.04410984848484849",
+        "root": "docs",
+        "matched_terms": [
+          "buffer",
+          "inference",
+          "parquet",
+          "shred",
+          "size",
+          "variant",
+          "variants",
+          "write"
+        ],
+        "evidence_id": "36551b6df300c27160c74af5",
+        "source_type": "repository",
+        "content_hash": "7248612677ec4beabc405640be8d736bdaa17554de7ae781efc52066430e58c8",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "shred-variants",
+            "variant-inference-buffer-size",
+            "write.parquet"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7248612677ec4beabc405640be8d736bdaa17554de7ae781efc52066430e58c8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3bb4b1c91a9876a40bd26e15",
+        "type": "evidence",
+        "evidence_id": "3bb4b1c91a9876a40bd26e15",
+        "source_type": "task",
+        "exported_content_sha256": "31d2217c1360b735614b13746f1de1ff4acd32e1e43658171d9f26696bbc9a21",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:45bf944c5a74982234ec4b65",
+        "type": "evidence",
+        "path": "AGENTS.md",
+        "heading": "Apache Iceberg — Agent Instructions > Design Patterns",
+        "start_line": 47,
+        "end_line": 61,
+        "start_char": 3071,
+        "end_char": 4280,
+        "score": "0.03415923882286361",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "45bf944c5a74982234ec4b65",
+        "source_type": "repository",
+        "content_hash": "dc91ab34cde1b806a7eccb85e5cd06d3f3eb1143fb2985e18d9b76216bf7f58b",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "dc91ab34cde1b806a7eccb85e5cd06d3f3eb1143fb2985e18d9b76216bf7f58b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:484327f16943fa4134458f65",
+        "type": "evidence",
+        "root": "docs",
+        "path": "AGENTS.md",
+        "start_line": 43,
+        "total_lines": 172,
+        "start_char": 2630,
+        "end_char": 9879,
+        "evidence_id": "484327f16943fa4134458f65",
+        "truncated": false,
+        "next_offset": 162,
+        "source_type": "repository",
+        "content_hash": "46a1fbea634daabbcdb3399345dba1763ed0be24e216a763c01d41a4696e100b",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 180,
+              "limit": 120
+            },
+            {
+              "path": "AGENTS.md",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 190,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "46a1fbea634daabbcdb3399345dba1763ed0be24e216a763c01d41a4696e100b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:567f57001b73d1d5fd50e440",
+        "type": "evidence",
+        "root": "code",
+        "path": "spark/v4.0/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+        "start_line": 736,
+        "total_lines": 774,
+        "start_char": 29216,
+        "end_char": 30895,
+        "evidence_id": "567f57001b73d1d5fd50e440",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "69769d4b30d5cbed4cfcefd96d8f441c4dc37524a4a3b303611db7e8dad17ba4",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "spark/v4.0/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "offset": 735,
+              "limit": 120
+            },
+            {
+              "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+              "offset": 738,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "69769d4b30d5cbed4cfcefd96d8f441c4dc37524a4a3b303611db7e8dad17ba4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5b98a5dd3934d23c1bdb35a8",
+        "type": "evidence",
+        "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+        "heading": "",
+        "start_line": 743,
+        "end_line": 782,
+        "start_char": 29235,
+        "end_char": 30846,
+        "score": "0.03128054740957967",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "5b98a5dd3934d23c1bdb35a8",
+        "source_type": "repository",
+        "content_hash": "9e2789ac668069f06a19563840ad1bd0c9fa3e571734f916073ee391f73c1f6d",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9e2789ac668069f06a19563840ad1bd0c9fa3e571734f916073ee391f73c1f6d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5feb2bd111486b4c3c7f3e49",
+        "type": "evidence",
+        "path": "site/docs/releases.md",
+        "heading": "title: \"Releases\" > Past releases > 0.13.0",
+        "start_line": 1340,
+        "end_line": 1351,
+        "start_char": 115592,
+        "end_char": 116654,
+        "score": "0.026739019961911532",
+        "root": "docs",
+        "matched_terms": [
+          "parquet",
+          "size"
+        ],
+        "evidence_id": "5feb2bd111486b4c3c7f3e49",
+        "source_type": "repository",
+        "content_hash": "fe04eddcd66c2022dc6cc5f9319d100820fd40762fc56ac1f7ed7ad371998000",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "shred-variants",
+            "variant-inference-buffer-size",
+            "write.parquet"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "fe04eddcd66c2022dc6cc5f9319d100820fd40762fc56ac1f7ed7ad371998000",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:64720d6b906b8b6a1d563eb9",
+        "type": "evidence",
+        "path": "format/udf-spec.md",
+        "heading": "Iceberg UDF Spec > Specification > Parameter > Types",
+        "start_line": 104,
+        "end_line": 118,
+        "start_char": 7121,
+        "end_char": 8121,
+        "score": "0.029147881207851657",
+        "root": "docs",
+        "matched_terms": [
+          "variant"
+        ],
+        "evidence_id": "64720d6b906b8b6a1d563eb9",
+        "source_type": "repository",
+        "content_hash": "cc8b80a9bdc8f4c1473736e3a72bab65e9ed6ad629cd15fdbc88783235e16258",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cc8b80a9bdc8f4c1473736e3a72bab65e9ed6ad629cd15fdbc88783235e16258",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6d46adc5236f35ba88dab059",
+        "type": "evidence",
+        "path": "parquet/src/main/java/org/apache/iceberg/parquet/ParquetFormatModel.java",
+        "heading": "",
+        "start_line": 119,
+        "end_line": 167,
+        "start_char": 4905,
+        "end_char": 6552,
+        "score": "0.027071520029266508",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "6d46adc5236f35ba88dab059",
+        "source_type": "repository",
+        "content_hash": "59a896cfb4b27de92c812e4470bc153255090fb0d8d040428ea1d25cb9183249",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "59a896cfb4b27de92c812e4470bc153255090fb0d8d040428ea1d25cb9183249",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7741dad71a507717fc382e61",
+        "type": "evidence",
+        "path": "docs/docs/configuration.md",
+        "heading": "Configuration > Table properties > Write properties",
+        "start_line": 52,
+        "end_line": 56,
+        "start_char": 5525,
+        "end_char": 7180,
+        "score": "0.035379617738158196",
+        "root": "docs",
+        "matched_terms": [
+          "column",
+          "shredding",
+          "variant"
+        ],
+        "evidence_id": "7741dad71a507717fc382e61",
+        "source_type": "repository",
+        "content_hash": "65d2f8af2aee3e03d62f6e4b2cf3e53dd207edd3e1cb89a5bb8198a26a902470",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "65d2f8af2aee3e03d62f6e4b2cf3e53dd207edd3e1cb89a5bb8198a26a902470",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7b287332e4fda5be617385e2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/configuration.md",
+        "start_line": 48,
+        "total_lines": 145,
+        "start_char": 4202,
+        "end_char": 18202,
+        "evidence_id": "7b287332e4fda5be617385e2",
+        "truncated": true,
+        "next_offset": 89,
+        "source_type": "repository",
+        "content_hash": "d06fbbdefd8ea22daecf9d84cfed0de6cbda137a97247d616420776e28dbc8b1",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 47,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 257,
+              "limit": 120
+            },
+            {
+              "path": "format/spec.md",
+              "offset": 1301,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d06fbbdefd8ea22daecf9d84cfed0de6cbda137a97247d616420776e28dbc8b1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7b872f2f129557948ac59918",
+        "type": "evidence",
+        "path": "spark/v4.0/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+        "heading": "",
+        "start_line": 740,
+        "end_line": 774,
+        "start_char": 29385,
+        "end_char": 30895,
+        "score": "0.032266458495966696",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "7b872f2f129557948ac59918",
+        "source_type": "repository",
+        "content_hash": "06655de4ba9a2a388fcda04a7bdf86865d75c3e647b1f1d77347921bb86d2672",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "06655de4ba9a2a388fcda04a7bdf86865d75c3e647b1f1d77347921bb86d2672",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:806c23b6d3110f28100dc467",
+        "type": "evidence",
+        "path": "docs/docs/spark-configuration.md",
+        "heading": "Spark Configuration > Runtime configuration > Spark SQL Options",
+        "start_line": 188,
+        "end_line": 194,
+        "start_char": 12572,
+        "end_char": 14351,
+        "score": "0.02630877492269965",
+        "root": "docs",
+        "matched_terms": [
+          "column",
+          "variant"
+        ],
+        "evidence_id": "806c23b6d3110f28100dc467",
+        "source_type": "repository",
+        "content_hash": "c2eb94429b95e024f208e7a7cee0ad11f17af34edbf12e5082d0404b91de3f1f",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c2eb94429b95e024f208e7a7cee0ad11f17af34edbf12e5082d0404b91de3f1f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:808df0489a60eaa93b502336",
+        "type": "evidence",
+        "path": "spark/v4.0/spark/src/main/java/org/apache/iceberg/spark/SparkWriteConf.java",
+        "heading": "",
+        "start_line": 32,
+        "end_line": 63,
+        "start_char": 1621,
+        "end_char": 3236,
+        "score": "0.02604430914933198",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "808df0489a60eaa93b502336",
+        "source_type": "repository",
+        "content_hash": "8164fabf94caf8c37c08c51a8a0c22bf75fa62742e99310aedc8e7f1e7215af9",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8164fabf94caf8c37c08c51a8a0c22bf75fa62742e99310aedc8e7f1e7215af9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83b97ffadd9c5c9822dff395",
+        "type": "evidence",
+        "root": "docs",
+        "path": "format/spec.md",
+        "start_line": 1302,
+        "total_lines": 1848,
+        "start_char": 140731,
+        "end_char": 154731,
+        "evidence_id": "83b97ffadd9c5c9822dff395",
+        "truncated": true,
+        "next_offset": 1396,
+        "source_type": "repository",
+        "content_hash": "78044d21044a448fc8f1a1f4ef423d85debadcf3e6fec3c92442c73fc1d2713e",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 47,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 257,
+              "limit": 120
+            },
+            {
+              "path": "format/spec.md",
+              "offset": 1301,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "78044d21044a448fc8f1a1f4ef423d85debadcf3e6fec3c92442c73fc1d2713e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9046b3b613b091fc3c41566d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "format/spec.md",
+        "start_line": 181,
+        "total_lines": 1848,
+        "start_char": 12945,
+        "end_char": 25299,
+        "evidence_id": "9046b3b613b091fc3c41566d",
+        "truncated": false,
+        "next_offset": 300,
+        "source_type": "repository",
+        "content_hash": "8ff6a6e110df5303ba221c48f6f8ef2b4a0487b1896dcb56ad6e9fa6a726ca14",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "format/spec.md",
+              "offset": 180,
+              "limit": 120
+            },
+            {
+              "path": "AGENTS.md",
+              "offset": 42,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 190,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8ff6a6e110df5303ba221c48f6f8ef2b4a0487b1896dcb56ad6e9fa6a726ca14",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:93c68df501204e93a38aff33",
+        "type": "evidence",
+        "path": "core/src/main/java/org/apache/iceberg/TableProperties.java",
+        "heading": "",
+        "start_line": 140,
+        "end_line": 167,
+        "start_char": 6517,
+        "end_char": 8139,
+        "score": "0.026709401709401708",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "93c68df501204e93a38aff33",
+        "source_type": "repository",
+        "content_hash": "f0c9bf39d6b593b626a90a20c15213a40cf761ef6242d82dbb6f60ab0c978dde",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f0c9bf39d6b593b626a90a20c15213a40cf761ef6242d82dbb6f60ab0c978dde",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:955baf092112610cd2210c1b",
+        "type": "evidence",
+        "path": "spark/v4.0/spark/src/main/java/org/apache/iceberg/spark/SparkWriteConf.java",
+        "heading": "",
+        "start_line": 499,
+        "end_line": 546,
+        "start_char": 17480,
+        "end_char": 19099,
+        "score": "0.02821939586645469",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "955baf092112610cd2210c1b",
+        "source_type": "repository",
+        "content_hash": "8f759c80770022bb27215c7e07272254772fb2f11cf979acbac6874ec566d7f7",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "8f759c80770022bb27215c7e07272254772fb2f11cf979acbac6874ec566d7f7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9764719fada9192cf0510eab",
+        "type": "evidence",
+        "path": "spark/v4.1/spark/src/main/java/org/apache/iceberg/spark/SparkWriteConf.java",
+        "heading": "",
+        "start_line": 503,
+        "end_line": 546,
+        "start_char": 17521,
+        "end_char": 19148,
+        "score": "0.02946912242686891",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "9764719fada9192cf0510eab",
+        "source_type": "repository",
+        "content_hash": "985447aa32bfd35f299c011529bee48272d9db4fa25fbbd89379802df38dfd44",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "985447aa32bfd35f299c011529bee48272d9db4fa25fbbd89379802df38dfd44",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:989ff7df7c75b9a4fbf4e891",
+        "type": "evidence",
+        "path": "docs/docs/spark-procedures.md",
+        "heading": "Spark Procedures > Metadata management > `rewrite_data_files` > Options > Options for sort strategy with zorder sort_order",
+        "start_line": 431,
+        "end_line": 437,
+        "start_char": 21716,
+        "end_char": 22072,
+        "score": "0.024679420028257237",
+        "root": "docs",
+        "matched_terms": [
+          "column"
+        ],
+        "evidence_id": "989ff7df7c75b9a4fbf4e891",
+        "source_type": "repository",
+        "content_hash": "fa361ecb3126487b4d720d9b8964a0189aab27ee4898800b88a2c21861469cfb",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fa361ecb3126487b4d720d9b8964a0189aab27ee4898800b88a2c21861469cfb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:99139f7d75e835018308bdde",
+        "type": "evidence",
+        "path": "docs/docs/spark-configuration.md",
+        "heading": "Spark Configuration > Runtime configuration > Spark SQL Options",
+        "start_line": 195,
+        "end_line": 201,
+        "start_char": 14351,
+        "end_char": 16130,
+        "score": "0.032523864809081524",
+        "root": "docs",
+        "matched_terms": [
+          "shredding",
+          "variant"
+        ],
+        "evidence_id": "99139f7d75e835018308bdde",
+        "source_type": "repository",
+        "content_hash": "7f07d4a02b82cfa8b1e42ea27018deb3ea9ae6ce17370add0e7b08558ffe648d",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7f07d4a02b82cfa8b1e42ea27018deb3ea9ae6ce17370add0e7b08558ffe648d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9b7439bce7947d07f7bd29d5",
+        "type": "evidence",
+        "evidence_id": "9b7439bce7947d07f7bd29d5",
+        "source_type": "implementation",
+        "exported_content_sha256": "f2d749fafb3f070b03e62460801087b929d2890fdde96af2c9c1a9d27416e0ac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b59473ad82ee6744fa6c85ae",
+        "type": "evidence",
+        "path": "spark/v4.1/spark/src/main/java/org/apache/iceberg/spark/SparkWriteConf.java",
+        "heading": "",
+        "start_line": 730,
+        "end_line": 757,
+        "start_char": 25641,
+        "end_char": 26624,
+        "score": "0.030776515151515152",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "b59473ad82ee6744fa6c85ae",
+        "source_type": "repository",
+        "content_hash": "d69bb7ea59efc08a49ba5d4e24d11fb534fb8ff1db112e05c7d58f5ab7c16c32",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d69bb7ea59efc08a49ba5d4e24d11fb534fb8ff1db112e05c7d58f5ab7c16c32",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b5d52d9d0885c511912f7940",
+        "type": "evidence",
+        "path": "docs/docs/flink.md",
+        "heading": "title: \"Getting Started\" > Type conversion > Iceberg to Flink",
+        "start_line": 398,
+        "end_line": 401,
+        "start_char": 20017,
+        "end_char": 20231,
+        "score": "0.030644586894586896",
+        "root": "docs",
+        "matched_terms": [
+          "variant"
+        ],
+        "evidence_id": "b5d52d9d0885c511912f7940",
+        "source_type": "repository",
+        "content_hash": "16ae805f36b9cd97292328d2569a6f6330a115cc7c74182278613d08b99b35a5",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "16ae805f36b9cd97292328d2569a6f6330a115cc7c74182278613d08b99b35a5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ba336fdcce6c639dc82de654",
+        "type": "evidence",
+        "path": "docs/docs/flink-writes.md",
+        "heading": "Flink Writes > Flink Dynamic Iceberg Sink > Dynamic Routing Configuration",
+        "start_line": 488,
+        "end_line": 494,
+        "start_char": 21905,
+        "end_char": 22636,
+        "score": "0.02868497088370408",
+        "root": "docs",
+        "matched_terms": [
+          "write"
+        ],
+        "evidence_id": "ba336fdcce6c639dc82de654",
+        "source_type": "repository",
+        "content_hash": "85b716cfc75a14a4d133c113d44bd7c10410a3476adfd395f5d28171ed209629",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "shred-variants",
+            "variant-inference-buffer-size",
+            "write.parquet"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "85b716cfc75a14a4d133c113d44bd7c10410a3476adfd395f5d28171ed209629",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c61500ba64198b0ec66fdad6",
+        "type": "evidence",
+        "path": "docs/docs/configuration.md",
+        "heading": "Configuration > Table properties > Write properties",
+        "start_line": 47,
+        "end_line": 51,
+        "start_char": 3871,
+        "end_char": 5525,
+        "score": "0.033708477829396497",
+        "root": "docs",
+        "matched_terms": [
+          "parquet",
+          "size",
+          "write"
+        ],
+        "evidence_id": "c61500ba64198b0ec66fdad6",
+        "source_type": "repository",
+        "content_hash": "174e5664429ed1504ecf9aa02fee1d53c8252010bcbf456f536e024431611ae5",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "shred-variants",
+            "variant-inference-buffer-size",
+            "write.parquet"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "174e5664429ed1504ecf9aa02fee1d53c8252010bcbf456f536e024431611ae5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c6e4e991258c451128c1110a",
+        "type": "evidence",
+        "path": "format/spec.md",
+        "heading": "Iceberg Table Spec > Specification > Manifests > Manifest Entry Fields > Data File Fields > Bounds for Variant, Geometry, and Geography",
+        "start_line": 686,
+        "end_line": 698,
+        "start_char": 71061,
+        "end_char": 72708,
+        "score": "0.03508904888215233",
+        "root": "docs",
+        "matched_terms": [
+          "variant"
+        ],
+        "evidence_id": "c6e4e991258c451128c1110a",
+        "source_type": "repository",
+        "content_hash": "e0694f4f7957134729ec753007a44d56bae8652d219f786ed94f7ebeb4ad9246",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e0694f4f7957134729ec753007a44d56bae8652d219f786ed94f7ebeb4ad9246",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d109b9ea39d9aaf4a9bf454c",
+        "type": "evidence",
+        "path": "docs/docs/aws.md",
+        "heading": "Iceberg AWS Integrations > S3 FileIO > S3 Analytics Accelerator > Logical IO Configuration",
+        "start_line": 606,
+        "end_line": 612,
+        "start_char": 42275,
+        "end_char": 43332,
+        "score": "0.024934933487565068",
+        "root": "docs",
+        "matched_terms": [
+          "parquet",
+          "size"
+        ],
+        "evidence_id": "d109b9ea39d9aaf4a9bf454c",
+        "source_type": "repository",
+        "content_hash": "006a74a262acc52d184819719b7395171e33c242950018b3a0cffc956ea38c6b",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "shred-variants",
+            "variant-inference-buffer-size",
+            "write.parquet"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "006a74a262acc52d184819719b7395171e33c242950018b3a0cffc956ea38c6b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d7b743b782ecb4cadca9714d",
+        "type": "evidence",
+        "path": "docs/docs/spark-getting-started.md",
+        "heading": "Getting Started > Using Iceberg in Spark > Type compatibility > Iceberg type to Spark type",
+        "start_line": 195,
+        "end_line": 200,
+        "start_char": 9861,
+        "end_char": 10227,
+        "score": "0.027612424844494655",
+        "root": "docs",
+        "matched_terms": [
+          "variant"
+        ],
+        "evidence_id": "d7b743b782ecb4cadca9714d",
+        "source_type": "repository",
+        "content_hash": "c9e24c33870d0b41f80d47e774921676c95449ee121546d97eb550fc531183f8",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c9e24c33870d0b41f80d47e774921676c95449ee121546d97eb550fc531183f8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e2299db4b2b2f670ce073056",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/docs/spark-configuration.md",
+        "start_line": 258,
+        "total_lines": 283,
+        "start_char": 23348,
+        "end_char": 25753,
+        "evidence_id": "e2299db4b2b2f670ce073056",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "9229ba74073d41f423176f66a3088d901357dfb64a64c8374dd858bfde55a461",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/docs/configuration.md",
+              "offset": 47,
+              "limit": 120
+            },
+            {
+              "path": "docs/docs/spark-configuration.md",
+              "offset": 257,
+              "limit": 120
+            },
+            {
+              "path": "format/spec.md",
+              "offset": 1301,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9229ba74073d41f423176f66a3088d901357dfb64a64c8374dd858bfde55a461",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e902d3790424a0db2ffd617c",
+        "type": "evidence",
+        "path": "AGENTS.md",
+        "heading": "Apache Iceberg — Agent Instructions > Coding Conventions > Code Style",
+        "start_line": 83,
+        "end_line": 92,
+        "start_char": 5354,
+        "end_char": 5933,
+        "score": "0.02604465513287691",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "e902d3790424a0db2ffd617c",
+        "source_type": "repository",
+        "content_hash": "29897a3061a7a12fd7244c2b193c776a15600ec82c7503989a9b408d1e3d5be1",
+        "revision": "c6317672d84f0e780e989ec2ed8464b0e5a144cf",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "variant shredding",
+            "variant column",
+            "typed_value"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "29897a3061a7a12fd7244c2b193c776a15600ec82c7503989a9b408d1e3d5be1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f0cee745bf7915fe8844f5bf",
+        "type": "evidence",
+        "path": "spark/v4.1/spark/src/test/java/org/apache/iceberg/spark/TestSparkWriteConf.java",
+        "heading": "",
+        "start_line": 704,
+        "end_line": 742,
+        "start_char": 27617,
+        "end_char": 29235,
+        "score": "0.02862400327131466",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants",
+          "parquet_variant_buffer_size"
+        ],
+        "evidence_id": "f0cee745bf7915fe8844f5bf",
+        "source_type": "repository",
+        "content_hash": "6821a8f8e9a0ae85090411c4a3761f6e6a0d061ea6fbd5ff42ad629a453b83b5",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6821a8f8e9a0ae85090411c4a3761f6e6a0d061ea6fbd5ff42ad629a453b83b5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f66c0967ddc32a42ed1b5293",
+        "type": "evidence",
+        "path": "parquet/src/test/java/org/apache/iceberg/parquet/TestParquetDataWriter.java",
+        "heading": "",
+        "start_line": 371,
+        "end_line": 410,
+        "start_char": 14672,
+        "end_char": 16288,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "parquet_shred_variants"
+        ],
+        "evidence_id": "f66c0967ddc32a42ed1b5293",
+        "source_type": "repository",
+        "content_hash": "9440e713216d51eb5ea498a9dbdb30bf03cee912fecaf87ccaf3050174de5f99",
+        "revision": "e9ea5a2b0f4f5c2ecfdf117c677853afde82d1f9",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "PARQUET_SHRED_VARIANTS",
+            "PARQUET_VARIANT_BUFFER_SIZE"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9440e713216d51eb5ea498a9dbdb30bf03cee912fecaf87ccaf3050174de5f99",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:spark-config-write-options",
+        "type": "requirement",
+        "description": "In docs/docs/spark-configuration.md, the Write options table already lists shred-variants and variant-inference-buffer-size. Verify the descriptions match the implementation: shred-variants overrides write.parquet.shred-variants (default false), variant-inference-buffer-size overrides write.parquet.variant-inference-buffer-size (default 100). No change needed if accurate."
+      },
+      {
+        "id": "requirement:config-table-properties",
+        "type": "requirement",
+        "description": "In docs/docs/configuration.md, the Write properties table already documents write.parquet.shred-variants (default false) and write.parquet.variant-inference-buffer-size (default 100). Confirm defaults match TableProperties constants; no change needed if accurate."
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where in the docs are Spark write options, session configs, and table properties for Parquet documented (e.g., write options table, configuration page)?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is there existing documentation for variant columns / variant shredding in Spark or Parquet?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What are the exact table property names and defaults for PARQUET_SHRED_VARIANTS and PARQUET_VARIANT_BUFFER_SIZE?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:16906daaa91c1d3121c96cf0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:18cf4ac94d121189bdbdb23b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:19163b628c0787217623bf1d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a540fb4a4a80a3da76c33db",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a540fb4a4a80a3da76c33db",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1eddddfe92fe73f22a40491c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1fce5ec122daffa858a5163a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2db922d1162ce6ff4724e81a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:34392eb2939ff81faa7f63ee",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:36551b6df300c27160c74af5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:45bf944c5a74982234ec4b65",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:45bf944c5a74982234ec4b65",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:484327f16943fa4134458f65",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:567f57001b73d1d5fd50e440",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5b98a5dd3934d23c1bdb35a8",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5feb2bd111486b4c3c7f3e49",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64720d6b906b8b6a1d563eb9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6d46adc5236f35ba88dab059",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7741dad71a507717fc382e61",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7741dad71a507717fc382e61",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7b287332e4fda5be617385e2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7b872f2f129557948ac59918",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:806c23b6d3110f28100dc467",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:808df0489a60eaa93b502336",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83b97ffadd9c5c9822dff395",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9046b3b613b091fc3c41566d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:93c68df501204e93a38aff33",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:955baf092112610cd2210c1b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9764719fada9192cf0510eab",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:989ff7df7c75b9a4fbf4e891",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:989ff7df7c75b9a4fbf4e891",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:99139f7d75e835018308bdde",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:99139f7d75e835018308bdde",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b59473ad82ee6744fa6c85ae",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b5d52d9d0885c511912f7940",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ba336fdcce6c639dc82de654",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c61500ba64198b0ec66fdad6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c6e4e991258c451128c1110a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d109b9ea39d9aaf4a9bf454c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d7b743b782ecb4cadca9714d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e2299db4b2b2f670ce073056",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e902d3790424a0db2ffd617c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f0cee745bf7915fe8844f5bf",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f66c0967ddc32a42ed1b5293",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e2299db4b2b2f670ce073056",
+        "to": "requirement:spark-config-write-options",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:36551b6df300c27160c74af5",
+        "to": "requirement:spark-config-write-options",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:b59473ad82ee6744fa6c85ae",
+        "to": "requirement:spark-config-write-options",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:7b287332e4fda5be617385e2",
+        "to": "requirement:config-table-properties",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:7741dad71a507717fc382e61",
+        "to": "requirement:config-table-properties",
+        "type": "motivates"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

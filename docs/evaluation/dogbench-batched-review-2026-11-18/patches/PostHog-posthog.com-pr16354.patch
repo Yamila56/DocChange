@@ -1,0 +1,23 @@
+diff --git a/contents/docs/cdp/sources/index.mdx b/contents/docs/cdp/sources/index.mdx
+index 5f9430d537d2f99ae8842c9ca3570531c7bb855d..5134968318d9049a3c50f0914b33b0c3d1762ba0 100644
+--- a/contents/docs/cdp/sources/index.mdx
++++ b/contents/docs/cdp/sources/index.mdx
+@@ -56,6 +56,8 @@ Webhook sync receives data updates directly from the source via webhooks. This p
+ 
+ The webhook is configured during source setup.
+ 
++Webhook sync only activates after the table's initial sync has completed successfully. Until then, the table syncs on its regular schedule. If you do a full reset or re-sync of the table, webhook sync pauses and the table falls back to scheduled syncing until the initial sync completes again.
++
+ ### Incremental
+ 
+ With incremental replication, you only sync new or updated data. This reduces the total number of rows synced and how long it takes to sync.
+diff --git a/contents/docs/cdp/sources/stripe.md b/contents/docs/cdp/sources/stripe.md
+index 5702391613eeaffc4f9425db8ce36671bf08b2c6..aa627d7f146a98ccb363c50fb7c682ba43e0d427 100644
+--- a/contents/docs/cdp/sources/stripe.md
++++ b/contents/docs/cdp/sources/stripe.md
+@@ -62,3 +62,5 @@ To set up a webhook:
+ 3. Click **Create webhook**.
+ 
+ PostHog automatically creates and registers the webhook on your Stripe account. Once set up, you can view the webhook status, including both PostHog's internal status and the Stripe-side webhook status, from the **Webhook** tab.
++
++Real-time webhook ingestion only begins after the table's first sync has completed successfully. Until then, the table continues to sync on its regular schedule. If you do a full reset or re-sync of the table, webhook ingestion pauses and the table falls back to scheduled syncing until the initial sync completes again.

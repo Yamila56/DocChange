@@ -1,0 +1,16 @@
+diff --git a/CHANGELOG.md b/CHANGELOG.md
+index 3707d70b1d7d07e819881d5b20559a05e325abd5..7c1e227959e683de3c3bb57495556984e31e7eb4 100644
+--- a/CHANGELOG.md
++++ b/CHANGELOG.md
+@@ -1,5 +1,11 @@
+ # Changelog
+ 
++## Unreleased
++
++### Preview features
++
++- [formatter] Break fluent call chains before the first call or subscript (`fluent_layout_split_first_call`) ([#21369](https://github.com/astral-sh/ruff/pull/21369))
++
+ ## 0.14.9
+ 
+ Released on 2025-12-11.

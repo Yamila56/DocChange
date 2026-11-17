@@ -1,0 +1,2455 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REASON",
+  "tasks": [],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "759dd04e4ef931c1495871c2945ddc24b3522dbfc582f27d04458e7cabe32798",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where does the documentation cover AKS installation guidance and node affinity/scheduling for ASO?",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/hugo/content"
+          ],
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+              "offset": 14013,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "offset": 5617,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+              "offset": 13826,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "bd24b3f98a8f3bfe578875ba",
+            "024d4a54d7efbc1877e61682",
+            "6086f959bad8f570dc722034",
+            "d05701858e762204d7ceddb7",
+            "724e27f6947c731aa0b14668",
+            "06fee098dbf14d86ae526fe5",
+            "97c68769aecb0fdfbf57c96f",
+            "a185dc4907270a43ecb0d32a",
+            "3b6482cdb152bd470d2d62a6",
+            "e88ad2a7c8235f1cd36ff8fa",
+            "e33786c89104b472ebc7635f",
+            "fb09bd8435085cb4fe4b382a",
+            "7d403d219d835caf97a3de22",
+            "ff2a8dc55f788a1dccff44d1",
+            "1836c41aa4a8c934375e9656"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+              "evidence_id": "d05701858e762204d7ceddb7",
+              "score": "0.02632613603923909"
+            },
+            {
+              "rank": 2,
+              "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+              "evidence_id": "724e27f6947c731aa0b14668",
+              "score": "0.02567608775899979"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "evidence_id": "06fee098dbf14d86ae526fe5",
+              "score": "0.02512583184844173"
+            },
+            {
+              "rank": 4,
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "evidence_id": "97c68769aecb0fdfbf57c96f",
+              "score": "0.024624624624624628"
+            },
+            {
+              "rank": 5,
+              "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+              "evidence_id": "a185dc4907270a43ecb0d32a",
+              "score": "0.024127906976744187"
+            },
+            {
+              "rank": 6,
+              "path": "docs/hugo/content/reference/containerservice/v1api20240402preview.md",
+              "evidence_id": "3b6482cdb152bd470d2d62a6",
+              "score": "0.02398989898989899"
+            },
+            {
+              "rank": 7,
+              "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+              "evidence_id": "e88ad2a7c8235f1cd36ff8fa",
+              "score": "0.02259959141981614"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "evidence_id": "e33786c89104b472ebc7635f",
+              "score": "0.02232038581129876"
+            },
+            {
+              "rank": 9,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+              "evidence_id": "fb09bd8435085cb4fe4b382a",
+              "score": "0.02219911375921606"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "evidence_id": "7d403d219d835caf97a3de22",
+              "score": "0.02151958470976876"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/reference/containerservice/v1api20240402preview.md",
+              "evidence_id": "ff2a8dc55f788a1dccff44d1",
+              "score": "0.021514013158803143"
+            },
+            {
+              "rank": 12,
+              "path": "docs/v1/howto/deploy.md",
+              "evidence_id": "1836c41aa4a8c934375e9656",
+              "score": "0.021491228070175436"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+              "start": 14013,
+              "end": 14133,
+              "total_lines": 16602
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "start": 5617,
+              "end": 5737,
+              "total_lines": 22327
+            },
+            {
+              "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+              "start": 13826,
+              "end": 13946,
+              "total_lines": 19945
+            }
+          ],
+          "read_evidence_ids": [
+            "bd24b3f98a8f3bfe578875ba",
+            "024d4a54d7efbc1877e61682",
+            "6086f959bad8f570dc722034"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where does the documentation cover installing ASO with Helm via Argo CD, including chart repo URL usage?",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/hugo/content"
+          ],
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/installing-from-helm.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "docs/v1/howto/helmdeploy.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "98553ffcf02f552d343446c2",
+            "f1b229f977362e5f0a8bd4c0",
+            "906e3dcf95517350addff22e",
+            "b7464a7e9e50d0b8949a498d",
+            "14c035b1421284f7ee1f626d",
+            "c26415150ee09a02988e13ae",
+            "aea82892ce6bbda9a00d6a0a",
+            "5bf469a7e2d508a54565b274",
+            "c995feb75379c0505b884245",
+            "fa96cf09a2acc2c8fe032657",
+            "42dce6b98132ed761d1d95e7",
+            "3d2eb9048914a1b5401c2f24",
+            "c2e0e1b45d1dc7444846788d",
+            "221dc7d667b4f62a4c7ffc71",
+            "7f85b7505547e3dc704546fb"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/guide/installing-from-helm.md",
+              "evidence_id": "b7464a7e9e50d0b8949a498d",
+              "score": "0.046679405392392875"
+            },
+            {
+              "rank": 2,
+              "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+              "evidence_id": "14c035b1421284f7ee1f626d",
+              "score": "0.04190303823009029"
+            },
+            {
+              "rank": 3,
+              "path": "docs/v1/howto/helmdeploy.md",
+              "evidence_id": "c26415150ee09a02988e13ae",
+              "score": "0.04096334185848252"
+            },
+            {
+              "rank": 4,
+              "path": "docs/hugo/content/reference/_index.md",
+              "evidence_id": "aea82892ce6bbda9a00d6a0a",
+              "score": "0.03841438412333935"
+            },
+            {
+              "rank": 5,
+              "path": "docs/v1/howto/helmdeploy.md",
+              "evidence_id": "5bf469a7e2d508a54565b274",
+              "score": "0.037928718191876085"
+            },
+            {
+              "rank": 6,
+              "path": "docs/hugo/content/guide/_index.md",
+              "evidence_id": "c995feb75379c0505b884245",
+              "score": "0.03664223413198823"
+            },
+            {
+              "rank": 7,
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "evidence_id": "fa96cf09a2acc2c8fe032657",
+              "score": "0.03631504149191811"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/reference/_index.md",
+              "evidence_id": "42dce6b98132ed761d1d95e7",
+              "score": "0.03483220666344761"
+            },
+            {
+              "rank": 9,
+              "path": "docs/hugo/content/_index.md",
+              "evidence_id": "3d2eb9048914a1b5401c2f24",
+              "score": "0.03453453453453453"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/guide/upgrading.md",
+              "evidence_id": "c2e0e1b45d1dc7444846788d",
+              "score": "0.03209009165293318"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/guide/best-practices/security.md",
+              "evidence_id": "221dc7d667b4f62a4c7ffc71",
+              "score": "0.030925013172301175"
+            },
+            {
+              "rank": 12,
+              "path": "docs/hugo/content/contributing/running-a-development-version.md",
+              "evidence_id": "7f85b7505547e3dc704546fb",
+              "score": "0.030495430495430496"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/guide/installing-from-helm.md",
+              "start": 0,
+              "end": 9,
+              "total_lines": 9
+            },
+            {
+              "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+              "start": 81,
+              "end": 143,
+              "total_lines": 143
+            },
+            {
+              "path": "docs/v1/howto/helmdeploy.md",
+              "start": 73,
+              "end": 103,
+              "total_lines": 103
+            }
+          ],
+          "read_evidence_ids": [
+            "98553ffcf02f552d343446c2",
+            "f1b229f977362e5f0a8bd4c0",
+            "906e3dcf95517350addff22e"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Where does the documentation cover passing data between ASO resources (references, config maps, secrets)?",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/hugo/content"
+          ],
+          "reads": [
+            {
+              "path": "v2/api/resources.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+              "offset": 264,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "offset": 252,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "bf1615903c7dd70bccd0bc7b",
+            "a12dc69578d05f425ccdfc6f",
+            "6d41cb51ad30e2820c9cf8bc",
+            "1911723367ecb645c0cbc182",
+            "583d875c79213cf0406018c5",
+            "9ba8874e6ccf12862bb07a5c",
+            "19ad7490a48e977024938ee0",
+            "c9251c267fd74a50fe67a3b9",
+            "eb5e4b17552dba2a544e427e",
+            "f8d4b60ebb4e4852b622b76e",
+            "915e7796c1bce61ca214eed6",
+            "8df7d8d6f4de588c1fa00767",
+            "5e26ce461d7e87e8f5622f54",
+            "1ec64fb76b35ebc7cfa36206",
+            "ddb8791a99bd36897951387b"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "v2/api/resources.md",
+              "evidence_id": "1911723367ecb645c0cbc182",
+              "score": "0.02715098147128967"
+            },
+            {
+              "rank": 2,
+              "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+              "evidence_id": "583d875c79213cf0406018c5",
+              "score": "0.02637768817204301"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "evidence_id": "9ba8874e6ccf12862bb07a5c",
+              "score": "0.025978407557354925"
+            },
+            {
+              "rank": 4,
+              "path": "docs/v1/services/cosmosdb/cosmosdb.md",
+              "evidence_id": "19ad7490a48e977024938ee0",
+              "score": "0.025757602619106715"
+            },
+            {
+              "rank": 5,
+              "path": "docs/hugo/content/design/secrets.md",
+              "evidence_id": "c9251c267fd74a50fe67a3b9",
+              "score": "0.02488202488202488"
+            },
+            {
+              "rank": 6,
+              "path": "docs/hugo/content/reference/resources/_index.md",
+              "evidence_id": "eb5e4b17552dba2a544e427e",
+              "score": "0.023258904837852208"
+            },
+            {
+              "rank": 7,
+              "path": "docs/hugo/content/guide/configmaps.md",
+              "evidence_id": "f8d4b60ebb4e4852b622b76e",
+              "score": "0.02154788969061975"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+              "evidence_id": "915e7796c1bce61ca214eed6",
+              "score": "0.02140151515151515"
+            },
+            {
+              "rank": 9,
+              "path": "v2/api/resources.md",
+              "evidence_id": "8df7d8d6f4de588c1fa00767",
+              "score": "0.021316705895307705"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "evidence_id": "5e26ce461d7e87e8f5622f54",
+              "score": "0.02052785923753666"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/design/type-references-and-ownership.md",
+              "evidence_id": "1ec64fb76b35ebc7cfa36206",
+              "score": "0.02045410060677236"
+            },
+            {
+              "rank": 12,
+              "path": "hack/crossplane/apis/resources.md",
+              "evidence_id": "ddb8791a99bd36897951387b",
+              "score": "0.018634969325153374"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "v2/api/resources.md",
+              "start": 0,
+              "end": 93,
+              "total_lines": 245
+            },
+            {
+              "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+              "start": 264,
+              "end": 384,
+              "total_lines": 682
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "start": 252,
+              "end": 372,
+              "total_lines": 471
+            }
+          ],
+          "read_evidence_ids": [
+            "bf1615903c7dd70bccd0bc7b",
+            "a12dc69578d05f425ccdfc6f",
+            "6d41cb51ad30e2820c9cf8bc"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "024d4a54d7efbc1877e61682",
+        "06fee098dbf14d86ae526fe5",
+        "14c035b1421284f7ee1f626d",
+        "1836c41aa4a8c934375e9656",
+        "1911723367ecb645c0cbc182",
+        "19ad7490a48e977024938ee0",
+        "1ec64fb76b35ebc7cfa36206",
+        "221dc7d667b4f62a4c7ffc71",
+        "3b6482cdb152bd470d2d62a6",
+        "3d2eb9048914a1b5401c2f24",
+        "42dce6b98132ed761d1d95e7",
+        "583d875c79213cf0406018c5",
+        "5bf469a7e2d508a54565b274",
+        "5e26ce461d7e87e8f5622f54",
+        "6086f959bad8f570dc722034",
+        "6d41cb51ad30e2820c9cf8bc",
+        "724e27f6947c731aa0b14668",
+        "7d403d219d835caf97a3de22",
+        "7f85b7505547e3dc704546fb",
+        "8df7d8d6f4de588c1fa00767",
+        "906e3dcf95517350addff22e",
+        "915e7796c1bce61ca214eed6",
+        "97c68769aecb0fdfbf57c96f",
+        "98553ffcf02f552d343446c2",
+        "9ba8874e6ccf12862bb07a5c",
+        "a12dc69578d05f425ccdfc6f",
+        "a185dc4907270a43ecb0d32a",
+        "aea82892ce6bbda9a00d6a0a",
+        "b7464a7e9e50d0b8949a498d",
+        "bd24b3f98a8f3bfe578875ba",
+        "bf1615903c7dd70bccd0bc7b",
+        "c26415150ee09a02988e13ae",
+        "c2e0e1b45d1dc7444846788d",
+        "c9251c267fd74a50fe67a3b9",
+        "c995feb75379c0505b884245",
+        "d05701858e762204d7ceddb7",
+        "ddb8791a99bd36897951387b",
+        "e33786c89104b472ebc7635f",
+        "e88ad2a7c8235f1cd36ff8fa",
+        "eb5e4b17552dba2a544e427e",
+        "f1b229f977362e5f0a8bd4c0",
+        "f8d4b60ebb4e4852b622b76e",
+        "fa96cf09a2acc2c8fe032657",
+        "fb09bd8435085cb4fe4b382a",
+        "ff2a8dc55f788a1dccff44d1"
+      ],
+      "new_evidence_count": 45,
+      "new_path_count": 26
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "050527827a348376c1be48c4b8459c9583a2931d"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:92c70d38d4472ace": 0,
+    "discover:Q1-2:65589772cc1c7ad7": 254,
+    "discover:Q1-3:de34b76766558a57": 419
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:92c70d38d4472ace": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 254,
+      "cache_hit": false
+    },
+    "discover:Q1-2:65589772cc1c7ad7": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 165,
+      "cache_hit": false
+    },
+    "discover:Q1-3:de34b76766558a57": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 189,
+      "cache_hit": false
+    },
+    "discover:Q1-2:652e97498af88c2e": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 267,
+      "cache_hit": false
+    },
+    "discover:Q1-3:76932e8ee28610ea": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 326,
+      "cache_hit": false
+    },
+    "discover:Q1-1:737d465c2fdf3bc0": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 355,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:024d4a54d7efbc1877e61682",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+        "start_line": 5618,
+        "total_lines": 22327,
+        "start_char": 141028,
+        "end_char": 144102,
+        "evidence_id": "024d4a54d7efbc1877e61682",
+        "truncated": false,
+        "next_offset": 5737,
+        "source_type": "repository",
+        "content_hash": "0894d641c2a48452103ad2d51a776a8e834dd3d11aa832659b430ad760974392",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+              "offset": 14013,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "offset": 5617,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+              "offset": 13826,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0894d641c2a48452103ad2d51a776a8e834dd3d11aa832659b430ad760974392",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:06fee098dbf14d86ae526fe5",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+        "heading": "title: containerservice.azure.com/v1api20230201",
+        "start_line": 5622,
+        "end_line": 5671,
+        "start_char": 141128,
+        "end_char": 142135,
+        "score": "0.02512583184844173",
+        "root": "docs",
+        "matched_terms": [
+          "aks",
+          "node",
+          "system"
+        ],
+        "evidence_id": "06fee098dbf14d86ae526fe5",
+        "source_type": "repository",
+        "content_hash": "10c7a023743bab7f450ab74b78f5e16e8e09db990c0720712aa7e52d39837cd4",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "10c7a023743bab7f450ab74b78f5e16e8e09db990c0720712aa7e52d39837cd4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:14c035b1421284f7ee1f626d",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+        "heading": "linktitle: Multitenancy > Multiple operator multitenancy > Helm Installation",
+        "start_line": 86,
+        "end_line": 121,
+        "start_char": 4433,
+        "end_char": 5723,
+        "score": "0.04190303823009029",
+        "root": "docs",
+        "matched_terms": [
+          "add",
+          "aso2",
+          "helm",
+          "install",
+          "repo"
+        ],
+        "evidence_id": "14c035b1421284f7ee1f626d",
+        "source_type": "repository",
+        "content_hash": "31a31d7e31a18c596f7d6ae18f02f965ede7c89daea6a39fd4d99dc34ee318f6",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "31a31d7e31a18c596f7d6ae18f02f965ede7c89daea6a39fd4d99dc34ee318f6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1836c41aa4a8c934375e9656",
+        "type": "evidence",
+        "path": "docs/v1/howto/deploy.md",
+        "heading": "Building the Azure Service Operator locally and deploying > Deploy the operator > Set up the cluster",
+        "start_line": 31,
+        "end_line": 47,
+        "start_char": 1002,
+        "end_char": 1399,
+        "score": "0.021491228070175436",
+        "root": "docs",
+        "matched_terms": [
+          "install",
+          "system"
+        ],
+        "evidence_id": "1836c41aa4a8c934375e9656",
+        "source_type": "repository",
+        "content_hash": "6a2a29d6bcd20ca0d157dc0f3f0426b72b042c35e283f4f91e09c9229be73819",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6a2a29d6bcd20ca0d157dc0f3f0426b72b042c35e283f4f91e09c9229be73819",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1911723367ecb645c0cbc182",
+        "type": "evidence",
+        "path": "v2/api/resources.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.02715098147128967",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "1911723367ecb645c0cbc182",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:19ad7490a48e977024938ee0",
+        "type": "evidence",
+        "path": "docs/v1/services/cosmosdb/cosmosdb.md",
+        "heading": "Cosmos DB Operator > Resources supported",
+        "start_line": 3,
+        "end_line": 8,
+        "start_char": 22,
+        "end_char": 810,
+        "score": "0.025757602619106715",
+        "root": "docs",
+        "matched_terms": [
+          "config",
+          "data",
+          "resource",
+          "resources"
+        ],
+        "evidence_id": "19ad7490a48e977024938ee0",
+        "source_type": "repository",
+        "content_hash": "3a61d0603f2e22d05f3b1b4688dfb43a5c7afc01751e7d93b888bf2356aa7210",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "3a61d0603f2e22d05f3b1b4688dfb43a5c7afc01751e7d93b888bf2356aa7210",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1ec64fb76b35ebc7cfa36206",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/type-references-and-ownership.md",
+        "heading": "title: Type References & ownership > Proposal > How to identify resource relationships",
+        "start_line": 277,
+        "end_line": 289,
+        "start_char": 15068,
+        "end_char": 16181,
+        "score": "0.02045410060677236",
+        "root": "docs",
+        "matched_terms": [
+          "between",
+          "reference",
+          "resource",
+          "resources"
+        ],
+        "evidence_id": "1ec64fb76b35ebc7cfa36206",
+        "source_type": "repository",
+        "content_hash": "5aa8747c7ae12e58f373b523a267ed0dceff17a7cf0db21c8dbda1209735d488",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5aa8747c7ae12e58f373b523a267ed0dceff17a7cf0db21c8dbda1209735d488",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20faf5132bd5393903a2a4e5",
+        "type": "evidence",
+        "evidence_id": "20faf5132bd5393903a2a4e5",
+        "source_type": "implementation",
+        "exported_content_sha256": "ef34b8c0ae348e7856c8fe5e47c94309f1a9757717a53758a8451dca777691e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:221dc7d667b4f62a4c7ffc71",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/best-practices/security.md",
+        "heading": "linktitle: Security > An Example Setup",
+        "start_line": 77,
+        "end_line": 83,
+        "start_char": 4456,
+        "end_char": 5041,
+        "score": "0.030925013172301175",
+        "root": "docs",
+        "matched_terms": [
+          "argo",
+          "repo"
+        ],
+        "evidence_id": "221dc7d667b4f62a4c7ffc71",
+        "source_type": "repository",
+        "content_hash": "e2ca9131e30032c24e6260dda6905b3ba27d69d3526d2237e7c1b5b490a28d0d",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e2ca9131e30032c24e6260dda6905b3ba27d69d3526d2237e7c1b5b490a28d0d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:28550ea6f14f2c2a025ca8a6",
+        "type": "evidence",
+        "evidence_id": "28550ea6f14f2c2a025ca8a6",
+        "source_type": "task",
+        "exported_content_sha256": "981a743de2810761f83f9f171a673d8a55094a2e1405fddd816bbef8639667a8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3b6482cdb152bd470d2d62a6",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20240402preview.md",
+        "heading": "title: containerservice.azure.com/v1api20240402preview",
+        "start_line": 10269,
+        "end_line": 10318,
+        "start_char": 258014,
+        "end_char": 259338,
+        "score": "0.02398989898989899",
+        "root": "docs",
+        "matched_terms": [
+          "aks",
+          "node"
+        ],
+        "evidence_id": "3b6482cdb152bd470d2d62a6",
+        "source_type": "repository",
+        "content_hash": "693dfba6c2b5546e25d00a186c548c68f833a2c7b99a05352f88d3fd0155ad0f",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "693dfba6c2b5546e25d00a186c548c68f833a2c7b99a05352f88d3fd0155ad0f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3d2eb9048914a1b5401c2f24",
+        "type": "evidence",
+        "path": "docs/hugo/content/_index.md",
+        "heading": "description: \"Manage your Azure resources from within your Kubernetes cluster.\" > Getting Started > Installation > Install the latest **v2+** Helm chart",
+        "start_line": 64,
+        "end_line": 95,
+        "start_char": 4022,
+        "end_char": 5652,
+        "score": "0.03453453453453453",
+        "root": "docs",
+        "matched_terms": [
+          "add",
+          "aso2",
+          "helm",
+          "install",
+          "repo"
+        ],
+        "evidence_id": "3d2eb9048914a1b5401c2f24",
+        "source_type": "repository",
+        "content_hash": "12038ba41095af6a689c0734037f07e64f16048bd755347cd6d0ec6fe4482b4f",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "12038ba41095af6a689c0734037f07e64f16048bd755347cd6d0ec6fe4482b4f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:42dce6b98132ed761d1d95e7",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/_index.md",
+        "heading": "- render: always > Cdn",
+        "start_line": 129,
+        "end_line": 132,
+        "start_char": 29042,
+        "end_char": 29509,
+        "score": "0.03483220666344761",
+        "root": "docs",
+        "matched_terms": [
+          "helm",
+          "install"
+        ],
+        "evidence_id": "42dce6b98132ed761d1d95e7",
+        "source_type": "repository",
+        "content_hash": "5dfe1cd04609297855d95604600ed7cc768793c515714c70f796354877d06cc6",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5dfe1cd04609297855d95604600ed7cc768793c515714c70f796354877d06cc6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:583d875c79213cf0406018c5",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+        "heading": "description: \"Step by step walkthrough of upgrading a resource version\" > Conversion Fixing",
+        "start_line": 269,
+        "end_line": 307,
+        "start_char": 13664,
+        "end_char": 15464,
+        "score": "0.02637768817204301",
+        "root": "docs",
+        "matched_terms": [
+          "between",
+          "data",
+          "references",
+          "resource",
+          "resources"
+        ],
+        "evidence_id": "583d875c79213cf0406018c5",
+        "source_type": "repository",
+        "content_hash": "a4dc7f2536c755ea5046ce76c856ad72d19f1e73b022410c5f0e4093fbd6f54b",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a4dc7f2536c755ea5046ce76c856ad72d19f1e73b022410c5f0e4093fbd6f54b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5bf469a7e2d508a54565b274",
+        "type": "evidence",
+        "path": "docs/v1/howto/helmdeploy.md",
+        "heading": "Deploy Azure Service Operator using Helm charts > Installing > Before you begin",
+        "start_line": 5,
+        "end_line": 25,
+        "start_char": 68,
+        "end_char": 836,
+        "score": "0.037928718191876085",
+        "root": "docs",
+        "matched_terms": [
+          "add",
+          "helm",
+          "install",
+          "repo"
+        ],
+        "evidence_id": "5bf469a7e2d508a54565b274",
+        "source_type": "repository",
+        "content_hash": "79a0bfca5be3644a00bf56806cc70349f24d243f56891e76c8045eb571e741e4",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "79a0bfca5be3644a00bf56806cc70349f24d243f56891e76c8045eb571e741e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5e26ce461d7e87e8f5622f54",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+        "heading": "title: '2024-07: Dynamic Export to Secret or ConfigMap' > Options > Access to secret data",
+        "start_line": 308,
+        "end_line": 336,
+        "start_char": 10950,
+        "end_char": 12605,
+        "score": "0.02052785923753666",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "map",
+          "resource",
+          "secret"
+        ],
+        "evidence_id": "5e26ce461d7e87e8f5622f54",
+        "source_type": "repository",
+        "content_hash": "f09cd53a90c1b707f9c2e1f683500d0b0f9f52242d9a4793cc712c46e94c10e8",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f09cd53a90c1b707f9c2e1f683500d0b0f9f52242d9a4793cc712c46e94c10e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6086f959bad8f570dc722034",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+        "start_line": 13827,
+        "total_lines": 19945,
+        "start_char": 273723,
+        "end_char": 275398,
+        "evidence_id": "6086f959bad8f570dc722034",
+        "truncated": false,
+        "next_offset": 13946,
+        "source_type": "repository",
+        "content_hash": "a373eccf3f6661a558b689b6673d6f6f0fc7d58b664c1ed5e060bb1e65826168",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+              "offset": 14013,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "offset": 5617,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+              "offset": 13826,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a373eccf3f6661a558b689b6673d6f6f0fc7d58b664c1ed5e060bb1e65826168",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6d41cb51ad30e2820c9cf8bc",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+        "start_line": 253,
+        "total_lines": 471,
+        "start_char": 9072,
+        "end_char": 14151,
+        "evidence_id": "6d41cb51ad30e2820c9cf8bc",
+        "truncated": false,
+        "next_offset": 372,
+        "source_type": "repository",
+        "content_hash": "1e4e2112ed912693a6794386065981df6a5cd93518c1ac0eb4e1d8f33bdd320f",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "v2/api/resources.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+              "offset": 264,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "offset": 252,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "1e4e2112ed912693a6794386065981df6a5cd93518c1ac0eb4e1d8f33bdd320f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:724e27f6947c731aa0b14668",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+        "heading": "title: containerservice.azure.com/v1api20210501",
+        "start_line": 12968,
+        "end_line": 13017,
+        "start_char": 298370,
+        "end_char": 299631,
+        "score": "0.02567608775899979",
+        "root": "docs",
+        "matched_terms": [
+          "aks",
+          "node",
+          "system"
+        ],
+        "evidence_id": "724e27f6947c731aa0b14668",
+        "source_type": "repository",
+        "content_hash": "e7dec7d61aa68b08c8de391e8d3af3b9d3f63d6b463c39008bf3a0bd908acbb2",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e7dec7d61aa68b08c8de391e8d3af3b9d3f63d6b463c39008bf3a0bd908acbb2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7d403d219d835caf97a3de22",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+        "heading": "title: containerservice.azure.com/v1api20231102preview",
+        "start_line": 26564,
+        "end_line": 26610,
+        "start_char": 649303,
+        "end_char": 650910,
+        "score": "0.02151958470976876",
+        "root": "docs",
+        "matched_terms": [
+          "aks",
+          "node"
+        ],
+        "evidence_id": "7d403d219d835caf97a3de22",
+        "source_type": "repository",
+        "content_hash": "14eb3cfdd70b74d831ad2a0c33900119f7b904991bdd75a4970caf18e4ef995c",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "14eb3cfdd70b74d831ad2a0c33900119f7b904991bdd75a4970caf18e4ef995c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f85b7505547e3dc704546fb",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/running-a-development-version.md",
+        "heading": "title: Running a Development Version > On AKS",
+        "start_line": 20,
+        "end_line": 31,
+        "start_char": 736,
+        "end_char": 1613,
+        "score": "0.030495430495430496",
+        "root": "docs",
+        "matched_terms": [
+          "helm",
+          "install"
+        ],
+        "evidence_id": "7f85b7505547e3dc704546fb",
+        "source_type": "repository",
+        "content_hash": "4b306cb8c5f2956ee3d4e3dc88132c7d83294f85a7ecd125f4a31bb02c481d21",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4b306cb8c5f2956ee3d4e3dc88132c7d83294f85a7ecd125f4a31bb02c481d21",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8df7d8d6f4de588c1fa00767",
+        "type": "evidence",
+        "path": "v2/api/resources.md",
+        "heading": "title: Supported Resources > Dbforpostgresql",
+        "start_line": 97,
+        "end_line": 100,
+        "start_char": 14715,
+        "end_char": 15442,
+        "score": "0.021316705895307705",
+        "root": "docs",
+        "matched_terms": [
+          "config"
+        ],
+        "evidence_id": "8df7d8d6f4de588c1fa00767",
+        "source_type": "repository",
+        "content_hash": "cfe2d9de7d53fcddc3397c1b17f56d9ed139bbcbd6f7f96fccb3e64220485410",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "cfe2d9de7d53fcddc3397c1b17f56d9ed139bbcbd6f7f96fccb3e64220485410",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:906e3dcf95517350addff22e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/v1/howto/helmdeploy.md",
+        "start_line": 74,
+        "total_lines": 103,
+        "start_char": 2498,
+        "end_char": 4731,
+        "evidence_id": "906e3dcf95517350addff22e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "e37deb4f6b60552ff278e6d40b9d6f090df35a68674bc27274cf3f168c9258ea",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/installing-from-helm.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "docs/v1/howto/helmdeploy.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e37deb4f6b60552ff278e6d40b9d6f090df35a68674bc27274cf3f168c9258ea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:915e7796c1bce61ca214eed6",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+        "heading": "description: \"Step by step walkthrough of upgrading a resource version\" > Export DatabaseAccount",
+        "start_line": 73,
+        "end_line": 97,
+        "start_char": 3810,
+        "end_char": 4997,
+        "score": "0.02140151515151515",
+        "root": "docs",
+        "matched_terms": [
+          "between",
+          "reference",
+          "references",
+          "resource",
+          "resources"
+        ],
+        "evidence_id": "915e7796c1bce61ca214eed6",
+        "source_type": "repository",
+        "content_hash": "fc6caa895faff7340cd1f1c8deb6a442261e5c3195eea4c7e210e61c073f8e67",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "fc6caa895faff7340cd1f1c8deb6a442261e5c3195eea4c7e210e61c073f8e67",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:97c68769aecb0fdfbf57c96f",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+        "heading": "title: containerservice.azure.com/v1api20230201",
+        "start_line": 18494,
+        "end_line": 18543,
+        "start_char": 443196,
+        "end_char": 444085,
+        "score": "0.024624624624624628",
+        "root": "docs",
+        "matched_terms": [
+          "node"
+        ],
+        "evidence_id": "97c68769aecb0fdfbf57c96f",
+        "source_type": "repository",
+        "content_hash": "84582a69c0dbbafe3b04e6b1706d8fbb3bc67021445ee1c0d3e0b71b3addba96",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "84582a69c0dbbafe3b04e6b1706d8fbb3bc67021445ee1c0d3e0b71b3addba96",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:98553ffcf02f552d343446c2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/guide/installing-from-helm.md",
+        "start_line": 1,
+        "total_lines": 9,
+        "start_char": 0,
+        "end_char": 221,
+        "evidence_id": "98553ffcf02f552d343446c2",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2b9660eb9d484b3ee38ac81933019fd27734821105a5af8c5c8340f0e8ccf022",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/installing-from-helm.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "docs/v1/howto/helmdeploy.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2b9660eb9d484b3ee38ac81933019fd27734821105a5af8c5c8340f0e8ccf022",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9ba8874e6ccf12862bb07a5c",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+        "heading": "title: '2024-07: Dynamic Export to Secret or ConfigMap' > Options > Location > Option 3: A new CRD `Exporter`",
+        "start_line": 257,
+        "end_line": 304,
+        "start_char": 9084,
+        "end_char": 10722,
+        "score": "0.025978407557354925",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "resource",
+          "resources",
+          "secret"
+        ],
+        "evidence_id": "9ba8874e6ccf12862bb07a5c",
+        "source_type": "repository",
+        "content_hash": "333dd0347d3dc0fc99e9b831ebfa024a3c0435de1095f299b969321b45795435",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "333dd0347d3dc0fc99e9b831ebfa024a3c0435de1095f299b969321b45795435",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a12dc69578d05f425ccdfc6f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+        "start_line": 265,
+        "total_lines": 682,
+        "start_char": 13381,
+        "end_char": 18254,
+        "evidence_id": "a12dc69578d05f425ccdfc6f",
+        "truncated": false,
+        "next_offset": 384,
+        "source_type": "repository",
+        "content_hash": "c3ad5c99faea82647494b7abe0167734daaa9735a79e1854b97755f727e5f9b2",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "v2/api/resources.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+              "offset": 264,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "offset": 252,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c3ad5c99faea82647494b7abe0167734daaa9735a79e1854b97755f727e5f9b2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a185dc4907270a43ecb0d32a",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+        "heading": "title: machinelearningservices.azure.com/v1api20210701",
+        "start_line": 13831,
+        "end_line": 13880,
+        "start_char": 273791,
+        "end_char": 274345,
+        "score": "0.024127906976744187",
+        "root": "docs",
+        "matched_terms": [
+          "node"
+        ],
+        "evidence_id": "a185dc4907270a43ecb0d32a",
+        "source_type": "repository",
+        "content_hash": "c888d5b85c5c42b761ae19b32882c3815ef1230c6e9bcaa8fb888bc16cad0251",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c888d5b85c5c42b761ae19b32882c3815ef1230c6e9bcaa8fb888bc16cad0251",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aea82892ce6bbda9a00d6a0a",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/_index.md",
+        "heading": "- render: always > KubernetesConfiguration",
+        "start_line": 444,
+        "end_line": 447,
+        "start_char": 102785,
+        "end_char": 103292,
+        "score": "0.03841438412333935",
+        "root": "docs",
+        "matched_terms": [
+          "helm",
+          "install"
+        ],
+        "evidence_id": "aea82892ce6bbda9a00d6a0a",
+        "source_type": "repository",
+        "content_hash": "bf6253f6cb0d773c5fb1c1885842740da1fa61f7bcc9471297305b9ef04adfeb",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "bf6253f6cb0d773c5fb1c1885842740da1fa61f7bcc9471297305b9ef04adfeb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b7464a7e9e50d0b8949a498d",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/installing-from-helm.md",
+        "heading": "weight: -5",
+        "start_line": 3,
+        "end_line": 9,
+        "start_char": 37,
+        "end_char": 221,
+        "score": "0.046679405392392875",
+        "root": "docs",
+        "matched_terms": [
+          "helm",
+          "install"
+        ],
+        "evidence_id": "b7464a7e9e50d0b8949a498d",
+        "source_type": "repository",
+        "content_hash": "649f530601eef7df0b97d6930773c0819b15c7489974a7db41ea399c672e1deb",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "649f530601eef7df0b97d6930773c0819b15c7489974a7db41ea399c672e1deb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bd24b3f98a8f3bfe578875ba",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+        "start_line": 14014,
+        "total_lines": 16602,
+        "start_char": 321786,
+        "end_char": 324829,
+        "evidence_id": "bd24b3f98a8f3bfe578875ba",
+        "truncated": false,
+        "next_offset": 14133,
+        "source_type": "repository",
+        "content_hash": "fefd6d3b044dec8ca012316a9d0887219d77f655432f7607a6226e75e0dbef7e",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+              "offset": 14013,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "offset": 5617,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+              "offset": 13826,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "fefd6d3b044dec8ca012316a9d0887219d77f655432f7607a6226e75e0dbef7e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bf1615903c7dd70bccd0bc7b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "v2/api/resources.md",
+        "start_line": 1,
+        "total_lines": 245,
+        "start_char": 0,
+        "end_char": 14000,
+        "evidence_id": "bf1615903c7dd70bccd0bc7b",
+        "truncated": true,
+        "next_offset": 93,
+        "source_type": "repository",
+        "content_hash": "43b9908dfd00551f8fe356bd89b9495eb381a1bc59d42b832b1070ef8c8f5f57",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "v2/api/resources.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/contributing/upgrade-resource-version/_index.md",
+              "offset": 264,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2024-07-Dynamic-Export-To-Secret-Or-ConfigMap.md",
+              "offset": 252,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "43b9908dfd00551f8fe356bd89b9495eb381a1bc59d42b832b1070ef8c8f5f57",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c26415150ee09a02988e13ae",
+        "type": "evidence",
+        "path": "docs/v1/howto/helmdeploy.md",
+        "heading": "Deploy Azure Service Operator using Helm charts > Configure Azure Service Operator > Install Chart",
+        "start_line": 78,
+        "end_line": 84,
+        "start_char": 2553,
+        "end_char": 2838,
+        "score": "0.04096334185848252",
+        "root": "docs",
+        "matched_terms": [
+          "helm",
+          "install"
+        ],
+        "evidence_id": "c26415150ee09a02988e13ae",
+        "source_type": "repository",
+        "content_hash": "b112b434f1770b379129a44034498f7e51270a71344704ee4664060761ca8fd0",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b112b434f1770b379129a44034498f7e51270a71344704ee4664060761ca8fd0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c2e0e1b45d1dc7444846788d",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/upgrading.md",
+        "heading": "weight: -3 > Upgrading",
+        "start_line": 31,
+        "end_line": 68,
+        "start_char": 1551,
+        "end_char": 2901,
+        "score": "0.03209009165293318",
+        "root": "docs",
+        "matched_terms": [
+          "add",
+          "aso2",
+          "helm",
+          "install",
+          "repo"
+        ],
+        "evidence_id": "c2e0e1b45d1dc7444846788d",
+        "source_type": "repository",
+        "content_hash": "fb65c19f1f8f956b4b0266828ef4730760823ca21ad5c9ca88ae4eec16cd2ec4",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fb65c19f1f8f956b4b0266828ef4730760823ca21ad5c9ca88ae4eec16cd2ec4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c9251c267fd74a50fe67a3b9",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/secrets.md",
+        "heading": "linktitle: Dataplane secrets > Implementation plan > Input secrets",
+        "start_line": 610,
+        "end_line": 633,
+        "start_char": 44860,
+        "end_char": 46588,
+        "score": "0.02488202488202488",
+        "root": "docs",
+        "matched_terms": [
+          "map",
+          "passing",
+          "reference",
+          "resources",
+          "secret"
+        ],
+        "evidence_id": "c9251c267fd74a50fe67a3b9",
+        "source_type": "repository",
+        "content_hash": "d11fc525954537b41f98163d5ba45a2ace8078217d979bd1b07ef1f5466b034c",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d11fc525954537b41f98163d5ba45a2ace8078217d979bd1b07ef1f5466b034c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c995feb75379c0505b884245",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/_index.md",
+        "heading": "description: \"How to use Azure Service Operator v2 to manage your Azure resources from within your Kubernetes Cluster\" > Helm",
+        "start_line": 16,
+        "end_line": 19,
+        "start_char": 287,
+        "end_char": 408,
+        "score": "0.03664223413198823",
+        "root": "docs",
+        "matched_terms": [
+          "helm",
+          "install"
+        ],
+        "evidence_id": "c995feb75379c0505b884245",
+        "source_type": "repository",
+        "content_hash": "4e94dcdb6e7b5015875cfa5ae75c82d646664b69a038f18cf75e1de634a88814",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4e94dcdb6e7b5015875cfa5ae75c82d646664b69a038f18cf75e1de634a88814",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d05701858e762204d7ceddb7",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+        "heading": "title: containerservice.azure.com/v1api20210501",
+        "start_line": 14018,
+        "end_line": 14067,
+        "start_char": 321807,
+        "end_char": 323068,
+        "score": "0.02632613603923909",
+        "root": "docs",
+        "matched_terms": [
+          "aks",
+          "node",
+          "system"
+        ],
+        "evidence_id": "d05701858e762204d7ceddb7",
+        "source_type": "repository",
+        "content_hash": "5fb1004a0e928dd1ab92e5d1a04c9b29b0c844eb1d805407bf94b13ef4c0a3bd",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5fb1004a0e928dd1ab92e5d1a04c9b29b0c844eb1d805407bf94b13ef4c0a3bd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ddb8791a99bd36897951387b",
+        "type": "evidence",
+        "path": "hack/crossplane/apis/resources.md",
+        "heading": "title: Supported Resources > Cache",
+        "start_line": 8,
+        "end_line": 15,
+        "start_char": 238,
+        "end_char": 486,
+        "score": "0.018634969325153374",
+        "root": "docs",
+        "matched_terms": [
+          "resource"
+        ],
+        "evidence_id": "ddb8791a99bd36897951387b",
+        "source_type": "repository",
+        "content_hash": "6f9ae26acfe53ed08943ad8172f567104886fcd0b5859104be8a3f5df425d74f",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6f9ae26acfe53ed08943ad8172f567104886fcd0b5859104be8a3f5df425d74f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e33786c89104b472ebc7635f",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+        "heading": "title: containerservice.azure.com/v1api20231102preview",
+        "start_line": 27261,
+        "end_line": 27310,
+        "start_char": 665369,
+        "end_char": 666860,
+        "score": "0.02232038581129876",
+        "root": "docs",
+        "matched_terms": [
+          "aks",
+          "node",
+          "system"
+        ],
+        "evidence_id": "e33786c89104b472ebc7635f",
+        "source_type": "repository",
+        "content_hash": "990029d66217083805980832efdfecb2a4ccaf5cc9231c5b41aae5a92dc53f4c",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "990029d66217083805980832efdfecb2a4ccaf5cc9231c5b41aae5a92dc53f4c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e88ad2a7c8235f1cd36ff8fa",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/machinelearningservices/v1api20210701.md",
+        "heading": "title: machinelearningservices.azure.com/v1api20210701",
+        "start_line": 13981,
+        "end_line": 14030,
+        "start_char": 275925,
+        "end_char": 276492,
+        "score": "0.02259959141981614",
+        "root": "docs",
+        "matched_terms": [
+          "node"
+        ],
+        "evidence_id": "e88ad2a7c8235f1cd36ff8fa",
+        "source_type": "repository",
+        "content_hash": "89393f75f12b0c25239d40e3c0d2c6adc6d0927a2fff81c0858e23a1f1c3b132",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "89393f75f12b0c25239d40e3c0d2c6adc6d0927a2fff81c0858e23a1f1c3b132",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eb5e4b17552dba2a544e427e",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/resources/_index.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 62,
+        "score": "0.023258904837852208",
+        "root": "docs",
+        "matched_terms": [
+          "resources"
+        ],
+        "evidence_id": "eb5e4b17552dba2a544e427e",
+        "source_type": "repository",
+        "content_hash": "9a5178a55c94e8c71c2e226ab318ce5e203fc2664da84b9064cb38fd90d64ca2",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9a5178a55c94e8c71c2e226ab318ce5e203fc2664da84b9064cb38fd90d64ca2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f1b229f977362e5f0a8bd4c0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+        "start_line": 82,
+        "total_lines": 143,
+        "start_char": 4266,
+        "end_char": 7563,
+        "evidence_id": "f1b229f977362e5f0a8bd4c0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "54c05b0b41a482419fa70c4dea8b2d1c03a0a268c81d0a1fb974ea4ece1c1989",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/installing-from-helm.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+              "offset": 81,
+              "limit": 120
+            },
+            {
+              "path": "docs/v1/howto/helmdeploy.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "54c05b0b41a482419fa70c4dea8b2d1c03a0a268c81d0a1fb974ea4ece1c1989",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f8d4b60ebb4e4852b622b76e",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/configmaps.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 43,
+        "score": "0.02154788969061975",
+        "root": "docs",
+        "matched_terms": [
+          "data"
+        ],
+        "evidence_id": "f8d4b60ebb4e4852b622b76e",
+        "source_type": "repository",
+        "content_hash": "80741c2a0f3dd473079c640b8cbfcfbbb673bef1651973609b003d9a1d13e63e",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "passing data between resources",
+            "resource references",
+            "config map secret reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "80741c2a0f3dd473079c640b8cbfcfbbb673bef1651973609b003d9a1d13e63e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fa96cf09a2acc2c8fe032657",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+        "heading": "weight: -2 > Frequently Asked Questions > Can ASO be used with IAC/GitOps tools?",
+        "start_line": 69,
+        "end_line": 75,
+        "start_char": 4309,
+        "end_char": 4833,
+        "score": "0.03631504149191811",
+        "root": "docs",
+        "matched_terms": [
+          "argo",
+          "cd"
+        ],
+        "evidence_id": "fa96cf09a2acc2c8fe032657",
+        "source_type": "repository",
+        "content_hash": "62ad46805a37be24bf2fba822b1f025e9db6963504657a2ce0b398d49c34910c",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Argo CD Helm",
+            "helm repo add aso2",
+            "argo install"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "62ad46805a37be24bf2fba822b1f025e9db6963504657a2ce0b398d49c34910c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fb09bd8435085cb4fe4b382a",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+        "heading": "title: containerservice.azure.com/v1api20231001",
+        "start_line": 7667,
+        "end_line": 7716,
+        "start_char": 183759,
+        "end_char": 184795,
+        "score": "0.02219911375921606",
+        "root": "docs",
+        "matched_terms": [
+          "aks",
+          "node",
+          "system"
+        ],
+        "evidence_id": "fb09bd8435085cb4fe4b382a",
+        "source_type": "repository",
+        "content_hash": "acee6e50377ad54a6291eb1864560cec698aeaf7f50ae3ab80ad0b22712a9c11",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "acee6e50377ad54a6291eb1864560cec698aeaf7f50ae3ab80ad0b22712a9c11",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ff2a8dc55f788a1dccff44d1",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20240402preview.md",
+        "heading": "title: containerservice.azure.com/v1api20240402preview",
+        "start_line": 10219,
+        "end_line": 10268,
+        "start_char": 256584,
+        "end_char": 258014,
+        "score": "0.021514013158803143",
+        "root": "docs",
+        "matched_terms": [
+          "aks",
+          "node",
+          "system"
+        ],
+        "evidence_id": "ff2a8dc55f788a1dccff44d1",
+        "source_type": "repository",
+        "content_hash": "b1da01a6328fbd515149fb452ddd0a033fce7dde0c29bef835c3230781836b2a",
+        "revision": "050527827a348376c1be48c4b8459c9583a2931d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AKS install",
+            "node affinity",
+            "system nodepool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b1da01a6328fbd515149fb452ddd0a033fce7dde0c29bef835c3230781836b2a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where does the documentation cover AKS installation guidance and node affinity/scheduling for ASO?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where does the documentation cover installing ASO with Helm via Argo CD, including chart repo URL usage?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Where does the documentation cover passing data between ASO resources (references, config maps, secrets)?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:024d4a54d7efbc1877e61682",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:06fee098dbf14d86ae526fe5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:14c035b1421284f7ee1f626d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1836c41aa4a8c934375e9656",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1911723367ecb645c0cbc182",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:19ad7490a48e977024938ee0",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1ec64fb76b35ebc7cfa36206",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:221dc7d667b4f62a4c7ffc71",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3b6482cdb152bd470d2d62a6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3d2eb9048914a1b5401c2f24",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:42dce6b98132ed761d1d95e7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:583d875c79213cf0406018c5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5bf469a7e2d508a54565b274",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5e26ce461d7e87e8f5622f54",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6086f959bad8f570dc722034",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6d41cb51ad30e2820c9cf8bc",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:724e27f6947c731aa0b14668",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7d403d219d835caf97a3de22",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f85b7505547e3dc704546fb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8df7d8d6f4de588c1fa00767",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:906e3dcf95517350addff22e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:915e7796c1bce61ca214eed6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:97c68769aecb0fdfbf57c96f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:98553ffcf02f552d343446c2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9ba8874e6ccf12862bb07a5c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a12dc69578d05f425ccdfc6f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a185dc4907270a43ecb0d32a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aea82892ce6bbda9a00d6a0a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b7464a7e9e50d0b8949a498d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bd24b3f98a8f3bfe578875ba",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bf1615903c7dd70bccd0bc7b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c26415150ee09a02988e13ae",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c2e0e1b45d1dc7444846788d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c9251c267fd74a50fe67a3b9",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c995feb75379c0505b884245",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d05701858e762204d7ceddb7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ddb8791a99bd36897951387b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e33786c89104b472ebc7635f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e88ad2a7c8235f1cd36ff8fa",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eb5e4b17552dba2a544e427e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f1b229f977362e5f0a8bd4c0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f8d4b60ebb4e4852b622b76e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fa96cf09a2acc2c8fe032657",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fb09bd8435085cb4fe4b382a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff2a8dc55f788a1dccff44d1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

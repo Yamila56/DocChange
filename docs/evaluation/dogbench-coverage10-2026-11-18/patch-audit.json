@@ -1,0 +1,111 @@
+{
+  "patches": 9,
+  "apply_check_passed": 9,
+  "worktrees_clean": 9,
+  "documentation_paths_only": 9,
+  "model_calls": 0,
+  "semantic_correctness_checked": false,
+  "results": [
+    {
+      "instance_id": "Azure-azure-service-operator-pr4003",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/hugo/content/contributing/create-a-new-release.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr5490",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/hugo/content/guide/expressions.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16752",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/product-analytics/subscriptions.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "apache-flink-pr27195",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/content/docs/dev/datastream/operators/asyncio.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr17231",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/_snippets/path-cleaning.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "bentoml-bentoml-pr5465",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/source/build-with-bentoml/observability/metrics.rst",
+        "docs/source/reference/bentoml/configurations.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "celery-celery-pr10135",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/userguide/configuration.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "celery-celery-pr10150",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/userguide/configuration.rst",
+        "docs/userguide/tasks.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "dagworks-inc-hamilton-pr1445",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/concepts/visualization.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    }
+  ]
+}

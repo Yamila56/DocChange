@@ -1,0 +1,25 @@
+diff --git a/contents/docs/mcp-analytics/index.mdx b/contents/docs/mcp-analytics/index.mdx
+index adcc521e80d42b70618c4791ed79dfb424fda116..f51a2cef2b34618566b5c89f2be3b72b16b57a90 100644
+--- a/contents/docs/mcp-analytics/index.mdx
++++ b/contents/docs/mcp-analytics/index.mdx
+@@ -34,6 +34,20 @@ Get started
+ - Did an agent hit `get_more_tools` because the right capability didn't exist?
+ - How does a single MCP session unfold across tool calls?
+ 
++## Managing MCP analytics via MCP
++
++You can also work with MCP analytics through the [PostHog MCP server](/docs/model-context-protocol) using AI agents like Claude Code, Cursor, or any MCP-connected tool. These tools are gated behind the `mcp-analytics` feature flag and use the `mcp_analytics` API scope: read actions require `mcp_analytics:read` and write actions require `mcp_analytics:write`.
++
++| Tool | Description | Scope |
++| --- | --- | --- |
++| `mcp-analytics-intent-clusters-recompute` | Trigger an asynchronous recompute of the intent-cluster snapshot. Returns immediately with status `computing`; poll `mcp-analytics-intent-clusters-retrieve` for progress. | `mcp_analytics:write` |
++| `mcp-analytics-intent-clusters-retrieve` | Return the most recent intent-clustering snapshot: clusters of similar agent intents with tool distribution, error rate, routing entropy, and journey paths. | `mcp_analytics:read` |
++| `mcp-analytics-sessions-generate-intent` | Generate (or return the cached) LLM summary of the agent's goal for a session. | `mcp_analytics:write` |
++| `mcp-feedback-submit` | Submit qualitative feedback about a workflow or tool result. | `mcp_analytics:write` |
++| `mcp-missing-capability-report` | Report a case where no available tool was sufficient to complete the user's goal. | `mcp_analytics:write` |
++
++The two submission tools (`mcp-feedback-submit` and `mcp-missing-capability-report`) are gated behind the same `mcp-analytics` feature flag as the rest of the product. Internal transport fields such as `mcp_client_name` and `mcp_session_id` are omitted from the externally exposed tool schema.
++
+ {/* TODO: ProductScreenshot of an MCP analytics dashboard showing tool call volume, error rate, latency, and intent samples */}
+ 
+ ## How it works

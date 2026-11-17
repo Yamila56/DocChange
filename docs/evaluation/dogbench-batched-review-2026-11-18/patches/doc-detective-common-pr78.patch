@@ -1,0 +1,197 @@
+diff --git a/docs/get-started/actions/runCode.md b/docs/get-started/actions/runCode.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..e5464385abfc1fd8a23abd2b0374a94c4195eeb3
+--- /dev/null
++++ b/docs/get-started/actions/runCode.md
+@@ -0,0 +1,111 @@
++---
++title: runCode
++layout: default
++nav_order: 1
++parent: Actions
++grand_parent: Tests
++description: Assemble and run code.
++---
++
++# runCode
++
++The `runCode` action assembles and runs a code snippet in Python, Bash, or JavaScript and evaluates the results, extending Doc Detective's testing capabilities to anything you can script.
++
++> For comprehensive options, see the [`runCode`](/docs/references/schemas/runCode) reference.
++
++`runCode` runs the code in the language set in the `language` parameter. If you don't specify `language`, the code runs in your device's native shell (`cmd` on Windows, `bash` on macOS and Linux).
++
++`runCode` can evaluate code in two ways:
++
++- **Exit code**: The code's exit code is checked against a list of expected exit codes set in the `exitCodes` parameter. If the code's exit code exists in the list of expected codes, the step passes. `exitCodes` defaults to `[0]`. You can specify non-zero exit codes to test for failure conditions.
++- **Output**: If the expected output (as set in the `output` parameter) exists in the code's actual output (both stdout and stderr), the step passes. You can specify expected output as a string or a regular expression. To use a regular expression, the string must start and end with a forward slash, like in `/^hello world.*/`.
++
++## Examples
++
++Here are a few ways you might use the `runCode` action:
++
++### Run a simple command
++
++This example runs code in the shell and prints "hello world" to the output.
++
++```json
++{
++  "tests": [
++    {
++      "steps": [
++        {
++          "action": "runCode",
++          "description": "Run a simple command.",
++          "code": "echo 'hello world'"
++        }
++      ]
++    }
++  ]
++}
++```
++
++### Run Python code
++
++This example runs a Python snippet and checks the output for a specific string.
++
++```json
++{
++  "tests": [
++    {
++      "steps": [
++        {
++          "action": "runCode",
++          "description": "Run Python code and check the output.",
++          "language": "python",
++          "code": "print('Hello from Python!')",
++          "output": "Hello from Python!"
++        }
++      ]
++    }
++  ]
++}
++```
++
++### Run JavaScript code with arguments
++
++This example runs a JavaScript snippet with arguments in a specific working directory.
++
++```json
++{
++  "tests": [
++    {
++      "steps": [
++        {
++          "action": "runCode",
++          "description": "Run JavaScript code with arguments.",
++          "language": "javascript",
++          "code": "console.log(process.argv.slice(2).join(' '))",
++          "args": ["hello", "world"],
++          "workingDirectory": "."
++        }
++      ]
++    }
++  ]
++}
++```
++
++### Test a failure condition
++
++This example runs failing code and checks the exit code. Because the code is expected to fail with an exit code `1`, the step passes.
++
++```json
++{
++  "tests": [
++    {
++      "steps": [
++        {
++          "action": "runCode",
++          "description": "Run failing code.",
++          "code": "exit 1",
++          "exitCodes": [1]
++        }
++      ]
++    }
++  ]
++}
++```
+diff --git a/docs/get-started/concepts.md b/docs/get-started/concepts.md
+index 0859c9bf9d59dc98b832f0d250e88c11b1ba8155..afb29ba5f5317370d104f10530b201b91e41284c 100644
+--- a/docs/get-started/concepts.md
++++ b/docs/get-started/concepts.md
+@@ -28,6 +28,7 @@ An action is the task performed in a step. Doc Detective supports a variety of a
+ | [find](/docs/get-started/actions/find.md)                     | Locate and interact with an element on the page.                                                                                                          |
+ | [goTo](/docs/get-started/actions/goTo.md)                     | Navigate to a specified URL.                                                                                                                              |
+ | [httpRequest](/docs/get-started/actions/httpRequest.md)       | Perform a generic HTTP request, for example to an API.                                                                                                    |
++| [runCode](/docs/get-started/actions/runCode.md)               | Assemble and run code in Python, Bash, or JavaScript.                                                                                                     |
+ | [runShell](/docs/get-started/actions/runShell.md)             | Perform a native shell command.                                                                                                                           |
+ | [saveScreenshot](/docs/get-started/actions/saveScreenshot.md) | Take a screenshot in PNG format.                                                                                                                          |
+ | [setVariables](/docs/get-started/actions/setVariables.md)     | Load environment variables from a `.env` file.                                                                                                            |
+diff --git a/docs/get-started/config/contexts/index.md b/docs/get-started/config/contexts/index.md
+index 8f3e892b31c80f945d580279e891995783fd3bea..36de1f3a10da52ddd6a26d21dab991915a2e8e95 100644
+--- a/docs/get-started/config/contexts/index.md
++++ b/docs/get-started/config/contexts/index.md
+@@ -131,7 +131,7 @@ Here's a basic Firefox context:
+ 
+ #### Dimensions and visibility
+ 
+-You can specify the browser dimensions and visibility (`headless`) during tests.
++You can specify the browser dimensions and visibility (`headless`) during tests. To set the viewport size explicitly, use `viewport_width` and `viewport_height`, which override `width` and `height` respectively.
+ 
+ ```json
+ {
+@@ -147,6 +147,20 @@ You can specify the browser dimensions and visibility (`headless`) during tests.
+ }
+ ```
+ 
++```json
++{
++  "app": {
++    "name": "chrome",
++    "options": {
++      "viewport_width": 1280,
++      "viewport_height": 720,
++      "headless": false
++    }
++  },
++  "platforms": ["windows", "mac", "linux"]
++}
++```
++
+ #### Custom path
+ 
+ You can specify a Firefox installation on your system if you want to use a specific version of Firefox or a Firefox derivative. For example:
+diff --git a/docs/references/schemas/context.md b/docs/references/schemas/context.md
+index c91d37744197604c483034ac39ef177b5174536b..c2c3ea756c26a9c663fb3e5add27febcb6708f99 100644
+--- a/docs/references/schemas/context.md
++++ b/docs/references/schemas/context.md
+@@ -15,6 +15,8 @@ app.path | string |  Optional. Absolute path or command for the application. If
+ app.options | object |  Optional. Options to pass to the app. Only works when `name` is `firefox` or `chrome`. | 
+ app.options.width | integer |  Optional. Width of the window in pixels. | 
+ app.options.height | integer |  Optional. Height of the window in pixels. | 
++app.options.viewport_width | integer |  Optional. Width of the viewport in pixels. Overrides `width`. | 
++app.options.viewport_height | integer |  Optional. Height of the viewport in pixels. Overrides `height`. | 
+ app.options.headless | boolean |  Optional. If `true`, runs the browser in headless mode. Not supported by Safari. | 
+ app.options.driverPath | string |  Optional. Path to the browser driver. If not specified, defaults to internally managed dependencies. | 
+ platforms | array of strings |  Required. Supported platforms for the application. | 
+diff --git a/docs/references/schemas/find.md b/docs/references/schemas/find.md
+index cb75869bdfab0edf0d0a9bb66b505412cc8efd31..57174953e20daac8df8d27c9cf66f2da62abf573 100644
+--- a/docs/references/schemas/find.md
++++ b/docs/references/schemas/find.md
+@@ -41,6 +41,16 @@ setVariables.regex | string |  Required. Regex to extract the environment variab
+ }
+ ```
+ 
++```json
++{
++  "action": "find",
++  "selector": "[title=Search]",
++  "click": {
++    "button": "right"
++  }
++}
++```
++
+ ```json
+ {
+   "action": "find",

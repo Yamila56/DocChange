@@ -1,0 +1,3082 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REASON",
+  "tasks": [],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "d677bf59878f200d949b07b6c2d900ae868fd1abb1bd232190dd04944603f937",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Do docs describe CI secrets (AZURE_CLIENT_ID/AZURE_CLIENT_SECRET) or service principal auth for contributors/maintainers that this change invalidates?",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 181,
+              "limit": 120
+            },
+            {
+              "path": "docs/v1/howto/deploy.md",
+              "offset": 82,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/_index.md",
+              "offset": 140,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "2ce50d5f8f9bf3cef240ad8c",
+            "888925e1c69c99b726165059",
+            "50f36d561b66711aea3e2f54",
+            "b7f87ff45282bb15a93b809f",
+            "3c425ec65ac45d6e4e071413",
+            "172e3241568a8505cb0c7415",
+            "1824010181b7332be3414bf5",
+            "4545389c174db3f43ec8fdc9",
+            "212d18fd1b9a9dd547113f4a",
+            "bd8ce0e6a142e1b3aacfbb80",
+            "bfadd6a82d070034b3eb4b99",
+            "1cd9a15466b234bb2fedd6db",
+            "d0fd781fb6fce6258b12bfae",
+            "bb06401e5e06a9fbd8bc5454",
+            "ee5c6ce8fd41daba913b19f5"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "evidence_id": "b7f87ff45282bb15a93b809f",
+              "score": "0.046634615384615385"
+            },
+            {
+              "rank": 2,
+              "path": "docs/v1/howto/deploy.md",
+              "evidence_id": "3c425ec65ac45d6e4e071413",
+              "score": "0.04163235138844895"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "evidence_id": "172e3241568a8505cb0c7415",
+              "score": "0.03865317508918244"
+            },
+            {
+              "rank": 4,
+              "path": "docs/hugo/content/_index.md",
+              "evidence_id": "1824010181b7332be3414bf5",
+              "score": "0.0374383312960423"
+            },
+            {
+              "rank": 5,
+              "path": "docs/v1/README.md",
+              "evidence_id": "4545389c174db3f43ec8fdc9",
+              "score": "0.03527987493327232"
+            },
+            {
+              "rank": 6,
+              "path": "v2/README.md",
+              "evidence_id": "212d18fd1b9a9dd547113f4a",
+              "score": "0.03291406856983485"
+            },
+            {
+              "rank": 7,
+              "path": "docs/hugo/content/_index.md",
+              "evidence_id": "bd8ce0e6a142e1b3aacfbb80",
+              "score": "0.03252247488101534"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/contributing/testing.md",
+              "evidence_id": "bfadd6a82d070034b3eb4b99",
+              "score": "0.03251821801517542"
+            },
+            {
+              "rank": 9,
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "evidence_id": "1cd9a15466b234bb2fedd6db",
+              "score": "0.029850746268656716"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+              "evidence_id": "d0fd781fb6fce6258b12bfae",
+              "score": "0.029812652003100196"
+            },
+            {
+              "rank": 11,
+              "path": "docs/v1/howto/deploy.md",
+              "evidence_id": "bb06401e5e06a9fbd8bc5454",
+              "score": "0.027205882352941177"
+            },
+            {
+              "rank": 12,
+              "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+              "evidence_id": "ee5c6ce8fd41daba913b19f5",
+              "score": "0.026540946394272742"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "start": 181,
+              "end": 301,
+              "total_lines": 650
+            },
+            {
+              "path": "docs/v1/howto/deploy.md",
+              "start": 82,
+              "end": 202,
+              "total_lines": 209
+            },
+            {
+              "path": "docs/hugo/content/_index.md",
+              "start": 140,
+              "end": 260,
+              "total_lines": 369
+            }
+          ],
+          "read_evidence_ids": [
+            "2ce50d5f8f9bf3cef240ad8c",
+            "888925e1c69c99b726165059",
+            "50f36d561b66711aea3e2f54"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Do docs describe workload identity auth setup, useWorkloadIdentityAuth, or managed identity configuration for the operator?",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 6,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "offset": 136,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "offset": 118,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "c771dd542da7a22b4940377c",
+            "52cb0fa4b523863c903dd66b",
+            "8a50d03dfefd906c5e6afbf6",
+            "b7fda08ae82ee031b923f165",
+            "95e228c12670b262e13f2e87",
+            "aa7bb38040ccce2b2be20b7f",
+            "340a7e730759f2e3ab38afff",
+            "5eeb1e7aa20b9a59b7d4a92f",
+            "c5904ae5f0ae082456a68c23",
+            "182ff75c54def1b168755131",
+            "6a06902c637cb135aebb0759",
+            "6534f75994a01e089085453e",
+            "3b92c0756e90746a7e6b60b7",
+            "1418caf6199cd8f32126d80a",
+            "558738df645cf322b7175af4"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "evidence_id": "b7fda08ae82ee031b923f165",
+              "score": "0.04670343114189457"
+            },
+            {
+              "rank": 2,
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "evidence_id": "95e228c12670b262e13f2e87",
+              "score": "0.042462821587749874"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "evidence_id": "aa7bb38040ccce2b2be20b7f",
+              "score": "0.03665610678805401"
+            },
+            {
+              "rank": 4,
+              "path": "docs/hugo/content/guide/aso-controller-settings-options.md",
+              "evidence_id": "340a7e730759f2e3ab38afff",
+              "score": "0.031746031746031744"
+            },
+            {
+              "rank": 5,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "evidence_id": "5eeb1e7aa20b9a59b7d4a92f",
+              "score": "0.031206869308361064"
+            },
+            {
+              "rank": 6,
+              "path": "docs/hugo/content/reference/synapse/v1api20210601.md",
+              "evidence_id": "c5904ae5f0ae082456a68c23",
+              "score": "0.03024606971975393"
+            },
+            {
+              "rank": 7,
+              "path": "docs/hugo/content/reference/synapse/v1api20210601.md",
+              "evidence_id": "182ff75c54def1b168755131",
+              "score": "0.02881161236424394"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/reference/containerservice/v1api20230202preview.md",
+              "evidence_id": "6a06902c637cb135aebb0759",
+              "score": "0.02852839193960923"
+            },
+            {
+              "rank": 9,
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "evidence_id": "6534f75994a01e089085453e",
+              "score": "0.027149321266968326"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+              "evidence_id": "3b92c0756e90746a7e6b60b7",
+              "score": "0.026823470166110003"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "evidence_id": "1418caf6199cd8f32126d80a",
+              "score": "0.024442440824109773"
+            },
+            {
+              "rank": 12,
+              "path": "docs/hugo/content/reference/containerservice/v1api20230202preview.md",
+              "evidence_id": "558738df645cf322b7175af4",
+              "score": "0.024285592908323654"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "start": 6,
+              "end": 126,
+              "total_lines": 650
+            },
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "start": 136,
+              "end": 217,
+              "total_lines": 217
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "start": 118,
+              "end": 172,
+              "total_lines": 172
+            }
+          ],
+          "read_evidence_ids": [
+            "c771dd542da7a22b4940377c",
+            "52cb0fa4b523863c903dd66b",
+            "8a50d03dfefd906c5e6afbf6"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Do docs describe the identity package / NewCredentialProvider API that the new TokenCredentialProvider interface affects?",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "1e7abe8315fc32b3a92864da",
+            "ca1cf4e467e315f1441082fb",
+            "a69a4ad02755f4bda17c611c",
+            "a0ff40831a2963ed13c2169f",
+            "342cfe7256adce2a567fac8b",
+            "8220c45a3b7454c6b703180c",
+            "c281210185c0cd7622421bdc",
+            "b68be8f9854eee05ad271996",
+            "f6f898115814252b494b81fc",
+            "68da9798d0ddb8978a41a0e4",
+            "494dfcde7f3e1b37ef0067ca",
+            "9342226c9a000184594dbae8",
+            "3255423a372a99cea9b6bbdf"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "evidence_id": "a0ff40831a2963ed13c2169f",
+              "score": "0.03225806451612903"
+            },
+            {
+              "rank": 2,
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "evidence_id": "342cfe7256adce2a567fac8b",
+              "score": "0.031099324975891997"
+            },
+            {
+              "rank": 3,
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "evidence_id": "ca1cf4e467e315f1441082fb",
+              "score": "0.030303030303030304"
+            },
+            {
+              "rank": 4,
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "evidence_id": "a69a4ad02755f4bda17c611c",
+              "score": "0.02919863597612958"
+            },
+            {
+              "rank": 5,
+              "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+              "evidence_id": "8220c45a3b7454c6b703180c",
+              "score": "0.028169014084507043"
+            },
+            {
+              "rank": 6,
+              "path": ".github/pull_request_template.md",
+              "evidence_id": "c281210185c0cd7622421bdc",
+              "score": "0.027212143650499815"
+            },
+            {
+              "rank": 7,
+              "path": "CODE_OF_CONDUCT.md",
+              "evidence_id": "b68be8f9854eee05ad271996",
+              "score": "0.026500526500526502"
+            },
+            {
+              "rank": 8,
+              "path": "CONTRIBUTING.md",
+              "evidence_id": "f6f898115814252b494b81fc",
+              "score": "0.0259915611814346"
+            },
+            {
+              "rank": 9,
+              "path": "CONTRIBUTING.md",
+              "evidence_id": "68da9798d0ddb8978a41a0e4",
+              "score": "0.025332691999358666"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/guide/authentication/credential-scope.md",
+              "evidence_id": "494dfcde7f3e1b37ef0067ca",
+              "score": "0.025015634771732333"
+            },
+            {
+              "rank": 11,
+              "path": "README.md",
+              "evidence_id": "9342226c9a000184594dbae8",
+              "score": "0.021780303030303032"
+            },
+            {
+              "rank": 12,
+              "path": "docs/hugo/content/reference/dataprotection/v1api20231101.md",
+              "evidence_id": "3255423a372a99cea9b6bbdf",
+              "score": "0.021520581936644374"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "start": 48,
+              "end": 168,
+              "total_lines": 172
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "start": 0,
+              "end": 33,
+              "total_lines": 33
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "start": 0,
+              "end": 16,
+              "total_lines": 16
+            }
+          ],
+          "read_evidence_ids": [
+            "1e7abe8315fc32b3a92864da",
+            "ca1cf4e467e315f1441082fb",
+            "a69a4ad02755f4bda17c611c"
+          ]
+        },
+        {
+          "id": "Q1-4",
+          "question": "Do docs describe CI agent pool, Bicep templates, or make-mi-fic scripts that changed?",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "offset": 10844,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+              "offset": 21472,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "offset": 18085,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "d351d922849896e2841c4da5",
+            "957a1455fc628b923287c8cc",
+            "700a4bd53b397a4f59f5846a",
+            "1d09d68c3817e44093d5d75c",
+            "03fed2f707609e5ee7f61110",
+            "cad38c5ff3d607d44085dca1",
+            "eccbcc6c1470f15279b0bd62",
+            "144b76a051d2fac7eedd1ca2",
+            "c281210185c0cd7622421bdc",
+            "1a6e19e43ce6e01d435d5ce0",
+            "ed6b8b4df2dd36e843409a89",
+            "e6edde8c6d2fab9ccdfe70b9",
+            "7f913ea3935ebf06767b0405",
+            "f5d6c28f461ccf2c1b01e6f2",
+            "277ef15c1a4b5d13f46dd728"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "evidence_id": "1d09d68c3817e44093d5d75c",
+              "score": "0.03125"
+            },
+            {
+              "rank": 2,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+              "evidence_id": "03fed2f707609e5ee7f61110",
+              "score": "0.02639344262295082"
+            },
+            {
+              "rank": 3,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+              "evidence_id": "cad38c5ff3d607d44085dca1",
+              "score": "0.025677830940988834"
+            },
+            {
+              "rank": 4,
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "evidence_id": "eccbcc6c1470f15279b0bd62",
+              "score": "0.024489795918367346"
+            },
+            {
+              "rank": 5,
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "evidence_id": "144b76a051d2fac7eedd1ca2",
+              "score": "0.022961816305469555"
+            },
+            {
+              "rank": 6,
+              "path": ".github/pull_request_template.md",
+              "evidence_id": "c281210185c0cd7622421bdc",
+              "score": "0.021418879627834852"
+            },
+            {
+              "rank": 7,
+              "path": "docs/hugo/content/contributing/create-a-new-release.md",
+              "evidence_id": "1a6e19e43ce6e01d435d5ce0",
+              "score": "0.020177615254015933"
+            },
+            {
+              "rank": 8,
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "evidence_id": "ed6b8b4df2dd36e843409a89",
+              "score": "0.019943530883272633"
+            },
+            {
+              "rank": 9,
+              "path": "docs/hugo/content/contributing/create-a-new-release.md",
+              "evidence_id": "e6edde8c6d2fab9ccdfe70b9",
+              "score": "0.019791666666666666"
+            },
+            {
+              "rank": 10,
+              "path": "docs/hugo/content/reference/containerservice/v1api20230202preview.md",
+              "evidence_id": "7f913ea3935ebf06767b0405",
+              "score": "0.019589239870521264"
+            },
+            {
+              "rank": 11,
+              "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+              "evidence_id": "f5d6c28f461ccf2c1b01e6f2",
+              "score": "0.01913265306122449"
+            },
+            {
+              "rank": 12,
+              "path": "docs/hugo/content/contributing/add-a-new-code-generated-resource.md",
+              "evidence_id": "277ef15c1a4b5d13f46dd728",
+              "score": "0.019127053806597266"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "start": 10844,
+              "end": 10964,
+              "total_lines": 32473
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+              "start": 21472,
+              "end": 21592,
+              "total_lines": 25878
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "start": 18085,
+              "end": 18205,
+              "total_lines": 22369
+            }
+          ],
+          "read_evidence_ids": [
+            "d351d922849896e2841c4da5",
+            "957a1455fc628b923287c8cc",
+            "700a4bd53b397a4f59f5846a"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "03fed2f707609e5ee7f61110",
+        "1418caf6199cd8f32126d80a",
+        "144b76a051d2fac7eedd1ca2",
+        "172e3241568a8505cb0c7415",
+        "1824010181b7332be3414bf5",
+        "182ff75c54def1b168755131",
+        "1a6e19e43ce6e01d435d5ce0",
+        "1cd9a15466b234bb2fedd6db",
+        "1d09d68c3817e44093d5d75c",
+        "1e7abe8315fc32b3a92864da",
+        "212d18fd1b9a9dd547113f4a",
+        "277ef15c1a4b5d13f46dd728",
+        "2ce50d5f8f9bf3cef240ad8c",
+        "3255423a372a99cea9b6bbdf",
+        "340a7e730759f2e3ab38afff",
+        "342cfe7256adce2a567fac8b",
+        "3b92c0756e90746a7e6b60b7",
+        "3c425ec65ac45d6e4e071413",
+        "4545389c174db3f43ec8fdc9",
+        "494dfcde7f3e1b37ef0067ca",
+        "50f36d561b66711aea3e2f54",
+        "52cb0fa4b523863c903dd66b",
+        "558738df645cf322b7175af4",
+        "5eeb1e7aa20b9a59b7d4a92f",
+        "6534f75994a01e089085453e",
+        "68da9798d0ddb8978a41a0e4",
+        "6a06902c637cb135aebb0759",
+        "700a4bd53b397a4f59f5846a",
+        "7f913ea3935ebf06767b0405",
+        "8220c45a3b7454c6b703180c",
+        "888925e1c69c99b726165059",
+        "8a50d03dfefd906c5e6afbf6",
+        "9342226c9a000184594dbae8",
+        "957a1455fc628b923287c8cc",
+        "95e228c12670b262e13f2e87",
+        "a0ff40831a2963ed13c2169f",
+        "a69a4ad02755f4bda17c611c",
+        "aa7bb38040ccce2b2be20b7f",
+        "b68be8f9854eee05ad271996",
+        "b7f87ff45282bb15a93b809f",
+        "b7fda08ae82ee031b923f165",
+        "bb06401e5e06a9fbd8bc5454",
+        "bd8ce0e6a142e1b3aacfbb80",
+        "bfadd6a82d070034b3eb4b99",
+        "c281210185c0cd7622421bdc",
+        "c5904ae5f0ae082456a68c23",
+        "c771dd542da7a22b4940377c",
+        "ca1cf4e467e315f1441082fb",
+        "cad38c5ff3d607d44085dca1",
+        "d0fd781fb6fce6258b12bfae",
+        "d351d922849896e2841c4da5",
+        "e6edde8c6d2fab9ccdfe70b9",
+        "eccbcc6c1470f15279b0bd62",
+        "ed6b8b4df2dd36e843409a89",
+        "ee5c6ce8fd41daba913b19f5",
+        "f5d6c28f461ccf2c1b01e6f2",
+        "f6f898115814252b494b81fc"
+      ],
+      "new_evidence_count": 57,
+      "new_path_count": 27
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "f1f6e56e9c680470220240b6027c8efc46363435",
+    "code": "e041ed38a1044fd997b10e3b93ef8cb6a1d88869"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:33996dde276345ea": 0,
+    "discover:Q1-2:0dc714d6d1a25e91": 259,
+    "discover:Q1-3:fbedaeb897d5530b": 516,
+    "discover:Q1-4:9906150f060d4fcb": 427
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:33996dde276345ea": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 260,
+      "cache_hit": false
+    },
+    "discover:Q1-2:0dc714d6d1a25e91": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 257,
+      "cache_hit": false
+    },
+    "discover:Q1-3:fbedaeb897d5530b": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 170,
+      "cache_hit": false
+    },
+    "discover:Q1-4:9906150f060d4fcb": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 179,
+      "cache_hit": false
+    },
+    "discover:Q1-3:96cdd61c3e3f40de": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 210,
+      "cache_hit": false
+    },
+    "discover:Q1-1:e32299c036c46e5f": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 298,
+      "cache_hit": false
+    },
+    "discover:Q1-2:797df8d07bdd0ca9": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 334,
+      "cache_hit": false
+    },
+    "discover:Q1-4:5a46c47fc97279eb": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 338,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:03fed2f707609e5ee7f61110",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+        "heading": "title: containerservice.azure.com/v1api20231001",
+        "start_line": 21477,
+        "end_line": 21526,
+        "start_char": 510142,
+        "end_char": 511179,
+        "score": "0.02639344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "agent",
+          "pool"
+        ],
+        "evidence_id": "03fed2f707609e5ee7f61110",
+        "source_type": "repository",
+        "content_hash": "fb3a08f70189ab44c7c885da985f2adb33673e8d1723250ea6ea9c7a6382a435",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "fb3a08f70189ab44c7c885da985f2adb33673e8d1723250ea6ea9c7a6382a435",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1418caf6199cd8f32126d80a",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+        "heading": "title: containerservice.azure.com/v1api20231102preview",
+        "start_line": 22058,
+        "end_line": 22107,
+        "start_char": 542606,
+        "end_char": 543867,
+        "score": "0.024442440824109773",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "workload"
+        ],
+        "evidence_id": "1418caf6199cd8f32126d80a",
+        "source_type": "repository",
+        "content_hash": "421b39a569bed54e506184fbe1325128294d8cd8d2ce81350033711021fb8d0e",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "421b39a569bed54e506184fbe1325128294d8cd8d2ce81350033711021fb8d0e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:144b76a051d2fac7eedd1ca2",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+        "heading": "title: containerservice.azure.com/v1api20230201",
+        "start_line": 19290,
+        "end_line": 19339,
+        "start_char": 463031,
+        "end_char": 464414,
+        "score": "0.022961816305469555",
+        "root": "docs",
+        "matched_terms": [
+          "agent",
+          "pool"
+        ],
+        "evidence_id": "144b76a051d2fac7eedd1ca2",
+        "source_type": "repository",
+        "content_hash": "eeb38d9f97e5f9fd01a1f0ac50205582afef2261539b67233a098320c793bb13",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "eeb38d9f97e5f9fd01a1f0ac50205582afef2261539b67233a098320c793bb13",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:172e3241568a8505cb0c7415",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/credential-format.md",
+        "heading": "linktitle: Credential Format > Service Principal using a Client Secret > Create the secret",
+        "start_line": 248,
+        "end_line": 297,
+        "start_char": 9584,
+        "end_char": 10745,
+        "score": "0.03865317508918244",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret"
+        ],
+        "evidence_id": "172e3241568a8505cb0c7415",
+        "source_type": "repository",
+        "content_hash": "ca3264527890932323ef71a9917663ecf99f325a08332abcd62ab78b9b28b519",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ca3264527890932323ef71a9917663ecf99f325a08332abcd62ab78b9b28b519",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1824010181b7332be3414bf5",
+        "type": "evidence",
+        "path": "docs/hugo/content/_index.md",
+        "heading": "description: \"Manage your Azure resources from within your Kubernetes cluster.\" > Getting Started > Installation",
+        "start_line": 145,
+        "end_line": 192,
+        "start_char": 7580,
+        "end_char": 9214,
+        "score": "0.0374383312960423",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret",
+          "principal",
+          "service"
+        ],
+        "evidence_id": "1824010181b7332be3414bf5",
+        "source_type": "repository",
+        "content_hash": "e6ac2ffc605712681eacb602eaf11645eccaeae85ac467473ad5c5bcb5c9bc3e",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e6ac2ffc605712681eacb602eaf11645eccaeae85ac467473ad5c5bcb5c9bc3e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:182ff75c54def1b168755131",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/synapse/v1api20210601.md",
+        "heading": "title: synapse.azure.com/v1api20210601",
+        "start_line": 5651,
+        "end_line": 5700,
+        "start_char": 103801,
+        "end_char": 105041,
+        "score": "0.02881161236424394",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "managed"
+        ],
+        "evidence_id": "182ff75c54def1b168755131",
+        "source_type": "repository",
+        "content_hash": "9d82e3982c070d006530ac31fbcd9e621ddb879922b40eccb22b78ac498d58fc",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9d82e3982c070d006530ac31fbcd9e621ddb879922b40eccb22b78ac498d58fc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1a6e19e43ce6e01d435d5ce0",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/create-a-new-release.md",
+        "heading": "title: Creating a new release > Testing",
+        "start_line": 46,
+        "end_line": 95,
+        "start_char": 2444,
+        "end_char": 3713,
+        "score": "0.020177615254015933",
+        "root": "docs",
+        "matched_terms": [
+          "make"
+        ],
+        "evidence_id": "1a6e19e43ce6e01d435d5ce0",
+        "source_type": "repository",
+        "content_hash": "1b1c96c19cfd6990b78eef9a799477656a253b3cbe19609dc0cb6f962d7a2024",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "1b1c96c19cfd6990b78eef9a799477656a253b3cbe19609dc0cb6f962d7a2024",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1cd9a15466b234bb2fedd6db",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+        "heading": "title: '2022-09: Support For Multiple Credentials Under Global Operator' > Example Secret",
+        "start_line": 108,
+        "end_line": 122,
+        "start_char": 7778,
+        "end_char": 8114,
+        "score": "0.029850746268656716",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret"
+        ],
+        "evidence_id": "1cd9a15466b234bb2fedd6db",
+        "source_type": "repository",
+        "content_hash": "1f1238e84fde175c047cc6f3023431d660ce1f1151121378156c7eccbe037e65",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1f1238e84fde175c047cc6f3023431d660ce1f1151121378156c7eccbe037e65",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1d09d68c3817e44093d5d75c",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+        "heading": "title: containerservice.azure.com/v1api20231102preview",
+        "start_line": 10849,
+        "end_line": 10898,
+        "start_char": 267392,
+        "end_char": 268291,
+        "score": "0.03125",
+        "root": "docs",
+        "matched_terms": [
+          "agent",
+          "pool"
+        ],
+        "evidence_id": "1d09d68c3817e44093d5d75c",
+        "source_type": "repository",
+        "content_hash": "a25b79a10a4970b59b7dbf65e11871210de78afa480d459a6499a38fa76f6fd2",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "a25b79a10a4970b59b7dbf65e11871210de78afa480d459a6499a38fa76f6fd2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1e7abe8315fc32b3a92864da",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+        "start_line": 49,
+        "total_lines": 172,
+        "start_char": 3306,
+        "end_char": 11249,
+        "evidence_id": "1e7abe8315fc32b3a92864da",
+        "truncated": false,
+        "next_offset": 168,
+        "source_type": "repository",
+        "content_hash": "975cafc873c9564fd15490621e5648865f2f2d032ea7e0df4c982495a006ea75",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "975cafc873c9564fd15490621e5648865f2f2d032ea7e0df4c982495a006ea75",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:212d18fd1b9a9dd547113f4a",
+        "type": "evidence",
+        "path": "v2/README.md",
+        "heading": "Azure Service Operator v2 > Getting Started > Installation",
+        "start_line": 71,
+        "end_line": 109,
+        "start_char": 4576,
+        "end_char": 6236,
+        "score": "0.03291406856983485",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret",
+          "principal",
+          "service"
+        ],
+        "evidence_id": "212d18fd1b9a9dd547113f4a",
+        "source_type": "repository",
+        "content_hash": "e73da9f43d6e316c39f1d36af327167ce990ac41b640da98ef97a5bcc8227abe",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e73da9f43d6e316c39f1d36af327167ce990ac41b640da98ef97a5bcc8227abe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:277ef15c1a4b5d13f46dd728",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/add-a-new-code-generated-resource.md",
+        "heading": "linktitle: Add a resource > Send a PR",
+        "start_line": 327,
+        "end_line": 329,
+        "start_char": 16436,
+        "end_char": 16467,
+        "score": "0.019127053806597266",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "277ef15c1a4b5d13f46dd728",
+        "source_type": "repository",
+        "content_hash": "d1e5989eac98adcbefefb0e77aa6cf40d4aa8c6631a8a5c423a3bd810fe109f5",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "d1e5989eac98adcbefefb0e77aa6cf40d4aa8c6631a8a5c423a3bd810fe109f5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2ce50d5f8f9bf3cef240ad8c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/guide/authentication/credential-format.md",
+        "start_line": 182,
+        "total_lines": 650,
+        "start_char": 6715,
+        "end_char": 10780,
+        "evidence_id": "2ce50d5f8f9bf3cef240ad8c",
+        "truncated": false,
+        "next_offset": 301,
+        "source_type": "repository",
+        "content_hash": "2bd3420660e5d5cc6b9b2557a033a2b1116817aed5cc60bddfa52ab68cbb92d8",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 181,
+              "limit": 120
+            },
+            {
+              "path": "docs/v1/howto/deploy.md",
+              "offset": 82,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/_index.md",
+              "offset": 140,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "2bd3420660e5d5cc6b9b2557a033a2b1116817aed5cc60bddfa52ab68cbb92d8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3255423a372a99cea9b6bbdf",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/dataprotection/v1api20231101.md",
+        "heading": "title: dataprotection.azure.com/v1api20231101",
+        "start_line": 2749,
+        "end_line": 2798,
+        "start_char": 56945,
+        "end_char": 57835,
+        "score": "0.021520581936644374",
+        "root": "docs",
+        "matched_terms": [
+          "identity"
+        ],
+        "evidence_id": "3255423a372a99cea9b6bbdf",
+        "source_type": "repository",
+        "content_hash": "0eb5b1e7f394e11dc017af93aae555a492c0f3ef96c441069613688cdac2f85b",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "0eb5b1e7f394e11dc017af93aae555a492c0f3ef96c441069613688cdac2f85b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:340a7e730759f2e3ab38afff",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/aso-controller-settings-options.md",
+        "heading": "weight: 1 # This is the default weight if you just want to be ordered alphabetically > USE_WORKLOAD_IDENTITY_AUTH",
+        "start_line": 103,
+        "end_line": 112,
+        "start_char": 3196,
+        "end_char": 3439,
+        "score": "0.031746031746031744",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "workload"
+        ],
+        "evidence_id": "340a7e730759f2e3ab38afff",
+        "source_type": "repository",
+        "content_hash": "cd59c6c203767f5076962bc4787f13c5e4b7adfbc5faafbead57b044f27f0a14",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cd59c6c203767f5076962bc4787f13c5e4b7adfbc5faafbead57b044f27f0a14",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:342cfe7256adce2a567fac8b",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+        "heading": "title: '2022-09: Support For Multiple Credentials Under Global Operator' > Options > Option 3: Fixed secret name for namespace + configuration using annotations",
+        "start_line": 68,
+        "end_line": 84,
+        "start_char": 4367,
+        "end_char": 6031,
+        "score": "0.031099324975891997",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "342cfe7256adce2a567fac8b",
+        "source_type": "repository",
+        "content_hash": "dbe8e3e8eb1fce21d75fe7635fe0ff9073a2cf5eb4bb75e683fe4ece80aae69f",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "dbe8e3e8eb1fce21d75fe7635fe0ff9073a2cf5eb4bb75e683fe4ece80aae69f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3b92c0756e90746a7e6b60b7",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+        "heading": "title: containerservice.azure.com/v1api20231001",
+        "start_line": 17083,
+        "end_line": 17132,
+        "start_char": 405843,
+        "end_char": 406979,
+        "score": "0.026823470166110003",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "workload"
+        ],
+        "evidence_id": "3b92c0756e90746a7e6b60b7",
+        "source_type": "repository",
+        "content_hash": "3ae08d494e84e128379bd82e6b11f6c2f020f725d4141cacffdfdd8a5a4997ec",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3ae08d494e84e128379bd82e6b11f6c2f020f725d4141cacffdfdd8a5a4997ec",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3c425ec65ac45d6e4e071413",
+        "type": "evidence",
+        "path": "docs/v1/howto/deploy.md",
+        "heading": "Building the Azure Service Operator locally and deploying > Deploy the operator > Authentication > Service Principal authentication",
+        "start_line": 87,
+        "end_line": 94,
+        "start_char": 2858,
+        "end_char": 3065,
+        "score": "0.04163235138844895",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret",
+          "principal",
+          "service"
+        ],
+        "evidence_id": "3c425ec65ac45d6e4e071413",
+        "source_type": "repository",
+        "content_hash": "c0e4679c49da9c6c8e0c0c63df04a63154199aac4b311b7b02bd46effe658289",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c0e4679c49da9c6c8e0c0c63df04a63154199aac4b311b7b02bd46effe658289",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4545389c174db3f43ec8fdc9",
+        "type": "evidence",
+        "path": "docs/v1/README.md",
+        "heading": "Azure Service Operator (for Kubernetes) v1 > Quickstart",
+        "start_line": 84,
+        "end_line": 120,
+        "start_char": 5273,
+        "end_char": 6907,
+        "score": "0.03527987493327232",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret",
+          "principal",
+          "service"
+        ],
+        "evidence_id": "4545389c174db3f43ec8fdc9",
+        "source_type": "repository",
+        "content_hash": "9799e6e71e9a41e112c96547eaa2205ce5aa994d55dfffda399f9a5e3691bdc1",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "9799e6e71e9a41e112c96547eaa2205ce5aa994d55dfffda399f9a5e3691bdc1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:494dfcde7f3e1b37ef0067ca",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/credential-scope.md",
+        "heading": "linktitle: Credential Scope > Resource scope",
+        "start_line": 33,
+        "end_line": 40,
+        "start_char": 1636,
+        "end_char": 2117,
+        "score": "0.025015634771732333",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "494dfcde7f3e1b37ef0067ca",
+        "source_type": "repository",
+        "content_hash": "7d16db1ab5706f9e997e6eca07cbb494bec971d393d6bbfa6eccd172430258ac",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "7d16db1ab5706f9e997e6eca07cbb494bec971d393d6bbfa6eccd172430258ac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:50f36d561b66711aea3e2f54",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/_index.md",
+        "start_line": 141,
+        "total_lines": 369,
+        "start_char": 7444,
+        "end_char": 10865,
+        "evidence_id": "50f36d561b66711aea3e2f54",
+        "truncated": false,
+        "next_offset": 260,
+        "source_type": "repository",
+        "content_hash": "c397758d86a4efd740668d126a864eb9d6c7b0b8bca61ed41aa47a8d415c7785",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 181,
+              "limit": 120
+            },
+            {
+              "path": "docs/v1/howto/deploy.md",
+              "offset": 82,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/_index.md",
+              "offset": 140,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c397758d86a4efd740668d126a864eb9d6c7b0b8bca61ed41aa47a8d415c7785",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:52cb0fa4b523863c903dd66b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+        "start_line": 137,
+        "total_lines": 217,
+        "start_char": 9065,
+        "end_char": 13215,
+        "evidence_id": "52cb0fa4b523863c903dd66b",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "64e2545f205e7781585e1d51dad45b80071ecb11d0942b29f875cf082e6c0d72",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 6,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "offset": 136,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "offset": 118,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "64e2545f205e7781585e1d51dad45b80071ecb11d0942b29f875cf082e6c0d72",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:558738df645cf322b7175af4",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20230202preview.md",
+        "heading": "title: containerservice.azure.com/v1api20230202preview",
+        "start_line": 18280,
+        "end_line": 18329,
+        "start_char": 441971,
+        "end_char": 443232,
+        "score": "0.024285592908323654",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "workload"
+        ],
+        "evidence_id": "558738df645cf322b7175af4",
+        "source_type": "repository",
+        "content_hash": "c1a613bc71a6a1fe3424ed9c64b0eb5f9fafd6952c8422e0486d49444836cbb0",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c1a613bc71a6a1fe3424ed9c64b0eb5f9fafd6952c8422e0486d49444836cbb0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5eeb1e7aa20b9a59b7d4a92f",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+        "heading": "title: containerservice.azure.com/v1api20231102preview",
+        "start_line": 21616,
+        "end_line": 21665,
+        "start_char": 530588,
+        "end_char": 531591,
+        "score": "0.031206869308361064",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "workload"
+        ],
+        "evidence_id": "5eeb1e7aa20b9a59b7d4a92f",
+        "source_type": "repository",
+        "content_hash": "b3487216493b46d04a16a646dc48bea37ed2ed6caba3337b3a1eb30c1eeea8e7",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b3487216493b46d04a16a646dc48bea37ed2ed6caba3337b3a1eb30c1eeea8e7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6534f75994a01e089085453e",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/credential-format.md",
+        "heading": "linktitle: Credential Format > [Deprecated] Managed Identity (aad-pod-identity)",
+        "start_line": 431,
+        "end_line": 434,
+        "start_char": 15516,
+        "end_char": 15709,
+        "score": "0.027149321266968326",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "managed",
+          "workload"
+        ],
+        "evidence_id": "6534f75994a01e089085453e",
+        "source_type": "repository",
+        "content_hash": "be55ef057075a34ff6ae5b72b5648489a5322ef832217570a8bfc03a5b2189ca",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "be55ef057075a34ff6ae5b72b5648489a5322ef832217570a8bfc03a5b2189ca",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:68da9798d0ddb8978a41a0e4",
+        "type": "evidence",
+        "path": "CONTRIBUTING.md",
+        "heading": "Contributing Guidelines > Contributor License Agreements",
+        "start_line": 5,
+        "end_line": 13,
+        "start_char": 186,
+        "end_char": 689,
+        "score": "0.025332691999358666",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "68da9798d0ddb8978a41a0e4",
+        "source_type": "repository",
+        "content_hash": "eee4d907f92f3aaf4c416f3ab15784a16d407fab6363962b8db10ee686dc196a",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "eee4d907f92f3aaf4c416f3ab15784a16d407fab6363962b8db10ee686dc196a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6a06902c637cb135aebb0759",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20230202preview.md",
+        "heading": "title: containerservice.azure.com/v1api20230202preview",
+        "start_line": 17289,
+        "end_line": 17329,
+        "start_char": 416855,
+        "end_char": 418561,
+        "score": "0.02852839193960923",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "workload"
+        ],
+        "evidence_id": "6a06902c637cb135aebb0759",
+        "source_type": "repository",
+        "content_hash": "d477b45ce747bafd2ab8c3fd4a18e0f2b0c7c7dd52a2d012948f58e1b1b350ca",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d477b45ce747bafd2ab8c3fd4a18e0f2b0c7c7dd52a2d012948f58e1b1b350ca",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:700a4bd53b397a4f59f5846a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+        "start_line": 18086,
+        "total_lines": 22369,
+        "start_char": 434679,
+        "end_char": 437293,
+        "evidence_id": "700a4bd53b397a4f59f5846a",
+        "truncated": false,
+        "next_offset": 18205,
+        "source_type": "repository",
+        "content_hash": "20509cc45aaf7c4db6c99a04e3d17fd9ab244641611104534f8b41938be5b96f",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "offset": 10844,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+              "offset": 21472,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "offset": 18085,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "20509cc45aaf7c4db6c99a04e3d17fd9ab244641611104534f8b41938be5b96f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7f913ea3935ebf06767b0405",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20230202preview.md",
+        "heading": "title: containerservice.azure.com/v1api20230202preview",
+        "start_line": 9466,
+        "end_line": 9515,
+        "start_char": 231994,
+        "end_char": 232945,
+        "score": "0.019589239870521264",
+        "root": "docs",
+        "matched_terms": [
+          "agent",
+          "pool"
+        ],
+        "evidence_id": "7f913ea3935ebf06767b0405",
+        "source_type": "repository",
+        "content_hash": "f79ae2052c24cb01d3875847680c147571c4911af7425040d8fe331ad74b429e",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "f79ae2052c24cb01d3875847680c147571c4911af7425040d8fe331ad74b429e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8220c45a3b7454c6b703180c",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/new-feature-template.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 11,
+        "start_char": 0,
+        "end_char": 181,
+        "score": "0.028169014084507043",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "8220c45a3b7454c6b703180c",
+        "source_type": "repository",
+        "content_hash": "4e256a4a472358b03513e994eba398aedd8f305e1f421b9346d15e13e752ac71",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4e256a4a472358b03513e994eba398aedd8f305e1f421b9346d15e13e752ac71",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:888925e1c69c99b726165059",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/v1/howto/deploy.md",
+        "start_line": 83,
+        "total_lines": 209,
+        "start_char": 2749,
+        "end_char": 6612,
+        "evidence_id": "888925e1c69c99b726165059",
+        "truncated": false,
+        "next_offset": 202,
+        "source_type": "repository",
+        "content_hash": "e32bf2b1cd0b5b5ae44d2979627ed09a1afdad22889f3fe7b72845c9907c4de9",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 181,
+              "limit": 120
+            },
+            {
+              "path": "docs/v1/howto/deploy.md",
+              "offset": 82,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/_index.md",
+              "offset": 140,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e32bf2b1cd0b5b5ae44d2979627ed09a1afdad22889f3fe7b72845c9907c4de9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8a50d03dfefd906c5e6afbf6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+        "start_line": 119,
+        "total_lines": 172,
+        "start_char": 8019,
+        "end_char": 11269,
+        "evidence_id": "8a50d03dfefd906c5e6afbf6",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "471bf361b9633dfd3669fb24a3e2a14759014d91658584b1100af51559db04c8",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 6,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "offset": 136,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "offset": 118,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "471bf361b9633dfd3669fb24a3e2a14759014d91658584b1100af51559db04c8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9342226c9a000184594dbae8",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Azure Service Operator (for Kubernetes)",
+        "start_line": 1,
+        "end_line": 5,
+        "start_char": 0,
+        "end_char": 571,
+        "score": "0.021780303030303032",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "9342226c9a000184594dbae8",
+        "source_type": "repository",
+        "content_hash": "4ee458b0a25a471bbd1df37aaacc283fd115c42c2334aa8cc2ec8099f879cf78",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4ee458b0a25a471bbd1df37aaacc283fd115c42c2334aa8cc2ec8099f879cf78",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:957a1455fc628b923287c8cc",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+        "start_line": 21473,
+        "total_lines": 25878,
+        "start_char": 510043,
+        "end_char": 512612,
+        "evidence_id": "957a1455fc628b923287c8cc",
+        "truncated": false,
+        "next_offset": 21592,
+        "source_type": "repository",
+        "content_hash": "ce51fe2560fe951694d8693af9e0052974e4d045182233ba0ae4236798cdc74f",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "offset": 10844,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+              "offset": 21472,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "offset": 18085,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "ce51fe2560fe951694d8693af9e0052974e4d045182233ba0ae4236798cdc74f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:95e228c12670b262e13f2e87",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+        "heading": "weight: -2 > Frequently Asked Questions > When using Workload Identity, how can I easily inject the ASO created User Managed Identity details onto the service account?",
+        "start_line": 141,
+        "end_line": 174,
+        "start_char": 9516,
+        "end_char": 10601,
+        "score": "0.042462821587749874",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "managed",
+          "workload"
+        ],
+        "evidence_id": "95e228c12670b262e13f2e87",
+        "source_type": "repository",
+        "content_hash": "fb9b736a8f29234e7e6b891359fd53f2366bef9790a5b392b006489bdd5ff0ac",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fb9b736a8f29234e7e6b891359fd53f2366bef9790a5b392b006489bdd5ff0ac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a0ff40831a2963ed13c2169f",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+        "heading": "title: '2022-09: Support For Multiple Credentials Under Global Operator' > Options > Option 2: Configuration using annotations",
+        "start_line": 53,
+        "end_line": 67,
+        "start_char": 3671,
+        "end_char": 4367,
+        "score": "0.03225806451612903",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "a0ff40831a2963ed13c2169f",
+        "source_type": "repository",
+        "content_hash": "9ca875b75a4a1546dfc87d7cdeb12142ca13dcc44f6047edd1dac038292b7644",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9ca875b75a4a1546dfc87d7cdeb12142ca13dcc44f6047edd1dac038292b7644",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a69a4ad02755f4bda17c611c",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+        "start_line": 1,
+        "total_lines": 16,
+        "start_char": 0,
+        "end_char": 353,
+        "evidence_id": "a69a4ad02755f4bda17c611c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "429d53768016cf522188041abe6991c7380950b72b76ad350fe4587184ead88d",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "429d53768016cf522188041abe6991c7380950b72b76ad350fe4587184ead88d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aa7bb38040ccce2b2be20b7f",
+        "type": "evidence",
+        "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+        "heading": "title: '2022-09: Support For Multiple Credentials Under Global Operator' > Steps to support workload identity",
+        "start_line": 123,
+        "end_line": 128,
+        "start_char": 8114,
+        "end_char": 9121,
+        "score": "0.03665610678805401",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "managed",
+          "workload"
+        ],
+        "evidence_id": "aa7bb38040ccce2b2be20b7f",
+        "source_type": "repository",
+        "content_hash": "9c15b29b8cd4516f964f917c6164810075f7c13333a1f2dd774ae7bd3347a69c",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9c15b29b8cd4516f964f917c6164810075f7c13333a1f2dd774ae7bd3347a69c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:adf6bb34de34fcd6e4add1d5",
+        "type": "evidence",
+        "evidence_id": "adf6bb34de34fcd6e4add1d5",
+        "source_type": "task",
+        "exported_content_sha256": "52b6fb4552ff6ccf58679a86c8442e487b202d85d63f32f2eb51d6432aad192a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b68be8f9854eee05ad271996",
+        "type": "evidence",
+        "path": "CODE_OF_CONDUCT.md",
+        "heading": "Microsoft Open Source Code of Conduct",
+        "start_line": 1,
+        "end_line": 9,
+        "start_char": 0,
+        "end_char": 444,
+        "score": "0.026500526500526502",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "b68be8f9854eee05ad271996",
+        "source_type": "repository",
+        "content_hash": "228f88a2e0b0d30318b79c6c692c7bdae45acb41c393b90b6ff72ce003c07289",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "228f88a2e0b0d30318b79c6c692c7bdae45acb41c393b90b6ff72ce003c07289",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b7f87ff45282bb15a93b809f",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/credential-format.md",
+        "heading": "linktitle: Credential Format > Service Principal using a Client Secret > Prerequisites",
+        "start_line": 186,
+        "end_line": 203,
+        "start_char": 6777,
+        "end_char": 7974,
+        "score": "0.046634615384615385",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret",
+          "principal",
+          "service"
+        ],
+        "evidence_id": "b7f87ff45282bb15a93b809f",
+        "source_type": "repository",
+        "content_hash": "36f1676f721bc705a8c23e15b37a9a8d51564ebb0bc80005395db51260519d98",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "36f1676f721bc705a8c23e15b37a9a8d51564ebb0bc80005395db51260519d98",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b7fda08ae82ee031b923f165",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/credential-format.md",
+        "heading": "linktitle: Credential Format > Azure Workload Identity",
+        "start_line": 11,
+        "end_line": 16,
+        "start_char": 337,
+        "end_char": 607,
+        "score": "0.04670343114189457",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "managed",
+          "workload"
+        ],
+        "evidence_id": "b7fda08ae82ee031b923f165",
+        "source_type": "repository",
+        "content_hash": "60871569cbb88c51fe7f07814d71a020f6a520431f14c06a855c7c02e48bae01",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "60871569cbb88c51fe7f07814d71a020f6a520431f14c06a855c7c02e48bae01",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bb06401e5e06a9fbd8bc5454",
+        "type": "evidence",
+        "path": "docs/v1/howto/deploy.md",
+        "heading": "Building the Azure Service Operator locally and deploying > Deploy the operator > Authentication > Deploying the secret",
+        "start_line": 142,
+        "end_line": 163,
+        "start_char": 4662,
+        "end_char": 5466,
+        "score": "0.027205882352941177",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret"
+        ],
+        "evidence_id": "bb06401e5e06a9fbd8bc5454",
+        "source_type": "repository",
+        "content_hash": "19c3315bb8ea3c91ca0dd9f9364adc65e2e799bf0292864d3ddf8620c8fd2e90",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "19c3315bb8ea3c91ca0dd9f9364adc65e2e799bf0292864d3ddf8620c8fd2e90",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bd8ce0e6a142e1b3aacfbb80",
+        "type": "evidence",
+        "path": "docs/hugo/content/_index.md",
+        "heading": "description: \"Manage your Azure resources from within your Kubernetes cluster.\" > Getting Started > Installation",
+        "start_line": 243,
+        "end_line": 255,
+        "start_char": 10379,
+        "end_char": 10741,
+        "score": "0.03252247488101534",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret",
+          "service"
+        ],
+        "evidence_id": "bd8ce0e6a142e1b3aacfbb80",
+        "source_type": "repository",
+        "content_hash": "c1ba15246365e56a45d0ecd9573c224228cfcd6319046e476bbc99dbd2d6b7e1",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c1ba15246365e56a45d0ecd9573c224228cfcd6319046e476bbc99dbd2d6b7e1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bfadd6a82d070034b3eb4b99",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/testing.md",
+        "heading": "title: Testing > Running integration tests > Record/replay",
+        "start_line": 29,
+        "end_line": 55,
+        "start_char": 1760,
+        "end_char": 2712,
+        "score": "0.03251821801517542",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret",
+          "principal",
+          "service"
+        ],
+        "evidence_id": "bfadd6a82d070034b3eb4b99",
+        "source_type": "repository",
+        "content_hash": "ca5a12fcb5d3d418cb1d3f38d28b7acfcd62e75b5a0d0d9b20cc668d80761ed0",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "ca5a12fcb5d3d418cb1d3f38d28b7acfcd62e75b5a0d0d9b20cc668d80761ed0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c281210185c0cd7622421bdc",
+        "type": "evidence",
+        "path": ".github/pull_request_template.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 16,
+        "start_char": 0,
+        "end_char": 637,
+        "score": "0.021418879627834852",
+        "root": "docs",
+        "matched_terms": [
+          "make"
+        ],
+        "evidence_id": "c281210185c0cd7622421bdc",
+        "source_type": "repository",
+        "content_hash": "ff1be6e5deae9a3a1fbfc0e6799ec15c242c6afed54753a65da62d29555a3895",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q1-4"
+        ],
+        "exported_content_sha256": "ff1be6e5deae9a3a1fbfc0e6799ec15c242c6afed54753a65da62d29555a3895",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c5904ae5f0ae082456a68c23",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/synapse/v1api20210601.md",
+        "heading": "title: synapse.azure.com/v1api20210601",
+        "start_line": 5251,
+        "end_line": 5300,
+        "start_char": 96468,
+        "end_char": 97628,
+        "score": "0.03024606971975393",
+        "root": "docs",
+        "matched_terms": [
+          "identity",
+          "managed"
+        ],
+        "evidence_id": "c5904ae5f0ae082456a68c23",
+        "source_type": "repository",
+        "content_hash": "096023aba50886b239a3d69b754db25e42bc7fdf8659de14989ca662015d5205",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload identity",
+            "useWorkloadIdentityAuth",
+            "managed identity"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "096023aba50886b239a3d69b754db25e42bc7fdf8659de14989ca662015d5205",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c771dd542da7a22b4940377c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/guide/authentication/credential-format.md",
+        "start_line": 7,
+        "total_lines": 650,
+        "start_char": 142,
+        "end_char": 5107,
+        "evidence_id": "c771dd542da7a22b4940377c",
+        "truncated": false,
+        "next_offset": 126,
+        "source_type": "repository",
+        "content_hash": "9bb25741c548c2e18657cafdec3a7a22ed94a55cb1e136730f678453b3f9cffe",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/guide/authentication/credential-format.md",
+              "offset": 6,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/guide/frequently-asked-questions.md",
+              "offset": 136,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "offset": 118,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9bb25741c548c2e18657cafdec3a7a22ed94a55cb1e136730f678453b3f9cffe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c7cb55d9e9a4952bdb585aa2",
+        "type": "evidence",
+        "evidence_id": "c7cb55d9e9a4952bdb585aa2",
+        "source_type": "implementation",
+        "exported_content_sha256": "0e5cfcd90a5611208003534d6b65aac8d61a462918bc626971733afc8f4bd7c9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ca1cf4e467e315f1441082fb",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+        "start_line": 1,
+        "total_lines": 33,
+        "start_char": 0,
+        "end_char": 1100,
+        "evidence_id": "ca1cf4e467e315f1441082fb",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2244909923b17f09ac0dc2b0147d828aa4fa6f4e378eb91465a827823ea9e1ff",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/design/ADR-2022-09-Multiple-Credential-Operator.md",
+              "offset": 48,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/bug-report.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".github/ISSUE_TEMPLATE/improvement-template.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2244909923b17f09ac0dc2b0147d828aa4fa6f4e378eb91465a827823ea9e1ff",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cad38c5ff3d607d44085dca1",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+        "heading": "title: containerservice.azure.com/v1api20231001",
+        "start_line": 15983,
+        "end_line": 16032,
+        "start_char": 380102,
+        "end_char": 381154,
+        "score": "0.025677830940988834",
+        "root": "docs",
+        "matched_terms": [
+          "agent",
+          "pool"
+        ],
+        "evidence_id": "cad38c5ff3d607d44085dca1",
+        "source_type": "repository",
+        "content_hash": "6ab397d5e959a0138b3d4dfa66eb70770627385b8d41d4a7ac05c619da7f862e",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "6ab397d5e959a0138b3d4dfa66eb70770627385b8d41d4a7ac05c619da7f862e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d0fd781fb6fce6258b12bfae",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+        "heading": "title: containerservice.azure.com/v1api20210501",
+        "start_line": 11250,
+        "end_line": 11299,
+        "start_char": 260334,
+        "end_char": 261231,
+        "score": "0.029812652003100196",
+        "root": "docs",
+        "matched_terms": [
+          "principal",
+          "service"
+        ],
+        "evidence_id": "d0fd781fb6fce6258b12bfae",
+        "source_type": "repository",
+        "content_hash": "044f1f1567204a76046bed6bd82d3fca1d2d4116c6f52131624bbc3abfe1ac58",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "044f1f1567204a76046bed6bd82d3fca1d2d4116c6f52131624bbc3abfe1ac58",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d351d922849896e2841c4da5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+        "start_line": 10845,
+        "total_lines": 32473,
+        "start_char": 267308,
+        "end_char": 269862,
+        "evidence_id": "d351d922849896e2841c4da5",
+        "truncated": false,
+        "next_offset": 10964,
+        "source_type": "repository",
+        "content_hash": "6e7ed2ac40a7989a4ef0d843e004d7683eac7b9922d34a3a4bc6cdbbb8dcddae",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+              "offset": 10844,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20231001.md",
+              "offset": 21472,
+              "limit": 120
+            },
+            {
+              "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+              "offset": 18085,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "6e7ed2ac40a7989a4ef0d843e004d7683eac7b9922d34a3a4bc6cdbbb8dcddae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e6edde8c6d2fab9ccdfe70b9",
+        "type": "evidence",
+        "path": "docs/hugo/content/contributing/create-a-new-release.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.019791666666666666",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "e6edde8c6d2fab9ccdfe70b9",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eccbcc6c1470f15279b0bd62",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20230201.md",
+        "heading": "title: containerservice.azure.com/v1api20230201",
+        "start_line": 18090,
+        "end_line": 18139,
+        "start_char": 434707,
+        "end_char": 436025,
+        "score": "0.024489795918367346",
+        "root": "docs",
+        "matched_terms": [
+          "agent",
+          "pool"
+        ],
+        "evidence_id": "eccbcc6c1470f15279b0bd62",
+        "source_type": "repository",
+        "content_hash": "8fb215bdd84e07e069029904287376e513ae9d60b2713bcbd07930a97cda738a",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "8fb215bdd84e07e069029904287376e513ae9d60b2713bcbd07930a97cda738a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed6b8b4df2dd36e843409a89",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20231102preview.md",
+        "heading": "title: containerservice.azure.com/v1api20231102preview",
+        "start_line": 8559,
+        "end_line": 8608,
+        "start_char": 212788,
+        "end_char": 214002,
+        "score": "0.019943530883272633",
+        "root": "docs",
+        "matched_terms": [
+          "make",
+          "pool"
+        ],
+        "evidence_id": "ed6b8b4df2dd36e843409a89",
+        "source_type": "repository",
+        "content_hash": "d90882d25c016c77e23c8abb255e4d892e43a729b9f267eb2e893e4a64279604",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "d90882d25c016c77e23c8abb255e4d892e43a729b9f267eb2e893e4a64279604",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee5c6ce8fd41daba913b19f5",
+        "type": "evidence",
+        "path": "docs/hugo/content/guide/authentication/multitenant-deployment.md",
+        "heading": "linktitle: Multitenancy > Multiple operator multitenancy > YAML Installation > Per-tenant configuration",
+        "start_line": 40,
+        "end_line": 73,
+        "start_char": 2284,
+        "end_char": 3915,
+        "score": "0.026540946394272742",
+        "root": "docs",
+        "matched_terms": [
+          "azure_client_id",
+          "azure_client_secret"
+        ],
+        "evidence_id": "ee5c6ce8fd41daba913b19f5",
+        "source_type": "repository",
+        "content_hash": "49827f5c8cd15aec0fb1545ce4498024fdb649d75fcd35fcdaee9e526759c454",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "AZURE_CLIENT_SECRET",
+            "AZURE_CLIENT_ID",
+            "service principal"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "49827f5c8cd15aec0fb1545ce4498024fdb649d75fcd35fcdaee9e526759c454",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f5d6c28f461ccf2c1b01e6f2",
+        "type": "evidence",
+        "path": "docs/hugo/content/reference/containerservice/v1api20210501.md",
+        "heading": "title: containerservice.azure.com/v1api20210501",
+        "start_line": 73,
+        "end_line": 114,
+        "start_char": 3584,
+        "end_char": 5213,
+        "score": "0.01913265306122449",
+        "root": "docs",
+        "matched_terms": [
+          "agent",
+          "pool"
+        ],
+        "evidence_id": "f5d6c28f461ccf2c1b01e6f2",
+        "source_type": "repository",
+        "content_hash": "df15bbabf39165ea63cec04ebdb7842d3e1fcdd364602c0b04b51414c0befdfe",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "cipool",
+            "make-mi-fic",
+            "agent pool"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "df15bbabf39165ea63cec04ebdb7842d3e1fcdd364602c0b04b51414c0befdfe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f6f898115814252b494b81fc",
+        "type": "evidence",
+        "path": "CONTRIBUTING.md",
+        "heading": "Contributing Guidelines",
+        "start_line": 1,
+        "end_line": 4,
+        "start_char": 0,
+        "end_char": 186,
+        "score": "0.0259915611814346",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "f6f898115814252b494b81fc",
+        "source_type": "repository",
+        "content_hash": "b48fb5bb7f0d969eb53e137354af8491209f82cdfaf6a9eaf412b311d5a08d1e",
+        "revision": "f1f6e56e9c680470220240b6027c8efc46363435",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "NewCredentialProvider",
+            "CredentialProvider",
+            "identity package"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b48fb5bb7f0d969eb53e137354af8491209f82cdfaf6a9eaf412b311d5a08d1e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Do docs describe CI secrets (AZURE_CLIENT_ID/AZURE_CLIENT_SECRET) or service principal auth for contributors/maintainers that this change invalidates?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Do docs describe workload identity auth setup, useWorkloadIdentityAuth, or managed identity configuration for the operator?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Do docs describe the identity package / NewCredentialProvider API that the new TokenCredentialProvider interface affects?"
+      },
+      {
+        "id": "research:Q1-4",
+        "type": "research_question",
+        "description": "Do docs describe CI agent pool, Bicep templates, or make-mi-fic scripts that changed?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:03fed2f707609e5ee7f61110",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1418caf6199cd8f32126d80a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:144b76a051d2fac7eedd1ca2",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:172e3241568a8505cb0c7415",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1824010181b7332be3414bf5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:182ff75c54def1b168755131",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1a6e19e43ce6e01d435d5ce0",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1cd9a15466b234bb2fedd6db",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1d09d68c3817e44093d5d75c",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1e7abe8315fc32b3a92864da",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:212d18fd1b9a9dd547113f4a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:277ef15c1a4b5d13f46dd728",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2ce50d5f8f9bf3cef240ad8c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3255423a372a99cea9b6bbdf",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:340a7e730759f2e3ab38afff",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:342cfe7256adce2a567fac8b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3b92c0756e90746a7e6b60b7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3c425ec65ac45d6e4e071413",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4545389c174db3f43ec8fdc9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:494dfcde7f3e1b37ef0067ca",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:50f36d561b66711aea3e2f54",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:52cb0fa4b523863c903dd66b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:558738df645cf322b7175af4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5eeb1e7aa20b9a59b7d4a92f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6534f75994a01e089085453e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68da9798d0ddb8978a41a0e4",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6a06902c637cb135aebb0759",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:700a4bd53b397a4f59f5846a",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7f913ea3935ebf06767b0405",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8220c45a3b7454c6b703180c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:888925e1c69c99b726165059",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8a50d03dfefd906c5e6afbf6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9342226c9a000184594dbae8",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:957a1455fc628b923287c8cc",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:95e228c12670b262e13f2e87",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a0ff40831a2963ed13c2169f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a69a4ad02755f4bda17c611c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aa7bb38040ccce2b2be20b7f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b68be8f9854eee05ad271996",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b7f87ff45282bb15a93b809f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b7fda08ae82ee031b923f165",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bb06401e5e06a9fbd8bc5454",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bd8ce0e6a142e1b3aacfbb80",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bfadd6a82d070034b3eb4b99",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c281210185c0cd7622421bdc",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c281210185c0cd7622421bdc",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c5904ae5f0ae082456a68c23",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c771dd542da7a22b4940377c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ca1cf4e467e315f1441082fb",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cad38c5ff3d607d44085dca1",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d0fd781fb6fce6258b12bfae",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d351d922849896e2841c4da5",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e6edde8c6d2fab9ccdfe70b9",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eccbcc6c1470f15279b0bd62",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed6b8b4df2dd36e843409a89",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee5c6ce8fd41daba913b19f5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f5d6c28f461ccf2c1b01e6f2",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f6f898115814252b494b81fc",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

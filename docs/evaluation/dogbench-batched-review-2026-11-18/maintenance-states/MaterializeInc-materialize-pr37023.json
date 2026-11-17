@@ -1,0 +1,5295 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "self-hosted-replica-guide",
+      "description": "Add a new guide under doc/user/content/ingest-data/postgres/ (e.g. dedicated-replica.md) explaining how to stand up a dedicated PostgreSQL replica using native logical replication (pg_basebackup/primary_conninfo, wal_level=logical, hot_standby_feedback) and point a Materialize PostgreSQL source at the replica host instead of the production primary, including the CREATE CONNECTION/CREATE SOURCE steps and caveats (replication slot on replica, failover).",
+      "evidence_ids": [
+        "badda2e09c0fb948b3f34337",
+        "f717dc5e39bbaeb8a5d9dd08",
+        "145d22c45a934c0ef7a25a8c",
+        "28b0f9a1b709fa547c9b3653"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "postgres-guides-index",
+      "description": "Register the new dedicated-replica guide in the shared PostgreSQL integration guides list so it appears on the PostgreSQL ingest-data index and is linked from the CREATE SOURCE PostgreSQL pages.",
+      "evidence_ids": [
+        "75d9727a59e38b0a894d3f8c",
+        "1e116ba6310c96453856ae4e"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "f2dd2adcf9fd2170a855978e9f796d52c403066a9c99ff0e52347954c8cd772d",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where does the documentation describe PostgreSQL sources, including connection parameters and any guidance on replication slots or dedicated replicas?",
+          "root": "docs",
+          "queries": [
+            "postgresql source connection",
+            "replication slot",
+            "dedicated replica"
+          ],
+          "paths": [
+            "doc/user/content/sql/create-source/postgres.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "offset": 24,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "offset": 71,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "28b0f9a1b709fa547c9b3653",
+            "f7db6c8c09106acb1294eae2",
+            "82383d8720171c925893abfd",
+            "33458240b80b1afaebd99712",
+            "da398de79a124258666242e7",
+            "2746ab03e17a82b08430dc74",
+            "632d9226146e18675ea5e6f1",
+            "4c3d379db5e75e3253e6a179",
+            "27ea987b3202e42a2a038cd7",
+            "196c74c6133058a2fa610684",
+            "f7bac190ea5c1585f50e1adc",
+            "9f0f1476ef6ae49e89da4028",
+            "1eb9b30e5e061ee9eb64eee6",
+            "2f058bda1a0d2b7161dba8d7",
+            "ac29b9d5964ef178118aa6cd"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "evidence_id": "33458240b80b1afaebd99712",
+              "score": "0.028623686347081047"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "evidence_id": "da398de79a124258666242e7",
+              "score": "0.0275665831065371"
+            },
+            {
+              "rank": 3,
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "evidence_id": "2746ab03e17a82b08430dc74",
+              "score": "0.025192581235797252"
+            },
+            {
+              "rank": 4,
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "evidence_id": "632d9226146e18675ea5e6f1",
+              "score": "0.025140385923306734"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "evidence_id": "4c3d379db5e75e3253e6a179",
+              "score": "0.02480339653591933"
+            },
+            {
+              "rank": 6,
+              "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+              "evidence_id": "27ea987b3202e42a2a038cd7",
+              "score": "0.02216750588437604"
+            },
+            {
+              "rank": 7,
+              "path": "doc/developer/design/20220728_persisting_introspection_data.md",
+              "evidence_id": "196c74c6133058a2fa610684",
+              "score": "0.021747009786154403"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "evidence_id": "f7bac190ea5c1585f50e1adc",
+              "score": "0.021146119705843847"
+            },
+            {
+              "rank": 9,
+              "path": "doc/developer/design/20230814_unbilled_replicas.md",
+              "evidence_id": "9f0f1476ef6ae49e89da4028",
+              "score": "0.02040950687997893"
+            },
+            {
+              "rank": 10,
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "evidence_id": "1eb9b30e5e061ee9eb64eee6",
+              "score": "0.020388579872415574"
+            },
+            {
+              "rank": 11,
+              "path": "doc/developer/design/20230814_unbilled_replicas.md",
+              "evidence_id": "2f058bda1a0d2b7161dba8d7",
+              "score": "0.020359848484848484"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/testdrive.md",
+              "evidence_id": "ac29b9d5964ef178118aa6cd",
+              "score": "0.020269265130239605"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 392
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "start": 24,
+              "end": 144,
+              "total_lines": 154
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "start": 71,
+              "end": 135,
+              "total_lines": 135
+            }
+          ],
+          "read_evidence_ids": [
+            "28b0f9a1b709fa547c9b3653",
+            "f7db6c8c09106acb1294eae2",
+            "82383d8720171c925893abfd"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Does the docs cover native logical replication setup, publication creation, or replica configuration for PostgreSQL?",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "doc/user/content/ingest-data/postgres"
+          ],
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/neon.md",
+              "offset": 66,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "offset": 67,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "145d22c45a934c0ef7a25a8c",
+            "f717dc5e39bbaeb8a5d9dd08",
+            "14633e5e195ac0ccbad78dd0",
+            "64d736cfbbf6d26c4b751b1a",
+            "c657538104419ffa3bdae530",
+            "9702b48fa1fc4103c7f3a406",
+            "3e02f55e6e82f79a10c376fd",
+            "4b4be7afd63949e662fe1d61",
+            "2eb87f4a7369d2b648f50ccf",
+            "16875df4229947158819e9ea",
+            "214eb8378d3186bc85b9f3f7",
+            "2746ab03e17a82b08430dc74",
+            "632d9226146e18675ea5e6f1",
+            "94e69c768d896c06e554ab08",
+            "b645f171997463581093c392"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/ingest-data/postgres/neon.md",
+              "evidence_id": "64d736cfbbf6d26c4b751b1a",
+              "score": "0.04627081163075461"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "evidence_id": "c657538104419ffa3bdae530",
+              "score": "0.03990396291451677"
+            },
+            {
+              "rank": 3,
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "evidence_id": "9702b48fa1fc4103c7f3a406",
+              "score": "0.037782394951889633"
+            },
+            {
+              "rank": 4,
+              "path": "doc/user/content/ingest-data/postgres/cloud-sql.md",
+              "evidence_id": "3e02f55e6e82f79a10c376fd",
+              "score": "0.035622242999616416"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/content/ingest-data/postgres/alloydb.md",
+              "evidence_id": "4b4be7afd63949e662fe1d61",
+              "score": "0.03496121933621933"
+            },
+            {
+              "rank": 6,
+              "path": "doc/user/content/ingest-data/postgres/amazon-aurora.md",
+              "evidence_id": "2eb87f4a7369d2b648f50ccf",
+              "score": "0.034122442200831785"
+            },
+            {
+              "rank": 7,
+              "path": "doc/user/content/ingest-data/postgres/azure-db.md",
+              "evidence_id": "16875df4229947158819e9ea",
+              "score": "0.033669860049941415"
+            },
+            {
+              "rank": 8,
+              "path": "doc/user/content/ingest-data/postgres/neon.md",
+              "evidence_id": "214eb8378d3186bc85b9f3f7",
+              "score": "0.03327702702702703"
+            },
+            {
+              "rank": 9,
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "evidence_id": "2746ab03e17a82b08430dc74",
+              "score": "0.033074195308237866"
+            },
+            {
+              "rank": 10,
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "evidence_id": "632d9226146e18675ea5e6f1",
+              "score": "0.03264849105594638"
+            },
+            {
+              "rank": 11,
+              "path": "doc/user/content/ingest-data/postgres/amazon-rds.md",
+              "evidence_id": "94e69c768d896c06e554ab08",
+              "score": "0.032591037654328796"
+            },
+            {
+              "rank": 12,
+              "path": "doc/user/content/ingest-data/postgres/amazon-rds.md",
+              "evidence_id": "b645f171997463581093c392",
+              "score": "0.03224206349206349"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/neon.md",
+              "start": 66,
+              "end": 186,
+              "total_lines": 325
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "start": 54,
+              "end": 174,
+              "total_lines": 399
+            },
+            {
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "start": 67,
+              "end": 187,
+              "total_lines": 247
+            }
+          ],
+          "read_evidence_ids": [
+            "145d22c45a934c0ef7a25a8c",
+            "f717dc5e39bbaeb8a5d9dd08",
+            "14633e5e195ac0ccbad78dd0"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Where is the PostgreSQL source reference page and what sections exist for connection and replication options?",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "doc/user/content/sql/create-source"
+          ],
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/source-versioning.md",
+              "offset": 46,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "offset": 300,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "offset": 1232,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "78e5c586d4e562cd0913482c",
+            "08e7b90c06dc2cc75c784362",
+            "02794869bbdaccc8ef6e00de",
+            "b90c499f01b19a6957f2a152",
+            "31c03a4166da2c6d0e780d0d",
+            "8d785a9811a4b82626034b3c",
+            "e02a4e88b3fa6b64e1c5c449",
+            "3f3aa7e80e637ff9ea7f09d7",
+            "deceb866037b084e10ad43f6",
+            "e3cb45f832d76bed68566589",
+            "2cd0cb5061fe790a2b044544",
+            "0d5b2273a76b8ea97c847caa",
+            "997486f538ec2bb3ee040fc9",
+            "e25d0e572c220901d8f95d65",
+            "07153de7d75b1ee8d6b10cc1"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/ingest-data/postgres/source-versioning.md",
+              "evidence_id": "b90c499f01b19a6957f2a152",
+              "score": "0.03021353930031804"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "evidence_id": "31c03a4166da2c6d0e780d0d",
+              "score": "0.029906956136464335"
+            },
+            {
+              "rank": 3,
+              "path": "doc/user/content/releases/_index.md",
+              "evidence_id": "8d785a9811a4b82626034b3c",
+              "score": "0.028985507246376812"
+            },
+            {
+              "rank": 4,
+              "path": "doc/user/content/sql/create-connection.md",
+              "evidence_id": "e02a4e88b3fa6b64e1c5c449",
+              "score": "0.027242401779095628"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "evidence_id": "3f3aa7e80e637ff9ea7f09d7",
+              "score": "0.027222222222222224"
+            },
+            {
+              "rank": 6,
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "evidence_id": "deceb866037b084e10ad43f6",
+              "score": "0.026830135039090264"
+            },
+            {
+              "rank": 7,
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "evidence_id": "e3cb45f832d76bed68566589",
+              "score": "0.025525990099009903"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "evidence_id": "2cd0cb5061fe790a2b044544",
+              "score": "0.024809741248097414"
+            },
+            {
+              "rank": 9,
+              "path": "doc/developer/generated/storage/source/postgres/_module.md",
+              "evidence_id": "0d5b2273a76b8ea97c847caa",
+              "score": "0.024259113558877526"
+            },
+            {
+              "rank": 10,
+              "path": "doc/user/content/sql/create-connection.md",
+              "evidence_id": "997486f538ec2bb3ee040fc9",
+              "score": "0.02416052416052416"
+            },
+            {
+              "rank": 11,
+              "path": "doc/developer/generated/postgres-util/query.md",
+              "evidence_id": "e25d0e572c220901d8f95d65",
+              "score": "0.024028361344537813"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/generated/persist/postgres.md",
+              "evidence_id": "07153de7d75b1ee8d6b10cc1",
+              "score": "0.02364907819453274"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/source-versioning.md",
+              "start": 46,
+              "end": 166,
+              "total_lines": 186
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "start": 300,
+              "end": 392,
+              "total_lines": 392
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "start": 1232,
+              "end": 1328,
+              "total_lines": 1328
+            }
+          ],
+          "read_evidence_ids": [
+            "78e5c586d4e562cd0913482c",
+            "08e7b90c06dc2cc75c784362",
+            "02794869bbdaccc8ef6e00de"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "02794869bbdaccc8ef6e00de",
+        "07153de7d75b1ee8d6b10cc1",
+        "08e7b90c06dc2cc75c784362",
+        "0d5b2273a76b8ea97c847caa",
+        "145d22c45a934c0ef7a25a8c",
+        "14633e5e195ac0ccbad78dd0",
+        "16875df4229947158819e9ea",
+        "196c74c6133058a2fa610684",
+        "1eb9b30e5e061ee9eb64eee6",
+        "214eb8378d3186bc85b9f3f7",
+        "2746ab03e17a82b08430dc74",
+        "27ea987b3202e42a2a038cd7",
+        "28b0f9a1b709fa547c9b3653",
+        "2cd0cb5061fe790a2b044544",
+        "2eb87f4a7369d2b648f50ccf",
+        "2f058bda1a0d2b7161dba8d7",
+        "31c03a4166da2c6d0e780d0d",
+        "33458240b80b1afaebd99712",
+        "3e02f55e6e82f79a10c376fd",
+        "3f3aa7e80e637ff9ea7f09d7",
+        "4b4be7afd63949e662fe1d61",
+        "4c3d379db5e75e3253e6a179",
+        "632d9226146e18675ea5e6f1",
+        "64d736cfbbf6d26c4b751b1a",
+        "78e5c586d4e562cd0913482c",
+        "82383d8720171c925893abfd",
+        "8d785a9811a4b82626034b3c",
+        "94e69c768d896c06e554ab08",
+        "9702b48fa1fc4103c7f3a406",
+        "997486f538ec2bb3ee040fc9",
+        "9f0f1476ef6ae49e89da4028",
+        "ac29b9d5964ef178118aa6cd",
+        "b645f171997463581093c392",
+        "b90c499f01b19a6957f2a152",
+        "c657538104419ffa3bdae530",
+        "da398de79a124258666242e7",
+        "deceb866037b084e10ad43f6",
+        "e02a4e88b3fa6b64e1c5c449",
+        "e25d0e572c220901d8f95d65",
+        "e3cb45f832d76bed68566589",
+        "f717dc5e39bbaeb8a5d9dd08",
+        "f7bac190ea5c1585f50e1adc",
+        "f7db6c8c09106acb1294eae2"
+      ],
+      "new_evidence_count": 43,
+      "new_path_count": 22
+    },
+    {
+      "signature": "60fa8813f721b534f35323e2f3be78a5ae86bdd0774ec353d1977c3514f72a70",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the self-hosted PostgreSQL integration guide already cover standing up a dedicated replica or point a source at a non-primary host?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "doc/user/content/ingest-data/postgres/self-hosted.md"
+          ],
+          "anchor": "A. Configure PostgreSQL",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "query": "A. Configure PostgreSQL",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "badda2e09c0fb948b3f34337"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "start": 20,
+              "end": 140,
+              "total_lines": 399
+            }
+          ],
+          "read_evidence_ids": [
+            "badda2e09c0fb948b3f34337"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Is there any existing guidance on logical replication from a standby/replica (e.g., hot_standby_feedback, pg_basebackup, primary_conninfo) in the docs?",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "fe6d599c08fb100569f0f385",
+            "ea3fa5933f277dbf717ceec9",
+            "e982d0ec942b3e24f572ddc4",
+            "6a64c515f973674af1ae517c",
+            "94c155f7788f67f295f05ba9",
+            "9702b48fa1fc4103c7f3a406",
+            "f7bac190ea5c1585f50e1adc",
+            "544a7e026bd4b139d84a6dfe",
+            "e08d850a40c55c8f1306c656",
+            "3eb72b1e3b435e7d4c9a505b",
+            "64d736cfbbf6d26c4b751b1a",
+            "7979f0be99b595ae2887381c",
+            "41ecd770bc0c713a6f21d7d6",
+            "fdc5236406c8a7f0c494e8fb",
+            "c51e46d2018be9aa453f1476"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+              "evidence_id": "6a64c515f973674af1ae517c",
+              "score": "0.04117636005768589"
+            },
+            {
+              "rank": 2,
+              "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+              "evidence_id": "94c155f7788f67f295f05ba9",
+              "score": "0.03652364158829676"
+            },
+            {
+              "rank": 3,
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "evidence_id": "9702b48fa1fc4103c7f3a406",
+              "score": "0.029551337359792925"
+            },
+            {
+              "rank": 4,
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "evidence_id": "f7bac190ea5c1585f50e1adc",
+              "score": "0.028309409888357256"
+            },
+            {
+              "rank": 5,
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "evidence_id": "544a7e026bd4b139d84a6dfe",
+              "score": "0.02490996398559424"
+            },
+            {
+              "rank": 6,
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "evidence_id": "e08d850a40c55c8f1306c656",
+              "score": "0.02297979797979798"
+            },
+            {
+              "rank": 7,
+              "path": "doc/user/content/ingest-data/postgres/postgres-debezium.md",
+              "evidence_id": "3eb72b1e3b435e7d4c9a505b",
+              "score": "0.021953405017921146"
+            },
+            {
+              "rank": 8,
+              "path": "doc/user/content/ingest-data/postgres/neon.md",
+              "evidence_id": "64d736cfbbf6d26c4b751b1a",
+              "score": "0.020887166236003445"
+            },
+            {
+              "rank": 9,
+              "path": "doc/user/content/ingest-data/postgres/postgres-debezium.md",
+              "evidence_id": "7979f0be99b595ae2887381c",
+              "score": "0.020675620675620676"
+            },
+            {
+              "rank": 10,
+              "path": "doc/user/content/ingest-data/postgres/faq.md",
+              "evidence_id": "41ecd770bc0c713a6f21d7d6",
+              "score": "0.020110731151278295"
+            },
+            {
+              "rank": 11,
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "evidence_id": "fdc5236406c8a7f0c494e8fb",
+              "score": "0.019440406976744186"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "evidence_id": "c51e46d2018be9aa453f1476",
+              "score": "0.019242437375400885"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+              "start": 0,
+              "end": 100,
+              "total_lines": 100
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "start": 1,
+              "end": 10,
+              "total_lines": 10
+            },
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "start": 1,
+              "end": 14,
+              "total_lines": 14
+            }
+          ],
+          "read_evidence_ids": [
+            "fe6d599c08fb100569f0f385",
+            "ea3fa5933f277dbf717ceec9",
+            "e982d0ec942b3e24f572ddc4"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Where is the PostgreSQL integration guide index that lists guides, to know where a new replica guide would be linked?",
+          "root": "docs",
+          "queries": [
+            "postgres integration guides index"
+          ],
+          "paths": [
+            "doc/user/content/ingest-data/postgres/_index.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/_index.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/mysql/_index.md",
+              "offset": 40,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/integrations/_index.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "1e116ba6310c96453856ae4e",
+            "6cf759d8a8667e5e2c6d0c2c",
+            "5390d4ce8adb6f5a79dde414",
+            "aaf912a6d149418fbbf6054e",
+            "67270feb7c8a9c13a306b804",
+            "8bdd0e52702f3ea99c870ad7",
+            "12f6d77a438b620384d49977",
+            "75d9727a59e38b0a894d3f8c",
+            "d8e5672a434ecb10e41ea98c",
+            "e3a1c57cdca28a02bd778319",
+            "c7b0cc65fc4d2fef52884427",
+            "d924bfa9075a162810b5ce54",
+            "f9a3f7f71e344cbfdea7c417",
+            "1eb9b30e5e061ee9eb64eee6",
+            "34fb2bf893af45c5b37f096e"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/ingest-data/postgres/_index.md",
+              "evidence_id": "aaf912a6d149418fbbf6054e",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/ingest-data/mysql/_index.md",
+              "evidence_id": "67270feb7c8a9c13a306b804",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 3,
+              "path": "doc/user/content/integrations/_index.md",
+              "evidence_id": "8bdd0e52702f3ea99c870ad7",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 4,
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "evidence_id": "12f6d77a438b620384d49977",
+              "score": "0.015625"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/shared-content/postgresql-ingest-data-guides.md",
+              "evidence_id": "75d9727a59e38b0a894d3f8c",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 6,
+              "path": "doc/user/content/ingest-data/troubleshooting.md",
+              "evidence_id": "d8e5672a434ecb10e41ea98c",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 7,
+              "path": "doc/user/content/ingest-data/sql-server/_index.md",
+              "evidence_id": "e3a1c57cdca28a02bd778319",
+              "score": "0.014925373134328358"
+            },
+            {
+              "rank": 8,
+              "path": "doc/developer/design/20250226_postgres_style_explain.md",
+              "evidence_id": "c7b0cc65fc4d2fef52884427",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 9,
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "evidence_id": "d924bfa9075a162810b5ce54",
+              "score": "0.014492753623188406"
+            },
+            {
+              "rank": 10,
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "evidence_id": "f9a3f7f71e344cbfdea7c417",
+              "score": "0.014285714285714285"
+            },
+            {
+              "rank": 11,
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "evidence_id": "1eb9b30e5e061ee9eb64eee6",
+              "score": "0.014084507042253521"
+            },
+            {
+              "rank": 12,
+              "path": "doc/user/content/integrations/sql-clients.md",
+              "evidence_id": "34fb2bf893af45c5b37f096e",
+              "score": "0.013888888888888888"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/_index.md",
+              "start": 0,
+              "end": 52,
+              "total_lines": 52
+            },
+            {
+              "path": "doc/user/content/ingest-data/mysql/_index.md",
+              "start": 40,
+              "end": 53,
+              "total_lines": 53
+            },
+            {
+              "path": "doc/user/content/integrations/_index.md",
+              "start": 0,
+              "end": 70,
+              "total_lines": 70
+            }
+          ],
+          "read_evidence_ids": [
+            "1e116ba6310c96453856ae4e",
+            "6cf759d8a8667e5e2c6d0c2c",
+            "5390d4ce8adb6f5a79dde414"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "12f6d77a438b620384d49977",
+        "1e116ba6310c96453856ae4e",
+        "34fb2bf893af45c5b37f096e",
+        "3eb72b1e3b435e7d4c9a505b",
+        "41ecd770bc0c713a6f21d7d6",
+        "5390d4ce8adb6f5a79dde414",
+        "544a7e026bd4b139d84a6dfe",
+        "67270feb7c8a9c13a306b804",
+        "6a64c515f973674af1ae517c",
+        "6cf759d8a8667e5e2c6d0c2c",
+        "75d9727a59e38b0a894d3f8c",
+        "7979f0be99b595ae2887381c",
+        "8bdd0e52702f3ea99c870ad7",
+        "94c155f7788f67f295f05ba9",
+        "aaf912a6d149418fbbf6054e",
+        "badda2e09c0fb948b3f34337",
+        "c51e46d2018be9aa453f1476",
+        "c7b0cc65fc4d2fef52884427",
+        "d8e5672a434ecb10e41ea98c",
+        "d924bfa9075a162810b5ce54",
+        "e08d850a40c55c8f1306c656",
+        "e3a1c57cdca28a02bd778319",
+        "e982d0ec942b3e24f572ddc4",
+        "ea3fa5933f277dbf717ceec9",
+        "f9a3f7f71e344cbfdea7c417",
+        "fdc5236406c8a7f0c494e8fb",
+        "fe6d599c08fb100569f0f385"
+      ],
+      "new_evidence_count": 27,
+      "new_path_count": 13
+    },
+    {
+      "signature": "0c49a317a685c3e05b6b96a8f4f82143a9f36fd5da20d24082b67e86b8326205",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q3-1",
+          "question": "What does the self-hosted PostgreSQL guide's later sections (after network security) cover, and does it include any guidance on pointing the source at a non-primary host or a dedicated replica?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "doc/user/content/ingest-data/postgres/self-hosted.md"
+          ],
+          "anchor": "## C. Create a connection",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "query": "## C. Create a connection",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [],
+          "ranked_hits": [],
+          "observed_reads": [],
+          "read_evidence_ids": []
+        },
+        {
+          "id": "Q3-2",
+          "question": "What is the shared include file that lists PostgreSQL integration guides, so a new replica guide could be registered there?",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "doc/user/content/shared-content/postgresql-ingest-data-guides.md"
+          ],
+          "reads": [
+            {
+              "path": "doc/user/shared-content/postgresql-ingest-data-guides.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/troubleshooting.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "offset": 16,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "75d9727a59e38b0a894d3f8c",
+            "089e8ea8aac844d5e6790d03",
+            "4c8509bce20746f6f4660c4a",
+            "aaf912a6d149418fbbf6054e",
+            "d8e5672a434ecb10e41ea98c",
+            "1eb9b30e5e061ee9eb64eee6",
+            "12f6d77a438b620384d49977",
+            "de13aee761930404ee04026a",
+            "2885356ee3e497fb0813b8f8",
+            "aae324143e37b1f4ce3777d3",
+            "8c7269e8007c125afd215c63",
+            "44b1aca11e2e3a55274dd4c5",
+            "c10d2a24197d3995bfdd0ab1",
+            "cf5adc9da9d78f21cfd00755"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/shared-content/postgresql-ingest-data-guides.md",
+              "evidence_id": "75d9727a59e38b0a894d3f8c",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 2,
+              "path": "doc/user/content/ingest-data/postgres/_index.md",
+              "evidence_id": "aaf912a6d149418fbbf6054e",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 3,
+              "path": "doc/user/content/ingest-data/troubleshooting.md",
+              "evidence_id": "d8e5672a434ecb10e41ea98c",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 4,
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "evidence_id": "1eb9b30e5e061ee9eb64eee6",
+              "score": "0.015625"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "evidence_id": "12f6d77a438b620384d49977",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 6,
+              "path": "doc/user/content/ingest-data/postgres/amazon-rds.md",
+              "evidence_id": "de13aee761930404ee04026a",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 7,
+              "path": "doc/user/layouts/shortcodes/ingest-data/postgres-native-support.md",
+              "evidence_id": "2885356ee3e497fb0813b8f8",
+              "score": "0.014925373134328358"
+            },
+            {
+              "rank": 8,
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "evidence_id": "aae324143e37b1f4ce3777d3",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 9,
+              "path": "doc/user/content/ingest-data/postgres/_index.md",
+              "evidence_id": "8c7269e8007c125afd215c63",
+              "score": "0.014492753623188406"
+            },
+            {
+              "rank": 10,
+              "path": "doc/user/content/ingest-data/postgres/cloud-sql.md",
+              "evidence_id": "44b1aca11e2e3a55274dd4c5",
+              "score": "0.014285714285714285"
+            },
+            {
+              "rank": 11,
+              "path": "doc/user/content/ingest-data/postgres/amazon-aurora.md",
+              "evidence_id": "c10d2a24197d3995bfdd0ab1",
+              "score": "0.014084507042253521"
+            },
+            {
+              "rank": 12,
+              "path": "doc/user/content/headless/mysql-ingest-guides.md",
+              "evidence_id": "cf5adc9da9d78f21cfd00755",
+              "score": "0.013888888888888888"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/user/shared-content/postgresql-ingest-data-guides.md",
+              "start": 0,
+              "end": 7,
+              "total_lines": 7
+            },
+            {
+              "path": "doc/user/content/ingest-data/troubleshooting.md",
+              "start": 108,
+              "end": 117,
+              "total_lines": 117
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "start": 16,
+              "end": 27,
+              "total_lines": 27
+            }
+          ],
+          "read_evidence_ids": [
+            "75d9727a59e38b0a894d3f8c",
+            "089e8ea8aac844d5e6790d03",
+            "4c8509bce20746f6f4660c4a"
+          ]
+        },
+        {
+          "id": "Q3-3",
+          "question": "Does the postgres_source_details YAML include any considerations about replication slots, primary vs replica, or hot_standby_feedback that a replica guide should reference?",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "offset": 125,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "3794590ddd5ee06b96e052de",
+            "70db49c66e366b2823ce849a",
+            "82b463663a76b844f544489a",
+            "1eb9b30e5e061ee9eb64eee6",
+            "fdc5236406c8a7f0c494e8fb",
+            "da398de79a124258666242e7",
+            "c51e46d2018be9aa453f1476",
+            "2746ab03e17a82b08430dc74",
+            "ac29b9d5964ef178118aa6cd",
+            "dbe7400361b0c78920e54134",
+            "c76181fae715bcd48b863872",
+            "72049ce45873eb97894fe20d",
+            "e8d010136f0d0dcb413beaec",
+            "4c3d379db5e75e3253e6a179",
+            "a226bd8acc812a64ee914adb"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "evidence_id": "1eb9b30e5e061ee9eb64eee6",
+              "score": "0.021710234824988926"
+            },
+            {
+              "rank": 2,
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "evidence_id": "fdc5236406c8a7f0c494e8fb",
+              "score": "0.02077332635070263"
+            },
+            {
+              "rank": 3,
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "evidence_id": "da398de79a124258666242e7",
+              "score": "0.02022765728349485"
+            },
+            {
+              "rank": 4,
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "evidence_id": "c51e46d2018be9aa453f1476",
+              "score": "0.01937080240367621"
+            },
+            {
+              "rank": 5,
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "evidence_id": "2746ab03e17a82b08430dc74",
+              "score": "0.018881004812005546"
+            },
+            {
+              "rank": 6,
+              "path": "doc/developer/testdrive.md",
+              "evidence_id": "ac29b9d5964ef178118aa6cd",
+              "score": "0.018652526512788523"
+            },
+            {
+              "rank": 7,
+              "path": "doc/user/content/ingest-data/postgres/_index.md",
+              "evidence_id": "dbe7400361b0c78920e54134",
+              "score": "0.018389450606982757"
+            },
+            {
+              "rank": 8,
+              "path": "doc/user/content/ingest-data/postgres/slot-overcompacted.md",
+              "evidence_id": "c76181fae715bcd48b863872",
+              "score": "0.018121778350515462"
+            },
+            {
+              "rank": 9,
+              "path": "doc/user/content/ingest-data/postgres/connection-closed.md",
+              "evidence_id": "72049ce45873eb97894fe20d",
+              "score": "0.018115942028985508"
+            },
+            {
+              "rank": 10,
+              "path": "doc/user/content/ingest-data/postgres/slot-overcompacted.md",
+              "evidence_id": "e8d010136f0d0dcb413beaec",
+              "score": "0.0178521714922049"
+            },
+            {
+              "rank": 11,
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "evidence_id": "4c3d379db5e75e3253e6a179",
+              "score": "0.017760353628374467"
+            },
+            {
+              "rank": 12,
+              "path": "doc/user/content/ingest-data/postgres/alloydb.md",
+              "evidence_id": "a226bd8acc812a64ee914adb",
+              "score": "0.0177188573773014"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "start": 0,
+              "end": 14,
+              "total_lines": 14
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "start": 125,
+              "end": 154,
+              "total_lines": 154
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "start": 0,
+              "end": 10,
+              "total_lines": 10
+            }
+          ],
+          "read_evidence_ids": [
+            "3794590ddd5ee06b96e052de",
+            "70db49c66e366b2823ce849a",
+            "82b463663a76b844f544489a"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "089e8ea8aac844d5e6790d03",
+        "2885356ee3e497fb0813b8f8",
+        "3794590ddd5ee06b96e052de",
+        "44b1aca11e2e3a55274dd4c5",
+        "4c8509bce20746f6f4660c4a",
+        "70db49c66e366b2823ce849a",
+        "72049ce45873eb97894fe20d",
+        "82b463663a76b844f544489a",
+        "8c7269e8007c125afd215c63",
+        "a226bd8acc812a64ee914adb",
+        "aae324143e37b1f4ce3777d3",
+        "c10d2a24197d3995bfdd0ab1",
+        "c76181fae715bcd48b863872",
+        "cf5adc9da9d78f21cfd00755",
+        "dbe7400361b0c78920e54134",
+        "de13aee761930404ee04026a",
+        "e8d010136f0d0dcb413beaec"
+      ],
+      "new_evidence_count": 17,
+      "new_path_count": 4
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 1,
+  "snapshot": {
+    "docs": "57227616afc8f0b7d32714321e1e81bc96d8268e"
+  },
+  "protocol_retries": {
+    "REASON": 1,
+    "REPAIR": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:953de79bd579db44": 0,
+    "discover:Q1-2:852666213cb9e693": 302,
+    "discover:Q1-3:df785a66b8a5ef95": 581,
+    "discover:Q2-2:897ec63786bee662": 0,
+    "discover:Q2-3:628001b982a7744a": 191,
+    "discover:Q3-2:4110b779e52175db": 0,
+    "discover:Q3-3:74d9ed8ed8542111": 153
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:953de79bd579db44": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 302,
+      "cache_hit": false
+    },
+    "discover:Q1-2:852666213cb9e693": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 278,
+      "cache_hit": false
+    },
+    "discover:Q1-3:df785a66b8a5ef95": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 140,
+      "cache_hit": false
+    },
+    "discover:Q1-1:0801ca844fa12f8c": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 240,
+      "cache_hit": false
+    },
+    "discover:Q1-2:f65cfe36708a1258": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 261,
+      "cache_hit": false
+    },
+    "discover:Q1-3:b52d7e205070102e": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 285,
+      "cache_hit": false
+    },
+    "discover:Q2-2:897ec63786bee662": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 191,
+      "cache_hit": false
+    },
+    "discover:Q2-3:628001b982a7744a": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 109,
+      "cache_hit": false
+    },
+    "discover:Q2-1:eac484664c64efe9": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 173,
+      "cache_hit": false
+    },
+    "discover:Q2-3:bfe32a4c93bfd8d0": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 216,
+      "cache_hit": false
+    },
+    "discover:Q2-2:c99b575ebfcc2b6a": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 247,
+      "cache_hit": false
+    },
+    "discover:Q3-2:4110b779e52175db": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 153,
+      "cache_hit": false
+    },
+    "discover:Q3-3:74d9ed8ed8542111": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 233,
+      "cache_hit": false
+    },
+    "discover:Q3-1:81d012930ba45790": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 172,
+      "cache_hit": false
+    },
+    "discover:Q3-3:8914d194ad97d720": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 211,
+      "cache_hit": false
+    },
+    "discover:Q3-2:c13c8baf177d6ba5": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 265,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 1832,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "self-hosted-replica-guide",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "doc/user/content/ingest-data/postgres/dedicated-replica.md"
+      ],
+      "evidence_ids": [
+        "badda2e09c0fb948b3f34337",
+        "f717dc5e39bbaeb8a5d9dd08",
+        "145d22c45a934c0ef7a25a8c",
+        "28b0f9a1b709fa547c9b3653"
+      ],
+      "reason": "Add a new guide under doc/user/content/ingest-data/postgres/ (e.g. dedicated-replica.md) explaining how to stand up a dedicated PostgreSQL replica using native logical replication (pg_basebackup/primary_conninfo, wal_level=logical, hot_standby_feedback) and point a Materialize PostgreSQL source at the replica host instead of the production primary, including the CREATE CONNECTION/CREATE SOURCE steps and caveats (replication slot on replica, failover)."
+    },
+    {
+      "requirement_id": "postgres-guides-index",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "doc/user/shared-content/postgresql-ingest-data-guides.md"
+      ],
+      "evidence_ids": [
+        "75d9727a59e38b0a894d3f8c",
+        "1e116ba6310c96453856ae4e"
+      ],
+      "reason": "Register the new dedicated-replica guide in the shared PostgreSQL integration guides list so it appears on the PostgreSQL ingest-data index and is linked from the CREATE SOURCE PostgreSQL pages."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:02794869bbdaccc8ef6e00de",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/releases/_index.md",
+        "start_line": 1233,
+        "total_lines": 1328,
+        "start_char": 65250,
+        "end_char": 67947,
+        "evidence_id": "02794869bbdaccc8ef6e00de",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "94176eb865ae9cb11ddca0f5864f2807915e190ce726ed8c6b5fcb2bfe52c50a",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/source-versioning.md",
+              "offset": 46,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "offset": 300,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "offset": 1232,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "94176eb865ae9cb11ddca0f5864f2807915e190ce726ed8c6b5fcb2bfe52c50a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:07153de7d75b1ee8d6b10cc1",
+        "type": "evidence",
+        "path": "doc/developer/generated/persist/postgres.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 40,
+        "score": "0.02364907819453274",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "source"
+        ],
+        "evidence_id": "07153de7d75b1ee8d6b10cc1",
+        "source_type": "repository",
+        "content_hash": "e97e1b44ca6bbc2ce9b53e4147047d20598ef1ec7eaae9939aede6858b43740a",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "e97e1b44ca6bbc2ce9b53e4147047d20598ef1ec7eaae9939aede6858b43740a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:089e8ea8aac844d5e6790d03",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/troubleshooting.md",
+        "start_line": 109,
+        "total_lines": 117,
+        "start_char": 5482,
+        "end_char": 5894,
+        "evidence_id": "089e8ea8aac844d5e6790d03",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2a1fc8d3e0f9e63b64939473dec686aa2639c3b2b567ec834e67c5036df24981",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/shared-content/postgresql-ingest-data-guides.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/troubleshooting.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "offset": 16,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "2a1fc8d3e0f9e63b64939473dec686aa2639c3b2b567ec834e67c5036df24981",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:08e7b90c06dc2cc75c784362",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/sql/create-source/postgres.md",
+        "start_line": 301,
+        "total_lines": 392,
+        "start_char": 10048,
+        "end_char": 13044,
+        "evidence_id": "08e7b90c06dc2cc75c784362",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "fbc4c20909c22512c551fe8abf8dc28f47fa673916a3b975ab94eca6fe56797c",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/source-versioning.md",
+              "offset": 46,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "offset": 300,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "offset": 1232,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "fbc4c20909c22512c551fe8abf8dc28f47fa673916a3b975ab94eca6fe56797c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0d5b2273a76b8ea97c847caa",
+        "type": "evidence",
+        "path": "doc/developer/generated/storage/source/postgres/_module.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 47,
+        "score": "0.024259113558877526",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "source"
+        ],
+        "evidence_id": "0d5b2273a76b8ea97c847caa",
+        "source_type": "repository",
+        "content_hash": "5c8444e9a42c9145f4cfd094acefcc5619bcb3d0c3cb91dee2cd8fd32265250d",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5c8444e9a42c9145f4cfd094acefcc5619bcb3d0c3cb91dee2cd8fd32265250d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:12f6d77a438b620384d49977",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-source/postgres.md",
+        "heading": "- /sql/create-source/postgresql > Related pages",
+        "start_line": 378,
+        "end_line": 392,
+        "start_char": 12417,
+        "end_char": 13044,
+        "score": "0.015384615384615385",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "guides",
+          "ingest",
+          "postgresql"
+        ],
+        "evidence_id": "12f6d77a438b620384d49977",
+        "source_type": "repository",
+        "content_hash": "2ae53237c72073345b34a641f90a5c5a80f90e402b8e477027a1cf1009a12995",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "2ae53237c72073345b34a641f90a5c5a80f90e402b8e477027a1cf1009a12995",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:145d22c45a934c0ef7a25a8c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/postgres/neon.md",
+        "start_line": 67,
+        "total_lines": 325,
+        "start_char": 1907,
+        "end_char": 5622,
+        "evidence_id": "145d22c45a934c0ef7a25a8c",
+        "truncated": false,
+        "next_offset": 186,
+        "source_type": "repository",
+        "content_hash": "f3450aac820a948504e64d784bfa6fb500f0538c85cb54b5e740278bc3b73aca",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/neon.md",
+              "offset": 66,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "offset": 67,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f3450aac820a948504e64d784bfa6fb500f0538c85cb54b5e740278bc3b73aca",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:14633e5e195ac0ccbad78dd0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/design/20210412_postgres_sources.md",
+        "start_line": 68,
+        "total_lines": 247,
+        "start_char": 3555,
+        "end_char": 9387,
+        "evidence_id": "14633e5e195ac0ccbad78dd0",
+        "truncated": false,
+        "next_offset": 187,
+        "source_type": "repository",
+        "content_hash": "5181850a6eac34044be081b04d340146b03457ecf73b6e91d1f613eb3f5739b3",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/neon.md",
+              "offset": 66,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "offset": 67,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5181850a6eac34044be081b04d340146b03457ecf73b6e91d1f613eb3f5739b3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:16875df4229947158819e9ea",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/azure-db.md",
+        "heading": "weight: 25 > A. Configure Azure DB > 2. Create a publication and a replication user",
+        "start_line": 35,
+        "end_line": 38,
+        "start_char": 1071,
+        "end_char": 1207,
+        "score": "0.033669860049941415",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "publication",
+          "replication"
+        ],
+        "evidence_id": "16875df4229947158819e9ea",
+        "source_type": "repository",
+        "content_hash": "ef2b175aad613a64cf660960589c539648a1fa46a6f32445a1e0bb273d374de9",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ef2b175aad613a64cf660960589c539648a1fa46a6f32445a1e0bb273d374de9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:196c74c6133058a2fa610684",
+        "type": "evidence",
+        "path": "doc/developer/design/20220728_persisting_introspection_data.md",
+        "heading": "Persisting introspection data > Current and new proposed solution > M1: Replica directed queries",
+        "start_line": 82,
+        "end_line": 96,
+        "start_char": 6666,
+        "end_char": 7312,
+        "score": "0.021747009786154403",
+        "root": "docs",
+        "matched_terms": [
+          "replica"
+        ],
+        "evidence_id": "196c74c6133058a2fa610684",
+        "source_type": "repository",
+        "content_hash": "e185ea27018ab2980e0b1890e866fdaed06342e8f2a377fd6a5dcefdddc35ba1",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql source connection",
+            "replication slot",
+            "dedicated replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e185ea27018ab2980e0b1890e866fdaed06342e8f2a377fd6a5dcefdddc35ba1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1e116ba6310c96453856ae4e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/postgres/_index.md",
+        "start_line": 1,
+        "total_lines": 52,
+        "start_char": 0,
+        "end_char": 1951,
+        "evidence_id": "1e116ba6310c96453856ae4e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "67d46f61879e20e94eb333cb8e448901d030ea4ddce4d08e0bcdd37e674f2afb",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/_index.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/mysql/_index.md",
+              "offset": 40,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/integrations/_index.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "67d46f61879e20e94eb333cb8e448901d030ea4ddce4d08e0bcdd37e674f2afb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1eb9b30e5e061ee9eb64eee6",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+        "heading": "weight: 80 > Troubleshooting guides",
+        "start_line": 21,
+        "end_line": 27,
+        "start_char": 789,
+        "end_char": 1372,
+        "score": "0.021710234824988926",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "replication"
+        ],
+        "evidence_id": "1eb9b30e5e061ee9eb64eee6",
+        "source_type": "repository",
+        "content_hash": "8b258c251fcc4591eab669fac86da6b95a012b0ca02f1d2e2bf998314de7eba3",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3",
+          "Q3-2",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "8b258c251fcc4591eab669fac86da6b95a012b0ca02f1d2e2bf998314de7eba3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20faf5132bd5393903a2a4e5",
+        "type": "evidence",
+        "evidence_id": "20faf5132bd5393903a2a4e5",
+        "source_type": "implementation",
+        "exported_content_sha256": "ef34b8c0ae348e7856c8fe5e47c94309f1a9757717a53758a8451dca777691e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:214eb8378d3186bc85b9f3f7",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/neon.md",
+        "heading": "weight: 35 > A. Configure Neon > 2. Create a publication and a replication user",
+        "start_line": 166,
+        "end_line": 186,
+        "start_char": 5118,
+        "end_char": 5622,
+        "score": "0.03327702702702703",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "publication"
+        ],
+        "evidence_id": "214eb8378d3186bc85b9f3f7",
+        "source_type": "repository",
+        "content_hash": "4f4c0665956f1823010b72792b7cd506e82113aef3f512346d3377d7957e1898",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "4f4c0665956f1823010b72792b7cd506e82113aef3f512346d3377d7957e1898",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2746ab03e17a82b08430dc74",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-source/postgres.md",
+        "heading": "- /sql/create-source/postgresql > Features > Change data capture > Creating a source > PostgreSQL replication slots",
+        "start_line": 114,
+        "end_line": 127,
+        "start_char": 4035,
+        "end_char": 4477,
+        "score": "0.018881004812005546",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "postgres",
+          "replication",
+          "slots",
+          "tip"
+        ],
+        "evidence_id": "2746ab03e17a82b08430dc74",
+        "source_type": "repository",
+        "content_hash": "6e93eae5f56b9d11306dd802f8a1ae83fa1ee42d4015dd59a53a2504dfde8060",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "6e93eae5f56b9d11306dd802f8a1ae83fa1ee42d4015dd59a53a2504dfde8060",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:27ea987b3202e42a2a038cd7",
+        "type": "evidence",
+        "path": "doc/user/content/reference/system-catalog/mz_internal.md",
+        "heading": "- /sql/system-catalog/mz_internal/ > `mz_postgres_sources`",
+        "start_line": 691,
+        "end_line": 702,
+        "start_char": 64017,
+        "end_char": 65000,
+        "score": "0.02216750588437604",
+        "root": "docs",
+        "matched_terms": [
+          "postgresql",
+          "replication",
+          "slot",
+          "source"
+        ],
+        "evidence_id": "27ea987b3202e42a2a038cd7",
+        "source_type": "repository",
+        "content_hash": "1894eab9e86d5c6955252e486c4547531f6359aedc0043878d132d655ed2e815",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql source connection",
+            "replication slot",
+            "dedicated replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "1894eab9e86d5c6955252e486c4547531f6359aedc0043878d132d655ed2e815",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2885356ee3e497fb0813b8f8",
+        "type": "evidence",
+        "path": "doc/user/layouts/shortcodes/ingest-data/postgres-native-support.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 479,
+        "score": "0.014925373134328358",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "ingest",
+          "postgresql"
+        ],
+        "evidence_id": "2885356ee3e497fb0813b8f8",
+        "source_type": "repository",
+        "content_hash": "e74677600977d5b22648fe7899716781f0b2602dadad30b76a5bc62a51576070",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "e74677600977d5b22648fe7899716781f0b2602dadad30b76a5bc62a51576070",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:28b0f9a1b709fa547c9b3653",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/sql/create-source/postgres.md",
+        "start_line": 1,
+        "total_lines": 392,
+        "start_char": 0,
+        "end_char": 4349,
+        "evidence_id": "28b0f9a1b709fa547c9b3653",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "98d1ecae608ed028ea34353724d0bbe6b2c0cac60abe51bec2748fa7e16e0fa3",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "offset": 24,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "offset": 71,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "98d1ecae608ed028ea34353724d0bbe6b2c0cac60abe51bec2748fa7e16e0fa3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2b9330117ba5674430b77761",
+        "type": "evidence",
+        "evidence_id": "2b9330117ba5674430b77761",
+        "source_type": "task",
+        "exported_content_sha256": "167be6916b6cfa1358705eb97c747a53af7f4c66a13bb76342d9b3dbe31e638a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2cd0cb5061fe790a2b044544",
+        "type": "evidence",
+        "path": "doc/developer/design/20210412_postgres_sources.md",
+        "heading": "Postgres sources > Description > User experience",
+        "start_line": 128,
+        "end_line": 132,
+        "start_char": 6793,
+        "end_char": 6894,
+        "score": "0.024809741248097414",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "source"
+        ],
+        "evidence_id": "2cd0cb5061fe790a2b044544",
+        "source_type": "repository",
+        "content_hash": "986aa97738d082d6ea816bfec70bec55aab0d70bc46f7cfa3e4ef4b2f4442ad4",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "986aa97738d082d6ea816bfec70bec55aab0d70bc46f7cfa3e4ef4b2f4442ad4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2eb87f4a7369d2b648f50ccf",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/amazon-aurora.md",
+        "heading": "weight: 15 > A. Configure Amazon Aurora > 2. Create a publication and a replication user",
+        "start_line": 50,
+        "end_line": 53,
+        "start_char": 2133,
+        "end_char": 2267,
+        "score": "0.034122442200831785",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "publication",
+          "replication"
+        ],
+        "evidence_id": "2eb87f4a7369d2b648f50ccf",
+        "source_type": "repository",
+        "content_hash": "d387c30f4fc4dbdac5c861a6f4fda972214a5c6ac9a3d2169cad428571eec9a0",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d387c30f4fc4dbdac5c861a6f4fda972214a5c6ac9a3d2169cad428571eec9a0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2f058bda1a0d2b7161dba8d7",
+        "type": "evidence",
+        "path": "doc/developer/design/20230814_unbilled_replicas.md",
+        "heading": "Unbilled replicas > Alternative 2: Replica sets",
+        "start_line": 79,
+        "end_line": 84,
+        "start_char": 3864,
+        "end_char": 4245,
+        "score": "0.020359848484848484",
+        "root": "docs",
+        "matched_terms": [
+          "replica"
+        ],
+        "evidence_id": "2f058bda1a0d2b7161dba8d7",
+        "source_type": "repository",
+        "content_hash": "8115e187f5dabf7d5da66f21d6ecb5086444d8506264d9bd7aa6213e6ac17c6f",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql source connection",
+            "replication slot",
+            "dedicated replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "8115e187f5dabf7d5da66f21d6ecb5086444d8506264d9bd7aa6213e6ac17c6f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:31c03a4166da2c6d0e780d0d",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-source/postgres.md",
+        "heading": "- /sql/create-source/postgresql > Examples > Creating a source {#create-source-example}",
+        "start_line": 305,
+        "end_line": 331,
+        "start_char": 10077,
+        "end_char": 10798,
+        "score": "0.029906956136464335",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "postgres",
+          "source"
+        ],
+        "evidence_id": "31c03a4166da2c6d0e780d0d",
+        "source_type": "repository",
+        "content_hash": "2be530952f99afe8ec86fc8239ada912a83a8c7ef32f460c6b2c8c5dfda5ec6c",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2be530952f99afe8ec86fc8239ada912a83a8c7ef32f460c6b2c8c5dfda5ec6c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:33458240b80b1afaebd99712",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+        "heading": "weight: 15 > Common causes",
+        "start_line": 29,
+        "end_line": 50,
+        "start_char": 1037,
+        "end_char": 2376,
+        "score": "0.028623686347081047",
+        "root": "docs",
+        "matched_terms": [
+          "connection",
+          "postgresql",
+          "replica",
+          "replication",
+          "slot",
+          "source"
+        ],
+        "evidence_id": "33458240b80b1afaebd99712",
+        "source_type": "repository",
+        "content_hash": "6ad4fb772368f628ca400da92a31f9f80a508ac17745314caf7dd6bb6fb14518",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql source connection",
+            "replication slot",
+            "dedicated replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6ad4fb772368f628ca400da92a31f9f80a508ac17745314caf7dd6bb6fb14518",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:34fb2bf893af45c5b37f096e",
+        "type": "evidence",
+        "path": "doc/user/content/integrations/sql-clients.md",
+        "heading": "name: \"SQL clients\" > See also",
+        "start_line": 227,
+        "end_line": 237,
+        "start_char": 7857,
+        "end_char": 8241,
+        "score": "0.013888888888888888",
+        "root": "docs",
+        "matched_terms": [
+          "guides",
+          "integration"
+        ],
+        "evidence_id": "34fb2bf893af45c5b37f096e",
+        "source_type": "repository",
+        "content_hash": "85b50111bdb81cd5b0e01ead2ba8defd212d4776c513dced1e65967621d35250",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres integration guides index"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "85b50111bdb81cd5b0e01ead2ba8defd212d4776c513dced1e65967621d35250",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3794590ddd5ee06b96e052de",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/postgres-util/replication.md",
+        "start_line": 1,
+        "total_lines": 14,
+        "start_char": 0,
+        "end_char": 1181,
+        "evidence_id": "3794590ddd5ee06b96e052de",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "956c90fd60dbc4ba0d044adc2f8c31f421443e18e68f8ad74d88993b2f74c057",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "offset": 125,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "956c90fd60dbc4ba0d044adc2f8c31f421443e18e68f8ad74d88993b2f74c057",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3e02f55e6e82f79a10c376fd",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/cloud-sql.md",
+        "heading": "weight: 30 > A. Configure Google Cloud SQL > 2. Create a publication and a replication user",
+        "start_line": 36,
+        "end_line": 39,
+        "start_char": 1139,
+        "end_char": 1275,
+        "score": "0.035622242999616416",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "publication",
+          "replication"
+        ],
+        "evidence_id": "3e02f55e6e82f79a10c376fd",
+        "source_type": "repository",
+        "content_hash": "ef2b175aad613a64cf660960589c539648a1fa46a6f32445a1e0bb273d374de9",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ef2b175aad613a64cf660960589c539648a1fa46a6f32445a1e0bb273d374de9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3eb72b1e3b435e7d4c9a505b",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/postgres-debezium.md",
+        "heading": "- /ingest-data/cdc-postgres-kafka-debezium/ > Kafka + Debezium > A. Configure database",
+        "start_line": 162,
+        "end_line": 184,
+        "start_char": 6497,
+        "end_char": 7499,
+        "score": "0.021953405017921146",
+        "root": "docs",
+        "matched_terms": [
+          "logical",
+          "replica",
+          "replication"
+        ],
+        "evidence_id": "3eb72b1e3b435e7d4c9a505b",
+        "source_type": "repository",
+        "content_hash": "17d2150c703302d720d673c91dbaf75049b13b00be04904a51d11183ca01df6d",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "17d2150c703302d720d673c91dbaf75049b13b00be04904a51d11183ca01df6d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3f3aa7e80e637ff9ea7f09d7",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-source/postgres.md",
+        "heading": "- /sql/create-source/postgresql > Examples",
+        "start_line": 211,
+        "end_line": 223,
+        "start_char": 7255,
+        "end_char": 7795,
+        "score": "0.027222222222222224",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "source"
+        ],
+        "evidence_id": "3f3aa7e80e637ff9ea7f09d7",
+        "source_type": "repository",
+        "content_hash": "2ab6b826fe044bd9a46dd59cf0326b5c954e7138f1041faf7740425d58650713",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2ab6b826fe044bd9a46dd59cf0326b5c954e7138f1041faf7740425d58650713",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:41ecd770bc0c713a6f21d7d6",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/faq.md",
+        "heading": "weight: 90 > For my trial/POC, what if I cannot use `REPLICA IDENTITY FULL`?",
+        "start_line": 15,
+        "end_line": 53,
+        "start_char": 466,
+        "end_char": 2077,
+        "score": "0.020110731151278295",
+        "root": "docs",
+        "matched_terms": [
+          "logical",
+          "replica",
+          "replication"
+        ],
+        "evidence_id": "41ecd770bc0c713a6f21d7d6",
+        "source_type": "repository",
+        "content_hash": "e335f823e5d6f28a7bc4431df6e007bbb3436eb8e144044791aaa66f2adfccf0",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e335f823e5d6f28a7bc4431df6e007bbb3436eb8e144044791aaa66f2adfccf0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:44b1aca11e2e3a55274dd4c5",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/cloud-sql.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 10,
+        "start_char": 0,
+        "end_char": 291,
+        "score": "0.014285714285714285",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "ingest",
+          "postgresql"
+        ],
+        "evidence_id": "44b1aca11e2e3a55274dd4c5",
+        "source_type": "repository",
+        "content_hash": "f30937c141a81bafd17386cb2f0811bf1c235e859c9bae7a38561a51f431dd16",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "f30937c141a81bafd17386cb2f0811bf1c235e859c9bae7a38561a51f431dd16",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4b4be7afd63949e662fe1d61",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/alloydb.md",
+        "heading": "weight: 10 > A. Configure AlloyDB > 2. Create a publication and a replication user",
+        "start_line": 39,
+        "end_line": 42,
+        "start_char": 1306,
+        "end_char": 1442,
+        "score": "0.03496121933621933",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "publication",
+          "replication"
+        ],
+        "evidence_id": "4b4be7afd63949e662fe1d61",
+        "source_type": "repository",
+        "content_hash": "ef2b175aad613a64cf660960589c539648a1fa46a6f32445a1e0bb273d374de9",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ef2b175aad613a64cf660960589c539648a1fa46a6f32445a1e0bb273d374de9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4c3d379db5e75e3253e6a179",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-source/postgres-v2.md",
+        "heading": "weight: 20 > Details > PostgreSQL replication slots",
+        "start_line": 76,
+        "end_line": 107,
+        "start_char": 2225,
+        "end_char": 3296,
+        "score": "0.017760353628374467",
+        "root": "docs",
+        "matched_terms": [
+          "list",
+          "postgres",
+          "replication",
+          "slots",
+          "tip"
+        ],
+        "evidence_id": "4c3d379db5e75e3253e6a179",
+        "source_type": "repository",
+        "content_hash": "f7192ed28eccf86c9510df8f7703a9c17629ef723c1a8b60706195a9933e2362",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "f7192ed28eccf86c9510df8f7703a9c17629ef723c1a8b60706195a9933e2362",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4c8509bce20746f6f4660c4a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+        "start_line": 17,
+        "total_lines": 27,
+        "start_char": 541,
+        "end_char": 1372,
+        "evidence_id": "4c8509bce20746f6f4660c4a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "806b625e510ddf9f295c2f4c0315f41f4453246e7ac08e884ba4d621ce9b8ea8",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/shared-content/postgresql-ingest-data-guides.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/troubleshooting.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "offset": 16,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "806b625e510ddf9f295c2f4c0315f41f4453246e7ac08e884ba4d621ce9b8ea8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5390d4ce8adb6f5a79dde414",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/integrations/_index.md",
+        "start_line": 1,
+        "total_lines": 70,
+        "start_char": 0,
+        "end_char": 1963,
+        "evidence_id": "5390d4ce8adb6f5a79dde414",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "b340b024f0e2b45efd2556dce0f7211cefb1ab09bbb4e3d5695b34b9dfa4c697",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/_index.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/mysql/_index.md",
+              "offset": 40,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/integrations/_index.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "b340b024f0e2b45efd2556dce0f7211cefb1ab09bbb4e3d5695b34b9dfa4c697",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:544a7e026bd4b139d84a6dfe",
+        "type": "evidence",
+        "path": "doc/developer/generated/storage/source/postgres/replication.md",
+        "heading": "mz-storage::source::postgres::replication",
+        "start_line": 6,
+        "end_line": 10,
+        "start_char": 85,
+        "end_char": 457,
+        "score": "0.02490996398559424",
+        "root": "docs",
+        "matched_terms": [
+          "logical",
+          "replication"
+        ],
+        "evidence_id": "544a7e026bd4b139d84a6dfe",
+        "source_type": "repository",
+        "content_hash": "8e4383660571ff95d35a9054307a2261e29b6897d22f3518861573659f575111",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8e4383660571ff95d35a9054307a2261e29b6897d22f3518861573659f575111",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:632d9226146e18675ea5e6f1",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-source/postgres.md",
+        "heading": "- /sql/create-source/postgresql > Features > Change data capture > Creating a source",
+        "start_line": 62,
+        "end_line": 111,
+        "start_char": 2315,
+        "end_char": 3977,
+        "score": "0.03264849105594638",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "postgres",
+          "publication",
+          "replication"
+        ],
+        "evidence_id": "632d9226146e18675ea5e6f1",
+        "source_type": "repository",
+        "content_hash": "81b28e1902d9614f9ca595f06481dee3190160a960257c7aef5847345210b5c1",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "81b28e1902d9614f9ca595f06481dee3190160a960257c7aef5847345210b5c1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:64d736cfbbf6d26c4b751b1a",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/neon.md",
+        "heading": "weight: 35 > A. Configure Neon > 2. Create a publication and a replication user",
+        "start_line": 71,
+        "end_line": 115,
+        "start_char": 1933,
+        "end_char": 3582,
+        "score": "0.020887166236003445",
+        "root": "docs",
+        "matched_terms": [
+          "logical",
+          "replica",
+          "replication"
+        ],
+        "evidence_id": "64d736cfbbf6d26c4b751b1a",
+        "source_type": "repository",
+        "content_hash": "50467cd4fa5437290da41487cba679ee32e9aba081730781335286ea6344287f",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "50467cd4fa5437290da41487cba679ee32e9aba081730781335286ea6344287f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:67270feb7c8a9c13a306b804",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/mysql/_index.md",
+        "heading": "weight: 5 > Integration guides",
+        "start_line": 45,
+        "end_line": 50,
+        "start_char": 1780,
+        "end_char": 1935,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "guides",
+          "integration"
+        ],
+        "evidence_id": "67270feb7c8a9c13a306b804",
+        "source_type": "repository",
+        "content_hash": "b5b94d29a838497fd970df7808e26b57fceaaecb565cd6ac977b95a0d6972da0",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres integration guides index"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "b5b94d29a838497fd970df7808e26b57fceaaecb565cd6ac977b95a0d6972da0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6a64c515f973674af1ae517c",
+        "type": "evidence",
+        "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+        "heading": "Multi-Replica Scheduling for Singleton Sources (aka hot-standby sources)",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 76,
+        "score": "0.04117636005768589",
+        "root": "docs",
+        "matched_terms": [
+          "replica",
+          "standby"
+        ],
+        "evidence_id": "6a64c515f973674af1ae517c",
+        "source_type": "repository",
+        "content_hash": "5035554ddc10e18e7bcd93a1301eaffe445e78cd6e1e55d395b703062720afa4",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "5035554ddc10e18e7bcd93a1301eaffe445e78cd6e1e55d395b703062720afa4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6cf759d8a8667e5e2c6d0c2c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/mysql/_index.md",
+        "start_line": 41,
+        "total_lines": 53,
+        "start_char": 1677,
+        "end_char": 2012,
+        "evidence_id": "6cf759d8a8667e5e2c6d0c2c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "55887e80649c3c974d1071ddc558a1c7278958da0b7a31fc7651fde7d93840ee",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/_index.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/mysql/_index.md",
+              "offset": 40,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/integrations/_index.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "55887e80649c3c974d1071ddc558a1c7278958da0b7a31fc7651fde7d93840ee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:70db49c66e366b2823ce849a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+        "start_line": 126,
+        "total_lines": 154,
+        "start_char": 4362,
+        "end_char": 5532,
+        "evidence_id": "70db49c66e366b2823ce849a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "e6f96354a13cbf6d39b0a7b089c8e019ed3ac36ed48cfb7a1c44676787791152",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "offset": 125,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "e6f96354a13cbf6d39b0a7b089c8e019ed3ac36ed48cfb7a1c44676787791152",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:72049ce45873eb97894fe20d",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/connection-closed.md",
+        "heading": "weight: 20 > Prevention",
+        "start_line": 190,
+        "end_line": 204,
+        "start_char": 5230,
+        "end_char": 5877,
+        "score": "0.018115942028985508",
+        "root": "docs",
+        "matched_terms": [
+          "replication",
+          "slots"
+        ],
+        "evidence_id": "72049ce45873eb97894fe20d",
+        "source_type": "repository",
+        "content_hash": "c9e5387bb6944b6debb416cb39a52a63e99365e58a0a4145db46e618e0621641",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "c9e5387bb6944b6debb416cb39a52a63e99365e58a0a4145db46e618e0621641",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:75d9727a59e38b0a894d3f8c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/shared-content/postgresql-ingest-data-guides.md",
+        "start_line": 1,
+        "total_lines": 7,
+        "start_char": 0,
+        "end_char": 427,
+        "evidence_id": "75d9727a59e38b0a894d3f8c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d74d6d66efee13a3ffa9cd142c277c87243ef694d53047864e53afcf4d41398a",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/shared-content/postgresql-ingest-data-guides.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/troubleshooting.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+              "offset": 16,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "d74d6d66efee13a3ffa9cd142c277c87243ef694d53047864e53afcf4d41398a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78e5c586d4e562cd0913482c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/postgres/source-versioning.md",
+        "start_line": 47,
+        "total_lines": 186,
+        "start_char": 1194,
+        "end_char": 4605,
+        "evidence_id": "78e5c586d4e562cd0913482c",
+        "truncated": false,
+        "next_offset": 166,
+        "source_type": "repository",
+        "content_hash": "74599ccbe0b46aa30a59a2fed28ae6e07463d0f582155184bb032ccadf8995ab",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/source-versioning.md",
+              "offset": 46,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "offset": 300,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/releases/_index.md",
+              "offset": 1232,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "74599ccbe0b46aa30a59a2fed28ae6e07463d0f582155184bb032ccadf8995ab",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7979f0be99b595ae2887381c",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/postgres-debezium.md",
+        "heading": "- /ingest-data/cdc-postgres-kafka-debezium/ > Kafka + Debezium > A. Configure database",
+        "start_line": 122,
+        "end_line": 161,
+        "start_char": 4759,
+        "end_char": 6497,
+        "score": "0.020675620675620676",
+        "root": "docs",
+        "matched_terms": [
+          "logical",
+          "replication"
+        ],
+        "evidence_id": "7979f0be99b595ae2887381c",
+        "source_type": "repository",
+        "content_hash": "41760846c78d5a53be43554cf4e708313dbab5044eb61dc7ba959416e003110f",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "41760846c78d5a53be43554cf4e708313dbab5044eb61dc7ba959416e003110f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:82383d8720171c925893abfd",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/sql/create-source/postgres-v2.md",
+        "start_line": 72,
+        "total_lines": 135,
+        "start_char": 2109,
+        "end_char": 4093,
+        "evidence_id": "82383d8720171c925893abfd",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "b9a3b92dec43031b8baa72f65065f5f2c99497a982150551e2236310ae0d2205",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "offset": 24,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "offset": 71,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b9a3b92dec43031b8baa72f65065f5f2c99497a982150551e2236310ae0d2205",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:82b463663a76b844f544489a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/storage/source/postgres/replication.md",
+        "start_line": 1,
+        "total_lines": 10,
+        "start_char": 0,
+        "end_char": 457,
+        "evidence_id": "82b463663a76b844f544489a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "85d577b9c849b65911f410b11f646703fccf013b4558dcc78b48dafe23aaf7b7",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "offset": 125,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "85d577b9c849b65911f410b11f646703fccf013b4558dcc78b48dafe23aaf7b7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8bdd0e52702f3ea99c870ad7",
+        "type": "evidence",
+        "path": "doc/user/content/integrations/_index.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 15,
+        "start_char": 0,
+        "end_char": 411,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "guides",
+          "postgres"
+        ],
+        "evidence_id": "8bdd0e52702f3ea99c870ad7",
+        "source_type": "repository",
+        "content_hash": "04c79e3bc3a258ba376359578641881a2f6a0eb3d5cf3d0db765d60ddde9a56c",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres integration guides index"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "04c79e3bc3a258ba376359578641881a2f6a0eb3d5cf3d0db765d60ddde9a56c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8c7269e8007c125afd215c63",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/_index.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 10,
+        "start_char": 0,
+        "end_char": 230,
+        "score": "0.014492753623188406",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "ingest",
+          "postgresql"
+        ],
+        "evidence_id": "8c7269e8007c125afd215c63",
+        "source_type": "repository",
+        "content_hash": "4a5c8b7ab2f86cd8bb465aa9ae03ffbd2b5db9d37c0a42ef280d9d0093269aea",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "4a5c8b7ab2f86cd8bb465aa9ae03ffbd2b5db9d37c0a42ef280d9d0093269aea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8d785a9811a4b82626034b3c",
+        "type": "evidence",
+        "path": "doc/user/content/releases/_index.md",
+        "heading": "- /self-managed/v25.1/release-notes/ > Self-Managed v26.0.0 > PostgreSQL: Source versioning",
+        "start_line": 1237,
+        "end_line": 1264,
+        "start_char": 65411,
+        "end_char": 66320,
+        "score": "0.028985507246376812",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "postgres",
+          "source"
+        ],
+        "evidence_id": "8d785a9811a4b82626034b3c",
+        "source_type": "repository",
+        "content_hash": "6c5d68199fc0247e47293d42f805622f5b1e17a3262fcef0a710f58a7d40d6e5",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6c5d68199fc0247e47293d42f805622f5b1e17a3262fcef0a710f58a7d40d6e5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:94c155f7788f67f295f05ba9",
+        "type": "evidence",
+        "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+        "heading": "Multi-Replica Scheduling for Singleton Sources (aka hot-standby sources) > Open Questions",
+        "start_line": 98,
+        "end_line": 100,
+        "start_char": 4866,
+        "end_char": 4890,
+        "score": "0.03652364158829676",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "94c155f7788f67f295f05ba9",
+        "source_type": "repository",
+        "content_hash": "aa18e691191266540f4d3880587e892c64c0c335bb291850b169df43cd2a8f45",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "aa18e691191266540f4d3880587e892c64c0c335bb291850b169df43cd2a8f45",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:94e69c768d896c06e554ab08",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/amazon-rds.md",
+        "heading": "weight: 20 > A. Configure Amazon RDS > 2. Create a publication and a replication user",
+        "start_line": 98,
+        "end_line": 101,
+        "start_char": 3129,
+        "end_char": 3263,
+        "score": "0.032591037654328796",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "publication",
+          "replication"
+        ],
+        "evidence_id": "94e69c768d896c06e554ab08",
+        "source_type": "repository",
+        "content_hash": "d387c30f4fc4dbdac5c861a6f4fda972214a5c6ac9a3d2169cad428571eec9a0",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d387c30f4fc4dbdac5c861a6f4fda972214a5c6ac9a3d2169cad428571eec9a0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9702b48fa1fc4103c7f3a406",
+        "type": "evidence",
+        "path": "doc/developer/design/20210412_postgres_sources.md",
+        "heading": "Postgres sources > Description > Terminology",
+        "start_line": 72,
+        "end_line": 97,
+        "start_char": 3649,
+        "end_char": 5131,
+        "score": "0.029551337359792925",
+        "root": "docs",
+        "matched_terms": [
+          "logical",
+          "replica",
+          "replication"
+        ],
+        "evidence_id": "9702b48fa1fc4103c7f3a406",
+        "source_type": "repository",
+        "content_hash": "0cce2dfdeb9847fb7efeb6fe4a610e9747e60b4ab53ec0a6840bcbf80fa74aa9",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0cce2dfdeb9847fb7efeb6fe4a610e9747e60b4ab53ec0a6840bcbf80fa74aa9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:997486f538ec2bb3ee040fc9",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-connection.md",
+        "heading": "Source and sink connections > PostgreSQL",
+        "start_line": 696,
+        "end_line": 700,
+        "start_char": 22031,
+        "end_char": 22219,
+        "score": "0.02416052416052416",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "postgres",
+          "source"
+        ],
+        "evidence_id": "997486f538ec2bb3ee040fc9",
+        "source_type": "repository",
+        "content_hash": "08cc9626828655c76c056f87aac77f45ef425ae9434488e52ac537b3b3f9fcd7",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "08cc9626828655c76c056f87aac77f45ef425ae9434488e52ac537b3b3f9fcd7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9f0f1476ef6ae49e89da4028",
+        "type": "evidence",
+        "path": "doc/developer/design/20230814_unbilled_replicas.md",
+        "heading": "Unbilled replicas > Detailed description > Resources within replica sets",
+        "start_line": 145,
+        "end_line": 157,
+        "start_char": 6835,
+        "end_char": 7196,
+        "score": "0.02040950687997893",
+        "root": "docs",
+        "matched_terms": [
+          "replica"
+        ],
+        "evidence_id": "9f0f1476ef6ae49e89da4028",
+        "source_type": "repository",
+        "content_hash": "f27a5dca48ab541512b725c177a38a3cc06be39cb8399414f8db69c77331f3ce",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql source connection",
+            "replication slot",
+            "dedicated replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f27a5dca48ab541512b725c177a38a3cc06be39cb8399414f8db69c77331f3ce",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a226bd8acc812a64ee914adb",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/alloydb.md",
+        "heading": "weight: 10 > Considerations",
+        "start_line": 268,
+        "end_line": 271,
+        "start_char": 9236,
+        "end_char": 9343,
+        "score": "0.0177188573773014",
+        "root": "docs",
+        "matched_terms": [
+          "considerations",
+          "postgres"
+        ],
+        "evidence_id": "a226bd8acc812a64ee914adb",
+        "source_type": "repository",
+        "content_hash": "5aee16dd70ddb1746a74cda682a24ff1bd524466bcbe3930245dde188e2732d0",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "5aee16dd70ddb1746a74cda682a24ff1bd524466bcbe3930245dde188e2732d0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aae324143e37b1f4ce3777d3",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 10,
+        "start_char": 0,
+        "end_char": 294,
+        "score": "0.014705882352941176",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "ingest",
+          "postgresql"
+        ],
+        "evidence_id": "aae324143e37b1f4ce3777d3",
+        "source_type": "repository",
+        "content_hash": "18669880ed64e170fcce65fd44de464df66c8513af5c530af738857b7da399ff",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "18669880ed64e170fcce65fd44de464df66c8513af5c530af738857b7da399ff",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aaf912a6d149418fbbf6054e",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/_index.md",
+        "heading": "- /self-managed/v25.1/ingest-data/postgres/ > Integration guides",
+        "start_line": 43,
+        "end_line": 48,
+        "start_char": 1672,
+        "end_char": 1844,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "guides",
+          "ingest",
+          "postgresql"
+        ],
+        "evidence_id": "aaf912a6d149418fbbf6054e",
+        "source_type": "repository",
+        "content_hash": "82c7608d92b5600360b500590ccd1be20593cf05c4bc2d7545fb26034697a091",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "82c7608d92b5600360b500590ccd1be20593cf05c4bc2d7545fb26034697a091",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ac29b9d5964ef178118aa6cd",
+        "type": "evidence",
+        "path": "doc/developer/testdrive.md",
+        "heading": "Script Actions > Connecting to databases over the pgwire protocol > `$ postgres-verify-slot connection=... slot=... active=(true|false)`",
+        "start_line": 597,
+        "end_line": 604,
+        "start_char": 19768,
+        "end_char": 20084,
+        "score": "0.018652526512788523",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "replication"
+        ],
+        "evidence_id": "ac29b9d5964ef178118aa6cd",
+        "source_type": "repository",
+        "content_hash": "c6486941249a3a1156fca37f548d65352ce959dc1fbf551a1ce405f335ea0ef9",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "c6486941249a3a1156fca37f548d65352ce959dc1fbf551a1ce405f335ea0ef9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b645f171997463581093c392",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/amazon-rds.md",
+        "heading": "weight: 20 > A. Configure Amazon RDS > 1. Enable logical replication",
+        "start_line": 30,
+        "end_line": 72,
+        "start_char": 762,
+        "end_char": 2396,
+        "score": "0.03224206349206349",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "logical",
+          "postgres",
+          "publication",
+          "replication"
+        ],
+        "evidence_id": "b645f171997463581093c392",
+        "source_type": "repository",
+        "content_hash": "757b8857b1c2a1b7d7978119c06d5aeb43d9e8adfdd5564cd85925d66adfb093",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "757b8857b1c2a1b7d7978119c06d5aeb43d9e8adfdd5564cd85925d66adfb093",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b90c499f01b19a6957f2a152",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/source-versioning.md",
+        "heading": "Create a source using the new syntax",
+        "start_line": 51,
+        "end_line": 73,
+        "start_char": 1283,
+        "end_char": 2192,
+        "score": "0.03021353930031804",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "postgres",
+          "source"
+        ],
+        "evidence_id": "b90c499f01b19a6957f2a152",
+        "source_type": "repository",
+        "content_hash": "34eb5480f3ae308a98d883cb2400947b7a1d50e16c6e1fa591169acb37d5d579",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "34eb5480f3ae308a98d883cb2400947b7a1d50e16c6e1fa591169acb37d5d579",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:badda2e09c0fb948b3f34337",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+        "start_line": 21,
+        "total_lines": 399,
+        "start_char": 537,
+        "end_char": 4628,
+        "evidence_id": "badda2e09c0fb948b3f34337",
+        "truncated": false,
+        "next_offset": 140,
+        "source_type": "repository",
+        "content_hash": "5fa24bd23f3b780c52aa807cc5ab3197a8cd31212b3911c30b6119a42a871ca8",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "query": "A. Configure PostgreSQL",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "5fa24bd23f3b780c52aa807cc5ab3197a8cd31212b3911c30b6119a42a871ca8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c10d2a24197d3995bfdd0ab1",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/amazon-aurora.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 10,
+        "start_char": 0,
+        "end_char": 277,
+        "score": "0.014084507042253521",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "ingest",
+          "postgresql"
+        ],
+        "evidence_id": "c10d2a24197d3995bfdd0ab1",
+        "source_type": "repository",
+        "content_hash": "1f0ead749610dd2acc9e7e9c4fe082a8b6cad3f9bb077e604f5fb878038f6924",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "1f0ead749610dd2acc9e7e9c4fe082a8b6cad3f9bb077e604f5fb878038f6924",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c51e46d2018be9aa453f1476",
+        "type": "evidence",
+        "path": "doc/developer/generated/storage/source/postgres/replication.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 59,
+        "score": "0.01937080240367621",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "replication"
+        ],
+        "evidence_id": "c51e46d2018be9aa453f1476",
+        "source_type": "repository",
+        "content_hash": "cd551d8c549daf3ab0bd3ce50801523d53e788d97f23d0c60c8c733c820f1687",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "cd551d8c549daf3ab0bd3ce50801523d53e788d97f23d0c60c8c733c820f1687",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c657538104419ffa3bdae530",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+        "heading": "weight: 50 > A. Configure PostgreSQL > 2. Create a publication and a replication user",
+        "start_line": 59,
+        "end_line": 62,
+        "start_char": 1691,
+        "end_char": 1827,
+        "score": "0.03990396291451677",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "publication",
+          "replication"
+        ],
+        "evidence_id": "c657538104419ffa3bdae530",
+        "source_type": "repository",
+        "content_hash": "ef2b175aad613a64cf660960589c539648a1fa46a6f32445a1e0bb273d374de9",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "logical replication publication",
+            "CREATE PUBLICATION",
+            "replica postgres"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ef2b175aad613a64cf660960589c539648a1fa46a6f32445a1e0bb273d374de9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c76181fae715bcd48b863872",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/slot-overcompacted.md",
+        "heading": "weight: 10 > Provider-specific considerations > Neon",
+        "start_line": 157,
+        "end_line": 165,
+        "start_char": 4542,
+        "end_char": 4818,
+        "score": "0.018121778350515462",
+        "root": "docs",
+        "matched_terms": [
+          "replication"
+        ],
+        "evidence_id": "c76181fae715bcd48b863872",
+        "source_type": "repository",
+        "content_hash": "971090b0046f342a0041e5d531585a5ec4a0353c6603ecf6b83324084837482a",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "971090b0046f342a0041e5d531585a5ec4a0353c6603ecf6b83324084837482a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c7b0cc65fc4d2fef52884427",
+        "type": "evidence",
+        "path": "doc/developer/design/20250226_postgres_style_explain.md",
+        "heading": "Postgres-style syntax for `EXPLAIN` > Solution Proposal > Concrete Mapping",
+        "start_line": 86,
+        "end_line": 101,
+        "start_char": 3055,
+        "end_char": 4673,
+        "score": "0.014705882352941176",
+        "root": "docs",
+        "matched_terms": [
+          "index",
+          "postgres"
+        ],
+        "evidence_id": "c7b0cc65fc4d2fef52884427",
+        "source_type": "repository",
+        "content_hash": "cda8460667ec870eba5fd1d5826911ac7b97042379598246f665ba0c795a328d",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres integration guides index"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "cda8460667ec870eba5fd1d5826911ac7b97042379598246f665ba0c795a328d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cf5adc9da9d78f21cfd00755",
+        "type": "evidence",
+        "path": "doc/user/content/headless/mysql-ingest-guides.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 1,
+        "start_char": 0,
+        "end_char": 4,
+        "score": "0.013888888888888888",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "cf5adc9da9d78f21cfd00755",
+        "source_type": "repository",
+        "content_hash": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "d30bc60e54ebaf9ae47543fda3e63e456439c2d878c9fcee04caadf75bb91634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d8e5672a434ecb10e41ea98c",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/troubleshooting.md",
+        "heading": "- /ops/troubleshooting/ > See also",
+        "start_line": 113,
+        "end_line": 117,
+        "start_char": 5664,
+        "end_char": 5894,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "guides",
+          "ingest"
+        ],
+        "evidence_id": "d8e5672a434ecb10e41ea98c",
+        "source_type": "repository",
+        "content_hash": "7ecb2673da7b5ecb6fdbc0558f1dbabec77dc24382cedbaaf5baefa038f1f5d0",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "7ecb2673da7b5ecb6fdbc0558f1dbabec77dc24382cedbaaf5baefa038f1f5d0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d924bfa9075a162810b5ce54",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-source/postgres-v2.md",
+        "heading": "weight: 20 > Related pages",
+        "start_line": 127,
+        "end_line": 135,
+        "start_char": 3730,
+        "end_char": 4093,
+        "score": "0.014492753623188406",
+        "root": "docs",
+        "matched_terms": [
+          "guides",
+          "integration",
+          "postgres"
+        ],
+        "evidence_id": "d924bfa9075a162810b5ce54",
+        "source_type": "repository",
+        "content_hash": "406350389fca8081645c0bd3d050796764d5b873fcf5170850d2d3b157188ead",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres integration guides index"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "406350389fca8081645c0bd3d050796764d5b873fcf5170850d2d3b157188ead",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:da398de79a124258666242e7",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+        "heading": "weight: 15 > Prevention",
+        "start_line": 130,
+        "end_line": 154,
+        "start_char": 4463,
+        "end_char": 5532,
+        "score": "0.02022765728349485",
+        "root": "docs",
+        "matched_terms": [
+          "replication",
+          "slots"
+        ],
+        "evidence_id": "da398de79a124258666242e7",
+        "source_type": "repository",
+        "content_hash": "5de6f894a567caf685f634bebd6ea76244153382d239f4f9bd481dd4bb70d9fa",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "5de6f894a567caf685f634bebd6ea76244153382d239f4f9bd481dd4bb70d9fa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dbe7400361b0c78920e54134",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/_index.md",
+        "heading": "- /self-managed/v25.1/ingest-data/postgres/ > Considerations",
+        "start_line": 49,
+        "end_line": 52,
+        "start_char": 1844,
+        "end_char": 1951,
+        "score": "0.018389450606982757",
+        "root": "docs",
+        "matched_terms": [
+          "considerations",
+          "postgres"
+        ],
+        "evidence_id": "dbe7400361b0c78920e54134",
+        "source_type": "repository",
+        "content_hash": "5aee16dd70ddb1746a74cda682a24ff1bd524466bcbe3930245dde188e2732d0",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "5aee16dd70ddb1746a74cda682a24ff1bd524466bcbe3930245dde188e2732d0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:de13aee761930404ee04026a",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/amazon-rds.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 13,
+        "start_char": 0,
+        "end_char": 362,
+        "score": "0.015151515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "data",
+          "guides",
+          "ingest",
+          "postgresql"
+        ],
+        "evidence_id": "de13aee761930404ee04026a",
+        "source_type": "repository",
+        "content_hash": "994bde904ed9c328a85a9a34861cbd94b07bd533abc1d0c608846ddee6b3ea58",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgresql-ingest-data-guides"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "994bde904ed9c328a85a9a34861cbd94b07bd533abc1d0c608846ddee6b3ea58",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:deceb866037b084e10ad43f6",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-source/postgres-v2.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 8,
+        "start_char": 0,
+        "end_char": 233,
+        "score": "0.026830135039090264",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "source"
+        ],
+        "evidence_id": "deceb866037b084e10ad43f6",
+        "source_type": "repository",
+        "content_hash": "75f662914cab0c0fa219ccc585e081390a7850c2b4ef89d59049f7a72eb1eb5c",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "75f662914cab0c0fa219ccc585e081390a7850c2b4ef89d59049f7a72eb1eb5c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e02a4e88b3fa6b64e1c5c449",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-connection.md",
+        "heading": "Source and sink connections > PostgreSQL > Syntax {#postgres-syntax}",
+        "start_line": 701,
+        "end_line": 704,
+        "start_char": 22219,
+        "end_char": 22335,
+        "score": "0.027242401779095628",
+        "root": "docs",
+        "matched_terms": [
+          "postgres"
+        ],
+        "evidence_id": "e02a4e88b3fa6b64e1c5c449",
+        "source_type": "repository",
+        "content_hash": "a88b1203fb573db462d741d2a92157d65b4669c78afda7ef9f2d74b810ae9b3e",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a88b1203fb573db462d741d2a92157d65b4669c78afda7ef9f2d74b810ae9b3e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e08d850a40c55c8f1306c656",
+        "type": "evidence",
+        "path": "doc/developer/generated/postgres-util/replication.md",
+        "heading": "mz-postgres-util::replication",
+        "start_line": 6,
+        "end_line": 14,
+        "start_char": 75,
+        "end_char": 1181,
+        "score": "0.02297979797979798",
+        "root": "docs",
+        "matched_terms": [
+          "logical",
+          "replica",
+          "replication"
+        ],
+        "evidence_id": "e08d850a40c55c8f1306c656",
+        "source_type": "repository",
+        "content_hash": "ab1aae1993ebaf2dbb09fba57298be6d54be0f968482b42271483a495cbbb082",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ab1aae1993ebaf2dbb09fba57298be6d54be0f968482b42271483a495cbbb082",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e25d0e572c220901d8f95d65",
+        "type": "evidence",
+        "path": "doc/developer/generated/postgres-util/query.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 43,
+        "score": "0.024028361344537813",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "source"
+        ],
+        "evidence_id": "e25d0e572c220901d8f95d65",
+        "source_type": "repository",
+        "content_hash": "679966ac19b596ea0ecf9c54fbbd379ec4bb4fcdde7f5482163e44aa16db7ce3",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "679966ac19b596ea0ecf9c54fbbd379ec4bb4fcdde7f5482163e44aa16db7ce3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e3a1c57cdca28a02bd778319",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/sql-server/_index.md",
+        "heading": "weight: 15 > Integration Guides",
+        "start_line": 38,
+        "end_line": 41,
+        "start_char": 1547,
+        "end_char": 1636,
+        "score": "0.014925373134328358",
+        "root": "docs",
+        "matched_terms": [
+          "guides",
+          "integration"
+        ],
+        "evidence_id": "e3a1c57cdca28a02bd778319",
+        "source_type": "repository",
+        "content_hash": "1530b4dee105cc8ac2c0a867ec69ac9a8733a12528770b1d09b40201a45e3a90",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres integration guides index"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "1530b4dee105cc8ac2c0a867ec69ac9a8733a12528770b1d09b40201a45e3a90",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e3cb45f832d76bed68566589",
+        "type": "evidence",
+        "path": "doc/user/content/sql/create-source/postgres-v2.md",
+        "heading": "weight: 20 > Examples > Create a source {#create-source-example}",
+        "start_line": 116,
+        "end_line": 126,
+        "start_char": 3417,
+        "end_char": 3730,
+        "score": "0.025525990099009903",
+        "root": "docs",
+        "matched_terms": [
+          "create",
+          "source"
+        ],
+        "evidence_id": "e3cb45f832d76bed68566589",
+        "source_type": "repository",
+        "content_hash": "4c4459dc07a3829aaf2eacc6945a3aebb09afadbc78368408dcb88a86ffaf87c",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "create source postgres reference",
+            "postgres source options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4c4459dc07a3829aaf2eacc6945a3aebb09afadbc78368408dcb88a86ffaf87c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e8d010136f0d0dcb413beaec",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/slot-overcompacted.md",
+        "heading": "weight: 10 > Diagnosing the issue > Check replication slot status in PostgreSQL",
+        "start_line": 45,
+        "end_line": 64,
+        "start_char": 1757,
+        "end_char": 2219,
+        "score": "0.0178521714922049",
+        "root": "docs",
+        "matched_terms": [
+          "replication",
+          "slots"
+        ],
+        "evidence_id": "e8d010136f0d0dcb413beaec",
+        "source_type": "repository",
+        "content_hash": "298df1c079ff387331131e5ee99e4bd5c862daac6fa09ebb8983db3e6c51f870",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-3"
+        ],
+        "exported_content_sha256": "298df1c079ff387331131e5ee99e4bd5c862daac6fa09ebb8983db3e6c51f870",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e982d0ec942b3e24f572ddc4",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/postgres-util/replication.md",
+        "start_line": 2,
+        "total_lines": 14,
+        "start_char": 4,
+        "end_char": 1181,
+        "evidence_id": "e982d0ec942b3e24f572ddc4",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "7f877f18b9d2439bacaaab9867fb087e6fd0e080e4a43dba4e377b76dbb2f207",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "7f877f18b9d2439bacaaab9867fb087e6fd0e080e4a43dba4e377b76dbb2f207",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ea3fa5933f277dbf717ceec9",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/generated/storage/source/postgres/replication.md",
+        "start_line": 2,
+        "total_lines": 10,
+        "start_char": 4,
+        "end_char": 457,
+        "evidence_id": "ea3fa5933f277dbf717ceec9",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5f4524c08872daa0d42c85935b73b531f42073fd103250eacb9d7c39b2434f8f",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "5f4524c08872daa0d42c85935b73b531f42073fd103250eacb9d7c39b2434f8f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f717dc5e39bbaeb8a5d9dd08",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+        "start_line": 55,
+        "total_lines": 399,
+        "start_char": 1634,
+        "end_char": 6246,
+        "evidence_id": "f717dc5e39bbaeb8a5d9dd08",
+        "truncated": false,
+        "next_offset": 174,
+        "source_type": "repository",
+        "content_hash": "5cfab57aef96391baefce650f9d21c97e0e615e9c32ec02dd5ba5569e66d9b98",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/ingest-data/postgres/neon.md",
+              "offset": 66,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/self-hosted.md",
+              "offset": 54,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/design/20210412_postgres_sources.md",
+              "offset": 67,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5cfab57aef96391baefce650f9d21c97e0e615e9c32ec02dd5ba5569e66d9b98",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f7bac190ea5c1585f50e1adc",
+        "type": "evidence",
+        "path": "doc/developer/design/20210412_postgres_sources.md",
+        "heading": "Postgres sources > Description > Replication mechanism",
+        "start_line": 133,
+        "end_line": 167,
+        "start_char": 6894,
+        "end_char": 8351,
+        "score": "0.028309409888357256",
+        "root": "docs",
+        "matched_terms": [
+          "logical",
+          "replica",
+          "replication"
+        ],
+        "evidence_id": "f7bac190ea5c1585f50e1adc",
+        "source_type": "repository",
+        "content_hash": "f16068299f649a726236b9057bd6ebf14ccc5baefb0cca16610d87eb3d476592",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "hot_standby_feedback",
+            "standby logical replication",
+            "pg_basebackup replica"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "f16068299f649a726236b9057bd6ebf14ccc5baefb0cca16610d87eb3d476592",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f7db6c8c09106acb1294eae2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+        "start_line": 25,
+        "total_lines": 154,
+        "start_char": 843,
+        "end_char": 5023,
+        "evidence_id": "f7db6c8c09106acb1294eae2",
+        "truncated": false,
+        "next_offset": 144,
+        "source_type": "repository",
+        "content_hash": "f7d58380d2f15c3da8cf90e1315a3e434effe4e26ab955ce57fee1869dcbb861",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/user/content/sql/create-source/postgres.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/ingest-data/postgres/replication-slot-active.md",
+              "offset": 24,
+              "limit": 120
+            },
+            {
+              "path": "doc/user/content/sql/create-source/postgres-v2.md",
+              "offset": 71,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f7d58380d2f15c3da8cf90e1315a3e434effe4e26ab955ce57fee1869dcbb861",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f9a3f7f71e344cbfdea7c417",
+        "type": "evidence",
+        "path": "doc/user/content/ingest-data/postgres/troubleshooting.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 8,
+        "start_char": 0,
+        "end_char": 215,
+        "score": "0.014285714285714285",
+        "root": "docs",
+        "matched_terms": [
+          "guides"
+        ],
+        "evidence_id": "f9a3f7f71e344cbfdea7c417",
+        "source_type": "repository",
+        "content_hash": "92640143e7825b25f7f3f2563ac4f2245c42c12ad2d01d0cc65333f7106ecfcc",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres integration guides index"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "92640143e7825b25f7f3f2563ac4f2245c42c12ad2d01d0cc65333f7106ecfcc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fdc5236406c8a7f0c494e8fb",
+        "type": "evidence",
+        "path": "doc/developer/generated/postgres-util/replication.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 49,
+        "score": "0.02077332635070263",
+        "root": "docs",
+        "matched_terms": [
+          "postgres",
+          "replication"
+        ],
+        "evidence_id": "fdc5236406c8a7f0c494e8fb",
+        "source_type": "repository",
+        "content_hash": "e2b3fdb3b5d6166b9b879d84b173ab2c7b9e298dbdd72d4508b29cd733fdd7bb",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres-considerations",
+            "postgres-replication-slots-tip-list"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2",
+          "Q3-3"
+        ],
+        "exported_content_sha256": "e2b3fdb3b5d6166b9b879d84b173ab2c7b9e298dbdd72d4508b29cd733fdd7bb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fe6d599c08fb100569f0f385",
+        "type": "evidence",
+        "root": "docs",
+        "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+        "start_line": 1,
+        "total_lines": 100,
+        "start_char": 0,
+        "end_char": 4890,
+        "evidence_id": "fe6d599c08fb100569f0f385",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "b58c33bb973236e66180c73e63b79b0d89d934f38a959942adf17b1af00df135",
+        "revision": "57227616afc8f0b7d32714321e1e81bc96d8268e",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "doc/developer/design/20250127_multi_replica_scheduling_singleton_sources.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/storage/source/postgres/replication.md",
+              "offset": 1,
+              "limit": 120
+            },
+            {
+              "path": "doc/developer/generated/postgres-util/replication.md",
+              "offset": 1,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b58c33bb973236e66180c73e63b79b0d89d934f38a959942adf17b1af00df135",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:self-hosted-replica-guide",
+        "type": "requirement",
+        "description": "Add a new guide under doc/user/content/ingest-data/postgres/ (e.g. dedicated-replica.md) explaining how to stand up a dedicated PostgreSQL replica using native logical replication (pg_basebackup/primary_conninfo, wal_level=logical, hot_standby_feedback) and point a Materialize PostgreSQL source at the replica host instead of the production primary, including the CREATE CONNECTION/CREATE SOURCE steps and caveats (replication slot on replica, failover)."
+      },
+      {
+        "id": "requirement:postgres-guides-index",
+        "type": "requirement",
+        "description": "Register the new dedicated-replica guide in the shared PostgreSQL integration guides list so it appears on the PostgreSQL ingest-data index and is linked from the CREATE SOURCE PostgreSQL pages."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "doc/user/content/ingest-data/postgres/dedicated-replica.md",
+        "hash": "3af722f83b6b990e252df3ae1e6949016d919adda1edcfd6c54d4a1858e2732d"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "doc/user/shared-content/postgresql-ingest-data-guides.md",
+        "hash": "558cc5297c47ccd11389f8fda00f4a922ecce7b953760c086876b2cf7abf4634"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "self-hosted-replica-guide",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "doc/user/content/ingest-data/postgres/dedicated-replica.md"
+        ],
+        "evidence_ids": [
+          "badda2e09c0fb948b3f34337",
+          "f717dc5e39bbaeb8a5d9dd08",
+          "145d22c45a934c0ef7a25a8c",
+          "28b0f9a1b709fa547c9b3653"
+        ],
+        "reason": "Add a new guide under doc/user/content/ingest-data/postgres/ (e.g. dedicated-replica.md) explaining how to stand up a dedicated PostgreSQL replica using native logical replication (pg_basebackup/primary_conninfo, wal_level=logical, hot_standby_feedback) and point a Materialize PostgreSQL source at the replica host instead of the production primary, including the CREATE CONNECTION/CREATE SOURCE steps and caveats (replication slot on replica, failover)."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "postgres-guides-index",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "doc/user/shared-content/postgresql-ingest-data-guides.md"
+        ],
+        "evidence_ids": [
+          "75d9727a59e38b0a894d3f8c",
+          "1e116ba6310c96453856ae4e"
+        ],
+        "reason": "Register the new dedicated-replica guide in the shared PostgreSQL integration guides list so it appears on the PostgreSQL ingest-data index and is linked from the CREATE SOURCE PostgreSQL pages."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where does the documentation describe PostgreSQL sources, including connection parameters and any guidance on replication slots or dedicated replicas?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Does the docs cover native logical replication setup, publication creation, or replica configuration for PostgreSQL?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Where is the PostgreSQL source reference page and what sections exist for connection and replication options?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the self-hosted PostgreSQL integration guide already cover standing up a dedicated replica or point a source at a non-primary host?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Is there any existing guidance on logical replication from a standby/replica (e.g., hot_standby_feedback, pg_basebackup, primary_conninfo) in the docs?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Where is the PostgreSQL integration guide index that lists guides, to know where a new replica guide would be linked?"
+      },
+      {
+        "id": "research:Q3-1",
+        "type": "research_question",
+        "description": "What does the self-hosted PostgreSQL guide's later sections (after network security) cover, and does it include any guidance on pointing the source at a non-primary host or a dedicated replica?"
+      },
+      {
+        "id": "research:Q3-2",
+        "type": "research_question",
+        "description": "What is the shared include file that lists PostgreSQL integration guides, so a new replica guide could be registered there?"
+      },
+      {
+        "id": "research:Q3-3",
+        "type": "research_question",
+        "description": "Does the postgres_source_details YAML include any considerations about replication slots, primary vs replica, or hot_standby_feedback that a replica guide should reference?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:02794869bbdaccc8ef6e00de",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:07153de7d75b1ee8d6b10cc1",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:089e8ea8aac844d5e6790d03",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:08e7b90c06dc2cc75c784362",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d5b2273a76b8ea97c847caa",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:12f6d77a438b620384d49977",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:12f6d77a438b620384d49977",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:145d22c45a934c0ef7a25a8c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:14633e5e195ac0ccbad78dd0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:16875df4229947158819e9ea",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:196c74c6133058a2fa610684",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1e116ba6310c96453856ae4e",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1eb9b30e5e061ee9eb64eee6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1eb9b30e5e061ee9eb64eee6",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1eb9b30e5e061ee9eb64eee6",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1eb9b30e5e061ee9eb64eee6",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:214eb8378d3186bc85b9f3f7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2746ab03e17a82b08430dc74",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2746ab03e17a82b08430dc74",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2746ab03e17a82b08430dc74",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:27ea987b3202e42a2a038cd7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2885356ee3e497fb0813b8f8",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:28b0f9a1b709fa547c9b3653",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2cd0cb5061fe790a2b044544",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2eb87f4a7369d2b648f50ccf",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2f058bda1a0d2b7161dba8d7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:31c03a4166da2c6d0e780d0d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:33458240b80b1afaebd99712",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:34fb2bf893af45c5b37f096e",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3794590ddd5ee06b96e052de",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3e02f55e6e82f79a10c376fd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3eb72b1e3b435e7d4c9a505b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3f3aa7e80e637ff9ea7f09d7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:41ecd770bc0c713a6f21d7d6",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:44b1aca11e2e3a55274dd4c5",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4b4be7afd63949e662fe1d61",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4c3d379db5e75e3253e6a179",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4c3d379db5e75e3253e6a179",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4c8509bce20746f6f4660c4a",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5390d4ce8adb6f5a79dde414",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:544a7e026bd4b139d84a6dfe",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:632d9226146e18675ea5e6f1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:632d9226146e18675ea5e6f1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64d736cfbbf6d26c4b751b1a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:64d736cfbbf6d26c4b751b1a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:67270feb7c8a9c13a306b804",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6a64c515f973674af1ae517c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6cf759d8a8667e5e2c6d0c2c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:70db49c66e366b2823ce849a",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:72049ce45873eb97894fe20d",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:75d9727a59e38b0a894d3f8c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:75d9727a59e38b0a894d3f8c",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78e5c586d4e562cd0913482c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7979f0be99b595ae2887381c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:82383d8720171c925893abfd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:82b463663a76b844f544489a",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8bdd0e52702f3ea99c870ad7",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8c7269e8007c125afd215c63",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8d785a9811a4b82626034b3c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:94c155f7788f67f295f05ba9",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:94e69c768d896c06e554ab08",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9702b48fa1fc4103c7f3a406",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9702b48fa1fc4103c7f3a406",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:997486f538ec2bb3ee040fc9",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9f0f1476ef6ae49e89da4028",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a226bd8acc812a64ee914adb",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aae324143e37b1f4ce3777d3",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aaf912a6d149418fbbf6054e",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aaf912a6d149418fbbf6054e",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac29b9d5964ef178118aa6cd",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac29b9d5964ef178118aa6cd",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b645f171997463581093c392",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b90c499f01b19a6957f2a152",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:badda2e09c0fb948b3f34337",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c10d2a24197d3995bfdd0ab1",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c51e46d2018be9aa453f1476",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c51e46d2018be9aa453f1476",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c657538104419ffa3bdae530",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c76181fae715bcd48b863872",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c7b0cc65fc4d2fef52884427",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cf5adc9da9d78f21cfd00755",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d8e5672a434ecb10e41ea98c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d8e5672a434ecb10e41ea98c",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d924bfa9075a162810b5ce54",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da398de79a124258666242e7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da398de79a124258666242e7",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dbe7400361b0c78920e54134",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:de13aee761930404ee04026a",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:deceb866037b084e10ad43f6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e02a4e88b3fa6b64e1c5c449",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e08d850a40c55c8f1306c656",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e25d0e572c220901d8f95d65",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e3a1c57cdca28a02bd778319",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e3cb45f832d76bed68566589",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e8d010136f0d0dcb413beaec",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e982d0ec942b3e24f572ddc4",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ea3fa5933f277dbf717ceec9",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f717dc5e39bbaeb8a5d9dd08",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7bac190ea5c1585f50e1adc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7bac190ea5c1585f50e1adc",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7db6c8c09106acb1294eae2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f9a3f7f71e344cbfdea7c417",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fdc5236406c8a7f0c494e8fb",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fdc5236406c8a7f0c494e8fb",
+        "to": "research:Q3-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fe6d599c08fb100569f0f385",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:badda2e09c0fb948b3f34337",
+        "to": "requirement:self-hosted-replica-guide",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:f717dc5e39bbaeb8a5d9dd08",
+        "to": "requirement:self-hosted-replica-guide",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:145d22c45a934c0ef7a25a8c",
+        "to": "requirement:self-hosted-replica-guide",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:28b0f9a1b709fa547c9b3653",
+        "to": "requirement:self-hosted-replica-guide",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:75d9727a59e38b0a894d3f8c",
+        "to": "requirement:postgres-guides-index",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:1e116ba6310c96453856ae4e",
+        "to": "requirement:postgres-guides-index",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:self-hosted-replica-guide",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:badda2e09c0fb948b3f34337",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f717dc5e39bbaeb8a5d9dd08",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:145d22c45a934c0ef7a25a8c",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:28b0f9a1b709fa547c9b3653",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:postgres-guides-index",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:75d9727a59e38b0a894d3f8c",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:1e116ba6310c96453856ae4e",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:self-hosted-replica-guide",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:badda2e09c0fb948b3f34337",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:f717dc5e39bbaeb8a5d9dd08",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:145d22c45a934c0ef7a25a8c",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:28b0f9a1b709fa547c9b3653",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:postgres-guides-index",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:75d9727a59e38b0a894d3f8c",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:1e116ba6310c96453856ae4e",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "e1f2208f69a1ca83ec64845017b4dc0b8bba49e339e8ebdb0b897f0f479ddf4c"
+}

@@ -1,0 +1,4896 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "postgres-cdc-lifecycle",
+      "description": "In contents/docs/cdp/sources/postgres.mdx, document that CDC can now be enabled, disabled, and reconfigured after source creation from the source's Configuration tab: the management-mode picker (PostHog-managed vs self-managed), prerequisite check, enable/disable actions, and editable settings (automatic slot protection / cdc_auto_drop_slot and WAL lag warning/critical thresholds). Note that disabling forces CDC schemas to pick a new sync strategy and clears CDC config so re-enabling starts clean, and that self-managed mode never touches the customer-owned publication.",
+      "evidence_ids": [
+        "a898a0e29b90a0dc3f130d92",
+        "575abd87a0375ebe34836e8c",
+        "8668c9376e43737b1e957ffc",
+        "b27408d1adcd45672df74b82"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "postgres-cdc-status-monitoring",
+      "description": "In contents/docs/cdp/sources/postgres.mdx, add a section on monitoring CDC health from the Configuration tab: live replication slot and publication existence checks, WAL lag display, and what to do when the slot or publication is reported missing (recreate the publication in self-managed mode, or disable and re-enable CDC in PostHog-managed mode).",
+      "evidence_ids": [
+        "8668c9376e43737b1e957ffc",
+        "0d09b749eba9297160707f7a",
+        "8808e1f997bf0a3c693af487"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "postgres-cdc-pk-guard",
+      "description": "In contents/docs/cdp/sources/postgres.mdx (Operational risks and limitations), document that the primary key of a CDC schema cannot be changed once data has been synced, since the PK is the merge key for UPDATE/DELETE, and that tables discovered after source creation now persist their detected primary key so they can be switched to CDC without a manual refresh.",
+      "evidence_ids": [
+        "8808e1f997bf0a3c693af487",
+        "b27408d1adcd45672df74b82"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "84a29a0188b72ba943c9bf7d0525d277815660a7527f5730ad0b1aa319a0af0e",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where in the docs are data warehouse sources and CDC (change data capture) documented, and do they describe enabling/disabling CDC after source creation?",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "contents/docs/cdp/sources"
+          ],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "offset": 92,
+              "limit": 120
+            },
+            {
+              "path": "scripts/hogfm/handbook/CHANGE_DETECTION.md",
+              "offset": 14,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/legacy-methodology.mdx",
+              "offset": 55,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "b27408d1adcd45672df74b82",
+            "515fa1290bc5b7e73a8d43c8",
+            "5273726465f7bb858d432740",
+            "1f8e442236771fdfc3df9732",
+            "f5ff74a4c5ecf158378e8108",
+            "dc906c878e8f3b444c876327",
+            "5329122e0e75cd1eb440e256",
+            "3134418d10299b255061336d",
+            "17e88620c5f76515aa5b896a",
+            "92d165008b73f559e54543f4",
+            "b530f5bcb47aaf7d071fb1ab",
+            "0c14bf7f7ff52fafdc9d7ef8",
+            "2661a86b425e83c72ca12c74",
+            "0f7de734b6d9a0a5a2c81701",
+            "fbc705a8c8ea265f7fff1652"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "evidence_id": "1f8e442236771fdfc3df9732",
+              "score": "0.044853737811484294"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "evidence_id": "f5ff74a4c5ecf158378e8108",
+              "score": "0.042748917748917745"
+            },
+            {
+              "rank": 3,
+              "path": "scripts/hogfm/handbook/CHANGE_DETECTION.md",
+              "evidence_id": "dc906c878e8f3b444c876327",
+              "score": "0.021778584392014518"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/experiments/legacy-methodology.mdx",
+              "evidence_id": "5329122e0e75cd1eb440e256",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/error-tracking/upload-source-maps/react.mdx",
+              "evidence_id": "3134418d10299b255061336d",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/error-tracking/upload-source-maps/node.mdx",
+              "evidence_id": "17e88620c5f76515aa5b896a",
+              "score": "0.015625"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/error-tracking/upload-source-maps/web.mdx",
+              "evidence_id": "92d165008b73f559e54543f4",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/privacy/data-collection.mdx",
+              "evidence_id": "b530f5bcb47aaf7d071fb1ab",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 9,
+              "path": "contents/tutorials/scroll-depth.md",
+              "evidence_id": "0c14bf7f7ff52fafdc9d7ef8",
+              "score": "0.014925373134328358"
+            },
+            {
+              "rank": 10,
+              "path": "contents/blog/the-posthog-array-1-34-0.md",
+              "evidence_id": "2661a86b425e83c72ca12c74",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/settings/approvals.mdx",
+              "evidence_id": "0f7de734b6d9a0a5a2c81701",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/privacy/data-collection.mdx",
+              "evidence_id": "fbc705a8c8ea265f7fff1652",
+              "score": "0.014492753623188406"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "start": 92,
+              "end": 212,
+              "total_lines": 358
+            },
+            {
+              "path": "scripts/hogfm/handbook/CHANGE_DETECTION.md",
+              "start": 14,
+              "end": 134,
+              "total_lines": 387
+            },
+            {
+              "path": "contents/docs/experiments/legacy-methodology.mdx",
+              "start": 55,
+              "end": 101,
+              "total_lines": 101
+            }
+          ],
+          "read_evidence_ids": [
+            "b27408d1adcd45672df74b82",
+            "515fa1290bc5b7e73a8d43c8",
+            "5273726465f7bb858d432740"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Is there existing documentation for Postgres source setup, CDC management modes, or self-managed publications?",
+          "root": "docs",
+          "queries": [
+            "postgres source CDC",
+            "self-managed publication",
+            "logical replication"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/web-analytics/marketing-analytics.mdx",
+              "offset": 129,
+              "limit": 120
+            },
+            {
+              "path": "contents/teams/warehouse-sources/objectives.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/self-host/_snippets/disclaimer.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "8813361fbac4468fbf4c0c2c",
+            "b200016bbce07639b72f01c9",
+            "eecb89fbb5502c8c6a561677",
+            "1f8e442236771fdfc3df9732",
+            "e93a3be0e95bcb7c2da9c76b",
+            "088cf067cb9d66246e9479d6",
+            "2661a86b425e83c72ca12c74",
+            "22a7f1bbabb4bdaa064db2a5",
+            "75eb2ba1a87a75376ba2251b",
+            "1be7f983b760385af16329a9",
+            "a55eb1d7aa1d6010e2f6bda0",
+            "5aa7b91ca0024d28d0828aac",
+            "54b98bd9c12975777d276147"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "evidence_id": "1f8e442236771fdfc3df9732",
+              "score": "0.04314155461942409"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "evidence_id": "e93a3be0e95bcb7c2da9c76b",
+              "score": "0.042934389017223566"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/web-analytics/marketing-analytics.mdx",
+              "evidence_id": "088cf067cb9d66246e9479d6",
+              "score": "0.019950825430277486"
+            },
+            {
+              "rank": 4,
+              "path": "contents/teams/warehouse-sources/objectives.mdx",
+              "evidence_id": "b200016bbce07639b72f01c9",
+              "score": "0.016520458474739066"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/self-host/_snippets/disclaimer.mdx",
+              "evidence_id": "eecb89fbb5502c8c6a561677",
+              "score": "0.016261092306284877"
+            },
+            {
+              "rank": 6,
+              "path": "contents/blog/the-posthog-array-1-34-0.md",
+              "evidence_id": "2661a86b425e83c72ca12c74",
+              "score": "0.01620088333840999"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/cdp/sources/index.mdx",
+              "evidence_id": "22a7f1bbabb4bdaa064db2a5",
+              "score": "0.01598204024908464"
+            },
+            {
+              "rank": 8,
+              "path": "contents/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss.md",
+              "evidence_id": "75eb2ba1a87a75376ba2251b",
+              "score": "0.015955309058757333"
+            },
+            {
+              "rank": 9,
+              "path": "contents/handbook/engineering/operations/support-hero.md",
+              "evidence_id": "1be7f983b760385af16329a9",
+              "score": "0.015831441708864444"
+            },
+            {
+              "rank": 10,
+              "path": "contents/blog/secrets-of-posthog-query-performance.md",
+              "evidence_id": "a55eb1d7aa1d6010e2f6bda0",
+              "score": "0.01563358778625954"
+            },
+            {
+              "rank": 11,
+              "path": "contents/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss.md",
+              "evidence_id": "5aa7b91ca0024d28d0828aac",
+              "score": "0.015625"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/self-host/open-source/support.mdx",
+              "evidence_id": "54b98bd9c12975777d276147",
+              "score": "0.015393212761633815"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/web-analytics/marketing-analytics.mdx",
+              "start": 129,
+              "end": 249,
+              "total_lines": 252
+            },
+            {
+              "path": "contents/teams/warehouse-sources/objectives.mdx",
+              "start": 0,
+              "end": 41,
+              "total_lines": 41
+            },
+            {
+              "path": "contents/docs/self-host/_snippets/disclaimer.mdx",
+              "start": 0,
+              "end": 1,
+              "total_lines": 1
+            }
+          ],
+          "read_evidence_ids": [
+            "8813361fbac4468fbf4c0c2c",
+            "b200016bbce07639b72f01c9",
+            "eecb89fbb5502c8c6a561677"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What user-facing CDC configuration fields and lifecycle actions does the implementation expose (management mode, slot/publication names, lag thresholds, enable/disable)?",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ],
+          "paths": [
+            "products/data_warehouse/backend/api/external_data_source.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "products/data_warehouse/backend/api/external_data_source.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/lib/api.ts",
+              "offset": 5577,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "08cd8c2b45f6d3f1455059be",
+            "a898a0e29b90a0dc3f130d92",
+            "ad8363e3070c761ef300fc98",
+            "85e21eb3f94b6c9640f7fc8c",
+            "a151d846a6b12bc0ec859010",
+            "0c8d92beab262d5ebbc5be07",
+            "d0a1d9fcc18c6cbbc638bd30",
+            "15e59e3fb4f067b137e0b94e",
+            "2f00708d9faa4f0e5ba54bf5",
+            "7d99749d3e8d714aac0154e3",
+            "fda3b974c1ab65f9075e5614",
+            "8991407a021ed9bf8e101f50",
+            "cadce7cdeac35671f0e6fe2b",
+            "131f92e4c82177eb0b6bf7e2"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "frontend/src/lib/api.ts",
+              "evidence_id": "ad8363e3070c761ef300fc98",
+              "score": "0.04614695340501792"
+            },
+            {
+              "rank": 2,
+              "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+              "evidence_id": "85e21eb3f94b6c9640f7fc8c",
+              "score": "0.04165204165204166"
+            },
+            {
+              "rank": 3,
+              "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+              "evidence_id": "a151d846a6b12bc0ec859010",
+              "score": "0.038608976884686105"
+            },
+            {
+              "rank": 4,
+              "path": "frontend/src/lib/api.ts",
+              "evidence_id": "0c8d92beab262d5ebbc5be07",
+              "score": "0.03808557971589257"
+            },
+            {
+              "rank": 5,
+              "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+              "evidence_id": "d0a1d9fcc18c6cbbc638bd30",
+              "score": "0.03794306184012067"
+            },
+            {
+              "rank": 6,
+              "path": "products/data_warehouse/backend/api/external_data_source.py",
+              "evidence_id": "15e59e3fb4f067b137e0b94e",
+              "score": "0.03494196566485723"
+            },
+            {
+              "rank": 7,
+              "path": "products/data_warehouse/frontend/generated/api.ts",
+              "evidence_id": "2f00708d9faa4f0e5ba54bf5",
+              "score": "0.026334026334026334"
+            },
+            {
+              "rank": 8,
+              "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+              "evidence_id": "7d99749d3e8d714aac0154e3",
+              "score": "0.025833333333333333"
+            },
+            {
+              "rank": 9,
+              "path": "products/data_warehouse/backend/api/external_data_source.py",
+              "evidence_id": "fda3b974c1ab65f9075e5614",
+              "score": "0.025728708679368183"
+            },
+            {
+              "rank": 10,
+              "path": "products/data_warehouse/frontend/generated/api.ts",
+              "evidence_id": "8991407a021ed9bf8e101f50",
+              "score": "0.02484567901234568"
+            },
+            {
+              "rank": 11,
+              "path": "products/data_warehouse/frontend/scenes/NewSourceScene/sourceWizardLogic.tsx",
+              "evidence_id": "cadce7cdeac35671f0e6fe2b",
+              "score": "0.02363150867823765"
+            },
+            {
+              "rank": 12,
+              "path": "products/data_warehouse/frontend/generated/api.zod.ts",
+              "evidence_id": "131f92e4c82177eb0b6bf7e2",
+              "score": "0.023000660938532716"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "products/data_warehouse/backend/api/external_data_source.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 2842
+            },
+            {
+              "path": "frontend/src/lib/api.ts",
+              "start": 5577,
+              "end": 5697,
+              "total_lines": 7214
+            }
+          ],
+          "read_evidence_ids": [
+            "08cd8c2b45f6d3f1455059be",
+            "a898a0e29b90a0dc3f130d92"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "088cf067cb9d66246e9479d6",
+        "08cd8c2b45f6d3f1455059be",
+        "0c14bf7f7ff52fafdc9d7ef8",
+        "0c8d92beab262d5ebbc5be07",
+        "0f7de734b6d9a0a5a2c81701",
+        "131f92e4c82177eb0b6bf7e2",
+        "15e59e3fb4f067b137e0b94e",
+        "17e88620c5f76515aa5b896a",
+        "1be7f983b760385af16329a9",
+        "1f8e442236771fdfc3df9732",
+        "22a7f1bbabb4bdaa064db2a5",
+        "2661a86b425e83c72ca12c74",
+        "2f00708d9faa4f0e5ba54bf5",
+        "3134418d10299b255061336d",
+        "515fa1290bc5b7e73a8d43c8",
+        "5273726465f7bb858d432740",
+        "5329122e0e75cd1eb440e256",
+        "54b98bd9c12975777d276147",
+        "5aa7b91ca0024d28d0828aac",
+        "75eb2ba1a87a75376ba2251b",
+        "7d99749d3e8d714aac0154e3",
+        "85e21eb3f94b6c9640f7fc8c",
+        "8813361fbac4468fbf4c0c2c",
+        "8991407a021ed9bf8e101f50",
+        "92d165008b73f559e54543f4",
+        "a151d846a6b12bc0ec859010",
+        "a55eb1d7aa1d6010e2f6bda0",
+        "a898a0e29b90a0dc3f130d92",
+        "ad8363e3070c761ef300fc98",
+        "b200016bbce07639b72f01c9",
+        "b27408d1adcd45672df74b82",
+        "b530f5bcb47aaf7d071fb1ab",
+        "cadce7cdeac35671f0e6fe2b",
+        "d0a1d9fcc18c6cbbc638bd30",
+        "dc906c878e8f3b444c876327",
+        "e93a3be0e95bcb7c2da9c76b",
+        "eecb89fbb5502c8c6a561677",
+        "f5ff74a4c5ecf158378e8108",
+        "fbc705a8c8ea265f7fff1652",
+        "fda3b974c1ab65f9075e5614"
+      ],
+      "new_evidence_count": 40,
+      "new_path_count": 25
+    },
+    {
+      "signature": "b22b6840cd3fb4ce20231c80f18dfa5b219615144ce24e743e1686fe15c471ea",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the Postgres CDC doc cover enabling/disabling CDC after source creation, the Configuration tab CDC section, and update_cdc_settings (lag thresholds, auto-drop slot)?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "contents/docs/cdp/sources/postgres.mdx"
+          ],
+          "anchor": "## How PostHog CDC works",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "query": "## How PostHog CDC works",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "b27408d1adcd45672df74b82"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "start": 92,
+              "end": 212,
+              "total_lines": 358
+            }
+          ],
+          "read_evidence_ids": [
+            "b27408d1adcd45672df74b82"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the doc describe the primary-key immutability guard on CDC schemas and schema-qualified change event routing / multi-schema table name collisions?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "contents/docs/cdp/sources/postgres.mdx"
+          ],
+          "anchor": "## Operational risks and limitations",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "query": "## Operational risks and limitations",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "8808e1f997bf0a3c693af487"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "start": 314,
+              "end": 358,
+              "total_lines": 358
+            }
+          ],
+          "read_evidence_ids": [
+            "8808e1f997bf0a3c693af487"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "What does the CDCSection frontend expose to users (mode picker, prereq check, enable/disable, lag fields, slot/publication readouts, WAL lag) that should be documented?",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ],
+          "paths": [
+            "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+              "offset": 7914,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "575abd87a0375ebe34836e8c",
+            "0d09b749eba9297160707f7a",
+            "8668c9376e43737b1e957ffc",
+            "6a85c43ea1b85c67194e4359",
+            "9d283392ee8278e6a95674ad",
+            "7a0812cfac046adf1a5b0c1e",
+            "0c8d92beab262d5ebbc5be07",
+            "50d2a0d948801ceb4a8297b3",
+            "e93c3a68d07775a6239c10ce",
+            "83b07193acc769bda2fd945b",
+            "7288c4e2be4a1be7afd0e3c1",
+            "f3e08616a76b87f6c9563ae9",
+            "221290d0bc709077d45a875c",
+            "a8f052408120ab8dece2aad1"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+              "evidence_id": "8668c9376e43737b1e957ffc",
+              "score": "0.03131881575727918"
+            },
+            {
+              "rank": 2,
+              "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+              "evidence_id": "6a85c43ea1b85c67194e4359",
+              "score": "0.027108970929195647"
+            },
+            {
+              "rank": 3,
+              "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+              "evidence_id": "9d283392ee8278e6a95674ad",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 4,
+              "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+              "evidence_id": "7a0812cfac046adf1a5b0c1e",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 5,
+              "path": "frontend/src/lib/api.ts",
+              "evidence_id": "0c8d92beab262d5ebbc5be07",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 6,
+              "path": "posthog/temporal/data_imports/sources/postgres/cdc/adapter.py",
+              "evidence_id": "50d2a0d948801ceb4a8297b3",
+              "score": "0.015625"
+            },
+            {
+              "rank": 7,
+              "path": "products/logs/backend/migrations/0005_logsalertevent_kind.py",
+              "evidence_id": "e93c3a68d07775a6239c10ce",
+              "score": "0.015625"
+            },
+            {
+              "rank": 8,
+              "path": "posthog/temporal/data_imports/sources/postgres/cdc/tests/test_adapter.py",
+              "evidence_id": "83b07193acc769bda2fd945b",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 9,
+              "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/sourceSettingsLogic.ts",
+              "evidence_id": "7288c4e2be4a1be7afd0e3c1",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 10,
+              "path": "products/logs/frontend/generated/api.schemas.ts",
+              "evidence_id": "f3e08616a76b87f6c9563ae9",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 11,
+              "path": "products/data_warehouse/backend/api/external_data_source.py",
+              "evidence_id": "221290d0bc709077d45a875c",
+              "score": "0.014705882352941176"
+            },
+            {
+              "rank": 12,
+              "path": "products/data_warehouse/frontend/generated/api.ts",
+              "evidence_id": "a8f052408120ab8dece2aad1",
+              "score": "0.014492753623188406"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+              "start": 0,
+              "end": 120,
+              "total_lines": 692
+            },
+            {
+              "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+              "start": 7914,
+              "end": 7969,
+              "total_lines": 7969
+            }
+          ],
+          "read_evidence_ids": [
+            "575abd87a0375ebe34836e8c",
+            "0d09b749eba9297160707f7a"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0d09b749eba9297160707f7a",
+        "221290d0bc709077d45a875c",
+        "50d2a0d948801ceb4a8297b3",
+        "575abd87a0375ebe34836e8c",
+        "6a85c43ea1b85c67194e4359",
+        "7288c4e2be4a1be7afd0e3c1",
+        "7a0812cfac046adf1a5b0c1e",
+        "83b07193acc769bda2fd945b",
+        "8668c9376e43737b1e957ffc",
+        "8808e1f997bf0a3c693af487",
+        "9d283392ee8278e6a95674ad",
+        "a8f052408120ab8dece2aad1",
+        "e93c3a68d07775a6239c10ce",
+        "f3e08616a76b87f6c9563ae9"
+      ],
+      "new_evidence_count": 14,
+      "new_path_count": 5
+    },
+    {
+      "signature": "b9f0bbb22ea9f0fd918a447ae1d3675592941a775e7fa94b07bb79c5123d0e26",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q3-1",
+          "question": "Does the Postgres CDC doc already describe enabling/disabling CDC after source creation, the Configuration tab CDC section, and update_cdc_settings (lag thresholds, auto-drop slot)?",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ],
+          "paths": [
+            "contents/docs/cdp/sources/postgres.mdx"
+          ],
+          "anchor": "## How PostHog CDC works",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/support/github.mdx",
+              "offset": 21,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/alerts/index.mdx",
+              "offset": 310,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/ai-evals/evaluations.mdx",
+              "offset": 297,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "977a296274c51706b3765ade",
+            "422ed26c19cff92bcdf5e416",
+            "a8f4f4233c15d864a837c00b",
+            "1f8e442236771fdfc3df9732",
+            "e93a3be0e95bcb7c2da9c76b",
+            "10c00685502e1e3599747124",
+            "89289c801a23f0df907988c1",
+            "03738a450b3ab092cf36ee0e",
+            "9388da0b74332c49c68b7592",
+            "3cd9ecfbcb0a81649b82c850",
+            "3134418d10299b255061336d",
+            "cf1d250f6c1d19a14712a9ff",
+            "0343f9fd3f080307a83851f8",
+            "23515379ad7f329b4316efc9",
+            "801eb7f6c31bef9dca2dc717"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "evidence_id": "1f8e442236771fdfc3df9732",
+              "score": "0.03964254577157803"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "evidence_id": "e93a3be0e95bcb7c2da9c76b",
+              "score": "0.039015981374521835"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/support/github.mdx",
+              "evidence_id": "10c00685502e1e3599747124",
+              "score": "0.024137478682933228"
+            },
+            {
+              "rank": 4,
+              "path": "contents/docs/alerts/index.mdx",
+              "evidence_id": "89289c801a23f0df907988c1",
+              "score": "0.022477827050997785"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/ai-evals/evaluations.mdx",
+              "evidence_id": "03738a450b3ab092cf36ee0e",
+              "score": "0.021994824747118325"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/cdp/transformations/drop-events.mdx",
+              "evidence_id": "9388da0b74332c49c68b7592",
+              "score": "0.019362219501954034"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/endpoints/materialization.mdx",
+              "evidence_id": "3cd9ecfbcb0a81649b82c850",
+              "score": "0.016934816221678414"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/error-tracking/upload-source-maps/react.mdx",
+              "evidence_id": "3134418d10299b255061336d",
+              "score": "0.016655476940556732"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/integrate/_snippets/install-ios.mdx",
+              "evidence_id": "cf1d250f6c1d19a14712a9ff",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/cdp/destinations/salesforce.md",
+              "evidence_id": "0343f9fd3f080307a83851f8",
+              "score": "0.016203703703703703"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/posthog-code/settings.mdx",
+              "evidence_id": "23515379ad7f329b4316efc9",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/cdp/sources/google-sheets.md",
+              "evidence_id": "801eb7f6c31bef9dca2dc717",
+              "score": "0.015868673050615595"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/support/github.mdx",
+              "start": 21,
+              "end": 89,
+              "total_lines": 89
+            },
+            {
+              "path": "contents/docs/alerts/index.mdx",
+              "start": 310,
+              "end": 335,
+              "total_lines": 335
+            },
+            {
+              "path": "contents/docs/ai-evals/evaluations.mdx",
+              "start": 297,
+              "end": 370,
+              "total_lines": 370
+            }
+          ],
+          "read_evidence_ids": [
+            "977a296274c51706b3765ade",
+            "422ed26c19cff92bcdf5e416",
+            "a8f4f4233c15d864a837c00b"
+          ]
+        },
+        {
+          "id": "Q3-2",
+          "question": "Does the doc cover the primary-key immutability guard on CDC schemas and schema-qualified change event routing for multi-schema table name collisions?",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ],
+          "paths": [
+            "contents/docs/cdp/sources/postgres.mdx"
+          ],
+          "anchor": "## Operational risks and limitations",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/handbook/engineering/clickhouse/schema/index.mdx",
+              "offset": 6,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/integrate/send-events/_snippets/schema-tip.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+              "offset": 142,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "30e8a04ddeb5a25c81dc40ec",
+            "882707d9b70dd560eab33e9d",
+            "3f0c27bd816876ce1975b92c",
+            "039733301f944a986a962a49",
+            "2a7701f84251cc6718128370",
+            "e1067dc208d063ebd67775c5",
+            "7eaf9324b775a50d89fcd6f6",
+            "95d39dffae103ba10f90aa10",
+            "1758f27a886277c2154bb537",
+            "535524762f5c4e78dd5e0ae3",
+            "b3234ba274704836918464cd",
+            "e1c7b60ae785f1197be130e5",
+            "b40a313ea2489cee10b17c28",
+            "87a4a25600fe4d8fe1ea3628"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/handbook/engineering/clickhouse/schema/index.mdx",
+              "evidence_id": "039733301f944a986a962a49",
+              "score": "0.04323525936429162"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/integrate/send-events/_snippets/schema-tip.mdx",
+              "evidence_id": "882707d9b70dd560eab33e9d",
+              "score": "0.037561000555214635"
+            },
+            {
+              "rank": 3,
+              "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+              "evidence_id": "2a7701f84251cc6718128370",
+              "score": "0.03663425182412525"
+            },
+            {
+              "rank": 4,
+              "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+              "evidence_id": "e1067dc208d063ebd67775c5",
+              "score": "0.035844155844155845"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/product-analytics/schema-management.mdx",
+              "evidence_id": "7eaf9324b775a50d89fcd6f6",
+              "score": "0.0343696664641731"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "evidence_id": "95d39dffae103ba10f90aa10",
+              "score": "0.03405519742143433"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+              "evidence_id": "1758f27a886277c2154bb537",
+              "score": "0.033713508713508714"
+            },
+            {
+              "rank": 8,
+              "path": "contents/teams/query-performance/objectives.mdx",
+              "evidence_id": "535524762f5c4e78dd5e0ae3",
+              "score": "0.0330252801740028"
+            },
+            {
+              "rank": 9,
+              "path": "contents/handbook/engineering/clickhouse/data-ingestion.mdx",
+              "evidence_id": "b3234ba274704836918464cd",
+              "score": "0.03160574490633119"
+            },
+            {
+              "rank": 10,
+              "path": "contents/handbook/engineering/clickhouse/schema/person-distinct-id.mdx",
+              "evidence_id": "e1c7b60ae785f1197be130e5",
+              "score": "0.03096588205780327"
+            },
+            {
+              "rank": 11,
+              "path": "contents/handbook/engineering/clickhouse/clusters.mdx",
+              "evidence_id": "b40a313ea2489cee10b17c28",
+              "score": "0.03051814988290398"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/product-analytics/schema-management.mdx",
+              "evidence_id": "87a4a25600fe4d8fe1ea3628",
+              "score": "0.030184620546066326"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/handbook/engineering/clickhouse/schema/index.mdx",
+              "start": 6,
+              "end": 14,
+              "total_lines": 14
+            },
+            {
+              "path": "contents/docs/integrate/send-events/_snippets/schema-tip.mdx",
+              "start": 0,
+              "end": 1,
+              "total_lines": 1
+            },
+            {
+              "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+              "start": 142,
+              "end": 262,
+              "total_lines": 362
+            }
+          ],
+          "read_evidence_ids": [
+            "30e8a04ddeb5a25c81dc40ec",
+            "882707d9b70dd560eab33e9d",
+            "3f0c27bd816876ce1975b92c"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0343f9fd3f080307a83851f8",
+        "03738a450b3ab092cf36ee0e",
+        "039733301f944a986a962a49",
+        "10c00685502e1e3599747124",
+        "1758f27a886277c2154bb537",
+        "23515379ad7f329b4316efc9",
+        "2a7701f84251cc6718128370",
+        "30e8a04ddeb5a25c81dc40ec",
+        "3cd9ecfbcb0a81649b82c850",
+        "3f0c27bd816876ce1975b92c",
+        "422ed26c19cff92bcdf5e416",
+        "535524762f5c4e78dd5e0ae3",
+        "7eaf9324b775a50d89fcd6f6",
+        "801eb7f6c31bef9dca2dc717",
+        "87a4a25600fe4d8fe1ea3628",
+        "882707d9b70dd560eab33e9d",
+        "89289c801a23f0df907988c1",
+        "9388da0b74332c49c68b7592",
+        "95d39dffae103ba10f90aa10",
+        "977a296274c51706b3765ade",
+        "a8f4f4233c15d864a837c00b",
+        "b3234ba274704836918464cd",
+        "b40a313ea2489cee10b17c28",
+        "cf1d250f6c1d19a14712a9ff",
+        "e1067dc208d063ebd67775c5",
+        "e1c7b60ae785f1197be130e5"
+      ],
+      "new_evidence_count": 26,
+      "new_path_count": 18
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+    "code": "1a91653af685f0613ce3ea2b6b95f099c761b497"
+  },
+  "protocol_retries": {
+    "EDIT": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:08c9935ea387e29d": 0,
+    "discover:Q1-2:44bf3ebdb6ab6fd7": 523,
+    "discover:Q1-3:e415cf32d066a695": 0,
+    "discover:Q2-3:c02f94f54423d762": 0,
+    "discover:Q3-1:f98793fd2914121c": 0,
+    "discover:Q3-2:1d0a1bf679f067f0": 410
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:e415cf32d066a695": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:08c9935ea387e29d": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 524,
+      "cache_hit": false
+    },
+    "discover:Q1-2:44bf3ebdb6ab6fd7": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 673,
+      "cache_hit": false
+    },
+    "discover:Q1-3:e415cf32d066a695": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 61232,
+      "cache_hit": false
+    },
+    "discover:Q1-3:ecd69301a70142fe": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 222,
+      "cache_hit": false
+    },
+    "discover:Q1-2:f41055119ff4cf00": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 248,
+      "cache_hit": false
+    },
+    "discover:Q1-1:9f921a5f0542b2f1": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 274,
+      "cache_hit": false
+    },
+    "discover:Q2-3:c02f94f54423d762": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 1262,
+      "cache_hit": false
+    },
+    "discover:Q2-1:3b0cdbbeb1916c61": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 220,
+      "cache_hit": false
+    },
+    "discover:Q2-2:eeaa43662d358b80": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 264,
+      "cache_hit": false
+    },
+    "discover:Q2-3:e2595d8bf2f991e9": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 314,
+      "cache_hit": false
+    },
+    "discover:Q3-1:f98793fd2914121c": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 411,
+      "cache_hit": false
+    },
+    "discover:Q3-2:1d0a1bf679f067f0": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 403,
+      "cache_hit": false
+    },
+    "discover:Q3-2:b857a785e896897b": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 231,
+      "cache_hit": false
+    },
+    "discover:Q3-1:301c2d8eb3ad3a92": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 282,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 8836,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "postgres-cdc-lifecycle",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "evidence_ids": [
+        "a898a0e29b90a0dc3f130d92",
+        "575abd87a0375ebe34836e8c",
+        "8668c9376e43737b1e957ffc",
+        "0d09b749eba9297160707f7a",
+        "b27408d1adcd45672df74b82"
+      ],
+      "reason": "In contents/docs/cdp/sources/postgres.mdx, document that CDC can now be enabled, disabled, and reconfigured after source creation from the source's Configuration tab: the management-mode picker (PostHog-managed vs self-managed), prerequisite check, enable/disable actions, and editable settings (automatic slot protection / cdc_auto_drop_slot and WAL lag warning/critical thresholds). Note that disabling forces CDC schemas to pick a new sync strategy and clears CDC config so re-enabling starts clean, and that self-managed mode never touches the customer-owned publication."
+    },
+    {
+      "requirement_id": "postgres-cdc-status-monitoring",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "evidence_ids": [
+        "a898a0e29b90a0dc3f130d92",
+        "575abd87a0375ebe34836e8c",
+        "8668c9376e43737b1e957ffc",
+        "0d09b749eba9297160707f7a",
+        "b27408d1adcd45672df74b82"
+      ],
+      "reason": "In contents/docs/cdp/sources/postgres.mdx, add a section on monitoring CDC health from the Configuration tab: live replication slot and publication existence checks, WAL lag display, and what to do when the slot or publication is reported missing (recreate the publication in self-managed mode, or disable and re-enable CDC in PostHog-managed mode)."
+    },
+    {
+      "requirement_id": "postgres-cdc-pk-guard",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "evidence_ids": [
+        "8808e1f997bf0a3c693af487",
+        "b27408d1adcd45672df74b82"
+      ],
+      "reason": "In contents/docs/cdp/sources/postgres.mdx (Operational risks and limitations), document that the primary key of a CDC schema cannot be changed once data has been synced, since the PK is the merge key for UPDATE/DELETE, and that tables discovered after source creation now persist their detected primary key so they can be switched to CDC without a manual refresh."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0343f9fd3f080307a83851f8",
+        "type": "evidence",
+        "path": "contents/docs/cdp/destinations/salesforce.md",
+        "heading": "- template-salesforce-update > Installation",
+        "start_line": 16,
+        "end_line": 25,
+        "start_char": 451,
+        "end_char": 908,
+        "score": "0.016203703703703703",
+        "root": "docs",
+        "matched_terms": [
+          "configuration",
+          "enable",
+          "tab"
+        ],
+        "evidence_id": "0343f9fd3f080307a83851f8",
+        "source_type": "repository",
+        "content_hash": "04642ed217805bf445b56ef2a6868cd0718ecc2add08f66cab6dc937db9a1d69",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "04642ed217805bf445b56ef2a6868cd0718ecc2add08f66cab6dc937db9a1d69",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:03738a450b3ab092cf36ee0e",
+        "type": "evidence",
+        "path": "contents/docs/ai-evals/evaluations.mdx",
+        "heading": "title: Evaluations > Evaluation reports > Default report configuration",
+        "start_line": 302,
+        "end_line": 316,
+        "start_char": 14247,
+        "end_char": 15277,
+        "score": "0.021994824747118325",
+        "root": "docs",
+        "matched_terms": [
+          "after",
+          "auto",
+          "configuration",
+          "tab",
+          "threshold"
+        ],
+        "evidence_id": "03738a450b3ab092cf36ee0e",
+        "source_type": "repository",
+        "content_hash": "1d0e21b0f2f1ed0056cba8705ac63d74d2e8972fa4953913e6b7f9d9128b2e13",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "1d0e21b0f2f1ed0056cba8705ac63d74d2e8972fa4953913e6b7f9d9128b2e13",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:039733301f944a986a962a49",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/schema/index.mdx",
+        "heading": "title: Overview > Schemas",
+        "start_line": 11,
+        "end_line": 14,
+        "start_char": 383,
+        "end_char": 620,
+        "score": "0.04323525936429162",
+        "root": "docs",
+        "matched_terms": [
+          "events",
+          "schema",
+          "schemas"
+        ],
+        "evidence_id": "039733301f944a986a962a49",
+        "source_type": "repository",
+        "content_hash": "f06090f15b479f86786a74dedd01e8f1ea0207855b65c693c53196ec2b0a9450",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "f06090f15b479f86786a74dedd01e8f1ea0207855b65c693c53196ec2b0a9450",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:088cf067cb9d66246e9479d6",
+        "type": "evidence",
+        "path": "contents/docs/web-analytics/marketing-analytics.mdx",
+        "heading": "enterprise: full > Settings and configuration > Data source configuration > Self-managed sources",
+        "start_line": 134,
+        "end_line": 145,
+        "start_char": 7167,
+        "end_char": 7825,
+        "score": "0.019950825430277486",
+        "root": "docs",
+        "matched_terms": [
+          "managed",
+          "self",
+          "source"
+        ],
+        "evidence_id": "088cf067cb9d66246e9479d6",
+        "source_type": "repository",
+        "content_hash": "1f464b61d769cab4cba8986210af0f01d42c6ccb5b0a3c6b125055c80e744dd0",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres source CDC",
+            "self-managed publication",
+            "logical replication"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1f464b61d769cab4cba8986210af0f01d42c6ccb5b0a3c6b125055c80e744dd0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:08cd8c2b45f6d3f1455059be",
+        "type": "evidence",
+        "root": "code",
+        "path": "products/data_warehouse/backend/api/external_data_source.py",
+        "start_line": 1,
+        "total_lines": 2842,
+        "start_char": 0,
+        "end_char": 6173,
+        "evidence_id": "08cd8c2b45f6d3f1455059be",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "ca41386435f710dad9b1b0f3fb41b8f1eb1b6eb0bc239643735d7dbc101b0950",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/data_warehouse/backend/api/external_data_source.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/lib/api.ts",
+              "offset": 5577,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ca41386435f710dad9b1b0f3fb41b8f1eb1b6eb0bc239643735d7dbc101b0950",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c14bf7f7ff52fafdc9d7ef8",
+        "type": "evidence",
+        "path": "contents/tutorials/scroll-depth.md",
+        "heading": "- product analytics > Capturing scroll depth > Capturing scroll depth on page change",
+        "start_line": 69,
+        "end_line": 106,
+        "start_char": 2944,
+        "end_char": 4567,
+        "score": "0.014925373134328358",
+        "root": "docs",
+        "matched_terms": [
+          "capture",
+          "change",
+          "data"
+        ],
+        "evidence_id": "0c14bf7f7ff52fafdc9d7ef8",
+        "source_type": "repository",
+        "content_hash": "acfa7836f1bd7f20da38855fe9ee9a902658d39010919764d1e6a3c02c953fe3",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "acfa7836f1bd7f20da38855fe9ee9a902658d39010919764d1e6a3c02c953fe3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c8d92beab262d5ebbc5be07",
+        "type": "evidence",
+        "path": "frontend/src/lib/api.ts",
+        "heading": "",
+        "start_line": 5618,
+        "end_line": 5657,
+        "start_char": 224733,
+        "end_char": 226333,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "cdc_status",
+          "lag_bytes",
+          "publication_exists",
+          "slot_exists"
+        ],
+        "evidence_id": "0c8d92beab262d5ebbc5be07",
+        "source_type": "repository",
+        "content_hash": "45ee90c8c88310eaa23783bb0bb1b640546fbcc731b4ceb5075a121f699c9bc2",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "45ee90c8c88310eaa23783bb0bb1b640546fbcc731b4ceb5075a121f699c9bc2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0d09b749eba9297160707f7a",
+        "type": "evidence",
+        "root": "code",
+        "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+        "start_line": 7915,
+        "total_lines": 7969,
+        "start_char": 349009,
+        "end_char": 352069,
+        "evidence_id": "0d09b749eba9297160707f7a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "25e9601af9e7a00eca7f8135bae48e25d7ec8b7b3cba59a602302801a9a9d5cb",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+              "offset": 7914,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "25e9601af9e7a00eca7f8135bae48e25d7ec8b7b3cba59a602302801a9a9d5cb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0f7de734b6d9a0a5a2c81701",
+        "type": "evidence",
+        "path": "contents/docs/settings/approvals.mdx",
+        "heading": "enterprise: full > Change requests",
+        "start_line": 124,
+        "end_line": 141,
+        "start_char": 6662,
+        "end_char": 7141,
+        "score": "0.014705882352941176",
+        "root": "docs",
+        "matched_terms": [
+          "change"
+        ],
+        "evidence_id": "0f7de734b6d9a0a5a2c81701",
+        "source_type": "repository",
+        "content_hash": "d9901ebc74de3b8780639583da4b3b0466f974479137ee426f49166e2400e63f",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d9901ebc74de3b8780639583da4b3b0466f974479137ee426f49166e2400e63f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:10c00685502e1e3599747124",
+        "type": "evidence",
+        "path": "contents/docs/support/github.mdx",
+        "heading": "showTitle: true > Configuration",
+        "start_line": 26,
+        "end_line": 34,
+        "start_char": 1080,
+        "end_char": 1648,
+        "score": "0.024137478682933228",
+        "root": "docs",
+        "matched_terms": [
+          "after",
+          "configuration",
+          "tab"
+        ],
+        "evidence_id": "10c00685502e1e3599747124",
+        "source_type": "repository",
+        "content_hash": "47bf2b98ada918bf0ec25197c2cbbb4b86910232c19db2fd6160792ecc00501c",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "47bf2b98ada918bf0ec25197c2cbbb4b86910232c19db2fd6160792ecc00501c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:131f92e4c82177eb0b6bf7e2",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/generated/api.zod.ts",
+        "heading": "",
+        "start_line": 950,
+        "end_line": 985,
+        "start_char": 48189,
+        "end_char": 49933,
+        "score": "0.023000660938532716",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "cdc_management_mode",
+          "self_managed"
+        ],
+        "evidence_id": "131f92e4c82177eb0b6bf7e2",
+        "source_type": "repository",
+        "content_hash": "d0d7304575e624b74c19b70aa034a0b230d93df7b436fc110f5926038f53a7b4",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "d0d7304575e624b74c19b70aa034a0b230d93df7b436fc110f5926038f53a7b4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:15e59e3fb4f067b137e0b94e",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/api/external_data_source.py",
+        "heading": "(and therefore exfiltrate credentials via a poisoned SSH tunnel — VERIA-311).",
+        "start_line": 1988,
+        "end_line": 2026,
+        "start_char": 92347,
+        "end_char": 93964,
+        "score": "0.03494196566485723",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "cdc_management_mode",
+          "enable_cdc",
+          "self_managed"
+        ],
+        "evidence_id": "15e59e3fb4f067b137e0b94e",
+        "source_type": "repository",
+        "content_hash": "5243d3c579e6087c425037f7dc546310cc1e3abb6c9ec5623d7a64b309744b42",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5243d3c579e6087c425037f7dc546310cc1e3abb6c9ec5623d7a64b309744b42",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1758f27a886277c2154bb537",
+        "type": "evidence",
+        "path": "contents/docs/data-warehouse/troubleshooting.mdx",
+        "heading": "title: Data Warehouse troubleshooting > Why does \"Pull new schemas\" show \"no schema changes\"?",
+        "start_line": 40,
+        "end_line": 45,
+        "start_char": 1990,
+        "end_char": 2436,
+        "score": "0.033713508713508714",
+        "root": "docs",
+        "matched_terms": [
+          "schema",
+          "schemas"
+        ],
+        "evidence_id": "1758f27a886277c2154bb537",
+        "source_type": "repository",
+        "content_hash": "777c137c843fb7decc5ab2fa24413f2092b0df9032b02c9d1d13625cd055fbc4",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "777c137c843fb7decc5ab2fa24413f2092b0df9032b02c9d1d13625cd055fbc4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:17e88620c5f76515aa5b896a",
+        "type": "evidence",
+        "path": "contents/docs/error-tracking/upload-source-maps/node.mdx",
+        "heading": "showStepsToc: true",
+        "start_line": 3,
+        "end_line": 51,
+        "start_char": 42,
+        "end_char": 1689,
+        "score": "0.015625",
+        "root": "docs",
+        "matched_terms": [
+          "enable",
+          "source"
+        ],
+        "evidence_id": "17e88620c5f76515aa5b896a",
+        "source_type": "repository",
+        "content_hash": "4f034e68a33117db68e5c0f312d8c1011d676e6c0e2d439e40335935ea699b0d",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4f034e68a33117db68e5c0f312d8c1011d676e6c0e2d439e40335935ea699b0d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1be7f983b760385af16329a9",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/operations/support-hero.md",
+        "heading": "showTitle: true > How should I handle self-hosted setups?",
+        "start_line": 229,
+        "end_line": 232,
+        "start_char": 16526,
+        "end_char": 16905,
+        "score": "0.015831441708864444",
+        "root": "docs",
+        "matched_terms": [
+          "self",
+          "source"
+        ],
+        "evidence_id": "1be7f983b760385af16329a9",
+        "source_type": "repository",
+        "content_hash": "b1bfe72f353c3e26d9fe5a2da223335dac6eed894dee2c49d7eee0d02848d5fe",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres source CDC",
+            "self-managed publication",
+            "logical replication"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b1bfe72f353c3e26d9fe5a2da223335dac6eed894dee2c49d7eee0d02848d5fe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1f8e442236771fdfc3df9732",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "heading": "sourceId: Postgres > How PostHog CDC works",
+        "start_line": 97,
+        "end_line": 120,
+        "start_char": 5149,
+        "end_char": 6588,
+        "score": "0.03964254577157803",
+        "root": "docs",
+        "matched_terms": [
+          "after",
+          "cdc",
+          "slot",
+          "source"
+        ],
+        "evidence_id": "1f8e442236771fdfc3df9732",
+        "source_type": "repository",
+        "content_hash": "e7b763abdb38869a266c28fcb0cc1cba2e92d1ea7949167fc031381f7017196e",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "e7b763abdb38869a266c28fcb0cc1cba2e92d1ea7949167fc031381f7017196e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:221290d0bc709077d45a875c",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/api/external_data_source.py",
+        "heading": "(and therefore exfiltrate credentials via a poisoned SSH tunnel — VERIA-311).",
+        "start_line": 2238,
+        "end_line": 2273,
+        "start_char": 103794,
+        "end_char": 105424,
+        "score": "0.014705882352941176",
+        "root": "code",
+        "matched_terms": [
+          "lag",
+          "lag_bytes",
+          "publication_exists",
+          "slot_exists"
+        ],
+        "evidence_id": "221290d0bc709077d45a875c",
+        "source_type": "repository",
+        "content_hash": "afe58aee5f200bab7153688a1860a6bfcbfd52997e09bde0903caafd815847b0",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "afe58aee5f200bab7153688a1860a6bfcbfd52997e09bde0903caafd815847b0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:22a7f1bbabb4bdaa064db2a5",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/index.mdx",
+        "heading": "enterprise: full > Sync methods > Incremental",
+        "start_line": 59,
+        "end_line": 74,
+        "start_char": 2340,
+        "end_char": 3340,
+        "score": "0.01598204024908464",
+        "root": "docs",
+        "matched_terms": [
+          "replication"
+        ],
+        "evidence_id": "22a7f1bbabb4bdaa064db2a5",
+        "source_type": "repository",
+        "content_hash": "e0f4ef26046fa6fe3803bab40537dc5d8f13c97981f6cccad6e2063d29f8e4b3",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres source CDC",
+            "self-managed publication",
+            "logical replication"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e0f4ef26046fa6fe3803bab40537dc5d8f13c97981f6cccad6e2063d29f8e4b3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:23515379ad7f329b4316efc9",
+        "type": "evidence",
+        "path": "contents/docs/posthog-code/settings.mdx",
+        "heading": "title: PostHog Code settings > Worktrees",
+        "start_line": 25,
+        "end_line": 28,
+        "start_char": 1153,
+        "end_char": 1329,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "auto",
+          "threshold"
+        ],
+        "evidence_id": "23515379ad7f329b4316efc9",
+        "source_type": "repository",
+        "content_hash": "9f6267027af912790e54ebf8f35bc50c744c1c57bbf6723b61b15fb440dd79b5",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "9f6267027af912790e54ebf8f35bc50c744c1c57bbf6723b61b15fb440dd79b5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2661a86b425e83c72ca12c74",
+        "type": "evidence",
+        "path": "contents/blog/the-posthog-array-1-34-0.md",
+        "heading": "- Release notes > PostHog 1.34.0 release notes > New: Sharding and replication support for ClickHouse",
+        "start_line": 82,
+        "end_line": 87,
+        "start_char": 5102,
+        "end_char": 5472,
+        "score": "0.01620088333840999",
+        "root": "docs",
+        "matched_terms": [
+          "replication",
+          "self"
+        ],
+        "evidence_id": "2661a86b425e83c72ca12c74",
+        "source_type": "repository",
+        "content_hash": "52b117f9ab798fd7215358eace4f88e14551385caf64d686fc9ae48f1f7f2460",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres source CDC",
+            "self-managed publication",
+            "logical replication"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "52b117f9ab798fd7215358eace4f88e14551385caf64d686fc9ae48f1f7f2460",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2a7701f84251cc6718128370",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+        "heading": "title: Operations > Simple schema changes",
+        "start_line": 147,
+        "end_line": 159,
+        "start_char": 9074,
+        "end_char": 9737,
+        "score": "0.03663425182412525",
+        "root": "docs",
+        "matched_terms": [
+          "schema",
+          "table"
+        ],
+        "evidence_id": "2a7701f84251cc6718128370",
+        "source_type": "repository",
+        "content_hash": "7a34ff973f5aaa4a5b89c515630e2f4df90b7f3c45481fbf529e728c9c624c33",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "7a34ff973f5aaa4a5b89c515630e2f4df90b7f3c45481fbf529e728c9c624c33",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2f00708d9faa4f0e5ba54bf5",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/generated/api.ts",
+        "heading": "",
+        "start_line": 964,
+        "end_line": 1003,
+        "start_char": 34268,
+        "end_char": 35908,
+        "score": "0.026334026334026334",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "update_cdc_settings"
+        ],
+        "evidence_id": "2f00708d9faa4f0e5ba54bf5",
+        "source_type": "repository",
+        "content_hash": "3da4b303064728acc3d538e6c26a3e12cd507cb348b6698cdb589441b7b9a4ba",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "3da4b303064728acc3d538e6c26a3e12cd507cb348b6698cdb589441b7b9a4ba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:30e8a04ddeb5a25c81dc40ec",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/handbook/engineering/clickhouse/schema/index.mdx",
+        "start_line": 7,
+        "total_lines": 14,
+        "start_char": 205,
+        "end_char": 620,
+        "evidence_id": "30e8a04ddeb5a25c81dc40ec",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8cda8716f835c99bc6b813c1a41ddc15220b46216bef8d58fda5f99e9bf150d8",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/handbook/engineering/clickhouse/schema/index.mdx",
+              "offset": 6,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/integrate/send-events/_snippets/schema-tip.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+              "offset": 142,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "8cda8716f835c99bc6b813c1a41ddc15220b46216bef8d58fda5f99e9bf150d8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3134418d10299b255061336d",
+        "type": "evidence",
+        "path": "contents/docs/error-tracking/upload-source-maps/react.mdx",
+        "heading": "showStepsToc: true",
+        "start_line": 3,
+        "end_line": 52,
+        "start_char": 40,
+        "end_char": 1477,
+        "score": "0.016655476940556732",
+        "root": "docs",
+        "matched_terms": [
+          "configuration",
+          "enable",
+          "source"
+        ],
+        "evidence_id": "3134418d10299b255061336d",
+        "source_type": "repository",
+        "content_hash": "aeb5f75bb178c6226b33a3379b3747cf41396785b4446998efd4b7f4fd357e60",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "aeb5f75bb178c6226b33a3379b3747cf41396785b4446998efd4b7f4fd357e60",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3cd9ecfbcb0a81649b82c850",
+        "type": "evidence",
+        "path": "contents/docs/endpoints/materialization.mdx",
+        "heading": "title: Materialization > How to enable materialization",
+        "start_line": 17,
+        "end_line": 37,
+        "start_char": 711,
+        "end_char": 1734,
+        "score": "0.016934816221678414",
+        "root": "docs",
+        "matched_terms": [
+          "after",
+          "configuration",
+          "enable",
+          "tab"
+        ],
+        "evidence_id": "3cd9ecfbcb0a81649b82c850",
+        "source_type": "repository",
+        "content_hash": "ba8f09e2a0f5ae297a24d8774e74d18b552878e63416a34a7fd5fda3abcc04fb",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "ba8f09e2a0f5ae297a24d8774e74d18b552878e63416a34a7fd5fda3abcc04fb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3f0c27bd816876ce1975b92c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+        "start_line": 143,
+        "total_lines": 362,
+        "start_char": 8714,
+        "end_char": 15791,
+        "evidence_id": "3f0c27bd816876ce1975b92c",
+        "truncated": false,
+        "next_offset": 262,
+        "source_type": "repository",
+        "content_hash": "b907e69e2c78fe0770946957a0012ac4129a947ac5d9b7c9017b2b7fdabe853e",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/handbook/engineering/clickhouse/schema/index.mdx",
+              "offset": 6,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/integrate/send-events/_snippets/schema-tip.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+              "offset": 142,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "b907e69e2c78fe0770946957a0012ac4129a947ac5d9b7c9017b2b7fdabe853e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:422ed26c19cff92bcdf5e416",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/alerts/index.mdx",
+        "start_line": 311,
+        "total_lines": 335,
+        "start_char": 17548,
+        "end_char": 18730,
+        "evidence_id": "422ed26c19cff92bcdf5e416",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "fe99c64317162f48b7b35a60fed11a40a34f7c5b3383afdfdcc3f4efd3923875",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/support/github.mdx",
+              "offset": 21,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/alerts/index.mdx",
+              "offset": 310,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/ai-evals/evaluations.mdx",
+              "offset": 297,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "fe99c64317162f48b7b35a60fed11a40a34f7c5b3383afdfdcc3f4efd3923875",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:50d2a0d948801ceb4a8297b3",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/sources/postgres/cdc/adapter.py",
+        "heading": "",
+        "start_line": 181,
+        "end_line": 209,
+        "start_char": 8085,
+        "end_char": 9734,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "lag",
+          "lag_bytes",
+          "publication_exists",
+          "slot_exists"
+        ],
+        "evidence_id": "50d2a0d948801ceb4a8297b3",
+        "source_type": "repository",
+        "content_hash": "92411c5301a03d31969a3cb353ec3af0f91eb6f0b56da3a9640ba51e11d6a4cf",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "92411c5301a03d31969a3cb353ec3af0f91eb6f0b56da3a9640ba51e11d6a4cf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:515fa1290bc5b7e73a8d43c8",
+        "type": "evidence",
+        "root": "docs",
+        "path": "scripts/hogfm/handbook/CHANGE_DETECTION.md",
+        "start_line": 15,
+        "total_lines": 387,
+        "start_char": 567,
+        "end_char": 3334,
+        "evidence_id": "515fa1290bc5b7e73a8d43c8",
+        "truncated": false,
+        "next_offset": 134,
+        "source_type": "repository",
+        "content_hash": "cad5c2fedd2a08179529b3e094f25c70640d14a29682aa90bb641be831fcc1f2",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "offset": 92,
+              "limit": 120
+            },
+            {
+              "path": "scripts/hogfm/handbook/CHANGE_DETECTION.md",
+              "offset": 14,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/legacy-methodology.mdx",
+              "offset": 55,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "cad5c2fedd2a08179529b3e094f25c70640d14a29682aa90bb641be831fcc1f2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5273726465f7bb858d432740",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/experiments/legacy-methodology.mdx",
+        "start_line": 56,
+        "total_lines": 101,
+        "start_char": 3611,
+        "end_char": 6703,
+        "evidence_id": "5273726465f7bb858d432740",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "b47f5e9450a08b6623b07cf44a6549ca77a015096affa3e64ad87bad6d30aaa9",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "offset": 92,
+              "limit": 120
+            },
+            {
+              "path": "scripts/hogfm/handbook/CHANGE_DETECTION.md",
+              "offset": 14,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/legacy-methodology.mdx",
+              "offset": 55,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b47f5e9450a08b6623b07cf44a6549ca77a015096affa3e64ad87bad6d30aaa9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5329122e0e75cd1eb440e256",
+        "type": "evidence",
+        "path": "contents/docs/experiments/legacy-methodology.mdx",
+        "heading": "title: Legacy statistics methodology > Trend experiment calculations",
+        "start_line": 60,
+        "end_line": 63,
+        "start_char": 3764,
+        "end_char": 3953,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "capture",
+          "change",
+          "data"
+        ],
+        "evidence_id": "5329122e0e75cd1eb440e256",
+        "source_type": "repository",
+        "content_hash": "c7e46e2c8cb04c93b88c3f2bfdfa15345fd5de797a5b0e3fccc6405405f6172f",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c7e46e2c8cb04c93b88c3f2bfdfa15345fd5de797a5b0e3fccc6405405f6172f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:535524762f5c4e78dd5e0ae3",
+        "type": "evidence",
+        "path": "contents/teams/query-performance/objectives.mdx",
+        "heading": "Q2 2026 objectives > Event schema <TeamMember name=\"Sandy Spicer\" photo />",
+        "start_line": 14,
+        "end_line": 19,
+        "start_char": 638,
+        "end_char": 794,
+        "score": "0.0330252801740028",
+        "root": "docs",
+        "matched_terms": [
+          "events",
+          "name",
+          "schema"
+        ],
+        "evidence_id": "535524762f5c4e78dd5e0ae3",
+        "source_type": "repository",
+        "content_hash": "f6bd91b76419a5c57560b25e0752e0d0d40cad2a8b67c5a9d1a9bc067348f5f3",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "f6bd91b76419a5c57560b25e0752e0d0d40cad2a8b67c5a9d1a9bc067348f5f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:54b98bd9c12975777d276147",
+        "type": "evidence",
+        "path": "contents/docs/self-host/open-source/support.mdx",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 4,
+        "start_char": 0,
+        "end_char": 79,
+        "score": "0.015393212761633815",
+        "root": "docs",
+        "matched_terms": [
+          "self",
+          "source"
+        ],
+        "evidence_id": "54b98bd9c12975777d276147",
+        "source_type": "repository",
+        "content_hash": "e3e837304e321fabcb38f4d2524e56bf2b473f672859685b47dab48592e550b3",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres source CDC",
+            "self-managed publication",
+            "logical replication"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e3e837304e321fabcb38f4d2524e56bf2b473f672859685b47dab48592e550b3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:575abd87a0375ebe34836e8c",
+        "type": "evidence",
+        "root": "code",
+        "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+        "start_line": 1,
+        "total_lines": 692,
+        "start_char": 0,
+        "end_char": 5040,
+        "evidence_id": "575abd87a0375ebe34836e8c",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "dc0acf4056b5a2a6e16b90b0378bf5e7228958fea116a28b5966530eaff80dc4",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+              "offset": 7914,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "dc0acf4056b5a2a6e16b90b0378bf5e7228958fea116a28b5966530eaff80dc4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5aa7b91ca0024d28d0828aac",
+        "type": "evidence",
+        "path": "contents/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss.md",
+        "heading": "- Post mortems > Root cause analysis > Zero Copy replication bug",
+        "start_line": 41,
+        "end_line": 48,
+        "start_char": 3168,
+        "end_char": 4076,
+        "score": "0.015625",
+        "root": "docs",
+        "matched_terms": [
+          "replication"
+        ],
+        "evidence_id": "5aa7b91ca0024d28d0828aac",
+        "source_type": "repository",
+        "content_hash": "482b2480a04b733a2925539539184703a9a1fe1e496fae4f05921f7fe4592fee",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres source CDC",
+            "self-managed publication",
+            "logical replication"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "482b2480a04b733a2925539539184703a9a1fe1e496fae4f05921f7fe4592fee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6a85c43ea1b85c67194e4359",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+        "heading": "",
+        "start_line": 245,
+        "end_line": 283,
+        "start_char": 9811,
+        "end_char": 11460,
+        "score": "0.027108970929195647",
+        "root": "code",
+        "matched_terms": [
+          "disable",
+          "enable",
+          "lag",
+          "lag_bytes",
+          "threshold"
+        ],
+        "evidence_id": "6a85c43ea1b85c67194e4359",
+        "source_type": "repository",
+        "content_hash": "9bb6ea81ec8acfcf16b9144fdeb59518389504a1bb55b3bc1947d8bed4bf3f54",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "9bb6ea81ec8acfcf16b9144fdeb59518389504a1bb55b3bc1947d8bed4bf3f54",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7288c4e2be4a1be7afd0e3c1",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/sourceSettingsLogic.ts",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 49,
+        "start_char": 0,
+        "end_char": 1632,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "lag_bytes",
+          "publication_exists",
+          "slot_exists"
+        ],
+        "evidence_id": "7288c4e2be4a1be7afd0e3c1",
+        "source_type": "repository",
+        "content_hash": "86e44c9d2f8bcf5d880d2d162351de87ef267d285ef32e16117b6413ba895b20",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "86e44c9d2f8bcf5d880d2d162351de87ef267d285ef32e16117b6413ba895b20",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:75eb2ba1a87a75376ba2251b",
+        "type": "evidence",
+        "path": "contents/handbook/company/post-mortems/2026-02-20-posthog-us-logs-data-loss.md",
+        "heading": "- Post mortems > Timeline",
+        "start_line": 25,
+        "end_line": 38,
+        "start_char": 1755,
+        "end_char": 3144,
+        "score": "0.015955309058757333",
+        "root": "docs",
+        "matched_terms": [
+          "replication"
+        ],
+        "evidence_id": "75eb2ba1a87a75376ba2251b",
+        "source_type": "repository",
+        "content_hash": "693852a427a57ec944f09ced1694c45e2ce92a0d9cd1b56d2dc70273af98c5a5",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres source CDC",
+            "self-managed publication",
+            "logical replication"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "693852a427a57ec944f09ced1694c45e2ce92a0d9cd1b56d2dc70273af98c5a5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:787128a6f36eba3daf7250a3",
+        "type": "evidence",
+        "evidence_id": "787128a6f36eba3daf7250a3",
+        "source_type": "implementation",
+        "exported_content_sha256": "3418813516321b19a970bf41cfa7ff98f010d1d8645b3c93bc053638254daa02",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7a0812cfac046adf1a5b0c1e",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+        "heading": "",
+        "start_line": 7948,
+        "end_line": 7969,
+        "start_char": 350826,
+        "end_char": 352069,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "cdc_status",
+          "lag_bytes",
+          "publication_exists",
+          "slot_exists"
+        ],
+        "evidence_id": "7a0812cfac046adf1a5b0c1e",
+        "source_type": "repository",
+        "content_hash": "78eb578c04db205615a183a987911f4ff6ca0a6627bbf77041e86fbc3c81efde",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "78eb578c04db205615a183a987911f4ff6ca0a6627bbf77041e86fbc3c81efde",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7d99749d3e8d714aac0154e3",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+        "heading": "",
+        "start_line": 208,
+        "end_line": 244,
+        "start_char": 8198,
+        "end_char": 9811,
+        "score": "0.025833333333333333",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "update_cdc_settings"
+        ],
+        "evidence_id": "7d99749d3e8d714aac0154e3",
+        "source_type": "repository",
+        "content_hash": "52345c32edf529240e57a8e81b20b170a5c65e770ad80a9e5c6612632eb36564",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "52345c32edf529240e57a8e81b20b170a5c65e770ad80a9e5c6612632eb36564",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7eaf9324b775a50d89fcd6f6",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/schema-management.mdx",
+        "heading": "enterprise: full > Adding schemas to events",
+        "start_line": 71,
+        "end_line": 88,
+        "start_char": 2738,
+        "end_char": 3575,
+        "score": "0.0343696664641731",
+        "root": "docs",
+        "matched_terms": [
+          "events",
+          "multiple",
+          "schema",
+          "schemas"
+        ],
+        "evidence_id": "7eaf9324b775a50d89fcd6f6",
+        "source_type": "repository",
+        "content_hash": "b79f55e3279b93b50bf91fdf9664a36aaf7875f3cfbb77517cf8c571549c7896",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "b79f55e3279b93b50bf91fdf9664a36aaf7875f3cfbb77517cf8c571549c7896",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:801eb7f6c31bef9dca2dc717",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/google-sheets.md",
+        "heading": "sourceId: GoogleSheets > Configuration",
+        "start_line": 44,
+        "end_line": 47,
+        "start_char": 1612,
+        "end_char": 1652,
+        "score": "0.015868673050615595",
+        "root": "docs",
+        "matched_terms": [
+          "configuration"
+        ],
+        "evidence_id": "801eb7f6c31bef9dca2dc717",
+        "source_type": "repository",
+        "content_hash": "ea1debfaf5a641e6f75f378fed6bc8f476d078548ac859f221c3decc4d17887f",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "ea1debfaf5a641e6f75f378fed6bc8f476d078548ac859f221c3decc4d17887f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:81caa0b6d21b4470b09b208e",
+        "type": "evidence",
+        "evidence_id": "81caa0b6d21b4470b09b208e",
+        "source_type": "task",
+        "exported_content_sha256": "3b34000024d6070c55090524c80f0fbb8a11644d61cbff4a31511875b6eb779f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83b07193acc769bda2fd945b",
+        "type": "evidence",
+        "path": "posthog/temporal/data_imports/sources/postgres/cdc/tests/test_adapter.py",
+        "heading": "",
+        "start_line": 49,
+        "end_line": 81,
+        "start_char": 1626,
+        "end_char": 3248,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "publication_exists",
+          "slot_exists"
+        ],
+        "evidence_id": "83b07193acc769bda2fd945b",
+        "source_type": "repository",
+        "content_hash": "de434a97632c41be8eccdd08b4c269faa580bd0d7bc9dde1842d5f64d4dc9f4f",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "de434a97632c41be8eccdd08b4c269faa580bd0d7bc9dde1842d5f64d4dc9f4f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:85e21eb3f94b6c9640f7fc8c",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+        "heading": "",
+        "start_line": 414,
+        "end_line": 449,
+        "start_char": 17910,
+        "end_char": 19555,
+        "score": "0.04165204165204166",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "cdc_management_mode",
+          "enable_cdc",
+          "self_managed"
+        ],
+        "evidence_id": "85e21eb3f94b6c9640f7fc8c",
+        "source_type": "repository",
+        "content_hash": "fc25fd0cfb3739aaf300d46664429acad79e25adef3b41a46060020509790cab",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "fc25fd0cfb3739aaf300d46664429acad79e25adef3b41a46060020509790cab",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8668c9376e43737b1e957ffc",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/scenes/SourceScene/tabs/CDCSection.tsx",
+        "heading": "",
+        "start_line": 317,
+        "end_line": 344,
+        "start_char": 13085,
+        "end_char": 14697,
+        "score": "0.03131881575727918",
+        "root": "code",
+        "matched_terms": [
+          "disable",
+          "enable",
+          "lag",
+          "publication_exists",
+          "slot_exists",
+          "threshold"
+        ],
+        "evidence_id": "8668c9376e43737b1e957ffc",
+        "source_type": "repository",
+        "content_hash": "1e6682d70579b9f584de5373663f34b622c17419330ddf619dbe0d90e430f98d",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "1e6682d70579b9f584de5373663f34b622c17419330ddf619dbe0d90e430f98d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:87a4a25600fe4d8fe1ea3628",
+        "type": "evidence",
+        "path": "contents/docs/product-analytics/schema-management.mdx",
+        "heading": "enterprise: full > Best practices",
+        "start_line": 232,
+        "end_line": 238,
+        "start_char": 8153,
+        "end_char": 8738,
+        "score": "0.030184620546066326",
+        "root": "docs",
+        "matched_terms": [
+          "events",
+          "name",
+          "schema",
+          "schemas"
+        ],
+        "evidence_id": "87a4a25600fe4d8fe1ea3628",
+        "source_type": "repository",
+        "content_hash": "c40d46bb607c6f005d935974024cb37efa12f852690fafdd94fd2e3b85ee95a5",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "c40d46bb607c6f005d935974024cb37efa12f852690fafdd94fd2e3b85ee95a5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8808e1f997bf0a3c693af487",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "start_line": 315,
+        "total_lines": 358,
+        "start_char": 14382,
+        "end_char": 16949,
+        "evidence_id": "8808e1f997bf0a3c693af487",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "33a8ec60d8e3a1ea1bae09183c7a3226f1d78ad5999ab4cad4a20409768091b4",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "query": "## Operational risks and limitations",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "33a8ec60d8e3a1ea1bae09183c7a3226f1d78ad5999ab4cad4a20409768091b4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8813361fbac4468fbf4c0c2c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/web-analytics/marketing-analytics.mdx",
+        "start_line": 130,
+        "total_lines": 252,
+        "start_char": 7032,
+        "end_char": 13721,
+        "evidence_id": "8813361fbac4468fbf4c0c2c",
+        "truncated": false,
+        "next_offset": 249,
+        "source_type": "repository",
+        "content_hash": "010b33b5c9b47371362c10830625adee521c84781836b155fd59a8d9ea9d36c4",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/web-analytics/marketing-analytics.mdx",
+              "offset": 129,
+              "limit": 120
+            },
+            {
+              "path": "contents/teams/warehouse-sources/objectives.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/self-host/_snippets/disclaimer.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "010b33b5c9b47371362c10830625adee521c84781836b155fd59a8d9ea9d36c4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:882707d9b70dd560eab33e9d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/integrate/send-events/_snippets/schema-tip.mdx",
+        "start_line": 1,
+        "total_lines": 1,
+        "start_char": 0,
+        "end_char": 160,
+        "evidence_id": "882707d9b70dd560eab33e9d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d8cf3ffc8faca2ef6f55ff874f4d9d8c163a6964cb564306fb36240d40c0b935",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/handbook/engineering/clickhouse/schema/index.mdx",
+              "offset": 6,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/integrate/send-events/_snippets/schema-tip.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+              "offset": 142,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "d8cf3ffc8faca2ef6f55ff874f4d9d8c163a6964cb564306fb36240d40c0b935",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:89289c801a23f0df907988c1",
+        "type": "evidence",
+        "path": "contents/docs/alerts/index.mdx",
+        "heading": "enterprise: full > Automatically disabled alerts",
+        "start_line": 315,
+        "end_line": 332,
+        "start_char": 17599,
+        "end_char": 18604,
+        "score": "0.022477827050997785",
+        "root": "docs",
+        "matched_terms": [
+          "after",
+          "auto",
+          "configuration",
+          "enable",
+          "tab",
+          "threshold"
+        ],
+        "evidence_id": "89289c801a23f0df907988c1",
+        "source_type": "repository",
+        "content_hash": "7bf2b253b69a1e4f3a694d940a83f69eb8fc03ffb7b9c6eb621b7df2d68c8dbe",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "7bf2b253b69a1e4f3a694d940a83f69eb8fc03ffb7b9c6eb621b7df2d68c8dbe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8991407a021ed9bf8e101f50",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/generated/api.ts",
+        "heading": "",
+        "start_line": 877,
+        "end_line": 919,
+        "start_char": 31052,
+        "end_char": 32656,
+        "score": "0.02484567901234568",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "cdc_management_mode",
+          "self_managed"
+        ],
+        "evidence_id": "8991407a021ed9bf8e101f50",
+        "source_type": "repository",
+        "content_hash": "71e12421a76a01d30ea4c9f8d51cfb8dc34857c8f1847964e70891fb3fbec5d3",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "71e12421a76a01d30ea4c9f8d51cfb8dc34857c8f1847964e70891fb3fbec5d3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:92d165008b73f559e54543f4",
+        "type": "evidence",
+        "path": "contents/docs/error-tracking/upload-source-maps/web.mdx",
+        "heading": "showStepsToc: true",
+        "start_line": 3,
+        "end_line": 47,
+        "start_char": 38,
+        "end_char": 1674,
+        "score": "0.015151515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "enable",
+          "source"
+        ],
+        "evidence_id": "92d165008b73f559e54543f4",
+        "source_type": "repository",
+        "content_hash": "b07947b22b946536cc1a6425691d01e720f417def132ef069ed9ce744ab29e9d",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "b07947b22b946536cc1a6425691d01e720f417def132ef069ed9ce744ab29e9d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9388da0b74332c49c68b7592",
+        "type": "evidence",
+        "path": "contents/docs/cdp/transformations/drop-events.mdx",
+        "heading": "- template-drop-events > Installation",
+        "start_line": 23,
+        "end_line": 32,
+        "start_char": 1325,
+        "end_char": 1760,
+        "score": "0.019362219501954034",
+        "root": "docs",
+        "matched_terms": [
+          "drop",
+          "enable",
+          "tab"
+        ],
+        "evidence_id": "9388da0b74332c49c68b7592",
+        "source_type": "repository",
+        "content_hash": "5c533971f5da3e76caef68ebd721a72e82096439f6fd76a3435fd939614323dd",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "5c533971f5da3e76caef68ebd721a72e82096439f6fd76a3435fd939614323dd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:95d39dffae103ba10f90aa10",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "heading": "sourceId: Postgres > CDC requirements > Database user permissions",
+        "start_line": 207,
+        "end_line": 242,
+        "start_char": 9782,
+        "end_char": 10970,
+        "score": "0.03405519742143433",
+        "root": "docs",
+        "matched_terms": [
+          "multiple",
+          "schema",
+          "schemas",
+          "table"
+        ],
+        "evidence_id": "95d39dffae103ba10f90aa10",
+        "source_type": "repository",
+        "content_hash": "3cbd38677319bced8af6b6d466bc839f155a805a115a5b0aac03685027f68ea9",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "3cbd38677319bced8af6b6d466bc839f155a805a115a5b0aac03685027f68ea9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:977a296274c51706b3765ade",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/support/github.mdx",
+        "start_line": 22,
+        "total_lines": 89,
+        "start_char": 928,
+        "end_char": 3773,
+        "evidence_id": "977a296274c51706b3765ade",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "a3c817e66bf18beac54a57661c940009ab26e1c4ac06058284b77d4a93dbe368",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/support/github.mdx",
+              "offset": 21,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/alerts/index.mdx",
+              "offset": 310,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/ai-evals/evaluations.mdx",
+              "offset": 297,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "a3c817e66bf18beac54a57661c940009ab26e1c4ac06058284b77d4a93dbe368",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9d283392ee8278e6a95674ad",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+        "heading": "",
+        "start_line": 7919,
+        "end_line": 7947,
+        "start_char": 349184,
+        "end_char": 350826,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "cdc_status",
+          "lag_bytes",
+          "publication_exists",
+          "slot_exists"
+        ],
+        "evidence_id": "9d283392ee8278e6a95674ad",
+        "source_type": "repository",
+        "content_hash": "9b7b16b7170d39ceef0dfe2273bd4820753e0dee9d27527a11e35b6b17666d0c",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "9b7b16b7170d39ceef0dfe2273bd4820753e0dee9d27527a11e35b6b17666d0c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a151d846a6b12bc0ec859010",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+        "heading": "",
+        "start_line": 7299,
+        "end_line": 7333,
+        "start_char": 321387,
+        "end_char": 322991,
+        "score": "0.038608976884686105",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "cdc_management_mode",
+          "enable_cdc"
+        ],
+        "evidence_id": "a151d846a6b12bc0ec859010",
+        "source_type": "repository",
+        "content_hash": "0d29c0d728e049fbbdbb0449463baa2619b7301af07769e2b4c8c902a83ad71c",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "0d29c0d728e049fbbdbb0449463baa2619b7301af07769e2b4c8c902a83ad71c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a55eb1d7aa1d6010e2f6bda0",
+        "type": "evidence",
+        "path": "contents/blog/secrets-of-posthog-query-performance.md",
+        "heading": "- Launch week > Self-hosted performance",
+        "start_line": 161,
+        "end_line": 170,
+        "start_char": 7613,
+        "end_char": 8516,
+        "score": "0.01563358778625954",
+        "root": "docs",
+        "matched_terms": [
+          "replication",
+          "self"
+        ],
+        "evidence_id": "a55eb1d7aa1d6010e2f6bda0",
+        "source_type": "repository",
+        "content_hash": "e0e71706ba9d6cce75246808bab7be5ce6ca83eadbce49ec9ae805d6fcbf1e3e",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "postgres source CDC",
+            "self-managed publication",
+            "logical replication"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e0e71706ba9d6cce75246808bab7be5ce6ca83eadbce49ec9ae805d6fcbf1e3e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a898a0e29b90a0dc3f130d92",
+        "type": "evidence",
+        "root": "code",
+        "path": "frontend/src/lib/api.ts",
+        "start_line": 5578,
+        "total_lines": 7214,
+        "start_char": 222938,
+        "end_char": 227816,
+        "evidence_id": "a898a0e29b90a0dc3f130d92",
+        "truncated": false,
+        "next_offset": 5697,
+        "source_type": "repository",
+        "content_hash": "b77a3aebc6ea379a663254113ef00c7aa99cf8f043dfaaee9a71fe37da0dd70d",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "products/data_warehouse/backend/api/external_data_source.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "frontend/src/lib/api.ts",
+              "offset": 5577,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b77a3aebc6ea379a663254113ef00c7aa99cf8f043dfaaee9a71fe37da0dd70d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a8f052408120ab8dece2aad1",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/generated/api.ts",
+        "heading": "",
+        "start_line": 754,
+        "end_line": 792,
+        "start_char": 26125,
+        "end_char": 27732,
+        "score": "0.014492753623188406",
+        "root": "code",
+        "matched_terms": [
+          "lag",
+          "lag_bytes",
+          "publication_exists",
+          "slot_exists"
+        ],
+        "evidence_id": "a8f052408120ab8dece2aad1",
+        "source_type": "repository",
+        "content_hash": "69e5c3f11587eb47d6ee663b9f27223996e86685f0acebaa9a1a27d5fa5e5472",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "69e5c3f11587eb47d6ee663b9f27223996e86685f0acebaa9a1a27d5fa5e5472",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a8f4f4233c15d864a837c00b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/ai-evals/evaluations.mdx",
+        "start_line": 298,
+        "total_lines": 370,
+        "start_char": 14017,
+        "end_char": 19178,
+        "evidence_id": "a8f4f4233c15d864a837c00b",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "44af0bca7856888c8b9504f3f29bd266953575296d4bd8b4983100e43529a8e3",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/support/github.mdx",
+              "offset": 21,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/alerts/index.mdx",
+              "offset": 310,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/ai-evals/evaluations.mdx",
+              "offset": 297,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "44af0bca7856888c8b9504f3f29bd266953575296d4bd8b4983100e43529a8e3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ad8363e3070c761ef300fc98",
+        "type": "evidence",
+        "path": "frontend/src/lib/api.ts",
+        "heading": "",
+        "start_line": 5582,
+        "end_line": 5617,
+        "start_char": 223120,
+        "end_char": 224733,
+        "score": "0.04614695340501792",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "cdc_management_mode",
+          "disable_cdc",
+          "enable_cdc",
+          "self_managed"
+        ],
+        "evidence_id": "ad8363e3070c761ef300fc98",
+        "source_type": "repository",
+        "content_hash": "0157f398bb1d829bb8be7c27ef890c581980b132d4408575ecd900ce961ef47a",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "0157f398bb1d829bb8be7c27ef890c581980b132d4408575ecd900ce961ef47a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b200016bbce07639b72f01c9",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/teams/warehouse-sources/objectives.mdx",
+        "start_line": 1,
+        "total_lines": 41,
+        "start_char": 0,
+        "end_char": 1157,
+        "evidence_id": "b200016bbce07639b72f01c9",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "75718a7dc07386f74ae874dd26660960bff28750fc80b5600db6e85cb49f0ffa",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/web-analytics/marketing-analytics.mdx",
+              "offset": 129,
+              "limit": 120
+            },
+            {
+              "path": "contents/teams/warehouse-sources/objectives.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/self-host/_snippets/disclaimer.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "75718a7dc07386f74ae874dd26660960bff28750fc80b5600db6e85cb49f0ffa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b27408d1adcd45672df74b82",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "start_line": 93,
+        "total_lines": 358,
+        "start_char": 4828,
+        "end_char": 10107,
+        "evidence_id": "b27408d1adcd45672df74b82",
+        "truncated": false,
+        "next_offset": 212,
+        "source_type": "repository",
+        "content_hash": "17939e2c5287138024442f8b031dfbb03a809d6eb646ce164774a1fce0222c62",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/cdp/sources/postgres.mdx",
+              "query": "## How PostHog CDC works",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "17939e2c5287138024442f8b031dfbb03a809d6eb646ce164774a1fce0222c62",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b3234ba274704836918464cd",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/data-ingestion.mdx",
+        "heading": "title: Data ingestion > Example schema - reading and writing ingestion events > Example schema visualized",
+        "start_line": 128,
+        "end_line": 161,
+        "start_char": 5435,
+        "end_char": 7074,
+        "score": "0.03160574490633119",
+        "root": "docs",
+        "matched_terms": [
+          "same",
+          "schema",
+          "table"
+        ],
+        "evidence_id": "b3234ba274704836918464cd",
+        "source_type": "repository",
+        "content_hash": "449fb5c8ee80343eb2b2405351ba224fd43a99b55478b5f37964e203d759ee6f",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "449fb5c8ee80343eb2b2405351ba224fd43a99b55478b5f37964e203d759ee6f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b40a313ea2489cee10b17c28",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/clusters.mdx",
+        "heading": "title: ClickHouse Clusters > Prod-EU > Coordinator schema",
+        "start_line": 245,
+        "end_line": 251,
+        "start_char": 8010,
+        "end_char": 8228,
+        "score": "0.03051814988290398",
+        "root": "docs",
+        "matched_terms": [
+          "events",
+          "schema"
+        ],
+        "evidence_id": "b40a313ea2489cee10b17c28",
+        "source_type": "repository",
+        "content_hash": "8dbc7123c6a32d30a45a88bd640ed5b06fb59fcdb9483477c1e9809075e68670",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "8dbc7123c6a32d30a45a88bd640ed5b06fb59fcdb9483477c1e9809075e68670",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b530f5bcb47aaf7d071fb1ab",
+        "type": "evidence",
+        "path": "contents/docs/privacy/data-collection.mdx",
+        "heading": "showTitle: true > IP data capture",
+        "start_line": 77,
+        "end_line": 80,
+        "start_char": 3179,
+        "end_char": 3386,
+        "score": "0.015151515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "capture",
+          "data"
+        ],
+        "evidence_id": "b530f5bcb47aaf7d071fb1ab",
+        "source_type": "repository",
+        "content_hash": "f6490a6846a5ee69d6e2fb2fed274c635703852144ec995f7114b024350896e4",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f6490a6846a5ee69d6e2fb2fed274c635703852144ec995f7114b024350896e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cadce7cdeac35671f0e6fe2b",
+        "type": "evidence",
+        "path": "products/data_warehouse/frontend/scenes/NewSourceScene/sourceWizardLogic.tsx",
+        "heading": "",
+        "start_line": 1610,
+        "end_line": 1637,
+        "start_char": 66847,
+        "end_char": 68450,
+        "score": "0.02363150867823765",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "cdc_management_mode"
+        ],
+        "evidence_id": "cadce7cdeac35671f0e6fe2b",
+        "source_type": "repository",
+        "content_hash": "62ed45bddc7ae5efcf15ce636af5b8c22e13600dfb55ebd3077343563029fcdc",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "62ed45bddc7ae5efcf15ce636af5b8c22e13600dfb55ebd3077343563029fcdc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cf1d250f6c1d19a14712a9ff",
+        "type": "evidence",
+        "path": "contents/docs/integrate/_snippets/install-ios.mdx",
+        "heading": "Configuration",
+        "start_line": 33,
+        "end_line": 52,
+        "start_char": 966,
+        "end_char": 1550,
+        "score": "0.01639344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "configuration",
+          "tab"
+        ],
+        "evidence_id": "cf1d250f6c1d19a14712a9ff",
+        "source_type": "repository",
+        "content_hash": "4a0c35ed2371df8005df1fed5902e7ccf1a7854270545c916aca353166c4a421",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "4a0c35ed2371df8005df1fed5902e7ccf1a7854270545c916aca353166c4a421",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d0a1d9fcc18c6cbbc638bd30",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/api/test/test_external_data_source.py",
+        "heading": "",
+        "start_line": 7814,
+        "end_line": 7849,
+        "start_char": 344215,
+        "end_char": 345887,
+        "score": "0.03794306184012067",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "cdc_management_mode",
+          "update_cdc_settings"
+        ],
+        "evidence_id": "d0a1d9fcc18c6cbbc638bd30",
+        "source_type": "repository",
+        "content_hash": "9571f312e33429ae94ca97bf58c2d00338f972f2125ba0ce937482b70a44dd05",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9571f312e33429ae94ca97bf58c2d00338f972f2125ba0ce937482b70a44dd05",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dc906c878e8f3b444c876327",
+        "type": "evidence",
+        "path": "scripts/hogfm/handbook/CHANGE_DETECTION.md",
+        "heading": "Change detection for cost savings > Usage > Enable change detection",
+        "start_line": 19,
+        "end_line": 27,
+        "start_char": 652,
+        "end_char": 852,
+        "score": "0.021778584392014518",
+        "root": "docs",
+        "matched_terms": [
+          "change",
+          "enable"
+        ],
+        "evidence_id": "dc906c878e8f3b444c876327",
+        "source_type": "repository",
+        "content_hash": "315e8e04dc685fddcba8fda80826d35d9fc7f77bb46e1bf160fb041276211634",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "315e8e04dc685fddcba8fda80826d35d9fc7f77bb46e1bf160fb041276211634",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e1067dc208d063ebd67775c5",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/operations.mdx",
+        "heading": "title: Operations > Tricky schema changes",
+        "start_line": 167,
+        "end_line": 175,
+        "start_char": 10048,
+        "end_char": 10405,
+        "score": "0.035844155844155845",
+        "root": "docs",
+        "matched_terms": [
+          "schema",
+          "table"
+        ],
+        "evidence_id": "e1067dc208d063ebd67775c5",
+        "source_type": "repository",
+        "content_hash": "5da46ce807a7bdf11ea06dd604248fcfc6bcdce06c4dbbf6d7ffc9306887dbac",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "5da46ce807a7bdf11ea06dd604248fcfc6bcdce06c4dbbf6d7ffc9306887dbac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e1c7b60ae785f1197be130e5",
+        "type": "evidence",
+        "path": "contents/handbook/engineering/clickhouse/schema/person-distinct-id.mdx",
+        "heading": "title: person_distinct_id > Improved schema",
+        "start_line": 100,
+        "end_line": 145,
+        "start_char": 4222,
+        "end_char": 5424,
+        "score": "0.03096588205780327",
+        "root": "docs",
+        "matched_terms": [
+          "events",
+          "schema",
+          "table"
+        ],
+        "evidence_id": "e1c7b60ae785f1197be130e5",
+        "source_type": "repository",
+        "content_hash": "cae3c1eb0f9f1d1f65e9df40c4f70191a69c0a4e61a33ad5516a3dd14eb32690",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "primary key change CDC schema",
+            "schema-qualified change events",
+            "multiple schemas same table name"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "cae3c1eb0f9f1d1f65e9df40c4f70191a69c0a4e61a33ad5516a3dd14eb32690",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e93a3be0e95bcb7c2da9c76b",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "heading": "sourceId: Postgres > CDC requirements",
+        "start_line": 148,
+        "end_line": 153,
+        "start_char": 7834,
+        "end_char": 8352,
+        "score": "0.039015981374521835",
+        "root": "docs",
+        "matched_terms": [
+          "cdc",
+          "configuration",
+          "slot",
+          "source"
+        ],
+        "evidence_id": "e93a3be0e95bcb7c2da9c76b",
+        "source_type": "repository",
+        "content_hash": "2d64f32936ac4293f807104c0902aa2b156a4be7af5e15d11e403c0093b3f2d2",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "enable CDC after source creation",
+            "Configuration tab CDC",
+            "lag threshold auto-drop slot"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "2d64f32936ac4293f807104c0902aa2b156a4be7af5e15d11e403c0093b3f2d2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e93c3a68d07775a6239c10ce",
+        "type": "evidence",
+        "path": "products/logs/backend/migrations/0005_logsalertevent_kind.py",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 27,
+        "start_char": 0,
+        "end_char": 758,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "disable",
+          "enable",
+          "threshold"
+        ],
+        "evidence_id": "e93c3a68d07775a6239c10ce",
+        "source_type": "repository",
+        "content_hash": "fa126222ff59b2fcb39df0698f964a4da0197d0bb9c9fd2236faf0bd8a4c1d33",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "fa126222ff59b2fcb39df0698f964a4da0197d0bb9c9fd2236faf0bd8a4c1d33",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eecb89fbb5502c8c6a561677",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/self-host/_snippets/disclaimer.mdx",
+        "start_line": 1,
+        "total_lines": 1,
+        "start_char": 0,
+        "end_char": 174,
+        "evidence_id": "eecb89fbb5502c8c6a561677",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8845e1bf3f58e5eb9ad6cb01e71ea1cc703d14289f104b24ed8eb617a4fa2f14",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/web-analytics/marketing-analytics.mdx",
+              "offset": 129,
+              "limit": 120
+            },
+            {
+              "path": "contents/teams/warehouse-sources/objectives.mdx",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/self-host/_snippets/disclaimer.mdx",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8845e1bf3f58e5eb9ad6cb01e71ea1cc703d14289f104b24ed8eb617a4fa2f14",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f3e08616a76b87f6c9563ae9",
+        "type": "evidence",
+        "path": "products/logs/frontend/generated/api.schemas.ts",
+        "heading": "",
+        "start_line": 640,
+        "end_line": 689,
+        "start_char": 21163,
+        "end_char": 22447,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "disable",
+          "enable",
+          "threshold"
+        ],
+        "evidence_id": "f3e08616a76b87f6c9563ae9",
+        "source_type": "repository",
+        "content_hash": "7fa924eb6afdf79a8af38c45f34524b8a023e4c6d2e65471991e2447f69845a1",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "CDCSection enable disable lag threshold",
+            "cdc_status slot_exists publication_exists lag_bytes"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "7fa924eb6afdf79a8af38c45f34524b8a023e4c6d2e65471991e2447f69845a1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f5ff74a4c5ecf158378e8108",
+        "type": "evidence",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "heading": "sourceId: Postgres > Operational risks and limitations",
+        "start_line": 319,
+        "end_line": 334,
+        "start_char": 14452,
+        "end_char": 15829,
+        "score": "0.042748917748917745",
+        "root": "docs",
+        "matched_terms": [
+          "cdc",
+          "publication",
+          "replication",
+          "slot"
+        ],
+        "evidence_id": "f5ff74a4c5ecf158378e8108",
+        "source_type": "repository",
+        "content_hash": "6240123b7c2e9157ac359302fefe0a2b54af16d08e6ad7fa33b3125a1a9faf4d",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6240123b7c2e9157ac359302fefe0a2b54af16d08e6ad7fa33b3125a1a9faf4d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fbc705a8c8ea265f7fff1652",
+        "type": "evidence",
+        "path": "contents/docs/privacy/data-collection.mdx",
+        "heading": "showTitle: true > IP data capture > How it works",
+        "start_line": 103,
+        "end_line": 109,
+        "start_char": 4575,
+        "end_char": 5053,
+        "score": "0.014492753623188406",
+        "root": "docs",
+        "matched_terms": [
+          "capture",
+          "data"
+        ],
+        "evidence_id": "fbc705a8c8ea265f7fff1652",
+        "source_type": "repository",
+        "content_hash": "72a5545b0bd42487f38148b5749233592c3292169bab316222d5966262ba24e4",
+        "revision": "0e3224927bfe8911bf084a72893ee2ac1c67104a",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "CDC change data capture",
+            "replication slot publication",
+            "enable CDC source"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "72a5545b0bd42487f38148b5749233592c3292169bab316222d5966262ba24e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fda3b974c1ab65f9075e5614",
+        "type": "evidence",
+        "path": "products/data_warehouse/backend/api/external_data_source.py",
+        "heading": "(and therefore exfiltrate credentials via a poisoned SSH tunnel — VERIA-311).",
+        "start_line": 1450,
+        "end_line": 1483,
+        "start_char": 67948,
+        "end_char": 69569,
+        "score": "0.025728708679368183",
+        "root": "code",
+        "matched_terms": [
+          "cdc_lag_warning_threshold_mb",
+          "enable_cdc"
+        ],
+        "evidence_id": "fda3b974c1ab65f9075e5614",
+        "source_type": "repository",
+        "content_hash": "9cafbe46a80a3c643e95f742e3c270839fbe3331b7ba03914ce028ca64a74ac9",
+        "revision": "1a91653af685f0613ce3ea2b6b95f099c761b497",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "cdc_management_mode self_managed",
+            "enable_cdc disable_cdc update_cdc_settings",
+            "cdc_lag_warning_threshold_mb"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "9cafbe46a80a3c643e95f742e3c270839fbe3331b7ba03914ce028ca64a74ac9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:postgres-cdc-lifecycle",
+        "type": "requirement",
+        "description": "In contents/docs/cdp/sources/postgres.mdx, document that CDC can now be enabled, disabled, and reconfigured after source creation from the source's Configuration tab: the management-mode picker (PostHog-managed vs self-managed), prerequisite check, enable/disable actions, and editable settings (automatic slot protection / cdc_auto_drop_slot and WAL lag warning/critical thresholds). Note that disabling forces CDC schemas to pick a new sync strategy and clears CDC config so re-enabling starts clean, and that self-managed mode never touches the customer-owned publication."
+      },
+      {
+        "id": "requirement:postgres-cdc-status-monitoring",
+        "type": "requirement",
+        "description": "In contents/docs/cdp/sources/postgres.mdx, add a section on monitoring CDC health from the Configuration tab: live replication slot and publication existence checks, WAL lag display, and what to do when the slot or publication is reported missing (recreate the publication in self-managed mode, or disable and re-enable CDC in PostHog-managed mode)."
+      },
+      {
+        "id": "requirement:postgres-cdc-pk-guard",
+        "type": "requirement",
+        "description": "In contents/docs/cdp/sources/postgres.mdx (Operational risks and limitations), document that the primary key of a CDC schema cannot be changed once data has been synced, since the PK is the merge key for UPDATE/DELETE, and that tables discovered after source creation now persist their detected primary key so they can be switched to CDC without a manual refresh."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "hash": "c8a4dc9a0609d035ba5095036324bc37fa8ed354fdc922faac3a2e1991cfd06b"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "contents/docs/cdp/sources/postgres.mdx",
+        "hash": "17f9c755fedc4f2736c27d628862f63c84dbf9971dba241bb0e92812094e77fa"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "postgres-cdc-lifecycle",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/cdp/sources/postgres.mdx"
+        ],
+        "evidence_ids": [
+          "a898a0e29b90a0dc3f130d92",
+          "575abd87a0375ebe34836e8c",
+          "8668c9376e43737b1e957ffc",
+          "0d09b749eba9297160707f7a",
+          "b27408d1adcd45672df74b82"
+        ],
+        "reason": "In contents/docs/cdp/sources/postgres.mdx, document that CDC can now be enabled, disabled, and reconfigured after source creation from the source's Configuration tab: the management-mode picker (PostHog-managed vs self-managed), prerequisite check, enable/disable actions, and editable settings (automatic slot protection / cdc_auto_drop_slot and WAL lag warning/critical thresholds). Note that disabling forces CDC schemas to pick a new sync strategy and clears CDC config so re-enabling starts clean, and that self-managed mode never touches the customer-owned publication."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "postgres-cdc-status-monitoring",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/cdp/sources/postgres.mdx"
+        ],
+        "evidence_ids": [
+          "a898a0e29b90a0dc3f130d92",
+          "575abd87a0375ebe34836e8c",
+          "8668c9376e43737b1e957ffc",
+          "0d09b749eba9297160707f7a",
+          "b27408d1adcd45672df74b82"
+        ],
+        "reason": "In contents/docs/cdp/sources/postgres.mdx, add a section on monitoring CDC health from the Configuration tab: live replication slot and publication existence checks, WAL lag display, and what to do when the slot or publication is reported missing (recreate the publication in self-managed mode, or disable and re-enable CDC in PostHog-managed mode)."
+      },
+      {
+        "id": "coverage:2",
+        "type": "coverage",
+        "requirement_id": "postgres-cdc-pk-guard",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "contents/docs/cdp/sources/postgres.mdx"
+        ],
+        "evidence_ids": [
+          "8808e1f997bf0a3c693af487",
+          "b27408d1adcd45672df74b82"
+        ],
+        "reason": "In contents/docs/cdp/sources/postgres.mdx (Operational risks and limitations), document that the primary key of a CDC schema cannot be changed once data has been synced, since the PK is the merge key for UPDATE/DELETE, and that tables discovered after source creation now persist their detected primary key so they can be switched to CDC without a manual refresh."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where in the docs are data warehouse sources and CDC (change data capture) documented, and do they describe enabling/disabling CDC after source creation?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Is there existing documentation for Postgres source setup, CDC management modes, or self-managed publications?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What user-facing CDC configuration fields and lifecycle actions does the implementation expose (management mode, slot/publication names, lag thresholds, enable/disable)?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the Postgres CDC doc cover enabling/disabling CDC after source creation, the Configuration tab CDC section, and update_cdc_settings (lag thresholds, auto-drop slot)?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the doc describe the primary-key immutability guard on CDC schemas and schema-qualified change event routing / multi-schema table name collisions?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "What does the CDCSection frontend expose to users (mode picker, prereq check, enable/disable, lag fields, slot/publication readouts, WAL lag) that should be documented?"
+      },
+      {
+        "id": "research:Q3-1",
+        "type": "research_question",
+        "description": "Does the Postgres CDC doc already describe enabling/disabling CDC after source creation, the Configuration tab CDC section, and update_cdc_settings (lag thresholds, auto-drop slot)?"
+      },
+      {
+        "id": "research:Q3-2",
+        "type": "research_question",
+        "description": "Does the doc cover the primary-key immutability guard on CDC schemas and schema-qualified change event routing for multi-schema table name collisions?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0343f9fd3f080307a83851f8",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:03738a450b3ab092cf36ee0e",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:039733301f944a986a962a49",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:088cf067cb9d66246e9479d6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:08cd8c2b45f6d3f1455059be",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c14bf7f7ff52fafdc9d7ef8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c8d92beab262d5ebbc5be07",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c8d92beab262d5ebbc5be07",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d09b749eba9297160707f7a",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0f7de734b6d9a0a5a2c81701",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:10c00685502e1e3599747124",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:131f92e4c82177eb0b6bf7e2",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:15e59e3fb4f067b137e0b94e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1758f27a886277c2154bb537",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:17e88620c5f76515aa5b896a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1be7f983b760385af16329a9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1f8e442236771fdfc3df9732",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1f8e442236771fdfc3df9732",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1f8e442236771fdfc3df9732",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:221290d0bc709077d45a875c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22a7f1bbabb4bdaa064db2a5",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:23515379ad7f329b4316efc9",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2661a86b425e83c72ca12c74",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2661a86b425e83c72ca12c74",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2a7701f84251cc6718128370",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2f00708d9faa4f0e5ba54bf5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:30e8a04ddeb5a25c81dc40ec",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3134418d10299b255061336d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3134418d10299b255061336d",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3cd9ecfbcb0a81649b82c850",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3f0c27bd816876ce1975b92c",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:422ed26c19cff92bcdf5e416",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:50d2a0d948801ceb4a8297b3",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:515fa1290bc5b7e73a8d43c8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5273726465f7bb858d432740",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5329122e0e75cd1eb440e256",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:535524762f5c4e78dd5e0ae3",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:54b98bd9c12975777d276147",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:575abd87a0375ebe34836e8c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5aa7b91ca0024d28d0828aac",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6a85c43ea1b85c67194e4359",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7288c4e2be4a1be7afd0e3c1",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:75eb2ba1a87a75376ba2251b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7a0812cfac046adf1a5b0c1e",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7d99749d3e8d714aac0154e3",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7eaf9324b775a50d89fcd6f6",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:801eb7f6c31bef9dca2dc717",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83b07193acc769bda2fd945b",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:85e21eb3f94b6c9640f7fc8c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8668c9376e43737b1e957ffc",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:87a4a25600fe4d8fe1ea3628",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8808e1f997bf0a3c693af487",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8813361fbac4468fbf4c0c2c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:882707d9b70dd560eab33e9d",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:89289c801a23f0df907988c1",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8991407a021ed9bf8e101f50",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:92d165008b73f559e54543f4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9388da0b74332c49c68b7592",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:95d39dffae103ba10f90aa10",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:977a296274c51706b3765ade",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9d283392ee8278e6a95674ad",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a151d846a6b12bc0ec859010",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a55eb1d7aa1d6010e2f6bda0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a898a0e29b90a0dc3f130d92",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a8f052408120ab8dece2aad1",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a8f4f4233c15d864a837c00b",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ad8363e3070c761ef300fc98",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b200016bbce07639b72f01c9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b27408d1adcd45672df74b82",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b27408d1adcd45672df74b82",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b3234ba274704836918464cd",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b40a313ea2489cee10b17c28",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b530f5bcb47aaf7d071fb1ab",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cadce7cdeac35671f0e6fe2b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cf1d250f6c1d19a14712a9ff",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d0a1d9fcc18c6cbbc638bd30",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dc906c878e8f3b444c876327",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e1067dc208d063ebd67775c5",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e1c7b60ae785f1197be130e5",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e93a3be0e95bcb7c2da9c76b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e93a3be0e95bcb7c2da9c76b",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e93c3a68d07775a6239c10ce",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eecb89fbb5502c8c6a561677",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f3e08616a76b87f6c9563ae9",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f5ff74a4c5ecf158378e8108",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fbc705a8c8ea265f7fff1652",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fda3b974c1ab65f9075e5614",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a898a0e29b90a0dc3f130d92",
+        "to": "requirement:postgres-cdc-lifecycle",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:575abd87a0375ebe34836e8c",
+        "to": "requirement:postgres-cdc-lifecycle",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:8668c9376e43737b1e957ffc",
+        "to": "requirement:postgres-cdc-lifecycle",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:b27408d1adcd45672df74b82",
+        "to": "requirement:postgres-cdc-lifecycle",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:8668c9376e43737b1e957ffc",
+        "to": "requirement:postgres-cdc-status-monitoring",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:0d09b749eba9297160707f7a",
+        "to": "requirement:postgres-cdc-status-monitoring",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:8808e1f997bf0a3c693af487",
+        "to": "requirement:postgres-cdc-status-monitoring",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:8808e1f997bf0a3c693af487",
+        "to": "requirement:postgres-cdc-pk-guard",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:b27408d1adcd45672df74b82",
+        "to": "requirement:postgres-cdc-pk-guard",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:postgres-cdc-lifecycle",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "requirement:postgres-cdc-status-monitoring",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:a898a0e29b90a0dc3f130d92",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:575abd87a0375ebe34836e8c",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:8668c9376e43737b1e957ffc",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:0d09b749eba9297160707f7a",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:b27408d1adcd45672df74b82",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:postgres-cdc-pk-guard",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:8808e1f997bf0a3c693af487",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:b27408d1adcd45672df74b82",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:postgres-cdc-lifecycle",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:a898a0e29b90a0dc3f130d92",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:575abd87a0375ebe34836e8c",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:8668c9376e43737b1e957ffc",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:0d09b749eba9297160707f7a",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:b27408d1adcd45672df74b82",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:postgres-cdc-status-monitoring",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:a898a0e29b90a0dc3f130d92",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:575abd87a0375ebe34836e8c",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:8668c9376e43737b1e957ffc",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:0d09b749eba9297160707f7a",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:b27408d1adcd45672df74b82",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:postgres-cdc-pk-guard",
+        "to": "coverage:2",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:8808e1f997bf0a3c693af487",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:b27408d1adcd45672df74b82",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "bd4348518a102c741cb2aa49f032777472e6b008ae56d5485a82d8ec6610b143"
+}

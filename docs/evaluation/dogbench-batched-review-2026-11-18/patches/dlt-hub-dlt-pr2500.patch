@@ -1,0 +1,72 @@
+diff --git a/docs/website/docs/build-a-pipeline-tutorial.md b/docs/website/docs/build-a-pipeline-tutorial.md
+index 36d30a184f4b7f2102037d0589c7c52cbce348ce..191c474335b8c2cf8ca0da0270f27c4e381b7fea 100644
+--- a/docs/website/docs/build-a-pipeline-tutorial.md
++++ b/docs/website/docs/build-a-pipeline-tutorial.md
+@@ -216,6 +216,12 @@ consistent mapping. The `dummy_source` generates dummy data with an `id` and `na
+ column, and the `add_map` function applies the `pseudonymize_name` transformation to each
+ record.
+ 
++`add_map` is the primary way to transform data before loading: it applies a function to each item
++yielded by a resource and returns a new resource, so it can be chained with other transformations
++such as `add_filter` and `add_yield_map`. For the canonical reference, including how to control
++execution order with the `insert_at` parameter, see
++[Transform data with `add_map`](general-usage/resource.md#transform-data-with-add_map).
++
+ ### After loading
+ 
+ For transformations after loading the data, you have several options available:
+diff --git a/docs/website/docs/general-usage/resource.md b/docs/website/docs/general-usage/resource.md
+index 1741814221c2d67d60959c471d761ee1d7d020f5..bad164b709b5e4101acc6be8ead5c56290d8a620 100644
+--- a/docs/website/docs/general-usage/resource.md
++++ b/docs/website/docs/general-usage/resource.md
+@@ -355,6 +355,50 @@ resource. The available transformation types:
+ - **yield map** - a map that returns an iterator (so a single row may generate many rows -
+   `resource.add_yield_map`).
+ 
++### Transform data with `add_map`
++
++`add_map` is the primary way to transform data in a resource. It applies the function you pass to
++each item yielded by the resource and returns a **new resource** with the transformation attached,
++so the original resource is left unchanged. The function receives a single item and must return the
++transformed item.
++
++```py
++import dlt
++
++@dlt.resource
++def users():
++    yield {"user_id": 1, "user_email": "jane@example.com"}
++    yield {"user_id": 2, "user_email": "john@example.com"}
++
++def anonymize_user(user_data):
++    user_data["user_id"] = _hash_str(user_data["user_id"])
++    user_data["user_email"] = _hash_str(user_data["user_email"])
++    return user_data
++
++# add_map returns a new resource with the transformation applied to each item
++anonymized_users = users().add_map(anonymize_user)
++for user in anonymized_users:
++    print(user)
++```
++
++Because `add_map` returns a new resource, you can chain it with other transformations such as
++`add_filter` and `add_yield_map`:
++
++```py
++for user in users().add_filter(lambda u: u["user_id"] != "me").add_map(anonymize_user):
++    print(user)
++```
++
++By default, transformations run in the order they are added. Use the `insert_at` parameter to
++control the execution order, for example to run a transformation before incremental processing:
++
++```py
++with_default_values = some_data().add_map(set_default_updated_at, insert_at=1)
++```
++
++See [Transform records before incremental processing](incremental/cursor.md#transform-records-before-incremental-processing)
++for a full example of using `insert_at`.
++
+ Example: We have a resource that loads a list of users from an API endpoint. We want to customize it
+ so:
+ 

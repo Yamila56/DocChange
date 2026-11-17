@@ -1,0 +1,4244 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "runCode-action-page",
+      "description": "Add a new user-facing action page `docs/get-started/actions/runCode.md` documenting the `runCode` action: it assembles and runs code in Python, Bash, or JavaScript; `language` is optional and defaults to shell execution; fields include `code`, `args`, `workingDirectory`, `exitCodes` (default `[0]`), and `output` (string or `/regex/`). Include examples mirroring the runShell page style and a link to the schema reference.",
+      "evidence_ids": [
+        "5ccbbd4aea90ebfe2ef4f095",
+        "65ca215a41dcb8c0ffca841c",
+        "4120f6a73cf9904d5b55b7aa",
+        "0263ff256aa91aec5e4abfe2"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "concepts-action-table",
+      "description": "Add a `runCode` row to the actions table in `docs/get-started/concepts.md` linking to the new runCode action page, so the action is discoverable alongside checkLink, find, runShell, etc.",
+      "evidence_ids": [
+        "36e8322d7bb93e647f2d58ce",
+        "65ca215a41dcb8c0ffca841c"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "context-viewport-fields",
+      "description": "Document the new `viewport_width` and `viewport_height` integer options in `docs/references/schemas/context.md` (and the contexts guide `docs/get-started/config/contexts/index.md`), noting they override `width`/`height` respectively.",
+      "evidence_ids": [
+        "c3a46a15637725dfc3ada378",
+        "42a04e1a1ed9a86bd47b9ecb",
+        "ae8bbbb8acfa727bf4990326"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "find-click-button",
+      "description": "Update `docs/references/schemas/find.md` to document that `click` now accepts either a boolean or an object with a `button` property (`left`, `right`, `middle`), and add an example showing the object form.",
+      "evidence_ids": [
+        "e97212a2f1b988e7cb001064",
+        "7e98cabc785dacdd80847149"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "99d8b0c88f51617e4fc40a5d24fc421f0f9d548c77f835daaae8ca42acaa9bea",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "What documentation exists for action schemas (find, click, runCode) and how are actions documented?",
+          "root": "docs",
+          "queries": [
+            "find action click",
+            "runCode",
+            "action schema"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/get-started/concepts.md",
+              "offset": 16,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 61,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "36e8322d7bb93e647f2d58ce",
+            "0263ff256aa91aec5e4abfe2",
+            "1476ba253fd4a1eaeacfee1d",
+            "d27e67fd678f4a398442524d",
+            "615690d26c2c4a2246f8bf56",
+            "fc137a03cccff204f7df8da3",
+            "61dab2ee0543aa804c64aa0d",
+            "22abe1c06594e0c06e68dbf8",
+            "3e6a067cbf4cb5cdbcc796f4",
+            "c783651ae752b3388916d46e",
+            "0bfcfff5f5cc2b27b433bcf6",
+            "9ababd9064f21430d0a4206f",
+            "159fce0e378b67e32fce6c94",
+            "5494c029987a030fc8a9b07b",
+            "ee33e3e181629f0f9376e094"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/get-started/concepts.md",
+              "evidence_id": "d27e67fd678f4a398442524d",
+              "score": "0.036204094413049635"
+            },
+            {
+              "rank": 2,
+              "path": "docs/get-started/actions/runShell.md",
+              "evidence_id": "615690d26c2c4a2246f8bf56",
+              "score": "0.03488202488202488"
+            },
+            {
+              "rank": 3,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "fc137a03cccff204f7df8da3",
+              "score": "0.03467997527649558"
+            },
+            {
+              "rank": 4,
+              "path": "docs/get-started/actions/typeKeys.md",
+              "evidence_id": "61dab2ee0543aa804c64aa0d",
+              "score": "0.03439401634641611"
+            },
+            {
+              "rank": 5,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "22abe1c06594e0c06e68dbf8",
+              "score": "0.03404883175681138"
+            },
+            {
+              "rank": 6,
+              "path": "docs/get-started/actions/goTo.md",
+              "evidence_id": "3e6a067cbf4cb5cdbcc796f4",
+              "score": "0.03387484802235041"
+            },
+            {
+              "rank": 7,
+              "path": "docs/get-started/actions/typeKeys.md",
+              "evidence_id": "c783651ae752b3388916d46e",
+              "score": "0.03307971014492754"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/actions/goTo.md",
+              "evidence_id": "0bfcfff5f5cc2b27b433bcf6",
+              "score": "0.03283004258614015"
+            },
+            {
+              "rank": 9,
+              "path": "docs/references/schemas/find.md",
+              "evidence_id": "9ababd9064f21430d0a4206f",
+              "score": "0.03230482862677751"
+            },
+            {
+              "rank": 10,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "159fce0e378b67e32fce6c94",
+              "score": "0.032198435811296444"
+            },
+            {
+              "rank": 11,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.031267096530616885"
+            },
+            {
+              "rank": 12,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "ee33e3e181629f0f9376e094",
+              "score": "0.031169871794871795"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/get-started/concepts.md",
+              "start": 16,
+              "end": 45,
+              "total_lines": 45
+            },
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "start": 20,
+              "end": 122,
+              "total_lines": 122
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "start": 61,
+              "end": 126,
+              "total_lines": 126
+            }
+          ],
+          "read_evidence_ids": [
+            "36e8322d7bb93e647f2d58ce",
+            "0263ff256aa91aec5e4abfe2",
+            "1476ba253fd4a1eaeacfee1d"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "What documentation exists for browser context options width/height and viewport?",
+          "root": "docs",
+          "queries": [
+            "viewport",
+            "width height context",
+            "browser context options"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 127,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/startRecording.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 3,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "ae8bbbb8acfa727bf4990326",
+            "608eb42260cfd9c25570f4cd",
+            "66aa68593655a71bb3005a92",
+            "9187627fd283b5a6211c166e",
+            "f0c6c69fd865e507ff9f0891",
+            "72c4fc82519b464e928d4ccf",
+            "158089d72cbd0ec9b7466925",
+            "4ff03d4a4facde3b9d79b626",
+            "da6f559db982eae3fd1460d4",
+            "575084cd9fbeb104ade7d906",
+            "83a1c5616a0884818e0b6100",
+            "ee33d42210b700a04321754e",
+            "83b57b92328b3ed12df6d7cd",
+            "ae203564527022924c42f7c3",
+            "5dd0471c049b1d5d9f05dec4"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/get-started/config/contexts/index.md",
+              "evidence_id": "9187627fd283b5a6211c166e",
+              "score": "0.043626226421925346"
+            },
+            {
+              "rank": 2,
+              "path": "docs/get-started/config/contexts/index.md",
+              "evidence_id": "f0c6c69fd865e507ff9f0891",
+              "score": "0.04198213964021927"
+            },
+            {
+              "rank": 3,
+              "path": "docs/references/schemas/startRecording.md",
+              "evidence_id": "72c4fc82519b464e928d4ccf",
+              "score": "0.040398038106017733"
+            },
+            {
+              "rank": 4,
+              "path": "docs/references/schemas/context.md",
+              "evidence_id": "158089d72cbd0ec9b7466925",
+              "score": "0.040078958495966696"
+            },
+            {
+              "rank": 5,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.037540584415584416"
+            },
+            {
+              "rank": 6,
+              "path": "docs/get-started/concepts.md",
+              "evidence_id": "da6f559db982eae3fd1460d4",
+              "score": "0.03720701306302711"
+            },
+            {
+              "rank": 7,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "575084cd9fbeb104ade7d906",
+              "score": "0.036421356421356424"
+            },
+            {
+              "rank": 8,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "83a1c5616a0884818e0b6100",
+              "score": "0.0360791439531597"
+            },
+            {
+              "rank": 9,
+              "path": "docs/references/schemas/context.md",
+              "evidence_id": "ee33d42210b700a04321754e",
+              "score": "0.03597538309033084"
+            },
+            {
+              "rank": 10,
+              "path": "docs/references/schemas/config.md",
+              "evidence_id": "83b57b92328b3ed12df6d7cd",
+              "score": "0.03219683425111445"
+            },
+            {
+              "rank": 11,
+              "path": "docs/get-started/actions/find.md",
+              "evidence_id": "ae203564527022924c42f7c3",
+              "score": "0.03177367589659582"
+            },
+            {
+              "rank": 12,
+              "path": "docs/get-started/actions/saveScreenshot.md",
+              "evidence_id": "5dd0471c049b1d5d9f05dec4",
+              "score": "0.031493000145074716"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "start": 127,
+              "end": 247,
+              "total_lines": 395
+            },
+            {
+              "path": "docs/references/schemas/startRecording.md",
+              "start": 0,
+              "end": 39,
+              "total_lines": 39
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "start": 3,
+              "end": 75,
+              "total_lines": 75
+            }
+          ],
+          "read_evidence_ids": [
+            "ae8bbbb8acfa727bf4990326",
+            "608eb42260cfd9c25570f4cd",
+            "66aa68593655a71bb3005a92"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What does the new runCode schema define and how is it referenced in test step types?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "src/schemas/src_schemas/runCode_v2.schema.json",
+            "src/schemas/src_schemas/test_v2.schema.json"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "src/schemas/src_schemas/runCode_v2.schema.json",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/schemas/src_schemas/test_v2.schema.json",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "5ccbbd4aea90ebfe2ef4f095",
+            "65ca215a41dcb8c0ffca841c"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "src/schemas/src_schemas/runCode_v2.schema.json",
+              "start": 0,
+              "end": 120,
+              "total_lines": 181
+            },
+            {
+              "path": "src/schemas/src_schemas/test_v2.schema.json",
+              "start": 0,
+              "end": 120,
+              "total_lines": 200
+            }
+          ],
+          "read_evidence_ids": [
+            "5ccbbd4aea90ebfe2ef4f095",
+            "65ca215a41dcb8c0ffca841c"
+          ]
+        },
+        {
+          "id": "Q1-4",
+          "question": "What do the find and context schema changes look like exactly?",
+          "root": "code",
+          "queries": [],
+          "paths": [
+            "src/schemas/src_schemas/find_v2.schema.json",
+            "src/schemas/src_schemas/context_v2.schema.json"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "src/schemas/src_schemas/find_v2.schema.json",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/schemas/src_schemas/context_v2.schema.json",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "e97212a2f1b988e7cb001064",
+            "c3a46a15637725dfc3ada378"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "src/schemas/src_schemas/find_v2.schema.json",
+              "start": 0,
+              "end": 120,
+              "total_lines": 155
+            },
+            {
+              "path": "src/schemas/src_schemas/context_v2.schema.json",
+              "start": 0,
+              "end": 108,
+              "total_lines": 108
+            }
+          ],
+          "read_evidence_ids": [
+            "e97212a2f1b988e7cb001064",
+            "c3a46a15637725dfc3ada378"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0263ff256aa91aec5e4abfe2",
+        "0bfcfff5f5cc2b27b433bcf6",
+        "1476ba253fd4a1eaeacfee1d",
+        "158089d72cbd0ec9b7466925",
+        "159fce0e378b67e32fce6c94",
+        "22abe1c06594e0c06e68dbf8",
+        "36e8322d7bb93e647f2d58ce",
+        "3e6a067cbf4cb5cdbcc796f4",
+        "4ff03d4a4facde3b9d79b626",
+        "5494c029987a030fc8a9b07b",
+        "575084cd9fbeb104ade7d906",
+        "5ccbbd4aea90ebfe2ef4f095",
+        "5dd0471c049b1d5d9f05dec4",
+        "608eb42260cfd9c25570f4cd",
+        "615690d26c2c4a2246f8bf56",
+        "61dab2ee0543aa804c64aa0d",
+        "65ca215a41dcb8c0ffca841c",
+        "66aa68593655a71bb3005a92",
+        "72c4fc82519b464e928d4ccf",
+        "83a1c5616a0884818e0b6100",
+        "83b57b92328b3ed12df6d7cd",
+        "9187627fd283b5a6211c166e",
+        "9ababd9064f21430d0a4206f",
+        "ae203564527022924c42f7c3",
+        "ae8bbbb8acfa727bf4990326",
+        "c3a46a15637725dfc3ada378",
+        "c783651ae752b3388916d46e",
+        "d27e67fd678f4a398442524d",
+        "da6f559db982eae3fd1460d4",
+        "e97212a2f1b988e7cb001064",
+        "ee33d42210b700a04321754e",
+        "ee33e3e181629f0f9376e094",
+        "f0c6c69fd865e507ff9f0891",
+        "fc137a03cccff204f7df8da3"
+      ],
+      "new_evidence_count": 34,
+      "new_path_count": 21
+    },
+    {
+      "signature": "4894610c1907c8e997579d63d305c9e96d8495e94a24cd3fd720ccbbb8ff0178",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does a runCode action doc page exist, and how are action reference pages (e.g. runShell.md, find.md) structured so a new runCode page can be added?",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ],
+          "paths": [
+            "docs/get-started/actions/runShell.md",
+            "docs/get-started/actions/find.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/find.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/runShell.md",
+              "offset": 23,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "4120f6a73cf9904d5b55b7aa",
+            "b8a2f8bb9ea3cfe45d09834d",
+            "4be5ee85cff123f14c9e0922",
+            "fad9990a2e76082f988b81e9",
+            "615690d26c2c4a2246f8bf56",
+            "fc137a03cccff204f7df8da3",
+            "c7a5e6e82aaa61097dd9604f",
+            "e8b1473ce95bd46aba1a0c03",
+            "e38aa1e3373db85f0fe7dcb9",
+            "159fce0e378b67e32fce6c94",
+            "22abe1c06594e0c06e68dbf8",
+            "243c082fd9ed263d1c69b89d",
+            "b2788b6984190e40a0a26617",
+            "a9a272e34b869cffcdc2ab9c",
+            "d27e67fd678f4a398442524d"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/references/schemas/runShell.md",
+              "evidence_id": "fad9990a2e76082f988b81e9",
+              "score": "0.03252247488101534"
+            },
+            {
+              "rank": 2,
+              "path": "docs/get-started/actions/runShell.md",
+              "evidence_id": "615690d26c2c4a2246f8bf56",
+              "score": "0.032266458495966696"
+            },
+            {
+              "rank": 3,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "fc137a03cccff204f7df8da3",
+              "score": "0.029513888888888888"
+            },
+            {
+              "rank": 4,
+              "path": "docs/get-started/actions/runShell.md",
+              "evidence_id": "c7a5e6e82aaa61097dd9604f",
+              "score": "0.0293236301369863"
+            },
+            {
+              "rank": 5,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "e8b1473ce95bd46aba1a0c03",
+              "score": "0.029211087420042643"
+            },
+            {
+              "rank": 6,
+              "path": "docs/references/schemas/runShell.md",
+              "evidence_id": "e38aa1e3373db85f0fe7dcb9",
+              "score": "0.02821869488536155"
+            },
+            {
+              "rank": 7,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "159fce0e378b67e32fce6c94",
+              "score": "0.02782608695652174"
+            },
+            {
+              "rank": 8,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "22abe1c06594e0c06e68dbf8",
+              "score": "0.025188536953242836"
+            },
+            {
+              "rank": 9,
+              "path": "docs/references/schemas/startRecording.md",
+              "evidence_id": "243c082fd9ed263d1c69b89d",
+              "score": "0.024146905725853096"
+            },
+            {
+              "rank": 10,
+              "path": "docs/references/schemas/saveScreenshot.md",
+              "evidence_id": "b2788b6984190e40a0a26617",
+              "score": "0.023859649122807018"
+            },
+            {
+              "rank": 11,
+              "path": "docs/references/schemas/specification.md",
+              "evidence_id": "a9a272e34b869cffcdc2ab9c",
+              "score": "0.02357320099255583"
+            },
+            {
+              "rank": 12,
+              "path": "docs/get-started/concepts.md",
+              "evidence_id": "d27e67fd678f4a398442524d",
+              "score": "0.02303921568627451"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 122
+            },
+            {
+              "path": "docs/get-started/actions/find.md",
+              "start": 0,
+              "end": 14,
+              "total_lines": 14
+            },
+            {
+              "path": "docs/references/schemas/runShell.md",
+              "start": 23,
+              "end": 108,
+              "total_lines": 108
+            }
+          ],
+          "read_evidence_ids": [
+            "4120f6a73cf9904d5b55b7aa",
+            "b8a2f8bb9ea3cfe45d09834d",
+            "4be5ee85cff123f14c9e0922"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "How does the find action doc describe the click field, and does it need updating for the button object form?",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ],
+          "paths": [
+            "docs/get-started/actions/find.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/references/schemas/find.md",
+              "offset": 18,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "offset": 137,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/typeKeys.md",
+              "offset": 80,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7e98cabc785dacdd80847149",
+            "7c577c381e1c73039c5cbc1d",
+            "0e2047b3970807f3db9138ef",
+            "9ababd9064f21430d0a4206f",
+            "d943843f98c1febdf825f312",
+            "61dab2ee0543aa804c64aa0d",
+            "14bd506ff4020bb31c1e0d28",
+            "814819cb727ea654e7e79883",
+            "4b1e5dc3458bae6853f1aa80",
+            "2c2eff8a60bdb472f0fcc9ae",
+            "f19a011c40d5111900025527",
+            "5fbcdc2d4057ed61313efa64",
+            "c783651ae752b3388916d46e",
+            "d27e67fd678f4a398442524d",
+            "ce7d5ae8af27484163e69378"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/references/schemas/find.md",
+              "evidence_id": "9ababd9064f21430d0a4206f",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 2,
+              "path": "docs/get-started/create-your-first-test.md",
+              "evidence_id": "d943843f98c1febdf825f312",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 3,
+              "path": "docs/get-started/actions/typeKeys.md",
+              "evidence_id": "61dab2ee0543aa804c64aa0d",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 4,
+              "path": "docs/get-started/actions/find.md",
+              "evidence_id": "14bd506ff4020bb31c1e0d28",
+              "score": "0.015625"
+            },
+            {
+              "rank": 5,
+              "path": "docs/references/schemas/find.md",
+              "evidence_id": "814819cb727ea654e7e79883",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 6,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "4b1e5dc3458bae6853f1aa80",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 7,
+              "path": "docs/get-started/tests/index.md",
+              "evidence_id": "2c2eff8a60bdb472f0fcc9ae",
+              "score": "0.014925373134328358"
+            },
+            {
+              "rank": 8,
+              "path": "docs/get-started/actions/find.md",
+              "evidence_id": "f19a011c40d5111900025527",
+              "score": "0.014285714285714285"
+            },
+            {
+              "rank": 9,
+              "path": "docs/references/schemas/test.md",
+              "evidence_id": "5fbcdc2d4057ed61313efa64",
+              "score": "0.013888888888888888"
+            },
+            {
+              "rank": 10,
+              "path": "docs/get-started/actions/typeKeys.md",
+              "evidence_id": "c783651ae752b3388916d46e",
+              "score": "0.0136986301369863"
+            },
+            {
+              "rank": 11,
+              "path": "docs/get-started/concepts.md",
+              "evidence_id": "d27e67fd678f4a398442524d",
+              "score": "0.013513513513513514"
+            },
+            {
+              "rank": 12,
+              "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+              "evidence_id": "ce7d5ae8af27484163e69378",
+              "score": "0.013333333333333334"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/find.md",
+              "start": 18,
+              "end": 72,
+              "total_lines": 72
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "start": 137,
+              "end": 199,
+              "total_lines": 199
+            },
+            {
+              "path": "docs/get-started/actions/typeKeys.md",
+              "start": 80,
+              "end": 182,
+              "total_lines": 182
+            }
+          ],
+          "read_evidence_ids": [
+            "7e98cabc785dacdd80847149",
+            "7c577c381e1c73039c5cbc1d",
+            "0e2047b3970807f3db9138ef"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Does the context schema reference doc list viewport_width/viewport_height, and is there a runCode schema reference page?",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ],
+          "paths": [
+            "docs/references/schemas/context.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/references/schemas/context.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/saveScreenshot.md",
+              "offset": 5,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "42a04e1a1ed9a86bd47b9ecb",
+            "1ba6a1688767228aec48ee73",
+            "83c5f2c80b91c473cb99f217",
+            "4b9db5f8a95b01741307845f",
+            "78238ed8a8ea8dd2498cffaa",
+            "76836b1f9a5093e8e7bd37da",
+            "5dd0471c049b1d5d9f05dec4",
+            "83a1c5616a0884818e0b6100",
+            "4ff03d4a4facde3b9d79b626",
+            "575084cd9fbeb104ade7d906",
+            "5494c029987a030fc8a9b07b",
+            "801ef38d493d8857c1634f8e",
+            "4cfce0a345f0028f2317bb21",
+            "8c323a300eb132b36ac67f32",
+            "5de867062f13cb448f91f33a"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/get-started/actions/runShell.md",
+              "evidence_id": "4b9db5f8a95b01741307845f",
+              "score": "0.02625745950554135"
+            },
+            {
+              "rank": 2,
+              "path": "README.md",
+              "evidence_id": "78238ed8a8ea8dd2498cffaa",
+              "score": "0.0261986301369863"
+            },
+            {
+              "rank": 3,
+              "path": "README.md",
+              "evidence_id": "76836b1f9a5093e8e7bd37da",
+              "score": "0.026140526140526144"
+            },
+            {
+              "rank": 4,
+              "path": "docs/get-started/actions/saveScreenshot.md",
+              "evidence_id": "5dd0471c049b1d5d9f05dec4",
+              "score": "0.02594183740912095"
+            },
+            {
+              "rank": 5,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "83a1c5616a0884818e0b6100",
+              "score": "0.025739237015474183"
+            },
+            {
+              "rank": 6,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "4ff03d4a4facde3b9d79b626",
+              "score": "0.02542892156862745"
+            },
+            {
+              "rank": 7,
+              "path": "blog/_2019-05-29-long-blog-post.md",
+              "evidence_id": "575084cd9fbeb104ade7d906",
+              "score": "0.02530334418467002"
+            },
+            {
+              "rank": 8,
+              "path": "docs/contribute/repos/doc-detective.github.io.md",
+              "evidence_id": "5494c029987a030fc8a9b07b",
+              "score": "0.024603608529250955"
+            },
+            {
+              "rank": 9,
+              "path": "docs/contribute/repos/doc-detective-core.md",
+              "evidence_id": "801ef38d493d8857c1634f8e",
+              "score": "0.023889462809917356"
+            },
+            {
+              "rank": 10,
+              "path": "docs/contribute/repos/doc-detective.md",
+              "evidence_id": "4cfce0a345f0028f2317bb21",
+              "score": "0.023747031621047368"
+            },
+            {
+              "rank": 11,
+              "path": "blog/_2019-05-28-first-blog-post.md",
+              "evidence_id": "8c323a300eb132b36ac67f32",
+              "score": "0.023333333333333334"
+            },
+            {
+              "rank": 12,
+              "path": "docs/contribute/index.md",
+              "evidence_id": "5de867062f13cb448f91f33a",
+              "score": "0.022377622377622378"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/references/schemas/context.md",
+              "start": 0,
+              "end": 75,
+              "total_lines": 75
+            },
+            {
+              "path": "README.md",
+              "start": 0,
+              "end": 23,
+              "total_lines": 23
+            },
+            {
+              "path": "docs/get-started/actions/saveScreenshot.md",
+              "start": 5,
+              "end": 14,
+              "total_lines": 14
+            }
+          ],
+          "read_evidence_ids": [
+            "42a04e1a1ed9a86bd47b9ecb",
+            "1ba6a1688767228aec48ee73",
+            "83c5f2c80b91c473cb99f217"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0e2047b3970807f3db9138ef",
+        "14bd506ff4020bb31c1e0d28",
+        "1ba6a1688767228aec48ee73",
+        "243c082fd9ed263d1c69b89d",
+        "2c2eff8a60bdb472f0fcc9ae",
+        "4120f6a73cf9904d5b55b7aa",
+        "42a04e1a1ed9a86bd47b9ecb",
+        "4b1e5dc3458bae6853f1aa80",
+        "4b9db5f8a95b01741307845f",
+        "4be5ee85cff123f14c9e0922",
+        "4cfce0a345f0028f2317bb21",
+        "5de867062f13cb448f91f33a",
+        "5fbcdc2d4057ed61313efa64",
+        "76836b1f9a5093e8e7bd37da",
+        "78238ed8a8ea8dd2498cffaa",
+        "7c577c381e1c73039c5cbc1d",
+        "7e98cabc785dacdd80847149",
+        "801ef38d493d8857c1634f8e",
+        "814819cb727ea654e7e79883",
+        "83c5f2c80b91c473cb99f217",
+        "8c323a300eb132b36ac67f32",
+        "a9a272e34b869cffcdc2ab9c",
+        "b2788b6984190e40a0a26617",
+        "b8a2f8bb9ea3cfe45d09834d",
+        "c7a5e6e82aaa61097dd9604f",
+        "ce7d5ae8af27484163e69378",
+        "d943843f98c1febdf825f312",
+        "e38aa1e3373db85f0fe7dcb9",
+        "e8b1473ce95bd46aba1a0c03",
+        "f19a011c40d5111900025527",
+        "fad9990a2e76082f988b81e9"
+      ],
+      "new_evidence_count": 31,
+      "new_path_count": 8
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+    "code": "572964662d7d90a39755cf7324cc5f0f3b0bd8f6"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:451b09f7b84c3cdc": 0,
+    "discover:Q1-2:53f0ee39f98ccccc": 140,
+    "discover:Q2-1:ac64be90a06e268b": 0,
+    "discover:Q2-2:db3742b92418299d": 897,
+    "discover:Q2-3:a9ef2062e86de12e": 1146
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:451b09f7b84c3cdc": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 140,
+      "cache_hit": false
+    },
+    "discover:Q1-2:53f0ee39f98ccccc": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 346,
+      "cache_hit": false
+    },
+    "discover:Q1-1:d2eecd7a02245df8": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 344,
+      "cache_hit": false
+    },
+    "discover:Q1-2:da98ee2a79d8b39d": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 403,
+      "cache_hit": false
+    },
+    "discover:Q1-3:3c450a6f87237d11": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 448,
+      "cache_hit": false
+    },
+    "discover:Q1-4:a5baabbf6ac86082": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 533,
+      "cache_hit": false
+    },
+    "discover:Q2-1:ac64be90a06e268b": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 898,
+      "cache_hit": false
+    },
+    "discover:Q2-2:db3742b92418299d": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 248,
+      "cache_hit": false
+    },
+    "discover:Q2-3:a9ef2062e86de12e": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 326,
+      "cache_hit": false
+    },
+    "discover:Q2-2:0a6e805bece7b321": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 4821,
+      "cache_hit": false
+    },
+    "discover:Q2-3:7b6319a67308effd": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 5105,
+      "cache_hit": false
+    },
+    "discover:Q2-1:98a04e3021dd7c43": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 5265,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 3802,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "runCode-action-page",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/get-started/actions/runCode.md"
+      ],
+      "evidence_ids": [
+        "5ccbbd4aea90ebfe2ef4f095",
+        "65ca215a41dcb8c0ffca841c",
+        "4120f6a73cf9904d5b55b7aa",
+        "0263ff256aa91aec5e4abfe2"
+      ],
+      "reason": "Add a new user-facing action page `docs/get-started/actions/runCode.md` documenting the `runCode` action: it assembles and runs code in Python, Bash, or JavaScript; `language` is optional and defaults to shell execution; fields include `code`, `args`, `workingDirectory`, `exitCodes` (default `[0]`), and `output` (string or `/regex/`). Include examples mirroring the runShell page style and a link to the schema reference."
+    },
+    {
+      "requirement_id": "concepts-action-table",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/get-started/concepts.md"
+      ],
+      "evidence_ids": [
+        "36e8322d7bb93e647f2d58ce",
+        "65ca215a41dcb8c0ffca841c"
+      ],
+      "reason": "Add a `runCode` row to the actions table in `docs/get-started/concepts.md` linking to the new runCode action page, so the action is discoverable alongside checkLink, find, runShell, etc."
+    },
+    {
+      "requirement_id": "context-viewport-fields",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/references/schemas/context.md",
+        "docs/get-started/config/contexts/index.md"
+      ],
+      "evidence_ids": [
+        "c3a46a15637725dfc3ada378",
+        "42a04e1a1ed9a86bd47b9ecb",
+        "ae8bbbb8acfa727bf4990326"
+      ],
+      "reason": "Document the new `viewport_width` and `viewport_height` integer options in `docs/references/schemas/context.md` (and the contexts guide `docs/get-started/config/contexts/index.md`), noting they override `width`/`height` respectively."
+    },
+    {
+      "requirement_id": "find-click-button",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/references/schemas/find.md"
+      ],
+      "evidence_ids": [
+        "e97212a2f1b988e7cb001064",
+        "7e98cabc785dacdd80847149"
+      ],
+      "reason": "Update `docs/references/schemas/find.md` to document that `click` now accepts either a boolean or an object with a `button` property (`left`, `right`, `middle`), and add an example showing the object form."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0263ff256aa91aec5e4abfe2",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/actions/runShell.md",
+        "start_line": 21,
+        "total_lines": 122,
+        "start_char": 947,
+        "end_char": 3531,
+        "evidence_id": "0263ff256aa91aec5e4abfe2",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "a346110387a2606394725c4af39f5ce6f597c337bd2235aaeeb012be4c9f4203",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/concepts.md",
+              "offset": 16,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 61,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a346110387a2606394725c4af39f5ce6f597c337bd2235aaeeb012be4c9f4203",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0bbf3d086b08a193e5c78fd3",
+        "type": "evidence",
+        "evidence_id": "0bbf3d086b08a193e5c78fd3",
+        "source_type": "implementation",
+        "exported_content_sha256": "066a2cc22b6553557db6df310cd3a560693ea6beeac8c03c649cf9570b9943f7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0bfcfff5f5cc2b27b433bcf6",
+        "type": "evidence",
+        "path": "docs/get-started/actions/goTo.md",
+        "heading": "goTo",
+        "start_line": 10,
+        "end_line": 17,
+        "start_char": 128,
+        "end_char": 410,
+        "score": "0.03283004258614015",
+        "root": "docs",
+        "matched_terms": [
+          "action"
+        ],
+        "evidence_id": "0bfcfff5f5cc2b27b433bcf6",
+        "source_type": "repository",
+        "content_hash": "5ad32e698abd98d0f3b2f907c67119b4d4859ef5cc5de201dfac1a6fdbdef7d6",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "find action click",
+            "runCode",
+            "action schema"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5ad32e698abd98d0f3b2f907c67119b4d4859ef5cc5de201dfac1a6fdbdef7d6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0e2047b3970807f3db9138ef",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/actions/typeKeys.md",
+        "start_line": 81,
+        "total_lines": 182,
+        "start_char": 3213,
+        "end_char": 4997,
+        "evidence_id": "0e2047b3970807f3db9138ef",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2d4be9bdf136d028ac5d1bdca84d473a9a0729602663fb30eed40068a817dbcd",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/find.md",
+              "offset": 18,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "offset": 137,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/typeKeys.md",
+              "offset": 80,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2d4be9bdf136d028ac5d1bdca84d473a9a0729602663fb30eed40068a817dbcd",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1476ba253fd4a1eaeacfee1d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/specification.md",
+        "start_line": 62,
+        "total_lines": 126,
+        "start_char": 1371,
+        "end_char": 2704,
+        "evidence_id": "1476ba253fd4a1eaeacfee1d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "da72edf2a6842649ebb2a09ccf4276b954a164e057f87edbf84773f3c7d6a230",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/concepts.md",
+              "offset": 16,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 61,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "da72edf2a6842649ebb2a09ccf4276b954a164e057f87edbf84773f3c7d6a230",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:14bd506ff4020bb31c1e0d28",
+        "type": "evidence",
+        "path": "docs/get-started/actions/find.md",
+        "heading": "find",
+        "start_line": 10,
+        "end_line": 14,
+        "start_char": 148,
+        "end_char": 399,
+        "score": "0.015625",
+        "root": "docs",
+        "matched_terms": [
+          "find"
+        ],
+        "evidence_id": "14bd506ff4020bb31c1e0d28",
+        "source_type": "repository",
+        "content_hash": "e6043aa5eb21f6def0d823f58eb65e3e701baa0e219c508738cb5a34ea42223f",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e6043aa5eb21f6def0d823f58eb65e3e701baa0e219c508738cb5a34ea42223f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:158089d72cbd0ec9b7466925",
+        "type": "evidence",
+        "path": "docs/references/schemas/context.md",
+        "heading": "context > Fields",
+        "start_line": 8,
+        "end_line": 21,
+        "start_char": 302,
+        "end_char": 1366,
+        "score": "0.040078958495966696",
+        "root": "docs",
+        "matched_terms": [
+          "browser",
+          "context",
+          "height",
+          "options",
+          "width"
+        ],
+        "evidence_id": "158089d72cbd0ec9b7466925",
+        "source_type": "repository",
+        "content_hash": "38934cfadb09d7e02f6b8c2b8cd65264468274f6dad3e61f723880f7ecafec66",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport",
+            "width height context",
+            "browser context options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "38934cfadb09d7e02f6b8c2b8cd65264468274f6dad3e61f723880f7ecafec66",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:159fce0e378b67e32fce6c94",
+        "type": "evidence",
+        "path": "docs/references/schemas/test.md",
+        "heading": "test > Examples",
+        "start_line": 69,
+        "end_line": 118,
+        "start_char": 2760,
+        "end_char": 3735,
+        "score": "0.02782608695652174",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "runshell"
+        ],
+        "evidence_id": "159fce0e378b67e32fce6c94",
+        "source_type": "repository",
+        "content_hash": "f3724c2d5aa95e026c36e3637d862b42740774473772b617afe32a908e2e8d8a",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "f3724c2d5aa95e026c36e3637d862b42740774473772b617afe32a908e2e8d8a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1ba6a1688767228aec48ee73",
+        "type": "evidence",
+        "root": "docs",
+        "path": "README.md",
+        "start_line": 1,
+        "total_lines": 23,
+        "start_char": 0,
+        "end_char": 589,
+        "evidence_id": "1ba6a1688767228aec48ee73",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2242d35f2e6254412f4063daa79a98cecdcf05dbf57ab5c6cc3bbb4f2c1972f6",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/context.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/saveScreenshot.md",
+              "offset": 5,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "2242d35f2e6254412f4063daa79a98cecdcf05dbf57ab5c6cc3bbb4f2c1972f6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:22abe1c06594e0c06e68dbf8",
+        "type": "evidence",
+        "path": "docs/references/schemas/test.md",
+        "heading": "test > Examples",
+        "start_line": 119,
+        "end_line": 132,
+        "start_char": 3735,
+        "end_char": 3888,
+        "score": "0.025188536953242836",
+        "root": "docs",
+        "matched_terms": [
+          "action"
+        ],
+        "evidence_id": "22abe1c06594e0c06e68dbf8",
+        "source_type": "repository",
+        "content_hash": "3edb2c98daa8ac61f710eb41b86a5102c9cbbb66e9ba2258214e01fc2f155a63",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "3edb2c98daa8ac61f710eb41b86a5102c9cbbb66e9ba2258214e01fc2f155a63",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:243c082fd9ed263d1c69b89d",
+        "type": "evidence",
+        "path": "docs/references/schemas/startRecording.md",
+        "heading": "startRecording > Examples",
+        "start_line": 17,
+        "end_line": 39,
+        "start_char": 894,
+        "end_char": 1146,
+        "score": "0.024146905725853096",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "examples"
+        ],
+        "evidence_id": "243c082fd9ed263d1c69b89d",
+        "source_type": "repository",
+        "content_hash": "2bdf3dc200e44a3f69edbf70f4d731132af7b8d9c011d399e0decb36627dc4ec",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "2bdf3dc200e44a3f69edbf70f4d731132af7b8d9c011d399e0decb36627dc4ec",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2c2eff8a60bdb472f0fcc9ae",
+        "type": "evidence",
+        "path": "docs/get-started/tests/index.md",
+        "heading": "Tests > Define a test > Detected tests",
+        "start_line": 220,
+        "end_line": 251,
+        "start_char": 9370,
+        "end_char": 9821,
+        "score": "0.014925373134328358",
+        "root": "docs",
+        "matched_terms": [
+          "click",
+          "find"
+        ],
+        "evidence_id": "2c2eff8a60bdb472f0fcc9ae",
+        "source_type": "repository",
+        "content_hash": "0c7e82536f3acc22f7cc38c9d4778678644a086d2fc0f2d1c7eed99b0af7eb6a",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "0c7e82536f3acc22f7cc38c9d4778678644a086d2fc0f2d1c7eed99b0af7eb6a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:36e8322d7bb93e647f2d58ce",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/concepts.md",
+        "start_line": 17,
+        "total_lines": 45,
+        "start_char": 414,
+        "end_char": 3722,
+        "evidence_id": "36e8322d7bb93e647f2d58ce",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "75f66dc56600b9ee475f50af56e86f0aaf7beb2e4dd06f38f247bf0298630363",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/concepts.md",
+              "offset": 16,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "offset": 20,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/specification.md",
+              "offset": 61,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "75f66dc56600b9ee475f50af56e86f0aaf7beb2e4dd06f38f247bf0298630363",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3e6a067cbf4cb5cdbcc796f4",
+        "type": "evidence",
+        "path": "docs/get-started/actions/goTo.md",
+        "heading": "goTo > Examples",
+        "start_line": 18,
+        "end_line": 51,
+        "start_char": 410,
+        "end_char": 881,
+        "score": "0.03387484802235041",
+        "root": "docs",
+        "matched_terms": [
+          "action"
+        ],
+        "evidence_id": "3e6a067cbf4cb5cdbcc796f4",
+        "source_type": "repository",
+        "content_hash": "e781faa9154029bf1f56e941d4bf8cd18ce3cf3816921765d3c1d9dd4ad913b7",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "find action click",
+            "runCode",
+            "action schema"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e781faa9154029bf1f56e941d4bf8cd18ce3cf3816921765d3c1d9dd4ad913b7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4120f6a73cf9904d5b55b7aa",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/actions/runShell.md",
+        "start_line": 1,
+        "total_lines": 122,
+        "start_char": 0,
+        "end_char": 3525,
+        "evidence_id": "4120f6a73cf9904d5b55b7aa",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "2a094e40e1655d506fc7af2649ff51c7f98fc0bf4bd016e0da95178ba00b8897",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/find.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/runShell.md",
+              "offset": 23,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "2a094e40e1655d506fc7af2649ff51c7f98fc0bf4bd016e0da95178ba00b8897",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:42a04e1a1ed9a86bd47b9ecb",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/context.md",
+        "start_line": 1,
+        "total_lines": 75,
+        "start_char": 0,
+        "end_char": 1917,
+        "evidence_id": "42a04e1a1ed9a86bd47b9ecb",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "b5c51001b2dd47e4445c1fd011a5d1e60f35526836b30dda38316f9916b43ede",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/context.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/saveScreenshot.md",
+              "offset": 5,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "b5c51001b2dd47e4445c1fd011a5d1e60f35526836b30dda38316f9916b43ede",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4b1e5dc3458bae6853f1aa80",
+        "type": "evidence",
+        "path": "docs/get-started/tests/index.md",
+        "heading": "Tests > Define a test > Default actions > `find`",
+        "start_line": 280,
+        "end_line": 290,
+        "start_char": 10542,
+        "end_char": 10699,
+        "score": "0.015151515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "find"
+        ],
+        "evidence_id": "4b1e5dc3458bae6853f1aa80",
+        "source_type": "repository",
+        "content_hash": "89e1ff008ea969c7a1460308807c2b90591039eccdb31176b3238a22b9e60d8e",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "89e1ff008ea969c7a1460308807c2b90591039eccdb31176b3238a22b9e60d8e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4b9db5f8a95b01741307845f",
+        "type": "evidence",
+        "path": "docs/get-started/actions/runShell.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 6,
+        "start_char": 0,
+        "end_char": 85,
+        "score": "0.02625745950554135",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4b9db5f8a95b01741307845f",
+        "source_type": "repository",
+        "content_hash": "94e735fee8d1476636fb4dae2551b94b9ed9cd000703ca2a2d53d07a79fe9ccb",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "94e735fee8d1476636fb4dae2551b94b9ed9cd000703ca2a2d53d07a79fe9ccb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4be5ee85cff123f14c9e0922",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/runShell.md",
+        "start_line": 24,
+        "total_lines": 108,
+        "start_char": 2119,
+        "end_char": 3463,
+        "evidence_id": "4be5ee85cff123f14c9e0922",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "67cd9360f413da3bfaaaec1159d16db39066f73fe9eb9116ec869b69f0f65d10",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/find.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/runShell.md",
+              "offset": 23,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "67cd9360f413da3bfaaaec1159d16db39066f73fe9eb9116ec869b69f0f65d10",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4cfce0a345f0028f2317bb21",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective.md",
+        "heading": "`doc-detective`",
+        "start_line": 5,
+        "end_line": 11,
+        "start_char": 29,
+        "end_char": 556,
+        "score": "0.023747031621047368",
+        "root": "docs",
+        "matched_terms": [
+          "schema"
+        ],
+        "evidence_id": "4cfce0a345f0028f2317bb21",
+        "source_type": "repository",
+        "content_hash": "b5f559b5aca95b948041ff492f6fcadf0a1a88eeba9f70bc265dcd8f802019d4",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "b5f559b5aca95b948041ff492f6fcadf0a1a88eeba9f70bc265dcd8f802019d4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4ff03d4a4facde3b9d79b626",
+        "type": "evidence",
+        "path": "blog/_2019-05-28-first-blog-post.md",
+        "heading": "tags: [hola, docusaurus]",
+        "start_line": 9,
+        "end_line": 12,
+        "start_char": 180,
+        "end_char": 389,
+        "score": "0.02542892156862745",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4ff03d4a4facde3b9d79b626",
+        "source_type": "repository",
+        "content_hash": "ea7a06f1eca4fcfb7381af7f7c3a7acff8a7b9e3286c443ecb91c13d31e81aa4",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "ea7a06f1eca4fcfb7381af7f7c3a7acff8a7b9e3286c443ecb91c13d31e81aa4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5494c029987a030fc8a9b07b",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective.github.io.md",
+        "heading": "`doc-detective.github.io`",
+        "start_line": 5,
+        "end_line": 9,
+        "start_char": 29,
+        "end_char": 427,
+        "score": "0.024603608529250955",
+        "root": "docs",
+        "matched_terms": [
+          "schema"
+        ],
+        "evidence_id": "5494c029987a030fc8a9b07b",
+        "source_type": "repository",
+        "content_hash": "dd688669454e8b7e6b80dd53b2d9689f4554901425bf35d15d177a90dbc0643b",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "dd688669454e8b7e6b80dd53b2d9689f4554901425bf35d15d177a90dbc0643b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:575084cd9fbeb104ade7d906",
+        "type": "evidence",
+        "path": "blog/_2019-05-29-long-blog-post.md",
+        "heading": "tags: [hello, docusaurus]",
+        "start_line": 29,
+        "end_line": 44,
+        "start_char": 1676,
+        "end_char": 3116,
+        "score": "0.02530334418467002",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "575084cd9fbeb104ade7d906",
+        "source_type": "repository",
+        "content_hash": "f4846920feba3bf4f32c66b4348817b74930883561142fa097b84d0d85091f84",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "f4846920feba3bf4f32c66b4348817b74930883561142fa097b84d0d85091f84",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5ccbbd4aea90ebfe2ef4f095",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/schemas/src_schemas/runCode_v2.schema.json",
+        "start_line": 1,
+        "total_lines": 181,
+        "start_char": 0,
+        "end_char": 4222,
+        "evidence_id": "5ccbbd4aea90ebfe2ef4f095",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "2c3265d377ee5fff4502b99bac14bb8a6ca05b9ec695a57b2e8afc9c54b10811",
+        "revision": "572964662d7d90a39755cf7324cc5f0f3b0bd8f6",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/schemas/src_schemas/runCode_v2.schema.json",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/schemas/src_schemas/test_v2.schema.json",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2c3265d377ee5fff4502b99bac14bb8a6ca05b9ec695a57b2e8afc9c54b10811",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5dd0471c049b1d5d9f05dec4",
+        "type": "evidence",
+        "path": "docs/get-started/actions/saveScreenshot.md",
+        "heading": "saveScreenshot",
+        "start_line": 10,
+        "end_line": 14,
+        "start_char": 142,
+        "end_char": 497,
+        "score": "0.02594183740912095",
+        "root": "docs",
+        "matched_terms": [
+          "reference"
+        ],
+        "evidence_id": "5dd0471c049b1d5d9f05dec4",
+        "source_type": "repository",
+        "content_hash": "cf7404720eebbbc6e602c9a57f3cca5dd802b87b3804d7339c177f6e1574267e",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "cf7404720eebbbc6e602c9a57f3cca5dd802b87b3804d7339c177f6e1574267e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5de867062f13cb448f91f33a",
+        "type": "evidence",
+        "path": "docs/contribute/index.md",
+        "heading": "sidebar_position: 1",
+        "start_line": 2,
+        "end_line": 4,
+        "start_char": 4,
+        "end_char": 29,
+        "score": "0.022377622377622378",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "5de867062f13cb448f91f33a",
+        "source_type": "repository",
+        "content_hash": "e888b4826b5009aa7f9c96b74fabcad32be7aac5f14516aa8644018f6482f60a",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "e888b4826b5009aa7f9c96b74fabcad32be7aac5f14516aa8644018f6482f60a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5fbcdc2d4057ed61313efa64",
+        "type": "evidence",
+        "path": "docs/references/schemas/test.md",
+        "heading": "test > Examples",
+        "start_line": 19,
+        "end_line": 68,
+        "start_char": 2035,
+        "end_char": 2760,
+        "score": "0.013888888888888888",
+        "root": "docs",
+        "matched_terms": [
+          "click",
+          "find"
+        ],
+        "evidence_id": "5fbcdc2d4057ed61313efa64",
+        "source_type": "repository",
+        "content_hash": "d8ff1ded64c267156c67be5693ea876f8c2cfc383a1852ea7ac922916a8ff7f9",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d8ff1ded64c267156c67be5693ea876f8c2cfc383a1852ea7ac922916a8ff7f9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:608eb42260cfd9c25570f4cd",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/startRecording.md",
+        "start_line": 1,
+        "total_lines": 39,
+        "start_char": 0,
+        "end_char": 1146,
+        "evidence_id": "608eb42260cfd9c25570f4cd",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "dbd85a23b39a90e81caca9b03a350f4a33b841ccd082d27d6c5a556c41205a6e",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 127,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/startRecording.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 3,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "dbd85a23b39a90e81caca9b03a350f4a33b841ccd082d27d6c5a556c41205a6e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:615690d26c2c4a2246f8bf56",
+        "type": "evidence",
+        "path": "docs/get-started/actions/runShell.md",
+        "heading": "runShell > Examples",
+        "start_line": 25,
+        "end_line": 28,
+        "start_char": 1541,
+        "end_char": 1612,
+        "score": "0.032266458495966696",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "examples",
+          "runshell"
+        ],
+        "evidence_id": "615690d26c2c4a2246f8bf56",
+        "source_type": "repository",
+        "content_hash": "8839ef2ea424eeaa513cceb60849b4b39ab4ce84faa81cdbb231ff27664cf4c4",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "8839ef2ea424eeaa513cceb60849b4b39ab4ce84faa81cdbb231ff27664cf4c4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:61dab2ee0543aa804c64aa0d",
+        "type": "evidence",
+        "path": "docs/get-started/actions/typeKeys.md",
+        "heading": "typeKeys > Examples > Perform a search",
+        "start_line": 85,
+        "end_line": 110,
+        "start_char": 3267,
+        "end_char": 3676,
+        "score": "0.015873015873015872",
+        "root": "docs",
+        "matched_terms": [
+          "click",
+          "find"
+        ],
+        "evidence_id": "61dab2ee0543aa804c64aa0d",
+        "source_type": "repository",
+        "content_hash": "c1b81ac530f7b88a142b482532b83ef331193e62a09d818fafb8305320d9503a",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c1b81ac530f7b88a142b482532b83ef331193e62a09d818fafb8305320d9503a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:65ca215a41dcb8c0ffca841c",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/schemas/src_schemas/test_v2.schema.json",
+        "start_line": 1,
+        "total_lines": 200,
+        "start_char": 0,
+        "end_char": 3644,
+        "evidence_id": "65ca215a41dcb8c0ffca841c",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "6b8f70fccbada81a4eeddeb829887b400333dfbcd4402db15474c7a3446db94c",
+        "revision": "572964662d7d90a39755cf7324cc5f0f3b0bd8f6",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/schemas/src_schemas/runCode_v2.schema.json",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/schemas/src_schemas/test_v2.schema.json",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "6b8f70fccbada81a4eeddeb829887b400333dfbcd4402db15474c7a3446db94c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:66aa68593655a71bb3005a92",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/context.md",
+        "start_line": 4,
+        "total_lines": 75,
+        "start_char": 12,
+        "end_char": 1917,
+        "evidence_id": "66aa68593655a71bb3005a92",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2eaeb6cef5262161f44441c0cbf195a98619a4387d943f4c391c5823dc323224",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 127,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/startRecording.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 3,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2eaeb6cef5262161f44441c0cbf195a98619a4387d943f4c391c5823dc323224",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:72c4fc82519b464e928d4ccf",
+        "type": "evidence",
+        "path": "docs/references/schemas/startRecording.md",
+        "heading": "startRecording",
+        "start_line": 2,
+        "end_line": 5,
+        "start_char": 1,
+        "end_char": 234,
+        "score": "0.040398038106017733",
+        "root": "docs",
+        "matched_terms": [
+          "browser",
+          "context",
+          "viewport"
+        ],
+        "evidence_id": "72c4fc82519b464e928d4ccf",
+        "source_type": "repository",
+        "content_hash": "15cac963f35aa4aef019e0f406eb6095621fc31799fd63430a89d635608cf98e",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport",
+            "width height context",
+            "browser context options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "15cac963f35aa4aef019e0f406eb6095621fc31799fd63430a89d635608cf98e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:76836b1f9a5093e8e7bd37da",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Doc Detective documentation > Get started",
+        "start_line": 3,
+        "end_line": 23,
+        "start_char": 31,
+        "end_char": 589,
+        "score": "0.026140526140526144",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "76836b1f9a5093e8e7bd37da",
+        "source_type": "repository",
+        "content_hash": "2c221e59ce5e9066e201f799cb2b8aa892298efc667552e1901ad06cf2343886",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "2c221e59ce5e9066e201f799cb2b8aa892298efc667552e1901ad06cf2343886",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78238ed8a8ea8dd2498cffaa",
+        "type": "evidence",
+        "path": "README.md",
+        "heading": "Doc Detective documentation",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 31,
+        "score": "0.0261986301369863",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "78238ed8a8ea8dd2498cffaa",
+        "source_type": "repository",
+        "content_hash": "68e75a810c30988eadf8bc30ba33513bd82ee9a406c2a178577d614f257c66a6",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "68e75a810c30988eadf8bc30ba33513bd82ee9a406c2a178577d614f257c66a6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7c577c381e1c73039c5cbc1d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/create-your-first-test.md",
+        "start_line": 138,
+        "total_lines": 199,
+        "start_char": 4669,
+        "end_char": 7193,
+        "evidence_id": "7c577c381e1c73039c5cbc1d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "998ac2a06f3863acc9c907c02cba75f7ad4ed606bebb0eab552bd324e0b777b3",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/find.md",
+              "offset": 18,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "offset": 137,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/typeKeys.md",
+              "offset": 80,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "998ac2a06f3863acc9c907c02cba75f7ad4ed606bebb0eab552bd324e0b777b3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7e98cabc785dacdd80847149",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/references/schemas/find.md",
+        "start_line": 19,
+        "total_lines": 72,
+        "start_char": 1269,
+        "end_char": 2223,
+        "evidence_id": "7e98cabc785dacdd80847149",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "a6b04f16fab3712dc928cc9c308b215231cdbc899e7fccde72773009af085328",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/find.md",
+              "offset": 18,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/create-your-first-test.md",
+              "offset": 137,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/typeKeys.md",
+              "offset": 80,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "a6b04f16fab3712dc928cc9c308b215231cdbc899e7fccde72773009af085328",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:801ef38d493d8857c1634f8e",
+        "type": "evidence",
+        "path": "docs/contribute/repos/doc-detective-core.md",
+        "heading": "`doc-detective-core`",
+        "start_line": 5,
+        "end_line": 9,
+        "start_char": 29,
+        "end_char": 477,
+        "score": "0.023889462809917356",
+        "root": "docs",
+        "matched_terms": [
+          "schema"
+        ],
+        "evidence_id": "801ef38d493d8857c1634f8e",
+        "source_type": "repository",
+        "content_hash": "db773cd6f864b322d662f6e7a653b472dfa837fe410f66f43985fc9446b8664d",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "db773cd6f864b322d662f6e7a653b472dfa837fe410f66f43985fc9446b8664d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:814819cb727ea654e7e79883",
+        "type": "evidence",
+        "path": "docs/references/schemas/find.md",
+        "heading": "find > Fields",
+        "start_line": 6,
+        "end_line": 22,
+        "start_char": 70,
+        "end_char": 1574,
+        "score": "0.015384615384615385",
+        "root": "docs",
+        "matched_terms": [
+          "click"
+        ],
+        "evidence_id": "814819cb727ea654e7e79883",
+        "source_type": "repository",
+        "content_hash": "9bef400b53cfb32c98ad7ac46f2e9daedccd6d456606123af272cf067394d690",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9bef400b53cfb32c98ad7ac46f2e9daedccd6d456606123af272cf067394d690",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83a1c5616a0884818e0b6100",
+        "type": "evidence",
+        "path": "blog/_2019-05-29-long-blog-post.md",
+        "heading": "tags: [hello, docusaurus]",
+        "start_line": 5,
+        "end_line": 28,
+        "start_char": 61,
+        "end_char": 1676,
+        "score": "0.025739237015474183",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "83a1c5616a0884818e0b6100",
+        "source_type": "repository",
+        "content_hash": "7274f9c7203570a14632a7370498961328b4425afc8f4d628b41468eaf7f1d09",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "7274f9c7203570a14632a7370498961328b4425afc8f4d628b41468eaf7f1d09",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83b57b92328b3ed12df6d7cd",
+        "type": "evidence",
+        "path": "docs/references/schemas/config.md",
+        "heading": "config > Examples",
+        "start_line": 257,
+        "end_line": 306,
+        "start_char": 13002,
+        "end_char": 13793,
+        "score": "0.03219683425111445",
+        "root": "docs",
+        "matched_terms": [
+          "options",
+          "width"
+        ],
+        "evidence_id": "83b57b92328b3ed12df6d7cd",
+        "source_type": "repository",
+        "content_hash": "164db27e6ce9a58d6741ecca02bc3370d2d432c809643b801458ef5d948729a2",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport",
+            "width height context",
+            "browser context options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "164db27e6ce9a58d6741ecca02bc3370d2d432c809643b801458ef5d948729a2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83c5f2c80b91c473cb99f217",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/actions/saveScreenshot.md",
+        "start_line": 6,
+        "total_lines": 14,
+        "start_char": 71,
+        "end_char": 497,
+        "evidence_id": "83c5f2c80b91c473cb99f217",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "b311c0a03e5cf9ca5db4335df0cc583043459e6b660907a0ab39b8d5c1b4cbe8",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/references/schemas/context.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/saveScreenshot.md",
+              "offset": 5,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "b311c0a03e5cf9ca5db4335df0cc583043459e6b660907a0ab39b8d5c1b4cbe8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:88c28542be73ff9bc539b5fc",
+        "type": "evidence",
+        "evidence_id": "88c28542be73ff9bc539b5fc",
+        "source_type": "task",
+        "exported_content_sha256": "875af789e248aa06fe024b08736b7991e751627c688f0811625d4a87465aa938",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8c323a300eb132b36ac67f32",
+        "type": "evidence",
+        "path": "blog/_2019-05-28-first-blog-post.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 8,
+        "start_char": 0,
+        "end_char": 180,
+        "score": "0.023333333333333334",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "8c323a300eb132b36ac67f32",
+        "source_type": "repository",
+        "content_hash": "5c896dd60d1368ba328b74d84d30ce8fe8069fd4f687b4aa2e57351b25c54692",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport_width viewport_height",
+            "runCode schema reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5c896dd60d1368ba328b74d84d30ce8fe8069fd4f687b4aa2e57351b25c54692",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9187627fd283b5a6211c166e",
+        "type": "evidence",
+        "path": "docs/get-started/config/contexts/index.md",
+        "heading": "Contexts > Apps > Firefox > Dimensions and visibility",
+        "start_line": 132,
+        "end_line": 149,
+        "start_char": 3826,
+        "end_char": 4127,
+        "score": "0.043626226421925346",
+        "root": "docs",
+        "matched_terms": [
+          "browser",
+          "height",
+          "options",
+          "width"
+        ],
+        "evidence_id": "9187627fd283b5a6211c166e",
+        "source_type": "repository",
+        "content_hash": "0e7858a3b18c2bd5a27cba0fd16caa127fd8c546eede51df9525a1f473fcfbba",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport",
+            "width height context",
+            "browser context options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0e7858a3b18c2bd5a27cba0fd16caa127fd8c546eede51df9525a1f473fcfbba",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9ababd9064f21430d0a4206f",
+        "type": "evidence",
+        "path": "docs/references/schemas/find.md",
+        "heading": "find > Examples",
+        "start_line": 23,
+        "end_line": 72,
+        "start_char": 1574,
+        "end_char": 2223,
+        "score": "0.01639344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "click",
+          "find"
+        ],
+        "evidence_id": "9ababd9064f21430d0a4206f",
+        "source_type": "repository",
+        "content_hash": "1e8039bfcec0c250c1345a85ea569e4b4d03d2abce7b93ff4b7cc63a9c44a5b6",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "1e8039bfcec0c250c1345a85ea569e4b4d03d2abce7b93ff4b7cc63a9c44a5b6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a9a272e34b869cffcdc2ab9c",
+        "type": "evidence",
+        "path": "docs/references/schemas/specification.md",
+        "heading": "specification > Examples",
+        "start_line": 116,
+        "end_line": 126,
+        "start_char": 2578,
+        "end_char": 2704,
+        "score": "0.02357320099255583",
+        "root": "docs",
+        "matched_terms": [
+          "action"
+        ],
+        "evidence_id": "a9a272e34b869cffcdc2ab9c",
+        "source_type": "repository",
+        "content_hash": "ecc357d6dcc9a32b2625fe1fe4dc5e5017d4a762b69778bd585c2b4d14f2e9c1",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "ecc357d6dcc9a32b2625fe1fe4dc5e5017d4a762b69778bd585c2b4d14f2e9c1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ae203564527022924c42f7c3",
+        "type": "evidence",
+        "path": "docs/get-started/actions/find.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 6,
+        "start_char": 0,
+        "end_char": 81,
+        "score": "0.03177367589659582",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ae203564527022924c42f7c3",
+        "source_type": "repository",
+        "content_hash": "8f934587f4bc8b989186532c666f8fab4d6b9da219db749a0a02f81f350810d6",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport",
+            "width height context",
+            "browser context options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8f934587f4bc8b989186532c666f8fab4d6b9da219db749a0a02f81f350810d6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ae8bbbb8acfa727bf4990326",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/config/contexts/index.md",
+        "start_line": 128,
+        "total_lines": 395,
+        "start_char": 3776,
+        "end_char": 6390,
+        "evidence_id": "ae8bbbb8acfa727bf4990326",
+        "truncated": false,
+        "next_offset": 247,
+        "source_type": "repository",
+        "content_hash": "b88526fa783d4a784a567b18d1ace07768f968ea6318495bf65c09d24361cbca",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/config/contexts/index.md",
+              "offset": 127,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/startRecording.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/context.md",
+              "offset": 3,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b88526fa783d4a784a567b18d1ace07768f968ea6318495bf65c09d24361cbca",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b2788b6984190e40a0a26617",
+        "type": "evidence",
+        "path": "docs/references/schemas/saveScreenshot.md",
+        "heading": "saveScreenshot > Examples",
+        "start_line": 19,
+        "end_line": 50,
+        "start_char": 1232,
+        "end_char": 1619,
+        "score": "0.023859649122807018",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "examples"
+        ],
+        "evidence_id": "b2788b6984190e40a0a26617",
+        "source_type": "repository",
+        "content_hash": "d8319231572a73ef859941dda46386a776c5687042a2c85566ce69d63b9b24c7",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "d8319231572a73ef859941dda46386a776c5687042a2c85566ce69d63b9b24c7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b8a2f8bb9ea3cfe45d09834d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/get-started/actions/find.md",
+        "start_line": 1,
+        "total_lines": 14,
+        "start_char": 0,
+        "end_char": 399,
+        "evidence_id": "b8a2f8bb9ea3cfe45d09834d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "61e002f2852daf136eb9c0637cbec52844927c3848ab24ea2c85a4cd90972809",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/get-started/actions/runShell.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/get-started/actions/find.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/references/schemas/runShell.md",
+              "offset": 23,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "61e002f2852daf136eb9c0637cbec52844927c3848ab24ea2c85a4cd90972809",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c3a46a15637725dfc3ada378",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/schemas/src_schemas/context_v2.schema.json",
+        "start_line": 1,
+        "total_lines": 108,
+        "start_char": 0,
+        "end_char": 3265,
+        "evidence_id": "c3a46a15637725dfc3ada378",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "97d0623bc420dd308722ad5100d183a9e12a10722d18d09be3cb44e202c3ce0f",
+        "revision": "572964662d7d90a39755cf7324cc5f0f3b0bd8f6",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/schemas/src_schemas/find_v2.schema.json",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/schemas/src_schemas/context_v2.schema.json",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "97d0623bc420dd308722ad5100d183a9e12a10722d18d09be3cb44e202c3ce0f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c783651ae752b3388916d46e",
+        "type": "evidence",
+        "path": "docs/get-started/actions/typeKeys.md",
+        "heading": "typeKeys > Examples > Fill credentials from environment variables",
+        "start_line": 111,
+        "end_line": 149,
+        "start_char": 3676,
+        "end_char": 4373,
+        "score": "0.0136986301369863",
+        "root": "docs",
+        "matched_terms": [
+          "click",
+          "find"
+        ],
+        "evidence_id": "c783651ae752b3388916d46e",
+        "source_type": "repository",
+        "content_hash": "2f17b277e2e7bfdd21cae219ed1680118eee7eb073087b424e4d5e5ee6bc4d86",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2f17b277e2e7bfdd21cae219ed1680118eee7eb073087b424e4d5e5ee6bc4d86",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c7a5e6e82aaa61097dd9604f",
+        "type": "evidence",
+        "path": "docs/get-started/actions/runShell.md",
+        "heading": "runShell > Examples > Run a simple command",
+        "start_line": 29,
+        "end_line": 48,
+        "start_char": 1612,
+        "end_char": 1903,
+        "score": "0.0293236301369863",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "runshell"
+        ],
+        "evidence_id": "c7a5e6e82aaa61097dd9604f",
+        "source_type": "repository",
+        "content_hash": "b11f2ebd32742dabf5d1d59ea07f9d80344208142e68a3191b5bf8dfab88c391",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b11f2ebd32742dabf5d1d59ea07f9d80344208142e68a3191b5bf8dfab88c391",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ce7d5ae8af27484163e69378",
+        "type": "evidence",
+        "path": "blog/_2021-08-01-mdx-blog-post.mdx",
+        "heading": "tags: [docusaurus]",
+        "start_line": 5,
+        "end_line": 20,
+        "start_char": 64,
+        "end_char": 439,
+        "score": "0.013333333333333334",
+        "root": "docs",
+        "matched_terms": [
+          "button",
+          "click"
+        ],
+        "evidence_id": "ce7d5ae8af27484163e69378",
+        "source_type": "repository",
+        "content_hash": "afdb92b6035cfb780a266cdb3cd0f061051a7c65e4cf596edb9935b8a33fb8ab",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "afdb92b6035cfb780a266cdb3cd0f061051a7c65e4cf596edb9935b8a33fb8ab",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d27e67fd678f4a398442524d",
+        "type": "evidence",
+        "path": "docs/get-started/concepts.md",
+        "heading": "Concepts > Action",
+        "start_line": 21,
+        "end_line": 31,
+        "start_char": 533,
+        "end_char": 2187,
+        "score": "0.013513513513513514",
+        "root": "docs",
+        "matched_terms": [
+          "find"
+        ],
+        "evidence_id": "d27e67fd678f4a398442524d",
+        "source_type": "repository",
+        "content_hash": "370d69b7951c405ff373775099f681cec7c3896278bf98f6ead4ce162d10c652",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "370d69b7951c405ff373775099f681cec7c3896278bf98f6ead4ce162d10c652",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d943843f98c1febdf825f312",
+        "type": "evidence",
+        "path": "docs/get-started/create-your-first-test.md",
+        "heading": "Create your first test > Outcome",
+        "start_line": 142,
+        "end_line": 177,
+        "start_char": 4843,
+        "end_char": 6496,
+        "score": "0.016129032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "click",
+          "find"
+        ],
+        "evidence_id": "d943843f98c1febdf825f312",
+        "source_type": "repository",
+        "content_hash": "e4556564a427c31dbdc83244b641fa299b39169b8d29df35908ef0a6bdfdc764",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e4556564a427c31dbdc83244b641fa299b39169b8d29df35908ef0a6bdfdc764",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:da6f559db982eae3fd1460d4",
+        "type": "evidence",
+        "path": "docs/get-started/concepts.md",
+        "heading": "Concepts > Context",
+        "start_line": 39,
+        "end_line": 42,
+        "start_char": 3508,
+        "end_char": 3635,
+        "score": "0.03720701306302711",
+        "root": "docs",
+        "matched_terms": [
+          "context"
+        ],
+        "evidence_id": "da6f559db982eae3fd1460d4",
+        "source_type": "repository",
+        "content_hash": "fdebfb3360d9d8eb7f4cf015ea9a2694994bea3c493bcf67fcb81f597822420b",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport",
+            "width height context",
+            "browser context options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fdebfb3360d9d8eb7f4cf015ea9a2694994bea3c493bcf67fcb81f597822420b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e38aa1e3373db85f0fe7dcb9",
+        "type": "evidence",
+        "path": "docs/references/schemas/runShell.md",
+        "heading": "runShell > Examples",
+        "start_line": 78,
+        "end_line": 108,
+        "start_char": 3017,
+        "end_char": 3463,
+        "score": "0.02821869488536155",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "runshell"
+        ],
+        "evidence_id": "e38aa1e3373db85f0fe7dcb9",
+        "source_type": "repository",
+        "content_hash": "471f0d339722eb354dd31529802bc49b49fe5346c27ad9345ccf91344e6156b2",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "471f0d339722eb354dd31529802bc49b49fe5346c27ad9345ccf91344e6156b2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e8b1473ce95bd46aba1a0c03",
+        "type": "evidence",
+        "path": "docs/get-started/tests/index.md",
+        "heading": "Tests > Define a test > Default actions > `runShell`",
+        "start_line": 324,
+        "end_line": 334,
+        "start_char": 11059,
+        "end_char": 11170,
+        "score": "0.029211087420042643",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "runshell"
+        ],
+        "evidence_id": "e8b1473ce95bd46aba1a0c03",
+        "source_type": "repository",
+        "content_hash": "8c761ed9878854c042a2b6dd58cea16f0cc51ddf5395cdb760d6e77e584f52ce",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "8c761ed9878854c042a2b6dd58cea16f0cc51ddf5395cdb760d6e77e584f52ce",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e97212a2f1b988e7cb001064",
+        "type": "evidence",
+        "root": "code",
+        "path": "src/schemas/src_schemas/find_v2.schema.json",
+        "start_line": 1,
+        "total_lines": 155,
+        "start_char": 0,
+        "end_char": 3443,
+        "evidence_id": "e97212a2f1b988e7cb001064",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "67cace73c4a4da4ae4dc3b288c0b390c4e1152cc9e167d4f01afdb801ac3a8c8",
+        "revision": "572964662d7d90a39755cf7324cc5f0f3b0bd8f6",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "src/schemas/src_schemas/find_v2.schema.json",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "src/schemas/src_schemas/context_v2.schema.json",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-4"
+        ],
+        "exported_content_sha256": "67cace73c4a4da4ae4dc3b288c0b390c4e1152cc9e167d4f01afdb801ac3a8c8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee33d42210b700a04321754e",
+        "type": "evidence",
+        "path": "docs/references/schemas/context.md",
+        "heading": "context > Examples",
+        "start_line": 22,
+        "end_line": 71,
+        "start_char": 1366,
+        "end_char": 1895,
+        "score": "0.03597538309033084",
+        "root": "docs",
+        "matched_terms": [
+          "height",
+          "options",
+          "width"
+        ],
+        "evidence_id": "ee33d42210b700a04321754e",
+        "source_type": "repository",
+        "content_hash": "9b90a7a9350190f4e417fe9cb9af249fb2aef5c0d57ca39b6573365aabef7ef9",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport",
+            "width height context",
+            "browser context options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9b90a7a9350190f4e417fe9cb9af249fb2aef5c0d57ca39b6573365aabef7ef9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ee33e3e181629f0f9376e094",
+        "type": "evidence",
+        "path": "docs/get-started/tests/index.md",
+        "heading": "Tests > Define a test > Detected tests",
+        "start_line": 170,
+        "end_line": 219,
+        "start_char": 8040,
+        "end_char": 9370,
+        "score": "0.031169871794871795",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "click",
+          "find"
+        ],
+        "evidence_id": "ee33e3e181629f0f9376e094",
+        "source_type": "repository",
+        "content_hash": "75928dd68f9a024c196c26c3e8efa22cced737cb198cea3f8af0c1350e8155bb",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "find action click",
+            "runCode",
+            "action schema"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "75928dd68f9a024c196c26c3e8efa22cced737cb198cea3f8af0c1350e8155bb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f0c6c69fd865e507ff9f0891",
+        "type": "evidence",
+        "path": "docs/get-started/config/contexts/index.md",
+        "heading": "Contexts > Apps > Safari > Dimensions",
+        "start_line": 183,
+        "end_line": 201,
+        "start_char": 4941,
+        "end_char": 5203,
+        "score": "0.04198213964021927",
+        "root": "docs",
+        "matched_terms": [
+          "browser",
+          "height",
+          "options",
+          "width"
+        ],
+        "evidence_id": "f0c6c69fd865e507ff9f0891",
+        "source_type": "repository",
+        "content_hash": "04bee7b9d46d8bb659a7ff47330ec7dc8cc7d0132dfb82c451b2c5ee694676a3",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "viewport",
+            "width height context",
+            "browser context options"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "04bee7b9d46d8bb659a7ff47330ec7dc8cc7d0132dfb82c451b2c5ee694676a3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f19a011c40d5111900025527",
+        "type": "evidence",
+        "path": "docs/get-started/actions/find.md",
+        "heading": "description: Locate and interact with an element on the page.",
+        "start_line": 7,
+        "end_line": 9,
+        "start_char": 81,
+        "end_char": 148,
+        "score": "0.014285714285714285",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "f19a011c40d5111900025527",
+        "source_type": "repository",
+        "content_hash": "e4f98627a3fcb59a2e0bc68d14fe90bea415b840d755f3ffc98b4aae3853031c",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "click button find"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e4f98627a3fcb59a2e0bc68d14fe90bea415b840d755f3ffc98b4aae3853031c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fad9990a2e76082f988b81e9",
+        "type": "evidence",
+        "path": "docs/references/schemas/runShell.md",
+        "heading": "runShell > Examples",
+        "start_line": 28,
+        "end_line": 77,
+        "start_char": 2428,
+        "end_char": 3017,
+        "score": "0.03252247488101534",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "examples",
+          "runshell"
+        ],
+        "evidence_id": "fad9990a2e76082f988b81e9",
+        "source_type": "repository",
+        "content_hash": "2bb891102f8518677b1e228a29614adbc69c26aa19c3d9aa88bd97804c8970a0",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "2bb891102f8518677b1e228a29614adbc69c26aa19c3d9aa88bd97804c8970a0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fc137a03cccff204f7df8da3",
+        "type": "evidence",
+        "path": "docs/references/schemas/specification.md",
+        "heading": "specification > Examples",
+        "start_line": 66,
+        "end_line": 115,
+        "start_char": 1443,
+        "end_char": 2578,
+        "score": "0.029513888888888888",
+        "root": "docs",
+        "matched_terms": [
+          "action",
+          "runshell"
+        ],
+        "evidence_id": "fc137a03cccff204f7df8da3",
+        "source_type": "repository",
+        "content_hash": "78ca30c8f134c1918b1acd5a4321faa514738b71217f01b82bc8c73ae71b4090",
+        "revision": "15e32d65fb1eafed30c1d681724b611beefbbc04",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "runCode action",
+            "runShell fields examples"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "78ca30c8f134c1918b1acd5a4321faa514738b71217f01b82bc8c73ae71b4090",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:runCode-action-page",
+        "type": "requirement",
+        "description": "Add a new user-facing action page `docs/get-started/actions/runCode.md` documenting the `runCode` action: it assembles and runs code in Python, Bash, or JavaScript; `language` is optional and defaults to shell execution; fields include `code`, `args`, `workingDirectory`, `exitCodes` (default `[0]`), and `output` (string or `/regex/`). Include examples mirroring the runShell page style and a link to the schema reference."
+      },
+      {
+        "id": "requirement:concepts-action-table",
+        "type": "requirement",
+        "description": "Add a `runCode` row to the actions table in `docs/get-started/concepts.md` linking to the new runCode action page, so the action is discoverable alongside checkLink, find, runShell, etc."
+      },
+      {
+        "id": "requirement:context-viewport-fields",
+        "type": "requirement",
+        "description": "Document the new `viewport_width` and `viewport_height` integer options in `docs/references/schemas/context.md` (and the contexts guide `docs/get-started/config/contexts/index.md`), noting they override `width`/`height` respectively."
+      },
+      {
+        "id": "requirement:find-click-button",
+        "type": "requirement",
+        "description": "Update `docs/references/schemas/find.md` to document that `click` now accepts either a boolean or an object with a `button` property (`left`, `right`, `middle`), and add an example showing the object form."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/get-started/actions/runCode.md",
+        "hash": "68841c25d59d78cb366f5f14bc339756e8ba7d141ec9d1bfff12a1632fff1fb6"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/get-started/concepts.md",
+        "hash": "41eb319ed3f332071bb5c882db17ba39b2b0a5112d01dc847e40956bbefcaadf"
+      },
+      {
+        "id": "edit:2",
+        "type": "edit",
+        "path": "docs/references/schemas/context.md",
+        "hash": "48f43d7a1c25481ad6ae38e5f8a2120fa727d366a646305ca6ad74ec28237d9f"
+      },
+      {
+        "id": "edit:3",
+        "type": "edit",
+        "path": "docs/get-started/config/contexts/index.md",
+        "hash": "5dd69a2917a4e2f4ff9306494ca3aab313cd05c3b3d08e0baf56e42a9bdd4082"
+      },
+      {
+        "id": "edit:4",
+        "type": "edit",
+        "path": "docs/references/schemas/find.md",
+        "hash": "b25ed68b1796de6fa31f04960bc7106707e388f114922185dcea12674f28cb85"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "runCode-action-page",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/get-started/actions/runCode.md"
+        ],
+        "evidence_ids": [
+          "5ccbbd4aea90ebfe2ef4f095",
+          "65ca215a41dcb8c0ffca841c",
+          "4120f6a73cf9904d5b55b7aa",
+          "0263ff256aa91aec5e4abfe2"
+        ],
+        "reason": "Add a new user-facing action page `docs/get-started/actions/runCode.md` documenting the `runCode` action: it assembles and runs code in Python, Bash, or JavaScript; `language` is optional and defaults to shell execution; fields include `code`, `args`, `workingDirectory`, `exitCodes` (default `[0]`), and `output` (string or `/regex/`). Include examples mirroring the runShell page style and a link to the schema reference."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "concepts-action-table",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/get-started/concepts.md"
+        ],
+        "evidence_ids": [
+          "36e8322d7bb93e647f2d58ce",
+          "65ca215a41dcb8c0ffca841c"
+        ],
+        "reason": "Add a `runCode` row to the actions table in `docs/get-started/concepts.md` linking to the new runCode action page, so the action is discoverable alongside checkLink, find, runShell, etc."
+      },
+      {
+        "id": "coverage:2",
+        "type": "coverage",
+        "requirement_id": "context-viewport-fields",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/references/schemas/context.md",
+          "docs/get-started/config/contexts/index.md"
+        ],
+        "evidence_ids": [
+          "c3a46a15637725dfc3ada378",
+          "42a04e1a1ed9a86bd47b9ecb",
+          "ae8bbbb8acfa727bf4990326"
+        ],
+        "reason": "Document the new `viewport_width` and `viewport_height` integer options in `docs/references/schemas/context.md` (and the contexts guide `docs/get-started/config/contexts/index.md`), noting they override `width`/`height` respectively."
+      },
+      {
+        "id": "coverage:3",
+        "type": "coverage",
+        "requirement_id": "find-click-button",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/references/schemas/find.md"
+        ],
+        "evidence_ids": [
+          "e97212a2f1b988e7cb001064",
+          "7e98cabc785dacdd80847149"
+        ],
+        "reason": "Update `docs/references/schemas/find.md` to document that `click` now accepts either a boolean or an object with a `button` property (`left`, `right`, `middle`), and add an example showing the object form."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "What documentation exists for action schemas (find, click, runCode) and how are actions documented?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "What documentation exists for browser context options width/height and viewport?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What does the new runCode schema define and how is it referenced in test step types?"
+      },
+      {
+        "id": "research:Q1-4",
+        "type": "research_question",
+        "description": "What do the find and context schema changes look like exactly?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does a runCode action doc page exist, and how are action reference pages (e.g. runShell.md, find.md) structured so a new runCode page can be added?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "How does the find action doc describe the click field, and does it need updating for the button object form?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Does the context schema reference doc list viewport_width/viewport_height, and is there a runCode schema reference page?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0263ff256aa91aec5e4abfe2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0bfcfff5f5cc2b27b433bcf6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0e2047b3970807f3db9138ef",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1476ba253fd4a1eaeacfee1d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:14bd506ff4020bb31c1e0d28",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:158089d72cbd0ec9b7466925",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:159fce0e378b67e32fce6c94",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:159fce0e378b67e32fce6c94",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1ba6a1688767228aec48ee73",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22abe1c06594e0c06e68dbf8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:22abe1c06594e0c06e68dbf8",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:243c082fd9ed263d1c69b89d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2c2eff8a60bdb472f0fcc9ae",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:36e8322d7bb93e647f2d58ce",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3e6a067cbf4cb5cdbcc796f4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4120f6a73cf9904d5b55b7aa",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:42a04e1a1ed9a86bd47b9ecb",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4b1e5dc3458bae6853f1aa80",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4b9db5f8a95b01741307845f",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4be5ee85cff123f14c9e0922",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4cfce0a345f0028f2317bb21",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ff03d4a4facde3b9d79b626",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5494c029987a030fc8a9b07b",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:575084cd9fbeb104ade7d906",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:575084cd9fbeb104ade7d906",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5ccbbd4aea90ebfe2ef4f095",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5dd0471c049b1d5d9f05dec4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5dd0471c049b1d5d9f05dec4",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5de867062f13cb448f91f33a",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5fbcdc2d4057ed61313efa64",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:608eb42260cfd9c25570f4cd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:615690d26c2c4a2246f8bf56",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:615690d26c2c4a2246f8bf56",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:61dab2ee0543aa804c64aa0d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:61dab2ee0543aa804c64aa0d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:65ca215a41dcb8c0ffca841c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:66aa68593655a71bb3005a92",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:72c4fc82519b464e928d4ccf",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:76836b1f9a5093e8e7bd37da",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78238ed8a8ea8dd2498cffaa",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7c577c381e1c73039c5cbc1d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7e98cabc785dacdd80847149",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:801ef38d493d8857c1634f8e",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:814819cb727ea654e7e79883",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83a1c5616a0884818e0b6100",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83a1c5616a0884818e0b6100",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83b57b92328b3ed12df6d7cd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83c5f2c80b91c473cb99f217",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8c323a300eb132b36ac67f32",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9187627fd283b5a6211c166e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9ababd9064f21430d0a4206f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9ababd9064f21430d0a4206f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a9a272e34b869cffcdc2ab9c",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ae203564527022924c42f7c3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ae8bbbb8acfa727bf4990326",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b2788b6984190e40a0a26617",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b8a2f8bb9ea3cfe45d09834d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3a46a15637725dfc3ada378",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c783651ae752b3388916d46e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c783651ae752b3388916d46e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c7a5e6e82aaa61097dd9604f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ce7d5ae8af27484163e69378",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d27e67fd678f4a398442524d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d27e67fd678f4a398442524d",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d27e67fd678f4a398442524d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d943843f98c1febdf825f312",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da6f559db982eae3fd1460d4",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e38aa1e3373db85f0fe7dcb9",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e8b1473ce95bd46aba1a0c03",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e97212a2f1b988e7cb001064",
+        "to": "research:Q1-4",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee33d42210b700a04321754e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ee33e3e181629f0f9376e094",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f0c6c69fd865e507ff9f0891",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f19a011c40d5111900025527",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fad9990a2e76082f988b81e9",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fc137a03cccff204f7df8da3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fc137a03cccff204f7df8da3",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5ccbbd4aea90ebfe2ef4f095",
+        "to": "requirement:runCode-action-page",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:65ca215a41dcb8c0ffca841c",
+        "to": "requirement:runCode-action-page",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:4120f6a73cf9904d5b55b7aa",
+        "to": "requirement:runCode-action-page",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:0263ff256aa91aec5e4abfe2",
+        "to": "requirement:runCode-action-page",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:36e8322d7bb93e647f2d58ce",
+        "to": "requirement:concepts-action-table",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:65ca215a41dcb8c0ffca841c",
+        "to": "requirement:concepts-action-table",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c3a46a15637725dfc3ada378",
+        "to": "requirement:context-viewport-fields",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:42a04e1a1ed9a86bd47b9ecb",
+        "to": "requirement:context-viewport-fields",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:ae8bbbb8acfa727bf4990326",
+        "to": "requirement:context-viewport-fields",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:e97212a2f1b988e7cb001064",
+        "to": "requirement:find-click-button",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:7e98cabc785dacdd80847149",
+        "to": "requirement:find-click-button",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:runCode-action-page",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:5ccbbd4aea90ebfe2ef4f095",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:65ca215a41dcb8c0ffca841c",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:4120f6a73cf9904d5b55b7aa",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:0263ff256aa91aec5e4abfe2",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:concepts-action-table",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:36e8322d7bb93e647f2d58ce",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:65ca215a41dcb8c0ffca841c",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:context-viewport-fields",
+        "to": "edit:2",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:c3a46a15637725dfc3ada378",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:42a04e1a1ed9a86bd47b9ecb",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:context-viewport-fields",
+        "to": "edit:3",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:c3a46a15637725dfc3ada378",
+        "to": "edit:3",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ae8bbbb8acfa727bf4990326",
+        "to": "edit:3",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:find-click-button",
+        "to": "edit:4",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:e97212a2f1b988e7cb001064",
+        "to": "edit:4",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:7e98cabc785dacdd80847149",
+        "to": "edit:4",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:runCode-action-page",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:5ccbbd4aea90ebfe2ef4f095",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:65ca215a41dcb8c0ffca841c",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:4120f6a73cf9904d5b55b7aa",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:0263ff256aa91aec5e4abfe2",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:concepts-action-table",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:36e8322d7bb93e647f2d58ce",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:65ca215a41dcb8c0ffca841c",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:context-viewport-fields",
+        "to": "coverage:2",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:c3a46a15637725dfc3ada378",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:42a04e1a1ed9a86bd47b9ecb",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:ae8bbbb8acfa727bf4990326",
+        "to": "coverage:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:find-click-button",
+        "to": "coverage:3",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:e97212a2f1b988e7cb001064",
+        "to": "coverage:3",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:7e98cabc785dacdd80847149",
+        "to": "coverage:3",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:3",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:4",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:3",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "1af28dfce6f982fb222cefa829c863990531cc5b2ca3f7fce5d633866d7f91dd"
+}

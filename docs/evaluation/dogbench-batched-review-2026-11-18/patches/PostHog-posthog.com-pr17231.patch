@@ -1,0 +1,23 @@
+diff --git a/contents/docs/_snippets/path-cleaning.mdx b/contents/docs/_snippets/path-cleaning.mdx
+index 61badbd8563bebb08f927eaeaf0bd9c283e52a1d..3c0c4455203370a0dcce5255b541328185515567 100644
+--- a/contents/docs/_snippets/path-cleaning.mdx
++++ b/contents/docs/_snippets/path-cleaning.mdx
+@@ -1,4 +1,4 @@
+-Path cleaning rules let you normalize dynamic URLs into consistent patterns, reducing the cardinality of your path data. This makes your web analytics paths, entry paths, exit paths, outbound clicks, and path breakdowns more readable and actionable.
++Path cleaning rules let you normalize dynamic URLs into consistent patterns, reducing the cardinality of your path data. This makes your web analytics paths, entry paths, exit paths, outbound clicks, path breakdowns, and funnel breakdowns by event properties (such as `$pathname` or `$current_url`) more readable and actionable.
+ 
+ For example, URLs like `/user/123`, `/user/456`, and `/user/789` can all be cleaned into `/user/:id` so they appear as a single row in your path tables.
+ 
+diff --git a/contents/docs/product-analytics/funnels.mdx b/contents/docs/product-analytics/funnels.mdx
+index 5b6af6faf7240c5c33c8a3158b8b627515f37691..ff1e6103162ba9005e65b6f9e28dbe88294d2de9 100644
+--- a/contents/docs/product-analytics/funnels.mdx
++++ b/contents/docs/product-analytics/funnels.mdx
+@@ -153,6 +153,8 @@ To understand how different types of user interact with your funnel, it's helpfu
+ 
+ > **Note:** Only one cohort can be used at a time for funnel breakdowns. This is because users can belong to multiple cohorts, which would produce confusing results.
+ 
++When breaking down by event properties such as `$pathname` or `$current_url`, you can apply your project's global path cleaning rules to group dynamic URLs together. Enable the **Apply global path URL cleaning** toggle to clean each breakdown value using your configured rules. See [path cleaning](/docs/product-analytics/path-cleaning) for details on configuring rules.
++
+ The example below shows a breakdown by operating system:
+ 
+ <ProductScreenshot

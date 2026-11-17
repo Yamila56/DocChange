@@ -1,0 +1,3941 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REASON",
+  "tasks": [],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "4b831d46f0ce49115a15af01b5ef82fac1e4e8a7e7718d979b41f0e212cbbb19",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where does the documentation describe upsert keys, updating tables, and sink primary-key conflict handling?",
+          "root": "docs",
+          "queries": [
+            "upsert key",
+            "primary key conflict",
+            "updating table"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 1476,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 1450,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+              "offset": 142,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "fc63b457282802fd385d80f5",
+            "074ad13e86e2129a5998f20a",
+            "39444b61cebb98c4660aa81a",
+            "41a8d0c8b81f17d1469e8eaf",
+            "cccd66a9e6d565cbd12d615f",
+            "ff7d9d291bb2aca05f6a0b7d",
+            "336e44e4e909b2b005ef568a",
+            "bca3ee9d12b6ad12ae6b3413",
+            "5a5ef2c75e3fe8a2d0523cc0",
+            "c4901b7cb6bf99186866ba6f",
+            "94917f4a20b01b3b1000d13d",
+            "b35f20b6d22dcaf5adc932be",
+            "9355df0776891b824cf23bd9",
+            "47f9403ab39b1299b2046a4b",
+            "11afc38124c36b646c3adf5f"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "41a8d0c8b81f17d1469e8eaf",
+              "score": "0.039331826565869116"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "cccd66a9e6d565cbd12d615f",
+              "score": "0.037567506240072615"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "ff7d9d291bb2aca05f6a0b7d",
+              "score": "0.03745753977470677"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "336e44e4e909b2b005ef568a",
+              "score": "0.03722929470295581"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+              "evidence_id": "bca3ee9d12b6ad12ae6b3413",
+              "score": "0.0304147465437788"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content.zh/docs/connectors/table/formats/avro-confluent.md",
+              "evidence_id": "5a5ef2c75e3fe8a2d0523cc0",
+              "score": "0.02788769549651404"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content.zh/docs/connectors/table/overview.md",
+              "evidence_id": "c4901b7cb6bf99186866ba6f",
+              "score": "0.026263297872340427"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content/docs/connectors/table/overview.md",
+              "evidence_id": "94917f4a20b01b3b1000d13d",
+              "score": "0.02486025301559282"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content/docs/concepts/sql-table-concepts/versioned_tables.md",
+              "evidence_id": "b35f20b6d22dcaf5adc932be",
+              "score": "0.024814336033934445"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content/docs/concepts/sql-table-concepts/versioned_tables.md",
+              "evidence_id": "9355df0776891b824cf23bd9",
+              "score": "0.02320631222786144"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content/docs/sql/reference/ddl/create.md",
+              "evidence_id": "47f9403ab39b1299b2046a4b",
+              "score": "0.02313655336911151"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content/docs/sql/materialized-table/statements.md",
+              "evidence_id": "11afc38124c36b646c3adf5f",
+              "score": "0.022886949116457313"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "start": 1476,
+              "end": 1596,
+              "total_lines": 2037
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "start": 1450,
+              "end": 1570,
+              "total_lines": 2036
+            },
+            {
+              "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+              "start": 142,
+              "end": 262,
+              "total_lines": 301
+            }
+          ],
+          "read_evidence_ids": [
+            "fc63b457282802fd385d80f5",
+            "074ad13e86e2129a5998f20a",
+            "39444b61cebb98c4660aa81a"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where is the sink write/merge behavior documented, including how multiple input records targeting the same sink row are handled?",
+          "root": "docs",
+          "queries": [
+            "sink merge",
+            "duplicate records sink",
+            "merge on primary key"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/sql/reference/queries/hints.md",
+              "offset": 235,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "fde64dd4bacad29743025737",
+            "e9954dd4191829307556a8c8",
+            "1bca4ee5aaac823d659e170c",
+            "c3efd843c1126ee91a164074",
+            "97b930067ac45aaec8b37f7f",
+            "9f9bb247a1a4051552fbbd79",
+            "81267ecdeb19d682bd5297bb",
+            "620704d92c9d23312c258133",
+            "621d32ac345ac3374c8aa000",
+            "ae3f684bb8cd5014681ae477",
+            "31c3d7eced767dbf4251c735",
+            "0c4b3c6958db3f3cc546c067",
+            "2670e4a660652be18246d622",
+            "973612ead060a6a4cae51be0",
+            "d89fb08684276569cfa32abd"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "evidence_id": "c3efd843c1126ee91a164074",
+              "score": "0.0366696794733434"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "evidence_id": "97b930067ac45aaec8b37f7f",
+              "score": "0.03518950185616852"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content/docs/sql/reference/queries/hints.md",
+              "evidence_id": "9f9bb247a1a4051552fbbd79",
+              "score": "0.029291765112660635"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "evidence_id": "81267ecdeb19d682bd5297bb",
+              "score": "0.028531243721117136"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "620704d92c9d23312c258133",
+              "score": "0.027579737335834898"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "evidence_id": "621d32ac345ac3374c8aa000",
+              "score": "0.02684684684684685"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "evidence_id": "ae3f684bb8cd5014681ae477",
+              "score": "0.02632034632034632"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content.zh/docs/sql/reference/queries/hints.md",
+              "evidence_id": "31c3d7eced767dbf4251c735",
+              "score": "0.025326537113730486"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content/docs/sql/reference/queries/hints.md",
+              "evidence_id": "0c4b3c6958db3f3cc546c067",
+              "score": "0.025236646652968875"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content.zh/docs/connectors/table/formats/maxwell.md",
+              "evidence_id": "2670e4a660652be18246d622",
+              "score": "0.023934382143337367"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content/docs/connectors/datastream/filesystem.md",
+              "evidence_id": "973612ead060a6a4cae51be0",
+              "score": "0.023889462809917356"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "d89fb08684276569cfa32abd",
+              "score": "0.023514696685428396"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "start": 108,
+              "end": 185,
+              "total_lines": 185
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "start": 108,
+              "end": 185,
+              "total_lines": 185
+            },
+            {
+              "path": "docs/content/docs/sql/reference/queries/hints.md",
+              "start": 235,
+              "end": 355,
+              "total_lines": 828
+            }
+          ],
+          "read_evidence_ids": [
+            "fde64dd4bacad29743025737",
+            "e9954dd4191829307556a8c8",
+            "1bca4ee5aaac823d659e170c"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "074ad13e86e2129a5998f20a",
+        "0c4b3c6958db3f3cc546c067",
+        "11afc38124c36b646c3adf5f",
+        "1bca4ee5aaac823d659e170c",
+        "2670e4a660652be18246d622",
+        "31c3d7eced767dbf4251c735",
+        "336e44e4e909b2b005ef568a",
+        "39444b61cebb98c4660aa81a",
+        "41a8d0c8b81f17d1469e8eaf",
+        "47f9403ab39b1299b2046a4b",
+        "5a5ef2c75e3fe8a2d0523cc0",
+        "620704d92c9d23312c258133",
+        "621d32ac345ac3374c8aa000",
+        "81267ecdeb19d682bd5297bb",
+        "9355df0776891b824cf23bd9",
+        "94917f4a20b01b3b1000d13d",
+        "973612ead060a6a4cae51be0",
+        "97b930067ac45aaec8b37f7f",
+        "9f9bb247a1a4051552fbbd79",
+        "ae3f684bb8cd5014681ae477",
+        "b35f20b6d22dcaf5adc932be",
+        "bca3ee9d12b6ad12ae6b3413",
+        "c3efd843c1126ee91a164074",
+        "c4901b7cb6bf99186866ba6f",
+        "cccd66a9e6d565cbd12d615f",
+        "d89fb08684276569cfa32abd",
+        "e9954dd4191829307556a8c8",
+        "fc63b457282802fd385d80f5",
+        "fde64dd4bacad29743025737",
+        "ff7d9d291bb2aca05f6a0b7d"
+      ],
+      "new_evidence_count": 30,
+      "new_path_count": 17
+    },
+    {
+      "signature": "cc2748ecae78516fea1090c5d400aa42f0d2544c498018b6e28d25d0b18b7901",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Where do the docs describe the upsert/primary-key conflict behavior of sinks (e.g. SinkUpsertMaterializer, 'upsert key differs from primary key', duplicate input records targeting same sink row)?",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "primary key conflict sink"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/content/docs/dev/table/sql/queries/overview.md"
+          ],
+          "reads": [
+            {
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "offset": 342,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "offset": 342,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/release-notes/flink-2.2.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "821accea276305a63cb11815",
+            "3008da7d5a745bf3f85b1a5f",
+            "70efff9f7abbdf96603d92d9",
+            "656f1342cef8a208ed29347f",
+            "13346c037a31110f8ca60efc",
+            "fd0ab31f98b0870a24864c3e",
+            "6783f51a58dbdc4beab81c81",
+            "5e3eabfe2cef33e390f83e6e",
+            "33d3b4eff39567406f4f3daa",
+            "e6084973435c52c8d0f72ead",
+            "bca3ee9d12b6ad12ae6b3413",
+            "50f909563ec31904550dba86",
+            "566a599f8a2162c5029d880e",
+            "302541fe68bf09c5916ed669",
+            "caa50d11e86d30d3c61718eb"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "656f1342cef8a208ed29347f",
+              "score": "0.04001441961067051"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "evidence_id": "13346c037a31110f8ca60efc",
+              "score": "0.03915441987731144"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "fd0ab31f98b0870a24864c3e",
+              "score": "0.034304453181020204"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "evidence_id": "6783f51a58dbdc4beab81c81",
+              "score": "0.03336459905115343"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content/release-notes/flink-2.2.md",
+              "evidence_id": "5e3eabfe2cef33e390f83e6e",
+              "score": "0.03028233151183971"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content.zh/release-notes/flink-2.2.md",
+              "evidence_id": "33d3b4eff39567406f4f3daa",
+              "score": "0.029709507042253523"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content.zh/release-notes/flink-2.2.md",
+              "evidence_id": "e6084973435c52c8d0f72ead",
+              "score": "0.025823373191220005"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+              "evidence_id": "bca3ee9d12b6ad12ae6b3413",
+              "score": "0.024593763724198508"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content/release-notes/flink-2.2.md",
+              "evidence_id": "50f909563ec31904550dba86",
+              "score": "0.02440606496284755"
+            },
+            {
+              "rank": 10,
+              "path": "AGENTS.md",
+              "evidence_id": "566a599f8a2162c5029d880e",
+              "score": "0.021507994969007283"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content/docs/concepts/sql-table-concepts/determinism.md",
+              "evidence_id": "302541fe68bf09c5916ed669",
+              "score": "0.021351575456053068"
+            },
+            {
+              "rank": 12,
+              "path": ".github/PULL_REQUEST_TEMPLATE.md",
+              "evidence_id": "caa50d11e86d30d3c61718eb",
+              "score": "0.021103896103896104"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "start": 342,
+              "end": 462,
+              "total_lines": 605
+            },
+            {
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "start": 342,
+              "end": 462,
+              "total_lines": 620
+            },
+            {
+              "path": "docs/content/release-notes/flink-2.2.md",
+              "start": 73,
+              "end": 193,
+              "total_lines": 226
+            }
+          ],
+          "read_evidence_ids": [
+            "821accea276305a63cb11815",
+            "3008da7d5a745bf3f85b1a5f",
+            "70efff9f7abbdf96603d92d9"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Where is the 'INSERT INTO' / updating-table sink write behavior documented, including how multiple input records for the same sink row are merged?",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key",
+            "upsert key different primary key"
+          ],
+          "paths": [
+            "docs/content/docs/dev/table/sql/insert.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/insert.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/sql/materialized-table/statements.md",
+              "offset": 79,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/connectors/table/overview.md",
+              "offset": 254,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "4302167c0d819d05f8294676",
+            "d575931843495e1d62535bdb",
+            "9a345cf0f16199d8657dbca6",
+            "bca3ee9d12b6ad12ae6b3413",
+            "11afc38124c36b646c3adf5f",
+            "c4901b7cb6bf99186866ba6f",
+            "94917f4a20b01b3b1000d13d",
+            "b35f20b6d22dcaf5adc932be",
+            "47f9403ab39b1299b2046a4b",
+            "0d1e088db5f1acf391b2acb9",
+            "656f1342cef8a208ed29347f",
+            "62670c774f309676ff15c929",
+            "13346c037a31110f8ca60efc",
+            "1802ea5e5ff660b7c27d84ac",
+            "5a5ef2c75e3fe8a2d0523cc0"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+              "evidence_id": "bca3ee9d12b6ad12ae6b3413",
+              "score": "0.03262370642603016"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content/docs/sql/materialized-table/statements.md",
+              "evidence_id": "11afc38124c36b646c3adf5f",
+              "score": "0.03200204813108039"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/docs/connectors/table/overview.md",
+              "evidence_id": "c4901b7cb6bf99186866ba6f",
+              "score": "0.03177805800756621"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content/docs/connectors/table/overview.md",
+              "evidence_id": "94917f4a20b01b3b1000d13d",
+              "score": "0.031754032258064516"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content/docs/concepts/sql-table-concepts/versioned_tables.md",
+              "evidence_id": "b35f20b6d22dcaf5adc932be",
+              "score": "0.030912557577588158"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content/docs/sql/reference/ddl/create.md",
+              "evidence_id": "47f9403ab39b1299b2046a4b",
+              "score": "0.029910714285714284"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content.zh/docs/sql/materialized-table/statements.md",
+              "evidence_id": "0d1e088db5f1acf391b2acb9",
+              "score": "0.029877369007803793"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "656f1342cef8a208ed29347f",
+              "score": "0.029835492426733303"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content.zh/docs/sql/reference/utility/explain.md",
+              "evidence_id": "62670c774f309676ff15c929",
+              "score": "0.02974353441736427"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "evidence_id": "13346c037a31110f8ca60efc",
+              "score": "0.028714859437751004"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "1802ea5e5ff660b7c27d84ac",
+              "score": "0.026505342925913195"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content.zh/docs/connectors/table/formats/avro-confluent.md",
+              "evidence_id": "5a5ef2c75e3fe8a2d0523cc0",
+              "score": "0.026016320047683394"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/insert.md",
+              "start": 0,
+              "end": 23,
+              "total_lines": 23
+            },
+            {
+              "path": "docs/content/docs/sql/materialized-table/statements.md",
+              "start": 79,
+              "end": 199,
+              "total_lines": 648
+            },
+            {
+              "path": "docs/content.zh/docs/connectors/table/overview.md",
+              "start": 254,
+              "end": 374,
+              "total_lines": 382
+            }
+          ],
+          "read_evidence_ids": [
+            "4302167c0d819d05f8294676",
+            "d575931843495e1d62535bdb",
+            "9a345cf0f16199d8657dbca6"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0d1e088db5f1acf391b2acb9",
+        "13346c037a31110f8ca60efc",
+        "1802ea5e5ff660b7c27d84ac",
+        "3008da7d5a745bf3f85b1a5f",
+        "302541fe68bf09c5916ed669",
+        "33d3b4eff39567406f4f3daa",
+        "4302167c0d819d05f8294676",
+        "50f909563ec31904550dba86",
+        "566a599f8a2162c5029d880e",
+        "5e3eabfe2cef33e390f83e6e",
+        "62670c774f309676ff15c929",
+        "656f1342cef8a208ed29347f",
+        "6783f51a58dbdc4beab81c81",
+        "70efff9f7abbdf96603d92d9",
+        "821accea276305a63cb11815",
+        "9a345cf0f16199d8657dbca6",
+        "caa50d11e86d30d3c61718eb",
+        "d575931843495e1d62535bdb",
+        "e6084973435c52c8d0f72ead",
+        "fd0ab31f98b0870a24864c3e"
+      ],
+      "new_evidence_count": 20,
+      "new_path_count": 8
+    },
+    {
+      "signature": "2e1c3b24699c819c9a5d729a3097dca62708cd367f6f74acdbf8f89f62db2384",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q3-1",
+          "question": "Where do the docs describe the SinkUpsertMaterializer / upsert materialization behavior and the requirement that the upsert key match the sink primary key, including what happens when multiple input records target the same sink row?",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ],
+          "paths": [
+            "docs/content/docs/dev/table/tuning.md",
+            "docs/content/docs/connectors/table/overview.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/tuning.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/table/overview.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.2.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7d18bf36b1e9396e17c98ff5",
+            "cc2aabacaa59ecadf85ec8bc",
+            "2e3fd3c714485f5ec8ccc4fa",
+            "13346c037a31110f8ca60efc",
+            "656f1342cef8a208ed29347f",
+            "fd0ab31f98b0870a24864c3e",
+            "6783f51a58dbdc4beab81c81",
+            "5e3eabfe2cef33e390f83e6e",
+            "33d3b4eff39567406f4f3daa",
+            "ff7d9d291bb2aca05f6a0b7d",
+            "41a8d0c8b81f17d1469e8eaf",
+            "5a5ef2c75e3fe8a2d0523cc0",
+            "835e97e453ca2969c47e26ff",
+            "bca3ee9d12b6ad12ae6b3413",
+            "756eeea9a948d77dd516c4ca"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "evidence_id": "13346c037a31110f8ca60efc",
+              "score": "0.040995115995115995"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "656f1342cef8a208ed29347f",
+              "score": "0.04037003838734192"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "fd0ab31f98b0870a24864c3e",
+              "score": "0.036563805850208936"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "evidence_id": "6783f51a58dbdc4beab81c81",
+              "score": "0.035970302099334356"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content/release-notes/flink-2.2.md",
+              "evidence_id": "5e3eabfe2cef33e390f83e6e",
+              "score": "0.03272135590208361"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content.zh/release-notes/flink-2.2.md",
+              "evidence_id": "33d3b4eff39567406f4f3daa",
+              "score": "0.03225403630434004"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "ff7d9d291bb2aca05f6a0b7d",
+              "score": "0.02919863597612958"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "41a8d0c8b81f17d1469e8eaf",
+              "score": "0.02821939586645469"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content.zh/docs/connectors/table/formats/avro-confluent.md",
+              "evidence_id": "5a5ef2c75e3fe8a2d0523cc0",
+              "score": "0.027623285131627734"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "835e97e453ca2969c47e26ff",
+              "score": "0.026742734890354787"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+              "evidence_id": "bca3ee9d12b6ad12ae6b3413",
+              "score": "0.02649445272396092"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "756eeea9a948d77dd516c4ca",
+              "score": "0.0261986301369863"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content/docs/dev/table/tuning.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 442
+            },
+            {
+              "path": "docs/content/docs/connectors/table/overview.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 382
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.2.md",
+              "start": 73,
+              "end": 193,
+              "total_lines": 226
+            }
+          ],
+          "read_evidence_ids": [
+            "7d18bf36b1e9396e17c98ff5",
+            "cc2aabacaa59ecadf85ec8bc",
+            "2e3fd3c714485f5ec8ccc4fa"
+          ]
+        },
+        {
+          "id": "Q3-2",
+          "question": "Where is the INSERT INTO / updating-table sink write behavior documented, including how multiple input records for the same sink row are merged or deduplicated?",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ],
+          "paths": [
+            "docs/content/docs/dev/table/sql/insert.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/content/docs/sql/reference/insert.md"
+          ],
+          "reads": [
+            {
+              "path": "docs/content.zh/docs/dev/table/sourcesSinks.md",
+              "offset": 253,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/datastream/filesystem.md",
+              "offset": 347,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/sourcesSinks.md",
+              "offset": 300,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "dc1b57810f1d514eee6294c5",
+            "32b0f08ff6c636a575e7b02d",
+            "d57c22a118603740b678433e",
+            "c3efd843c1126ee91a164074",
+            "97b930067ac45aaec8b37f7f",
+            "c5410a96c2317466828d24d9",
+            "973612ead060a6a4cae51be0",
+            "435f36db3573ef0ee985ea57",
+            "469a2ad3a0ad6907c9c7e479",
+            "7605a6dbb6dbd8f67cdc903a",
+            "ae3f684bb8cd5014681ae477",
+            "621d32ac345ac3374c8aa000",
+            "6837951e3cba12db73b25752",
+            "fd0ab31f98b0870a24864c3e",
+            "835e97e453ca2969c47e26ff"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "evidence_id": "c3efd843c1126ee91a164074",
+              "score": "0.0306064881572859"
+            },
+            {
+              "rank": 2,
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "evidence_id": "97b930067ac45aaec8b37f7f",
+              "score": "0.029528985507246377"
+            },
+            {
+              "rank": 3,
+              "path": "docs/content.zh/docs/dev/table/sourcesSinks.md",
+              "evidence_id": "c5410a96c2317466828d24d9",
+              "score": "0.02536967452230921"
+            },
+            {
+              "rank": 4,
+              "path": "docs/content/docs/connectors/datastream/filesystem.md",
+              "evidence_id": "973612ead060a6a4cae51be0",
+              "score": "0.02497858978018841"
+            },
+            {
+              "rank": 5,
+              "path": "docs/content/docs/dev/table/sourcesSinks.md",
+              "evidence_id": "435f36db3573ef0ee985ea57",
+              "score": "0.024444642990097534"
+            },
+            {
+              "rank": 6,
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "evidence_id": "469a2ad3a0ad6907c9c7e479",
+              "score": "0.02399425287356322"
+            },
+            {
+              "rank": 7,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "7605a6dbb6dbd8f67cdc903a",
+              "score": "0.023268398268398268"
+            },
+            {
+              "rank": 8,
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "evidence_id": "ae3f684bb8cd5014681ae477",
+              "score": "0.02289611496772622"
+            },
+            {
+              "rank": 9,
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "evidence_id": "621d32ac345ac3374c8aa000",
+              "score": "0.02200515242593388"
+            },
+            {
+              "rank": 10,
+              "path": "docs/content/docs/concepts/sql-table-concepts/dynamic_tables.md",
+              "evidence_id": "6837951e3cba12db73b25752",
+              "score": "0.021858576206402296"
+            },
+            {
+              "rank": 11,
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "evidence_id": "fd0ab31f98b0870a24864c3e",
+              "score": "0.02137636424608256"
+            },
+            {
+              "rank": 12,
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "evidence_id": "835e97e453ca2969c47e26ff",
+              "score": "0.021160153010243446"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/content.zh/docs/dev/table/sourcesSinks.md",
+              "start": 253,
+              "end": 373,
+              "total_lines": 847
+            },
+            {
+              "path": "docs/content/docs/connectors/datastream/filesystem.md",
+              "start": 347,
+              "end": 467,
+              "total_lines": 1028
+            },
+            {
+              "path": "docs/content/docs/dev/table/sourcesSinks.md",
+              "start": 300,
+              "end": 420,
+              "total_lines": 929
+            }
+          ],
+          "read_evidence_ids": [
+            "dc1b57810f1d514eee6294c5",
+            "32b0f08ff6c636a575e7b02d",
+            "d57c22a118603740b678433e"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "2e3fd3c714485f5ec8ccc4fa",
+        "32b0f08ff6c636a575e7b02d",
+        "435f36db3573ef0ee985ea57",
+        "469a2ad3a0ad6907c9c7e479",
+        "6837951e3cba12db73b25752",
+        "756eeea9a948d77dd516c4ca",
+        "7605a6dbb6dbd8f67cdc903a",
+        "7d18bf36b1e9396e17c98ff5",
+        "835e97e453ca2969c47e26ff",
+        "c5410a96c2317466828d24d9",
+        "cc2aabacaa59ecadf85ec8bc",
+        "d57c22a118603740b678433e",
+        "dc1b57810f1d514eee6294c5"
+      ],
+      "new_evidence_count": 13,
+      "new_path_count": 4
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "ab9a71b2d0ddb57e720cab078c600df0b04237ea"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:d6d60d9e211ad3b8": 0,
+    "discover:Q1-2:dd920fd5316b6c8e": 1048,
+    "discover:Q2-1:42cf691ca4c0f652": 0,
+    "discover:Q2-2:3ea9c689d925c2df": 529,
+    "discover:Q3-1:25625d75b57e6cc2": 0,
+    "discover:Q3-2:dfdac8eeda4077ad": 373
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:d6d60d9e211ad3b8": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 1048,
+      "cache_hit": false
+    },
+    "discover:Q1-2:dd920fd5316b6c8e": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 274,
+      "cache_hit": false
+    },
+    "discover:Q1-2:18c55f80da95b55f": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 251,
+      "cache_hit": false
+    },
+    "discover:Q1-1:33d7d1967aaa46d7": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 461,
+      "cache_hit": false
+    },
+    "discover:Q2-1:42cf691ca4c0f652": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 530,
+      "cache_hit": false
+    },
+    "discover:Q2-2:3ea9c689d925c2df": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 288,
+      "cache_hit": false
+    },
+    "discover:Q2-1:7243ce209ed17d9a": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 282,
+      "cache_hit": false
+    },
+    "discover:Q2-2:6f779c02f9936c9d": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 567,
+      "cache_hit": false
+    },
+    "discover:Q3-1:25625d75b57e6cc2": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 373,
+      "cache_hit": false
+    },
+    "discover:Q3-2:dfdac8eeda4077ad": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 329,
+      "cache_hit": false
+    },
+    "discover:Q3-2:d25acbbc4a4473cc": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 321,
+      "cache_hit": false
+    },
+    "discover:Q3-1:acf8af5c8b043038": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 353,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:074ad13e86e2129a5998f20a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "start_line": 1451,
+        "total_lines": 2036,
+        "start_char": 59628,
+        "end_char": 64858,
+        "evidence_id": "074ad13e86e2129a5998f20a",
+        "truncated": false,
+        "next_offset": 1570,
+        "source_type": "repository",
+        "content_hash": "6cdee40d0512c2208b6bb3e32024497612574d4126efd6677df70efd77dbb265",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 1476,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 1450,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+              "offset": 142,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "6cdee40d0512c2208b6bb3e32024497612574d4126efd6677df70efd77dbb265",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0c4b3c6958db3f3cc546c067",
+        "type": "evidence",
+        "path": "docs/content/docs/sql/reference/queries/hints.md",
+        "heading": "SQL Hints > Query Hints > Join Hints > SHUFFLE_MERGE",
+        "start_line": 229,
+        "end_line": 239,
+        "start_char": 9110,
+        "end_char": 9496,
+        "score": "0.025236646652968875",
+        "root": "docs",
+        "matched_terms": [
+          "merge"
+        ],
+        "evidence_id": "0c4b3c6958db3f3cc546c067",
+        "source_type": "repository",
+        "content_hash": "f035d6f3fe294056aa53d0e35753702e2413433014cdc320b2c0032f7808fad5",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "sink merge",
+            "duplicate records sink",
+            "merge on primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f035d6f3fe294056aa53d0e35753702e2413433014cdc320b2c0032f7808fad5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0d1e088db5f1acf391b2acb9",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/sql/materialized-table/statements.md",
+        "heading": "CREATE [OR ALTER] MATERIALIZED TABLE > PRIMARY KEY",
+        "start_line": 84,
+        "end_line": 87,
+        "start_char": 2420,
+        "end_char": 2483,
+        "score": "0.029877369007803793",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary"
+        ],
+        "evidence_id": "0d1e088db5f1acf391b2acb9",
+        "source_type": "repository",
+        "content_hash": "debba3d18eaefd09be0bc5086a2c2f36b27bc69cc9fc21a74e4fb0988c1b1190",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key",
+            "upsert key different primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "debba3d18eaefd09be0bc5086a2c2f36b27bc69cc9fc21a74e4fb0988c1b1190",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:11afc38124c36b646c3adf5f",
+        "type": "evidence",
+        "path": "docs/content/docs/sql/materialized-table/statements.md",
+        "heading": "CREATE [OR ALTER] MATERIALIZED TABLE > PRIMARY KEY",
+        "start_line": 84,
+        "end_line": 87,
+        "start_char": 2499,
+        "end_char": 2666,
+        "score": "0.03200204813108039",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "table"
+        ],
+        "evidence_id": "11afc38124c36b646c3adf5f",
+        "source_type": "repository",
+        "content_hash": "8e2163d93dae9ee5c6f364c10590b0e1df4c5b1a8e7a4819940609632f54c115",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key",
+            "upsert key different primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8e2163d93dae9ee5c6f364c10590b0e1df4c5b1a8e7a4819940609632f54c115",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:13346c037a31110f8ca60efc",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Table API & SQL > Upsert materializer is not inserted for all sink providers > [FLINK-23895](https://issues.apache.org/jira/browse/FLINK-23895)",
+        "start_line": 347,
+        "end_line": 353,
+        "start_char": 14301,
+        "end_char": 14720,
+        "score": "0.040995115995115995",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary"
+        ],
+        "evidence_id": "13346c037a31110f8ca60efc",
+        "source_type": "repository",
+        "content_hash": "3507d2be696f16e2f606d1c6b1663c1f5aabcb17aa54005d8ac1ba303b340fa8",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "3507d2be696f16e2f606d1c6b1663c1f5aabcb17aa54005d8ac1ba303b340fa8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1802ea5e5ff660b7c27d84ac",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "heading": "Updates and Changelogs > Updating Input Tables",
+        "start_line": 1423,
+        "end_line": 1449,
+        "start_char": 57960,
+        "end_char": 59567,
+        "score": "0.026505342925913195",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "key",
+          "table",
+          "updating",
+          "upsert"
+        ],
+        "evidence_id": "1802ea5e5ff660b7c27d84ac",
+        "source_type": "repository",
+        "content_hash": "8fa5b30898a57c577efbfa5903bfe8ce328350daabf42a9f64640167c0999f34",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key",
+            "upsert key different primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8fa5b30898a57c577efbfa5903bfe8ce328350daabf42a9f64640167c0999f34",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1bca4ee5aaac823d659e170c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/sql/reference/queries/hints.md",
+        "start_line": 236,
+        "total_lines": 828,
+        "start_char": 9391,
+        "end_char": 13689,
+        "evidence_id": "1bca4ee5aaac823d659e170c",
+        "truncated": false,
+        "next_offset": 355,
+        "source_type": "repository",
+        "content_hash": "2e10de2b72a3f750655777d02b24e9ef768a45adf72df32e332b2a2f47427a01",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/sql/reference/queries/hints.md",
+              "offset": 235,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2e10de2b72a3f750655777d02b24e9ef768a45adf72df32e332b2a2f47427a01",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20faf5132bd5393903a2a4e5",
+        "type": "evidence",
+        "evidence_id": "20faf5132bd5393903a2a4e5",
+        "source_type": "implementation",
+        "exported_content_sha256": "ef34b8c0ae348e7856c8fe5e47c94309f1a9757717a53758a8451dca777691e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2670e4a660652be18246d622",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/connectors/table/formats/maxwell.md",
+        "heading": "Caveats > Duplicate change events",
+        "start_line": 269,
+        "end_line": 275,
+        "start_char": 10291,
+        "end_char": 11096,
+        "score": "0.023934382143337367",
+        "root": "docs",
+        "matched_terms": [
+          "duplicate",
+          "key",
+          "on",
+          "primary"
+        ],
+        "evidence_id": "2670e4a660652be18246d622",
+        "source_type": "repository",
+        "content_hash": "c74f49018686dfece3c9f169f7a2da3a78bb8eb12361d8ad2cc3dd1e603ab788",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "sink merge",
+            "duplicate records sink",
+            "merge on primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c74f49018686dfece3c9f169f7a2da3a78bb8eb12361d8ad2cc3dd1e603ab788",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2e3fd3c714485f5ec8ccc4fa",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/release-notes/flink-2.2.md",
+        "start_line": 74,
+        "total_lines": 226,
+        "start_char": 3764,
+        "end_char": 10230,
+        "evidence_id": "2e3fd3c714485f5ec8ccc4fa",
+        "truncated": false,
+        "next_offset": 193,
+        "source_type": "repository",
+        "content_hash": "22d9d8c8851dbf93816f35e0276fe4a73c3e0e6170685afee5576533407e6e76",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/tuning.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/table/overview.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.2.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "22d9d8c8851dbf93816f35e0276fe4a73c3e0e6170685afee5576533407e6e76",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3008da7d5a745bf3f85b1a5f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/release-notes/flink-1.15.md",
+        "start_line": 343,
+        "total_lines": 620,
+        "start_char": 14162,
+        "end_char": 19717,
+        "evidence_id": "3008da7d5a745bf3f85b1a5f",
+        "truncated": false,
+        "next_offset": 462,
+        "source_type": "repository",
+        "content_hash": "957644b55dbd4e56ee0091f6c2e95cac8de173515a740aaa9a42a9bffe3a8ba9",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "offset": 342,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "offset": 342,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/release-notes/flink-2.2.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "957644b55dbd4e56ee0091f6c2e95cac8de173515a740aaa9a42a9bffe3a8ba9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:302541fe68bf09c5916ed669",
+        "type": "evidence",
+        "path": "docs/content/docs/concepts/sql-table-concepts/determinism.md",
+        "heading": "Determinism In Continuous Queries > 3. Determinism In Streaming Processing > 3.3 How To Eliminate The Impact Of Non-Deterministic Update In Streaming > Best Practices",
+        "start_line": 221,
+        "end_line": 243,
+        "start_char": 15907,
+        "end_char": 17612,
+        "score": "0.021351575456053068",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "sink"
+        ],
+        "evidence_id": "302541fe68bf09c5916ed669",
+        "source_type": "repository",
+        "content_hash": "da5492974aa78d2f07788844e90547c769ec7561efc1321163ad0e978ec94b21",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "primary key conflict sink"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "da5492974aa78d2f07788844e90547c769ec7561efc1321163ad0e978ec94b21",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:31c3d7eced767dbf4251c735",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/sql/reference/queries/hints.md",
+        "heading": "提示 > 查询提示 > 联接提示 > SHUFFLE_MERGE > 示例",
+        "start_line": 229,
+        "end_line": 246,
+        "start_char": 6394,
+        "end_char": 6968,
+        "score": "0.025326537113730486",
+        "root": "docs",
+        "matched_terms": [
+          "merge",
+          "on"
+        ],
+        "evidence_id": "31c3d7eced767dbf4251c735",
+        "source_type": "repository",
+        "content_hash": "678750464037f0e603a8e10b00c89395810e9a5b4770e072286a5f1c7f84294f",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "sink merge",
+            "duplicate records sink",
+            "merge on primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "678750464037f0e603a8e10b00c89395810e9a5b4770e072286a5f1c7f84294f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:32b0f08ff6c636a575e7b02d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/connectors/datastream/filesystem.md",
+        "start_line": 348,
+        "total_lines": 1028,
+        "start_char": 14794,
+        "end_char": 18884,
+        "evidence_id": "32b0f08ff6c636a575e7b02d",
+        "truncated": false,
+        "next_offset": 467,
+        "source_type": "repository",
+        "content_hash": "f84584abe2dd3691f82a596ac6e6f8111e907ae813004c51ea2617c891da95da",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content.zh/docs/dev/table/sourcesSinks.md",
+              "offset": 253,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/datastream/filesystem.md",
+              "offset": 347,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/sourcesSinks.md",
+              "offset": 300,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "f84584abe2dd3691f82a596ac6e6f8111e907ae813004c51ea2617c891da95da",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:336e44e4e909b2b005ef568a",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "heading": "Updates and Changelogs > Updating Input Tables > Enforcing Retract Mode",
+        "start_line": 1456,
+        "end_line": 1480,
+        "start_char": 59935,
+        "end_char": 61050,
+        "score": "0.03722929470295581",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "table",
+          "updating",
+          "upsert"
+        ],
+        "evidence_id": "336e44e4e909b2b005ef568a",
+        "source_type": "repository",
+        "content_hash": "7bda15b386a0ac62a1957fddcf0ac6df5605207728e8d0ef3a9a25b0d81185f2",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "upsert key",
+            "primary key conflict",
+            "updating table"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7bda15b386a0ac62a1957fddcf0ac6df5605207728e8d0ef3a9a25b0d81185f2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:33d3b4eff39567406f4f3daa",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-2.2.md",
+        "heading": "Release notes - Flink 2.2 > Table SQL / API > SinkUpsertMaterializer V2 > [FLINK-38459](https://issues.apache.org/jira/browse/FLINK-38459)",
+        "start_line": 78,
+        "end_line": 83,
+        "start_char": 3896,
+        "end_char": 4244,
+        "score": "0.03225403630434004",
+        "root": "docs",
+        "matched_terms": [
+          "sinkupsertmaterializer",
+          "upsert"
+        ],
+        "evidence_id": "33d3b4eff39567406f4f3daa",
+        "source_type": "repository",
+        "content_hash": "22d9d34882955db8acd3fa5df6b3fbf19b8d6a1f566da8ef8d7fcdabdd21edf8",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "22d9d34882955db8acd3fa5df6b3fbf19b8d6a1f566da8ef8d7fcdabdd21edf8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:39444b61cebb98c4660aa81a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+        "start_line": 143,
+        "total_lines": 301,
+        "start_char": 5081,
+        "end_char": 9468,
+        "evidence_id": "39444b61cebb98c4660aa81a",
+        "truncated": false,
+        "next_offset": 262,
+        "source_type": "repository",
+        "content_hash": "4cb429836363963b913d5e0d6643c93621a368d3ae3602322f18b5ecd9080186",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 1476,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 1450,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+              "offset": 142,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4cb429836363963b913d5e0d6643c93621a368d3ae3602322f18b5ecd9080186",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:41a8d0c8b81f17d1469e8eaf",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "heading": "Updates and Changelogs > Updating Input Tables > Enforcing Upserts with Full Deletes",
+        "start_line": 1481,
+        "end_line": 1504,
+        "start_char": 61050,
+        "end_char": 62166,
+        "score": "0.02821939586645469",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "upsert"
+        ],
+        "evidence_id": "41a8d0c8b81f17d1469e8eaf",
+        "source_type": "repository",
+        "content_hash": "60623f72ab8c10b7d8b6d564c490318db142c571a9a6ceb8d310f0b2c45d382f",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "60623f72ab8c10b7d8b6d564c490318db142c571a9a6ceb8d310f0b2c45d382f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4302167c0d819d05f8294676",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/table/sql/insert.md",
+        "start_line": 1,
+        "total_lines": 23,
+        "start_char": 0,
+        "end_char": 856,
+        "evidence_id": "4302167c0d819d05f8294676",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "3f5366384e294bbda88c9ffab530b32a2989e4d8cc0178207eb5a0526f7f8a94",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/insert.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/sql/materialized-table/statements.md",
+              "offset": 79,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/connectors/table/overview.md",
+              "offset": 254,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "3f5366384e294bbda88c9ffab530b32a2989e4d8cc0178207eb5a0526f7f8a94",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:435f36db3573ef0ee985ea57",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/sourcesSinks.md",
+        "heading": "Extension Points > Dynamic Table Sink",
+        "start_line": 305,
+        "end_line": 331,
+        "start_char": 17453,
+        "end_char": 19112,
+        "score": "0.024444642990097534",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "records",
+          "sink",
+          "table"
+        ],
+        "evidence_id": "435f36db3573ef0ee985ea57",
+        "source_type": "repository",
+        "content_hash": "ae43aadbe03a1ea4f27454a7a88ae10163ae7b0599233da643b98eb4abbc6112",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "ae43aadbe03a1ea4f27454a7a88ae10163ae7b0599233da643b98eb4abbc6112",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:469a2ad3a0ad6907c9c7e479",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Table API & SQL > Disable upsert into syntax in Flink SQL > [FLINK-22942](https://issues.apache.org/jira/browse/FLINK-22942)",
+        "start_line": 332,
+        "end_line": 338,
+        "start_char": 13639,
+        "end_char": 13991,
+        "score": "0.02399425287356322",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "into",
+          "upsert"
+        ],
+        "evidence_id": "469a2ad3a0ad6907c9c7e479",
+        "source_type": "repository",
+        "content_hash": "873e9ec67d8d1e81464b002cf7b343e10ba91a880cbf87090b1d5e7af7440a92",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "873e9ec67d8d1e81464b002cf7b343e10ba91a880cbf87090b1d5e7af7440a92",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:47f9403ab39b1299b2046a4b",
+        "type": "evidence",
+        "path": "docs/content/docs/sql/reference/ddl/create.md",
+        "heading": "CREATE Statements > CREATE TABLE > `PRIMARY KEY`",
+        "start_line": 397,
+        "end_line": 414,
+        "start_char": 15860,
+        "end_char": 17181,
+        "score": "0.029910714285714284",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "table"
+        ],
+        "evidence_id": "47f9403ab39b1299b2046a4b",
+        "source_type": "repository",
+        "content_hash": "be8aacc85432cda1b5de3716b59aa8d0d9db99dbe53adb4f949c29eb9f91f0b4",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key",
+            "upsert key different primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "be8aacc85432cda1b5de3716b59aa8d0d9db99dbe53adb4f949c29eb9f91f0b4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:50f909563ec31904550dba86",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-2.2.md",
+        "heading": "Release notes - Flink 2.2 > Table SQL / API > SinkUpsertMaterializer V2",
+        "start_line": 76,
+        "end_line": 77,
+        "start_char": 3865,
+        "end_char": 3897,
+        "score": "0.02440606496284755",
+        "root": "docs",
+        "matched_terms": [
+          "sinkupsertmaterializer"
+        ],
+        "evidence_id": "50f909563ec31904550dba86",
+        "source_type": "repository",
+        "content_hash": "e11e24a49bc949cea0c8204b0f88376cea3a4cf91964bf1500fcf043804b2eea",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "primary key conflict sink"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e11e24a49bc949cea0c8204b0f88376cea3a4cf91964bf1500fcf043804b2eea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:566a599f8a2162c5029d880e",
+        "type": "evidence",
+        "path": "AGENTS.md",
+        "heading": "Flink AI Agent Instructions > Common Change Patterns > Adding a new connector (Source or Sink)",
+        "start_line": 229,
+        "end_line": 235,
+        "start_char": 13167,
+        "end_char": 13587,
+        "score": "0.021507994969007283",
+        "root": "docs",
+        "matched_terms": [
+          "sink"
+        ],
+        "evidence_id": "566a599f8a2162c5029d880e",
+        "source_type": "repository",
+        "content_hash": "e468f3862478bce75773493d2b014ce4cce26fdbac455eb63a19e9f716e066a5",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "primary key conflict sink"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e468f3862478bce75773493d2b014ce4cce26fdbac455eb63a19e9f716e066a5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a5ef2c75e3fe8a2d0523cc0",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/connectors/table/formats/avro-confluent.md",
+        "heading": "如何创建使用 Avro-Confluent 格式的表",
+        "start_line": 149,
+        "end_line": 177,
+        "start_char": 4270,
+        "end_char": 4935,
+        "score": "0.027623285131627734",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "upsert"
+        ],
+        "evidence_id": "5a5ef2c75e3fe8a2d0523cc0",
+        "source_type": "repository",
+        "content_hash": "1fbcb006439c409d0332b27d34532369ab474ea793a6c619df8c267e20fa9083",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "1fbcb006439c409d0332b27d34532369ab474ea793a6c619df8c267e20fa9083",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5e3eabfe2cef33e390f83e6e",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-2.2.md",
+        "heading": "Release notes - Flink 2.2 > Table SQL / API > SinkUpsertMaterializer V2 > [FLINK-38459](https://issues.apache.org/jira/browse/FLINK-38459)",
+        "start_line": 78,
+        "end_line": 83,
+        "start_char": 3897,
+        "end_char": 4245,
+        "score": "0.03272135590208361",
+        "root": "docs",
+        "matched_terms": [
+          "sinkupsertmaterializer",
+          "upsert"
+        ],
+        "evidence_id": "5e3eabfe2cef33e390f83e6e",
+        "source_type": "repository",
+        "content_hash": "22d9d34882955db8acd3fa5df6b3fbf19b8d6a1f566da8ef8d7fcdabdd21edf8",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "22d9d34882955db8acd3fa5df6b3fbf19b8d6a1f566da8ef8d7fcdabdd21edf8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:620704d92c9d23312c258133",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Connectors > Merge flink-connector-testing into flink-connector-test-utils",
+        "start_line": 376,
+        "end_line": 377,
+        "start_char": 15426,
+        "end_char": 15495,
+        "score": "0.027579737335834898",
+        "root": "docs",
+        "matched_terms": [
+          "merge"
+        ],
+        "evidence_id": "620704d92c9d23312c258133",
+        "source_type": "repository",
+        "content_hash": "6a8f34c5b24f1db5b996e3750d7ac77f1716b73dd9f974bf4af135f09c481626",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "sink merge",
+            "duplicate records sink",
+            "merge on primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6a8f34c5b24f1db5b996e3750d7ac77f1716b73dd9f974bf4af135f09c481626",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:621d32ac345ac3374c8aa000",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-2.1.md",
+        "heading": "Release notes - Flink 2.1 > Table SQL / API > Sink Reuse",
+        "start_line": 111,
+        "end_line": 112,
+        "start_char": 5407,
+        "end_char": 5424,
+        "score": "0.02200515242593388",
+        "root": "docs",
+        "matched_terms": [
+          "sink"
+        ],
+        "evidence_id": "621d32ac345ac3374c8aa000",
+        "source_type": "repository",
+        "content_hash": "b21ca32d32f17f2a8e26d8adcb91fc66ec2fe4a82873c6abcc2e2a04fe75289b",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "b21ca32d32f17f2a8e26d8adcb91fc66ec2fe4a82873c6abcc2e2a04fe75289b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:62670c774f309676ff15c929",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/sql/reference/utility/explain.md",
+        "heading": "EXPLAIN 语句 > ExplainDetails",
+        "start_line": 434,
+        "end_line": 476,
+        "start_char": 15300,
+        "end_char": 16971,
+        "score": "0.02974353441736427",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "into",
+          "key",
+          "primary",
+          "sink",
+          "table"
+        ],
+        "evidence_id": "62670c774f309676ff15c929",
+        "source_type": "repository",
+        "content_hash": "d88b315a98da8b43060e5980b33e94628f7c498d2cd527c00007ac126dc8fa8c",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key",
+            "upsert key different primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d88b315a98da8b43060e5980b33e94628f7c498d2cd527c00007ac126dc8fa8c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:656f1342cef8a208ed29347f",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Table API & SQL > Upsert materializer is not inserted for all sink providers > [FLINK-23895](https://issues.apache.org/jira/browse/FLINK-23895)",
+        "start_line": 347,
+        "end_line": 353,
+        "start_char": 14301,
+        "end_char": 14720,
+        "score": "0.04037003838734192",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary"
+        ],
+        "evidence_id": "656f1342cef8a208ed29347f",
+        "source_type": "repository",
+        "content_hash": "3507d2be696f16e2f606d1c6b1663c1f5aabcb17aa54005d8ac1ba303b340fa8",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q2-2",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "3507d2be696f16e2f606d1c6b1663c1f5aabcb17aa54005d8ac1ba303b340fa8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6783f51a58dbdc4beab81c81",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Table API & SQL > Upsert materializer is not inserted for all sink providers",
+        "start_line": 345,
+        "end_line": 346,
+        "start_char": 14235,
+        "end_char": 14301,
+        "score": "0.035970302099334356",
+        "root": "docs",
+        "matched_terms": [
+          "upsert"
+        ],
+        "evidence_id": "6783f51a58dbdc4beab81c81",
+        "source_type": "repository",
+        "content_hash": "39bc85c36c4c8063100532c496a63d7e17662fffecd6abbc212b3eae1dc86d39",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "39bc85c36c4c8063100532c496a63d7e17662fffecd6abbc212b3eae1dc86d39",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6837951e3cba12db73b25752",
+        "type": "evidence",
+        "path": "docs/content/docs/concepts/sql-table-concepts/dynamic_tables.md",
+        "heading": "Table to Stream Conversion",
+        "start_line": 160,
+        "end_line": 174,
+        "start_char": 11622,
+        "end_char": 13422,
+        "score": "0.021858576206402296",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "into",
+          "key",
+          "table",
+          "updating",
+          "upsert"
+        ],
+        "evidence_id": "6837951e3cba12db73b25752",
+        "source_type": "repository",
+        "content_hash": "4d88c5b5a0cff7a76252a4b8f1c58d16a57e0175f901b8a64a91a056cbf2323c",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "4d88c5b5a0cff7a76252a4b8f1c58d16a57e0175f901b8a64a91a056cbf2323c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:70efff9f7abbdf96603d92d9",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/release-notes/flink-2.2.md",
+        "start_line": 74,
+        "total_lines": 226,
+        "start_char": 3765,
+        "end_char": 10231,
+        "evidence_id": "70efff9f7abbdf96603d92d9",
+        "truncated": false,
+        "next_offset": 193,
+        "source_type": "repository",
+        "content_hash": "22d9d8c8851dbf93816f35e0276fe4a73c3e0e6170685afee5576533407e6e76",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "offset": 342,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "offset": 342,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/release-notes/flink-2.2.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "22d9d8c8851dbf93816f35e0276fe4a73c3e0e6170685afee5576533407e6e76",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:756eeea9a948d77dd516c4ca",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "heading": "Updates and Changelogs > Change Data Capture Basics",
+        "start_line": 1393,
+        "end_line": 1419,
+        "start_char": 56222,
+        "end_char": 57870,
+        "score": "0.0261986301369863",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "upsert"
+        ],
+        "evidence_id": "756eeea9a948d77dd516c4ca",
+        "source_type": "repository",
+        "content_hash": "86b22d5c703a6ce77450178ac9dfca981f3f55cd63037757013dc76a33563e82",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "86b22d5c703a6ce77450178ac9dfca981f3f55cd63037757013dc76a33563e82",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7605a6dbb6dbd8f67cdc903a",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Table API & SQL > Disable upsert into syntax in Flink SQL > [FLINK-22942](https://issues.apache.org/jira/browse/FLINK-22942)",
+        "start_line": 332,
+        "end_line": 338,
+        "start_char": 13639,
+        "end_char": 13991,
+        "score": "0.023268398268398268",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "into",
+          "upsert"
+        ],
+        "evidence_id": "7605a6dbb6dbd8f67cdc903a",
+        "source_type": "repository",
+        "content_hash": "873e9ec67d8d1e81464b002cf7b343e10ba91a880cbf87090b1d5e7af7440a92",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "873e9ec67d8d1e81464b002cf7b343e10ba91a880cbf87090b1d5e7af7440a92",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7d18bf36b1e9396e17c98ff5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/table/tuning.md",
+        "start_line": 1,
+        "total_lines": 442,
+        "start_char": 0,
+        "end_char": 6824,
+        "evidence_id": "7d18bf36b1e9396e17c98ff5",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "b94e2038851ac1132da62b7a3154dc7e8bf9e0e81a26f6e263b3b68eb2989d86",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/tuning.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/table/overview.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.2.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "b94e2038851ac1132da62b7a3154dc7e8bf9e0e81a26f6e263b3b68eb2989d86",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7e214eda905c421c1b5524b8",
+        "type": "evidence",
+        "evidence_id": "7e214eda905c421c1b5524b8",
+        "source_type": "task",
+        "exported_content_sha256": "0c8dc66224971551b78865900d8eff9f81672832015b9ee8e249b83fad9ec320",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:81267ecdeb19d682bd5297bb",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Connectors > Merge flink-connector-testing into flink-connector-test-utils",
+        "start_line": 376,
+        "end_line": 377,
+        "start_char": 15426,
+        "end_char": 15495,
+        "score": "0.028531243721117136",
+        "root": "docs",
+        "matched_terms": [
+          "merge"
+        ],
+        "evidence_id": "81267ecdeb19d682bd5297bb",
+        "source_type": "repository",
+        "content_hash": "6a8f34c5b24f1db5b996e3750d7ac77f1716b73dd9f974bf4af135f09c481626",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "sink merge",
+            "duplicate records sink",
+            "merge on primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6a8f34c5b24f1db5b996e3750d7ac77f1716b73dd9f974bf4af135f09c481626",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:821accea276305a63cb11815",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/release-notes/flink-1.15.md",
+        "start_line": 343,
+        "total_lines": 605,
+        "start_char": 14162,
+        "end_char": 19717,
+        "evidence_id": "821accea276305a63cb11815",
+        "truncated": false,
+        "next_offset": 462,
+        "source_type": "repository",
+        "content_hash": "957644b55dbd4e56ee0091f6c2e95cac8de173515a740aaa9a42a9bffe3a8ba9",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content.zh/release-notes/flink-1.15.md",
+              "offset": 342,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/release-notes/flink-1.15.md",
+              "offset": 342,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/release-notes/flink-2.2.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "957644b55dbd4e56ee0091f6c2e95cac8de173515a740aaa9a42a9bffe3a8ba9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:835e97e453ca2969c47e26ff",
+        "type": "evidence",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "heading": "Updates and Changelogs > Change Data Capture Basics",
+        "start_line": 1394,
+        "end_line": 1420,
+        "start_char": 56256,
+        "end_char": 57904,
+        "score": "0.021160153010243446",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "key",
+          "table",
+          "updating",
+          "upsert"
+        ],
+        "evidence_id": "835e97e453ca2969c47e26ff",
+        "source_type": "repository",
+        "content_hash": "86b22d5c703a6ce77450178ac9dfca981f3f55cd63037757013dc76a33563e82",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "86b22d5c703a6ce77450178ac9dfca981f3f55cd63037757013dc76a33563e82",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9355df0776891b824cf23bd9",
+        "type": "evidence",
+        "path": "docs/content/docs/concepts/sql-table-concepts/versioned_tables.md",
+        "heading": "Versioned Tables > Versioned Table Sources",
+        "start_line": 82,
+        "end_line": 99,
+        "start_char": 3405,
+        "end_char": 4249,
+        "score": "0.02320631222786144",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "table",
+          "upsert"
+        ],
+        "evidence_id": "9355df0776891b824cf23bd9",
+        "source_type": "repository",
+        "content_hash": "d8506aa048eec5f77d6a9dbc94a21e43f11a417d5e482fb94750837faa8a8370",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "upsert key",
+            "primary key conflict",
+            "updating table"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d8506aa048eec5f77d6a9dbc94a21e43f11a417d5e482fb94750837faa8a8370",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:94917f4a20b01b3b1000d13d",
+        "type": "evidence",
+        "path": "docs/content/docs/connectors/table/overview.md",
+        "heading": "Schema Mapping > Primary Key",
+        "start_line": 259,
+        "end_line": 281,
+        "start_char": 10789,
+        "end_char": 11752,
+        "score": "0.031754032258064516",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "sink",
+          "table"
+        ],
+        "evidence_id": "94917f4a20b01b3b1000d13d",
+        "source_type": "repository",
+        "content_hash": "a44debf01f43c9b783d9a197096c1b688ba6e404d735d1e7fda641a73346e18b",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key",
+            "upsert key different primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "a44debf01f43c9b783d9a197096c1b688ba6e404d735d1e7fda641a73346e18b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:973612ead060a6a4cae51be0",
+        "type": "evidence",
+        "path": "docs/content/docs/connectors/datastream/filesystem.md",
+        "heading": "FileSystem > File Sink > Format Types > Row-encoded Formats",
+        "start_line": 352,
+        "end_line": 365,
+        "start_char": 15051,
+        "end_char": 15501,
+        "score": "0.02497858978018841",
+        "root": "docs",
+        "matched_terms": [
+          "records",
+          "sink"
+        ],
+        "evidence_id": "973612ead060a6a4cae51be0",
+        "source_type": "repository",
+        "content_hash": "ec7318d0b427f00417e85c6589c6b7da1c214bd0bff7c6f65656d0e2d0ee918f",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "ec7318d0b427f00417e85c6589c6b7da1c214bd0bff7c6f65656d0e2d0ee918f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:97b930067ac45aaec8b37f7f",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-2.1.md",
+        "heading": "Release notes - Flink 2.1 > Table SQL / API > Sink Reuse > [FLINK-37227](https://issues.apache.org/jira/browse/FLINK-37227)",
+        "start_line": 113,
+        "end_line": 120,
+        "start_char": 5424,
+        "end_char": 5886,
+        "score": "0.029528985507246377",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "into",
+          "sink",
+          "table",
+          "updating"
+        ],
+        "evidence_id": "97b930067ac45aaec8b37f7f",
+        "source_type": "repository",
+        "content_hash": "6e76b6311301b0ae4fb2ecee7f6b3fc3e263b9db21d475e377db962aefe413fe",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "6e76b6311301b0ae4fb2ecee7f6b3fc3e263b9db21d475e377db962aefe413fe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9a345cf0f16199d8657dbca6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/connectors/table/overview.md",
+        "start_line": 255,
+        "total_lines": 382,
+        "start_char": 10420,
+        "end_char": 14649,
+        "evidence_id": "9a345cf0f16199d8657dbca6",
+        "truncated": false,
+        "next_offset": 374,
+        "source_type": "repository",
+        "content_hash": "9a4d2ae1f293e66c8a20e39420f9277affeb7c48dcf09a2a9da05d445e9acd2f",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/insert.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/sql/materialized-table/statements.md",
+              "offset": 79,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/connectors/table/overview.md",
+              "offset": 254,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9a4d2ae1f293e66c8a20e39420f9277affeb7c48dcf09a2a9da05d445e9acd2f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9f9bb247a1a4051552fbbd79",
+        "type": "evidence",
+        "path": "docs/content/docs/sql/reference/queries/hints.md",
+        "heading": "SQL Hints > Query Hints > Join Hints > SHUFFLE_MERGE > Examples",
+        "start_line": 240,
+        "end_line": 257,
+        "start_char": 9496,
+        "end_char": 10183,
+        "score": "0.029291765112660635",
+        "root": "docs",
+        "matched_terms": [
+          "merge",
+          "on"
+        ],
+        "evidence_id": "9f9bb247a1a4051552fbbd79",
+        "source_type": "repository",
+        "content_hash": "5b5985539e4bfa6d3f43eb9f2176f91760949030851b31ad5f2e80bbb36c49c2",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "sink merge",
+            "duplicate records sink",
+            "merge on primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5b5985539e4bfa6d3f43eb9f2176f91760949030851b31ad5f2e80bbb36c49c2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ae3f684bb8cd5014681ae477",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-2.1.md",
+        "heading": "Release notes - Flink 2.1 > Table SQL / API > Sink Reuse",
+        "start_line": 111,
+        "end_line": 112,
+        "start_char": 5407,
+        "end_char": 5424,
+        "score": "0.02289611496772622",
+        "root": "docs",
+        "matched_terms": [
+          "sink"
+        ],
+        "evidence_id": "ae3f684bb8cd5014681ae477",
+        "source_type": "repository",
+        "content_hash": "b21ca32d32f17f2a8e26d8adcb91fc66ec2fe4a82873c6abcc2e2a04fe75289b",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "b21ca32d32f17f2a8e26d8adcb91fc66ec2fe4a82873c6abcc2e2a04fe75289b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b35f20b6d22dcaf5adc932be",
+        "type": "evidence",
+        "path": "docs/content/docs/concepts/sql-table-concepts/versioned_tables.md",
+        "heading": "Versioned Tables > Concept",
+        "start_line": 33,
+        "end_line": 61,
+        "start_char": 1147,
+        "end_char": 2809,
+        "score": "0.030912557577588158",
+        "root": "docs",
+        "matched_terms": [
+          "different",
+          "insert",
+          "key",
+          "primary",
+          "table"
+        ],
+        "evidence_id": "b35f20b6d22dcaf5adc932be",
+        "source_type": "repository",
+        "content_hash": "9e439cd1e83183ff049099871f3faa0eb18308a8b6ba69366d5c28b8dd745f52",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key",
+            "upsert key different primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9e439cd1e83183ff049099871f3faa0eb18308a8b6ba69366d5c28b8dd745f52",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bca3ee9d12b6ad12ae6b3413",
+        "type": "evidence",
+        "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+        "heading": "How to create tables with Avro-Confluent format",
+        "start_line": 147,
+        "end_line": 170,
+        "start_char": 5131,
+        "end_char": 5922,
+        "score": "0.02649445272396092",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "upsert"
+        ],
+        "evidence_id": "bca3ee9d12b6ad12ae6b3413",
+        "source_type": "repository",
+        "content_hash": "999a7ebae2bcc3936866b9a64ae8533ad4d826f47df0d770edcaf9208a062b34",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-1",
+          "Q2-2",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "999a7ebae2bcc3936866b9a64ae8533ad4d826f47df0d770edcaf9208a062b34",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c3efd843c1126ee91a164074",
+        "type": "evidence",
+        "path": "docs/content/release-notes/flink-2.1.md",
+        "heading": "Release notes - Flink 2.1 > Table SQL / API > Sink Reuse > [FLINK-37227](https://issues.apache.org/jira/browse/FLINK-37227)",
+        "start_line": 113,
+        "end_line": 120,
+        "start_char": 5424,
+        "end_char": 5886,
+        "score": "0.0306064881572859",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "into",
+          "sink",
+          "table",
+          "updating"
+        ],
+        "evidence_id": "c3efd843c1126ee91a164074",
+        "source_type": "repository",
+        "content_hash": "6e76b6311301b0ae4fb2ecee7f6b3fc3e263b9db21d475e377db962aefe413fe",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "6e76b6311301b0ae4fb2ecee7f6b3fc3e263b9db21d475e377db962aefe413fe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c4901b7cb6bf99186866ba6f",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/connectors/table/overview.md",
+        "heading": "Schema Mapping > Primary Key",
+        "start_line": 259,
+        "end_line": 281,
+        "start_char": 10693,
+        "end_char": 11656,
+        "score": "0.03177805800756621",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "sink",
+          "table"
+        ],
+        "evidence_id": "c4901b7cb6bf99186866ba6f",
+        "source_type": "repository",
+        "content_hash": "a44debf01f43c9b783d9a197096c1b688ba6e404d735d1e7fda641a73346e18b",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key",
+            "upsert key different primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "a44debf01f43c9b783d9a197096c1b688ba6e404d735d1e7fda641a73346e18b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c5410a96c2317466828d24d9",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/sourcesSinks.md",
+        "heading": "扩展点 > 动态表的 sink 端",
+        "start_line": 258,
+        "end_line": 279,
+        "start_char": 10886,
+        "end_char": 11815,
+        "score": "0.02536967452230921",
+        "root": "docs",
+        "matched_terms": [
+          "insert",
+          "sink",
+          "table"
+        ],
+        "evidence_id": "c5410a96c2317466828d24d9",
+        "source_type": "repository",
+        "content_hash": "06f897901cbe3a156061b698a849002d366fb86b5903854fe83901ba2825f9ce",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "06f897901cbe3a156061b698a849002d366fb86b5903854fe83901ba2825f9ce",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:caa50d11e86d30d3c61718eb",
+        "type": "evidence",
+        "path": ".github/PULL_REQUEST_TEMPLATE.md",
+        "heading": "Verifying this change",
+        "start_line": 40,
+        "end_line": 61,
+        "start_char": 2842,
+        "end_char": 3874,
+        "score": "0.021103896103896104",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "caa50d11e86d30d3c61718eb",
+        "source_type": "repository",
+        "content_hash": "0ceaddc54ff54f3abfc401a3b490e49132c888aa6134995b0efc073cf1ce35ae",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "primary key conflict sink"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "0ceaddc54ff54f3abfc401a3b490e49132c888aa6134995b0efc073cf1ce35ae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cc2aabacaa59ecadf85ec8bc",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/connectors/table/overview.md",
+        "start_line": 1,
+        "total_lines": 382,
+        "start_char": 0,
+        "end_char": 4482,
+        "evidence_id": "cc2aabacaa59ecadf85ec8bc",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "9d95d3ba25b735925a1b27828b6bc58b0ae36da336f3b229686dcfb827326f7b",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/tuning.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/table/overview.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.2.md",
+              "offset": 73,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-1"
+        ],
+        "exported_content_sha256": "9d95d3ba25b735925a1b27828b6bc58b0ae36da336f3b229686dcfb827326f7b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cccd66a9e6d565cbd12d615f",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "heading": "Updates and Changelogs > Updating Input Tables > Enforcing Retract Mode",
+        "start_line": 1455,
+        "end_line": 1479,
+        "start_char": 59901,
+        "end_char": 61016,
+        "score": "0.037567506240072615",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "table",
+          "updating",
+          "upsert"
+        ],
+        "evidence_id": "cccd66a9e6d565cbd12d615f",
+        "source_type": "repository",
+        "content_hash": "7bda15b386a0ac62a1957fddcf0ac6df5605207728e8d0ef3a9a25b0d81185f2",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "upsert key",
+            "primary key conflict",
+            "updating table"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7bda15b386a0ac62a1957fddcf0ac6df5605207728e8d0ef3a9a25b0d81185f2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d575931843495e1d62535bdb",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/sql/materialized-table/statements.md",
+        "start_line": 80,
+        "total_lines": 648,
+        "start_char": 2461,
+        "end_char": 8679,
+        "evidence_id": "d575931843495e1d62535bdb",
+        "truncated": false,
+        "next_offset": 199,
+        "source_type": "repository",
+        "content_hash": "59c195480fe0469a18524aad96deb9b9614385ef80385a8513cbe5b34e19989f",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/sql/insert.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/sql/materialized-table/statements.md",
+              "offset": 79,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/connectors/table/overview.md",
+              "offset": 254,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "59c195480fe0469a18524aad96deb9b9614385ef80385a8513cbe5b34e19989f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d57c22a118603740b678433e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/table/sourcesSinks.md",
+        "start_line": 301,
+        "total_lines": 929,
+        "start_char": 17270,
+        "end_char": 24517,
+        "evidence_id": "d57c22a118603740b678433e",
+        "truncated": false,
+        "next_offset": 420,
+        "source_type": "repository",
+        "content_hash": "4ac914284c89dda7304624d48d812922bdc790b687f18d0245a11f8c1a7fa736",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content.zh/docs/dev/table/sourcesSinks.md",
+              "offset": 253,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/datastream/filesystem.md",
+              "offset": 347,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/sourcesSinks.md",
+              "offset": 300,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "4ac914284c89dda7304624d48d812922bdc790b687f18d0245a11f8c1a7fa736",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d89fb08684276569cfa32abd",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Connectors > Extensible unified Sink uses new metric to capture outgoing records",
+        "start_line": 410,
+        "end_line": 411,
+        "start_char": 16952,
+        "end_char": 17026,
+        "score": "0.023514696685428396",
+        "root": "docs",
+        "matched_terms": [
+          "records",
+          "sink"
+        ],
+        "evidence_id": "d89fb08684276569cfa32abd",
+        "source_type": "repository",
+        "content_hash": "640675019ee02595b0fb75ff7a3f6e1bbe0e877f118db190ea5e7c280c3e8f98",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "sink merge",
+            "duplicate records sink",
+            "merge on primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "640675019ee02595b0fb75ff7a3f6e1bbe0e877f118db190ea5e7c280c3e8f98",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:dc1b57810f1d514eee6294c5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/docs/dev/table/sourcesSinks.md",
+        "start_line": 254,
+        "total_lines": 847,
+        "start_char": 10754,
+        "end_char": 16018,
+        "evidence_id": "dc1b57810f1d514eee6294c5",
+        "truncated": false,
+        "next_offset": 373,
+        "source_type": "repository",
+        "content_hash": "2f98d6e68a68fb07e6ee7700e3b4452ab6d248e847a3d2cb162635994bb224b1",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content.zh/docs/dev/table/sourcesSinks.md",
+              "offset": 253,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/datastream/filesystem.md",
+              "offset": 347,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/dev/table/sourcesSinks.md",
+              "offset": 300,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q3-2"
+        ],
+        "exported_content_sha256": "2f98d6e68a68fb07e6ee7700e3b4452ab6d248e847a3d2cb162635994bb224b1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e6084973435c52c8d0f72ead",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-2.2.md",
+        "heading": "Release notes - Flink 2.2 > Table SQL / API > SinkUpsertMaterializer V2",
+        "start_line": 76,
+        "end_line": 77,
+        "start_char": 3864,
+        "end_char": 3896,
+        "score": "0.025823373191220005",
+        "root": "docs",
+        "matched_terms": [
+          "sinkupsertmaterializer"
+        ],
+        "evidence_id": "e6084973435c52c8d0f72ead",
+        "source_type": "repository",
+        "content_hash": "e11e24a49bc949cea0c8204b0f88376cea3a4cf91964bf1500fcf043804b2eea",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "primary key conflict sink"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "e11e24a49bc949cea0c8204b0f88376cea3a4cf91964bf1500fcf043804b2eea",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e9954dd4191829307556a8c8",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content.zh/release-notes/flink-2.1.md",
+        "start_line": 109,
+        "total_lines": 185,
+        "start_char": 5372,
+        "end_char": 8674,
+        "evidence_id": "e9954dd4191829307556a8c8",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "932dd867234d7cec8ebaef4aa15d9da86ea81e057d37458a223865bbc4c484e8",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/sql/reference/queries/hints.md",
+              "offset": 235,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "932dd867234d7cec8ebaef4aa15d9da86ea81e057d37458a223865bbc4c484e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fc63b457282802fd385d80f5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/docs/dev/table/functions/ptfs.md",
+        "start_line": 1477,
+        "total_lines": 2037,
+        "start_char": 60965,
+        "end_char": 66141,
+        "evidence_id": "fc63b457282802fd385d80f5",
+        "truncated": false,
+        "next_offset": 1596,
+        "source_type": "repository",
+        "content_hash": "fc3c1784b1fa448aeabc44a90335b127c406d56df86273e7426b05376ae05abf",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/docs/dev/table/functions/ptfs.md",
+              "offset": 1476,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+              "offset": 1450,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/connectors/table/formats/avro-confluent.md",
+              "offset": 142,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "fc3c1784b1fa448aeabc44a90335b127c406d56df86273e7426b05376ae05abf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fd0ab31f98b0870a24864c3e",
+        "type": "evidence",
+        "path": "docs/content.zh/release-notes/flink-1.15.md",
+        "heading": "Release notes - Flink 1.15 > Table API & SQL > Upsert materializer is not inserted for all sink providers",
+        "start_line": 345,
+        "end_line": 346,
+        "start_char": 14235,
+        "end_char": 14301,
+        "score": "0.02137636424608256",
+        "root": "docs",
+        "matched_terms": [
+          "sink",
+          "upsert"
+        ],
+        "evidence_id": "fd0ab31f98b0870a24864c3e",
+        "source_type": "repository",
+        "content_hash": "39bc85c36c4c8063100532c496a63d7e17662fffecd6abbc212b3eae1dc86d39",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "INSERT INTO updating table",
+            "sink primary key upsert",
+            "deduplicate sink records"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1",
+          "Q3-1",
+          "Q3-2"
+        ],
+        "exported_content_sha256": "39bc85c36c4c8063100532c496a63d7e17662fffecd6abbc212b3eae1dc86d39",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fde64dd4bacad29743025737",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/content/release-notes/flink-2.1.md",
+        "start_line": 109,
+        "total_lines": 185,
+        "start_char": 5372,
+        "end_char": 8675,
+        "evidence_id": "fde64dd4bacad29743025737",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "6d3e10d73f6a820394260f36a1ae10f5ff23f1ab20b77ba6ee2f5cbbb8a542fc",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/content/release-notes/flink-2.1.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/content.zh/release-notes/flink-2.1.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/content/docs/sql/reference/queries/hints.md",
+              "offset": 235,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6d3e10d73f6a820394260f36a1ae10f5ff23f1ab20b77ba6ee2f5cbbb8a542fc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ff7d9d291bb2aca05f6a0b7d",
+        "type": "evidence",
+        "path": "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "heading": "Updates and Changelogs > Updating Input Tables > Enforcing Upserts with Full Deletes",
+        "start_line": 1480,
+        "end_line": 1503,
+        "start_char": 61016,
+        "end_char": 62132,
+        "score": "0.02919863597612958",
+        "root": "docs",
+        "matched_terms": [
+          "key",
+          "primary",
+          "upsert"
+        ],
+        "evidence_id": "ff7d9d291bb2aca05f6a0b7d",
+        "source_type": "repository",
+        "content_hash": "60623f72ab8c10b7d8b6d564c490318db142c571a9a6ceb8d310f0b2c45d382f",
+        "revision": "ab9a71b2d0ddb57e720cab078c600df0b04237ea",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "SinkUpsertMaterializer",
+            "upsert materialize",
+            "upsert key primary key"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q3-1"
+        ],
+        "exported_content_sha256": "60623f72ab8c10b7d8b6d564c490318db142c571a9a6ceb8d310f0b2c45d382f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where does the documentation describe upsert keys, updating tables, and sink primary-key conflict handling?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where is the sink write/merge behavior documented, including how multiple input records targeting the same sink row are handled?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Where do the docs describe the upsert/primary-key conflict behavior of sinks (e.g. SinkUpsertMaterializer, 'upsert key differs from primary key', duplicate input records targeting same sink row)?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Where is the 'INSERT INTO' / updating-table sink write behavior documented, including how multiple input records for the same sink row are merged?"
+      },
+      {
+        "id": "research:Q3-1",
+        "type": "research_question",
+        "description": "Where do the docs describe the SinkUpsertMaterializer / upsert materialization behavior and the requirement that the upsert key match the sink primary key, including what happens when multiple input records target the same sink row?"
+      },
+      {
+        "id": "research:Q3-2",
+        "type": "research_question",
+        "description": "Where is the INSERT INTO / updating-table sink write behavior documented, including how multiple input records for the same sink row are merged or deduplicated?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:074ad13e86e2129a5998f20a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0c4b3c6958db3f3cc546c067",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0d1e088db5f1acf391b2acb9",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:11afc38124c36b646c3adf5f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:11afc38124c36b646c3adf5f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:13346c037a31110f8ca60efc",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:13346c037a31110f8ca60efc",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:13346c037a31110f8ca60efc",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1802ea5e5ff660b7c27d84ac",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1bca4ee5aaac823d659e170c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2670e4a660652be18246d622",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2e3fd3c714485f5ec8ccc4fa",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3008da7d5a745bf3f85b1a5f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:302541fe68bf09c5916ed669",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:31c3d7eced767dbf4251c735",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:32b0f08ff6c636a575e7b02d",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:336e44e4e909b2b005ef568a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:33d3b4eff39567406f4f3daa",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:33d3b4eff39567406f4f3daa",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:39444b61cebb98c4660aa81a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:41a8d0c8b81f17d1469e8eaf",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:41a8d0c8b81f17d1469e8eaf",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4302167c0d819d05f8294676",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:435f36db3573ef0ee985ea57",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:469a2ad3a0ad6907c9c7e479",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:47f9403ab39b1299b2046a4b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:47f9403ab39b1299b2046a4b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:50f909563ec31904550dba86",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:566a599f8a2162c5029d880e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a5ef2c75e3fe8a2d0523cc0",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a5ef2c75e3fe8a2d0523cc0",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a5ef2c75e3fe8a2d0523cc0",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5e3eabfe2cef33e390f83e6e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5e3eabfe2cef33e390f83e6e",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:620704d92c9d23312c258133",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:621d32ac345ac3374c8aa000",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:621d32ac345ac3374c8aa000",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:62670c774f309676ff15c929",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:656f1342cef8a208ed29347f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:656f1342cef8a208ed29347f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:656f1342cef8a208ed29347f",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6783f51a58dbdc4beab81c81",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6783f51a58dbdc4beab81c81",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6837951e3cba12db73b25752",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:70efff9f7abbdf96603d92d9",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:756eeea9a948d77dd516c4ca",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7605a6dbb6dbd8f67cdc903a",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7d18bf36b1e9396e17c98ff5",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:81267ecdeb19d682bd5297bb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:821accea276305a63cb11815",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:835e97e453ca2969c47e26ff",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:835e97e453ca2969c47e26ff",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9355df0776891b824cf23bd9",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:94917f4a20b01b3b1000d13d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:94917f4a20b01b3b1000d13d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:973612ead060a6a4cae51be0",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:973612ead060a6a4cae51be0",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:97b930067ac45aaec8b37f7f",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:97b930067ac45aaec8b37f7f",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9a345cf0f16199d8657dbca6",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9f9bb247a1a4051552fbbd79",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ae3f684bb8cd5014681ae477",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ae3f684bb8cd5014681ae477",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b35f20b6d22dcaf5adc932be",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b35f20b6d22dcaf5adc932be",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bca3ee9d12b6ad12ae6b3413",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bca3ee9d12b6ad12ae6b3413",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bca3ee9d12b6ad12ae6b3413",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bca3ee9d12b6ad12ae6b3413",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3efd843c1126ee91a164074",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3efd843c1126ee91a164074",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c4901b7cb6bf99186866ba6f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c4901b7cb6bf99186866ba6f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c5410a96c2317466828d24d9",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:caa50d11e86d30d3c61718eb",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cc2aabacaa59ecadf85ec8bc",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cccd66a9e6d565cbd12d615f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d575931843495e1d62535bdb",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d57c22a118603740b678433e",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d89fb08684276569cfa32abd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:dc1b57810f1d514eee6294c5",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e6084973435c52c8d0f72ead",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e9954dd4191829307556a8c8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fc63b457282802fd385d80f5",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fd0ab31f98b0870a24864c3e",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fd0ab31f98b0870a24864c3e",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fd0ab31f98b0870a24864c3e",
+        "to": "research:Q3-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fde64dd4bacad29743025737",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff7d9d291bb2aca05f6a0b7d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ff7d9d291bb2aca05f6a0b7d",
+        "to": "research:Q3-1",
+        "type": "retrieved_for"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

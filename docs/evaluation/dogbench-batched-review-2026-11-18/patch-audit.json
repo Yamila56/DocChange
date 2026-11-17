@@ -1,0 +1,319 @@
+{
+  "patches": 26,
+  "apply_check_passed": 26,
+  "worktrees_clean": 26,
+  "documentation_paths_only": 26,
+  "model_calls": 0,
+  "semantic_correctness_checked": false,
+  "results": [
+    {
+      "instance_id": "Azure-azure-service-operator-pr4196",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/hugo/content/design/ADR-2024-04-RoleAssignment-UUID-Generation.md",
+        "docs/hugo/content/guide/frequently-asked-questions.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr5490",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/hugo/content/guide/expressions.md",
+        "docs/hugo/content/guide/frequently-asked-questions.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36618",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "doc/user/content/self-managed-deployments/upgrading/_index.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36328",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "doc/user/content/headless/configuration-parameters.md",
+        "doc/user/content/reference/isolation-level.md",
+        "doc/user/content/sql/set.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr37023",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "doc/user/content/ingest-data/postgres/dedicated-replica.md",
+        "doc/user/shared-content/postgresql-ingest-data-guides.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog-pr63871",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/error-tracking/integrations.mdx",
+        "contents/docs/session-replay/integrations.mdx",
+        "contents/docs/slack/setup.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog-pr63886",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/mcp-analytics/index.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16714",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/cdp/sources/index.mdx",
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16354",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/cdp/sources/index.mdx",
+        "contents/docs/cdp/sources/stripe.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16752",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/product-analytics/subscriptions.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16939",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/cdp/sources/index.mdx",
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "apache-flink-pr27195",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/content.zh/docs/dev/datastream/operators/asyncio.md",
+        "docs/content/docs/dev/datastream/operators/asyncio.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "apache-flink-pr28212",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/content.zh/docs/dev/table/functions/ptfs.md",
+        "docs/content/docs/dev/table/functions/ptfs.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "apache-iceberg-pr15814",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/docs/evolution.md",
+        "docs/docs/hive.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "apache-iceberg-pr15634",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "format/spec.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr17172",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/cdp/sources/postgres.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "bentoml-bentoml-pr5518",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/source/build-with-bentoml/runtime-environment.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr17231",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "contents/docs/_snippets/path-cleaning.mdx",
+        "contents/docs/product-analytics/funnels.mdx"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "astral-sh-ruff-pr21369",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "CHANGELOG.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "celery-celery-pr10238",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/faq.rst",
+        "docs/userguide/routing.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "celery-celery-pr9879",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/userguide/configuration.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2500",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/website/docs/build-a-pipeline-tutorial.md",
+        "docs/website/docs/general-usage/resource.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr146",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "README.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-common-pr65",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/references/schemas/arazzo.md",
+        "docs/references/schemas/config.md",
+        "docs/references/schemas/specification.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "dagworks-inc-hamilton-pr1445",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/concepts/function-modifiers.rst",
+        "docs/concepts/visualization.rst"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    },
+    {
+      "instance_id": "doc-detective-common-pr78",
+      "apply_check_passed": true,
+      "worktree_clean": true,
+      "audit_did_not_mutate_worktree": true,
+      "changed_paths": [
+        "docs/get-started/actions/runCode.md",
+        "docs/get-started/concepts.md",
+        "docs/get-started/config/contexts/index.md",
+        "docs/references/schemas/context.md",
+        "docs/references/schemas/find.md"
+      ],
+      "documentation_paths_only": true,
+      "apply_error": null
+    }
+  ]
+}

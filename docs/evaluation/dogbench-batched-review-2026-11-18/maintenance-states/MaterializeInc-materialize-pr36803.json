@@ -1,0 +1,2134 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REASON",
+  "tasks": [],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "1468d6373ac1a66855f4ee6b4ac6349bc2633b45f7267f90839222be63b0eca3",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Does existing documentation describe the mz-workload-anonymize CLI tool, its flags, and the workload-replay anonymization workflow?",
+          "root": "docs",
+          "queries": [
+            "workload anonymize",
+            "mz-workload-anonymize",
+            "workload replay anonymize"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "doc/user/content"
+          ],
+          "reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "offset": 61,
+              "limit": 120
+            },
+            {
+              "path": "console/e2e-tests/k6/baselines/workload_replay_2026_05_29.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "daa6f88ddec59f1674aebf5f",
+            "cf99da40c0059fbfdde7e007",
+            "1d516ae9ce6d7781f8dcb684",
+            "f3b7105fef3d4489a7b62ac7",
+            "bb4757bbf118dd6e59912202",
+            "01a2c6e213792ba6d66c6945",
+            "6425494d38fe556a871db8e3",
+            "88c9794589cf5ad6f4f04170",
+            "28eae8a6cda8c735c91db188",
+            "c3c8aa015afeb00707174ca1",
+            "34e8c28570141abf550684b4",
+            "d1cd00dda6cfc09a1ab2f2eb",
+            "cd6b1872b07300efb70ae36c",
+            "67081f46519a134b2bea99ab",
+            "14a54763bd1ef8a8eeaaef02"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "test/workload-replay/README.md",
+              "evidence_id": "f3b7105fef3d4489a7b62ac7",
+              "score": "0.04891591750396616"
+            },
+            {
+              "rank": 2,
+              "path": "test/workload-replay/README.md",
+              "evidence_id": "bb4757bbf118dd6e59912202",
+              "score": "0.048651507139079855"
+            },
+            {
+              "rank": 3,
+              "path": "console/e2e-tests/k6/baselines/workload_replay_2026_05_29.md",
+              "evidence_id": "01a2c6e213792ba6d66c6945",
+              "score": "0.03603479853479853"
+            },
+            {
+              "rank": 4,
+              "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+              "evidence_id": "6425494d38fe556a871db8e3",
+              "score": "0.03551671876480061"
+            },
+            {
+              "rank": 5,
+              "path": "test/workload-replay/objects.txt",
+              "evidence_id": "88c9794589cf5ad6f4f04170",
+              "score": "0.03539109631786977"
+            },
+            {
+              "rank": 6,
+              "path": "doc/developer/generated/persist/workload.md",
+              "evidence_id": "28eae8a6cda8c735c91db188",
+              "score": "0.03504127684694959"
+            },
+            {
+              "rank": 7,
+              "path": ".agents/skills/mz-benchmark/SKILL.md",
+              "evidence_id": "c3c8aa015afeb00707174ca1",
+              "score": "0.03495541250812024"
+            },
+            {
+              "rank": 8,
+              "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+              "evidence_id": "34e8c28570141abf550684b4",
+              "score": "0.03495260014247356"
+            },
+            {
+              "rank": 9,
+              "path": "doc/developer/generated/persist/workload.md",
+              "evidence_id": "d1cd00dda6cfc09a1ab2f2eb",
+              "score": "0.03460343948454086"
+            },
+            {
+              "rank": 10,
+              "path": "test/canary-environment/README.md",
+              "evidence_id": "cd6b1872b07300efb70ae36c",
+              "score": "0.0336823467971009"
+            },
+            {
+              "rank": 11,
+              "path": "test/parallel-workload/README.md",
+              "evidence_id": "67081f46519a134b2bea99ab",
+              "score": "0.033052505250525055"
+            },
+            {
+              "rank": 12,
+              "path": "test/workload-replay/objects.txt",
+              "evidence_id": "14a54763bd1ef8a8eeaaef02",
+              "score": "0.0328392590909145"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "start": 61,
+              "end": 181,
+              "total_lines": 266
+            },
+            {
+              "path": "console/e2e-tests/k6/baselines/workload_replay_2026_05_29.md",
+              "start": 0,
+              "end": 43,
+              "total_lines": 43
+            },
+            {
+              "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 212
+            }
+          ],
+          "read_evidence_ids": [
+            "daa6f88ddec59f1674aebf5f",
+            "cf99da40c0059fbfdde7e007",
+            "1d516ae9ce6d7781f8dcb684"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where in the docs is workload replay / captured workload sharing documented, and does it mention redaction or the helper binary?",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "test/workload-replay/objects.txt",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".agents/skills/mz-benchmark/SKILL.md",
+              "offset": 117,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "b189c9d7dc6a5b4140be28c3",
+            "c45eb81f495e6b4bd1b9c61e",
+            "cb61797fd5f3e55f2f54c3be",
+            "41f98b73ce4328639b21f271",
+            "bb4757bbf118dd6e59912202",
+            "4a38afb58a807342ea898f05",
+            "c3c8aa015afeb00707174ca1",
+            "e8965f4d8a76b14049e28f44",
+            "6425494d38fe556a871db8e3",
+            "01a2c6e213792ba6d66c6945",
+            "d0f504d23d61d66b78455b68",
+            "55b1c369ce6363b92216fbdd",
+            "d1cd00dda6cfc09a1ab2f2eb",
+            "f0ddc26535fd7e841e450038",
+            "28eae8a6cda8c735c91db188"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "test/workload-replay/README.md",
+              "evidence_id": "41f98b73ce4328639b21f271",
+              "score": "0.03252247488101534"
+            },
+            {
+              "rank": 2,
+              "path": "test/workload-replay/README.md",
+              "evidence_id": "bb4757bbf118dd6e59912202",
+              "score": "0.032018442622950824"
+            },
+            {
+              "rank": 3,
+              "path": "test/workload-replay/objects.txt",
+              "evidence_id": "4a38afb58a807342ea898f05",
+              "score": "0.029285022106474472"
+            },
+            {
+              "rank": 4,
+              "path": ".agents/skills/mz-benchmark/SKILL.md",
+              "evidence_id": "c3c8aa015afeb00707174ca1",
+              "score": "0.028539584769920617"
+            },
+            {
+              "rank": 5,
+              "path": ".agents/skills/mz-benchmark/SKILL.md",
+              "evidence_id": "e8965f4d8a76b14049e28f44",
+              "score": "0.026878306878306876"
+            },
+            {
+              "rank": 6,
+              "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+              "evidence_id": "6425494d38fe556a871db8e3",
+              "score": "0.02630564204578216"
+            },
+            {
+              "rank": 7,
+              "path": "console/e2e-tests/k6/baselines/workload_replay_2026_05_29.md",
+              "evidence_id": "01a2c6e213792ba6d66c6945",
+              "score": "0.025937081659973226"
+            },
+            {
+              "rank": 8,
+              "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+              "evidence_id": "d0f504d23d61d66b78455b68",
+              "score": "0.025924657534246574"
+            },
+            {
+              "rank": 9,
+              "path": "test/workload-replay/objects.txt",
+              "evidence_id": "55b1c369ce6363b92216fbdd",
+              "score": "0.024922600619195046"
+            },
+            {
+              "rank": 10,
+              "path": "doc/developer/generated/persist/workload.md",
+              "evidence_id": "d1cd00dda6cfc09a1ab2f2eb",
+              "score": "0.024322344322344324"
+            },
+            {
+              "rank": 11,
+              "path": "console/e2e-tests/scalability/baselines/prod_analytics_2026_04_03.md",
+              "evidence_id": "f0ddc26535fd7e841e450038",
+              "score": "0.02431476569407604"
+            },
+            {
+              "rank": 12,
+              "path": "doc/developer/generated/persist/workload.md",
+              "evidence_id": "28eae8a6cda8c735c91db188",
+              "score": "0.024222968043192763"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 266
+            },
+            {
+              "path": "test/workload-replay/objects.txt",
+              "start": 0,
+              "end": 120,
+              "total_lines": 991
+            },
+            {
+              "path": ".agents/skills/mz-benchmark/SKILL.md",
+              "start": 117,
+              "end": 237,
+              "total_lines": 312
+            }
+          ],
+          "read_evidence_ids": [
+            "b189c9d7dc6a5b4140be28c3",
+            "c45eb81f495e6b4bd1b9c61e",
+            "cb61797fd5f3e55f2f54c3be"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What CLI flags and behavior does the anonymizer expose (e.g. -o/--in-place, --verify, MZ_SQL_ANONYMIZE_BIN) that users would need documented?",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ],
+          "paths": [
+            "misc/python/materialize/cli/mz_workload_anonymize.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "misc/python/materialize/cli/mz_workload_anonymize.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "bin/gen-claude-skill",
+              "offset": 53,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "3a8d56b6e5f841f616dc5f51",
+            "319bce92d212474b3076358a",
+            "f58156f403a5173be01273c3",
+            "eb0fa2f94e90bc62f69a6d1a",
+            "e7197390039e3122eadc89e6",
+            "8015d90a365c4c9648cc548f",
+            "79787c5ffe3bfc348e032679",
+            "fe17c56b49eba160848725df",
+            "ca6fd529c6f1eca8c17a4f9b",
+            "26bdd78f3e10a734cccbe9d6",
+            "300a4dc5eac09bca4f9e312e",
+            "e76793443d0f269c60ba9b94",
+            "f16ebdfcd6e0e49d7c4a50dd",
+            "cbace7904fc45de691550664"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "misc/python/materialize/cli/mz_workload_anonymize.py",
+              "evidence_id": "f58156f403a5173be01273c3",
+              "score": "0.019803921568627453"
+            },
+            {
+              "rank": 2,
+              "path": "bin/gen-claude-skill",
+              "evidence_id": "eb0fa2f94e90bc62f69a6d1a",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 3,
+              "path": "doc/developer/testdrive.md",
+              "evidence_id": "e7197390039e3122eadc89e6",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 4,
+              "path": "misc/python/materialize/cli/orchestratord.py",
+              "evidence_id": "8015d90a365c4c9648cc548f",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 5,
+              "path": "misc/python/materialize/buildkite_insights/annotation_search/annotation_search.py",
+              "evidence_id": "79787c5ffe3bfc348e032679",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 6,
+              "path": "src/persist-client/tests/machine/empty_since",
+              "evidence_id": "fe17c56b49eba160848725df",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 7,
+              "path": "test/pgtest/copy-from-range.pt",
+              "evidence_id": "ca6fd529c6f1eca8c17a4f9b",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 8,
+              "path": "misc/python/materialize/test_analytics/search/test_analytics_search.py",
+              "evidence_id": "26bdd78f3e10a734cccbe9d6",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 9,
+              "path": "src/persist-client/tests/machine/empty_upper",
+              "evidence_id": "300a4dc5eac09bca4f9e312e",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 10,
+              "path": "test/pgtest/copy.pt",
+              "evidence_id": "e76793443d0f269c60ba9b94",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 11,
+              "path": "misc/python/materialize/output_consistency/output_consistency_test.py",
+              "evidence_id": "f16ebdfcd6e0e49d7c4a50dd",
+              "score": "0.015625"
+            },
+            {
+              "rank": 12,
+              "path": "test/pgtest/copy.pt",
+              "evidence_id": "cbace7904fc45de691550664",
+              "score": "0.015625"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "misc/python/materialize/cli/mz_workload_anonymize.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 1007
+            },
+            {
+              "path": "bin/gen-claude-skill",
+              "start": 53,
+              "end": 72,
+              "total_lines": 72
+            }
+          ],
+          "read_evidence_ids": [
+            "3a8d56b6e5f841f616dc5f51",
+            "319bce92d212474b3076358a"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "01a2c6e213792ba6d66c6945",
+        "14a54763bd1ef8a8eeaaef02",
+        "1d516ae9ce6d7781f8dcb684",
+        "26bdd78f3e10a734cccbe9d6",
+        "28eae8a6cda8c735c91db188",
+        "300a4dc5eac09bca4f9e312e",
+        "319bce92d212474b3076358a",
+        "34e8c28570141abf550684b4",
+        "3a8d56b6e5f841f616dc5f51",
+        "41f98b73ce4328639b21f271",
+        "4a38afb58a807342ea898f05",
+        "55b1c369ce6363b92216fbdd",
+        "6425494d38fe556a871db8e3",
+        "67081f46519a134b2bea99ab",
+        "79787c5ffe3bfc348e032679",
+        "8015d90a365c4c9648cc548f",
+        "88c9794589cf5ad6f4f04170",
+        "b189c9d7dc6a5b4140be28c3",
+        "bb4757bbf118dd6e59912202",
+        "c3c8aa015afeb00707174ca1",
+        "c45eb81f495e6b4bd1b9c61e",
+        "ca6fd529c6f1eca8c17a4f9b",
+        "cb61797fd5f3e55f2f54c3be",
+        "cbace7904fc45de691550664",
+        "cd6b1872b07300efb70ae36c",
+        "cf99da40c0059fbfdde7e007",
+        "d0f504d23d61d66b78455b68",
+        "d1cd00dda6cfc09a1ab2f2eb",
+        "daa6f88ddec59f1674aebf5f",
+        "e7197390039e3122eadc89e6",
+        "e76793443d0f269c60ba9b94",
+        "e8965f4d8a76b14049e28f44",
+        "eb0fa2f94e90bc62f69a6d1a",
+        "f0ddc26535fd7e841e450038",
+        "f16ebdfcd6e0e49d7c4a50dd",
+        "f3b7105fef3d4489a7b62ac7",
+        "f58156f403a5173be01273c3",
+        "fe17c56b49eba160848725df"
+      ],
+      "new_evidence_count": 38,
+      "new_path_count": 20
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+    "code": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {},
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:35ecd3580d76fcca": 0,
+    "discover:Q1-2:58168221bad938ee": 232,
+    "discover:Q1-3:e9a112de71b65c54": 0
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:e9a112de71b65c54": 0
+  },
+  "tool_metrics": {
+    "discover:Q1-1:35ecd3580d76fcca": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 233,
+      "cache_hit": false
+    },
+    "discover:Q1-2:58168221bad938ee": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 208,
+      "cache_hit": false
+    },
+    "discover:Q1-3:e9a112de71b65c54": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 20437,
+      "cache_hit": false
+    },
+    "discover:Q1-3:c08ff22a482455d6": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 170,
+      "cache_hit": false
+    },
+    "discover:Q1-2:038c87bec8f7333a": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 195,
+      "cache_hit": false
+    },
+    "discover:Q1-1:5cbf7a40ee5daf89": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 242,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:01a2c6e213792ba6d66c6945",
+        "type": "evidence",
+        "path": "console/e2e-tests/k6/baselines/workload_replay_2026_05_29.md",
+        "heading": "k6 Baseline: Cluster Detail under VU Ramp",
+        "start_line": 1,
+        "end_line": 9,
+        "start_char": 0,
+        "end_char": 406,
+        "score": "0.025937081659973226",
+        "root": "docs",
+        "matched_terms": [
+          "replay",
+          "workload"
+        ],
+        "evidence_id": "01a2c6e213792ba6d66c6945",
+        "source_type": "repository",
+        "content_hash": "089fadd89ed2d0c62b422784e9a6d8d9e1478d1cbd5a79438da50ad93c4e34b3",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "089fadd89ed2d0c62b422784e9a6d8d9e1478d1cbd5a79438da50ad93c4e34b3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:14a54763bd1ef8a8eeaaef02",
+        "type": "evidence",
+        "path": "test/workload-replay/objects.txt",
+        "heading": "limitations under the License.",
+        "start_line": 346,
+        "end_line": 395,
+        "start_char": 6595,
+        "end_char": 8150,
+        "score": "0.0328392590909145",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "14a54763bd1ef8a8eeaaef02",
+        "source_type": "repository",
+        "content_hash": "7d976e5047ccd3a4b801d22640645837f0a4a6ba13aee25eab848f556b854a7f",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload anonymize",
+            "mz-workload-anonymize",
+            "workload replay anonymize"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7d976e5047ccd3a4b801d22640645837f0a4a6ba13aee25eab848f556b854a7f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1d516ae9ce6d7781f8dcb684",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+        "start_line": 1,
+        "total_lines": 212,
+        "start_char": 0,
+        "end_char": 4259,
+        "evidence_id": "1d516ae9ce6d7781f8dcb684",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "d5c25df5667a12efbbe2a386a63eb5dc536f0d816c1523a2718cbb84fc270718",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "offset": 61,
+              "limit": 120
+            },
+            {
+              "path": "console/e2e-tests/k6/baselines/workload_replay_2026_05_29.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d5c25df5667a12efbbe2a386a63eb5dc536f0d816c1523a2718cbb84fc270718",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:26bdd78f3e10a734cccbe9d6",
+        "type": "evidence",
+        "path": "misc/python/materialize/test_analytics/search/test_analytics_search.py",
+        "heading": "by the Apache License, Version 2.0.",
+        "start_line": 10,
+        "end_line": 59,
+        "start_char": 362,
+        "end_char": 1890,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "add_argument"
+        ],
+        "evidence_id": "26bdd78f3e10a734cccbe9d6",
+        "source_type": "repository",
+        "content_hash": "57d38faa722443bb53f0004ffaf2a23fb492735f2bb41951565c527a17adecda",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "57d38faa722443bb53f0004ffaf2a23fb492735f2bb41951565c527a17adecda",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:28eae8a6cda8c735c91db188",
+        "type": "evidence",
+        "path": "doc/developer/generated/persist/workload.md",
+        "heading": "persist::workload",
+        "start_line": 6,
+        "end_line": 9,
+        "start_char": 66,
+        "end_char": 463,
+        "score": "0.024222968043192763",
+        "root": "docs",
+        "matched_terms": [
+          "workload"
+        ],
+        "evidence_id": "28eae8a6cda8c735c91db188",
+        "source_type": "repository",
+        "content_hash": "cb18eec5c2729d515cab8d444f893e9b829140d17f2a732816fe5087350a4881",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "cb18eec5c2729d515cab8d444f893e9b829140d17f2a732816fe5087350a4881",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:300a4dc5eac09bca4f9e312e",
+        "type": "evidence",
+        "path": "src/persist-client/tests/machine/empty_upper",
+        "heading": "which ends up in the same place, but gets there in a different order.",
+        "start_line": 11,
+        "end_line": 14,
+        "start_char": 424,
+        "end_char": 512,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "in",
+          "place"
+        ],
+        "evidence_id": "300a4dc5eac09bca4f9e312e",
+        "source_type": "repository",
+        "content_hash": "57e3fed3281ba9500ecb1253619027c5448d7706b30caaf682e1a5f4bec1ba44",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "57e3fed3281ba9500ecb1253619027c5448d7706b30caaf682e1a5f4bec1ba44",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:319bce92d212474b3076358a",
+        "type": "evidence",
+        "root": "code",
+        "path": "bin/gen-claude-skill",
+        "start_line": 54,
+        "total_lines": 72,
+        "start_char": 1724,
+        "end_char": 2491,
+        "evidence_id": "319bce92d212474b3076358a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "40b6af256a4efca984592e149faf503e98ca6b4216790fc38ba50b0538b93332",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "misc/python/materialize/cli/mz_workload_anonymize.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "bin/gen-claude-skill",
+              "offset": 53,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "40b6af256a4efca984592e149faf503e98ca6b4216790fc38ba50b0538b93332",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:34e8c28570141abf550684b4",
+        "type": "evidence",
+        "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+        "heading": "Extending Parallel Workload > Running",
+        "start_line": 189,
+        "end_line": 205,
+        "start_char": 5995,
+        "end_char": 6440,
+        "score": "0.03495260014247356",
+        "root": "docs",
+        "matched_terms": [
+          "workload"
+        ],
+        "evidence_id": "34e8c28570141abf550684b4",
+        "source_type": "repository",
+        "content_hash": "f07e6fe278e7f026bdf3ce16b6da4cee17247fbc5b8ec7d1bedeac72185886ed",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload anonymize",
+            "mz-workload-anonymize",
+            "workload replay anonymize"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "f07e6fe278e7f026bdf3ce16b6da4cee17247fbc5b8ec7d1bedeac72185886ed",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3a8d56b6e5f841f616dc5f51",
+        "type": "evidence",
+        "root": "code",
+        "path": "misc/python/materialize/cli/mz_workload_anonymize.py",
+        "start_line": 1,
+        "total_lines": 1007,
+        "start_char": 0,
+        "end_char": 4643,
+        "evidence_id": "3a8d56b6e5f841f616dc5f51",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "1303276cdeab64d12fc29f2616e2780c3328b6b4c2a9b5b4ca5a976ed90d7b5c",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "misc/python/materialize/cli/mz_workload_anonymize.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "bin/gen-claude-skill",
+              "offset": 53,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "1303276cdeab64d12fc29f2616e2780c3328b6b4c2a9b5b4ca5a976ed90d7b5c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:41f98b73ce4328639b21f271",
+        "type": "evidence",
+        "path": "test/workload-replay/README.md",
+        "heading": "Workload Capture & Replay > Components > Workload Replay",
+        "start_line": 113,
+        "end_line": 118,
+        "start_char": 4296,
+        "end_char": 4464,
+        "score": "0.03252247488101534",
+        "root": "docs",
+        "matched_terms": [
+          "captured",
+          "replay",
+          "workload"
+        ],
+        "evidence_id": "41f98b73ce4328639b21f271",
+        "source_type": "repository",
+        "content_hash": "48cb03cb34b65b6aa6e926a59fc90abadf69f897618d089e55214e9e9edf1e17",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "48cb03cb34b65b6aa6e926a59fc90abadf69f897618d089e55214e9e9edf1e17",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4a38afb58a807342ea898f05",
+        "type": "evidence",
+        "path": "test/workload-replay/objects.txt",
+        "heading": "Copyright Materialize, Inc. and contributors. All rights reserved.",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 71,
+        "score": "0.029285022106474472",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4a38afb58a807342ea898f05",
+        "source_type": "repository",
+        "content_hash": "3e038e06d68d44b2e7847fc8002ebbc5d3b590e8a9340846953ee15495349a26",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3e038e06d68d44b2e7847fc8002ebbc5d3b590e8a9340846953ee15495349a26",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:55b1c369ce6363b92216fbdd",
+        "type": "evidence",
+        "path": "test/workload-replay/objects.txt",
+        "heading": "Unless required by applicable law or agreed to in writing, software",
+        "start_line": 10,
+        "end_line": 10,
+        "start_char": 363,
+        "end_char": 433,
+        "score": "0.024922600619195046",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "55b1c369ce6363b92216fbdd",
+        "source_type": "repository",
+        "content_hash": "8559917790e4d1c25c9a9e18848ccf6d1aabb1dc32bec4f12a61d96e3e80492c",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8559917790e4d1c25c9a9e18848ccf6d1aabb1dc32bec4f12a61d96e3e80492c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6425494d38fe556a871db8e3",
+        "type": "evidence",
+        "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 7,
+        "start_char": 0,
+        "end_char": 346,
+        "score": "0.02630564204578216",
+        "root": "docs",
+        "matched_terms": [
+          "workload"
+        ],
+        "evidence_id": "6425494d38fe556a871db8e3",
+        "source_type": "repository",
+        "content_hash": "04c156c282ce327d046296a70b9bd82f2ed9b12781ca8947f0fce9050868a322",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "04c156c282ce327d046296a70b9bd82f2ed9b12781ca8947f0fce9050868a322",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:67081f46519a134b2bea99ab",
+        "type": "evidence",
+        "path": "test/parallel-workload/README.md",
+        "heading": "Parallel Workload",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 91,
+        "score": "0.033052505250525055",
+        "root": "docs",
+        "matched_terms": [
+          "workload"
+        ],
+        "evidence_id": "67081f46519a134b2bea99ab",
+        "source_type": "repository",
+        "content_hash": "57a2d5eb65e1dfe27e846eba4e0812bf44fc5a3c7362a957967fb012dd5703eb",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload anonymize",
+            "mz-workload-anonymize",
+            "workload replay anonymize"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "57a2d5eb65e1dfe27e846eba4e0812bf44fc5a3c7362a957967fb012dd5703eb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:79787c5ffe3bfc348e032679",
+        "type": "evidence",
+        "path": "misc/python/materialize/buildkite_insights/annotation_search/annotation_search.py",
+        "heading": "by the Apache License, Version 2.0.",
+        "start_line": 60,
+        "end_line": 109,
+        "start_char": 1829,
+        "end_char": 3295,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "add_argument"
+        ],
+        "evidence_id": "79787c5ffe3bfc348e032679",
+        "source_type": "repository",
+        "content_hash": "16abee94e05cfb78f7e9797445fb2481f7559f00f22fe7a7b1e2800ca339f246",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "16abee94e05cfb78f7e9797445fb2481f7559f00f22fe7a7b1e2800ca339f246",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8015d90a365c4c9648cc548f",
+        "type": "evidence",
+        "path": "misc/python/materialize/cli/orchestratord.py",
+        "heading": "orchestratord.py — build and run environments in a local kind cluster",
+        "start_line": 59,
+        "end_line": 94,
+        "start_char": 2027,
+        "end_char": 3632,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "add_argument"
+        ],
+        "evidence_id": "8015d90a365c4c9648cc548f",
+        "source_type": "repository",
+        "content_hash": "df4c71f6120ed095c4908bbc95e9403488df5839caf22ab5ba45532ea4cb4ab5",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "df4c71f6120ed095c4908bbc95e9403488df5839caf22ab5ba45532ea4cb4ab5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:88c9794589cf5ad6f4f04170",
+        "type": "evidence",
+        "path": "test/workload-replay/objects.txt",
+        "heading": "limitations under the License.",
+        "start_line": 264,
+        "end_line": 308,
+        "start_char": 3365,
+        "end_char": 4972,
+        "score": "0.03539109631786977",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "88c9794589cf5ad6f4f04170",
+        "source_type": "repository",
+        "content_hash": "5b24eaaae781050f2b98cb2384737b9eab5e9a92bb9bfcc3affb18071bf0b95e",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload anonymize",
+            "mz-workload-anonymize",
+            "workload replay anonymize"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "5b24eaaae781050f2b98cb2384737b9eab5e9a92bb9bfcc3affb18071bf0b95e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9ccf047b292dd665eef0cbbc",
+        "type": "evidence",
+        "evidence_id": "9ccf047b292dd665eef0cbbc",
+        "source_type": "task",
+        "exported_content_sha256": "b0e52bb990b359edcc15e0a0c766ff6d0363fee22167fb896e16ed4471b2943e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b189c9d7dc6a5b4140be28c3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "test/workload-replay/README.md",
+        "start_line": 1,
+        "total_lines": 266,
+        "start_char": 0,
+        "end_char": 4522,
+        "evidence_id": "b189c9d7dc6a5b4140be28c3",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "ae95a3667ddd28f423bf5328a3a58d8462781d135097b3afc0be2c20883d4353",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "test/workload-replay/objects.txt",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".agents/skills/mz-benchmark/SKILL.md",
+              "offset": 117,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ae95a3667ddd28f423bf5328a3a58d8462781d135097b3afc0be2c20883d4353",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:bb4757bbf118dd6e59912202",
+        "type": "evidence",
+        "path": "test/workload-replay/README.md",
+        "heading": "Workload Capture & Replay > Overview",
+        "start_line": 5,
+        "end_line": 12,
+        "start_char": 278,
+        "end_char": 701,
+        "score": "0.032018442622950824",
+        "root": "docs",
+        "matched_terms": [
+          "captured",
+          "replay",
+          "workload"
+        ],
+        "evidence_id": "bb4757bbf118dd6e59912202",
+        "source_type": "repository",
+        "content_hash": "5dcb3f0f87a2eb01d771ec6e501ebef23516dad216de9cb519bc219c66ff7929",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5dcb3f0f87a2eb01d771ec6e501ebef23516dad216de9cb519bc219c66ff7929",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c3c8aa015afeb00707174ca1",
+        "type": "evidence",
+        "path": ".agents/skills/mz-benchmark/SKILL.md",
+        "heading": "Benchmark Frameworks > 2. Scalability Test (SQL Throughput Under Concurrency) > How to Add a Workload",
+        "start_line": 122,
+        "end_line": 127,
+        "start_char": 4826,
+        "end_char": 5082,
+        "score": "0.028539584769920617",
+        "root": "docs",
+        "matched_terms": [
+          "workload"
+        ],
+        "evidence_id": "c3c8aa015afeb00707174ca1",
+        "source_type": "repository",
+        "content_hash": "f7fc25cc720126051c0c95ea8c78ffdcc12a1400799f2f3d519d285a5d03f6cf",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "f7fc25cc720126051c0c95ea8c78ffdcc12a1400799f2f3d519d285a5d03f6cf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c45eb81f495e6b4bd1b9c61e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "test/workload-replay/objects.txt",
+        "start_line": 1,
+        "total_lines": 991,
+        "start_char": 0,
+        "end_char": 1773,
+        "evidence_id": "c45eb81f495e6b4bd1b9c61e",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "908a82622a179c1e4d762efa37345df2aefe8f52d4b46b0a7d7508dfa30cd364",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "test/workload-replay/objects.txt",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".agents/skills/mz-benchmark/SKILL.md",
+              "offset": 117,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "908a82622a179c1e4d762efa37345df2aefe8f52d4b46b0a7d7508dfa30cd364",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ca6fd529c6f1eca8c17a4f9b",
+        "type": "evidence",
+        "path": "test/pgtest/copy-from-range.pt",
+        "heading": "verify contents",
+        "start_line": 72,
+        "end_line": 73,
+        "start_char": 1122,
+        "end_char": 1145,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "verify"
+        ],
+        "evidence_id": "ca6fd529c6f1eca8c17a4f9b",
+        "source_type": "repository",
+        "content_hash": "cf96988f7d2ca0069e68486f5e95fbb2ace4175283c64d3d8eef08022b469942",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "cf96988f7d2ca0069e68486f5e95fbb2ace4175283c64d3d8eef08022b469942",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cb61797fd5f3e55f2f54c3be",
+        "type": "evidence",
+        "root": "docs",
+        "path": ".agents/skills/mz-benchmark/SKILL.md",
+        "start_line": 118,
+        "total_lines": 312,
+        "start_char": 4566,
+        "end_char": 8971,
+        "evidence_id": "cb61797fd5f3e55f2f54c3be",
+        "truncated": false,
+        "next_offset": 237,
+        "source_type": "repository",
+        "content_hash": "290d179779fe01e8f8702b38ff54b13af29e3944cccc46326f96285d6986b132",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "test/workload-replay/objects.txt",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".agents/skills/mz-benchmark/SKILL.md",
+              "offset": 117,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "290d179779fe01e8f8702b38ff54b13af29e3944cccc46326f96285d6986b132",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cbace7904fc45de691550664",
+        "type": "evidence",
+        "path": "test/pgtest/copy.pt",
+        "heading": "Verify CSV output.",
+        "start_line": 61,
+        "end_line": 62,
+        "start_char": 1683,
+        "end_char": 1709,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "verify"
+        ],
+        "evidence_id": "cbace7904fc45de691550664",
+        "source_type": "repository",
+        "content_hash": "2ddd1d61b81fde390e52f7f9a903d6ae8746ed60b995afc40a7fb9230e7063da",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2ddd1d61b81fde390e52f7f9a903d6ae8746ed60b995afc40a7fb9230e7063da",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cd6b1872b07300efb70ae36c",
+        "type": "evidence",
+        "path": "test/canary-environment/README.md",
+        "heading": "Workload",
+        "start_line": 17,
+        "end_line": 18,
+        "start_char": 737,
+        "end_char": 749,
+        "score": "0.0336823467971009",
+        "root": "docs",
+        "matched_terms": [
+          "workload"
+        ],
+        "evidence_id": "cd6b1872b07300efb70ae36c",
+        "source_type": "repository",
+        "content_hash": "280ba93d24f13fdb8ca8070eff7000de96dd65667c769562af6580d3cf9b9f0b",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload anonymize",
+            "mz-workload-anonymize",
+            "workload replay anonymize"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "280ba93d24f13fdb8ca8070eff7000de96dd65667c769562af6580d3cf9b9f0b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cf021879546624de70f8cbf0",
+        "type": "evidence",
+        "evidence_id": "cf021879546624de70f8cbf0",
+        "source_type": "implementation",
+        "exported_content_sha256": "5dc169bcd552bfc576d29b5bc13a5e9bec0ab51401026c4731159d27d739cf28",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cf99da40c0059fbfdde7e007",
+        "type": "evidence",
+        "root": "docs",
+        "path": "console/e2e-tests/k6/baselines/workload_replay_2026_05_29.md",
+        "start_line": 1,
+        "total_lines": 43,
+        "start_char": 0,
+        "end_char": 2848,
+        "evidence_id": "cf99da40c0059fbfdde7e007",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "a9a8672e37dc9613b23d8f9cc306deec794f6f19f3192b36e1cc956e730e0cbc",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "offset": 61,
+              "limit": 120
+            },
+            {
+              "path": "console/e2e-tests/k6/baselines/workload_replay_2026_05_29.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "a9a8672e37dc9613b23d8f9cc306deec794f6f19f3192b36e1cc956e730e0cbc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d0f504d23d61d66b78455b68",
+        "type": "evidence",
+        "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+        "heading": "Extending Parallel Workload",
+        "start_line": 11,
+        "end_line": 14,
+        "start_char": 417,
+        "end_char": 665,
+        "score": "0.025924657534246574",
+        "root": "docs",
+        "matched_terms": [
+          "workload"
+        ],
+        "evidence_id": "d0f504d23d61d66b78455b68",
+        "source_type": "repository",
+        "content_hash": "56104c727308d0c94ffa2733016473651314798ca070ef6039a1e54f0a6549e3",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "56104c727308d0c94ffa2733016473651314798ca070ef6039a1e54f0a6549e3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d1cd00dda6cfc09a1ab2f2eb",
+        "type": "evidence",
+        "path": "doc/developer/generated/persist/workload.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 2,
+        "start_char": 0,
+        "end_char": 40,
+        "score": "0.024322344322344324",
+        "root": "docs",
+        "matched_terms": [
+          "workload"
+        ],
+        "evidence_id": "d1cd00dda6cfc09a1ab2f2eb",
+        "source_type": "repository",
+        "content_hash": "20e9f21fe85a06523c301089eeac2046de1fc6e66bbfc783024ed7fdfd13a26b",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "20e9f21fe85a06523c301089eeac2046de1fc6e66bbfc783024ed7fdfd13a26b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:daa6f88ddec59f1674aebf5f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "test/workload-replay/README.md",
+        "start_line": 62,
+        "total_lines": 266,
+        "start_char": 2472,
+        "end_char": 6593,
+        "evidence_id": "daa6f88ddec59f1674aebf5f",
+        "truncated": false,
+        "next_offset": 181,
+        "source_type": "repository",
+        "content_hash": "d43e93c6088fae0c4b8f8edd21443a992236c086da84bd01fae1fa138622b93d",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "test/workload-replay/README.md",
+              "offset": 61,
+              "limit": 120
+            },
+            {
+              "path": "console/e2e-tests/k6/baselines/workload_replay_2026_05_29.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": ".agents/skills/mz-parallel-workload/SKILL.md",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d43e93c6088fae0c4b8f8edd21443a992236c086da84bd01fae1fa138622b93d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e7197390039e3122eadc89e6",
+        "type": "evidence",
+        "path": "doc/developer/testdrive.md",
+        "heading": "Script Actions > Actions on S3 > `$ s3-verify-data address=s3://...`",
+        "start_line": 748,
+        "end_line": 751,
+        "start_char": 25166,
+        "end_char": 25251,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "verify"
+        ],
+        "evidence_id": "e7197390039e3122eadc89e6",
+        "source_type": "repository",
+        "content_hash": "032c4f0a17f9936232780c92891e9824a38524e25f3bfb9d603adceec8b4f71e",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "032c4f0a17f9936232780c92891e9824a38524e25f3bfb9d603adceec8b4f71e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e76793443d0f269c60ba9b94",
+        "type": "evidence",
+        "path": "test/pgtest/copy.pt",
+        "heading": "Verify binary output.",
+        "start_line": 43,
+        "end_line": 44,
+        "start_char": 937,
+        "end_char": 966,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "verify"
+        ],
+        "evidence_id": "e76793443d0f269c60ba9b94",
+        "source_type": "repository",
+        "content_hash": "594490c6628dcc2af0577de83a9df71882014b203ce614bdaadf497c57fb606a",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "594490c6628dcc2af0577de83a9df71882014b203ce614bdaadf497c57fb606a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e8965f4d8a76b14049e28f44",
+        "type": "evidence",
+        "path": ".agents/skills/mz-benchmark/SKILL.md",
+        "heading": "Benchmark Frameworks > 2. Scalability Test (SQL Throughput Under Concurrency) > Workload Template (Simple DML/DQL)",
+        "start_line": 128,
+        "end_line": 142,
+        "start_char": 5082,
+        "end_char": 5487,
+        "score": "0.026878306878306876",
+        "root": "docs",
+        "matched_terms": [
+          "workload"
+        ],
+        "evidence_id": "e8965f4d8a76b14049e28f44",
+        "source_type": "repository",
+        "content_hash": "d9518d3f886b061e086eb7cd5c05a6179e410eb96cda3126c56ef598964037df",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "d9518d3f886b061e086eb7cd5c05a6179e410eb96cda3126c56ef598964037df",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:eb0fa2f94e90bc62f69a6d1a",
+        "type": "evidence",
+        "path": "bin/gen-claude-skill",
+        "heading": "Hugo emits a blank line in place of each stripped shortcode/template",
+        "start_line": 58,
+        "end_line": 58,
+        "start_char": 1853,
+        "end_char": 1924,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "in",
+          "place"
+        ],
+        "evidence_id": "eb0fa2f94e90bc62f69a6d1a",
+        "source_type": "repository",
+        "content_hash": "4712bab40ecb8e00aa257917905c53620458fd0df0fe3c5b413ee6599a07557e",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4712bab40ecb8e00aa257917905c53620458fd0df0fe3c5b413ee6599a07557e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f0ddc26535fd7e841e450038",
+        "type": "evidence",
+        "path": "console/e2e-tests/scalability/baselines/prod_analytics_2026_04_03.md",
+        "heading": "Scalability Baselines: prod_analytics workload replay",
+        "start_line": 1,
+        "end_line": 8,
+        "start_char": 0,
+        "end_char": 354,
+        "score": "0.02431476569407604",
+        "root": "docs",
+        "matched_terms": [
+          "replay",
+          "workload"
+        ],
+        "evidence_id": "f0ddc26535fd7e841e450038",
+        "source_type": "repository",
+        "content_hash": "e039aa9480e63ebdbea70a91bed33742ef0fc9b9d1dcef032bbac2a473156027",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload replay",
+            "captured workload",
+            "redacted"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "e039aa9480e63ebdbea70a91bed33742ef0fc9b9d1dcef032bbac2a473156027",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f16ebdfcd6e0e49d7c4a50dd",
+        "type": "evidence",
+        "path": "misc/python/materialize/output_consistency/output_consistency_test.py",
+        "heading": "by the Apache License, Version 2.0.",
+        "start_line": 92,
+        "end_line": 138,
+        "start_char": 3583,
+        "end_char": 5187,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "add_argument",
+          "in"
+        ],
+        "evidence_id": "f16ebdfcd6e0e49d7c4a50dd",
+        "source_type": "repository",
+        "content_hash": "3f454d5c1c47bb7ddcc967f8936805e3a98b5ea4ff42bdcc857291d49c031127",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "3f454d5c1c47bb7ddcc967f8936805e3a98b5ea4ff42bdcc857291d49c031127",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f3b7105fef3d4489a7b62ac7",
+        "type": "evidence",
+        "path": "test/workload-replay/README.md",
+        "heading": "Workload Capture & Replay > Components > Workload Anonymization",
+        "start_line": 66,
+        "end_line": 109,
+        "start_char": 2505,
+        "end_char": 4146,
+        "score": "0.04891591750396616",
+        "root": "docs",
+        "matched_terms": [
+          "anonymize",
+          "mz",
+          "workload"
+        ],
+        "evidence_id": "f3b7105fef3d4489a7b62ac7",
+        "source_type": "repository",
+        "content_hash": "32cad285b7f5adb842c3250e1d84aa3cab039ab158b8e6eacf6aa663e382d19d",
+        "revision": "d3e687d80fe98e55ff995f6ab1954ccb237a148b",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "workload anonymize",
+            "mz-workload-anonymize",
+            "workload replay anonymize"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "32cad285b7f5adb842c3250e1d84aa3cab039ab158b8e6eacf6aa663e382d19d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f58156f403a5173be01273c3",
+        "type": "evidence",
+        "path": "misc/python/materialize/cli/mz_workload_anonymize.py",
+        "heading": "only in the `clusters` section.",
+        "start_line": 540,
+        "end_line": 587,
+        "start_char": 22168,
+        "end_char": 23797,
+        "score": "0.019803921568627453",
+        "root": "code",
+        "matched_terms": [
+          "add_argument",
+          "in",
+          "place",
+          "verify"
+        ],
+        "evidence_id": "f58156f403a5173be01273c3",
+        "source_type": "repository",
+        "content_hash": "153a547320c7000d4e716091d4e3f71f563ae7ea72b2224e6f27655c347fefaa",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "153a547320c7000d4e716091d4e3f71f563ae7ea72b2224e6f27655c347fefaa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fe17c56b49eba160848725df",
+        "type": "evidence",
+        "path": "src/persist-client/tests/machine/empty_since",
+        "heading": "which ends up in the same place, but gets there in a different order.",
+        "start_line": 11,
+        "end_line": 14,
+        "start_char": 425,
+        "end_char": 513,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "in",
+          "place"
+        ],
+        "evidence_id": "fe17c56b49eba160848725df",
+        "source_type": "repository",
+        "content_hash": "57e3fed3281ba9500ecb1253619027c5448d7706b30caaf682e1a5f4bec1ba44",
+        "revision": "c1aa8a1b3b6d07a64f050f6ee6b200c23a017c0b",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "add_argument",
+            "--in-place",
+            "--verify"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "57e3fed3281ba9500ecb1253619027c5448d7706b30caaf682e1a5f4bec1ba44",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Does existing documentation describe the mz-workload-anonymize CLI tool, its flags, and the workload-replay anonymization workflow?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where in the docs is workload replay / captured workload sharing documented, and does it mention redaction or the helper binary?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What CLI flags and behavior does the anonymizer expose (e.g. -o/--in-place, --verify, MZ_SQL_ANONYMIZE_BIN) that users would need documented?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:01a2c6e213792ba6d66c6945",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:01a2c6e213792ba6d66c6945",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:14a54763bd1ef8a8eeaaef02",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1d516ae9ce6d7781f8dcb684",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:26bdd78f3e10a734cccbe9d6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:28eae8a6cda8c735c91db188",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:28eae8a6cda8c735c91db188",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:300a4dc5eac09bca4f9e312e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:319bce92d212474b3076358a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:34e8c28570141abf550684b4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3a8d56b6e5f841f616dc5f51",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:41f98b73ce4328639b21f271",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4a38afb58a807342ea898f05",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:55b1c369ce6363b92216fbdd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6425494d38fe556a871db8e3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6425494d38fe556a871db8e3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:67081f46519a134b2bea99ab",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:79787c5ffe3bfc348e032679",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8015d90a365c4c9648cc548f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:88c9794589cf5ad6f4f04170",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b189c9d7dc6a5b4140be28c3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bb4757bbf118dd6e59912202",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:bb4757bbf118dd6e59912202",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3c8aa015afeb00707174ca1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c3c8aa015afeb00707174ca1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c45eb81f495e6b4bd1b9c61e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ca6fd529c6f1eca8c17a4f9b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cb61797fd5f3e55f2f54c3be",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cbace7904fc45de691550664",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cd6b1872b07300efb70ae36c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cf99da40c0059fbfdde7e007",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d0f504d23d61d66b78455b68",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d1cd00dda6cfc09a1ab2f2eb",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d1cd00dda6cfc09a1ab2f2eb",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:daa6f88ddec59f1674aebf5f",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e7197390039e3122eadc89e6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e76793443d0f269c60ba9b94",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e8965f4d8a76b14049e28f44",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:eb0fa2f94e90bc62f69a6d1a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f0ddc26535fd7e841e450038",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f16ebdfcd6e0e49d7c4a50dd",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f3b7105fef3d4489a7b62ac7",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f58156f403a5173be01273c3",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fe17c56b49eba160848725df",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

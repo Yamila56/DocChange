@@ -1,0 +1,4035 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "EDIT",
+  "tasks": [
+    {
+      "id": "cli-reference-pipeline-show",
+      "description": "Update the `dlt pipeline show` section of the CLI reference: the dashboard is now the default view (no `--dashboard` flag), the legacy Streamlit app is launched with `--streamlit`, and `--edit` only applies to the dashboard. Update usage line, description, and options accordingly.",
+      "evidence_ids": [
+        "3c4da1f5a060a821bc9fe736",
+        "e758b63213b3d9dfbb24e876",
+        "d240e7c7cce06cea9e30b26f"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "cli-reference-dashboard-cmd",
+      "description": "Add/update the `dlt dashboard` command reference documenting the newly enabled command with its `--pipelines-dir` and `--edit` options and the marimo-based dashboard description.",
+      "evidence_ids": [
+        "29cc8bdb86e5cfa89bc10265",
+        "e758b63213b3d9dfbb24e876",
+        "d240e7c7cce06cea9e30b26f"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "llm-workflow-dashboard-flag",
+      "description": "In the LLM-native workflow guide, replace `dlt pipeline {source}_pipeline show --dashboard` with the new default `dlt pipeline {source}_pipeline show` since the dashboard is now the default view.",
+      "evidence_ids": [
+        "5d07a99eabcb9313c2c4f0c2",
+        "5143819cb85fa1755041c22b",
+        "3c4da1f5a060a821bc9fe736"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "streamlit-page-legacy-note",
+      "description": "In the Streamlit dataset-access page, note that `dlt pipeline show` now launches the new dashboard by default and that the Streamlit app requires the `--streamlit` flag.",
+      "evidence_ids": [
+        "c52e0bf6a7d47b3dcc134c7d",
+        "3c4da1f5a060a821bc9fe736",
+        "e758b63213b3d9dfbb24e876"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "1dc8495956a9a6090996a37536adfea17efb09cd3e853901bfcfa32bf869c9c9",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "How do the docs currently describe the `dlt pipeline show` command, its `--dashboard`/`--streamlit`/`--edit` flags, and the default view?",
+          "root": "docs",
+          "queries": [
+            "pipeline show dashboard",
+            "--dashboard flag",
+            "--streamlit"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/website/docs"
+          ],
+          "reads": [
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "offset": 179,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "offset": 135,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "3c4da1f5a060a821bc9fe736",
+            "da4407321409dfceb0bcfe71",
+            "5143819cb85fa1755041c22b",
+            "2c6dc21af4ff2e59ec462951",
+            "ea2678fa64cdcd817d806c2a",
+            "5d07a99eabcb9313c2c4f0c2",
+            "a516d21a78c174067a3dcad6",
+            "8fa976fa4aa0433cc4aa5310",
+            "625f3a068d014e3eca35950c",
+            "68a1fb4c54bbb7eb5a7e0566",
+            "a85e7746ca9c283c78c69aed",
+            "2bb32f1acc565228d6ecee7e",
+            "f084cfb3c5ca5fb160a9b702",
+            "5cef61e1df3a9a4e66bd5a27",
+            "4e571808b89feb1d46f33dc8"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "evidence_id": "2c6dc21af4ff2e59ec462951",
+              "score": "0.04600640126586831"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "evidence_id": "ea2678fa64cdcd817d806c2a",
+              "score": "0.03674677812608847"
+            },
+            {
+              "rank": 3,
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "evidence_id": "5d07a99eabcb9313c2c4f0c2",
+              "score": "0.033888595099594576"
+            },
+            {
+              "rank": 4,
+              "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+              "evidence_id": "a516d21a78c174067a3dcad6",
+              "score": "0.031009615384615385"
+            },
+            {
+              "rank": 5,
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "evidence_id": "8fa976fa4aa0433cc4aa5310",
+              "score": "0.030798389007344232"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "625f3a068d014e3eca35950c",
+              "score": "0.030309988518943745"
+            },
+            {
+              "rank": 7,
+              "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+              "evidence_id": "68a1fb4c54bbb7eb5a7e0566",
+              "score": "0.029030910609857977"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "a85e7746ca9c283c78c69aed",
+              "score": "0.02886459269437993"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/plus/getting-started/tutorial.md",
+              "evidence_id": "2bb32f1acc565228d6ecee7e",
+              "score": "0.02706634544106746"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/general-usage/pipeline.md",
+              "evidence_id": "f084cfb3c5ca5fb160a9b702",
+              "score": "0.02518313305907413"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/docs/walkthroughs/run-a-pipeline.md",
+              "evidence_id": "5cef61e1df3a9a4e66bd5a27",
+              "score": "0.02485334979932078"
+            },
+            {
+              "rank": 12,
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "evidence_id": "4e571808b89feb1d46f33dc8",
+              "score": "0.024687641125997292"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "start": 179,
+              "end": 299,
+              "total_lines": 727
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "start": 27,
+              "end": 39,
+              "total_lines": 39
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "start": 135,
+              "end": 193,
+              "total_lines": 193
+            }
+          ],
+          "read_evidence_ids": [
+            "3c4da1f5a060a821bc9fe736",
+            "da4407321409dfceb0bcfe71",
+            "5143819cb85fa1755041c22b"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "How do the docs describe the `dlt dashboard` command and its options (pipelines-dir, edit)?",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard command",
+            "pipelines-dir",
+            "dashboard edit"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "docs/website/docs"
+          ],
+          "reads": [
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "offset": 865,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "faa674c0fbde47962332b27e",
+            "e75fa8b4b1dab2683e18ba2e",
+            "2f27843917b06ece9133f106",
+            "5d07a99eabcb9313c2c4f0c2",
+            "2c6dc21af4ff2e59ec462951",
+            "9637a002cb0af3a4dba6bb6c",
+            "4e571808b89feb1d46f33dc8",
+            "4117252c338cf47e3e67fcf3",
+            "6b08c4f514eaa47110366ac6",
+            "68a1fb4c54bbb7eb5a7e0566",
+            "0a3a3487d63359351e48acdd",
+            "d2d64a2277cef6e597744f5c",
+            "ddc1e5127765d54fea0a3869",
+            "0229fb27ecafca75586c3e17",
+            "3484584596bbf8cfb21d718b"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "evidence_id": "5d07a99eabcb9313c2c4f0c2",
+              "score": "0.03457825013097822"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "evidence_id": "2c6dc21af4ff2e59ec462951",
+              "score": "0.03371604250369024"
+            },
+            {
+              "rank": 3,
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "evidence_id": "9637a002cb0af3a4dba6bb6c",
+              "score": "0.03007688828584351"
+            },
+            {
+              "rank": 4,
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "evidence_id": "4e571808b89feb1d46f33dc8",
+              "score": "0.028177225029148854"
+            },
+            {
+              "rank": 5,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "4117252c338cf47e3e67fcf3",
+              "score": "0.02815814850530376"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "evidence_id": "6b08c4f514eaa47110366ac6",
+              "score": "0.026862026862026864"
+            },
+            {
+              "rank": 7,
+              "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+              "evidence_id": "68a1fb4c54bbb7eb5a7e0566",
+              "score": "0.02548435171385991"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "0a3a3487d63359351e48acdd",
+              "score": "0.02388888888888889"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/walkthroughs/deploy-a-pipeline/deploy-with-prefect.md",
+              "evidence_id": "d2d64a2277cef6e597744f5c",
+              "score": "0.023609912961166515"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/dlt-ecosystem/verified-sources/shopify.md",
+              "evidence_id": "ddc1e5127765d54fea0a3869",
+              "score": "0.021195236534469572"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+              "evidence_id": "0229fb27ecafca75586c3e17",
+              "score": "0.02014367265706354"
+            },
+            {
+              "rank": 12,
+              "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+              "evidence_id": "3484584596bbf8cfb21d718b",
+              "score": "0.020038272734836507"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "start": 2,
+              "end": 39,
+              "total_lines": 39
+            },
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "start": 108,
+              "end": 228,
+              "total_lines": 727
+            },
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "start": 865,
+              "end": 985,
+              "total_lines": 2133
+            }
+          ],
+          "read_evidence_ids": [
+            "faa674c0fbde47962332b27e",
+            "e75fa8b4b1dab2683e18ba2e",
+            "2f27843917b06ece9133f106"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "What does the CLI plugin help text and dashboard runner now expose for show/dashboard commands?",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ],
+          "paths": [
+            "dlt/cli/plugins.py",
+            "dlt/helpers/dashboard/runner.py"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "dlt/cli/plugins.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "dlt/helpers/dashboard/runner.py",
+              "query": "",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "3f033519ed30499891a0197c",
+            "d240e7c7cce06cea9e30b26f",
+            "16a8b9ce6b9cf454c4b22a2e",
+            "1fc50189d37e6ce79f84b8bd",
+            "abac2cf210b41f90eb781763",
+            "91fcf1686f760139d2d5ce7b",
+            "36c143d4f2d0c928224f51b0",
+            "1b45a5666f66187b6d76b18f",
+            "c60616fd515ddc9e97ae52b5",
+            "f5f28741e49a3b08a9fe5986",
+            "e65a1f9fc6b78c9e452dc5cf",
+            "41f9de990c91f975bee8a6bb",
+            "95bee23d440a0b45d45cbe15",
+            "69f954b1e322f3bb74c5be9a"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "16a8b9ce6b9cf454c4b22a2e",
+              "score": "0.02488202488202488"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "evidence_id": "1fc50189d37e6ce79f84b8bd",
+              "score": "0.024553571428571428"
+            },
+            {
+              "rank": 3,
+              "path": "dlt/cli/pipeline_command.py",
+              "evidence_id": "abac2cf210b41f90eb781763",
+              "score": "0.02388097024256064"
+            },
+            {
+              "rank": 4,
+              "path": "dlt/helpers/streamlit_app/utils.py",
+              "evidence_id": "91fcf1686f760139d2d5ce7b",
+              "score": "0.022964015151515152"
+            },
+            {
+              "rank": 5,
+              "path": "dlt/cli/plugins.py",
+              "evidence_id": "36c143d4f2d0c928224f51b0",
+              "score": "0.022762345679012343"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+              "evidence_id": "1b45a5666f66187b6d76b18f",
+              "score": "0.01935319582378406"
+            },
+            {
+              "rank": 7,
+              "path": "dlt/cli/command_wrappers.py",
+              "evidence_id": "c60616fd515ddc9e97ae52b5",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 8,
+              "path": "dlt/helpers/streamlit_app/__init__.py",
+              "evidence_id": "f5f28741e49a3b08a9fe5986",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "e65a1f9fc6b78c9e452dc5cf",
+              "score": "0.01639344262295082"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+              "evidence_id": "41f9de990c91f975bee8a6bb",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/tools/update_snippets.js",
+              "evidence_id": "95bee23d440a0b45d45cbe15",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 12,
+              "path": "dlt/helpers/dashboard/runner.py",
+              "evidence_id": "69f954b1e322f3bb74c5be9a",
+              "score": "0.015873015873015872"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "dlt/cli/plugins.py",
+              "start": 0,
+              "end": 120,
+              "total_lines": 777
+            },
+            {
+              "path": "dlt/helpers/dashboard/runner.py",
+              "start": 0,
+              "end": 67,
+              "total_lines": 67
+            }
+          ],
+          "read_evidence_ids": [
+            "3f033519ed30499891a0197c",
+            "d240e7c7cce06cea9e30b26f"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0229fb27ecafca75586c3e17",
+        "0a3a3487d63359351e48acdd",
+        "16a8b9ce6b9cf454c4b22a2e",
+        "1b45a5666f66187b6d76b18f",
+        "1fc50189d37e6ce79f84b8bd",
+        "2bb32f1acc565228d6ecee7e",
+        "2c6dc21af4ff2e59ec462951",
+        "2f27843917b06ece9133f106",
+        "3484584596bbf8cfb21d718b",
+        "36c143d4f2d0c928224f51b0",
+        "3c4da1f5a060a821bc9fe736",
+        "3f033519ed30499891a0197c",
+        "4117252c338cf47e3e67fcf3",
+        "41f9de990c91f975bee8a6bb",
+        "4e571808b89feb1d46f33dc8",
+        "5143819cb85fa1755041c22b",
+        "5cef61e1df3a9a4e66bd5a27",
+        "5d07a99eabcb9313c2c4f0c2",
+        "625f3a068d014e3eca35950c",
+        "68a1fb4c54bbb7eb5a7e0566",
+        "69f954b1e322f3bb74c5be9a",
+        "6b08c4f514eaa47110366ac6",
+        "8fa976fa4aa0433cc4aa5310",
+        "91fcf1686f760139d2d5ce7b",
+        "95bee23d440a0b45d45cbe15",
+        "9637a002cb0af3a4dba6bb6c",
+        "a516d21a78c174067a3dcad6",
+        "a85e7746ca9c283c78c69aed",
+        "abac2cf210b41f90eb781763",
+        "c60616fd515ddc9e97ae52b5",
+        "d240e7c7cce06cea9e30b26f",
+        "d2d64a2277cef6e597744f5c",
+        "da4407321409dfceb0bcfe71",
+        "ddc1e5127765d54fea0a3869",
+        "e65a1f9fc6b78c9e452dc5cf",
+        "e75fa8b4b1dab2683e18ba2e",
+        "ea2678fa64cdcd817d806c2a",
+        "f084cfb3c5ca5fb160a9b702",
+        "f5f28741e49a3b08a9fe5986",
+        "faa674c0fbde47962332b27e"
+      ],
+      "new_evidence_count": 40,
+      "new_path_count": 22
+    },
+    {
+      "signature": "313e37450ef389a11213834133ca585d2552167477729cf1a6d3c7bec29d205d",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "Does the docs reference for `dlt dashboard` command exist and describe its options (--pipelines-dir, --edit)?",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ],
+          "paths": [
+            "docs/website/docs/reference/command-line-interface.md"
+          ],
+          "anchor": "## `dlt dashboard`",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "query": "## `dlt dashboard`",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+              "offset": 65,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "0901213d3b87a4bfce987ecc",
+            "39794aaca19b82b7b8a70de4",
+            "5d07a99eabcb9313c2c4f0c2",
+            "2c6dc21af4ff2e59ec462951",
+            "6b08c4f514eaa47110366ac6",
+            "4c02453270cb3cce2513451f",
+            "68a1fb4c54bbb7eb5a7e0566",
+            "5b021a533e1c102dc36ed6e4",
+            "746fe5df76d830c22ac44ff4",
+            "303dc999a7839580f451f1f2",
+            "e7d8925d4a4cf1a511a927e7",
+            "764321839585d3c457bd581b",
+            "25020d541e56c4187a4a7d02",
+            "33b96412e75cda9825a87921"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "evidence_id": "5d07a99eabcb9313c2c4f0c2",
+              "score": "0.048171500630517027"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "evidence_id": "2c6dc21af4ff2e59ec462951",
+              "score": "0.045760287745334055"
+            },
+            {
+              "rank": 3,
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "evidence_id": "6b08c4f514eaa47110366ac6",
+              "score": "0.045169436298468556"
+            },
+            {
+              "rank": 4,
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "evidence_id": "4c02453270cb3cce2513451f",
+              "score": "0.04309997630893153"
+            },
+            {
+              "rank": 5,
+              "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+              "evidence_id": "68a1fb4c54bbb7eb5a7e0566",
+              "score": "0.04261575076337066"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "5b021a533e1c102dc36ed6e4",
+              "score": "0.04195902633402633"
+            },
+            {
+              "rank": 7,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "746fe5df76d830c22ac44ff4",
+              "score": "0.0362283590280896"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "evidence_id": "303dc999a7839580f451f1f2",
+              "score": "0.03589901477832512"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/plus/getting-started/tutorial.md",
+              "evidence_id": "e7d8925d4a4cf1a511a927e7",
+              "score": "0.033722899728997294"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/tutorial/load-data-from-an-api.md",
+              "evidence_id": "764321839585d3c457bd581b",
+              "score": "0.022941476567832512"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/docs/plus/getting-started/tutorial.md",
+              "evidence_id": "25020d541e56c4187a4a7d02",
+              "score": "0.022939893488797235"
+            },
+            {
+              "rank": 12,
+              "path": "docs/website/docs/dlt-ecosystem/verified-sources/openapi-generator.md",
+              "evidence_id": "33b96412e75cda9825a87921",
+              "score": "0.02056541019955654"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "start": 0,
+              "end": 39,
+              "total_lines": 39
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+              "start": 65,
+              "end": 80,
+              "total_lines": 80
+            }
+          ],
+          "read_evidence_ids": [
+            "0901213d3b87a4bfce987ecc",
+            "39794aaca19b82b7b8a70de4"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "What does the new DashboardCommand help/description text say in plugins.py for the `dlt dashboard` command?",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ],
+          "paths": [
+            "dlt/cli/plugins.py"
+          ],
+          "anchor": "class DashboardCommand",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "dlt/cli/plugins.py",
+              "query": "class DashboardCommand",
+              "limit": 120
+            },
+            {
+              "path": "dlt/helpers/dbt/exceptions.py",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "e758b63213b3d9dfbb24e876",
+            "5df14127b36b10189995561c",
+            "29cc8bdb86e5cfa89bc10265",
+            "cdfea7c8073fb2cb506ada5e",
+            "493234cf32e7d0c16def88de",
+            "a476f6d82b6c31ef1d98c073",
+            "0e20e5a375dcdd4fcf76627a",
+            "c807ca4f3f54ce0d8851d03d",
+            "e6967fb5ead6c541c5881a6d",
+            "b6e052e69109c5308076661d",
+            "d55038847b5d66d8259e2e9c",
+            "907e1eef4e240d760410e34a",
+            "51fd86fa3635e99a57477bbe"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "dlt/cli/plugins.py",
+              "evidence_id": "29cc8bdb86e5cfa89bc10265",
+              "score": "0.03278688524590164"
+            },
+            {
+              "rank": 2,
+              "path": "dlt/helpers/dbt/exceptions.py",
+              "evidence_id": "5df14127b36b10189995561c",
+              "score": "0.023796791443850267"
+            },
+            {
+              "rank": 3,
+              "path": "dlt/cli/plugins.py",
+              "evidence_id": "cdfea7c8073fb2cb506ada5e",
+              "score": "0.020384351407000685"
+            },
+            {
+              "rank": 4,
+              "path": "dlt/helpers/dashboard/strings.py",
+              "evidence_id": "493234cf32e7d0c16def88de",
+              "score": "0.016129032258064516"
+            },
+            {
+              "rank": 5,
+              "path": "dlt/helpers/dashboard/strings.py",
+              "evidence_id": "a476f6d82b6c31ef1d98c073",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 6,
+              "path": "tests/common/test_typing.py",
+              "evidence_id": "0e20e5a375dcdd4fcf76627a",
+              "score": "0.015873015873015872"
+            },
+            {
+              "rank": 7,
+              "path": "dlt/sources/helpers/rest_client/exceptions.py",
+              "evidence_id": "c807ca4f3f54ce0d8851d03d",
+              "score": "0.015625"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "evidence_id": "e6967fb5ead6c541c5881a6d",
+              "score": "0.015625"
+            },
+            {
+              "rank": 9,
+              "path": "Makefile",
+              "evidence_id": "b6e052e69109c5308076661d",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 10,
+              "path": "dlt/sources/rest_api/typing.py",
+              "evidence_id": "d55038847b5d66d8259e2e9c",
+              "score": "0.015384615384615385"
+            },
+            {
+              "rank": 11,
+              "path": "dlt/destinations/impl/weaviate/weaviate_client.py",
+              "evidence_id": "907e1eef4e240d760410e34a",
+              "score": "0.015151515151515152"
+            },
+            {
+              "rank": 12,
+              "path": "docs/examples/CONTRIBUTING.md",
+              "evidence_id": "51fd86fa3635e99a57477bbe",
+              "score": "0.015151515151515152"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "dlt/cli/plugins.py",
+              "start": 476,
+              "end": 596,
+              "total_lines": 777
+            },
+            {
+              "path": "dlt/helpers/dbt/exceptions.py",
+              "start": 0,
+              "end": 33,
+              "total_lines": 33
+            }
+          ],
+          "read_evidence_ids": [
+            "e758b63213b3d9dfbb24e876",
+            "5df14127b36b10189995561c"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Are there other docs pages referencing `--dashboard` flag or the streamlit dashboard that need updating to the new default?",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ],
+          "paths": [
+            "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/walkthroughs/deploy-a-pipeline/deploy-with-prefect.md",
+              "offset": 27,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "33bec7499904f78d1acce940",
+            "c52e0bf6a7d47b3dcc134c7d",
+            "b5edca0c7e7735e238dd1fd0",
+            "2c6dc21af4ff2e59ec462951",
+            "5d07a99eabcb9313c2c4f0c2",
+            "68a1fb4c54bbb7eb5a7e0566",
+            "ea2678fa64cdcd817d806c2a",
+            "8fa976fa4aa0433cc4aa5310",
+            "a516d21a78c174067a3dcad6",
+            "625f3a068d014e3eca35950c",
+            "d2d64a2277cef6e597744f5c",
+            "5cef61e1df3a9a4e66bd5a27",
+            "2bb32f1acc565228d6ecee7e",
+            "ddc1e5127765d54fea0a3869",
+            "4117252c338cf47e3e67fcf3"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "evidence_id": "2c6dc21af4ff2e59ec462951",
+              "score": "0.04839549075403121"
+            },
+            {
+              "rank": 2,
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "evidence_id": "5d07a99eabcb9313c2c4f0c2",
+              "score": "0.04814747488101534"
+            },
+            {
+              "rank": 3,
+              "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+              "evidence_id": "68a1fb4c54bbb7eb5a7e0566",
+              "score": "0.043991463178717854"
+            },
+            {
+              "rank": 4,
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "evidence_id": "ea2678fa64cdcd817d806c2a",
+              "score": "0.04347566936079918"
+            },
+            {
+              "rank": 5,
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "evidence_id": "8fa976fa4aa0433cc4aa5310",
+              "score": "0.04312592284976006"
+            },
+            {
+              "rank": 6,
+              "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+              "evidence_id": "a516d21a78c174067a3dcad6",
+              "score": "0.04128421496485301"
+            },
+            {
+              "rank": 7,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "625f3a068d014e3eca35950c",
+              "score": "0.04090378069168328"
+            },
+            {
+              "rank": 8,
+              "path": "docs/website/docs/walkthroughs/deploy-a-pipeline/deploy-with-prefect.md",
+              "evidence_id": "d2d64a2277cef6e597744f5c",
+              "score": "0.03575040453074434"
+            },
+            {
+              "rank": 9,
+              "path": "docs/website/docs/walkthroughs/run-a-pipeline.md",
+              "evidence_id": "5cef61e1df3a9a4e66bd5a27",
+              "score": "0.03266623104938177"
+            },
+            {
+              "rank": 10,
+              "path": "docs/website/docs/plus/getting-started/tutorial.md",
+              "evidence_id": "2bb32f1acc565228d6ecee7e",
+              "score": "0.031197195366257292"
+            },
+            {
+              "rank": 11,
+              "path": "docs/website/docs/dlt-ecosystem/verified-sources/shopify.md",
+              "evidence_id": "ddc1e5127765d54fea0a3869",
+              "score": "0.030305091733663164"
+            },
+            {
+              "rank": 12,
+              "path": "docs/website/docs/plus/reference.md",
+              "evidence_id": "4117252c338cf47e3e67fcf3",
+              "score": "0.030002218278615794"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "start": 0,
+              "end": 120,
+              "total_lines": 193
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+              "start": 27,
+              "end": 66,
+              "total_lines": 66
+            },
+            {
+              "path": "docs/website/docs/walkthroughs/deploy-a-pipeline/deploy-with-prefect.md",
+              "start": 27,
+              "end": 73,
+              "total_lines": 73
+            }
+          ],
+          "read_evidence_ids": [
+            "33bec7499904f78d1acce940",
+            "c52e0bf6a7d47b3dcc134c7d",
+            "b5edca0c7e7735e238dd1fd0"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0901213d3b87a4bfce987ecc",
+        "0e20e5a375dcdd4fcf76627a",
+        "25020d541e56c4187a4a7d02",
+        "29cc8bdb86e5cfa89bc10265",
+        "303dc999a7839580f451f1f2",
+        "33b96412e75cda9825a87921",
+        "33bec7499904f78d1acce940",
+        "39794aaca19b82b7b8a70de4",
+        "493234cf32e7d0c16def88de",
+        "4c02453270cb3cce2513451f",
+        "51fd86fa3635e99a57477bbe",
+        "5b021a533e1c102dc36ed6e4",
+        "5df14127b36b10189995561c",
+        "746fe5df76d830c22ac44ff4",
+        "764321839585d3c457bd581b",
+        "907e1eef4e240d760410e34a",
+        "a476f6d82b6c31ef1d98c073",
+        "b5edca0c7e7735e238dd1fd0",
+        "b6e052e69109c5308076661d",
+        "c52e0bf6a7d47b3dcc134c7d",
+        "c807ca4f3f54ce0d8851d03d",
+        "cdfea7c8073fb2cb506ada5e",
+        "d55038847b5d66d8259e2e9c",
+        "e6967fb5ead6c541c5881a6d",
+        "e758b63213b3d9dfbb24e876",
+        "e7d8925d4a4cf1a511a927e7"
+      ],
+      "new_evidence_count": 26,
+      "new_path_count": 10
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+    "code": "32d4908252dc9e38ef751e3015b1e8debb12a140"
+  },
+  "protocol_retries": {
+    "REASON": 1,
+    "EDIT": 1
+  },
+  "protocol_feedback": {
+    "EDIT": {
+      "errors": [
+        {
+          "type": "MISSING_EVIDENCE",
+          "msg": "Edit needs observations of its target path"
+        }
+      ],
+      "instruction": "Return a complete corrected decision using only observed evidence."
+    }
+  },
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:d03e2abab616b739": 0,
+    "discover:Q1-2:78580896d195318a": 127,
+    "discover:Q1-3:a6cb35f0e1868513": 0,
+    "discover:Q2-2:f6c3359afa17cccd": 0,
+    "discover:Q2-1:7591f4b2a2fab1d3": 0,
+    "discover:Q2-3:45b67b03c4da6bf1": 940
+  },
+  "index_slot_wait_ms": {
+    "discover:Q1-3:a6cb35f0e1868513": 726
+  },
+  "tool_metrics": {
+    "discover:Q1-1:d03e2abab616b739": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 127,
+      "cache_hit": false
+    },
+    "discover:Q1-2:78580896d195318a": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 168,
+      "cache_hit": false
+    },
+    "discover:Q1-3:a6cb35f0e1868513": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 15599,
+      "cache_hit": false
+    },
+    "discover:Q1-1:0d39bc807bef60a9": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 539,
+      "cache_hit": false
+    },
+    "discover:Q1-3:170bf5c052cf8416": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 900,
+      "cache_hit": false
+    },
+    "discover:Q1-2:663fd7c63c0df425": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 1072,
+      "cache_hit": false
+    },
+    "discover:Q2-2:f6c3359afa17cccd": {
+      "kind": "search",
+      "root": "code",
+      "elapsed_ms": 522,
+      "cache_hit": false
+    },
+    "discover:Q2-1:7591f4b2a2fab1d3": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 941,
+      "cache_hit": false
+    },
+    "discover:Q2-3:45b67b03c4da6bf1": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 438,
+      "cache_hit": false
+    },
+    "discover:Q2-2:3bb74f08838cf156": {
+      "kind": "read_many",
+      "root": "code",
+      "elapsed_ms": 283,
+      "cache_hit": false
+    },
+    "discover:Q2-3:a8a5f76dc0dd6f8d": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 345,
+      "cache_hit": false
+    },
+    "discover:Q2-1:60e8d3052d088261": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 415,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0229fb27ecafca75586c3e17",
+        "type": "evidence",
+        "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+        "heading": "Building data pipelines with `dlt`, from basic to advanced > Governance support in `dlt` pipelines",
+        "start_line": 344,
+        "end_line": 348,
+        "start_char": 17011,
+        "end_char": 17222,
+        "score": "0.02014367265706354",
+        "root": "docs",
+        "matched_terms": [
+          "dlt",
+          "pipelines"
+        ],
+        "evidence_id": "0229fb27ecafca75586c3e17",
+        "source_type": "repository",
+        "content_hash": "ecadc4fad6a0cf88afb36c85bd1d18e252436498f9eee4f151cb971d388ab021",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard command",
+            "pipelines-dir",
+            "dashboard edit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ecadc4fad6a0cf88afb36c85bd1d18e252436498f9eee4f151cb971d388ab021",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0901213d3b87a4bfce987ecc",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+        "start_line": 1,
+        "total_lines": 39,
+        "start_char": 0,
+        "end_char": 2894,
+        "evidence_id": "0901213d3b87a4bfce987ecc",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "edd69a50a3b27880857de2d6740d2dd31a2612183f3ec4df9a13c7b8fec4e264",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "query": "## `dlt dashboard`",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+              "offset": 65,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "edd69a50a3b27880857de2d6740d2dd31a2612183f3ec4df9a13c7b8fec4e264",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0a3a3487d63359351e48acdd",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt pipeline` > `dlt pipeline list`",
+        "start_line": 1254,
+        "end_line": 1277,
+        "start_char": 32734,
+        "end_char": 33098,
+        "score": "0.02388888888888889",
+        "root": "docs",
+        "matched_terms": [
+          "dlt",
+          "pipelines"
+        ],
+        "evidence_id": "0a3a3487d63359351e48acdd",
+        "source_type": "repository",
+        "content_hash": "86a29ac46815c079a5aefc882e21419ad1a5ec0e8b068a371d33b9fff812e212",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard command",
+            "pipelines-dir",
+            "dashboard edit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "86a29ac46815c079a5aefc882e21419ad1a5ec0e8b068a371d33b9fff812e212",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0e20e5a375dcdd4fcf76627a",
+        "type": "evidence",
+        "path": "tests/common/test_typing.py",
+        "heading": "",
+        "start_line": 51,
+        "end_line": 100,
+        "start_char": 1065,
+        "end_char": 1861,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "class"
+        ],
+        "evidence_id": "0e20e5a375dcdd4fcf76627a",
+        "source_type": "repository",
+        "content_hash": "c098f9260627507153fc07d2042f0d242f0aa631a2765059c0eb6a626bc564bf",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c098f9260627507153fc07d2042f0d242f0aa631a2765059c0eb6a626bc564bf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:16a8b9ce6b9cf454c4b22a2e",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt pipeline`",
+        "start_line": 870,
+        "end_line": 910,
+        "start_char": 20150,
+        "end_char": 21779,
+        "score": "0.02488202488202488",
+        "root": "code",
+        "matched_terms": [
+          "dir",
+          "pipelines",
+          "streamlit"
+        ],
+        "evidence_id": "16a8b9ce6b9cf454c4b22a2e",
+        "source_type": "repository",
+        "content_hash": "0193a72c4a83f86945443cdc461230078100fd5494f8108eb76872442f7f1b0b",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "0193a72c4a83f86945443cdc461230078100fd5494f8108eb76872442f7f1b0b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1b45a5666f66187b6d76b18f",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+        "heading": "View data with Streamlit > Launching the Streamlit app",
+        "start_line": 32,
+        "end_line": 42,
+        "start_char": 1111,
+        "end_char": 1490,
+        "score": "0.01935319582378406",
+        "root": "code",
+        "matched_terms": [
+          "pipelines",
+          "streamlit"
+        ],
+        "evidence_id": "1b45a5666f66187b6d76b18f",
+        "source_type": "repository",
+        "content_hash": "a99a112d07f58a5991eeb5d58ef36a5b6a8be437a98029f2f4dc273bd7e65077",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a99a112d07f58a5991eeb5d58ef36a5b6a8be437a98029f2f4dc273bd7e65077",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1fc50189d37e6ce79f84b8bd",
+        "type": "evidence",
+        "path": "docs/website/docs/reference/command-line-interface.md",
+        "heading": "Command Line Interface Reference > `dlt pipeline`",
+        "start_line": 113,
+        "end_line": 150,
+        "start_char": 3387,
+        "end_char": 5095,
+        "score": "0.024553571428571428",
+        "root": "code",
+        "matched_terms": [
+          "dir",
+          "pipelines",
+          "streamlit"
+        ],
+        "evidence_id": "1fc50189d37e6ce79f84b8bd",
+        "source_type": "repository",
+        "content_hash": "fc9aac4bd1c251cfc2eed5861cfb34e2cfa69249192c88c965884c432334980c",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "fc9aac4bd1c251cfc2eed5861cfb34e2cfa69249192c88c965884c432334980c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:25020d541e56c4187a4a7d02",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/getting-started/tutorial.md",
+        "heading": "keywords: [command line interface, cli, dlt init, dlt+, project]",
+        "start_line": 4,
+        "end_line": 15,
+        "start_char": 103,
+        "end_char": 529,
+        "score": "0.022939893488797235",
+        "root": "docs",
+        "matched_terms": [
+          "command",
+          "dlt"
+        ],
+        "evidence_id": "25020d541e56c4187a4a7d02",
+        "source_type": "repository",
+        "content_hash": "b4ef07e0fc83ca17b5cac016c720527b0b7d8f44fb36551d505d62b1e1c9a18f",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "b4ef07e0fc83ca17b5cac016c720527b0b7d8f44fb36551d505d62b1e1c9a18f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:29cc8bdb86e5cfa89bc10265",
+        "type": "evidence",
+        "path": "dlt/cli/plugins.py",
+        "heading": "",
+        "start_line": 479,
+        "end_line": 527,
+        "start_char": 18860,
+        "end_char": 20487,
+        "score": "0.03278688524590164",
+        "root": "code",
+        "matched_terms": [
+          "class",
+          "command",
+          "dashboard",
+          "dashboardcommand",
+          "dlt",
+          "starts"
+        ],
+        "evidence_id": "29cc8bdb86e5cfa89bc10265",
+        "source_type": "repository",
+        "content_hash": "542c451c24d5e4db0425827051e21610677f3d66360656ed969d71fcbbbe34cc",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "542c451c24d5e4db0425827051e21610677f3d66360656ed969d71fcbbbe34cc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2bb32f1acc565228d6ecee7e",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/getting-started/tutorial.md",
+        "heading": "keywords: [command line interface, cli, dlt init, dlt+, project] > Running the pipeline > View data",
+        "start_line": 155,
+        "end_line": 180,
+        "start_char": 5426,
+        "end_char": 5951,
+        "score": "0.031197195366257292",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline",
+          "show"
+        ],
+        "evidence_id": "2bb32f1acc565228d6ecee7e",
+        "source_type": "repository",
+        "content_hash": "6fcdba3030e3b84934757a5e289edc09118b0f9deeb1a97aeff9c520bff6f488",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "6fcdba3030e3b84934757a5e289edc09118b0f9deeb1a97aeff9c520bff6f488",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2c6dc21af4ff2e59ec462951",
+        "type": "evidence",
+        "path": "docs/website/docs/reference/command-line-interface.md",
+        "heading": "Command Line Interface Reference > `dlt pipeline` > `dlt pipeline show`",
+        "start_line": 184,
+        "end_line": 213,
+        "start_char": 6061,
+        "end_char": 7384,
+        "score": "0.04839549075403121",
+        "root": "docs",
+        "matched_terms": [
+          "dashboard",
+          "pipeline",
+          "preview",
+          "show",
+          "streamlit"
+        ],
+        "evidence_id": "2c6dc21af4ff2e59ec462951",
+        "source_type": "repository",
+        "content_hash": "943997d15aec21b86dc438e7509285c639670a659a698db5af34a43aa708336a",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "943997d15aec21b86dc438e7509285c639670a659a698db5af34a43aa708336a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2f27843917b06ece9133f106",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/plus/reference.md",
+        "start_line": 866,
+        "total_lines": 2133,
+        "start_char": 20088,
+        "end_char": 24331,
+        "evidence_id": "2f27843917b06ece9133f106",
+        "truncated": false,
+        "next_offset": 985,
+        "source_type": "repository",
+        "content_hash": "ee147e979aae839989711816b8017b5f12edbbb709e7c27c8fb3eeb4ec103635",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "offset": 865,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "ee147e979aae839989711816b8017b5f12edbbb709e7c27c8fb3eeb4ec103635",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:303dc999a7839580f451f1f2",
+        "type": "evidence",
+        "path": "docs/website/docs/reference/command-line-interface.md",
+        "heading": "Command Line Interface Reference > `dlt`",
+        "start_line": 26,
+        "end_line": 59,
+        "start_char": 792,
+        "end_char": 2282,
+        "score": "0.03589901477832512",
+        "root": "docs",
+        "matched_terms": [
+          "command",
+          "dlt",
+          "reference"
+        ],
+        "evidence_id": "303dc999a7839580f451f1f2",
+        "source_type": "repository",
+        "content_hash": "81cf98b510a61a7ae6c9958a1c912e761cb0ac77e2beb5e33f40570351423042",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "81cf98b510a61a7ae6c9958a1c912e761cb0ac77e2beb5e33f40570351423042",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:33b96412e75cda9825a87921",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/verified-sources/openapi-generator.md",
+        "heading": "OpenAPI source generator > CLI command",
+        "start_line": 158,
+        "end_line": 163,
+        "start_char": 7037,
+        "end_char": 7105,
+        "score": "0.02056541019955654",
+        "root": "docs",
+        "matched_terms": [
+          "command",
+          "dlt"
+        ],
+        "evidence_id": "33b96412e75cda9825a87921",
+        "source_type": "repository",
+        "content_hash": "db4ec1f0250260ce4bc7f6ffe47f54a0e75b76d6439a34b6834971fcfa1660a7",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "db4ec1f0250260ce4bc7f6ffe47f54a0e75b76d6439a34b6834971fcfa1660a7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:33bec7499904f78d1acce940",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+        "start_line": 1,
+        "total_lines": 193,
+        "start_char": 0,
+        "end_char": 6177,
+        "evidence_id": "33bec7499904f78d1acce940",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "19849e7d57a0c421cf7ff1cafc212819450227e3732ebd69b4a31e015e9e9d9d",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/walkthroughs/deploy-a-pipeline/deploy-with-prefect.md",
+              "offset": 27,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "19849e7d57a0c421cf7ff1cafc212819450227e3732ebd69b4a31e015e9e9d9d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3484584596bbf8cfb21d718b",
+        "type": "evidence",
+        "path": "docs/website/docs/build-a-pipeline-tutorial.md",
+        "heading": "Building data pipelines with `dlt`, from basic to advanced",
+        "start_line": 7,
+        "end_line": 10,
+        "start_char": 140,
+        "end_char": 367,
+        "score": "0.020038272734836507",
+        "root": "docs",
+        "matched_terms": [
+          "dlt",
+          "pipelines"
+        ],
+        "evidence_id": "3484584596bbf8cfb21d718b",
+        "source_type": "repository",
+        "content_hash": "6e013dff5487ee8a7cf15c554715b3267a18954b8afc17c296a253dd648be11b",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard command",
+            "pipelines-dir",
+            "dashboard edit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6e013dff5487ee8a7cf15c554715b3267a18954b8afc17c296a253dd648be11b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:36c143d4f2d0c928224f51b0",
+        "type": "evidence",
+        "path": "dlt/cli/plugins.py",
+        "heading": "",
+        "start_line": 169,
+        "end_line": 206,
+        "start_char": 6137,
+        "end_char": 7780,
+        "score": "0.022762345679012343",
+        "root": "code",
+        "matched_terms": [
+          "dir",
+          "pipelines",
+          "streamlit"
+        ],
+        "evidence_id": "36c143d4f2d0c928224f51b0",
+        "source_type": "repository",
+        "content_hash": "5628fbb67c7c2049636f31fb96c13961d4f96818e39fd5529f548f73d8a01623",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "5628fbb67c7c2049636f31fb96c13961d4f96818e39fd5529f548f73d8a01623",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:39794aaca19b82b7b8a70de4",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+        "start_line": 66,
+        "total_lines": 80,
+        "start_char": 2375,
+        "end_char": 3229,
+        "evidence_id": "39794aaca19b82b7b8a70de4",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "20ef1e20d5b71b3a16d2ae8bb21b51025a39a936bbb26fe768a309462ad7aa85",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "query": "## `dlt dashboard`",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 0,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+              "offset": 65,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "20ef1e20d5b71b3a16d2ae8bb21b51025a39a936bbb26fe768a309462ad7aa85",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3c4da1f5a060a821bc9fe736",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/reference/command-line-interface.md",
+        "start_line": 180,
+        "total_lines": 727,
+        "start_char": 5999,
+        "end_char": 10245,
+        "evidence_id": "3c4da1f5a060a821bc9fe736",
+        "truncated": false,
+        "next_offset": 299,
+        "source_type": "repository",
+        "content_hash": "7a62a546fa60e56e04a674c8bea78e2f3975b2cc1d69912d14e60833178f6a46",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "offset": 179,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "offset": 135,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7a62a546fa60e56e04a674c8bea78e2f3975b2cc1d69912d14e60833178f6a46",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3f033519ed30499891a0197c",
+        "type": "evidence",
+        "root": "code",
+        "path": "dlt/cli/plugins.py",
+        "start_line": 1,
+        "total_lines": 777,
+        "start_char": 0,
+        "end_char": 4456,
+        "evidence_id": "3f033519ed30499891a0197c",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "ceb32ca7fe5fff51d8034197057e00ceadf1c7a3e38645227e1a85c446943d27",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "dlt/cli/plugins.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "dlt/helpers/dashboard/runner.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ceb32ca7fe5fff51d8034197057e00ceadf1c7a3e38645227e1a85c446943d27",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4117252c338cf47e3e67fcf3",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt pipeline`",
+        "start_line": 870,
+        "end_line": 910,
+        "start_char": 20150,
+        "end_char": 21779,
+        "score": "0.030002218278615794",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline",
+          "show",
+          "streamlit"
+        ],
+        "evidence_id": "4117252c338cf47e3e67fcf3",
+        "source_type": "repository",
+        "content_hash": "0193a72c4a83f86945443cdc461230078100fd5494f8108eb76872442f7f1b0b",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "0193a72c4a83f86945443cdc461230078100fd5494f8108eb76872442f7f1b0b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:41f9de990c91f975bee8a6bb",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+        "heading": "keywords: [data, dataset, streamlit]",
+        "start_line": 4,
+        "end_line": 6,
+        "start_char": 82,
+        "end_char": 124,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "streamlit"
+        ],
+        "evidence_id": "41f9de990c91f975bee8a6bb",
+        "source_type": "repository",
+        "content_hash": "4bf3adad895327d93b53592d7c8e59fa296c06eda71fec3b6d5d9a82a1f599fa",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "4bf3adad895327d93b53592d7c8e59fa296c06eda71fec3b6d5d9a82a1f599fa",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:493234cf32e7d0c16def88de",
+        "type": "evidence",
+        "path": "dlt/helpers/dashboard/strings.py",
+        "heading": "Home section > Learn more",
+        "start_line": 78,
+        "end_line": 89,
+        "start_char": 2868,
+        "end_char": 3270,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "command",
+          "dashboard",
+          "dlt"
+        ],
+        "evidence_id": "493234cf32e7d0c16def88de",
+        "source_type": "repository",
+        "content_hash": "8a48c80e4850385e7dc4c44ffaeab2da11ad17846e812cd5916c08cad9df8ad5",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8a48c80e4850385e7dc4c44ffaeab2da11ad17846e812cd5916c08cad9df8ad5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4c02453270cb3cce2513451f",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+        "heading": "keywords: [destination, schema, data, monitoring, testing, quality]",
+        "start_line": 4,
+        "end_line": 6,
+        "start_char": 82,
+        "end_char": 155,
+        "score": "0.04309997630893153",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "4c02453270cb3cce2513451f",
+        "source_type": "repository",
+        "content_hash": "1d065d7ff42b0043fbe8acb5ed467d0694b5d43e7462e22050f070a918adf964",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "1d065d7ff42b0043fbe8acb5ed467d0694b5d43e7462e22050f070a918adf964",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4e571808b89feb1d46f33dc8",
+        "type": "evidence",
+        "path": "docs/website/docs/reference/command-line-interface.md",
+        "heading": "Command Line Interface Reference > `dlt pipeline`",
+        "start_line": 113,
+        "end_line": 150,
+        "start_char": 3387,
+        "end_char": 5095,
+        "score": "0.028177225029148854",
+        "root": "docs",
+        "matched_terms": [
+          "command",
+          "dir",
+          "dlt",
+          "pipelines"
+        ],
+        "evidence_id": "4e571808b89feb1d46f33dc8",
+        "source_type": "repository",
+        "content_hash": "fc9aac4bd1c251cfc2eed5861cfb34e2cfa69249192c88c965884c432334980c",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard command",
+            "pipelines-dir",
+            "dashboard edit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "fc9aac4bd1c251cfc2eed5861cfb34e2cfa69249192c88c965884c432334980c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5143819cb85fa1755041c22b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+        "start_line": 136,
+        "total_lines": 193,
+        "start_char": 6546,
+        "end_char": 8872,
+        "evidence_id": "5143819cb85fa1755041c22b",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "aa9887dcf4b5c01489a0f757b164365343152560c36a9578bd5c7b52eab58cf6",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "offset": 179,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "offset": 135,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "aa9887dcf4b5c01489a0f757b164365343152560c36a9578bd5c7b52eab58cf6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:51fd86fa3635e99a57477bbe",
+        "type": "evidence",
+        "path": "docs/examples/CONTRIBUTING.md",
+        "heading": "How to contribute your example > Checking your generated markdown",
+        "start_line": 18,
+        "end_line": 24,
+        "start_char": 853,
+        "end_char": 1215,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "command",
+          "starts"
+        ],
+        "evidence_id": "51fd86fa3635e99a57477bbe",
+        "source_type": "repository",
+        "content_hash": "b24022e5e6104b37ff0b6c6b47e5cd69d027fc8998259a852c631b8d337fff49",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "b24022e5e6104b37ff0b6c6b47e5cd69d027fc8998259a852c631b8d337fff49",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5b021a533e1c102dc36ed6e4",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt`",
+        "start_line": 25,
+        "end_line": 59,
+        "start_char": 791,
+        "end_char": 2420,
+        "score": "0.04195902633402633",
+        "root": "docs",
+        "matched_terms": [
+          "command",
+          "dlt",
+          "reference"
+        ],
+        "evidence_id": "5b021a533e1c102dc36ed6e4",
+        "source_type": "repository",
+        "content_hash": "40b79bee02c68eaa87836434479cffde71b15449df6cc8b1f90e2dfda6785213",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "40b79bee02c68eaa87836434479cffde71b15449df6cc8b1f90e2dfda6785213",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5cef61e1df3a9a4e66bd5a27",
+        "type": "evidence",
+        "path": "docs/website/docs/walkthroughs/run-a-pipeline.md",
+        "heading": "Run a pipeline > 3. See your data and tables",
+        "start_line": 83,
+        "end_line": 105,
+        "start_char": 3114,
+        "end_char": 3763,
+        "score": "0.03266623104938177",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline",
+          "show",
+          "streamlit"
+        ],
+        "evidence_id": "5cef61e1df3a9a4e66bd5a27",
+        "source_type": "repository",
+        "content_hash": "bf6870fab9ecee44b17bcd659f3338994b29a122f26234dd47c3cd22f8e834f7",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "bf6870fab9ecee44b17bcd659f3338994b29a122f26234dd47c3cd22f8e834f7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5d07a99eabcb9313c2c4f0c2",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+        "heading": "LLM-native workflow > Run the pipeline > Validate with Pipeline Dashboard",
+        "start_line": 140,
+        "end_line": 158,
+        "start_char": 6648,
+        "end_char": 7200,
+        "score": "0.04814747488101534",
+        "root": "docs",
+        "matched_terms": [
+          "dashboard",
+          "pipeline",
+          "show"
+        ],
+        "evidence_id": "5d07a99eabcb9313c2c4f0c2",
+        "source_type": "repository",
+        "content_hash": "a7d9a4609a34ea8a4d6ac74019d1eec9047bf1f9d7b935b9c65f0968a92bd1f9",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "a7d9a4609a34ea8a4d6ac74019d1eec9047bf1f9d7b935b9c65f0968a92bd1f9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5df14127b36b10189995561c",
+        "type": "evidence",
+        "root": "code",
+        "path": "dlt/helpers/dbt/exceptions.py",
+        "start_line": 1,
+        "total_lines": 33,
+        "start_char": 0,
+        "end_char": 774,
+        "evidence_id": "5df14127b36b10189995561c",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "328ce9f60b41e508a3953bf30b7b690a305e5d31b944d88a8b8a1fb83ab9a343",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "dlt/cli/plugins.py",
+              "query": "class DashboardCommand",
+              "limit": 120
+            },
+            {
+              "path": "dlt/helpers/dbt/exceptions.py",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "328ce9f60b41e508a3953bf30b7b690a305e5d31b944d88a8b8a1fb83ab9a343",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:625f3a068d014e3eca35950c",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt pipeline` > `dlt pipeline show`",
+        "start_line": 949,
+        "end_line": 976,
+        "start_char": 23277,
+        "end_char": 24116,
+        "score": "0.04090378069168328",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline",
+          "show",
+          "streamlit"
+        ],
+        "evidence_id": "625f3a068d014e3eca35950c",
+        "source_type": "repository",
+        "content_hash": "4d8d39d76f50542cb71a82478a6c978ede6d4abb85aa7601e8ea947e95921053",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "4d8d39d76f50542cb71a82478a6c978ede6d4abb85aa7601e8ea947e95921053",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:637fd6c56a4333eb8e91ed42",
+        "type": "evidence",
+        "evidence_id": "637fd6c56a4333eb8e91ed42",
+        "source_type": "task",
+        "exported_content_sha256": "dd4cd406c916ec50464eaaf6ac6006f205ab2973cb7ba3fd0a408ca2117080df",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:68a1fb4c54bbb7eb5a7e0566",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/dataset-access/marimo.md",
+        "heading": "Explore your data with marimo > Features > Create a dashboard and data apps",
+        "start_line": 70,
+        "end_line": 74,
+        "start_char": 2413,
+        "end_char": 2837,
+        "score": "0.043991463178717854",
+        "root": "docs",
+        "matched_terms": [
+          "dashboard"
+        ],
+        "evidence_id": "68a1fb4c54bbb7eb5a7e0566",
+        "source_type": "repository",
+        "content_hash": "7dd15b2a080742ff30ccc0dc83515c6869011ccd157e0a731b11c14e28246dce",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q2-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "7dd15b2a080742ff30ccc0dc83515c6869011ccd157e0a731b11c14e28246dce",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:69f954b1e322f3bb74c5be9a",
+        "type": "evidence",
+        "path": "dlt/helpers/dashboard/runner.py",
+        "heading": "keep this, will raise if user tries to run dashboard without dependencies",
+        "start_line": 9,
+        "end_line": 49,
+        "start_char": 187,
+        "end_char": 1810,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "run_dashboard"
+        ],
+        "evidence_id": "69f954b1e322f3bb74c5be9a",
+        "source_type": "repository",
+        "content_hash": "c0c8c279c2aa25878f21b0f28cfcda26ad3335aa73af9541008f8360ebc4633f",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c0c8c279c2aa25878f21b0f28cfcda26ad3335aa73af9541008f8360ebc4633f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6b08c4f514eaa47110366ac6",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 82,
+        "score": "0.045169436298468556",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "6b08c4f514eaa47110366ac6",
+        "source_type": "repository",
+        "content_hash": "564b32f1d9272bf83fd0b4297270955ae4cee09e7548afa07a0b5d194d45bc69",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "564b32f1d9272bf83fd0b4297270955ae4cee09e7548afa07a0b5d194d45bc69",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:711b7b3396bd79be2106cb0d",
+        "type": "evidence",
+        "evidence_id": "711b7b3396bd79be2106cb0d",
+        "source_type": "implementation",
+        "exported_content_sha256": "adc029910afc1c6794db3b05261012be7beccb3b3a43c0cf1804acd1f3fa8868",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:746fe5df76d830c22ac44ff4",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt telemetry`",
+        "start_line": 1982,
+        "end_line": 2005,
+        "start_char": 46491,
+        "end_char": 46903,
+        "score": "0.0362283590280896",
+        "root": "docs",
+        "matched_terms": [
+          "command",
+          "dlt"
+        ],
+        "evidence_id": "746fe5df76d830c22ac44ff4",
+        "source_type": "repository",
+        "content_hash": "343991c19d0c053a13df34c22690791646c4c843f93da663e2c5eafe29391b3f",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "343991c19d0c053a13df34c22690791646c4c843f93da663e2c5eafe29391b3f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:764321839585d3c457bd581b",
+        "type": "evidence",
+        "path": "docs/website/docs/tutorial/load-data-from-an-api.md",
+        "heading": "keywords: [getting started, quick start, basic examples] > Declare loading behavior > Load only new data (incremental loading)",
+        "start_line": 235,
+        "end_line": 236,
+        "start_char": 9599,
+        "end_char": 9671,
+        "score": "0.022941476567832512",
+        "root": "docs",
+        "matched_terms": [
+          "command",
+          "dlt",
+          "reference"
+        ],
+        "evidence_id": "764321839585d3c457bd581b",
+        "source_type": "repository",
+        "content_hash": "f1ae37ccf6690f4affec3bd678d3a2fce62862d72b034251e01bbb081013634d",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "f1ae37ccf6690f4affec3bd678d3a2fce62862d72b034251e01bbb081013634d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8fa976fa4aa0433cc4aa5310",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+        "heading": "Data quality dashboards > Tests",
+        "start_line": 16,
+        "end_line": 19,
+        "start_char": 413,
+        "end_char": 650,
+        "score": "0.04312592284976006",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline"
+        ],
+        "evidence_id": "8fa976fa4aa0433cc4aa5310",
+        "source_type": "repository",
+        "content_hash": "5a2e6807c5977a498f01a2a55be31daac71e29cb1932825bd64f5e841ee36a4a",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5a2e6807c5977a498f01a2a55be31daac71e29cb1932825bd64f5e841ee36a4a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:907e1eef4e240d760410e34a",
+        "type": "evidence",
+        "path": "dlt/destinations/impl/weaviate/weaviate_client.py",
+        "heading": "",
+        "start_line": 287,
+        "end_line": 333,
+        "start_char": 10913,
+        "end_char": 12539,
+        "score": "0.015151515151515152",
+        "root": "code",
+        "matched_terms": [
+          "class"
+        ],
+        "evidence_id": "907e1eef4e240d760410e34a",
+        "source_type": "repository",
+        "content_hash": "e355f5d5440f8be4af918e4fa240b80c2fc219f7741fbaff564c16f9ad889759",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e355f5d5440f8be4af918e4fa240b80c2fc219f7741fbaff564c16f9ad889759",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:91fcf1686f760139d2d5ce7b",
+        "type": "evidence",
+        "path": "dlt/helpers/streamlit_app/utils.py",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1625,
+        "score": "0.022964015151515152",
+        "root": "code",
+        "matched_terms": [
+          "dir",
+          "pipelines",
+          "streamlit"
+        ],
+        "evidence_id": "91fcf1686f760139d2d5ce7b",
+        "source_type": "repository",
+        "content_hash": "ff9381218f086e9a4194d130f383a03784b29672420f10b921c77ebc62da5fd8",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ff9381218f086e9a4194d130f383a03784b29672420f10b921c77ebc62da5fd8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:95bee23d440a0b45d45cbe15",
+        "type": "evidence",
+        "path": "docs/website/tools/update_snippets.js",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 50,
+        "start_char": 0,
+        "end_char": 1327,
+        "score": "0.016129032258064516",
+        "root": "code",
+        "matched_terms": [
+          "dir",
+          "pipelines"
+        ],
+        "evidence_id": "95bee23d440a0b45d45cbe15",
+        "source_type": "repository",
+        "content_hash": "018f599172762c197150439df45af16e0748deff2d20697d153cdad183ffdbe0",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "018f599172762c197150439df45af16e0748deff2d20697d153cdad183ffdbe0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9637a002cb0af3a4dba6bb6c",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+        "heading": "Data quality dashboards",
+        "start_line": 7,
+        "end_line": 15,
+        "start_char": 155,
+        "end_char": 413,
+        "score": "0.03007688828584351",
+        "root": "docs",
+        "matched_terms": [
+          "dlt"
+        ],
+        "evidence_id": "9637a002cb0af3a4dba6bb6c",
+        "source_type": "repository",
+        "content_hash": "110107386f5a244eacdbd0d30c3cce4ba007190942f8f6bf31a0d515a4c95fd4",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard command",
+            "pipelines-dir",
+            "dashboard edit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "110107386f5a244eacdbd0d30c3cce4ba007190942f8f6bf31a0d515a4c95fd4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a476f6d82b6c31ef1d98c073",
+        "type": "evidence",
+        "path": "dlt/helpers/dashboard/strings.py",
+        "heading": "Reusable string parts",
+        "start_line": 6,
+        "end_line": 19,
+        "start_char": 40,
+        "end_char": 501,
+        "score": "0.015873015873015872",
+        "root": "code",
+        "matched_terms": [
+          "command",
+          "dashboard",
+          "dlt"
+        ],
+        "evidence_id": "a476f6d82b6c31ef1d98c073",
+        "source_type": "repository",
+        "content_hash": "ec910ad96457bbd0719b91f98524f427943be686955bd2d1385ce188adbc8837",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ec910ad96457bbd0719b91f98524f427943be686955bd2d1385ce188adbc8837",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a516d21a78c174067a3dcad6",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+        "heading": "View data with Streamlit > Launching the Streamlit app",
+        "start_line": 32,
+        "end_line": 42,
+        "start_char": 1111,
+        "end_char": 1490,
+        "score": "0.04128421496485301",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline",
+          "show",
+          "streamlit"
+        ],
+        "evidence_id": "a516d21a78c174067a3dcad6",
+        "source_type": "repository",
+        "content_hash": "a99a112d07f58a5991eeb5d58ef36a5b6a8be437a98029f2f4dc273bd7e65077",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "a99a112d07f58a5991eeb5d58ef36a5b6a8be437a98029f2f4dc273bd7e65077",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a85e7746ca9c283c78c69aed",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt dataset` > `dlt dataset show`",
+        "start_line": 1697,
+        "end_line": 1720,
+        "start_char": 41410,
+        "end_char": 41785,
+        "score": "0.02886459269437993",
+        "root": "docs",
+        "matched_terms": [
+          "show",
+          "streamlit"
+        ],
+        "evidence_id": "a85e7746ca9c283c78c69aed",
+        "source_type": "repository",
+        "content_hash": "57d7de2014a904a92624e283660758f5d1a12aa274116e6340ade5b8386a800d",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "pipeline show dashboard",
+            "--dashboard flag",
+            "--streamlit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "57d7de2014a904a92624e283660758f5d1a12aa274116e6340ade5b8386a800d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:abac2cf210b41f90eb781763",
+        "type": "evidence",
+        "path": "dlt/cli/pipeline_command.py",
+        "heading": "",
+        "start_line": 51,
+        "end_line": 94,
+        "start_char": 1616,
+        "end_char": 3315,
+        "score": "0.02388097024256064",
+        "root": "code",
+        "matched_terms": [
+          "run_dashboard",
+          "streamlit"
+        ],
+        "evidence_id": "abac2cf210b41f90eb781763",
+        "source_type": "repository",
+        "content_hash": "50e21b57517302fb5478b9b40b61c1e86e8f0f1dde0ffab6888a6d348b3910da",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "50e21b57517302fb5478b9b40b61c1e86e8f0f1dde0ffab6888a6d348b3910da",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b5edca0c7e7735e238dd1fd0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/walkthroughs/deploy-a-pipeline/deploy-with-prefect.md",
+        "start_line": 28,
+        "total_lines": 73,
+        "start_char": 1974,
+        "end_char": 4362,
+        "evidence_id": "b5edca0c7e7735e238dd1fd0",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "b39010974a40fa88d3cdc2a2f3838f916fe228ac1367ab197b18057c71ab6542",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/walkthroughs/deploy-a-pipeline/deploy-with-prefect.md",
+              "offset": 27,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "b39010974a40fa88d3cdc2a2f3838f916fe228ac1367ab197b18057c71ab6542",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b6e052e69109c5308076661d",
+        "type": "evidence",
+        "path": "Makefile",
+        "heading": "check docstrings for all important public classes and functions",
+        "start_line": 141,
+        "end_line": 170,
+        "start_char": 5443,
+        "end_char": 6911,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "command",
+          "dashboard",
+          "dlt"
+        ],
+        "evidence_id": "b6e052e69109c5308076661d",
+        "source_type": "repository",
+        "content_hash": "2c41cb7316552f41dc890e7b934435d05f65a953cb00fa63992f6fb3f7dbf373",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2c41cb7316552f41dc890e7b934435d05f65a953cb00fa63992f6fb3f7dbf373",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c52e0bf6a7d47b3dcc134c7d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+        "start_line": 28,
+        "total_lines": 66,
+        "start_char": 971,
+        "end_char": 2162,
+        "evidence_id": "c52e0bf6a7d47b3dcc134c7d",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "d8a3f8a82d746888e6e34bde6cc62ba124d8e4dec1dcb1c617e25652893c9aee",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/streamlit.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/walkthroughs/deploy-a-pipeline/deploy-with-prefect.md",
+              "offset": 27,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "d8a3f8a82d746888e6e34bde6cc62ba124d8e4dec1dcb1c617e25652893c9aee",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c60616fd515ddc9e97ae52b5",
+        "type": "evidence",
+        "path": "dlt/cli/command_wrappers.py",
+        "heading": "",
+        "start_line": 137,
+        "end_line": 178,
+        "start_char": 4543,
+        "end_char": 6032,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "run_dashboard"
+        ],
+        "evidence_id": "c60616fd515ddc9e97ae52b5",
+        "source_type": "repository",
+        "content_hash": "756a6337bd31b72d7976997df45ca61a8bfb3195a688bb84f1a3d04de8593c07",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "756a6337bd31b72d7976997df45ca61a8bfb3195a688bb84f1a3d04de8593c07",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c807ca4f3f54ce0d8851d03d",
+        "type": "evidence",
+        "path": "dlt/sources/helpers/rest_client/exceptions.py",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 17,
+        "start_char": 0,
+        "end_char": 290,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "class",
+          "dlt"
+        ],
+        "evidence_id": "c807ca4f3f54ce0d8851d03d",
+        "source_type": "repository",
+        "content_hash": "e4da989d0245ad8d50efb0ef6de373320d2786ca2eb2fed95b70fc94187991e1",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "e4da989d0245ad8d50efb0ef6de373320d2786ca2eb2fed95b70fc94187991e1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cdfea7c8073fb2cb506ada5e",
+        "type": "evidence",
+        "path": "dlt/cli/plugins.py",
+        "heading": "TODO: define actual command and re-enable",
+        "start_line": 754,
+        "end_line": 777,
+        "start_char": 29512,
+        "end_char": 30142,
+        "score": "0.020384351407000685",
+        "root": "code",
+        "matched_terms": [
+          "command",
+          "dashboardcommand"
+        ],
+        "evidence_id": "cdfea7c8073fb2cb506ada5e",
+        "source_type": "repository",
+        "content_hash": "9f52486fcfdda97a50c5ce09e2e3dc1f06f6caa03ee41c4f6f5c630081de260d",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "9f52486fcfdda97a50c5ce09e2e3dc1f06f6caa03ee41c4f6f5c630081de260d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d240e7c7cce06cea9e30b26f",
+        "type": "evidence",
+        "root": "code",
+        "path": "dlt/helpers/dashboard/runner.py",
+        "start_line": 1,
+        "total_lines": 67,
+        "start_char": 0,
+        "end_char": 2379,
+        "evidence_id": "d240e7c7cce06cea9e30b26f",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "82e1acf311bc37a6f7e9d183ae4018545987d0500db3d29e9f7a5270a12530e6",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "dlt/cli/plugins.py",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "dlt/helpers/dashboard/runner.py",
+              "query": "",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "82e1acf311bc37a6f7e9d183ae4018545987d0500db3d29e9f7a5270a12530e6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d2d64a2277cef6e597744f5c",
+        "type": "evidence",
+        "path": "docs/website/docs/walkthroughs/deploy-a-pipeline/deploy-with-prefect.md",
+        "heading": "Deploy with Prefect > Building data pipelines with `dlt` > Here's a summary of the steps followed:",
+        "start_line": 32,
+        "end_line": 71,
+        "start_char": 2540,
+        "end_char": 4221,
+        "score": "0.03575040453074434",
+        "root": "docs",
+        "matched_terms": [
+          "dashboard",
+          "pipeline"
+        ],
+        "evidence_id": "d2d64a2277cef6e597744f5c",
+        "source_type": "repository",
+        "content_hash": "be119231bf1e37ed8d99d8d2807960a88ced77191053b4f3ab7337e7b92afd8d",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "be119231bf1e37ed8d99d8d2807960a88ced77191053b4f3ab7337e7b92afd8d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d55038847b5d66d8259e2e9c",
+        "type": "evidence",
+        "path": "dlt/sources/rest_api/typing.py",
+        "heading": "class OAuthJWTAuthConfig(AuthTypeConfig, total=True):",
+        "start_line": 177,
+        "end_line": 226,
+        "start_char": 4660,
+        "end_char": 5792,
+        "score": "0.015384615384615385",
+        "root": "code",
+        "matched_terms": [
+          "class"
+        ],
+        "evidence_id": "d55038847b5d66d8259e2e9c",
+        "source_type": "repository",
+        "content_hash": "c82f202ba6fe0750c790ef1f6288b14c842e228a7f25262de446f12708ba81c5",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "c82f202ba6fe0750c790ef1f6288b14c842e228a7f25262de446f12708ba81c5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:da4407321409dfceb0bcfe71",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+        "start_line": 28,
+        "total_lines": 39,
+        "start_char": 1294,
+        "end_char": 2894,
+        "evidence_id": "da4407321409dfceb0bcfe71",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "09781c2993d1d177e5016d28c4f2662bca7b543e0d76dcb0b50f507a7f34750e",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "offset": 179,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 27,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/dlt-ecosystem/llm-tooling/llm-native-workflow.md",
+              "offset": 135,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "09781c2993d1d177e5016d28c4f2662bca7b543e0d76dcb0b50f507a7f34750e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ddc1e5127765d54fea0a3869",
+        "type": "evidence",
+        "path": "docs/website/docs/dlt-ecosystem/verified-sources/shopify.md",
+        "heading": "Shopify > Sources and resources > Resource `shopify_partner_query`:",
+        "start_line": 203,
+        "end_line": 236,
+        "start_char": 8431,
+        "end_char": 9599,
+        "score": "0.030305091733663164",
+        "root": "docs",
+        "matched_terms": [
+          "dashboard"
+        ],
+        "evidence_id": "ddc1e5127765d54fea0a3869",
+        "source_type": "repository",
+        "content_hash": "18baa2ed93e44c31c777b69653265ba217a5a21523eeffd696c9318ab995314f",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "18baa2ed93e44c31c777b69653265ba217a5a21523eeffd696c9318ab995314f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e65a1f9fc6b78c9e452dc5cf",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/reference.md",
+        "heading": "Command line interface reference > `dlt project` > `dlt project clean`",
+        "start_line": 607,
+        "end_line": 631,
+        "start_char": 14881,
+        "end_char": 15686,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "dir",
+          "pipelines"
+        ],
+        "evidence_id": "e65a1f9fc6b78c9e452dc5cf",
+        "source_type": "repository",
+        "content_hash": "b1d086a7fe592fbb56ee024a51048cc97ba3b57d1cdabcc2be129d658d40fd96",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b1d086a7fe592fbb56ee024a51048cc97ba3b57d1cdabcc2be129d658d40fd96",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e6967fb5ead6c541c5881a6d",
+        "type": "evidence",
+        "path": "docs/website/docs/reference/command-line-interface.md",
+        "heading": "Command Line Interface Reference > `dlt pipeline` > `dlt pipeline show`",
+        "start_line": 184,
+        "end_line": 213,
+        "start_char": 6061,
+        "end_char": 7384,
+        "score": "0.015625",
+        "root": "code",
+        "matched_terms": [
+          "dashboard",
+          "dlt"
+        ],
+        "evidence_id": "e6967fb5ead6c541c5881a6d",
+        "source_type": "repository",
+        "content_hash": "943997d15aec21b86dc438e7509285c639670a659a698db5af34a43aa708336a",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "class DashboardCommand",
+            "dlt dashboard command starts"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "943997d15aec21b86dc438e7509285c639670a659a698db5af34a43aa708336a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e758b63213b3d9dfbb24e876",
+        "type": "evidence",
+        "root": "code",
+        "path": "dlt/cli/plugins.py",
+        "start_line": 477,
+        "total_lines": 777,
+        "start_char": 18726,
+        "end_char": 23517,
+        "evidence_id": "e758b63213b3d9dfbb24e876",
+        "truncated": false,
+        "next_offset": 596,
+        "source_type": "repository",
+        "content_hash": "bc19e3897e07b084f11b4c7889b0ca7e10dc5932c4994d3e70f6f2fb6a768b35",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "read_many",
+          "root": "code",
+          "reads": [
+            {
+              "path": "dlt/cli/plugins.py",
+              "query": "class DashboardCommand",
+              "limit": 120
+            },
+            {
+              "path": "dlt/helpers/dbt/exceptions.py",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "bc19e3897e07b084f11b4c7889b0ca7e10dc5932c4994d3e70f6f2fb6a768b35",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e75fa8b4b1dab2683e18ba2e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/reference/command-line-interface.md",
+        "start_line": 109,
+        "total_lines": 727,
+        "start_char": 3316,
+        "end_char": 7793,
+        "evidence_id": "e75fa8b4b1dab2683e18ba2e",
+        "truncated": false,
+        "next_offset": 228,
+        "source_type": "repository",
+        "content_hash": "5a1954b3eaafc7bc3a9f22b616fe809bd4a03d7190dd7bdde77583cfd1fcb209",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "offset": 865,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5a1954b3eaafc7bc3a9f22b616fe809bd4a03d7190dd7bdde77583cfd1fcb209",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e7d8925d4a4cf1a511a927e7",
+        "type": "evidence",
+        "path": "docs/website/docs/plus/getting-started/tutorial.md",
+        "heading": "keywords: [command line interface, cli, dlt init, dlt+, project] > Running the pipeline > Inspecting the results",
+        "start_line": 134,
+        "end_line": 137,
+        "start_char": 4823,
+        "end_char": 4989,
+        "score": "0.033722899728997294",
+        "root": "docs",
+        "matched_terms": [
+          "command",
+          "dlt",
+          "reference"
+        ],
+        "evidence_id": "e7d8925d4a4cf1a511a927e7",
+        "source_type": "repository",
+        "content_hash": "c8ce39da05b5659beab1e5c267244057067ce4a3a8db55fcaaf8726546b44d84",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "dlt dashboard",
+            "DashboardCommand",
+            "dashboard command reference"
+          ]
+        },
+        "retrieved_for": [
+          "Q2-1"
+        ],
+        "exported_content_sha256": "c8ce39da05b5659beab1e5c267244057067ce4a3a8db55fcaaf8726546b44d84",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ea2678fa64cdcd817d806c2a",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+        "heading": "Data quality dashboards > Tools to create dashboards",
+        "start_line": 32,
+        "end_line": 39,
+        "start_char": 1829,
+        "end_char": 2894,
+        "score": "0.04347566936079918",
+        "root": "docs",
+        "matched_terms": [
+          "streamlit"
+        ],
+        "evidence_id": "ea2678fa64cdcd817d806c2a",
+        "source_type": "repository",
+        "content_hash": "9dc1ceac2211dfa233a77de628ddfa87f948f2e162156b19e5eb71b3eaba0dc7",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "show --dashboard",
+            "pipeline dashboard preview",
+            "streamlit dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "9dc1ceac2211dfa233a77de628ddfa87f948f2e162156b19e5eb71b3eaba0dc7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f084cfb3c5ca5fb160a9b702",
+        "type": "evidence",
+        "path": "docs/website/docs/general-usage/pipeline.md",
+        "heading": "Pipeline > Monitor the loading progress",
+        "start_line": 230,
+        "end_line": 241,
+        "start_char": 11094,
+        "end_char": 11448,
+        "score": "0.02518313305907413",
+        "root": "docs",
+        "matched_terms": [
+          "pipeline"
+        ],
+        "evidence_id": "f084cfb3c5ca5fb160a9b702",
+        "source_type": "repository",
+        "content_hash": "d80c5d31af14281be6ecbdccd6c91de9d63dd5cb483f2a527cd12bd16c41eedc",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "pipeline show dashboard",
+            "--dashboard flag",
+            "--streamlit"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "d80c5d31af14281be6ecbdccd6c91de9d63dd5cb483f2a527cd12bd16c41eedc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f5f28741e49a3b08a9fe5986",
+        "type": "evidence",
+        "path": "dlt/helpers/streamlit_app/__init__.py",
+        "heading": "FIXME: Remove this after implementing package installer",
+        "start_line": 3,
+        "end_line": 11,
+        "start_char": 62,
+        "end_char": 349,
+        "score": "0.01639344262295082",
+        "root": "code",
+        "matched_terms": [
+          "streamlit"
+        ],
+        "evidence_id": "f5f28741e49a3b08a9fe5986",
+        "source_type": "repository",
+        "content_hash": "ab8b41db20c6d9fdb5a98937133be2d0634e8ae39e4e910fd5f74b0d38156825",
+        "revision": "32d4908252dc9e38ef751e3015b1e8debb12a140",
+        "via": {
+          "kind": "search",
+          "root": "code",
+          "queries": [
+            "--streamlit",
+            "--pipelines-dir",
+            "run_dashboard"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "ab8b41db20c6d9fdb5a98937133be2d0634e8ae39e4e910fd5f74b0d38156825",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:faa674c0fbde47962332b27e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+        "start_line": 3,
+        "total_lines": 39,
+        "start_char": 33,
+        "end_char": 2894,
+        "evidence_id": "faa674c0fbde47962332b27e",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "29a1eed8ccf16864af8b0c65fa9787f11d78fbc76587ead02495138d665a38f6",
+        "revision": "2d8c71ab9406c4568ed115a70003aa8163d4d8c7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/website/docs/general-usage/dataset-access/data-quality-dashboard.md",
+              "offset": 2,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/reference/command-line-interface.md",
+              "offset": 108,
+              "limit": 120
+            },
+            {
+              "path": "docs/website/docs/plus/reference.md",
+              "offset": 865,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "29a1eed8ccf16864af8b0c65fa9787f11d78fbc76587ead02495138d665a38f6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:cli-reference-pipeline-show",
+        "type": "requirement",
+        "description": "Update the `dlt pipeline show` section of the CLI reference: the dashboard is now the default view (no `--dashboard` flag), the legacy Streamlit app is launched with `--streamlit`, and `--edit` only applies to the dashboard. Update usage line, description, and options accordingly."
+      },
+      {
+        "id": "requirement:cli-reference-dashboard-cmd",
+        "type": "requirement",
+        "description": "Add/update the `dlt dashboard` command reference documenting the newly enabled command with its `--pipelines-dir` and `--edit` options and the marimo-based dashboard description."
+      },
+      {
+        "id": "requirement:llm-workflow-dashboard-flag",
+        "type": "requirement",
+        "description": "In the LLM-native workflow guide, replace `dlt pipeline {source}_pipeline show --dashboard` with the new default `dlt pipeline {source}_pipeline show` since the dashboard is now the default view."
+      },
+      {
+        "id": "requirement:streamlit-page-legacy-note",
+        "type": "requirement",
+        "description": "In the Streamlit dataset-access page, note that `dlt pipeline show` now launches the new dashboard by default and that the Streamlit app requires the `--streamlit` flag."
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "How do the docs currently describe the `dlt pipeline show` command, its `--dashboard`/`--streamlit`/`--edit` flags, and the default view?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "How do the docs describe the `dlt dashboard` command and its options (pipelines-dir, edit)?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "What does the CLI plugin help text and dashboard runner now expose for show/dashboard commands?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "Does the docs reference for `dlt dashboard` command exist and describe its options (--pipelines-dir, --edit)?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "What does the new DashboardCommand help/description text say in plugins.py for the `dlt dashboard` command?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Are there other docs pages referencing `--dashboard` flag or the streamlit dashboard that need updating to the new default?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0229fb27ecafca75586c3e17",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0901213d3b87a4bfce987ecc",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0a3a3487d63359351e48acdd",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0e20e5a375dcdd4fcf76627a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:16a8b9ce6b9cf454c4b22a2e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1b45a5666f66187b6d76b18f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1fc50189d37e6ce79f84b8bd",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:25020d541e56c4187a4a7d02",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:29cc8bdb86e5cfa89bc10265",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2bb32f1acc565228d6ecee7e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2bb32f1acc565228d6ecee7e",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2c6dc21af4ff2e59ec462951",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2c6dc21af4ff2e59ec462951",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2c6dc21af4ff2e59ec462951",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2c6dc21af4ff2e59ec462951",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2f27843917b06ece9133f106",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:303dc999a7839580f451f1f2",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:33b96412e75cda9825a87921",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:33bec7499904f78d1acce940",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3484584596bbf8cfb21d718b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:36c143d4f2d0c928224f51b0",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:39794aaca19b82b7b8a70de4",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3c4da1f5a060a821bc9fe736",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3f033519ed30499891a0197c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4117252c338cf47e3e67fcf3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4117252c338cf47e3e67fcf3",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:41f9de990c91f975bee8a6bb",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:493234cf32e7d0c16def88de",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4c02453270cb3cce2513451f",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e571808b89feb1d46f33dc8",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e571808b89feb1d46f33dc8",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5143819cb85fa1755041c22b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:51fd86fa3635e99a57477bbe",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5b021a533e1c102dc36ed6e4",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5cef61e1df3a9a4e66bd5a27",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5cef61e1df3a9a4e66bd5a27",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d07a99eabcb9313c2c4f0c2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d07a99eabcb9313c2c4f0c2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d07a99eabcb9313c2c4f0c2",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5d07a99eabcb9313c2c4f0c2",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5df14127b36b10189995561c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:625f3a068d014e3eca35950c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:625f3a068d014e3eca35950c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68a1fb4c54bbb7eb5a7e0566",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68a1fb4c54bbb7eb5a7e0566",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68a1fb4c54bbb7eb5a7e0566",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:68a1fb4c54bbb7eb5a7e0566",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:69f954b1e322f3bb74c5be9a",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6b08c4f514eaa47110366ac6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6b08c4f514eaa47110366ac6",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:746fe5df76d830c22ac44ff4",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:764321839585d3c457bd581b",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8fa976fa4aa0433cc4aa5310",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8fa976fa4aa0433cc4aa5310",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:907e1eef4e240d760410e34a",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:91fcf1686f760139d2d5ce7b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:95bee23d440a0b45d45cbe15",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9637a002cb0af3a4dba6bb6c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a476f6d82b6c31ef1d98c073",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a516d21a78c174067a3dcad6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a516d21a78c174067a3dcad6",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a85e7746ca9c283c78c69aed",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:abac2cf210b41f90eb781763",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b5edca0c7e7735e238dd1fd0",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b6e052e69109c5308076661d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c52e0bf6a7d47b3dcc134c7d",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c60616fd515ddc9e97ae52b5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c807ca4f3f54ce0d8851d03d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cdfea7c8073fb2cb506ada5e",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d240e7c7cce06cea9e30b26f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d2d64a2277cef6e597744f5c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d2d64a2277cef6e597744f5c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d55038847b5d66d8259e2e9c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da4407321409dfceb0bcfe71",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ddc1e5127765d54fea0a3869",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ddc1e5127765d54fea0a3869",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e65a1f9fc6b78c9e452dc5cf",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e6967fb5ead6c541c5881a6d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e758b63213b3d9dfbb24e876",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e75fa8b4b1dab2683e18ba2e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e7d8925d4a4cf1a511a927e7",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ea2678fa64cdcd817d806c2a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ea2678fa64cdcd817d806c2a",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f084cfb3c5ca5fb160a9b702",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f5f28741e49a3b08a9fe5986",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:faa674c0fbde47962332b27e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3c4da1f5a060a821bc9fe736",
+        "to": "requirement:cli-reference-pipeline-show",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:e758b63213b3d9dfbb24e876",
+        "to": "requirement:cli-reference-pipeline-show",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:d240e7c7cce06cea9e30b26f",
+        "to": "requirement:cli-reference-pipeline-show",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:29cc8bdb86e5cfa89bc10265",
+        "to": "requirement:cli-reference-dashboard-cmd",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:e758b63213b3d9dfbb24e876",
+        "to": "requirement:cli-reference-dashboard-cmd",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:d240e7c7cce06cea9e30b26f",
+        "to": "requirement:cli-reference-dashboard-cmd",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5d07a99eabcb9313c2c4f0c2",
+        "to": "requirement:llm-workflow-dashboard-flag",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:5143819cb85fa1755041c22b",
+        "to": "requirement:llm-workflow-dashboard-flag",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:3c4da1f5a060a821bc9fe736",
+        "to": "requirement:llm-workflow-dashboard-flag",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c52e0bf6a7d47b3dcc134c7d",
+        "to": "requirement:streamlit-page-legacy-note",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:3c4da1f5a060a821bc9fe736",
+        "to": "requirement:streamlit-page-legacy-note",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:e758b63213b3d9dfbb24e876",
+        "to": "requirement:streamlit-page-legacy-note",
+        "type": "motivates"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

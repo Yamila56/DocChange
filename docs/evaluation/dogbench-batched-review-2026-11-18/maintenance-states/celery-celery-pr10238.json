@@ -1,0 +1,2860 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "FINALIZE",
+  "tasks": [
+    {
+      "id": "routing-priority-ordering",
+      "description": "In docs/userguide/routing.rst, add an explicit statement in the RabbitMQ Message Priorities section that higher priority values mean higher priority (matching AMQP semantics), and in the Redis Message Priorities section clarify that after the 4.0 reversal higher values mean higher priority too, so users aren't misled by older '0 is highest' guidance.",
+      "evidence_ids": [
+        "f04abe632115457b558b20c0",
+        "569055fa819257cb3c06f53c",
+        "faab441d67d712acfbf59b19",
+        "0dee4948b05da319eedabad7"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "faq-task-priorities",
+      "description": "In docs/faq.rst, expand the 'Does Celery support task priorities?' answer to state the ordering direction per broker: for RabbitMQ (AMQP) higher numbers mean higher priority, and for Redis the same holds since Celery 4.0 (priority 0 lowest, 9 highest), noting the historical reversal.",
+      "evidence_ids": [
+        "91d521a53942f926d3e70df6",
+        "569055fa819257cb3c06f53c",
+        "faab441d67d712acfbf59b19"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "f2227d46c7a0c05099faec908e24d44fe404c408023eca54451e546ddc51fb08",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where does the documentation describe task priority semantics and the priority argument range?",
+          "root": "docs",
+          "queries": [
+            "priority",
+            "task priority",
+            "priority 0 9"
+          ],
+          "paths": [
+            "docs/userguide/calling.rst",
+            "docs/userguide/routing.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 2747,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "7ad2dec593d079fc3460f971",
+            "e87d55742dfff4f0d9d3b508",
+            "706a0ac28ce88ab97041db2c",
+            "c79c9db19f5a3937bed7b7f6",
+            "ac1d3de72cc202de9ee51466",
+            "5bc9fa0aab9f672cf8f3e3e2",
+            "4e7396d03e32b961e00f6db6",
+            "afd4cc976325c78e38322eff",
+            "78f706604d00ec4056cb468d",
+            "83ea7a4ebdde27145fb8d39b",
+            "1356a55378c5cc325fd2f76c",
+            "f7249378d66996b2dca0eeb3",
+            "1493ec9801939c1d743ef525",
+            "a2e29133cb6259e20f4ab876",
+            "00794f5dc076220063086919"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "c79c9db19f5a3937bed7b7f6",
+              "score": "0.04764267990074442"
+            },
+            {
+              "rank": 2,
+              "path": "docs/history/whatsnew-3.0.rst",
+              "evidence_id": "ac1d3de72cc202de9ee51466",
+              "score": "0.04715356328259554"
+            },
+            {
+              "rank": 3,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "5bc9fa0aab9f672cf8f3e3e2",
+              "score": "0.04697234084890787"
+            },
+            {
+              "rank": 4,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "4e7396d03e32b961e00f6db6",
+              "score": "0.04651119624613923"
+            },
+            {
+              "rank": 5,
+              "path": "docs/history/changelog-4.3.rst",
+              "evidence_id": "afd4cc976325c78e38322eff",
+              "score": "0.04616113053613054"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/changelog-4.4.rst",
+              "evidence_id": "78f706604d00ec4056cb468d",
+              "score": "0.0454615036704589"
+            },
+            {
+              "rank": 7,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "83ea7a4ebdde27145fb8d39b",
+              "score": "0.04525625548726953"
+            },
+            {
+              "rank": 8,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "1356a55378c5cc325fd2f76c",
+              "score": "0.0448323292707927"
+            },
+            {
+              "rank": 9,
+              "path": "docs/faq.rst",
+              "evidence_id": "f7249378d66996b2dca0eeb3",
+              "score": "0.04465148378191856"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "1493ec9801939c1d743ef525",
+              "score": "0.042862974951156214"
+            },
+            {
+              "rank": 11,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "a2e29133cb6259e20f4ab876",
+              "score": "0.04040803184638801"
+            },
+            {
+              "rank": 12,
+              "path": "docs/history/changelog-4.4.rst",
+              "evidence_id": "00794f5dc076220063086919",
+              "score": "0.040004741583688955"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 857
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 813
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 2747,
+              "end": 2867,
+              "total_lines": 4365
+            }
+          ],
+          "read_evidence_ids": [
+            "7ad2dec593d079fc3460f971",
+            "e87d55742dfff4f0d9d3b508",
+            "706a0ac28ce88ab97041db2c"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where is task_queue_max_priority and broker priority configuration documented?",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "broker priority",
+            "priority_steps"
+          ],
+          "paths": [
+            "docs/userguide/configuration.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-3.0.rst",
+              "offset": 336,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "offset": 252,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "a023399c55066a32826456d3",
+            "faab441d67d712acfbf59b19",
+            "0dee4948b05da319eedabad7",
+            "ac1d3de72cc202de9ee51466",
+            "5bc9fa0aab9f672cf8f3e3e2",
+            "f7249378d66996b2dca0eeb3",
+            "c79c9db19f5a3937bed7b7f6",
+            "83ea7a4ebdde27145fb8d39b",
+            "afd4cc976325c78e38322eff",
+            "b9a0e400669faf01e5aed8b6",
+            "1356a55378c5cc325fd2f76c",
+            "78f706604d00ec4056cb468d",
+            "4e7396d03e32b961e00f6db6",
+            "ed948878093dbf4634abdd9d",
+            "19c79eec467b2df856693e50"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/history/whatsnew-3.0.rst",
+              "evidence_id": "ac1d3de72cc202de9ee51466",
+              "score": "0.04655217278168097"
+            },
+            {
+              "rank": 2,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "5bc9fa0aab9f672cf8f3e3e2",
+              "score": "0.0452122777796662"
+            },
+            {
+              "rank": 3,
+              "path": "docs/faq.rst",
+              "evidence_id": "f7249378d66996b2dca0eeb3",
+              "score": "0.04290497934333551"
+            },
+            {
+              "rank": 4,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "c79c9db19f5a3937bed7b7f6",
+              "score": "0.04229036044857265"
+            },
+            {
+              "rank": 5,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "83ea7a4ebdde27145fb8d39b",
+              "score": "0.04063883617963314"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/changelog-4.3.rst",
+              "evidence_id": "afd4cc976325c78e38322eff",
+              "score": "0.036721611721611716"
+            },
+            {
+              "rank": 7,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "b9a0e400669faf01e5aed8b6",
+              "score": "0.03552747065025948"
+            },
+            {
+              "rank": 8,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "1356a55378c5cc325fd2f76c",
+              "score": "0.03523143523143524"
+            },
+            {
+              "rank": 9,
+              "path": "docs/history/changelog-4.4.rst",
+              "evidence_id": "78f706604d00ec4056cb468d",
+              "score": "0.03461675063838628"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "4e7396d03e32b961e00f6db6",
+              "score": "0.033097010516365356"
+            },
+            {
+              "rank": 11,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "ed948878093dbf4634abdd9d",
+              "score": "0.032414831510493645"
+            },
+            {
+              "rank": 12,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "19c79eec467b2df856693e50",
+              "score": "0.03084583131752943"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 4365
+            },
+            {
+              "path": "docs/history/whatsnew-3.0.rst",
+              "start": 336,
+              "end": 456,
+              "total_lines": 1032
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "start": 252,
+              "end": 372,
+              "total_lines": 813
+            }
+          ],
+          "read_evidence_ids": [
+            "a023399c55066a32826456d3",
+            "faab441d67d712acfbf59b19",
+            "0dee4948b05da319eedabad7"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Is there existing documentation about broker-specific priority ordering (Redis vs RabbitMQ)?",
+          "root": "docs",
+          "queries": [
+            "Redis priority",
+            "RabbitMQ priority",
+            "priority ordering broker"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/routing.rst",
+              "offset": 217,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-4.0.rst",
+              "offset": 627,
+              "limit": 120
+            },
+            {
+              "path": "docs/faq.rst",
+              "offset": 815,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f04abe632115457b558b20c0",
+            "569055fa819257cb3c06f53c",
+            "91d521a53942f926d3e70df6",
+            "c79c9db19f5a3937bed7b7f6",
+            "5bc9fa0aab9f672cf8f3e3e2",
+            "ac1d3de72cc202de9ee51466",
+            "83ea7a4ebdde27145fb8d39b",
+            "1356a55378c5cc325fd2f76c",
+            "0e634dca6ce30c30eebc1add",
+            "f7249378d66996b2dca0eeb3",
+            "da973f19e40b3e92766ff6e5",
+            "afd4cc976325c78e38322eff",
+            "78f706604d00ec4056cb468d",
+            "4e7396d03e32b961e00f6db6",
+            "a2e29133cb6259e20f4ab876"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "c79c9db19f5a3937bed7b7f6",
+              "score": "0.04740305800756621"
+            },
+            {
+              "rank": 2,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "5bc9fa0aab9f672cf8f3e3e2",
+              "score": "0.04690554740957967"
+            },
+            {
+              "rank": 3,
+              "path": "docs/history/whatsnew-3.0.rst",
+              "evidence_id": "ac1d3de72cc202de9ee51466",
+              "score": "0.04623878536922015"
+            },
+            {
+              "rank": 4,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "83ea7a4ebdde27145fb8d39b",
+              "score": "0.04556626169529395"
+            },
+            {
+              "rank": 5,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "1356a55378c5cc325fd2f76c",
+              "score": "0.045171910531853515"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "0e634dca6ce30c30eebc1add",
+              "score": "0.04474104524507751"
+            },
+            {
+              "rank": 7,
+              "path": "docs/faq.rst",
+              "evidence_id": "f7249378d66996b2dca0eeb3",
+              "score": "0.04427752836294335"
+            },
+            {
+              "rank": 8,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "da973f19e40b3e92766ff6e5",
+              "score": "0.04318384318384318"
+            },
+            {
+              "rank": 9,
+              "path": "docs/history/changelog-4.3.rst",
+              "evidence_id": "afd4cc976325c78e38322eff",
+              "score": "0.04296821636704501"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/changelog-4.4.rst",
+              "evidence_id": "78f706604d00ec4056cb468d",
+              "score": "0.04235739750445633"
+            },
+            {
+              "rank": 11,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "4e7396d03e32b961e00f6db6",
+              "score": "0.036997826622751"
+            },
+            {
+              "rank": 12,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "a2e29133cb6259e20f4ab876",
+              "score": "0.03631926500143554"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/routing.rst",
+              "start": 217,
+              "end": 337,
+              "total_lines": 813
+            },
+            {
+              "path": "docs/history/whatsnew-4.0.rst",
+              "start": 627,
+              "end": 747,
+              "total_lines": 2351
+            },
+            {
+              "path": "docs/faq.rst",
+              "start": 815,
+              "end": 935,
+              "total_lines": 964
+            }
+          ],
+          "read_evidence_ids": [
+            "f04abe632115457b558b20c0",
+            "569055fa819257cb3c06f53c",
+            "91d521a53942f926d3e70df6"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "00794f5dc076220063086919",
+        "0dee4948b05da319eedabad7",
+        "0e634dca6ce30c30eebc1add",
+        "1356a55378c5cc325fd2f76c",
+        "1493ec9801939c1d743ef525",
+        "19c79eec467b2df856693e50",
+        "4e7396d03e32b961e00f6db6",
+        "569055fa819257cb3c06f53c",
+        "5bc9fa0aab9f672cf8f3e3e2",
+        "706a0ac28ce88ab97041db2c",
+        "78f706604d00ec4056cb468d",
+        "7ad2dec593d079fc3460f971",
+        "83ea7a4ebdde27145fb8d39b",
+        "91d521a53942f926d3e70df6",
+        "a023399c55066a32826456d3",
+        "a2e29133cb6259e20f4ab876",
+        "ac1d3de72cc202de9ee51466",
+        "afd4cc976325c78e38322eff",
+        "b9a0e400669faf01e5aed8b6",
+        "c79c9db19f5a3937bed7b7f6",
+        "da973f19e40b3e92766ff6e5",
+        "e87d55742dfff4f0d9d3b508",
+        "ed948878093dbf4634abdd9d",
+        "f04abe632115457b558b20c0",
+        "f7249378d66996b2dca0eeb3",
+        "faab441d67d712acfbf59b19"
+      ],
+      "new_evidence_count": 26,
+      "new_path_count": 10
+    },
+    {
+      "signature": "6da69d4fc34a0bd94062f8c0259417d211f8abfc4af302fde8b853b5d792288f",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "What does the current routing.rst RabbitMQ and Redis priority sections say about ordering direction, and is there any explicit statement that higher values mean higher priority?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "docs/userguide/routing.rst"
+          ],
+          "anchor": "RabbitMQ Message Priorities",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/routing.rst",
+              "query": "RabbitMQ Message Priorities",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f04abe632115457b558b20c0"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/routing.rst",
+              "start": 217,
+              "end": 337,
+              "total_lines": 813
+            }
+          ],
+          "read_evidence_ids": [
+            "f04abe632115457b558b20c0"
+          ]
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does calling.rst document the priority execution option and its range/semantics?",
+          "root": "docs",
+          "queries": [
+            "priority (int)",
+            "priority"
+          ],
+          "paths": [
+            "docs/userguide/calling.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/history/whatsnew-4.3.rst",
+              "offset": 502,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "offset": 459,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "offset": 676,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "5a7630473f0ee490b50f764f",
+            "420ca209c43e68623f855df5",
+            "7b4976cfdd1e414bf6b00823",
+            "5bc9fa0aab9f672cf8f3e3e2",
+            "ac1d3de72cc202de9ee51466",
+            "c79c9db19f5a3937bed7b7f6",
+            "4e7396d03e32b961e00f6db6",
+            "1356a55378c5cc325fd2f76c",
+            "afd4cc976325c78e38322eff",
+            "78f706604d00ec4056cb468d",
+            "83ea7a4ebdde27145fb8d39b",
+            "f7249378d66996b2dca0eeb3",
+            "1493ec9801939c1d743ef525",
+            "a2e29133cb6259e20f4ab876",
+            "00794f5dc076220063086919"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "5bc9fa0aab9f672cf8f3e3e2",
+              "score": "0.03278688524590164"
+            },
+            {
+              "rank": 2,
+              "path": "docs/history/whatsnew-3.0.rst",
+              "evidence_id": "ac1d3de72cc202de9ee51466",
+              "score": "0.03200204813108039"
+            },
+            {
+              "rank": 3,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "c79c9db19f5a3937bed7b7f6",
+              "score": "0.03200204813108039"
+            },
+            {
+              "rank": 4,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "4e7396d03e32b961e00f6db6",
+              "score": "0.031009615384615385"
+            },
+            {
+              "rank": 5,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "1356a55378c5cc325fd2f76c",
+              "score": "0.03055037313432836"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/changelog-4.3.rst",
+              "evidence_id": "afd4cc976325c78e38322eff",
+              "score": "0.030536130536130537"
+            },
+            {
+              "rank": 7,
+              "path": "docs/history/changelog-4.4.rst",
+              "evidence_id": "78f706604d00ec4056cb468d",
+              "score": "0.03007688828584351"
+            },
+            {
+              "rank": 8,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "83ea7a4ebdde27145fb8d39b",
+              "score": "0.029411764705882353"
+            },
+            {
+              "rank": 9,
+              "path": "docs/faq.rst",
+              "evidence_id": "f7249378d66996b2dca0eeb3",
+              "score": "0.028985507246376812"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "1493ec9801939c1d743ef525",
+              "score": "0.028370221327967807"
+            },
+            {
+              "rank": 11,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "a2e29133cb6259e20f4ab876",
+              "score": "0.027777777777777776"
+            },
+            {
+              "rank": 12,
+              "path": "docs/history/changelog-4.4.rst",
+              "evidence_id": "00794f5dc076220063086919",
+              "score": "0.027212143650499815"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/history/whatsnew-4.3.rst",
+              "start": 502,
+              "end": 556,
+              "total_lines": 556
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "start": 459,
+              "end": 559,
+              "total_lines": 559
+            },
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "start": 676,
+              "end": 776,
+              "total_lines": 776
+            }
+          ],
+          "read_evidence_ids": [
+            "5a7630473f0ee490b50f764f",
+            "420ca209c43e68623f855df5",
+            "7b4976cfdd1e414bf6b00823"
+          ]
+        },
+        {
+          "id": "Q2-3",
+          "question": "Does the FAQ task-priorities answer or configuration settings mention ordering direction per broker?",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ],
+          "paths": [
+            "docs/faq.rst",
+            "docs/userguide/configuration.rst"
+          ],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/faq.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 2728,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/calling.rst",
+              "offset": 764,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "14eaa919bd56bcbb0bd0a9b8",
+            "2fa93945ac7d3fa80e3542a7",
+            "ab17bec4ff9f3c5a326976ed",
+            "c79c9db19f5a3937bed7b7f6",
+            "83ea7a4ebdde27145fb8d39b",
+            "f7249378d66996b2dca0eeb3",
+            "ac1d3de72cc202de9ee51466",
+            "5bc9fa0aab9f672cf8f3e3e2",
+            "afd4cc976325c78e38322eff",
+            "78f706604d00ec4056cb468d",
+            "b9a0e400669faf01e5aed8b6",
+            "4e7396d03e32b961e00f6db6",
+            "1356a55378c5cc325fd2f76c",
+            "a2e29133cb6259e20f4ab876",
+            "19c79eec467b2df856693e50"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "c79c9db19f5a3937bed7b7f6",
+              "score": "0.031054405392392875"
+            },
+            {
+              "rank": 2,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "83ea7a4ebdde27145fb8d39b",
+              "score": "0.030834914611005692"
+            },
+            {
+              "rank": 3,
+              "path": "docs/faq.rst",
+              "evidence_id": "f7249378d66996b2dca0eeb3",
+              "score": "0.03036576949620428"
+            },
+            {
+              "rank": 4,
+              "path": "docs/history/whatsnew-3.0.rst",
+              "evidence_id": "ac1d3de72cc202de9ee51466",
+              "score": "0.030158730158730156"
+            },
+            {
+              "rank": 5,
+              "path": "docs/userguide/routing.rst",
+              "evidence_id": "5bc9fa0aab9f672cf8f3e3e2",
+              "score": "0.03009207275993712"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/changelog-4.3.rst",
+              "evidence_id": "afd4cc976325c78e38322eff",
+              "score": "0.029273504273504274"
+            },
+            {
+              "rank": 7,
+              "path": "docs/history/changelog-4.4.rst",
+              "evidence_id": "78f706604d00ec4056cb468d",
+              "score": "0.027809742999616416"
+            },
+            {
+              "rank": 8,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "b9a0e400669faf01e5aed8b6",
+              "score": "0.02738245361196181"
+            },
+            {
+              "rank": 9,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "4e7396d03e32b961e00f6db6",
+              "score": "0.02637768817204301"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "1356a55378c5cc325fd2f76c",
+              "score": "0.025914384123339348"
+            },
+            {
+              "rank": 11,
+              "path": "docs/userguide/calling.rst",
+              "evidence_id": "a2e29133cb6259e20f4ab876",
+              "score": "0.025124843945068663"
+            },
+            {
+              "rank": 12,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "19c79eec467b2df856693e50",
+              "score": "0.024393624393624393"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/faq.rst",
+              "start": 0,
+              "end": 120,
+              "total_lines": 964
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 2728,
+              "end": 2848,
+              "total_lines": 4365
+            },
+            {
+              "path": "docs/userguide/calling.rst",
+              "start": 764,
+              "end": 857,
+              "total_lines": 857
+            }
+          ],
+          "read_evidence_ids": [
+            "14eaa919bd56bcbb0bd0a9b8",
+            "2fa93945ac7d3fa80e3542a7",
+            "ab17bec4ff9f3c5a326976ed"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "14eaa919bd56bcbb0bd0a9b8",
+        "2fa93945ac7d3fa80e3542a7",
+        "420ca209c43e68623f855df5",
+        "5a7630473f0ee490b50f764f",
+        "7b4976cfdd1e414bf6b00823",
+        "ab17bec4ff9f3c5a326976ed"
+      ],
+      "new_evidence_count": 6,
+      "new_path_count": 0
+    }
+  ],
+  "review": {
+    "kind": "pass"
+  },
+  "repairs": 0,
+  "snapshot": {
+    "docs": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:38c35697ce1a2b5e": 0,
+    "discover:Q1-2:270a38321047f2f0": 73,
+    "discover:Q1-3:ec56bb80efaf25e2": 145,
+    "discover:Q2-2:c0fce8d6c300a64f": 0,
+    "discover:Q2-3:a032da76682ee847": 122
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:38c35697ce1a2b5e": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 73,
+      "cache_hit": false
+    },
+    "discover:Q1-2:270a38321047f2f0": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 72,
+      "cache_hit": false
+    },
+    "discover:Q1-3:ec56bb80efaf25e2": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 79,
+      "cache_hit": false
+    },
+    "discover:Q1-1:d7fc9fe070ed63e4": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 218,
+      "cache_hit": false
+    },
+    "discover:Q1-2:f150abb56e3b68d5": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 250,
+      "cache_hit": false
+    },
+    "discover:Q1-3:efc0d2ee9e7ca7b1": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 265,
+      "cache_hit": false
+    },
+    "discover:Q2-2:c0fce8d6c300a64f": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 123,
+      "cache_hit": false
+    },
+    "discover:Q2-3:a032da76682ee847": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 173,
+      "cache_hit": false
+    },
+    "discover:Q2-1:6b8e275314770d89": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 191,
+      "cache_hit": false
+    },
+    "discover:Q2-3:214efe096e212db5": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 271,
+      "cache_hit": false
+    },
+    "discover:Q2-2:40737200d1687e0d": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 333,
+      "cache_hit": false
+    },
+    "candidate": {
+      "kind": "propose",
+      "root": "docs",
+      "elapsed_ms": 2118,
+      "cache_hit": false
+    }
+  },
+  "coverage": [
+    {
+      "requirement_id": "routing-priority-ordering",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/userguide/routing.rst"
+      ],
+      "evidence_ids": [
+        "f04abe632115457b558b20c0",
+        "569055fa819257cb3c06f53c",
+        "0dee4948b05da319eedabad7",
+        "faab441d67d712acfbf59b19"
+      ],
+      "reason": "In docs/userguide/routing.rst, add an explicit statement in the RabbitMQ Message Priorities section that higher priority values mean higher priority (matching AMQP semantics), and in the Redis Message Priorities section clarify that after the 4.0 reversal higher values mean higher priority too, so users aren't misled by older '0 is highest' guidance."
+    },
+    {
+      "requirement_id": "faq-task-priorities",
+      "surface": "change",
+      "status": "edit_required",
+      "paths": [
+        "docs/faq.rst"
+      ],
+      "evidence_ids": [
+        "91d521a53942f926d3e70df6",
+        "569055fa819257cb3c06f53c",
+        "faab441d67d712acfbf59b19"
+      ],
+      "reason": "In docs/faq.rst, expand the 'Does Celery support task priorities?' answer to state the ordering direction per broker: for RabbitMQ (AMQP) higher numbers mean higher priority, and for Redis the same holds since Celery 4.0 (priority 0 lowest, 9 highest), noting the historical reversal."
+    }
+  ],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:00794f5dc076220063086919",
+        "type": "evidence",
+        "path": "docs/history/changelog-4.4.rst",
+        "heading": "4.3.0 RC1",
+        "start_line": 597,
+        "end_line": 646,
+        "start_char": 18848,
+        "end_char": 20259,
+        "score": "0.027212143650499815",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "00794f5dc076220063086919",
+        "source_type": "repository",
+        "content_hash": "ed846aafdd2842c2624f1ec2258e978ee8dbb3c0785d900940533f898f2df099",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "priority (int)",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "ed846aafdd2842c2624f1ec2258e978ee8dbb3c0785d900940533f898f2df099",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0dee4948b05da319eedabad7",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/routing.rst",
+        "start_line": 253,
+        "total_lines": 813,
+        "start_char": 7292,
+        "end_char": 11049,
+        "evidence_id": "0dee4948b05da319eedabad7",
+        "truncated": false,
+        "next_offset": 372,
+        "source_type": "repository",
+        "content_hash": "97535058df5be1e11de7b8be946784938f8203c5d77f378d6c2c048b5bd18a9f",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-3.0.rst",
+              "offset": 336,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "offset": 252,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "97535058df5be1e11de7b8be946784938f8203c5d77f378d6c2c048b5bd18a9f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0e634dca6ce30c30eebc1add",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.0.rst",
+        "heading": "RabbitMQ priority queue support",
+        "start_line": 888,
+        "end_line": 926,
+        "start_char": 33605,
+        "end_char": 34838,
+        "score": "0.04474104524507751",
+        "root": "docs",
+        "matched_terms": [
+          "broker",
+          "priority",
+          "rabbitmq"
+        ],
+        "evidence_id": "0e634dca6ce30c30eebc1add",
+        "source_type": "repository",
+        "content_hash": "adc92bb2d296f69ac1d4f2684d73e59a1e3121d00c076b4d1d931945d991de14",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Redis priority",
+            "RabbitMQ priority",
+            "priority ordering broker"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "adc92bb2d296f69ac1d4f2684d73e59a1e3121d00c076b4d1d931945d991de14",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1356a55378c5cc325fd2f76c",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.0.rst",
+        "heading": "Redis Priorities Reversed",
+        "start_line": 632,
+        "end_line": 641,
+        "start_char": 23982,
+        "end_char": 24196,
+        "score": "0.025914384123339348",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "1356a55378c5cc325fd2f76c",
+        "source_type": "repository",
+        "content_hash": "9c41f83b52d7df22cd820020b0c3a2bcb5bfdb29f571be9d8977c0a3a3608c54",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "9c41f83b52d7df22cd820020b0c3a2bcb5bfdb29f571be9d8977c0a3a3608c54",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:1493ec9801939c1d743ef525",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.3.rst",
+        "heading": "Schedules Now Support Microseconds",
+        "start_line": 493,
+        "end_line": 506,
+        "start_char": 15263,
+        "end_char": 15648,
+        "score": "0.028370221327967807",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "1493ec9801939c1d743ef525",
+        "source_type": "repository",
+        "content_hash": "3473032d194e5319921e0ddba43ff33215341adaa2abbd1a5226157addd33af5",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "priority (int)",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q2-2"
+        ],
+        "exported_content_sha256": "3473032d194e5319921e0ddba43ff33215341adaa2abbd1a5226157addd33af5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:14eaa919bd56bcbb0bd0a9b8",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/faq.rst",
+        "start_line": 1,
+        "total_lines": 964,
+        "start_char": 0,
+        "end_char": 3245,
+        "evidence_id": "14eaa919bd56bcbb0bd0a9b8",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "d22c83366f481cf25b1ab690768c367fa3b1527ca76c901ccc1626eade19b5f4",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/faq.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 2728,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/calling.rst",
+              "offset": 764,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "d22c83366f481cf25b1ab690768c367fa3b1527ca76c901ccc1626eade19b5f4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:19c79eec467b2df856693e50",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "Checklist > Mandatory Debugging Information",
+        "start_line": 34,
+        "end_line": 43,
+        "start_char": 1589,
+        "end_char": 2050,
+        "score": "0.024393624393624393",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "19c79eec467b2df856693e50",
+        "source_type": "repository",
+        "content_hash": "4f53fd692fe705f520f796f600065fd0a55d5ed0741d8f8ba7a076872e1100be",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "4f53fd692fe705f520f796f600065fd0a55d5ed0741d8f8ba7a076872e1100be",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20faf5132bd5393903a2a4e5",
+        "type": "evidence",
+        "evidence_id": "20faf5132bd5393903a2a4e5",
+        "source_type": "implementation",
+        "exported_content_sha256": "ef34b8c0ae348e7856c8fe5e47c94309f1a9757717a53758a8451dca777691e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:2fa93945ac7d3fa80e3542a7",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 2729,
+        "total_lines": 4365,
+        "start_char": 79178,
+        "end_char": 82233,
+        "evidence_id": "2fa93945ac7d3fa80e3542a7",
+        "truncated": false,
+        "next_offset": 2848,
+        "source_type": "repository",
+        "content_hash": "5366d4fe32df695226a07985befafe7fca5e2c498a40f6e3574e5fdb52dcae6f",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/faq.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 2728,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/calling.rst",
+              "offset": 764,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5366d4fe32df695226a07985befafe7fca5e2c498a40f6e3574e5fdb52dcae6f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:420ca209c43e68623f855df5",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-4.3.rst",
+        "start_line": 460,
+        "total_lines": 559,
+        "start_char": 14616,
+        "end_char": 17171,
+        "evidence_id": "420ca209c43e68623f855df5",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8d2de9f2968c3d690002f1626bff46519dc2d2b8d2b9203c8a4ee4efccf10e59",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/history/whatsnew-4.3.rst",
+              "offset": 502,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "offset": 459,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "offset": 676,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8d2de9f2968c3d690002f1626bff46519dc2d2b8d2b9203c8a4ee4efccf10e59",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4e7396d03e32b961e00f6db6",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.3.rst",
+        "heading": "Tasks Optionally Inherit Parent's Priority",
+        "start_line": 507,
+        "end_line": 547,
+        "start_char": 15648,
+        "end_char": 16550,
+        "score": "0.02637768817204301",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "4e7396d03e32b961e00f6db6",
+        "source_type": "repository",
+        "content_hash": "413270ca7f850e1e5dad96d3d62ea14ca5f3fdcc8712004d7301ae96a832ad6d",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "413270ca7f850e1e5dad96d3d62ea14ca5f3fdcc8712004d7301ae96a832ad6d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:569055fa819257cb3c06f53c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/whatsnew-4.0.rst",
+        "start_line": 628,
+        "total_lines": 2351,
+        "start_char": 23911,
+        "end_char": 28260,
+        "evidence_id": "569055fa819257cb3c06f53c",
+        "truncated": false,
+        "next_offset": 747,
+        "source_type": "repository",
+        "content_hash": "53571d2cbdf11b4143772da6d807949ad7ec2714c352431cd2243335a34d40ae",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/routing.rst",
+              "offset": 217,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-4.0.rst",
+              "offset": 627,
+              "limit": 120
+            },
+            {
+              "path": "docs/faq.rst",
+              "offset": 815,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "53571d2cbdf11b4143772da6d807949ad7ec2714c352431cd2243335a34d40ae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5a7630473f0ee490b50f764f",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/whatsnew-4.3.rst",
+        "start_line": 503,
+        "total_lines": 556,
+        "start_char": 15520,
+        "end_char": 16812,
+        "evidence_id": "5a7630473f0ee490b50f764f",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "2fea6e1fa627dc1f1328a29f214e92f5e821067db755a30d20b26386b54fd0e2",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/history/whatsnew-4.3.rst",
+              "offset": 502,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "offset": 459,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "offset": 676,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "2fea6e1fa627dc1f1328a29f214e92f5e821067db755a30d20b26386b54fd0e2",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:5bc9fa0aab9f672cf8f3e3e2",
+        "type": "evidence",
+        "path": "docs/userguide/routing.rst",
+        "heading": "Redis Message Priorities",
+        "start_line": 257,
+        "end_line": 306,
+        "start_char": 7312,
+        "end_char": 8972,
+        "score": "0.03009207275993712",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "5bc9fa0aab9f672cf8f3e3e2",
+        "source_type": "repository",
+        "content_hash": "5ddf833a8e1dbbd74b00e1e923baa1dcd81e7014c0b3a96d2bfe47102574dfdb",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5ddf833a8e1dbbd74b00e1e923baa1dcd81e7014c0b3a96d2bfe47102574dfdb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:706a0ac28ce88ab97041db2c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 2748,
+        "total_lines": 4365,
+        "start_char": 79533,
+        "end_char": 82823,
+        "evidence_id": "706a0ac28ce88ab97041db2c",
+        "truncated": false,
+        "next_offset": 2867,
+        "source_type": "repository",
+        "content_hash": "966785f2123a74606de62e3c752c897213690a2a48719f800ff2e1b742c66c0d",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 2747,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "966785f2123a74606de62e3c752c897213690a2a48719f800ff2e1b742c66c0d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78f706604d00ec4056cb468d",
+        "type": "evidence",
+        "path": "docs/history/changelog-4.4.rst",
+        "heading": "4.3.0 RC1",
+        "start_line": 681,
+        "end_line": 730,
+        "start_char": 21908,
+        "end_char": 23208,
+        "score": "0.027809742999616416",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "78f706604d00ec4056cb468d",
+        "source_type": "repository",
+        "content_hash": "6303bcaba12fece4084bde071de7a5a2eda580f77d8f8dadcd77d8719fd4c3ce",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "6303bcaba12fece4084bde071de7a5a2eda580f77d8f8dadcd77d8719fd4c3ce",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7ad2dec593d079fc3460f971",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/calling.rst",
+        "start_line": 1,
+        "total_lines": 857,
+        "start_char": 0,
+        "end_char": 3223,
+        "evidence_id": "7ad2dec593d079fc3460f971",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "baff83e74f2466701e6dd3d107a5178a5af9730bcee47ae6ac49de9041c71712",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 2747,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "baff83e74f2466701e6dd3d107a5178a5af9730bcee47ae6ac49de9041c71712",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7b4976cfdd1e414bf6b00823",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-4.4.rst",
+        "start_line": 677,
+        "total_lines": 776,
+        "start_char": 21697,
+        "end_char": 24252,
+        "evidence_id": "7b4976cfdd1e414bf6b00823",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "8d2de9f2968c3d690002f1626bff46519dc2d2b8d2b9203c8a4ee4efccf10e59",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/history/whatsnew-4.3.rst",
+              "offset": 502,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "offset": 459,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "offset": 676,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "8d2de9f2968c3d690002f1626bff46519dc2d2b8d2b9203c8a4ee4efccf10e59",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83ea7a4ebdde27145fb8d39b",
+        "type": "evidence",
+        "path": "docs/userguide/routing.rst",
+        "heading": "RabbitMQ Message Priorities",
+        "start_line": 222,
+        "end_line": 256,
+        "start_char": 6536,
+        "end_char": 7312,
+        "score": "0.030834914611005692",
+        "root": "docs",
+        "matched_terms": [
+          "priority",
+          "task_queue_max_priority"
+        ],
+        "evidence_id": "83ea7a4ebdde27145fb8d39b",
+        "source_type": "repository",
+        "content_hash": "edf5ec4e821f5a634554e062306a6cb33b98d47c3eca10cdcc042be7f645fe3c",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "edf5ec4e821f5a634554e062306a6cb33b98d47c3eca10cdcc042be7f645fe3c",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:91d521a53942f926d3e70df6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/faq.rst",
+        "start_line": 816,
+        "total_lines": 964,
+        "start_char": 24924,
+        "end_char": 29206,
+        "evidence_id": "91d521a53942f926d3e70df6",
+        "truncated": false,
+        "next_offset": 935,
+        "source_type": "repository",
+        "content_hash": "f9def0b323d16e42d03e28d23c6489a9079c779e2a1c72a5625f5ad860e35d73",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/routing.rst",
+              "offset": 217,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-4.0.rst",
+              "offset": 627,
+              "limit": 120
+            },
+            {
+              "path": "docs/faq.rst",
+              "offset": 815,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f9def0b323d16e42d03e28d23c6489a9079c779e2a1c72a5625f5ad860e35d73",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a023399c55066a32826456d3",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 1,
+        "total_lines": 4365,
+        "start_char": 0,
+        "end_char": 6174,
+        "evidence_id": "a023399c55066a32826456d3",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "5ce1a3f302d680c818f617445add26da6759f9589ea919a36224b4315f2b174e",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-3.0.rst",
+              "offset": 336,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "offset": 252,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5ce1a3f302d680c818f617445add26da6759f9589ea919a36224b4315f2b174e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a2e29133cb6259e20f4ab876",
+        "type": "evidence",
+        "path": "docs/userguide/calling.rst",
+        "heading": "Routing options",
+        "start_line": 769,
+        "end_line": 793,
+        "start_char": 24051,
+        "end_char": 24701,
+        "score": "0.025124843945068663",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "a2e29133cb6259e20f4ab876",
+        "source_type": "repository",
+        "content_hash": "241715ec6042422784c52cc612729a620b2129e2e17b2eea7ddb5ba94d896e2e",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "241715ec6042422784c52cc612729a620b2129e2e17b2eea7ddb5ba94d896e2e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ab17bec4ff9f3c5a326976ed",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/calling.rst",
+        "start_line": 765,
+        "total_lines": 857,
+        "start_char": 24009,
+        "end_char": 26588,
+        "evidence_id": "ab17bec4ff9f3c5a326976ed",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5d1e6e56a02d3ee5802307610f24bc01a6f7f6870e860cb264d3cabb3006c5bf",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/faq.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 2728,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/calling.rst",
+              "offset": 764,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-3"
+        ],
+        "exported_content_sha256": "5d1e6e56a02d3ee5802307610f24bc01a6f7f6870e860cb264d3cabb3006c5bf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ac1d3de72cc202de9ee51466",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-3.0.rst",
+        "heading": "Redis: Priority support",
+        "start_line": 341,
+        "end_line": 377,
+        "start_char": 10870,
+        "end_char": 12239,
+        "score": "0.030158730158730156",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "ac1d3de72cc202de9ee51466",
+        "source_type": "repository",
+        "content_hash": "9ffd5e56d2905d95cf77334a09e0d9c86e22aa1290c421bff9743d5ada9b21f7",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "9ffd5e56d2905d95cf77334a09e0d9c86e22aa1290c421bff9743d5ada9b21f7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:afd4cc976325c78e38322eff",
+        "type": "evidence",
+        "path": "docs/history/changelog-4.3.rst",
+        "heading": "4.3.0 RC1",
+        "start_line": 464,
+        "end_line": 513,
+        "start_char": 14827,
+        "end_char": 16127,
+        "score": "0.029273504273504274",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "afd4cc976325c78e38322eff",
+        "source_type": "repository",
+        "content_hash": "6303bcaba12fece4084bde071de7a5a2eda580f77d8f8dadcd77d8719fd4c3ce",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "6303bcaba12fece4084bde071de7a5a2eda580f77d8f8dadcd77d8719fd4c3ce",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b756bd04d92fc1035f7a2509",
+        "type": "evidence",
+        "evidence_id": "b756bd04d92fc1035f7a2509",
+        "source_type": "task",
+        "exported_content_sha256": "d91fe5b01f4525688b7399a203bccf9a4df9e3a09209fe949e533e00de5a81a8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b9a0e400669faf01e5aed8b6",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``task_routes``",
+        "start_line": 2733,
+        "end_line": 2751,
+        "start_char": 79264,
+        "end_char": 79618,
+        "score": "0.02738245361196181",
+        "root": "docs",
+        "matched_terms": [
+          "task_queue_max_priority"
+        ],
+        "evidence_id": "b9a0e400669faf01e5aed8b6",
+        "source_type": "repository",
+        "content_hash": "451e717bd39da7af4536d3092507defd0026bf4aac49fe69da66c650666ba68d",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "451e717bd39da7af4536d3092507defd0026bf4aac49fe69da66c650666ba68d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c79c9db19f5a3937bed7b7f6",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``task_default_priority``",
+        "start_line": 2752,
+        "end_line": 2782,
+        "start_char": 79618,
+        "end_char": 80342,
+        "score": "0.031054405392392875",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "c79c9db19f5a3937bed7b7f6",
+        "source_type": "repository",
+        "content_hash": "f81a4ae58343885afdb74c18a69598d474fd463bd4020c5904177e747240e8fe",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "f81a4ae58343885afdb74c18a69598d474fd463bd4020c5904177e747240e8fe",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:da973f19e40b3e92766ff6e5",
+        "type": "evidence",
+        "path": "docs/userguide/calling.rst",
+        "heading": "Advanced Options",
+        "start_line": 837,
+        "end_line": 857,
+        "start_char": 26081,
+        "end_char": 26588,
+        "score": "0.04318384318384318",
+        "root": "docs",
+        "matched_terms": [
+          "priority",
+          "rabbitmq",
+          "redis"
+        ],
+        "evidence_id": "da973f19e40b3e92766ff6e5",
+        "source_type": "repository",
+        "content_hash": "b8a2caee69d92d0d40339a31b6c5faa99a466bc336a653bca53cdebabf96df78",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "Redis priority",
+            "RabbitMQ priority",
+            "priority ordering broker"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "b8a2caee69d92d0d40339a31b6c5faa99a466bc336a653bca53cdebabf96df78",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e87d55742dfff4f0d9d3b508",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/routing.rst",
+        "start_line": 1,
+        "total_lines": 813,
+        "start_char": 0,
+        "end_char": 3188,
+        "evidence_id": "e87d55742dfff4f0d9d3b508",
+        "truncated": false,
+        "next_offset": 120,
+        "source_type": "repository",
+        "content_hash": "76dfce019c79ace4bc19020da516a9d8d3d4c31fe4524642c180d09e976ad879",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/calling.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 2747,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "76dfce019c79ace4bc19020da516a9d8d3d4c31fe4524642c180d09e976ad879",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed948878093dbf4634abdd9d",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "Checklist > Optional Debugging Information",
+        "start_line": 44,
+        "end_line": 61,
+        "start_char": 2050,
+        "end_char": 2899,
+        "score": "0.032414831510493645",
+        "root": "docs",
+        "matched_terms": [
+          "broker"
+        ],
+        "evidence_id": "ed948878093dbf4634abdd9d",
+        "source_type": "repository",
+        "content_hash": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "broker priority",
+            "priority_steps"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f04abe632115457b558b20c0",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/routing.rst",
+        "start_line": 218,
+        "total_lines": 813,
+        "start_char": 6469,
+        "end_char": 9841,
+        "evidence_id": "f04abe632115457b558b20c0",
+        "truncated": false,
+        "next_offset": 337,
+        "source_type": "repository",
+        "content_hash": "1d0f723b6e420206aed72a4a06b7507ac09515a56c42dca98896fff967f2b882",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/routing.rst",
+              "query": "RabbitMQ Message Priorities",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3",
+          "Q2-1"
+        ],
+        "exported_content_sha256": "1d0f723b6e420206aed72a4a06b7507ac09515a56c42dca98896fff967f2b882",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f7249378d66996b2dca0eeb3",
+        "type": "evidence",
+        "path": "docs/faq.rst",
+        "heading": "Does Celery support task priorities?",
+        "start_line": 820,
+        "end_line": 832,
+        "start_char": 24998,
+        "end_char": 25488,
+        "score": "0.03036576949620428",
+        "root": "docs",
+        "matched_terms": [
+          "priority"
+        ],
+        "evidence_id": "f7249378d66996b2dca0eeb3",
+        "source_type": "repository",
+        "content_hash": "3f1d8ffb8a674dc93f5e871e8a697ec3fcaff07b0c82e91f9358e730669e1eb1",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_queue_max_priority",
+            "priority"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2",
+          "Q1-3",
+          "Q2-2",
+          "Q2-3"
+        ],
+        "exported_content_sha256": "3f1d8ffb8a674dc93f5e871e8a697ec3fcaff07b0c82e91f9358e730669e1eb1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:faab441d67d712acfbf59b19",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/whatsnew-3.0.rst",
+        "start_line": 337,
+        "total_lines": 1032,
+        "start_char": 10770,
+        "end_char": 14388,
+        "evidence_id": "faab441d67d712acfbf59b19",
+        "truncated": false,
+        "next_offset": 456,
+        "source_type": "repository",
+        "content_hash": "9245f8a3a8a63a3ecceefb1b8314f830346232d1533c2e28e0d5a77b25962f91",
+        "revision": "0ca7daaffc6bfe4c4bb84903d65450e2ded4615d",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/configuration.rst",
+              "query": "",
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-3.0.rst",
+              "offset": 336,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/routing.rst",
+              "offset": 252,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "9245f8a3a8a63a3ecceefb1b8314f830346232d1533c2e28e0d5a77b25962f91",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:routing-priority-ordering",
+        "type": "requirement",
+        "description": "In docs/userguide/routing.rst, add an explicit statement in the RabbitMQ Message Priorities section that higher priority values mean higher priority (matching AMQP semantics), and in the Redis Message Priorities section clarify that after the 4.0 reversal higher values mean higher priority too, so users aren't misled by older '0 is highest' guidance."
+      },
+      {
+        "id": "requirement:faq-task-priorities",
+        "type": "requirement",
+        "description": "In docs/faq.rst, expand the 'Does Celery support task priorities?' answer to state the ordering direction per broker: for RabbitMQ (AMQP) higher numbers mean higher priority, and for Redis the same holds since Celery 4.0 (priority 0 lowest, 9 highest), noting the historical reversal."
+      },
+      {
+        "id": "edit:0",
+        "type": "edit",
+        "path": "docs/userguide/routing.rst",
+        "hash": "2320109df738d1399f6f1a173283b84318099920935064184315c131e2352a34"
+      },
+      {
+        "id": "edit:1",
+        "type": "edit",
+        "path": "docs/userguide/routing.rst",
+        "hash": "39bc1e282ecc06527136e6675e3be8b6df1b57e0152e0898c30c455b353954c6"
+      },
+      {
+        "id": "edit:2",
+        "type": "edit",
+        "path": "docs/faq.rst",
+        "hash": "82da3b43cda04e14efa1ee41871805692a91040f552ac7102443c9ff6fab5274"
+      },
+      {
+        "id": "coverage:0",
+        "type": "coverage",
+        "requirement_id": "routing-priority-ordering",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/userguide/routing.rst"
+        ],
+        "evidence_ids": [
+          "f04abe632115457b558b20c0",
+          "569055fa819257cb3c06f53c",
+          "0dee4948b05da319eedabad7",
+          "faab441d67d712acfbf59b19"
+        ],
+        "reason": "In docs/userguide/routing.rst, add an explicit statement in the RabbitMQ Message Priorities section that higher priority values mean higher priority (matching AMQP semantics), and in the Redis Message Priorities section clarify that after the 4.0 reversal higher values mean higher priority too, so users aren't misled by older '0 is highest' guidance."
+      },
+      {
+        "id": "coverage:1",
+        "type": "coverage",
+        "requirement_id": "faq-task-priorities",
+        "surface": "change",
+        "status": "edit_required",
+        "paths": [
+          "docs/faq.rst"
+        ],
+        "evidence_ids": [
+          "91d521a53942f926d3e70df6",
+          "569055fa819257cb3c06f53c",
+          "faab441d67d712acfbf59b19"
+        ],
+        "reason": "In docs/faq.rst, expand the 'Does Celery support task priorities?' answer to state the ordering direction per broker: for RabbitMQ (AMQP) higher numbers mean higher priority, and for Redis the same holds since Celery 4.0 (priority 0 lowest, 9 highest), noting the historical reversal."
+      },
+      {
+        "id": "review:current",
+        "type": "review",
+        "kind": "pass"
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where does the documentation describe task priority semantics and the priority argument range?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where is task_queue_max_priority and broker priority configuration documented?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Is there existing documentation about broker-specific priority ordering (Redis vs RabbitMQ)?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "What does the current routing.rst RabbitMQ and Redis priority sections say about ordering direction, and is there any explicit statement that higher values mean higher priority?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does calling.rst document the priority execution option and its range/semantics?"
+      },
+      {
+        "id": "research:Q2-3",
+        "type": "research_question",
+        "description": "Does the FAQ task-priorities answer or configuration settings mention ordering direction per broker?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:00794f5dc076220063086919",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:00794f5dc076220063086919",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0dee4948b05da319eedabad7",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0e634dca6ce30c30eebc1add",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1356a55378c5cc325fd2f76c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1356a55378c5cc325fd2f76c",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1356a55378c5cc325fd2f76c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1356a55378c5cc325fd2f76c",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1356a55378c5cc325fd2f76c",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1493ec9801939c1d743ef525",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:1493ec9801939c1d743ef525",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:14eaa919bd56bcbb0bd0a9b8",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:19c79eec467b2df856693e50",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:19c79eec467b2df856693e50",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:2fa93945ac7d3fa80e3542a7",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:420ca209c43e68623f855df5",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e7396d03e32b961e00f6db6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e7396d03e32b961e00f6db6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e7396d03e32b961e00f6db6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e7396d03e32b961e00f6db6",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4e7396d03e32b961e00f6db6",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:569055fa819257cb3c06f53c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5a7630473f0ee490b50f764f",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5bc9fa0aab9f672cf8f3e3e2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5bc9fa0aab9f672cf8f3e3e2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5bc9fa0aab9f672cf8f3e3e2",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5bc9fa0aab9f672cf8f3e3e2",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:5bc9fa0aab9f672cf8f3e3e2",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:706a0ac28ce88ab97041db2c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78f706604d00ec4056cb468d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78f706604d00ec4056cb468d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78f706604d00ec4056cb468d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78f706604d00ec4056cb468d",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78f706604d00ec4056cb468d",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7ad2dec593d079fc3460f971",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7b4976cfdd1e414bf6b00823",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83ea7a4ebdde27145fb8d39b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83ea7a4ebdde27145fb8d39b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83ea7a4ebdde27145fb8d39b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83ea7a4ebdde27145fb8d39b",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83ea7a4ebdde27145fb8d39b",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:91d521a53942f926d3e70df6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a023399c55066a32826456d3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a2e29133cb6259e20f4ab876",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a2e29133cb6259e20f4ab876",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a2e29133cb6259e20f4ab876",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a2e29133cb6259e20f4ab876",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ab17bec4ff9f3c5a326976ed",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac1d3de72cc202de9ee51466",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac1d3de72cc202de9ee51466",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac1d3de72cc202de9ee51466",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac1d3de72cc202de9ee51466",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac1d3de72cc202de9ee51466",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:afd4cc976325c78e38322eff",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:afd4cc976325c78e38322eff",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:afd4cc976325c78e38322eff",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:afd4cc976325c78e38322eff",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:afd4cc976325c78e38322eff",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b9a0e400669faf01e5aed8b6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b9a0e400669faf01e5aed8b6",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c79c9db19f5a3937bed7b7f6",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c79c9db19f5a3937bed7b7f6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c79c9db19f5a3937bed7b7f6",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c79c9db19f5a3937bed7b7f6",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c79c9db19f5a3937bed7b7f6",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:da973f19e40b3e92766ff6e5",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e87d55742dfff4f0d9d3b508",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed948878093dbf4634abdd9d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f04abe632115457b558b20c0",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f04abe632115457b558b20c0",
+        "to": "research:Q2-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7249378d66996b2dca0eeb3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7249378d66996b2dca0eeb3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7249378d66996b2dca0eeb3",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7249378d66996b2dca0eeb3",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7249378d66996b2dca0eeb3",
+        "to": "research:Q2-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:faab441d67d712acfbf59b19",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f04abe632115457b558b20c0",
+        "to": "requirement:routing-priority-ordering",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:569055fa819257cb3c06f53c",
+        "to": "requirement:routing-priority-ordering",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:faab441d67d712acfbf59b19",
+        "to": "requirement:routing-priority-ordering",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:0dee4948b05da319eedabad7",
+        "to": "requirement:routing-priority-ordering",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:91d521a53942f926d3e70df6",
+        "to": "requirement:faq-task-priorities",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:569055fa819257cb3c06f53c",
+        "to": "requirement:faq-task-priorities",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:faab441d67d712acfbf59b19",
+        "to": "requirement:faq-task-priorities",
+        "type": "motivates"
+      },
+      {
+        "from": "requirement:routing-priority-ordering",
+        "to": "edit:0",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:f04abe632115457b558b20c0",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:569055fa819257cb3c06f53c",
+        "to": "edit:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:routing-priority-ordering",
+        "to": "edit:1",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:0dee4948b05da319eedabad7",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:569055fa819257cb3c06f53c",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:faab441d67d712acfbf59b19",
+        "to": "edit:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:faq-task-priorities",
+        "to": "edit:2",
+        "type": "addressed_by"
+      },
+      {
+        "from": "evidence:91d521a53942f926d3e70df6",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:569055fa819257cb3c06f53c",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:faab441d67d712acfbf59b19",
+        "to": "edit:2",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:routing-priority-ordering",
+        "to": "coverage:0",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:f04abe632115457b558b20c0",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:569055fa819257cb3c06f53c",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:0dee4948b05da319eedabad7",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:faab441d67d712acfbf59b19",
+        "to": "coverage:0",
+        "type": "cited_by"
+      },
+      {
+        "from": "requirement:faq-task-priorities",
+        "to": "coverage:1",
+        "type": "assessed_by"
+      },
+      {
+        "from": "evidence:91d521a53942f926d3e70df6",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:569055fa819257cb3c06f53c",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "evidence:faab441d67d712acfbf59b19",
+        "to": "coverage:1",
+        "type": "cited_by"
+      },
+      {
+        "from": "edit:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "edit:2",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:0",
+        "to": "review:current",
+        "type": "reviewed_by"
+      },
+      {
+        "from": "coverage:1",
+        "to": "review:current",
+        "type": "reviewed_by"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": "9c03b58fd8a69703acd7564b54954c3ec1d383682b5a8d3d9b356e0f4fdfb01f"
+}

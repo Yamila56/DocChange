@@ -1,0 +1,45 @@
+diff --git a/contents/docs/cdp/sources/index.mdx b/contents/docs/cdp/sources/index.mdx
+index 95516a7e1b0f5830eecb12209f32f4c6850eaaf3..699fd457041658222060efa699c8f442e6f768e2 100644
+--- a/contents/docs/cdp/sources/index.mdx
++++ b/contents/docs/cdp/sources/index.mdx
+@@ -50,6 +50,8 @@ See an example in our [S3 setup docs](/docs/cdp/sources/s3).
+ 
+ When setting up a source, you choose a sync method for each table. The available options depend on the source and table. Some sources also support webhook sync for real-time updates.
+ 
++For supported sources (such as Postgres), you can also choose which columns to sync for each table. All columns sync by default, and primary key and incremental field columns are always included. See the [Postgres source docs](/docs/cdp/sources/postgres#selecting-columns-to-sync) for details.
++
+ ### Webhook
+ 
+ Webhook sync receives data updates directly from the source via webhooks. This provides the fastest data freshness with minimal sync overhead. It's available only on sources that support webhooks (like Stripe) and is shown as the recommended option when available.
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index 22e644116364371aa2da26fef681f819812b0d66..db804e59fd3fec9e0b6c8b7113777b361820c1a4 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -21,7 +21,7 @@ To link Postgres:
+    - **Database:** The name of the database you want like `analytics_db`.
+    - **User:** The username with the necessary permissions to access the database.
+    - **Password:** The password for the user.
+-   - **Schema:** The schema for your database where your tables are located. The default is `public`.
++   - **Schema (optional):** The schema for your database where your tables are located. The default is `public`. You can leave this blank to browse and import tables across all non-system schemas. Tables with the same name in different schemas can be imported side by side.
+ 4. If you need to connect through an SSH tunnel, enable and configure it (optional):
+    - **Tunnel host:** The hostname of your SSH server.
+    - **Tunnel port:** The port your SSH server is listening on.
+@@ -33,6 +33,18 @@ To link Postgres:
+ 
+ The data warehouse then starts syncing your Postgres data. You can see details and progress in the [sources tab](https://app.posthog.com/data-management/sources).
+ 
++## Selecting columns to sync
++
++By default, Postgres imports and direct queries sync every column in a table. You can choose which source columns to include so that columns you don't need (for example, PII) never land in PostHog:
++
++- **New-source wizard:** On the **Select tables to import** step, click **Columns** on a table to pick the columns to sync.
++- **Source schemas tab:** On the source page, click **Columns** on a table row.
++- **Schema configuration page:** Open a table's configuration and use the **Columns** section. A summary line shows how many columns are being synced (for example, "Syncing 4 of 9 columns").
++
++Primary key columns and the active incremental field are always included, even if you don't select them. Disabled columns are hidden from the table's queryable schema, so they won't appear in HogQL queries. The underlying data isn't deleted, so re-enabling a column repopulates it on the next sync.
++
++If you add columns to a table that uses incremental, append-only, or CDC sync and has already synced data, PostHog asks whether to **sync forward only** (existing rows keep their previous values for the new columns) or **full resync now** (re-imports the table from scratch).
++
+ ## Configuration
+ 
+ <SourceParameters />

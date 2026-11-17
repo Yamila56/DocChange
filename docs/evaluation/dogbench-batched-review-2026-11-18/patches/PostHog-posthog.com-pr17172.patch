@@ -1,0 +1,70 @@
+diff --git a/contents/docs/cdp/sources/postgres.mdx b/contents/docs/cdp/sources/postgres.mdx
+index e7a3ccf0f2d8bb9ccb2d33a08361469fdf9cd939..21ab9bd03877e9370128b0db0249024ed85be4ae 100644
+--- a/contents/docs/cdp/sources/postgres.mdx
++++ b/contents/docs/cdp/sources/postgres.mdx
+@@ -118,6 +118,57 @@ The decoder currently handles Postgres logical replication messages for:
+ 
+ Truncates are not replayed as row-by-row deletes. If PostHog sees a `TRUNCATE`, it marks the table for a new snapshot so the destination can recover to the new source state.
+ 
++## Managing CDC after source creation
++
++You can enable, disable, and reconfigure CDC after a source has been created. Open the source's **Configuration** tab to find the CDC section (available for Postgres warehouse sources when CDC is enabled for your team).
++
++### Enabling CDC
++
++When CDC is disabled, the CDC section lets you:
++
++1. Pick a **management mode**:
++   - **PostHog-managed** – PostHog creates and owns both the replication slot and the publication.
++   - **Self-managed** – you or your DBA create and own the publication. PostHog verifies the publication exists, then creates and manages only the replication slot. PostHog never modifies or drops your publication.
++2. Optionally set a custom slot name and publication name.
++3. Run a **prerequisite check** to validate your database settings and permissions before enabling.
++4. Click **Enable CDC**. Every enable, disable, and settings save asks for confirmation first.
++
++Enabling CDC re-runs the prerequisite checks server-side, provisions the engine-side resources, and ensures the CDC extraction schedule exists. If CDC is already enabled, the request is rejected.
++
++### Disabling CDC
++
++Disabling CDC:
++
++- Cancels any running CDC extraction jobs for the source.
++- Removes the CDC extraction schedule.
++- Drops the PostHog-managed replication slot and publication. In self-managed mode, only the slot is dropped — your publication is left untouched.
++- Soft-deletes the `_cdc` companion tables.
++- Forces CDC schemas to pick a new sync strategy by clearing their sync type and pausing them.
++- Clears all CDC configuration so that re-enabling starts clean.
++
++### Editing CDC settings
++
++While CDC is enabled you can edit:
++
++- **Automatic slot protection** – when enabled, PostHog drops the replication slot if WAL lag exceeds the critical threshold.
++- **WAL lag warning threshold** and **WAL lag critical threshold** (in MB). The warning threshold must be lower than the critical threshold.
++
++Other CDC fields (management mode, slot name, publication name) are fixed once CDC is enabled.
++
++## Monitoring CDC health
++
++When CDC is enabled, the CDC section on the **Configuration** tab shows live status read from your source database:
++
++- Whether the **replication slot** exists.
++- Whether the **publication** exists.
++- Current **WAL lag** (the amount of WAL retained behind the slot).
++
++If the slot or publication is reported as missing, a banner explains what to do:
++
++- **Publication missing (self-managed):** recreate the publication on your database, then retry.
++- **Publication missing (PostHog-managed):** disable and re-enable CDC to recreate it.
++- **Slot missing:** CDC syncs will fail until the slot is recreated. Disable and re-enable CDC to recreate it.
++
+ ## Output table modes
+ 
+ For each CDC table, choose how PostHog exposes the captured data.
+@@ -323,6 +374,7 @@ CDC is powerful, but it changes how your production database retains WAL. Keep t
+ - Enabling logical replication often requires a database restart.
+ - A stuck replication slot can fill your database disk with retained WAL.
+ - PostHog CDC only supports tables with primary keys.
++- The primary key of a CDC schema cannot be changed once data has been synced, because the primary key is the merge key for `UPDATE` and `DELETE` events. Tables discovered after source creation persist their detected primary key, so they can be switched to CDC without a manual refresh.
+ - CDC captures row changes, not a complete history before the initial snapshot.
+ - PostgreSQL logical replication doesn't send DDL as normal row changes. Schema changes may require a full resync, especially destructive changes like dropping or changing column types.
+ - Large `TOAST`ed values can be omitted from some update messages when they are unchanged. Validate CDC output carefully if your tables include very large `text`, `jsonb`, or `bytea` columns.

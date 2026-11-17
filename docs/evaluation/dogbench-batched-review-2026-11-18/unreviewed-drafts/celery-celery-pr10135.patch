@@ -1,0 +1,84 @@
+diff --git a/Changelog.rst b/Changelog.rst
+index 2ff3ca1968d6cff1b823e813f022a397f405e0fa..e7c5db70e2058dacda4b0a0c8cf20c3eeba66090 100644
+--- a/Changelog.rst
++++ b/Changelog.rst
+@@ -593,6 +593,31 @@ Configuration:
+ Contributed by `@MarcBresson <https://github.com/MarcBresson>`_ in
+ `#9228 <https://github.com/celery/celery/pull/9228>`_.
+ 
++New ``database_engine_callback`` option for the database backend. When set,
++this callable is invoked with the SQLAlchemy engine immediately after it is
++created, allowing custom engine configuration such as registering
++connection-level event listeners or pragmas. The callback may be a Python
++callable or a dotted import path string, and can also be passed as the
++``engine_callback`` constructor keyword argument, which takes precedence over
++the configuration setting. A non-callable value raises
++:exc:`~@ImproperlyConfigured`.
++
++See :ref:`conf-database-result-backend` for complete documentation.
++
++Configuration:
++
++.. code-block:: python
++
++    from sqlalchemy import event
++
++    def register_do_connect(engine):
++        @event.listens_for(engine, 'do_connect')
++        def on_connect(dialect, conn_rec, cargs, cparams):
++            cparams['application_name'] = 'celery'
++
++    app.conf.result_backend = 'db+sqlite:///results.db'
++    app.conf.database_engine_callback = register_do_connect
++
+ What's Changed
+ ~~~~~~~~~~~~~~
+ 
+diff --git a/docs/userguide/configuration.rst b/docs/userguide/configuration.rst
+index f88849e42b9951d2122510b1ac724012da88134d..ff511561dc1e974ab916a075d5db06cc8cf24ba8 100644
+--- a/docs/userguide/configuration.rst
++++ b/docs/userguide/configuration.rst
+@@ -1146,6 +1146,43 @@ the :setting:`database_engine_options` setting::
+     # To disable the default pool health options:
+     app.conf.database_engine_options = {'pool_pre_ping': False, 'pool_recycle': None}
+ 
++.. setting:: database_engine_callback
++
++``database_engine_callback``
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
++Default: :const:`None` (no callback).
++
++A callable that is invoked with the SQLAlchemy engine immediately after it is
++created by the database result backend. This allows you to perform custom
++engine configuration, such as registering connection-level event listeners or
++setting pragmas. The callback is applied both when a pooled engine is created
++and when a ``NullPool`` engine is used, and it is re-applied whenever the
++engine is recreated (for example after a fork or after the engine is
++invalidated).
++
++The value may be a Python callable or a dotted import path string, which is
++resolved at initialization time. If the resolved value is not callable, an
++:exc:`~@ImproperlyConfigured` exception is raised.
++
++The callback can also be passed directly to the backend as the
++``engine_callback`` keyword argument, which takes precedence over this setting.
++
++.. code-block:: python
++
++    from sqlalchemy import event
++
++    def register_do_connect(engine):
++        @event.listens_for(engine, 'do_connect')
++        def on_connect(dialect, conn_rec, cargs, cparams):
++            cparams['application_name'] = 'celery'
++
++    # either as a callable...
++    database_engine_callback = register_do_connect
++
++    # ...or as a dotted import path
++    database_engine_callback = 'myapp.db:register_do_connect'
++
+ .. setting:: database_short_lived_sessions
+ 
+ ``database_short_lived_sessions``

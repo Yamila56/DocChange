@@ -1,0 +1,35 @@
+diff --git a/docs/website/docs/general-usage/resource.md b/docs/website/docs/general-usage/resource.md
+index 1741814221c2d67d60959c471d761ee1d7d020f5..ecda6f0d88a1a12a383ab55177f152ca14da0420 100644
+--- a/docs/website/docs/general-usage/resource.md
++++ b/docs/website/docs/general-usage/resource.md
+@@ -355,6 +355,30 @@ resource. The available transformation types:
+ - **yield map** - a map that returns an iterator (so a single row may generate many rows -
+   `resource.add_yield_map`).
+ 
++`add_map` applies a function to each data item as it is extracted. The function receives a single
++item and must return the transformed item, which is then passed to the next step in the resource
++pipeline. You can chain multiple `add_map` calls (and mix them with `add_filter` and
++`add_yield_map`) to build a sequence of transformations.
++
++```py
++import dlt
++
++@dlt.resource
++def users():
++    yield {"id": 1, "email": "jane@example.com"}
++    yield {"id": 2, "email": "john@example.com"}
++
++def anonymize_user(user_data):
++    user_data["email"] = "REDACTED"
++    return user_data
++
++# apply the transformation to every item yielded by the resource
++for user in users().add_map(anonymize_user):
++    print(user)
++# {'id': 1, 'email': 'REDACTED'}
++# {'id': 2, 'email': 'REDACTED'}
++```
++
+ Example: We have a resource that loads a list of users from an API endpoint. We want to customize it
+ so:
+ 

@@ -1,0 +1,1626 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "REASON",
+  "tasks": [],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "5c435aaeb6ea2d19e75f297409241578bae2c0e7becc23184f81c79fe508cb01",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where does the docs describe configuring exposure tracking for PostHog experiments, especially with external feature flag providers?",
+          "root": "docs",
+          "queries": [
+            "experiment exposure tracking external feature flag",
+            "experiment exposure event configuration",
+            "experiments external feature flags exposure"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "contents/docs/experiments"
+          ],
+          "reads": [
+            {
+              "path": "contents/docs/experiments/exposures.mdx",
+              "offset": 8,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/adding-experiment-code.mdx",
+              "offset": 10,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/redirect-testing.md",
+              "offset": 229,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "4a8d44d64ea4e8feb1692212",
+            "8d581e380a83b6051499f7d1",
+            "d3fd66859a65bed38c018fdc",
+            "f785dd86db8c85ac5f6db14d",
+            "624a27c19001f67a2bddab73",
+            "3d2c365e25eb91353777bc00",
+            "78f47c03b08759af0ee7a863",
+            "488e65951083a440b70db011",
+            "8161db3373f8b398ace5c965",
+            "8e6605f37deb9f4abc629e02",
+            "e0c250fb858667a422976008",
+            "8bb1f1860c9941f7ef4905b3",
+            "a399a782a126c739eb0cc896",
+            "54b54023db892703776c932e",
+            "99a4344bc1b761c729f0fe0a"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/experiments/exposures.mdx",
+              "evidence_id": "f785dd86db8c85ac5f6db14d",
+              "score": "0.04787506400409626"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/experiments/exposures.mdx",
+              "evidence_id": "624a27c19001f67a2bddab73",
+              "score": "0.04598642976252085"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/experiments/adding-experiment-code.mdx",
+              "evidence_id": "3d2c365e25eb91353777bc00",
+              "score": "0.04513256425824732"
+            },
+            {
+              "rank": 4,
+              "path": "contents/tutorials/redirect-testing.md",
+              "evidence_id": "78f47c03b08759af0ee7a863",
+              "score": "0.04431852869352869"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/experiments/troubleshooting.mdx",
+              "evidence_id": "488e65951083a440b70db011",
+              "score": "0.04352314352314353"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/experiments/running-experiments-without-feature-flags.mdx",
+              "evidence_id": "8161db3373f8b398ace5c965",
+              "score": "0.042598565905412694"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/integrate/feature-flags-code/_snippets/feature-flags-code-react.mdx",
+              "evidence_id": "8e6605f37deb9f4abc629e02",
+              "score": "0.04254122103386809"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/experiments/troubleshooting.mdx",
+              "evidence_id": "e0c250fb858667a422976008",
+              "score": "0.039847973753523405"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/experiments/tracking-long-term-metrics.mdx",
+              "evidence_id": "8bb1f1860c9941f7ef4905b3",
+              "score": "0.03557772925361858"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/libraries/unity/index.mdx",
+              "evidence_id": "a399a782a126c739eb0cc896",
+              "score": "0.03443595732592639"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/experiments/installation/rust.mdx",
+              "evidence_id": "54b54023db892703776c932e",
+              "score": "0.03392038946162658"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/experiments/running-experiments-without-feature-flags.mdx",
+              "evidence_id": "99a4344bc1b761c729f0fe0a",
+              "score": "0.03316082039486295"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/experiments/exposures.mdx",
+              "start": 8,
+              "end": 128,
+              "total_lines": 207
+            },
+            {
+              "path": "contents/docs/experiments/adding-experiment-code.mdx",
+              "start": 10,
+              "end": 130,
+              "total_lines": 188
+            },
+            {
+              "path": "contents/tutorials/redirect-testing.md",
+              "start": 229,
+              "end": 349,
+              "total_lines": 411
+            }
+          ],
+          "read_evidence_ids": [
+            "4a8d44d64ea4e8feb1692212",
+            "8d581e380a83b6051499f7d1",
+            "d3fd66859a65bed38c018fdc"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "What do the experiment docs say about exposure criteria, exposure event, and custom exposure events?",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [
+            "contents/docs/experiments"
+          ],
+          "reads": [
+            {
+              "path": "contents/docs/experiments/tracking-long-term-metrics.mdx",
+              "offset": 17,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/troubleshooting.mdx",
+              "offset": 97,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/creating-an-experiment.mdx",
+              "offset": 87,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "8f30bc8949a325ba8f630580",
+            "b3175e789b8ab8abea8d2c4a",
+            "cf74df7f5f96082127eea680",
+            "25cc9d4bc2b62e079b5e831d",
+            "f785dd86db8c85ac5f6db14d",
+            "8bb1f1860c9941f7ef4905b3",
+            "78f47c03b08759af0ee7a863",
+            "e0c250fb858667a422976008",
+            "be15486a69071c36df8a3a60",
+            "f0cd56a66f6bdc17ed5f8723",
+            "7a2d5d1c4c2bf8ded58dab1d",
+            "62019f5eb11ed782a716dbe6",
+            "488e65951083a440b70db011",
+            "006e6276e3cbca8da6be4144",
+            "3d2c365e25eb91353777bc00"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "contents/docs/experiments/exposures.mdx",
+              "evidence_id": "25cc9d4bc2b62e079b5e831d",
+              "score": "0.04891591750396616"
+            },
+            {
+              "rank": 2,
+              "path": "contents/docs/experiments/exposures.mdx",
+              "evidence_id": "f785dd86db8c85ac5f6db14d",
+              "score": "0.046943815757279184"
+            },
+            {
+              "rank": 3,
+              "path": "contents/docs/experiments/tracking-long-term-metrics.mdx",
+              "evidence_id": "8bb1f1860c9941f7ef4905b3",
+              "score": "0.04640914640914641"
+            },
+            {
+              "rank": 4,
+              "path": "contents/tutorials/redirect-testing.md",
+              "evidence_id": "78f47c03b08759af0ee7a863",
+              "score": "0.04466540404040404"
+            },
+            {
+              "rank": 5,
+              "path": "contents/docs/experiments/troubleshooting.mdx",
+              "evidence_id": "e0c250fb858667a422976008",
+              "score": "0.04413702239789197"
+            },
+            {
+              "rank": 6,
+              "path": "contents/docs/experiments/creating-an-experiment.mdx",
+              "evidence_id": "be15486a69071c36df8a3a60",
+              "score": "0.04349314245910696"
+            },
+            {
+              "rank": 7,
+              "path": "contents/docs/experiments/legacy-methodology.mdx",
+              "evidence_id": "f0cd56a66f6bdc17ed5f8723",
+              "score": "0.042862974951156214"
+            },
+            {
+              "rank": 8,
+              "path": "contents/docs/experiments/analyzing-results.mdx",
+              "evidence_id": "7a2d5d1c4c2bf8ded58dab1d",
+              "score": "0.04188373484148132"
+            },
+            {
+              "rank": 9,
+              "path": "contents/docs/experiments/metrics.mdx",
+              "evidence_id": "62019f5eb11ed782a716dbe6",
+              "score": "0.04055555555555555"
+            },
+            {
+              "rank": 10,
+              "path": "contents/docs/experiments/troubleshooting.mdx",
+              "evidence_id": "488e65951083a440b70db011",
+              "score": "0.03880978176752825"
+            },
+            {
+              "rank": 11,
+              "path": "contents/docs/experiments/metrics.mdx",
+              "evidence_id": "006e6276e3cbca8da6be4144",
+              "score": "0.03870639652406303"
+            },
+            {
+              "rank": 12,
+              "path": "contents/docs/experiments/adding-experiment-code.mdx",
+              "evidence_id": "3d2c365e25eb91353777bc00",
+              "score": "0.037799648338358964"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "contents/docs/experiments/tracking-long-term-metrics.mdx",
+              "start": 17,
+              "end": 42,
+              "total_lines": 42
+            },
+            {
+              "path": "contents/docs/experiments/troubleshooting.mdx",
+              "start": 97,
+              "end": 156,
+              "total_lines": 156
+            },
+            {
+              "path": "contents/docs/experiments/creating-an-experiment.mdx",
+              "start": 87,
+              "end": 109,
+              "total_lines": 109
+            }
+          ],
+          "read_evidence_ids": [
+            "8f30bc8949a325ba8f630580",
+            "b3175e789b8ab8abea8d2c4a",
+            "cf74df7f5f96082127eea680"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "006e6276e3cbca8da6be4144",
+        "25cc9d4bc2b62e079b5e831d",
+        "3d2c365e25eb91353777bc00",
+        "488e65951083a440b70db011",
+        "4a8d44d64ea4e8feb1692212",
+        "54b54023db892703776c932e",
+        "62019f5eb11ed782a716dbe6",
+        "624a27c19001f67a2bddab73",
+        "78f47c03b08759af0ee7a863",
+        "7a2d5d1c4c2bf8ded58dab1d",
+        "8161db3373f8b398ace5c965",
+        "8bb1f1860c9941f7ef4905b3",
+        "8d581e380a83b6051499f7d1",
+        "8e6605f37deb9f4abc629e02",
+        "8f30bc8949a325ba8f630580",
+        "99a4344bc1b761c729f0fe0a",
+        "a399a782a126c739eb0cc896",
+        "b3175e789b8ab8abea8d2c4a",
+        "be15486a69071c36df8a3a60",
+        "cf74df7f5f96082127eea680",
+        "d3fd66859a65bed38c018fdc",
+        "e0c250fb858667a422976008",
+        "f0cd56a66f6bdc17ed5f8723",
+        "f785dd86db8c85ac5f6db14d"
+      ],
+      "new_evidence_count": 24,
+      "new_path_count": 13
+    },
+    {
+      "signature": "a31965341db2522b37ba378949fff39f645b013867a58a7dd23ea008708c1308",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q2-1",
+          "question": "What does the exposures doc say about which SDK methods trigger exposure and how external/custom feature flag systems should set properties?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "contents/docs/experiments/exposures.mdx"
+          ],
+          "anchor": "Which SDK methods trigger exposure",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/experiments/exposures.mdx",
+              "query": "Which SDK methods trigger exposure",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [],
+          "ranked_hits": [],
+          "observed_reads": [],
+          "read_evidence_ids": []
+        },
+        {
+          "id": "Q2-2",
+          "question": "Does the exposures doc's custom exposure guidance conflict with the without-feature-flags doc (which says to send $feature_flag_called with $feature_flag/$feature_flag_response) versus the $feature/<flag-key> property guidance?",
+          "root": "docs",
+          "queries": [],
+          "paths": [
+            "contents/docs/experiments/exposures.mdx",
+            "contents/docs/experiments/running-experiments-without-feature-flags.mdx"
+          ],
+          "anchor": "Custom exposure events",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "contents/docs/experiments/exposures.mdx",
+              "query": "Custom exposure events",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/running-experiments-without-feature-flags.mdx",
+              "query": "Custom exposure events",
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f22e8ffd16ec2a56e6ea3558"
+          ],
+          "ranked_hits": [],
+          "observed_reads": [
+            {
+              "path": "contents/docs/experiments/exposures.mdx",
+              "start": 55,
+              "end": 175,
+              "total_lines": 207
+            }
+          ],
+          "read_evidence_ids": [
+            "f22e8ffd16ec2a56e6ea3558"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "f22e8ffd16ec2a56e6ea3558"
+      ],
+      "new_evidence_count": 1,
+      "new_path_count": 0
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "d208a93c99f0197e229c45898cbd244f0b052a73"
+  },
+  "protocol_retries": {
+    "REASON": 1
+  },
+  "protocol_feedback": {
+    "REASON": {
+      "errors": [
+        {
+          "type": "string_too_long",
+          "loc": [
+            "ready_to_edit",
+            "targets",
+            0,
+            "description"
+          ],
+          "msg": "String should have at most 600 characters"
+        }
+      ],
+      "instruction": "Return a complete corrected decision using only observed evidence."
+    }
+  },
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:21fcea12b314faab": 0,
+    "discover:Q1-2:378e2c940dd7941d": 351
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:21fcea12b314faab": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 351,
+      "cache_hit": false
+    },
+    "discover:Q1-2:378e2c940dd7941d": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 312,
+      "cache_hit": false
+    },
+    "discover:Q1-1:bbe1c4342c5127a9": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 221,
+      "cache_hit": false
+    },
+    "discover:Q1-2:3316c01c505a68cc": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 246,
+      "cache_hit": false
+    },
+    "discover:Q2-1:e6c6e1aef5e8d77f": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 104,
+      "cache_hit": false
+    },
+    "discover:Q2-2:862eb3a97f5a2a67": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 162,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:006e6276e3cbca8da6be4144",
+        "type": "evidence",
+        "path": "contents/docs/experiments/metrics.mdx",
+        "heading": "showTitle: true > Set an explicit conversion window",
+        "start_line": 168,
+        "end_line": 176,
+        "start_char": 10676,
+        "end_char": 11594,
+        "score": "0.03870639652406303",
+        "root": "docs",
+        "matched_terms": [
+          "experiment",
+          "exposure"
+        ],
+        "evidence_id": "006e6276e3cbca8da6be4144",
+        "source_type": "repository",
+        "content_hash": "3ac283502ac2f00659a283ad72d65c10de07437a944b26ccbb568b7b2de0c335",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3ac283502ac2f00659a283ad72d65c10de07437a944b26ccbb568b7b2de0c335",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20ae5e589b320036cb62259e",
+        "type": "evidence",
+        "evidence_id": "20ae5e589b320036cb62259e",
+        "source_type": "task",
+        "exported_content_sha256": "8bccc35fad7b1f1099478aa39eb689968d7af26a2fdb5f2d6d810b9fc3920916",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:20faf5132bd5393903a2a4e5",
+        "type": "evidence",
+        "evidence_id": "20faf5132bd5393903a2a4e5",
+        "source_type": "implementation",
+        "exported_content_sha256": "ef34b8c0ae348e7856c8fe5e47c94309f1a9757717a53758a8451dca777691e8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:25cc9d4bc2b62e079b5e831d",
+        "type": "evidence",
+        "path": "contents/docs/experiments/exposures.mdx",
+        "heading": "showTitle: true > Custom exposure events > Setting up custom exposure",
+        "start_line": 68,
+        "end_line": 94,
+        "start_char": 3220,
+        "end_char": 4702,
+        "score": "0.04891591750396616",
+        "root": "docs",
+        "matched_terms": [
+          "criteria",
+          "custom",
+          "event",
+          "experiment",
+          "exposure",
+          "property"
+        ],
+        "evidence_id": "25cc9d4bc2b62e079b5e831d",
+        "source_type": "repository",
+        "content_hash": "0e4018ab77603bb43c3decb15a2d00328ed32e80f1587801634b6d5cf0197bd6",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0e4018ab77603bb43c3decb15a2d00328ed32e80f1587801634b6d5cf0197bd6",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:3d2c365e25eb91353777bc00",
+        "type": "evidence",
+        "path": "contents/docs/experiments/adding-experiment-code.mdx",
+        "heading": "enterprise: full > Fetch the feature flag",
+        "start_line": 15,
+        "end_line": 44,
+        "start_char": 280,
+        "end_char": 1892,
+        "score": "0.037799648338358964",
+        "root": "docs",
+        "matched_terms": [
+          "event",
+          "experiment",
+          "exposure"
+        ],
+        "evidence_id": "3d2c365e25eb91353777bc00",
+        "source_type": "repository",
+        "content_hash": "b698d1ae378dec0867001755c4cd10851e36565498667444b08c694380bee7ae",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b698d1ae378dec0867001755c4cd10851e36565498667444b08c694380bee7ae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:488e65951083a440b70db011",
+        "type": "evidence",
+        "path": "contents/docs/experiments/troubleshooting.mdx",
+        "heading": "title: Experiment troubleshooting > Common issues and self-diagnosis > Unexpected exposure numbers",
+        "start_line": 140,
+        "end_line": 145,
+        "start_char": 10059,
+        "end_char": 10707,
+        "score": "0.03880978176752825",
+        "root": "docs",
+        "matched_terms": [
+          "exposure"
+        ],
+        "evidence_id": "488e65951083a440b70db011",
+        "source_type": "repository",
+        "content_hash": "55f21e07fb8ce35c98960dec5ceedc06c1b615ec015fad1c6ed86bd0ab454df9",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "55f21e07fb8ce35c98960dec5ceedc06c1b615ec015fad1c6ed86bd0ab454df9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4a8d44d64ea4e8feb1692212",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/experiments/exposures.mdx",
+        "start_line": 9,
+        "total_lines": 207,
+        "start_char": 177,
+        "end_char": 6818,
+        "evidence_id": "4a8d44d64ea4e8feb1692212",
+        "truncated": false,
+        "next_offset": 128,
+        "source_type": "repository",
+        "content_hash": "e6dfe37d084889aad430ada271ffb81c81d902f5f36c9700906f356d8cf6dfc0",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/experiments/exposures.mdx",
+              "offset": 8,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/adding-experiment-code.mdx",
+              "offset": 10,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/redirect-testing.md",
+              "offset": 229,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e6dfe37d084889aad430ada271ffb81c81d902f5f36c9700906f356d8cf6dfc0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:54b54023db892703776c932e",
+        "type": "evidence",
+        "path": "contents/docs/experiments/installation/rust.mdx",
+        "heading": "platformLogo: rust",
+        "start_line": 54,
+        "end_line": 96,
+        "start_char": 1622,
+        "end_char": 2780,
+        "score": "0.03392038946162658",
+        "root": "docs",
+        "matched_terms": [
+          "event",
+          "experiment",
+          "experiments",
+          "exposure",
+          "feature",
+          "flag",
+          "flags"
+        ],
+        "evidence_id": "54b54023db892703776c932e",
+        "source_type": "repository",
+        "content_hash": "cbc8a0b25d5a90ecdedd347807e860006455907cf5139df3e9667b31b20846ac",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "experiment exposure tracking external feature flag",
+            "experiment exposure event configuration",
+            "experiments external feature flags exposure"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "cbc8a0b25d5a90ecdedd347807e860006455907cf5139df3e9667b31b20846ac",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:62019f5eb11ed782a716dbe6",
+        "type": "evidence",
+        "path": "contents/docs/experiments/metrics.mdx",
+        "heading": "showTitle: true > Conversion windows",
+        "start_line": 114,
+        "end_line": 126,
+        "start_char": 7380,
+        "end_char": 8042,
+        "score": "0.04055555555555555",
+        "root": "docs",
+        "matched_terms": [
+          "experiment",
+          "exposure"
+        ],
+        "evidence_id": "62019f5eb11ed782a716dbe6",
+        "source_type": "repository",
+        "content_hash": "832d12ac3495283d95517c35ed5448017f2568e689225c388d49a841d87bb4dc",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "832d12ac3495283d95517c35ed5448017f2568e689225c388d49a841d87bb4dc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:624a27c19001f67a2bddab73",
+        "type": "evidence",
+        "path": "contents/docs/experiments/exposures.mdx",
+        "heading": "showTitle: true > Custom exposure events",
+        "start_line": 60,
+        "end_line": 67,
+        "start_char": 2838,
+        "end_char": 3220,
+        "score": "0.04598642976252085",
+        "root": "docs",
+        "matched_terms": [
+          "event",
+          "experiments",
+          "exposure",
+          "feature",
+          "flag"
+        ],
+        "evidence_id": "624a27c19001f67a2bddab73",
+        "source_type": "repository",
+        "content_hash": "090081360d8bf5e6dfb5676ae6a0addb3a56781042496bd1f7b24f277609ddcc",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "experiment exposure tracking external feature flag",
+            "experiment exposure event configuration",
+            "experiments external feature flags exposure"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "090081360d8bf5e6dfb5676ae6a0addb3a56781042496bd1f7b24f277609ddcc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:78f47c03b08759af0ee7a863",
+        "type": "evidence",
+        "path": "contents/tutorials/redirect-testing.md",
+        "heading": "- feature flags > Setting up the redirect test middleware > Capturing exposures",
+        "start_line": 234,
+        "end_line": 267,
+        "start_char": 7810,
+        "end_char": 8764,
+        "score": "0.04466540404040404",
+        "root": "docs",
+        "matched_terms": [
+          "event",
+          "experiment",
+          "exposure"
+        ],
+        "evidence_id": "78f47c03b08759af0ee7a863",
+        "source_type": "repository",
+        "content_hash": "3dd93cd76f2f126f470c8318031bdd58cd07285003be75384c66ead0af7c64e9",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "3dd93cd76f2f126f470c8318031bdd58cd07285003be75384c66ead0af7c64e9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:7a2d5d1c4c2bf8ded58dab1d",
+        "type": "evidence",
+        "path": "contents/docs/experiments/analyzing-results.mdx",
+        "heading": "enterprise: full > Understanding exposures",
+        "start_line": 28,
+        "end_line": 47,
+        "start_char": 1992,
+        "end_char": 2773,
+        "score": "0.04188373484148132",
+        "root": "docs",
+        "matched_terms": [
+          "experiment",
+          "exposure"
+        ],
+        "evidence_id": "7a2d5d1c4c2bf8ded58dab1d",
+        "source_type": "repository",
+        "content_hash": "403e50e97f801366a942c56a116049ab9a3fe40a06b85de732a5c756729b92c1",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "403e50e97f801366a942c56a116049ab9a3fe40a06b85de732a5c756729b92c1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8161db3373f8b398ace5c965",
+        "type": "evidence",
+        "path": "contents/docs/experiments/running-experiments-without-feature-flags.mdx",
+        "heading": "title: \"How to run experiments without feature flags\" > Step 4: Send the `$feature_flag_called` event",
+        "start_line": 138,
+        "end_line": 187,
+        "start_char": 4193,
+        "end_char": 5723,
+        "score": "0.042598565905412694",
+        "root": "docs",
+        "matched_terms": [
+          "event",
+          "experiment",
+          "experiments",
+          "exposure",
+          "feature",
+          "flag"
+        ],
+        "evidence_id": "8161db3373f8b398ace5c965",
+        "source_type": "repository",
+        "content_hash": "c83c0c4c2b3dc3b913740e7a6b2c47727d3202926ce70726699f7b59e45e1e3f",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "experiment exposure tracking external feature flag",
+            "experiment exposure event configuration",
+            "experiments external feature flags exposure"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "c83c0c4c2b3dc3b913740e7a6b2c47727d3202926ce70726699f7b59e45e1e3f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8bb1f1860c9941f7ef4905b3",
+        "type": "evidence",
+        "path": "contents/docs/experiments/tracking-long-term-metrics.mdx",
+        "heading": "showTitle: true > Step 2: Edit exposure criteria",
+        "start_line": 22,
+        "end_line": 36,
+        "start_char": 1086,
+        "end_char": 1636,
+        "score": "0.04640914640914641",
+        "root": "docs",
+        "matched_terms": [
+          "criteria",
+          "custom",
+          "event",
+          "experiment",
+          "exposure",
+          "property"
+        ],
+        "evidence_id": "8bb1f1860c9941f7ef4905b3",
+        "source_type": "repository",
+        "content_hash": "73df61c767adda2872a155a8bb824f7f356fae951bd1576ab3c440955c080a2a",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "73df61c767adda2872a155a8bb824f7f356fae951bd1576ab3c440955c080a2a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8d581e380a83b6051499f7d1",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/experiments/adding-experiment-code.mdx",
+        "start_line": 11,
+        "total_lines": 188,
+        "start_char": 139,
+        "end_char": 4038,
+        "evidence_id": "8d581e380a83b6051499f7d1",
+        "truncated": false,
+        "next_offset": 130,
+        "source_type": "repository",
+        "content_hash": "76a1e030576f7b1e45fce277ae09608a8945e50dec6e5a365e375d26c4fa36b5",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/experiments/exposures.mdx",
+              "offset": 8,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/adding-experiment-code.mdx",
+              "offset": 10,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/redirect-testing.md",
+              "offset": 229,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "76a1e030576f7b1e45fce277ae09608a8945e50dec6e5a365e375d26c4fa36b5",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8e6605f37deb9f4abc629e02",
+        "type": "evidence",
+        "path": "contents/docs/integrate/feature-flags-code/_snippets/feature-flags-code-react.mdx",
+        "heading": "Method 1: Using hooks > Example 3: Using a flag payload",
+        "start_line": 84,
+        "end_line": 116,
+        "start_char": 2335,
+        "end_char": 3586,
+        "score": "0.04254122103386809",
+        "root": "docs",
+        "matched_terms": [
+          "event",
+          "experiment",
+          "experiments",
+          "exposure",
+          "feature",
+          "flag"
+        ],
+        "evidence_id": "8e6605f37deb9f4abc629e02",
+        "source_type": "repository",
+        "content_hash": "e20ec80d72945376f7bf8ed42ac7ebb5e4371268edb261ac555412f17175d9f7",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "experiment exposure tracking external feature flag",
+            "experiment exposure event configuration",
+            "experiments external feature flags exposure"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e20ec80d72945376f7bf8ed42ac7ebb5e4371268edb261ac555412f17175d9f7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8f30bc8949a325ba8f630580",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/experiments/tracking-long-term-metrics.mdx",
+        "start_line": 18,
+        "total_lines": 42,
+        "start_char": 933,
+        "end_char": 2019,
+        "evidence_id": "8f30bc8949a325ba8f630580",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "84bf03615c4ddccbdbc409cdc88bc02bda4bd6f672eb2f12ee6cc77c876d27dc",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/experiments/tracking-long-term-metrics.mdx",
+              "offset": 17,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/troubleshooting.mdx",
+              "offset": 97,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/creating-an-experiment.mdx",
+              "offset": 87,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "84bf03615c4ddccbdbc409cdc88bc02bda4bd6f672eb2f12ee6cc77c876d27dc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:99a4344bc1b761c729f0fe0a",
+        "type": "evidence",
+        "path": "contents/docs/experiments/running-experiments-without-feature-flags.mdx",
+        "heading": "title: \"How to run experiments without feature flags\" > Step 3: Add the feature flag property to your events",
+        "start_line": 76,
+        "end_line": 125,
+        "start_char": 3014,
+        "end_char": 3999,
+        "score": "0.03316082039486295",
+        "root": "docs",
+        "matched_terms": [
+          "event",
+          "experiment",
+          "feature",
+          "flag"
+        ],
+        "evidence_id": "99a4344bc1b761c729f0fe0a",
+        "source_type": "repository",
+        "content_hash": "0136f1f790e1cb195bf91d81978c182dc943d9b6cb5323b216760c507278805d",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "experiment exposure tracking external feature flag",
+            "experiment exposure event configuration",
+            "experiments external feature flags exposure"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0136f1f790e1cb195bf91d81978c182dc943d9b6cb5323b216760c507278805d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a399a782a126c739eb0cc896",
+        "type": "evidence",
+        "path": "contents/docs/libraries/unity/index.mdx",
+        "heading": "errorTracking: true > Experiments (A/B tests)",
+        "start_line": 147,
+        "end_line": 160,
+        "start_char": 4527,
+        "end_char": 5006,
+        "score": "0.03443595732592639",
+        "root": "docs",
+        "matched_terms": [
+          "experiment",
+          "experiments",
+          "feature",
+          "flag",
+          "flags"
+        ],
+        "evidence_id": "a399a782a126c739eb0cc896",
+        "source_type": "repository",
+        "content_hash": "7a21fc03354af324988ab1e102f521eaf3e05ac94b397b77e8e17227f99ebeaf",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "experiment exposure tracking external feature flag",
+            "experiment exposure event configuration",
+            "experiments external feature flags exposure"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "7a21fc03354af324988ab1e102f521eaf3e05ac94b397b77e8e17227f99ebeaf",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b3175e789b8ab8abea8d2c4a",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/experiments/troubleshooting.mdx",
+        "start_line": 98,
+        "total_lines": 156,
+        "start_char": 6439,
+        "end_char": 11059,
+        "evidence_id": "b3175e789b8ab8abea8d2c4a",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "36abe29c63c01c362e6a9968eb9749a3d4a50a6a4d418065dee5852eabe6247e",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/experiments/tracking-long-term-metrics.mdx",
+              "offset": 17,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/troubleshooting.mdx",
+              "offset": 97,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/creating-an-experiment.mdx",
+              "offset": 87,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "36abe29c63c01c362e6a9968eb9749a3d4a50a6a4d418065dee5852eabe6247e",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:be15486a69071c36df8a3a60",
+        "type": "evidence",
+        "path": "contents/docs/experiments/creating-an-experiment.mdx",
+        "heading": "enterprise: full > Step 3: Analytics > Inclusion criteria",
+        "start_line": 92,
+        "end_line": 99,
+        "start_char": 6938,
+        "end_char": 7601,
+        "score": "0.04349314245910696",
+        "root": "docs",
+        "matched_terms": [
+          "criteria",
+          "custom",
+          "event",
+          "experiment",
+          "exposure"
+        ],
+        "evidence_id": "be15486a69071c36df8a3a60",
+        "source_type": "repository",
+        "content_hash": "1660b2f6b052f5e7fb9f97506e3e42cd07bec8237ca4ceb7520dd27153bc438b",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1660b2f6b052f5e7fb9f97506e3e42cd07bec8237ca4ceb7520dd27153bc438b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:cf74df7f5f96082127eea680",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/experiments/creating-an-experiment.mdx",
+        "start_line": 88,
+        "total_lines": 109,
+        "start_char": 6816,
+        "end_char": 8383,
+        "evidence_id": "cf74df7f5f96082127eea680",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "5f2fdf83da38df1bcc09dde85f5766ace0a1c0695493b4caad814cc569be6684",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/experiments/tracking-long-term-metrics.mdx",
+              "offset": 17,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/troubleshooting.mdx",
+              "offset": 97,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/creating-an-experiment.mdx",
+              "offset": 87,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "5f2fdf83da38df1bcc09dde85f5766ace0a1c0695493b4caad814cc569be6684",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d3fd66859a65bed38c018fdc",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/tutorials/redirect-testing.md",
+        "start_line": 230,
+        "total_lines": 411,
+        "start_char": 7784,
+        "end_char": 11714,
+        "evidence_id": "d3fd66859a65bed38c018fdc",
+        "truncated": false,
+        "next_offset": 349,
+        "source_type": "repository",
+        "content_hash": "4e23bb551e918b26cf1d2282130085303ac4d9069cf63764820be6820e30c361",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/experiments/exposures.mdx",
+              "offset": 8,
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/adding-experiment-code.mdx",
+              "offset": 10,
+              "limit": 120
+            },
+            {
+              "path": "contents/tutorials/redirect-testing.md",
+              "offset": 229,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "4e23bb551e918b26cf1d2282130085303ac4d9069cf63764820be6820e30c361",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e0c250fb858667a422976008",
+        "type": "evidence",
+        "path": "contents/docs/experiments/troubleshooting.mdx",
+        "heading": "title: Experiment troubleshooting > Why do I need a minimum number of exposures to run an experiment?",
+        "start_line": 102,
+        "end_line": 111,
+        "start_char": 6953,
+        "end_char": 7673,
+        "score": "0.04413702239789197",
+        "root": "docs",
+        "matched_terms": [
+          "experiment",
+          "exposure"
+        ],
+        "evidence_id": "e0c250fb858667a422976008",
+        "source_type": "repository",
+        "content_hash": "bdf28072ba48308ab95e7c5927b4dad0e93156348a207e47bd11cfbdf93c9e81",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "bdf28072ba48308ab95e7c5927b4dad0e93156348a207e47bd11cfbdf93c9e81",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f0cd56a66f6bdc17ed5f8723",
+        "type": "evidence",
+        "path": "contents/docs/experiments/legacy-methodology.mdx",
+        "heading": "title: Legacy statistics methodology > Trend experiment calculations > 1. Probability of being the best",
+        "start_line": 64,
+        "end_line": 84,
+        "start_char": 3953,
+        "end_char": 5343,
+        "score": "0.042862974951156214",
+        "root": "docs",
+        "matched_terms": [
+          "event",
+          "experiment",
+          "exposure"
+        ],
+        "evidence_id": "f0cd56a66f6bdc17ed5f8723",
+        "source_type": "repository",
+        "content_hash": "863329a272008be11128e52900fb1eaf71e45928369dd52311724c66442028dc",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "863329a272008be11128e52900fb1eaf71e45928369dd52311724c66442028dc",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f22e8ffd16ec2a56e6ea3558",
+        "type": "evidence",
+        "root": "docs",
+        "path": "contents/docs/experiments/exposures.mdx",
+        "start_line": 56,
+        "total_lines": 207,
+        "start_char": 2766,
+        "end_char": 10055,
+        "evidence_id": "f22e8ffd16ec2a56e6ea3558",
+        "truncated": false,
+        "next_offset": 175,
+        "source_type": "repository",
+        "content_hash": "d39e3f58147ccd6d5e8af02d5fcecddcbba12d90336bf1e8b8a57ba10fe03d9f",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "contents/docs/experiments/exposures.mdx",
+              "query": "Custom exposure events",
+              "limit": 120
+            },
+            {
+              "path": "contents/docs/experiments/running-experiments-without-feature-flags.mdx",
+              "query": "Custom exposure events",
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q2-2"
+        ],
+        "exported_content_sha256": "d39e3f58147ccd6d5e8af02d5fcecddcbba12d90336bf1e8b8a57ba10fe03d9f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f785dd86db8c85ac5f6db14d",
+        "type": "evidence",
+        "path": "contents/docs/experiments/exposures.mdx",
+        "heading": "showTitle: true > What is an exposure?",
+        "start_line": 13,
+        "end_line": 35,
+        "start_char": 504,
+        "end_char": 1997,
+        "score": "0.046943815757279184",
+        "root": "docs",
+        "matched_terms": [
+          "event",
+          "experiment",
+          "exposure",
+          "property"
+        ],
+        "evidence_id": "f785dd86db8c85ac5f6db14d",
+        "source_type": "repository",
+        "content_hash": "2cb846429d21dbe4045dc1e9a20b2c5844d8e99b5f3628979d3caf9aad2b3d72",
+        "revision": "d208a93c99f0197e229c45898cbd244f0b052a73",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "exposure criteria experiment",
+            "custom exposure event experiment",
+            "experiment exposure event property"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "2cb846429d21dbe4045dc1e9a20b2c5844d8e99b5f3628979d3caf9aad2b3d72",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where does the docs describe configuring exposure tracking for PostHog experiments, especially with external feature flag providers?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "What do the experiment docs say about exposure criteria, exposure event, and custom exposure events?"
+      },
+      {
+        "id": "research:Q2-1",
+        "type": "research_question",
+        "description": "What does the exposures doc say about which SDK methods trigger exposure and how external/custom feature flag systems should set properties?"
+      },
+      {
+        "id": "research:Q2-2",
+        "type": "research_question",
+        "description": "Does the exposures doc's custom exposure guidance conflict with the without-feature-flags doc (which says to send $feature_flag_called with $feature_flag/$feature_flag_response) versus the $feature/<flag-key> property guidance?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:006e6276e3cbca8da6be4144",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:25cc9d4bc2b62e079b5e831d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3d2c365e25eb91353777bc00",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:3d2c365e25eb91353777bc00",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:488e65951083a440b70db011",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:488e65951083a440b70db011",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4a8d44d64ea4e8feb1692212",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:54b54023db892703776c932e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:62019f5eb11ed782a716dbe6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:624a27c19001f67a2bddab73",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78f47c03b08759af0ee7a863",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:78f47c03b08759af0ee7a863",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:7a2d5d1c4c2bf8ded58dab1d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8161db3373f8b398ace5c965",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8bb1f1860c9941f7ef4905b3",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8bb1f1860c9941f7ef4905b3",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8d581e380a83b6051499f7d1",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8e6605f37deb9f4abc629e02",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:8f30bc8949a325ba8f630580",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:99a4344bc1b761c729f0fe0a",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a399a782a126c739eb0cc896",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b3175e789b8ab8abea8d2c4a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:be15486a69071c36df8a3a60",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:cf74df7f5f96082127eea680",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d3fd66859a65bed38c018fdc",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e0c250fb858667a422976008",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e0c250fb858667a422976008",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f0cd56a66f6bdc17ed5f8723",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f22e8ffd16ec2a56e6ea3558",
+        "to": "research:Q2-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f785dd86db8c85ac5f6db14d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f785dd86db8c85ac5f6db14d",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

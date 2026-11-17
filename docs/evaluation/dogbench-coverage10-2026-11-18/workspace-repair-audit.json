@@ -1,0 +1,251 @@
+{
+  "items": [
+    {
+      "instance_id": "Azure-azure-service-operator-pr4202",
+      "verified": true,
+      "prompt_sha256": "f59bad0217473c062c3bde2c1686fcfa7397b6b66f0f22bb49534865cd27a469"
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr5490",
+      "verified": true,
+      "prompt_sha256": "28d99e46ea8df54d70a69a1d9924ce70095077ae0f858d7346dbbb26b7ceaf97"
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4196",
+      "verified": true,
+      "prompt_sha256": "f5b6b8cd7007e08387809c56a146b202b6b704a7d80bea95236ca0281fee2779"
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4394",
+      "verified": true,
+      "prompt_sha256": "7f592cf0cf94cd32e56493eda2234ea915ed0318f2ede70409ed314ef9f2fba5"
+    },
+    {
+      "instance_id": "Azure-azure-service-operator-pr4003",
+      "verified": true,
+      "prompt_sha256": "ae49e55e042395f904da8983343fb1d3e8b26e8840ed461453157212c84c1878"
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36618",
+      "verified": true,
+      "prompt_sha256": "911949db68de4cb54765d867ec7f48fb0da7c6740e11e90fab9b35eb3a47880f"
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36075",
+      "verified": true,
+      "prompt_sha256": "8222375100cc132ba5ed35a9ae6e99d3321f361608993bac013514fe29694364"
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr37023",
+      "verified": true,
+      "prompt_sha256": "767596376382d125d313b468f1bde917cc7536ec9f75565b3d0c6beb17795090"
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36328",
+      "verified": true,
+      "prompt_sha256": "c0a1fcd0e34e247c76328a7a49ffa250a49a0ea07defa4c4cb2645d0113fe982"
+    },
+    {
+      "instance_id": "PostHog-posthog-pr63817",
+      "verified": true,
+      "prompt_sha256": "2263034cf3b2155d6151a54668c1facf5403088627bb1f9843332e85028aa9b0"
+    },
+    {
+      "instance_id": "MaterializeInc-materialize-pr36803",
+      "verified": true,
+      "prompt_sha256": "aabc5e5365dad1cf68545aac54bdfebead12b97935087815a2c8ae07fe0d76c3"
+    },
+    {
+      "instance_id": "PostHog-posthog-pr63886",
+      "verified": true,
+      "prompt_sha256": "0b416744c70d9e5c22fb4acdd9f22cae65e84dd4f46b58fa42e4fc7945f4942c"
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16354",
+      "verified": true,
+      "prompt_sha256": "98fc46c8bbdeb2b5a08d562db5bd069621dcb4a4725fed908d24dde676ae4980"
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16714",
+      "verified": true,
+      "prompt_sha256": "cf2f19f7786616b61ed8dc9bbbb40a052b3d2acdea41c98e681b80623bad60a8"
+    },
+    {
+      "instance_id": "PostHog-posthog-pr63871",
+      "verified": true,
+      "prompt_sha256": "06245ff3e5935c4d36fe8f4ee32d700f6198fa1c4399d7e3bf78a1224141c024"
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16752",
+      "verified": true,
+      "prompt_sha256": "8c5fdec812037d8162de2008013502bea4db14a855c6345a0098ccbae1bc7054"
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16822",
+      "verified": true,
+      "prompt_sha256": "91ef425b74bc194c85d4db9e2b5282dd67bb4eeb02dfaf91ce824caa417bfc23"
+    },
+    {
+      "instance_id": "apache-flink-pr27195",
+      "verified": true,
+      "prompt_sha256": "3115f04897f16465a3d3992b678284ec1a1d491124f5f08931ea33aec548ac30"
+    },
+    {
+      "instance_id": "apache-flink-pr27325",
+      "verified": true,
+      "prompt_sha256": "d7b877da5de1e4feead4630d972f0b3bcaf3f7d496d326e5307e15a6abea1877"
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr16939",
+      "verified": true,
+      "prompt_sha256": "0c6ab01316e2ead7d4e2781b98edb7824b3969dfb691887d3147f949ca5ea175"
+    },
+    {
+      "instance_id": "apache-flink-pr27345",
+      "verified": true,
+      "prompt_sha256": "cbefff7bff987aa785cb9b08d7b57fa500c3872db89205894880756d44bc5099"
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr17231",
+      "verified": true,
+      "prompt_sha256": "efbc5a685f3b8d3a00839bdc68c76ed1b4cbb99978ae64aa5ce8b63a41c58e15"
+    },
+    {
+      "instance_id": "apache-iceberg-pr15566",
+      "verified": true,
+      "prompt_sha256": "599893c218ade68248446c3c5b8534ff4a135bc50b08809183690e708b1eff05"
+    },
+    {
+      "instance_id": "apache-iceberg-pr15814",
+      "verified": true,
+      "prompt_sha256": "1878d5e7bac1d2e2a00ebe3eeb1f8069708cdbc5a83ae4a56773769afe6e76b6"
+    },
+    {
+      "instance_id": "apache-iceberg-pr15634",
+      "verified": true,
+      "prompt_sha256": "d5baeba6d85f013b14f95a7caf87f93105f6ea5f31d3bd9b2fbb7f7f71a5df06"
+    },
+    {
+      "instance_id": "apache-flink-pr28237",
+      "verified": true,
+      "prompt_sha256": "2f33fed08e2207f2818ab03e30eebcfe0a164332a411da1c787f569939da5271"
+    },
+    {
+      "instance_id": "bentoml-bentoml-pr5465",
+      "verified": true,
+      "prompt_sha256": "2ddc16b2bde0399469f14db6c98fc4663c6bf978f2e186bd9250ab8591d629a8"
+    },
+    {
+      "instance_id": "apache-iceberg-pr15667",
+      "verified": true,
+      "prompt_sha256": "e10d24dc77cd8840c0af8c8faa16d87f41592399f366fdbff6c2d9d92ea52770"
+    },
+    {
+      "instance_id": "bentoml-bentoml-pr5518",
+      "verified": true,
+      "prompt_sha256": "85336958f69cba9aae765b01ac2bed3929ea12279f16bfb7a781a80aef8965ca"
+    },
+    {
+      "instance_id": "celery-celery-pr10135",
+      "verified": true,
+      "prompt_sha256": "68bfc349275f3fa059f7c8e1fd2168e5624404c5f62e0d426bf447040472586e"
+    },
+    {
+      "instance_id": "apache-iceberg-pr16241",
+      "verified": true,
+      "prompt_sha256": "cfecba51769a2e5a3018c04b0d6f2f3b42da73d29e8fca6e9ec5d65737680c27"
+    },
+    {
+      "instance_id": "celery-celery-pr10206",
+      "verified": true,
+      "prompt_sha256": "913082ae268823443c332638def0c577c1d23a7e2aa6e96344dd2d9d8543ea9f"
+    },
+    {
+      "instance_id": "apache-flink-pr28212",
+      "verified": true,
+      "prompt_sha256": "4d05cb67f05df4de13c3f4b10abf709727e1a694c2575fb8bd53028c45222be6"
+    },
+    {
+      "instance_id": "celery-celery-pr10150",
+      "verified": true,
+      "prompt_sha256": "67cbf7f215f1b366c0d7d62a259b0b59abb5df72322c3fa4146fc7d4b7ce58a5"
+    },
+    {
+      "instance_id": "celery-celery-pr10174",
+      "verified": true,
+      "prompt_sha256": "3c2c7eb7b58424c1db4569ccb8e4f83a254eee817b05a3f6e528799c7ede4454"
+    },
+    {
+      "instance_id": "celery-celery-pr9879",
+      "verified": true,
+      "prompt_sha256": "57c6f813711466f8a9bbee47b6e3af382e3d6a205cae24b8ec6802d7e2e6cde9"
+    },
+    {
+      "instance_id": "PostHog-posthog.com-pr17172",
+      "verified": true,
+      "prompt_sha256": "30d3ab036a3777595e4a79d460daed1e962cfbe4a992626a8a52ad99a01f31ee"
+    },
+    {
+      "instance_id": "dagworks-inc-hamilton-pr1445",
+      "verified": true,
+      "prompt_sha256": "9003b8c59e8e22569660bf9b03b7a9482d5ff26964f63448a4343c2e3e2ebe5e"
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2500",
+      "verified": true,
+      "prompt_sha256": "4fc59a9d6594da7a2e409a5817f3cfbf20eae577582fe0dd3b5aaf78a56ed37d"
+    },
+    {
+      "instance_id": "celery-celery-pr10238",
+      "verified": true,
+      "prompt_sha256": "0e7f283f1aa5e6c78cb01cce1825f10ce64bd3c64b8577c69535202ede324b1d"
+    },
+    {
+      "instance_id": "astral-sh-ruff-pr21369",
+      "verified": true,
+      "prompt_sha256": "dc4e006af85c4a97984ee3ee27d4a45dcdc797443add51dd8a2e906937ac6f92"
+    },
+    {
+      "instance_id": "doc-detective-common-pr112",
+      "verified": true,
+      "prompt_sha256": "309b8816a5cd5fc778c52ce0c82e8cf4dbd5b2c26c81c3e46028b579f1c3ce15"
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr146",
+      "verified": true,
+      "prompt_sha256": "7d9735109d47021f4c33947e00e56dfa55d6f204409a48972a70bdd175eb0093"
+    },
+    {
+      "instance_id": "doc-detective-common-pr65",
+      "verified": true,
+      "prompt_sha256": "fbe9166aa9a864e4539e72c1029c69313cbe9eefdf94af08d32db92f4ac459d4"
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2965",
+      "verified": true,
+      "prompt_sha256": "6fec1b3e117226e2ee6c22dcd7f8d65ccb93cb56e128e0a02760a11cff6c727e"
+    },
+    {
+      "instance_id": "doc-detective-common-pr63",
+      "verified": true,
+      "prompt_sha256": "93fb29f1374f2661dd57d91b2ab815ea09c4cfa6b9ef46874d4d87413222e347"
+    },
+    {
+      "instance_id": "doc-detective-common-pr78",
+      "verified": true,
+      "prompt_sha256": "99509df371938f44f36afc54d9bbbf1b3e17daa1cc7675212b975afa4a60c04a"
+    },
+    {
+      "instance_id": "doc-detective-doc-detective-pr21",
+      "verified": true,
+      "prompt_sha256": "8bc4ae94b12838233d0aaeb0116f35f83951635b03ca4d335facdaf217a3041f"
+    },
+    {
+      "instance_id": "dlt-hub-dlt-pr2836",
+      "verified": true,
+      "prompt_sha256": "d87f8922f7a23da58e02b5cae98105d2720e313377ab2a1d7384641a9d0fc0de"
+    }
+  ],
+  "complete": true,
+  "repair": "Pruned unreachable candidate objects in clean sealed benchmark repositories"
+}

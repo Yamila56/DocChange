@@ -1,0 +1,40 @@
+diff --git a/docs/content.zh/docs/dev/datastream/operators/asyncio.md b/docs/content.zh/docs/dev/datastream/operators/asyncio.md
+index e30344fbdf1809ac677ab5a2b1fc49dfbb5ac0f8..2ea5f6d008874f3e32eaabac9e201658625ffe7c 100644
+--- a/docs/content.zh/docs/dev/datastream/operators/asyncio.md
++++ b/docs/content.zh/docs/dev/datastream/operators/asyncio.md
+@@ -195,6 +195,15 @@ Flink 提供两种模式控制结果记录以何种顺序发出。
+ 
+   - **AsyncRetryPredicate**: 触发重试条件可以选择基于返回结果、 执行异常来定义条件，两种条件是或的关系，满足其一即会触发。
+ 
++  - **内置 Python 重试条件**: 对于 Python DataStream 作业，`pyflink.datastream.async_retry_predicates` 提供了可直接使用的重试条件辅助函数：
++    - `empty_result_predicate(result)`: 当返回结果集合为 `None` 或为空时触发。
++    - `has_exception_predicate(error)`: 当存在任意异常时触发。
++    - `exception_type_predicate(error, expected_error_type)`: 当异常是 `expected_error_type` 的实例时触发。
++
++    这些辅助函数可以传给 `AsyncRetryPredicate`（例如通过 `RetryPredicate`），并与 `AsyncRetryStrategy` 一起使用来定义触发重试的条件。
++
++  - **抽象接口方法**: `AsyncRetryPredicate` 和 `AsyncRetryStrategy` 的接口方法均为抽象方法。自定义子类必须实现全部方法，否则实例化子类时会抛出 `TypeError`。
++
+ 
+ ### 实现提示
+ 
+diff --git a/docs/content/docs/dev/datastream/operators/asyncio.md b/docs/content/docs/dev/datastream/operators/asyncio.md
+index b587350ef3a343a2602faddfd06c247c5d8b4042..0771b83f9538b10a22b004dde591ad773d6ae8b3 100644
+--- a/docs/content/docs/dev/datastream/operators/asyncio.md
++++ b/docs/content/docs/dev/datastream/operators/asyncio.md
+@@ -229,6 +229,15 @@ The retry support introduces a built-in mechanism for async operator which being
+ 
+   - **AsyncRetryPredicate**: The retry condition can be triggered based on the return result or the execution exception.
+ 
++  - **Built-in Python predicates**: For Python DataStream jobs, `pyflink.datastream.async_retry_predicates` provides ready-to-use predicate helpers:
++    - `empty_result_predicate(result)`: matches when the result collection is `None` or empty.
++    - `has_exception_predicate(error)`: matches when any error is present.
++    - `exception_type_predicate(error, expected_error_type)`: matches when the error is an instance of `expected_error_type`.
++
++    These helpers can be passed to an `AsyncRetryPredicate` (for example via `RetryPredicate`) and used together with an `AsyncRetryStrategy` to define when a retry is triggered.
++
++  - **Abstract interface methods**: The `AsyncRetryPredicate` and `AsyncRetryStrategy` interface methods are abstract. Custom subclasses must implement all of them; otherwise instantiating the subclass raises a `TypeError`.
++
+ 
+ ### Implementation Tips
+ 

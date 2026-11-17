@@ -1,0 +1,2240 @@
+{
+  "protocol_version": "maintenance-batched-react-v2",
+  "phase": "EDIT",
+  "tasks": [
+    {
+      "id": "config-acks-settings",
+      "description": "In docs/userguide/configuration.rst, add new `task_acks_on_failure` and `task_acks_on_timeout` setting entries (Default: None, falling back to task_acks_on_failure_or_timeout then True; only applies with task_acks_late), and mark `task_acks_on_failure_or_timeout` as deprecated in 6.0 (removal 7.0) pointing to the two new settings.",
+      "evidence_ids": [
+        "ac644def85257cbb0bffec8d",
+        "60eabf64d7e408fb6078552e",
+        "6150d3db9abb3778483a96ae"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    },
+    {
+      "id": "tasks-acks-attrs",
+      "description": "In docs/userguide/tasks.rst, document the new Task.acks_on_failure and Task.acks_on_timeout attributes (fallback to acks_on_failure_or_timeout, then True; requires acks_late) and note that Task.acks_on_failure_or_timeout is deprecated in 6.0 in favor of them.",
+      "evidence_ids": [
+        "4ba2f7c5acc49e4692487064",
+        "c36e28a536cd15822e7d634e",
+        "6150d3db9abb3778483a96ae"
+      ],
+      "dependencies": [],
+      "surfaces": [
+        "change"
+      ]
+    }
+  ],
+  "impact": null,
+  "discovery": null,
+  "research_history": [
+    {
+      "signature": "0e79bdd9a59c82edc3ad3f2c1b31d71b6c2277eb684dd0e70f1d3454d818d21d",
+      "trigger": "REASON",
+      "budget": "pre_edit",
+      "branches": [
+        {
+          "id": "Q1-1",
+          "question": "Where in the docs are task_acks_on_failure_or_timeout and acks_on_failure_or_timeout documented (configuration reference and task attribute docs)?",
+          "root": "docs",
+          "queries": [
+            "acks_on_failure_or_timeout",
+            "task_acks_on_failure_or_timeout"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "offset": 354,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "offset": 137,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 597,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "f6624a0b82a7f5130dd6930c",
+            "86222594aaa510a72942279b",
+            "ac644def85257cbb0bffec8d",
+            "fab1ec18cbaf8c11daced1b4",
+            "95a2d33ed08de3776c438980",
+            "60eabf64d7e408fb6078552e",
+            "e96ecc0dd4b5e813202ca81e",
+            "15ef91ba4986f898b8a57785",
+            "522d7aeeaf64cca2f898afad",
+            "ed948878093dbf4634abdd9d",
+            "d59516ff49b82ef944678f14",
+            "9b2d27f1e282d5e43c8eab55",
+            "281101b6506c3f7b67876e5b",
+            "6be4865cc5b046a0eadfe8f2",
+            "81b61d7a7249fdfa5f878ed2"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/history/changelog-4.4.rst",
+              "evidence_id": "fab1ec18cbaf8c11daced1b4",
+              "score": "0.030776515151515152"
+            },
+            {
+              "rank": 2,
+              "path": "docs/history/changelog-4.3.rst",
+              "evidence_id": "95a2d33ed08de3776c438980",
+              "score": "0.03076923076923077"
+            },
+            {
+              "rank": 3,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "60eabf64d7e408fb6078552e",
+              "score": "0.03009207275993712"
+            },
+            {
+              "rank": 4,
+              "path": "Changelog.rst",
+              "evidence_id": "e96ecc0dd4b5e813202ca81e",
+              "score": "0.029513888888888888"
+            },
+            {
+              "rank": 5,
+              "path": "docs/faq.rst",
+              "evidence_id": "15ef91ba4986f898b8a57785",
+              "score": "0.02919863597612958"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "522d7aeeaf64cca2f898afad",
+              "score": "0.029116045245077504"
+            },
+            {
+              "rank": 7,
+              "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+              "evidence_id": "ed948878093dbf4634abdd9d",
+              "score": "0.02900988017658188"
+            },
+            {
+              "rank": 8,
+              "path": ".github/copilot-instructions.md",
+              "evidence_id": "d59516ff49b82ef944678f14",
+              "score": "0.02889344262295082"
+            },
+            {
+              "rank": 9,
+              "path": "docs/glossary.rst",
+              "evidence_id": "9b2d27f1e282d5e43c8eab55",
+              "score": "0.028577260665441927"
+            },
+            {
+              "rank": 10,
+              "path": "docs/faq.rst",
+              "evidence_id": "281101b6506c3f7b67876e5b",
+              "score": "0.02857142857142857"
+            },
+            {
+              "rank": 11,
+              "path": "docs/history/changelog-1.0.rst",
+              "evidence_id": "6be4865cc5b046a0eadfe8f2",
+              "score": "0.027402402402402402"
+            },
+            {
+              "rank": 12,
+              "path": "docs/history/changelog-5.5.rst",
+              "evidence_id": "81b61d7a7249fdfa5f878ed2",
+              "score": "0.026625704045058884"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "start": 354,
+              "end": 474,
+              "total_lines": 776
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "start": 137,
+              "end": 257,
+              "total_lines": 559
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "start": 597,
+              "end": 717,
+              "total_lines": 4240
+            }
+          ],
+          "read_evidence_ids": [
+            "f6624a0b82a7f5130dd6930c",
+            "86222594aaa510a72942279b",
+            "ac644def85257cbb0bffec8d"
+          ]
+        },
+        {
+          "id": "Q1-2",
+          "question": "Where are task_acks_late and related ack settings documented so new task_acks_on_failure/task_acks_on_timeout settings can be added consistently?",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "offset": 1064,
+              "limit": 120
+            },
+            {
+              "path": "docs/faq.rst",
+              "offset": 828,
+              "limit": 120
+            },
+            {
+              "path": "docs/glossary.rst",
+              "offset": 0,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "4ba2f7c5acc49e4692487064",
+            "f7147ad03582ca40bbb7ddc6",
+            "264b1403382aa9012cc6a0e6",
+            "60eabf64d7e408fb6078552e",
+            "c36e28a536cd15822e7d634e",
+            "15ef91ba4986f898b8a57785",
+            "281101b6506c3f7b67876e5b",
+            "9b2d27f1e282d5e43c8eab55",
+            "a61ec24bf6b7e399edecb89a",
+            "6be4865cc5b046a0eadfe8f2",
+            "522d7aeeaf64cca2f898afad",
+            "f20b6ad6b23363a38734a391",
+            "d934d16861c5c59e7681f8e9",
+            "c45533ce1ceabb0bc9fc6411",
+            "83e003309975f471289d6ca1"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/userguide/configuration.rst",
+              "evidence_id": "60eabf64d7e408fb6078552e",
+              "score": "0.032266458495966696"
+            },
+            {
+              "rank": 2,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "c36e28a536cd15822e7d634e",
+              "score": "0.031009615384615385"
+            },
+            {
+              "rank": 3,
+              "path": "docs/faq.rst",
+              "evidence_id": "15ef91ba4986f898b8a57785",
+              "score": "0.02946236559139785"
+            },
+            {
+              "rank": 4,
+              "path": "docs/faq.rst",
+              "evidence_id": "281101b6506c3f7b67876e5b",
+              "score": "0.02938045560996381"
+            },
+            {
+              "rank": 5,
+              "path": "docs/glossary.rst",
+              "evidence_id": "9b2d27f1e282d5e43c8eab55",
+              "score": "0.029206349206349208"
+            },
+            {
+              "rank": 6,
+              "path": ".github/copilot-instructions.md",
+              "evidence_id": "a61ec24bf6b7e399edecb89a",
+              "score": "0.028814262023217248"
+            },
+            {
+              "rank": 7,
+              "path": "docs/history/changelog-1.0.rst",
+              "evidence_id": "6be4865cc5b046a0eadfe8f2",
+              "score": "0.028782894736842105"
+            },
+            {
+              "rank": 8,
+              "path": "docs/history/whatsnew-4.3.rst",
+              "evidence_id": "522d7aeeaf64cca2f898afad",
+              "score": "0.028177225029148854"
+            },
+            {
+              "rank": 9,
+              "path": "docs/getting-started/backends-and-brokers/redis.rst",
+              "evidence_id": "f20b6ad6b23363a38734a391",
+              "score": "0.027313266443701224"
+            },
+            {
+              "rank": 10,
+              "path": "docs/getting-started/backends-and-brokers/sqs.rst",
+              "evidence_id": "d934d16861c5c59e7681f8e9",
+              "score": "0.027205882352941177"
+            },
+            {
+              "rank": 11,
+              "path": "docs/userguide/tasks.rst",
+              "evidence_id": "c45533ce1ceabb0bc9fc6411",
+              "score": "0.027205882352941177"
+            },
+            {
+              "rank": 12,
+              "path": "docs/userguide/optimizing.rst",
+              "evidence_id": "83e003309975f471289d6ca1",
+              "score": "0.02662057044079516"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "start": 1064,
+              "end": 1184,
+              "total_lines": 2312
+            },
+            {
+              "path": "docs/faq.rst",
+              "start": 828,
+              "end": 948,
+              "total_lines": 964
+            },
+            {
+              "path": "docs/glossary.rst",
+              "start": 0,
+              "end": 115,
+              "total_lines": 115
+            }
+          ],
+          "read_evidence_ids": [
+            "4ba2f7c5acc49e4692487064",
+            "f7147ad03582ca40bbb7ddc6",
+            "264b1403382aa9012cc6a0e6"
+          ]
+        },
+        {
+          "id": "Q1-3",
+          "question": "Is there a changelog or whatsnew section for 6.0 where deprecations are recorded?",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ],
+          "paths": [],
+          "anchor": "",
+          "ignored_paths": [],
+          "reads": [
+            {
+              "path": "docs/history/whatsnew-2.5.rst",
+              "offset": 145,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "offset": 121,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.6.rst",
+              "offset": 94,
+              "limit": 120
+            }
+          ],
+          "evidence_ids": [
+            "81c6c243ae4b9fa3d1a05089",
+            "613f8833ac5c601733f89a2b",
+            "d5007ae56f16a5a9c857f04e",
+            "d6b24e29f101218d7e1bac81",
+            "b0580cef0b82c1e2f047ef92",
+            "aec82e65a6a8fa440a3b94e8",
+            "94cf24056635938bd4491e25",
+            "61835c5fba98351837db99d4",
+            "0a185267cbd0ad7abb099784",
+            "33d51c40102b7d123c045d2d",
+            "9537b13c145cda4c66c6cd3c",
+            "70c4c0807f6d9be9d6c27c52",
+            "13c27a096c6ade06d1a9d9ef",
+            "ef85c1efa2ab0e22e24d1eb7",
+            "0fdcdc548d60462fe01de48f"
+          ],
+          "ranked_hits": [
+            {
+              "rank": 1,
+              "path": "docs/history/whatsnew-2.5.rst",
+              "evidence_id": "d6b24e29f101218d7e1bac81",
+              "score": "0.020612851905651243"
+            },
+            {
+              "rank": 2,
+              "path": "docs/history/whatsnew-5.0.rst",
+              "evidence_id": "b0580cef0b82c1e2f047ef92",
+              "score": "0.020470664087685365"
+            },
+            {
+              "rank": 3,
+              "path": "docs/history/whatsnew-5.6.rst",
+              "evidence_id": "aec82e65a6a8fa440a3b94e8",
+              "score": "0.019905273937532"
+            },
+            {
+              "rank": 4,
+              "path": "docs/history/whatsnew-5.1.rst",
+              "evidence_id": "94cf24056635938bd4491e25",
+              "score": "0.01915032679738562"
+            },
+            {
+              "rank": 5,
+              "path": "docs/history/whatsnew-3.1.rst",
+              "evidence_id": "61835c5fba98351837db99d4",
+              "score": "0.018628003003003005"
+            },
+            {
+              "rank": 6,
+              "path": "docs/history/whatsnew-5.3.rst",
+              "evidence_id": "0a185267cbd0ad7abb099784",
+              "score": "0.01825396825396825"
+            },
+            {
+              "rank": 7,
+              "path": "docs/history/whatsnew-3.0.rst",
+              "evidence_id": "33d51c40102b7d123c045d2d",
+              "score": "0.017870547497396905"
+            },
+            {
+              "rank": 8,
+              "path": "docs/history/whatsnew-4.0.rst",
+              "evidence_id": "9537b13c145cda4c66c6cd3c",
+              "score": "0.017848458321174984"
+            },
+            {
+              "rank": 9,
+              "path": "docs/history/whatsnew-5.5.rst",
+              "evidence_id": "70c4c0807f6d9be9d6c27c52",
+              "score": "0.017697613931923557"
+            },
+            {
+              "rank": 10,
+              "path": "docs/history/whatsnew-5.0.rst",
+              "evidence_id": "13c27a096c6ade06d1a9d9ef",
+              "score": "0.01763540023459936"
+            },
+            {
+              "rank": 11,
+              "path": "docs/history/whatsnew-5.6.rst",
+              "evidence_id": "ef85c1efa2ab0e22e24d1eb7",
+              "score": "0.017615930928839993"
+            },
+            {
+              "rank": 12,
+              "path": "docs/history/whatsnew-5.4.rst",
+              "evidence_id": "0fdcdc548d60462fe01de48f",
+              "score": "0.017574599129234363"
+            }
+          ],
+          "observed_reads": [
+            {
+              "path": "docs/history/whatsnew-2.5.rst",
+              "start": 145,
+              "end": 265,
+              "total_lines": 517
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "start": 121,
+              "end": 241,
+              "total_lines": 326
+            },
+            {
+              "path": "docs/history/whatsnew-5.6.rst",
+              "start": 94,
+              "end": 214,
+              "total_lines": 286
+            }
+          ],
+          "read_evidence_ids": [
+            "81c6c243ae4b9fa3d1a05089",
+            "613f8833ac5c601733f89a2b",
+            "d5007ae56f16a5a9c857f04e"
+          ]
+        }
+      ],
+      "new_evidence_ids": [
+        "0a185267cbd0ad7abb099784",
+        "0fdcdc548d60462fe01de48f",
+        "13c27a096c6ade06d1a9d9ef",
+        "15ef91ba4986f898b8a57785",
+        "264b1403382aa9012cc6a0e6",
+        "281101b6506c3f7b67876e5b",
+        "33d51c40102b7d123c045d2d",
+        "4ba2f7c5acc49e4692487064",
+        "522d7aeeaf64cca2f898afad",
+        "60eabf64d7e408fb6078552e",
+        "613f8833ac5c601733f89a2b",
+        "61835c5fba98351837db99d4",
+        "6be4865cc5b046a0eadfe8f2",
+        "70c4c0807f6d9be9d6c27c52",
+        "81b61d7a7249fdfa5f878ed2",
+        "81c6c243ae4b9fa3d1a05089",
+        "83e003309975f471289d6ca1",
+        "86222594aaa510a72942279b",
+        "94cf24056635938bd4491e25",
+        "9537b13c145cda4c66c6cd3c",
+        "95a2d33ed08de3776c438980",
+        "9b2d27f1e282d5e43c8eab55",
+        "a61ec24bf6b7e399edecb89a",
+        "ac644def85257cbb0bffec8d",
+        "aec82e65a6a8fa440a3b94e8",
+        "b0580cef0b82c1e2f047ef92",
+        "c36e28a536cd15822e7d634e",
+        "c45533ce1ceabb0bc9fc6411",
+        "d5007ae56f16a5a9c857f04e",
+        "d59516ff49b82ef944678f14",
+        "d6b24e29f101218d7e1bac81",
+        "d934d16861c5c59e7681f8e9",
+        "e96ecc0dd4b5e813202ca81e",
+        "ed948878093dbf4634abdd9d",
+        "ef85c1efa2ab0e22e24d1eb7",
+        "f20b6ad6b23363a38734a391",
+        "f6624a0b82a7f5130dd6930c",
+        "f7147ad03582ca40bbb7ddc6",
+        "fab1ec18cbaf8c11daced1b4"
+      ],
+      "new_evidence_count": 39,
+      "new_path_count": 25
+    }
+  ],
+  "review": null,
+  "repairs": 0,
+  "snapshot": {
+    "docs": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+    "code": "55b91293e8394685fb1b912a9cffbf2b72b6efae"
+  },
+  "protocol_retries": null,
+  "protocol_feedback": null,
+  "discovery_elapsed_ms": null,
+  "search_wait_ms": {
+    "discover:Q1-1:6cc56f3b3ca91343": 0,
+    "discover:Q1-2:7939261daf3a3992": 170,
+    "discover:Q1-3:26d71051ef0b993a": 335
+  },
+  "index_slot_wait_ms": null,
+  "tool_metrics": {
+    "discover:Q1-1:6cc56f3b3ca91343": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 171,
+      "cache_hit": false
+    },
+    "discover:Q1-2:7939261daf3a3992": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 165,
+      "cache_hit": false
+    },
+    "discover:Q1-3:26d71051ef0b993a": {
+      "kind": "search",
+      "root": "docs",
+      "elapsed_ms": 430,
+      "cache_hit": false
+    },
+    "discover:Q1-1:f193780f24231344": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 392,
+      "cache_hit": false
+    },
+    "discover:Q1-3:8ed845f79f5fb25a": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 457,
+      "cache_hit": false
+    },
+    "discover:Q1-2:1a71806a9913f6af": {
+      "kind": "read_many",
+      "root": "docs",
+      "elapsed_ms": 489,
+      "cache_hit": false
+    }
+  },
+  "coverage": [],
+  "graph": {
+    "version": "maintenance-evidence-v1",
+    "nodes": [
+      {
+        "id": "evidence:0a185267cbd0ad7abb099784",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.3.rst",
+        "heading": "Step 2: Update your configuration with the new setting names",
+        "start_line": 109,
+        "end_line": 119,
+        "start_char": 3508,
+        "end_char": 3942,
+        "score": "0.01825396825396825",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "6",
+          "deprecated"
+        ],
+        "evidence_id": "0a185267cbd0ad7abb099784",
+        "source_type": "repository",
+        "content_hash": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:0fdcdc548d60462fe01de48f",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.4.rst",
+        "heading": "Step 2: Update your configuration with the new setting names",
+        "start_line": 109,
+        "end_line": 119,
+        "start_char": 3507,
+        "end_char": 3941,
+        "score": "0.017574599129234363",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "6",
+          "deprecated"
+        ],
+        "evidence_id": "0fdcdc548d60462fe01de48f",
+        "source_type": "repository",
+        "content_hash": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:13c27a096c6ade06d1a9d9ef",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.0.rst",
+        "heading": "Removed Deprecated Modules",
+        "start_line": 253,
+        "end_line": 272,
+        "start_char": 8180,
+        "end_char": 8815,
+        "score": "0.01763540023459936",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "deprecated"
+        ],
+        "evidence_id": "13c27a096c6ade06d1a9d9ef",
+        "source_type": "repository",
+        "content_hash": "3f55356f731a5d74900e104f4600a1aed1634d001f755b8bdb3ca0a14389651f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "3f55356f731a5d74900e104f4600a1aed1634d001f755b8bdb3ca0a14389651f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:15ef91ba4986f898b8a57785",
+        "type": "evidence",
+        "path": "docs/faq.rst",
+        "heading": "Should I use retry or acks_late?",
+        "start_line": 833,
+        "end_line": 870,
+        "start_char": 25488,
+        "end_char": 27117,
+        "score": "0.02946236559139785",
+        "root": "docs",
+        "matched_terms": [
+          "acks_late"
+        ],
+        "evidence_id": "15ef91ba4986f898b8a57785",
+        "source_type": "repository",
+        "content_hash": "781774433aef13c13f3e02cbec6bb6e7e3910ba5ccb827795aeccca5481797b1",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "781774433aef13c13f3e02cbec6bb6e7e3910ba5ccb827795aeccca5481797b1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:264b1403382aa9012cc6a0e6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/glossary.rst",
+        "start_line": 1,
+        "total_lines": 115,
+        "start_char": 0,
+        "end_char": 4448,
+        "evidence_id": "264b1403382aa9012cc6a0e6",
+        "truncated": false,
+        "next_offset": null,
+        "source_type": "repository",
+        "content_hash": "36f1527ccde903ec53ada21109429341e1a63f580fda27233a2d86482526f3a3",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "offset": 1064,
+              "limit": 120
+            },
+            {
+              "path": "docs/faq.rst",
+              "offset": 828,
+              "limit": 120
+            },
+            {
+              "path": "docs/glossary.rst",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "36f1527ccde903ec53ada21109429341e1a63f580fda27233a2d86482526f3a3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:281101b6506c3f7b67876e5b",
+        "type": "evidence",
+        "path": "docs/faq.rst",
+        "heading": "Should I use retry or acks_late?",
+        "start_line": 871,
+        "end_line": 877,
+        "start_char": 27117,
+        "end_char": 27290,
+        "score": "0.02938045560996381",
+        "root": "docs",
+        "matched_terms": [
+          "acks_late"
+        ],
+        "evidence_id": "281101b6506c3f7b67876e5b",
+        "source_type": "repository",
+        "content_hash": "7f76b7b34eef2c0d94357833f6240e5616d610675fb6903b2eb3f6f285480095",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "7f76b7b34eef2c0d94357833f6240e5616d610675fb6903b2eb3f6f285480095",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:33d51c40102b7d123c045d2d",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-3.0.rst",
+        "heading": "News",
+        "start_line": 242,
+        "end_line": 244,
+        "start_char": 7959,
+        "end_char": 7970,
+        "score": "0.017870547497396905",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "33d51c40102b7d123c045d2d",
+        "source_type": "repository",
+        "content_hash": "799cb258459901ab5c452532b6cc471e9833b6a121411019914b5e1471d75a39",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "799cb258459901ab5c452532b6cc471e9833b6a121411019914b5e1471d75a39",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:4ba2f7c5acc49e4692487064",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/tasks.rst",
+        "start_line": 1065,
+        "total_lines": 2312,
+        "start_char": 33477,
+        "end_char": 37924,
+        "evidence_id": "4ba2f7c5acc49e4692487064",
+        "truncated": false,
+        "next_offset": 1184,
+        "source_type": "repository",
+        "content_hash": "0a19be67588adfc352567091e66dbb54de109b89151c450a9dab86b0519fafb4",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "offset": 1064,
+              "limit": 120
+            },
+            {
+              "path": "docs/faq.rst",
+              "offset": 828,
+              "limit": 120
+            },
+            {
+              "path": "docs/glossary.rst",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "0a19be67588adfc352567091e66dbb54de109b89151c450a9dab86b0519fafb4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:522d7aeeaf64cca2f898afad",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.3.rst",
+        "heading": "Cythonized Tasks",
+        "start_line": 473,
+        "end_line": 492,
+        "start_char": 14541,
+        "end_char": 15263,
+        "score": "0.028177225029148854",
+        "root": "docs",
+        "matched_terms": [
+          "task_acks_late"
+        ],
+        "evidence_id": "522d7aeeaf64cca2f898afad",
+        "source_type": "repository",
+        "content_hash": "21f6d120c9c9392e298f7e59cd5b6955b42a614dcad1938a59da784b0d8229b0",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "21f6d120c9c9392e298f7e59cd5b6955b42a614dcad1938a59da784b0d8229b0",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:60eabf64d7e408fb6078552e",
+        "type": "evidence",
+        "path": "docs/userguide/configuration.rst",
+        "heading": "``task_acks_late``",
+        "start_line": 602,
+        "end_line": 629,
+        "start_char": 22181,
+        "end_char": 22852,
+        "score": "0.032266458495966696",
+        "root": "docs",
+        "matched_terms": [
+          "acks_late",
+          "task_acks_late"
+        ],
+        "evidence_id": "60eabf64d7e408fb6078552e",
+        "source_type": "repository",
+        "content_hash": "94dd646a8d3fc8dd3c4871cb2434ab8fa52c807e6d2fdce246e16370a116f66f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "94dd646a8d3fc8dd3c4871cb2434ab8fa52c807e6d2fdce246e16370a116f66f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:613f8833ac5c601733f89a2b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/whatsnew-5.0.rst",
+        "start_line": 122,
+        "total_lines": 326,
+        "start_char": 4097,
+        "end_char": 7855,
+        "evidence_id": "613f8833ac5c601733f89a2b",
+        "truncated": false,
+        "next_offset": 241,
+        "source_type": "repository",
+        "content_hash": "f7da3417ae7cdb83cecb0c1753bc4f19c2110952d6989fad55472d851c0a3084",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/history/whatsnew-2.5.rst",
+              "offset": 145,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "offset": 121,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.6.rst",
+              "offset": 94,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "f7da3417ae7cdb83cecb0c1753bc4f19c2110952d6989fad55472d851c0a3084",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6150d3db9abb3778483a96ae",
+        "type": "evidence",
+        "evidence_id": "6150d3db9abb3778483a96ae",
+        "source_type": "implementation",
+        "exported_content_sha256": "28ad9a84981a0d31d2a75b5872a83250189329ac1c96a274e0abc8d150543e47",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:61835c5fba98351837db99d4",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-3.1.rst",
+        "heading": "Old command-line programs removed and deprecated",
+        "start_line": 136,
+        "end_line": 167,
+        "start_char": 4787,
+        "end_char": 6412,
+        "score": "0.018628003003003005",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "deprecated"
+        ],
+        "evidence_id": "61835c5fba98351837db99d4",
+        "source_type": "repository",
+        "content_hash": "2de9f0934fcdb9cbbd1b9a2fc1a637779c7c9289d9683ecc2a2fec322c72ad56",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "2de9f0934fcdb9cbbd1b9a2fc1a637779c7c9289d9683ecc2a2fec322c72ad56",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:6be4865cc5b046a0eadfe8f2",
+        "type": "evidence",
+        "path": "docs/history/changelog-1.0.rst",
+        "heading": "News",
+        "start_line": 158,
+        "end_line": 206,
+        "start_char": 3882,
+        "end_char": 5529,
+        "score": "0.028782894736842105",
+        "root": "docs",
+        "matched_terms": [
+          "acks_late"
+        ],
+        "evidence_id": "6be4865cc5b046a0eadfe8f2",
+        "source_type": "repository",
+        "content_hash": "8a38b856f87fde09ca6241f57334c221a9ca317a2c71769ef0c14e1d53c258ae",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "8a38b856f87fde09ca6241f57334c221a9ca317a2c71769ef0c14e1d53c258ae",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:70c4c0807f6d9be9d6c27c52",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.5.rst",
+        "heading": "Step 2: Update your configuration with the new setting names",
+        "start_line": 100,
+        "end_line": 110,
+        "start_char": 3278,
+        "end_char": 3712,
+        "score": "0.017697613931923557",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "6",
+          "deprecated"
+        ],
+        "evidence_id": "70c4c0807f6d9be9d6c27c52",
+        "source_type": "repository",
+        "content_hash": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:81b61d7a7249fdfa5f878ed2",
+        "type": "evidence",
+        "path": "docs/history/changelog-5.5.rst",
+        "heading": "What's Changed",
+        "start_line": 567,
+        "end_line": 591,
+        "start_char": 24774,
+        "end_char": 25577,
+        "score": "0.026625704045058884",
+        "root": "docs",
+        "matched_terms": [
+          "task_acks_on_failure_or_timeout"
+        ],
+        "evidence_id": "81b61d7a7249fdfa5f878ed2",
+        "source_type": "repository",
+        "content_hash": "da3070d194ffac96cc666a974ff85daf6b1f353f283182ffbef9e12a0325064b",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "acks_on_failure_or_timeout",
+            "task_acks_on_failure_or_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "da3070d194ffac96cc666a974ff85daf6b1f353f283182ffbef9e12a0325064b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:81c6c243ae4b9fa3d1a05089",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/whatsnew-2.5.rst",
+        "start_line": 146,
+        "total_lines": 517,
+        "start_char": 4762,
+        "end_char": 8224,
+        "evidence_id": "81c6c243ae4b9fa3d1a05089",
+        "truncated": false,
+        "next_offset": 265,
+        "source_type": "repository",
+        "content_hash": "bfaab3f04530815f1cf58bb3c8e79c12b617d714fb8d9266d1db685e81cd4a4d",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/history/whatsnew-2.5.rst",
+              "offset": 145,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "offset": 121,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.6.rst",
+              "offset": 94,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "bfaab3f04530815f1cf58bb3c8e79c12b617d714fb8d9266d1db685e81cd4a4d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:83e003309975f471289d6ca1",
+        "type": "evidence",
+        "path": "docs/userguide/optimizing.rst",
+        "heading": "Reserve one task at a time",
+        "start_line": 175,
+        "end_line": 191,
+        "start_char": 6320,
+        "end_char": 7018,
+        "score": "0.02662057044079516",
+        "root": "docs",
+        "matched_terms": [
+          "task_acks_late"
+        ],
+        "evidence_id": "83e003309975f471289d6ca1",
+        "source_type": "repository",
+        "content_hash": "165d605c5afed62ab3689ca0e4fd7689804a1cf76eecdbb054f152448e172624",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "165d605c5afed62ab3689ca0e4fd7689804a1cf76eecdbb054f152448e172624",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:86222594aaa510a72942279b",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-4.3.rst",
+        "start_line": 138,
+        "total_lines": 559,
+        "start_char": 3689,
+        "end_char": 7813,
+        "evidence_id": "86222594aaa510a72942279b",
+        "truncated": false,
+        "next_offset": 257,
+        "source_type": "repository",
+        "content_hash": "cf57b1c729d13c0eab339e3739671a5af3506ce03aa21aa02fd30a5d95570152",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "offset": 354,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "offset": 137,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 597,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "cf57b1c729d13c0eab339e3739671a5af3506ce03aa21aa02fd30a5d95570152",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:8dffe5f9125fd30decf424e3",
+        "type": "evidence",
+        "evidence_id": "8dffe5f9125fd30decf424e3",
+        "source_type": "task",
+        "exported_content_sha256": "8a361c2792ecb0190b66c75a4903fa102809637058da67ca8ce7209917b65c9d",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:94cf24056635938bd4491e25",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.1.rst",
+        "heading": "Step 2: Update your configuration with the new setting names",
+        "start_line": 147,
+        "end_line": 157,
+        "start_char": 4992,
+        "end_char": 5426,
+        "score": "0.01915032679738562",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "6",
+          "deprecated"
+        ],
+        "evidence_id": "94cf24056635938bd4491e25",
+        "source_type": "repository",
+        "content_hash": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9537b13c145cda4c66c6cd3c",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-4.0.rst",
+        "heading": "Changes to internal API",
+        "start_line": 2306,
+        "end_line": 2347,
+        "start_char": 75173,
+        "end_char": 76339,
+        "score": "0.017848458321174984",
+        "root": "docs",
+        "matched_terms": [
+          "deprecated"
+        ],
+        "evidence_id": "9537b13c145cda4c66c6cd3c",
+        "source_type": "repository",
+        "content_hash": "cea0e74d56c3a184df983c4c203e64ea91e45004b049ae1ead056ae9289ba3c1",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "cea0e74d56c3a184df983c4c203e64ea91e45004b049ae1ead056ae9289ba3c1",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:95a2d33ed08de3776c438980",
+        "type": "evidence",
+        "path": "docs/history/changelog-4.3.rst",
+        "heading": "4.3.0 RC1",
+        "start_line": 142,
+        "end_line": 187,
+        "start_char": 3788,
+        "end_char": 5401,
+        "score": "0.03076923076923077",
+        "root": "docs",
+        "matched_terms": [
+          "acks_on_failure_or_timeout",
+          "task_acks_on_failure_or_timeout"
+        ],
+        "evidence_id": "95a2d33ed08de3776c438980",
+        "source_type": "repository",
+        "content_hash": "07bb887f516afdd9f078128f8be24123060f024d0a73a049f0da87ec03a57ee8",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "acks_on_failure_or_timeout",
+            "task_acks_on_failure_or_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "07bb887f516afdd9f078128f8be24123060f024d0a73a049f0da87ec03a57ee8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:9b2d27f1e282d5e43c8eab55",
+        "type": "evidence",
+        "path": "docs/glossary.rst",
+        "heading": "Glossary",
+        "start_line": 3,
+        "end_line": 46,
+        "start_char": 15,
+        "end_char": 1621,
+        "score": "0.029206349206349208",
+        "root": "docs",
+        "matched_terms": [
+          "task_acks_late"
+        ],
+        "evidence_id": "9b2d27f1e282d5e43c8eab55",
+        "source_type": "repository",
+        "content_hash": "43b8199f870e43c7084bd9ba5223624daa07fb1a1c1608fcd7d0de957fb5e2e4",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1",
+          "Q1-2"
+        ],
+        "exported_content_sha256": "43b8199f870e43c7084bd9ba5223624daa07fb1a1c1608fcd7d0de957fb5e2e4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:a61ec24bf6b7e399edecb89a",
+        "type": "evidence",
+        "path": ".github/copilot-instructions.md",
+        "heading": "GitHub Copilot PR Review Guide > High-signal focus areas (question-first by default) > 1) Backward compatibility risk",
+        "start_line": 71,
+        "end_line": 100,
+        "start_char": 5011,
+        "end_char": 6800,
+        "score": "0.028814262023217248",
+        "root": "docs",
+        "matched_terms": [
+          "acks_late",
+          "task_acks_late"
+        ],
+        "evidence_id": "a61ec24bf6b7e399edecb89a",
+        "source_type": "repository",
+        "content_hash": "b8e6561cf3182ef94f6403c97e296f050c9aff27fa8acade700ff146dc9d551a",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "b8e6561cf3182ef94f6403c97e296f050c9aff27fa8acade700ff146dc9d551a",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ac644def85257cbb0bffec8d",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/userguide/configuration.rst",
+        "start_line": 598,
+        "total_lines": 4240,
+        "start_char": 22118,
+        "end_char": 25018,
+        "evidence_id": "ac644def85257cbb0bffec8d",
+        "truncated": false,
+        "next_offset": 717,
+        "source_type": "repository",
+        "content_hash": "068a716ed11a10d22597d79a6c7b392e260e126799a598a2accea1bd1015b522",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "offset": 354,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "offset": 137,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 597,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "068a716ed11a10d22597d79a6c7b392e260e126799a598a2accea1bd1015b522",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:aec82e65a6a8fa440a3b94e8",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.6.rst",
+        "heading": "Step 2: Update your configuration with the new setting names",
+        "start_line": 99,
+        "end_line": 109,
+        "start_char": 3251,
+        "end_char": 3685,
+        "score": "0.019905273937532",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "6",
+          "deprecated"
+        ],
+        "evidence_id": "aec82e65a6a8fa440a3b94e8",
+        "source_type": "repository",
+        "content_hash": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:b0580cef0b82c1e2f047ef92",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.0.rst",
+        "heading": "Step 2: Update your configuration with the new setting names",
+        "start_line": 126,
+        "end_line": 136,
+        "start_char": 4213,
+        "end_char": 4647,
+        "score": "0.020470664087685365",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "6",
+          "deprecated"
+        ],
+        "evidence_id": "b0580cef0b82c1e2f047ef92",
+        "source_type": "repository",
+        "content_hash": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a54c469479c0736e96e006111a09dd966e8f53f1f79dd0ed0f7c70b234f3d15f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c36e28a536cd15822e7d634e",
+        "type": "evidence",
+        "path": "docs/userguide/tasks.rst",
+        "heading": "General",
+        "start_line": 1069,
+        "end_line": 1108,
+        "start_char": 33652,
+        "end_char": 34959,
+        "score": "0.031009615384615385",
+        "root": "docs",
+        "matched_terms": [
+          "acks_late",
+          "task_acks_late"
+        ],
+        "evidence_id": "c36e28a536cd15822e7d634e",
+        "source_type": "repository",
+        "content_hash": "c1a1adea9d8089485f52334e5e092aa0bf44ea4ea1c861244607768d6f7c25d9",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "c1a1adea9d8089485f52334e5e092aa0bf44ea4ea1c861244607768d6f7c25d9",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:c45533ce1ceabb0bc9fc6411",
+        "type": "evidence",
+        "path": "docs/userguide/tasks.rst",
+        "heading": "Tasks",
+        "start_line": 4,
+        "end_line": 34,
+        "start_char": 88,
+        "end_char": 1706,
+        "score": "0.027205882352941177",
+        "root": "docs",
+        "matched_terms": [
+          "acks_late"
+        ],
+        "evidence_id": "c45533ce1ceabb0bc9fc6411",
+        "source_type": "repository",
+        "content_hash": "1c632a057d920d9c38ac8cdfc86fa6a4a3dd9e9cefaa3569a180723fd89e45f4",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "1c632a057d920d9c38ac8cdfc86fa6a4a3dd9e9cefaa3569a180723fd89e45f4",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d5007ae56f16a5a9c857f04e",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/whatsnew-5.6.rst",
+        "start_line": 95,
+        "total_lines": 286,
+        "start_char": 3135,
+        "end_char": 6213,
+        "evidence_id": "d5007ae56f16a5a9c857f04e",
+        "truncated": false,
+        "next_offset": 214,
+        "source_type": "repository",
+        "content_hash": "a1efe25d567ac2bafd8bd4f4151dfffdc62eb41fdbf5300f29d5e9f59f29e1d7",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/history/whatsnew-2.5.rst",
+              "offset": 145,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.0.rst",
+              "offset": 121,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/whatsnew-5.6.rst",
+              "offset": 94,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "a1efe25d567ac2bafd8bd4f4151dfffdc62eb41fdbf5300f29d5e9f59f29e1d7",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d59516ff49b82ef944678f14",
+        "type": "evidence",
+        "path": ".github/copilot-instructions.md",
+        "heading": "GitHub Copilot PR Review Guide > High-signal focus areas (question-first by default) > 8) Ecosystem awareness (non-prescriptive)",
+        "start_line": 523,
+        "end_line": 551,
+        "start_char": 23467,
+        "end_char": 24546,
+        "score": "0.02889344262295082",
+        "root": "docs",
+        "matched_terms": [
+          "acks_on_failure_or_timeout"
+        ],
+        "evidence_id": "d59516ff49b82ef944678f14",
+        "source_type": "repository",
+        "content_hash": "e6905af18388f85d28db6a4251a93ee9f5667a7755ec7d3aa64c31ca2d83b502",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "acks_on_failure_or_timeout",
+            "task_acks_on_failure_or_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "e6905af18388f85d28db6a4251a93ee9f5667a7755ec7d3aa64c31ca2d83b502",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d6b24e29f101218d7e1bac81",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-2.5.rst",
+        "heading": "Deprecated modules",
+        "start_line": 150,
+        "end_line": 158,
+        "start_char": 4955,
+        "end_char": 5206,
+        "score": "0.020612851905651243",
+        "root": "docs",
+        "matched_terms": [
+          "0",
+          "deprecated"
+        ],
+        "evidence_id": "d6b24e29f101218d7e1bac81",
+        "source_type": "repository",
+        "content_hash": "73607415db8e5aea6b1758b3490243775bedf94700f7056c052e6c8d9119fb8f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "73607415db8e5aea6b1758b3490243775bedf94700f7056c052e6c8d9119fb8f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:d934d16861c5c59e7681f8e9",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/sqs.rst",
+        "heading": "Caveats",
+        "start_line": 327,
+        "end_line": 346,
+        "start_char": 11880,
+        "end_char": 13606,
+        "score": "0.027205882352941177",
+        "root": "docs",
+        "matched_terms": [
+          "task_acks_late"
+        ],
+        "evidence_id": "d934d16861c5c59e7681f8e9",
+        "source_type": "repository",
+        "content_hash": "74fde28138e9f2c2d1ccd173255ed24de00c46fd13809b4b1e2d0f5b9088d56f",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "74fde28138e9f2c2d1ccd173255ed24de00c46fd13809b4b1e2d0f5b9088d56f",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:e96ecc0dd4b5e813202ca81e",
+        "type": "evidence",
+        "path": "Changelog.rst",
+        "heading": "What's Changed",
+        "start_line": 866,
+        "end_line": 890,
+        "start_char": 35841,
+        "end_char": 36644,
+        "score": "0.029513888888888888",
+        "root": "docs",
+        "matched_terms": [
+          "task_acks_on_failure_or_timeout"
+        ],
+        "evidence_id": "e96ecc0dd4b5e813202ca81e",
+        "source_type": "repository",
+        "content_hash": "da3070d194ffac96cc666a974ff85daf6b1f353f283182ffbef9e12a0325064b",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "acks_on_failure_or_timeout",
+            "task_acks_on_failure_or_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "da3070d194ffac96cc666a974ff85daf6b1f353f283182ffbef9e12a0325064b",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ed948878093dbf4634abdd9d",
+        "type": "evidence",
+        "path": ".github/ISSUE_TEMPLATE/Bug-Report.md",
+        "heading": "Checklist > Optional Debugging Information",
+        "start_line": 44,
+        "end_line": 61,
+        "start_char": 2050,
+        "end_char": 2899,
+        "score": "0.02900988017658188",
+        "root": "docs",
+        "matched_terms": [],
+        "evidence_id": "ed948878093dbf4634abdd9d",
+        "source_type": "repository",
+        "content_hash": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "acks_on_failure_or_timeout",
+            "task_acks_on_failure_or_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "0bc0767a97f119029712f488b5446c8af0de0c8a4c49ad0697db5b3eb4bc20f3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:ef85c1efa2ab0e22e24d1eb7",
+        "type": "evidence",
+        "path": "docs/history/whatsnew-5.6.rst",
+        "heading": "",
+        "start_line": 1,
+        "end_line": 3,
+        "start_char": 0,
+        "end_char": 61,
+        "score": "0.017615930928839993",
+        "root": "docs",
+        "matched_terms": [
+          "6"
+        ],
+        "evidence_id": "ef85c1efa2ab0e22e24d1eb7",
+        "source_type": "repository",
+        "content_hash": "c2be702d5845f57567cde72c3426c84c6449b5c2d469e95142cae3ed1c075fcb",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "deprecated 6.0",
+            "whatsnew"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-3"
+        ],
+        "exported_content_sha256": "c2be702d5845f57567cde72c3426c84c6449b5c2d469e95142cae3ed1c075fcb",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f20b6ad6b23363a38734a391",
+        "type": "evidence",
+        "path": "docs/getting-started/backends-and-brokers/redis.rst",
+        "heading": "Soft Shutdown",
+        "start_line": 218,
+        "end_line": 238,
+        "start_char": 6877,
+        "end_char": 8478,
+        "score": "0.027313266443701224",
+        "root": "docs",
+        "matched_terms": [
+          "task_acks_late"
+        ],
+        "evidence_id": "f20b6ad6b23363a38734a391",
+        "source_type": "repository",
+        "content_hash": "6bd8a7cea30547ce13f173e34e3f8993c0cf8f4c9accd3f7328c1624b89bf989",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "task_acks_late",
+            "acks_late"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "6bd8a7cea30547ce13f173e34e3f8993c0cf8f4c9accd3f7328c1624b89bf989",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f6624a0b82a7f5130dd6930c",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/history/changelog-4.4.rst",
+        "start_line": 355,
+        "total_lines": 776,
+        "start_char": 10770,
+        "end_char": 14894,
+        "evidence_id": "f6624a0b82a7f5130dd6930c",
+        "truncated": false,
+        "next_offset": 474,
+        "source_type": "repository",
+        "content_hash": "cf57b1c729d13c0eab339e3739671a5af3506ce03aa21aa02fd30a5d95570152",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/history/changelog-4.4.rst",
+              "offset": 354,
+              "limit": 120
+            },
+            {
+              "path": "docs/history/changelog-4.3.rst",
+              "offset": 137,
+              "limit": 120
+            },
+            {
+              "path": "docs/userguide/configuration.rst",
+              "offset": 597,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "cf57b1c729d13c0eab339e3739671a5af3506ce03aa21aa02fd30a5d95570152",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:f7147ad03582ca40bbb7ddc6",
+        "type": "evidence",
+        "root": "docs",
+        "path": "docs/faq.rst",
+        "start_line": 829,
+        "total_lines": 964,
+        "start_char": 25389,
+        "end_char": 29761,
+        "evidence_id": "f7147ad03582ca40bbb7ddc6",
+        "truncated": false,
+        "next_offset": 948,
+        "source_type": "repository",
+        "content_hash": "08673e6d23725394e431514fbd45fd14a4e49598919d1ac3d0dbf0b4d78716a3",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "read_many",
+          "root": "docs",
+          "reads": [
+            {
+              "path": "docs/userguide/tasks.rst",
+              "offset": 1064,
+              "limit": 120
+            },
+            {
+              "path": "docs/faq.rst",
+              "offset": 828,
+              "limit": 120
+            },
+            {
+              "path": "docs/glossary.rst",
+              "offset": 0,
+              "limit": 120
+            }
+          ]
+        },
+        "retrieved_for": [
+          "Q1-2"
+        ],
+        "exported_content_sha256": "08673e6d23725394e431514fbd45fd14a4e49598919d1ac3d0dbf0b4d78716a3",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "evidence:fab1ec18cbaf8c11daced1b4",
+        "type": "evidence",
+        "path": "docs/history/changelog-4.4.rst",
+        "heading": "4.3.0 RC1",
+        "start_line": 359,
+        "end_line": 404,
+        "start_char": 10869,
+        "end_char": 12482,
+        "score": "0.030776515151515152",
+        "root": "docs",
+        "matched_terms": [
+          "acks_on_failure_or_timeout",
+          "task_acks_on_failure_or_timeout"
+        ],
+        "evidence_id": "fab1ec18cbaf8c11daced1b4",
+        "source_type": "repository",
+        "content_hash": "07bb887f516afdd9f078128f8be24123060f024d0a73a049f0da87ec03a57ee8",
+        "revision": "3d9b82d3d25cb434b03bdb5784b49c0466667ac7",
+        "via": {
+          "kind": "search",
+          "root": "docs",
+          "queries": [
+            "acks_on_failure_or_timeout",
+            "task_acks_on_failure_or_timeout"
+          ]
+        },
+        "retrieved_for": [
+          "Q1-1"
+        ],
+        "exported_content_sha256": "07bb887f516afdd9f078128f8be24123060f024d0a73a049f0da87ec03a57ee8",
+        "source_content_omitted_from_public_export": true
+      },
+      {
+        "id": "requirement:config-acks-settings",
+        "type": "requirement",
+        "description": "In docs/userguide/configuration.rst, add new `task_acks_on_failure` and `task_acks_on_timeout` setting entries (Default: None, falling back to task_acks_on_failure_or_timeout then True; only applies with task_acks_late), and mark `task_acks_on_failure_or_timeout` as deprecated in 6.0 (removal 7.0) pointing to the two new settings."
+      },
+      {
+        "id": "requirement:tasks-acks-attrs",
+        "type": "requirement",
+        "description": "In docs/userguide/tasks.rst, document the new Task.acks_on_failure and Task.acks_on_timeout attributes (fallback to acks_on_failure_or_timeout, then True; requires acks_late) and note that Task.acks_on_failure_or_timeout is deprecated in 6.0 in favor of them."
+      },
+      {
+        "id": "research:Q1-1",
+        "type": "research_question",
+        "description": "Where in the docs are task_acks_on_failure_or_timeout and acks_on_failure_or_timeout documented (configuration reference and task attribute docs)?"
+      },
+      {
+        "id": "research:Q1-2",
+        "type": "research_question",
+        "description": "Where are task_acks_late and related ack settings documented so new task_acks_on_failure/task_acks_on_timeout settings can be added consistently?"
+      },
+      {
+        "id": "research:Q1-3",
+        "type": "research_question",
+        "description": "Is there a changelog or whatsnew section for 6.0 where deprecations are recorded?"
+      }
+    ],
+    "edges": [
+      {
+        "from": "evidence:0a185267cbd0ad7abb099784",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:0fdcdc548d60462fe01de48f",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:13c27a096c6ade06d1a9d9ef",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:15ef91ba4986f898b8a57785",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:15ef91ba4986f898b8a57785",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:264b1403382aa9012cc6a0e6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:281101b6506c3f7b67876e5b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:281101b6506c3f7b67876e5b",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:33d51c40102b7d123c045d2d",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:4ba2f7c5acc49e4692487064",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:522d7aeeaf64cca2f898afad",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:522d7aeeaf64cca2f898afad",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:60eabf64d7e408fb6078552e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:60eabf64d7e408fb6078552e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:613f8833ac5c601733f89a2b",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:61835c5fba98351837db99d4",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6be4865cc5b046a0eadfe8f2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:6be4865cc5b046a0eadfe8f2",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:70c4c0807f6d9be9d6c27c52",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:81b61d7a7249fdfa5f878ed2",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:81c6c243ae4b9fa3d1a05089",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:83e003309975f471289d6ca1",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:86222594aaa510a72942279b",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:94cf24056635938bd4491e25",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9537b13c145cda4c66c6cd3c",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:95a2d33ed08de3776c438980",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9b2d27f1e282d5e43c8eab55",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:9b2d27f1e282d5e43c8eab55",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:a61ec24bf6b7e399edecb89a",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac644def85257cbb0bffec8d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:aec82e65a6a8fa440a3b94e8",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:b0580cef0b82c1e2f047ef92",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c36e28a536cd15822e7d634e",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:c45533ce1ceabb0bc9fc6411",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d5007ae56f16a5a9c857f04e",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d59516ff49b82ef944678f14",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d6b24e29f101218d7e1bac81",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:d934d16861c5c59e7681f8e9",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:e96ecc0dd4b5e813202ca81e",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ed948878093dbf4634abdd9d",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ef85c1efa2ab0e22e24d1eb7",
+        "to": "research:Q1-3",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f20b6ad6b23363a38734a391",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f6624a0b82a7f5130dd6930c",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:f7147ad03582ca40bbb7ddc6",
+        "to": "research:Q1-2",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:fab1ec18cbaf8c11daced1b4",
+        "to": "research:Q1-1",
+        "type": "retrieved_for"
+      },
+      {
+        "from": "evidence:ac644def85257cbb0bffec8d",
+        "to": "requirement:config-acks-settings",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:60eabf64d7e408fb6078552e",
+        "to": "requirement:config-acks-settings",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6150d3db9abb3778483a96ae",
+        "to": "requirement:config-acks-settings",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:4ba2f7c5acc49e4692487064",
+        "to": "requirement:tasks-acks-attrs",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:c36e28a536cd15822e7d634e",
+        "to": "requirement:tasks-acks-attrs",
+        "type": "motivates"
+      },
+      {
+        "from": "evidence:6150d3db9abb3778483a96ae",
+        "to": "requirement:tasks-acks-attrs",
+        "type": "motivates"
+      }
+    ],
+    "semantic_status": "Model judgments with checked references; requires human approval"
+  },
+  "candidate_patch_sha256": null
+}

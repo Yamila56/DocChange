@@ -1,0 +1,36 @@
+diff --git a/docs/userguide/calling.rst b/docs/userguide/calling.rst
+index b014357e2b6970a6a9ac2bdc7ce8596e0407e073..f7dbcd62089b6c5d68213690f65c3dd97137c1a3 100644
+--- a/docs/userguide/calling.rst
++++ b/docs/userguide/calling.rst
+@@ -855,3 +855,7 @@ AMQP's full routing capabilities. Interested parties may read the
+     A number between `0` and `255`, where `255` is the highest priority.
+ 
+     Supported by: RabbitMQ, Redis (priority reversed, 0 is highest).
++
++    The meaning of the number depends on the broker: with RabbitMQ (AMQP),
++    higher numbers mean higher priority, while with Redis lower numbers mean
++    higher priority (``0`` is the highest).
+diff --git a/docs/userguide/routing.rst b/docs/userguide/routing.rst
+index f88d64b0f29530ec7ad078927d1391eb8add756b..047480a99663ef100eabbeed4326770af59697e1 100644
+--- a/docs/userguide/routing.rst
++++ b/docs/userguide/routing.rst
+@@ -251,6 +251,9 @@ A default priority for all tasks can also be specified using the
+ 
+     app.conf.task_default_priority = 5
+ 
++With RabbitMQ (AMQP), higher numbers mean higher priority: a task with
++priority ``9`` is processed before a task with priority ``0``.
++
+ .. _amqp-primer:
+ 
+ 
+@@ -276,6 +279,9 @@ This means that even though there are 10 (0-9) priority levels, these are
+ consolidated into 4 levels by default to save resources. This means that a
+ queue named celery will really be split into 4 queues.
+ 
++With Redis, lower numbers mean higher priority: a task with priority ``0``
++is processed before a task with priority ``9``.
++
+ The highest priority queue will be named celery, and the other queues will
+ have a separator (by default `\x06\x16`) and their priority number appended to
+ the queue name.

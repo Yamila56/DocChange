@@ -1,0 +1,20 @@
+{
+  "official_prediction_validator": {
+    "schema_version": "dogbench-predictions-v1",
+    "valid": true,
+    "predictions": 49,
+    "items": 49,
+    "missing": 0,
+    "statuses": {
+      "completed": 29,
+      "error": 20
+    },
+    "decisions": {
+      "abstain": 3,
+      "patch": 26
+    }
+  },
+  "paired_cohort_ids_verified": 49,
+  "canonical_patch_hashes_verified": 26,
+  "all_175_public_tasks_completed": false
+}
