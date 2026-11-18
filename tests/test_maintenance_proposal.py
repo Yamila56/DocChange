@@ -52,6 +52,7 @@ from tests.test_maintenance_taskgraph import submit
         "repeat",
         "redundant_quote",
         "requirements_delta",
+        "requirements_recovery",
         "requirements_regression",
         "requirements_false_quote",
         "scope_expansion",
@@ -238,13 +239,24 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                     }
                 previous = {edit["old"]: edit["edit_id"] for edit in context["prior_edits"]}
                 assert context["draft_feedback"]["defects"][0]["requirement_id"].startswith("R")
+                if mode == "requirements_recovery" and phases.count("DRAFT") == 3:
+                    assert context["draft_feedback"]["code"] in {
+                        "UNOBSERVED_EDIT",
+                        "PATCH_MISMATCH",
+                    }
                 return {
                     "defect_ids": [context["draft_feedback"]["defects"][0]["id"]],
                     "replace_edit_ids": [
                         previous["Timeout: 30" if mode != "requirements_regression" else "# Guide"]
                     ],
                     "edits": [
-                        {"path": target, "old": "Timeout: 30", "new": "Timeout: 60 by default"}
+                        {
+                            "path": target,
+                            "old": "Timeout: 999"
+                            if mode == "requirements_recovery" and phases.count("DRAFT") == 2
+                            else "Timeout: 30",
+                            "new": "Timeout: 60 by default",
+                        }
                         if mode != "requirements_regression"
                         else {"path": target, "old": "# Guide", "new": "# Default timeout"}
                     ],
@@ -515,7 +527,7 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
     if mode == "revise":
         assert phases[-4:] == ["NECESSITY", "QUALITY", "DRAFT", "QUALITY"]
         assert "+Timeout: 60 by default" in result["patch"]
-    if mode == "requirements_delta":
+    if mode in {"requirements_delta", "requirements_recovery"}:
         assert "by default" not in data["first_draft"]["patch"]
         assert "+# Timeout guide" in result["patch"]
         assert "+Timeout: 60 by default" in result["patch"]

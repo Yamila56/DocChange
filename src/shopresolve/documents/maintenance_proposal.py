@@ -1064,6 +1064,11 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
         context = super()._context(phase, task_prompt)
         sources = self.data["evidence"]
         if phase == "DRAFT":
+            if revision := self.data.get("pending_quality_revision"):
+                context["draft_feedback"] = {
+                    **(context.get("draft_feedback") or {}),
+                    "defects": [revision["defects"][key] for key in revision["offered"]],
+                }
             defects = (context.get("draft_feedback") or {}).get("defects", [])
             cited = {item["evidence_id"] for item in context["evidence"]}
             required = {
