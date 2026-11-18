@@ -101,6 +101,10 @@ def main(args):
     )
     protocol_failures = sum(row["terminal_protocol"] for row in rows)
     lease_failures = sum(row["terminal_lease"] for row in rows)
+    exact_edit_failures = sum(row["terminal_exact_edit"] for row in rows)
+    transport_failures = sum(row["terminal_transport"] for row in rows)
+    runtime_failures = sum(not row["normal_terminal"] for row in rows)
+    p0_clean = sum(row["p0_clean"] for row in rows)
     if args.policy == LEDGER_POLICY:
         gate = gate and protocol_failures / len(rows) < 0.02 and lease_failures == 0
     recovered = sum(row["decision_correct"] for row in failures)
@@ -109,6 +113,13 @@ def main(args):
     if args.policy == PROPOSAL_POLICY:
         gate = gate and protocol_failures == 0 and lease_failures == 0
     permit_expansion = gate and (args.policy != PROPOSAL_POLICY or direction_gate)
+    quality_gate = None
+    if args.require_quality:
+        if args.policy != PROPOSAL_POLICY:
+            raise ValueError("Quality release gate requires proposal-first policy")
+        gate = gate and not (exact_edit_failures or transport_failures or runtime_failures)
+        quality_gate = recovered + retained >= 17 and retained >= 5 and p0_clean >= 6
+        permit_expansion = gate and direction_gate and quality_gate
     atomic(
         args.output,
         {
@@ -121,7 +132,11 @@ def main(args):
             "newly_direction_correct": recovered,
             "retained_direction_correct": retained,
             "direction_gate_passed": direction_gate if args.policy == PROPOSAL_POLICY else None,
-            "p0_clean_deliveries": sum(row["p0_clean"] for row in rows),
+            "p0_clean_deliveries": p0_clean,
+            "quality_gate_passed": quality_gate,
+            "terminal_exact_edit_all30": exact_edit_failures,
+            "terminal_transport_all30": transport_failures,
+            "terminal_runtime_all30": runtime_failures,
             "retained_with_degraded_review": sum(
                 row["review_status"] in {"degraded", "unavailable"} for row in rows
             ),
@@ -157,4 +172,5 @@ if __name__ == "__main__":
     parser.add_argument("--batch", type=Path, required=True)
     parser.add_argument("--judgments", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--require-quality", action="store_true")
     main(parser.parse_args())

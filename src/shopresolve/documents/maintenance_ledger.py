@@ -260,7 +260,7 @@ class LedgerMaintenanceRuntime(BatchedResearchRuntime):
             NoChange(kind="no_change", impact="already_documented", evidence_ids=refs, text=reason),
             step,
         )
-        implementation = implementation_sources(self.data["evidence"], refs)
+        implementation = self._change_side_refs(refs)
         for path in previous_paths:
             used_refs = [*implementation, *(ref for ref in refs if ref in self._path_refs(path))]
             self._record_surface(path, "dismissed", reason, used_refs)

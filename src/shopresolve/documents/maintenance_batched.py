@@ -10,6 +10,7 @@ from .maintenance_batched_protocol import (
     PROTOCOLS,
     REVIEW_RESEARCH_LIMIT,
 )
+from .maintenance_beliefs import implementation_sources
 from .maintenance_evidence import draft_view, edit_identity, review_evidence
 from .maintenance_research import execute_research, intent_signature, normalize_questions
 from .maintenance_runtime import CANDIDATE_ERRORS, MaintenanceRuntime
@@ -191,18 +192,9 @@ class BatchedResearchRuntime(MaintenanceRuntime):
         if not set(action.evidence_ids) <= sources.keys():
             raise DomainError("UNKNOWN_EVIDENCE", "No-change cites unknown sources")
         docs = [sources[e]["path"] for e in action.evidence_ids if sources[e].get("root") == "docs"]
-        implementation = any(
-            source.get("root") == "code"
-            or (
-                source.get("source_type") == "implementation"
-                and source["content"].get("has_implementation")
-                and bool(source["content"].get("diff_excerpt", "").strip())
-            )
-            for source in (sources[e] for e in action.evidence_ids)
-        )
-        if not docs or not implementation:
+        if not docs or not self._change_side_refs(action.evidence_ids):
             raise DomainError(
-                "MISSING_EVIDENCE", "No-change requires implementation and documentation sources"
+                "MISSING_EVIDENCE", "No-change requires change-side and documentation sources"
             )
         self.data["tasks"] = [
             {
@@ -242,6 +234,9 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             step,
             repair=False,
         )
+
+    def _change_side_refs(self, refs):
+        return implementation_sources(self.data["evidence"], refs)
 
     def _defect_scope(self):
         return {(d["requirement_id"], d["path"]) for d in self.data["review"]["defects"]}

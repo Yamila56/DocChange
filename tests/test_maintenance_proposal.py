@@ -5,6 +5,7 @@ import pytest
 
 from scripts.evaluate_models import EvaluationBudget, RecordedGateway
 from shopresolve.config import Settings
+from shopresolve.documents.maintenance_change_ledger import supplied_change_span
 from shopresolve.documents.maintenance_proposal import ProposalMaintenanceRuntime
 from shopresolve.documents.maintenance_proposal_protocol import (
     PROPOSAL_POLICY,
@@ -42,10 +43,47 @@ from tests.test_maintenance_taskgraph import submit
         "source_changed",
         "restart",
         "review_unresolved",
+        "inherit",
+        "ambiguous",
+        "choose_change",
+        "spec",
+        "spec_no_change",
+        "docs_only_no_change",
+        "repeat",
+        "redundant_quote",
+        "requirements_delta",
+        "requirements_regression",
+        "requirements_false_quote",
+        "scope_expansion",
+        "exact_range_read",
+        "editorial",
+        "editorial_unsupported",
     ],
 )
 async def test_proposal_first_through_repository_gateway(request, commerce, tmp_path, mode):
     root, environment = request.getfixturevalue("belief_repository")
+    task = "Update timeout"
+    quality_mode = mode.startswith("requirements_")
+    reader_goal = "Choose the updated timeout and migrate older configurations"
+    if mode == "exact_range_read":
+        (root / "guide.mdx").write_text("# Guide\n" + "\n" * 160 + "Timeout: 30\n", encoding="utf8")
+        git(root, "add", "guide.mdx")
+        git(
+            root,
+            "-c",
+            "user.name=Test",
+            "-c",
+            "user.email=test@example.invalid",
+            "commit",
+            "-qm",
+            "long docs",
+        )
+    if mode in {"spec", "spec_no_change"}:
+        environment.roots["code"] = None
+        task = "The timeout now defaults to 60 seconds."
+    if mode.startswith("editorial"):
+        environment.roots["code"] = None
+        task = "Clarify how timeout compatibility is documented."
 
     class ProcessDeath(BaseException):
         pass
@@ -66,7 +104,7 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
         docs = {e["path"]: e["evidence_id"] for e in context["evidence"] if e["root"] == "docs"}
         impl = context.get("implementation_evidence_id")
         if phase == "REASON":
-            if len(phases) == 1:
+            if len(phases) == 1 or (mode == "repeat" and len(phases) == 2):
                 questions = [
                     {"root": "docs", "paths": ["migration.md"], "question": "What do docs say?"}
                 ]
@@ -74,12 +112,89 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                     questions.append(
                         {"root": "code", "paths": ["server.py"], "question": "Check implementation"}
                     )
-                return {"action": "research", "questions": questions}
-            if mode in {"reopen", "bare_no_change"} and phases.count("REASON") == 2:
+                result = {"action": "research", "questions": questions}
+                if mode in {"ambiguous", "choose_change"}:
+                    result["changes"] = [
+                        {"summary": "The timeout changes", "evidence_ids": [impl]},
+                        {"summary": "A distinct behavior changes", "evidence_ids": [impl]},
+                    ]
+                if mode in {"spec", "spec_no_change"}:
+                    result["changes"] = [{"summary": task, "task_quote": task}]
+                return result
+            if (
+                mode in {"reopen", "bare_no_change", "docs_only_no_change", "spec_no_change"}
+                and phases.count("REASON") == 2
+            ):
                 return {"action": "no_change", "reason": "Maybe existing docs are enough"}
             proposed = "../invalid.md" if mode == "unsafe" else target
+            if mode == "scope_expansion" and context.get("review_scope_gaps"):
+                assert context["retained_draft_paths"] == [target]
+                assert context["review_scope_gaps"][0]["path"] == "migration.md"
+                return {
+                    "action": "propose",
+                    "surfaces": [
+                        {
+                            "path": "migration.md",
+                            "reason": "Synchronize the maintained migration guide",
+                            "doc_evidence_ids": [docs["migration.md"]],
+                        }
+                    ],
+                }
+            if quality_mode or mode.startswith("editorial"):
+                requirements = (
+                    [
+                        {"statement": "State the timeout of `60` in the guide."},
+                        {"statement": "Specify that this is the default timeout."},
+                    ]
+                    if quality_mode
+                    else [
+                        {
+                            "statement": "State that the compatibility value was 30.",
+                            "evidence_ids": [docs["migration.md"]] if mode == "editorial" else [],
+                        }
+                    ]
+                )
+                surface = {
+                    "path": target,
+                    "reason": "Clarify the timeout",
+                    "doc_evidence_ids": [docs["migration.md"]],
+                    "requirements": requirements,
+                }
+                action = {"action": "propose", "surfaces": [surface], "reader_goal": reader_goal}
+                if mode.startswith("editorial"):
+                    action["documentation_request_quote"] = task
+                return action
+            if mode in {
+                "inherit",
+                "ambiguous",
+                "choose_change",
+                "spec",
+                "repeat",
+                "redundant_quote",
+            }:
+                surface = {
+                    "path": proposed,
+                    "reason": "The documented timeout may need updating",
+                    "doc_evidence_ids": [docs["migration.md"]],
+                }
+                if mode == "choose_change":
+                    assert context["active_change_ref"] is None
+                    surface["change_refs"] = ["C2"]
+                if mode == "repeat":
+                    assert "already ran" in context["research_feedback"]
+                response = {"action": "propose", "surfaces": [surface]}
+                if mode == "redundant_quote":
+                    response["changes"] = [
+                        {
+                            "summary": "The default timeout changes",
+                            "evidence_ids": [impl],
+                            "task_quote": "Update timeout",
+                        }
+                    ]
+                return response
             return {
                 "action": "propose",
+                "reader_goal": reader_goal,
                 "surfaces": [
                     {
                         "path": proposed,
@@ -91,6 +206,19 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
             }
         if phase == "DRAFT":
             assert len(context["targets"]) == 1
+            if mode == "scope_expansion":
+                assert context["reader_goal"] == reader_goal
+                if phases.count("DRAFT") > 1:
+                    assert context["targets"][0]["path"] == "migration.md"
+                    return {
+                        "edits": [
+                            {
+                                "path": "migration.md",
+                                "old": "Compatibility value was 30.",
+                                "new": "Compatibility value is 60.",
+                            }
+                        ]
+                    }
             if target == "added.md":
                 return {
                     "edits": [
@@ -98,6 +226,35 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                     ]
                 }
             assert target in docs
+            if quality_mode:
+                assert context["reader_goal"] == reader_goal
+                assert len(context["targets"][0]["requirements"]) == 2
+                if phases.count("DRAFT") == 1:
+                    return {
+                        "edits": [
+                            {"path": target, "old": "Timeout: 30", "new": "Timeout: 60"},
+                            {"path": target, "old": "# Guide", "new": "# Timeout guide"},
+                        ]
+                    }
+                previous = {edit["old"]: edit["edit_id"] for edit in context["prior_edits"]}
+                assert context["draft_feedback"]["defects"][0]["requirement_id"].startswith("R")
+                return {
+                    "defect_ids": [context["draft_feedback"]["defects"][0]["id"]],
+                    "replace_edit_ids": [
+                        previous["Timeout: 30" if mode != "requirements_regression" else "# Guide"]
+                    ],
+                    "edits": [
+                        {"path": target, "old": "Timeout: 30", "new": "Timeout: 60 by default"}
+                        if mode != "requirements_regression"
+                        else {"path": target, "old": "# Guide", "new": "# Default timeout"}
+                    ],
+                }
+            if mode == "editorial":
+                return {
+                    "edits": [
+                        {"path": target, "old": "Timeout: 30", "new": "Compatibility value was 30."}
+                    ]
+                }
             if mode == "invalid_delta" and phases.count("DRAFT") > 1:
                 return {
                     "edits": [{"path": "unauthorized.md", "operation": "create", "new": "wrong"}]
@@ -125,6 +282,20 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                 return {"action": "no_change", "reason": "Uncertain", "counterevidence_ids": [impl]}
             if mode == "bare_no_change":
                 return {"action": "no_change", "reason": "Unsupported", "evidence_ids": [impl]}
+            if mode in {"docs_only_no_change", "spec_no_change"}:
+                refs = [
+                    view["evidence_id"]
+                    for view in context["challenge_evidence"]
+                    if view["root"] == "docs"
+                ]
+                reply = {
+                    "action": "no_change",
+                    "reason": "The observed guidance already covers the task",
+                    "evidence_ids": refs[:1],
+                }
+                if mode == "spec_no_change":
+                    reply["change_refs"] = [context["active_change_ref"]]
+                return reply
             if mode == "reopen" and context["candidate"]["decision"] == "abstain":
                 return {
                     "action": "keep_patch",
@@ -137,6 +308,89 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
         if mode == "source_changed":
             (root / target).write_text("Timeout: 900\n", encoding="utf-8")
             return {"action": "unresolved"}
+        if mode == "editorial":
+            return {
+                "action": "pass",
+                "coverage": [
+                    {
+                        "requirement_id": context["requirements"][0]["id"],
+                        "quote": "Compatibility value was 30.",
+                    }
+                ],
+            }
+        if mode == "scope_expansion":
+            assert context["reader_goal"] == reader_goal
+            if phases.count("QUALITY") == 1:
+                return {
+                    "action": "revise",
+                    "defects": [
+                        {
+                            "path": "migration.md",
+                            "problem": "The compatibility guide is stale.",
+                            "expected": "Tell readers the compatibility value is 60.",
+                            "evidence_ids": [impl, docs["migration.md"]],
+                        }
+                    ],
+                }
+            assert context["previous_scope_findings"][0]["path"] == "migration.md"
+            return {
+                "action": "pass",
+                "coverage": [
+                    {
+                        "requirement_id": context["requirements"][0]["id"],
+                        "quote": "Compatibility value is 60.",
+                    }
+                ],
+            }
+        if quality_mode:
+            normal, default = (requirement["id"] for requirement in context["requirements"])
+            coverage = [{"requirement_id": normal, "quote": "# Timeout guide"}]
+            if mode == "requirements_false_quote":
+                return {
+                    "action": "pass",
+                    "coverage": [
+                        *coverage,
+                        {"requirement_id": default, "quote": "Invented final quote."},
+                    ],
+                }
+            if phases.count("QUALITY") == 1:
+                return {
+                    "action": "revise",
+                    "coverage": [
+                        {"requirement_id": normal, "quote": "An inexact supporting quote."},
+                        *coverage,
+                        {"requirement_id": default, "quote": "Timeout: 60"},
+                    ],
+                    "defects": [
+                        {
+                            "path": target,
+                            "problem": "Mention that the value is only the default.",
+                            "requirement_id": default,
+                        }
+                    ],
+                }
+            if mode == "requirements_regression":
+                return {
+                    "action": "revise",
+                    "coverage": [
+                        {"requirement_id": default, "quote": "# Default timeout"},
+                    ],
+                    "defects": [
+                        {
+                            "path": target,
+                            "problem": "Lost the confirmed heading.",
+                            "requirement_id": normal,
+                        }
+                    ],
+                }
+            assert context["previous_quality"]["claimed_defect_ids"]
+            return {
+                "action": "pass",
+                "coverage": [
+                    *coverage,
+                    {"requirement_id": default, "quote": "Timeout: 60 by default"},
+                ],
+            }
         if mode == "bad_review":
             return {"action": "wrong-action"}
         if mode in {"restart", "review_unresolved"}:
@@ -229,7 +483,7 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
             restored = RunStore(commerce[1])
             lease = await restored.claim(run_id, "restored", lease_seconds=180)
             runtime = RepositoryRuntime(restored, recorded, environment, tmp_path / "trace.jsonl")
-        result = await runtime.run(lease, "Update timeout")
+        result = await runtime.run(lease, task)
     finally:
         await gateway.aclose()
 
@@ -238,6 +492,10 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
         "counterevidence": "abstain",
         "unsafe": "unresolved",
         "bare_no_change": "unresolved",
+        "docs_only_no_change": "unresolved",
+        "spec_no_change": "abstain",
+        "ambiguous": "unresolved",
+        "editorial_unsupported": "unresolved",
     }
     assert result["decision"] == expected.get(mode, "patch")
     assert git(root, "status", "--porcelain") == b""
@@ -257,6 +515,28 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
     if mode == "revise":
         assert phases[-4:] == ["NECESSITY", "QUALITY", "DRAFT", "QUALITY"]
         assert "+Timeout: 60 by default" in result["patch"]
+    if mode == "requirements_delta":
+        assert "by default" not in data["first_draft"]["patch"]
+        assert "+# Timeout guide" in result["patch"]
+        assert "+Timeout: 60 by default" in result["patch"]
+        assert len(data["best_valid_candidate"]["candidate"]["quality"]["covered"]) == 2
+    if mode == "scope_expansion":
+        assert result["review_status"] == "verified"
+        assert "migration.md" not in data["first_draft"]["changed_paths"]
+        assert "Compatibility value is 60." in result["patch"]
+        assert "+Timeout: 60" in result["patch"]
+    if mode in {"requirements_regression", "requirements_false_quote"}:
+        assert "+# Timeout guide" in result["patch"]
+        assert "+Timeout: 60\n" in result["patch"]
+        assert result["review_status"] == "degraded"
+    if mode == "exact_range_read":
+        assert phases.count("DRAFT") == 1
+        assert any(key.startswith("exact-edit-read:") for key in data["tool_metrics"])
+    if mode == "editorial":
+        assert data["tasks"][0]["documentation_request"]["quote"] == task
+        assert data["tasks"][0]["change_source_types"] == {}
+    if mode == "editorial_unsupported":
+        assert "DRAFT" not in phases
     if mode == "reopen":
         assert phases[:4] == ["REASON", "REASON", "NECESSITY", "REASON"]
     if mode == "research":
@@ -276,6 +556,33 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
         assert "+Timeout: 60\n" in result["patch"]
     if mode == "restart":
         assert phases == ["REASON", "REASON", "DRAFT", "NECESSITY", "QUALITY"]
+    if mode in {"inherit", "choose_change", "spec", "repeat", "redundant_quote"}:
+        bound = data["tasks"][0]
+        assert bound["change_refs"] == (
+            ["C2"] if mode in {"choose_change", "redundant_quote"} else ["C1"]
+        )
+        assert bound["change_binding"] == ("explicit" if mode == "choose_change" else "inherited")
+        source = "trusted_change_spec" if mode == "spec" else "implementation_diff"
+        assert list(bound["change_source_types"].values()) == [source]
+        assert not data.get("protocol_retries")
+    if mode == "repeat":
+        assert len(data["research_history"]) == data["repeated_research"] == 1
+    if mode == "ambiguous":
+        assert "DRAFT" not in phases
+
+
+def test_change_spec_uses_a_verbatim_assertion_from_the_task_body():
+    spec = "The timeout now defaults to 60 seconds."
+    linked = "The limit now defaults to 5 requests."
+    task = f"Provided task request:\n{spec}\n# Frozen pre-existing linked-source context\n{linked}"
+    assert supplied_change_span(task, spec) == (spec, task.index(spec))
+    with pytest.raises(DomainError):
+        supplied_change_span(task, linked)
+    generic = "Document handling errors when the broker uses an alternate port."
+    with pytest.raises(DomainError):
+        supplied_change_span(generic, generic)
+    with pytest.raises(DomainError):
+        supplied_change_span(generic, "the broker uses an alternate port.")
 
 
 def test_proposal_input_accepts_metadata_and_rejects_conflicting_actions():
