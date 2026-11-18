@@ -5,6 +5,7 @@ with a temporary Git index, leaving the sealed source checkout unchanged.
 """
 
 import asyncio
+import copy
 import json
 import os
 import subprocess
@@ -28,6 +29,8 @@ from .coverage import (
     require_plan,
 )
 from .maintenance_belief_protocol import BELIEF_PREFIX
+from .maintenance_ledger_protocol import LEDGER_POLICY, LEDGER_PREFIX, decode_ledger_json
+from .maintenance_proposal_protocol import PROPOSAL_POLICY, PROPOSAL_PREFIX
 from .model_profile import configure_document_payload
 from .repository_search import RepositorySearch, change_summary, encoder_for
 from .retriever import DocumentRetriever, tokens
@@ -70,8 +73,13 @@ class RepositoryDecision(BaseModel):
 
 
 class RepositoryGateway(CompatibleJsonGateway):
+    def decode_output(self, phase, content):
+        if phase.startswith((LEDGER_PREFIX, PROPOSAL_PREFIX)):
+            return decode_ledger_json(content)
+        return super().decode_output(phase, content)
+
     def build_payload(self, phase, context):
-        if phase.startswith(("MAINTENANCE_", BELIEF_PREFIX)):
+        if phase.startswith(("MAINTENANCE_", BELIEF_PREFIX, LEDGER_PREFIX, PROPOSAL_PREFIX)):
             from .maintenance_runtime import build_maintenance_payload
 
             return build_maintenance_payload(self.settings, phase, context)
@@ -570,6 +578,23 @@ class RepositoryEnvironment:
         ).decode()
 
 
+async def run_with_lease_recovery(store, run_id, gateway, environment, trace, prompt, *, worker_id):
+    lease = await store.claim(run_id, worker_id, lease_seconds=180)
+    if lease is None:
+        raise DomainError("LEASE_UNAVAILABLE", "Persisted run is already leased or terminal")
+    try:
+        return await RepositoryRuntime(store, gateway, environment, trace).run(lease, prompt)
+    except DomainError as exc:
+        if exc.code not in {"LEASE_LOST", "LEASE_HEARTBEAT"}:
+            raise
+        restored = await store.claim(run_id, worker_id, lease_seconds=180)
+        if restored is None:
+            raise
+        local = copy.copy(environment)
+        local.cancel_event = threading.Event()
+        return await RepositoryRuntime(store, gateway, local, trace).run(restored, prompt)
+
+
 class RepositoryRuntime:
     """Repository tool adapter on the same durable RunStore/Harness."""
 
@@ -608,6 +633,18 @@ class RepositoryRuntime:
 
     async def _run(self, lease, task_prompt):
         state, calls, _ = await self.store.load(lease)
+        if state["config"].get("repository_policy") == PROPOSAL_POLICY:
+            from .maintenance_proposal import ProposalMaintenanceRuntime
+
+            return await ProposalMaintenanceRuntime(
+                self.store, self.gateway, self.environment, self.trace
+            ).run(lease, task_prompt)
+        if state["config"].get("repository_policy") == LEDGER_POLICY:
+            from .maintenance_ledger import LedgerMaintenanceRuntime
+
+            return await LedgerMaintenanceRuntime(
+                self.store, self.gateway, self.environment, self.trace
+            ).run(lease, task_prompt)
         if state["config"].get("repository_policy") == "belief-react-v1":
             from .maintenance_belief_runtime import BeliefMaintenanceRuntime
 

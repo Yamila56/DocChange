@@ -1,6 +1,6 @@
 # DocChange：版本化文档工作台
 
-2026-11-18 仓库策略更新。独立 Git CLI 默认采用 `belief-react-v1`。模型更新持久 Belief State，运行时核验用户可见的文档缺口，编排搜索、读取和恢复步骤，并生成证据关系图与待审补丁。可用 `--policy batched-react-v1` 复现历史批量策略。运行参数见[评测复现手册](PUBLIC_BENCHMARK_RUNBOOK.md)。
+2026-11-18 仓库策略更新。独立 Git CLI 默认采用 `proposal-react-v1`。草稿通过 Git 和证据校验后保存检查点。复核失败时可以保留合法补丁，结果明确标注复核状态。必要性审查须有两侧反证才能撤销已有草稿。设计见[仓库维护架构](design/27-Proposal-First仓库维护架构.md)。
 
 2026-10-29，首版本地应用。复用 ShopResolve 的任务持久化、租约、检查点、调用日志、审批与队列基础，新增文档领域。旧业务在 `/commerce`，原数据保留。WorkflowRepair 本轮未继续改动。
 

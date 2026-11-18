@@ -390,7 +390,7 @@ class CompatibleJsonGateway:
         if not isinstance(content, str) or not content.strip():
             raise ValueError("Provider returned empty JSON content")
         try:
-            output = json.loads(content)
+            output = self.decode_output(phase, content)
         except json.JSONDecodeError as exc:
             exc.usage = body.get("usage")
             raise
@@ -398,6 +398,9 @@ class CompatibleJsonGateway:
             raise ValueError("Provider did not return a JSON object")
         # Never persist reasoning_content or credentials in a model observation.
         return ModelReply(output, body.get("usage"), body.get("model"), body.get("id"))
+
+    def decode_output(self, phase, content):
+        return json.loads(content)
 
 
 def build_gateway(settings):

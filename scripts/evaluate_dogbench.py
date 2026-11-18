@@ -28,12 +28,21 @@ from shopresolve.documents.maintenance_batched_protocol import (
     TASKGRAPH_POLICIES,
 )
 from shopresolve.documents.maintenance_belief_protocol import BELIEF_MODEL_LIMIT, BELIEF_POLICY
+from shopresolve.documents.maintenance_ledger_protocol import (
+    DRAFT_TOKEN_LIMIT,
+    LEDGER_MODEL_LIMIT,
+    LEDGER_POLICY,
+    RESEARCH_LIMITS,
+    SEMANTIC_TOKEN_LIMIT,
+)
+from shopresolve.documents.maintenance_proposal_protocol import PROPOSAL_POLICY, VERIFY_RESERVE
 from shopresolve.documents.model_profile import PRO_MODEL, cache_hit_rate
 from shopresolve.documents.repository import (
     RepositoryDecision,
     RepositoryEnvironment,
     RepositoryGateway,
     RepositoryRuntime,
+    run_with_lease_recovery,
 )
 from shopresolve.documents.repository_search import encoder_for
 from shopresolve.models import Base
@@ -46,6 +55,22 @@ from dogbench import trace_audit  # noqa: E402
 from dogbench.research_inputs import verify_research_workspace  # noqa: E402
 from dogbench.verify import verify_attestation  # noqa: E402
 
+RECOVERABLE_POLICIES = {LEDGER_POLICY, PROPOSAL_POLICY}
+
+
+def run_evaluation(args):
+    if os.name != "nt" or args.repository_policy not in RECOVERABLE_POLICIES:
+        return asyncio.run(main(args))
+    import ctypes
+
+    execution_state = ctypes.windll.kernel32.SetThreadExecutionState
+    if not execution_state(0x80000001):  # ES_CONTINUOUS | ES_SYSTEM_REQUIRED
+        raise RuntimeError("Cannot request temporary Windows sleep prevention")
+    try:
+        return asyncio.run(main(args))
+    finally:
+        execution_state(0x80000000)  # Restore only this thread's execution state.
+
 
 async def main(args):
     policy = getattr(args, "repository_policy", "coverage-v1")
@@ -55,6 +80,8 @@ async def main(args):
     )
     if batched_thinking and (policy != BATCHED_POLICY or args.subscription):
         raise ValueError("--batched-thinking requires the batched policy with DeepSeek API")
+    if policy in RECOVERABLE_POLICIES and (args.subscription or args.model != "deepseek-flash"):
+        raise ValueError("The frozen profile requires --model deepseek-flash")
     if args.workers < 1 or args.model_limit < 1:
         raise ValueError("workers and model-limit must be positive")
     task_timeout = getattr(args, "task_timeout_seconds", 900)
@@ -97,6 +124,7 @@ async def main(args):
         ROOT / "scripts/atomic_report.py",
         ROOT / "scripts/dogbench_outcomes.py",
         ROOT / "src/shopresolve/db.py",
+        ROOT / "src/shopresolve/agent/gateway.py",
         ROOT / "src/shopresolve/runstore.py",
         ROOT / "src/shopresolve/service.py",
         ROOT / "scripts/verify_repository_input.py",
@@ -150,6 +178,17 @@ async def main(args):
             if args.no_belief_thinking
             else "orient/belief/verify high, draft/delta disabled"
         )
+    if policy in RECOVERABLE_POLICIES:
+        plan.update(
+            effective_model_limit=min(args.model_limit, LEDGER_MODEL_LIMIT),
+            thinking="disabled",
+            semantic_token_limit=SEMANTIC_TOKEN_LIMIT,
+            draft_token_limit=DRAFT_TOKEN_LIMIT,
+        )
+    if policy == LEDGER_POLICY:
+        plan["research_limits"] = RESEARCH_LIMITS
+    if policy == PROPOSAL_POLICY:
+        plan["verification_reserve"] = VERIFY_RESERVE
     if use_wsl_index:
         plan["implementation_index_io"] = "WSL-local reader for verified Linux workspaces"
     if cohort:
@@ -348,22 +387,32 @@ async def main(args):
                         )
                     )["run_id"]
                     atomic(execution_path, {"run_id": rid, "config": cfg})
-                lease = await store.claim(rid, "dogbench-docchange", lease_seconds=180)
-                if lease is None:
-                    raise RuntimeError(
-                        "Persisted run is still leased or terminal; do not regenerate it"
-                    )
                 if args.subscription:
                     from scripts.codex_repository_gateway import SubscriptionRecordedGateway
 
                     wrapped = SubscriptionRecordedGateway(gateway, folder / "model-calls.jsonl")
                 else:
                     wrapped = RecordedGateway(gateway, budget, folder / "model-calls.jsonl")
-                runtime = RepositoryRuntime(
-                    store, wrapped, environment, folder / "docchange.events.jsonl"
-                )
+                trace = folder / "docchange.events.jsonl"
                 async with asyncio.timeout(task_timeout):
-                    decision = await runtime.run(lease, prompt.decode())
+                    if policy in RECOVERABLE_POLICIES:
+                        decision = await run_with_lease_recovery(
+                            store,
+                            rid,
+                            wrapped,
+                            environment,
+                            trace,
+                            prompt.decode(),
+                            worker_id="dogbench-docchange:" + str(uuid4()),
+                        )
+                    else:
+                        lease = await store.claim(rid, "dogbench-docchange", lease_seconds=180)
+                        if lease is None:
+                            raise RuntimeError(
+                                "Persisted run is still leased or terminal; do not regenerate it"
+                            )
+                        runtime = RepositoryRuntime(store, wrapped, environment, trace)
+                        decision = await runtime.run(lease, prompt.decode())
                 row.update(runtime_result(decision))
                 row["run"] = await store.get("benchmark", rid)
                 if row.get("patch"):
@@ -396,6 +445,8 @@ async def main(args):
                         error_type=type(exc).__name__,
                         error=str(exc)[:1600],
                     )
+                    if policy in RECOVERABLE_POLICIES and getattr(exc, "code", None):
+                        row["reason_code"] = exc.code
             finally:
                 await gateway.aclose()
                 await engine.dispose()
@@ -508,4 +559,4 @@ if __name__ == "__main__":
     parser.add_argument("--api-only-symlinks", action="store_true")
     parser.add_argument("--prune-candidates", action="store_true")
     parser.add_argument("--wait-preparation", action="store_true")
-    asyncio.run(main(parser.parse_args()))
+    run_evaluation(parser.parse_args())

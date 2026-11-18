@@ -106,7 +106,7 @@ class BatchedResearchRuntime(MaintenanceRuntime):
         questions = normalize_questions(action.questions, self.env.tracked, self.env.roots)
         signature = intent_signature(questions)
         if any(r["signature"] == signature for r in history):
-            return await self._unresolved("SEARCH_SATURATED", "Research intent already executed")
+            return await self._repeat_research(phase)
         if phase == "VERIFY":
             self.data["review"] = action.model_dump()
         self.data["scheduled_research"] = {
@@ -147,6 +147,12 @@ class BatchedResearchRuntime(MaintenanceRuntime):
             }
         )
         self.data.pop("scheduled_research")
+        return await self._after_research(scheduled, history, new_ids)
+
+    async def _repeat_research(self, phase):
+        return await self._unresolved("SEARCH_SATURATED", "Research intent already executed")
+
+    async def _after_research(self, scheduled, history, new_ids):
         if len(history) > 1 and not new_ids:
             return await self._unresolved("SEARCH_SATURATED", "Research found no new evidence")
         await self._transition("RESEARCH", "REASON")
@@ -463,7 +469,8 @@ class BatchedResearchRuntime(MaintenanceRuntime):
                 )
                 if self.data.get("review", {}).get("kind") == "investigate":
                     context["review_requested_research"] = self.data["review"]["questions"]
-                recent = set(self.data["research_history"][-1]["new_evidence_ids"])
+                history = self.data.get("research_history", [])
+                recent = set(history[-1]["new_evidence_ids"]) if history else set()
                 context["new_evidence"] = excerpts([e for e in ranked if e in recent], 8, 1800)
         return context
 

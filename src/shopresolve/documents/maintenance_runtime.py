@@ -23,6 +23,8 @@ from .maintenance import (
 from .maintenance_batched_protocol import BATCHED_PHASE_PREFIX, build_batched_payload
 from .maintenance_belief_protocol import BELIEF_PREFIX, build_belief_payload
 from .maintenance_discovery import discover, implementation_index_slots
+from .maintenance_ledger_protocol import LEDGER_PREFIX, build_ledger_payload
+from .maintenance_proposal_protocol import PROPOSAL_PREFIX, build_proposal_payload
 from .model_profile import configure_document_payload
 from .repository import RepositoryDecision
 
@@ -40,6 +42,10 @@ CANDIDATE_ERRORS = {
 
 
 def build_maintenance_payload(settings, phase, context):
+    if phase.startswith(PROPOSAL_PREFIX):
+        return build_proposal_payload(settings, phase, context)
+    if phase.startswith(LEDGER_PREFIX):
+        return build_ledger_payload(settings, phase, context)
     if phase.startswith(BELIEF_PREFIX):
         return build_belief_payload(settings, phase, context)
     if phase.startswith(BATCHED_PHASE_PREFIX):
@@ -474,7 +480,10 @@ class MaintenanceRuntime:
             except (Exception, asyncio.CancelledError) as exc:
                 await self.store.model_failed(self.lease, step, 0, type(exc).__name__)
                 raise
-        return self._protocol(phase).validate_python(self.state["pending"]["response"]), step
+        return self._validate_model_decision(phase, step), step
+
+    def _validate_model_decision(self, phase, step):
+        return self._protocol(phase).validate_python(self.state["pending"]["response"])
 
     def _protocol(self, phase):
         return phase_protocol(phase)

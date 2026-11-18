@@ -2,13 +2,22 @@
 
 2026-11-17新增仓库策略`taskgraph-v2`，实现见[任务图设计](design/23-TaskGraph与证据关系维护策略.md)及[阶段协议修复](design/24-TaskGraph阶段协议与运行稳定性.md)。历史评测默认仍为coverage-v1。同题对照需额外传`--repository-policy taskgraph-v2`并使用新输出目录；原试跑停止后，修复版以独立批次冻结，不合并试跑结果。
 
-普通仓库入口默认 `--policy belief-react-v1`，可显式选择 `batched-react-v1`、`taskgraph-v2` 或 `coverage-v1`。Belief、批量 ReAct 和 TaskGraph 运行后可导出 `maintenance-graph.json`，补丁经人工审查。
+普通仓库入口默认 `--policy proposal-react-v1`，可显式选择 `ledger-react-v1`、`belief-react-v1`、`batched-react-v1`、`taskgraph-v2` 或 `coverage-v1`。维护策略运行后可导出 `maintenance-graph.json`，补丁经人工审查。
 
 基准使用 `--repository-policy batched-react-v1`。冻结计划记录十次模型决策的实际硬上限、初稿前三轮调查及复核专用的一轮补查。`--batched-thinking` 用于独立模型设置对照。设计见[批量 ReAct 架构](design/25-Batched-ReAct仓库维护架构.md)。
 
 所有命令在仓库根目录运行。缓存、数据、原仓库、调用日志和预算 SQLite 都在 ignored 路径；不提交 Key 或下载的完整仓库。不要删除账本以绕过限额。
 
-## Belief Runtime 完整 175 题评测
+## Proposal-First 开发回归及全量评测
+
+按[冻结配置](design/27-Proposal-First仓库维护架构.md)先运行预选的 30 题，再决定是否进入 175 题。沿用下文的工作区、检索和评分参数，将策略改为 `--repository-policy proposal-react-v1` 并使用新输出目录。首轮传入 `--cohort-predictions evals/data/belief-regression-v1-regression.jsonl`，核对 30 条终态和 30 条评分。全量批次省略此参数，核对 175 条终态和 175 条评分。使用保守账本限制调用，费用以实际账单为准。
+
+```powershell
+.venv\Scripts\python.exe -m scripts.analyze_belief_regression --policy proposal-react-v1 `
+    --batch "$batch" --judgments "$batch-judgments" --output "$batch/regression-gate.json"
+```
+
+## 历史 Full Belief 175 题评测配置
 
 按同一冻结版本生成并评分全部 175 道公开题。题目曾参与历史评测，报告全量结果和历史可比子集时保留各自分母。候选生成用 Flash 的选择性思考，`ORIENT`、`BELIEF_UPDATE`、`VERIFY` 开启思考，`DRAFT` 和 `DRAFT_DELTA` 关闭思考。单题共用 12 次决策上限。复核可要求补查或撤销候选，实际分支以运行记录为准。
 
@@ -126,7 +135,7 @@ Key 只配置在本地 `.env` 的 `SHOPRESOLVE_MODEL_API_KEY`，不要放入命�
 .venv\Scripts\python.exe -m scripts.run_repository --docs-root D:\work\project-docs --code-root D:\work\project-code --task-file D:\work\task.txt
 ```
 
-默认策略使用 Flash 选择性思考，有真实 API 费用。仓库 CLI 使用已有账本 `.cache/docchange/repository-pro-budget.sqlite`，累计上限为 100 请求及高峰价预估 2 元。默认章节混合检索，`--retrieval-mode section_bm25|dense|hybrid` 可选。大仓库首次向量索引建议使用已配置 CUDA 的环境，CLI 提供 `--retrieval-provider CUDAExecutionProvider --cuda-dll-dir 本机DLL目录`。输出候选补丁、运行 ID 与日志，补丁需人工审批。
+默认策略使用 Flash 非思考，有真实 API 费用。仓库 CLI 使用已有账本 `.cache/docchange/repository-pro-budget.sqlite`，累计上限为 100 请求及高峰价预估 2 元。默认章节混合检索，`--retrieval-mode section_bm25|dense|hybrid` 可选。大仓库首次向量索引建议使用已配置 CUDA 的环境，CLI 提供 `--retrieval-provider CUDAExecutionProvider --cuda-dll-dir 本机DLL目录`。输出候选补丁、运行 ID 与日志，补丁需人工审批。
 
 仓库搜索返回路径、标题、行号、匹配词、原文片段和evidence_id；`queries`可包含最多4个查询；`read_many.reads`允许每文件分别指定query/offset/limit。已展示片段可支持编辑，但不能授权未展示范围；删除要求完整读取。
 
