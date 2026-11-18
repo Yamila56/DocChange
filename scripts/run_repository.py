@@ -14,6 +14,7 @@ from uuid import uuid4
 from scripts.evaluate_models import EvaluationBudget, RecordedGateway
 from shopresolve.db import make_database
 from shopresolve.documents.maintenance_batched_protocol import BATCHED_POLICY, TASKGRAPH_POLICIES
+from shopresolve.documents.maintenance_belief_protocol import BELIEF_MODEL_LIMIT, BELIEF_POLICY
 from shopresolve.documents.model_profile import pro_settings
 from shopresolve.documents.repository import (
     RepositoryDecision,
@@ -37,7 +38,7 @@ async def main(args):
         raise ValueError("Provide a nonempty task under 24KB")
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
-    settings = pro_settings()
+    settings = pro_settings(**({"model": "deepseek-flash"} if args.policy == BELIEF_POLICY else {}))
     if not settings.model_api_key:
         raise RuntimeError("Configure the local provider key in .env")
     ledger = Path(".cache/docchange/repository-pro-budget.sqlite")
@@ -100,12 +101,14 @@ async def main(args):
             "model": settings.model,
             "domain": "repository",
             "repository_policy": args.policy,
-            "model_limit": 16,
+            "model_limit": BELIEF_MODEL_LIMIT if args.policy == BELIEF_POLICY else 16,
             "model_timeout_seconds": settings.model_timeout_seconds,
             "active_budget_ms": 900000,
         }
         if args.policy == BATCHED_POLICY:
             cfg["batched_thinking"] = args.batched_thinking
+        if args.policy == BELIEF_POLICY:
+            cfg["belief_thinking"] = not args.no_belief_thinking
         rid = (
             await store.submit(
                 "local-owner",
@@ -151,9 +154,10 @@ async def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "--policy", choices=("coverage-v1", *TASKGRAPH_POLICIES), default=BATCHED_POLICY
+        "--policy", choices=("coverage-v1", *TASKGRAPH_POLICIES), default=BELIEF_POLICY
     )
     parser.add_argument("--batched-thinking", action="store_true")
+    parser.add_argument("--no-belief-thinking", action="store_true")
     parser.add_argument("--docs-root", type=Path, required=True)
     parser.add_argument("--code-root", type=Path)
     parser.add_argument("--task-file", type=Path, required=True)

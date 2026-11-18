@@ -8,13 +8,14 @@ from pydantic import BaseModel, ConfigDict, Field, TypeAdapter
 from shopresolve.errors import DomainError
 
 from .maintenance import UnresolvedDecision
+from .maintenance_belief_protocol import BELIEF_POLICY
 from .maintenance_evidence import anchor_edit_evidence, compact_nonanchored
 from .model_profile import configure_document_payload
 from .runtime import Edit
 
 BATCHED_POLICY = "batched-react-v1"
 BATCHED_PHASE_PREFIX = "MAINTENANCE_B_"
-TASKGRAPH_POLICIES = ("taskgraph-v2", BATCHED_POLICY)
+TASKGRAPH_POLICIES = ("taskgraph-v2", BATCHED_POLICY, BELIEF_POLICY)
 BATCHED_MODEL_LIMIT = 10
 PRE_EDIT_RESEARCH_LIMIT = 3
 REVIEW_RESEARCH_LIMIT = 1

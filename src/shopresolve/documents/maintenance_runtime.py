@@ -21,6 +21,7 @@ from .maintenance import (
     validate_maintenance_plan,
 )
 from .maintenance_batched_protocol import BATCHED_PHASE_PREFIX, build_batched_payload
+from .maintenance_belief_protocol import BELIEF_PREFIX, build_belief_payload
 from .maintenance_discovery import discover, implementation_index_slots
 from .model_profile import configure_document_payload
 from .repository import RepositoryDecision
@@ -39,6 +40,8 @@ CANDIDATE_ERRORS = {
 
 
 def build_maintenance_payload(settings, phase, context):
+    if phase.startswith(BELIEF_PREFIX):
+        return build_belief_payload(settings, phase, context)
     if phase.startswith(BATCHED_PHASE_PREFIX):
         return build_batched_payload(settings, phase, context)
     role = phase.removeprefix("MAINTENANCE_")

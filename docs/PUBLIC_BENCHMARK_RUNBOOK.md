@@ -2,11 +2,32 @@
 
 2026-11-17新增仓库策略`taskgraph-v2`，实现见[任务图设计](design/23-TaskGraph与证据关系维护策略.md)及[阶段协议修复](design/24-TaskGraph阶段协议与运行稳定性.md)。历史评测默认仍为coverage-v1。同题对照需额外传`--repository-policy taskgraph-v2`并使用新输出目录；原试跑停止后，修复版以独立批次冻结，不合并试跑结果。
 
-普通仓库入口默认 `--policy batched-react-v1`，可显式选择 `taskgraph-v2` 或 `coverage-v1`。批量 ReAct 和静态 TaskGraph 运行后可导出 `maintenance-graph.json`，补丁经人工审查。
+普通仓库入口默认 `--policy belief-react-v1`，可显式选择 `batched-react-v1`、`taskgraph-v2` 或 `coverage-v1`。Belief、批量 ReAct 和 TaskGraph 运行后可导出 `maintenance-graph.json`，补丁经人工审查。
 
 基准使用 `--repository-policy batched-react-v1`。冻结计划记录十次模型决策的实际硬上限、初稿前三轮调查及复核专用的一轮补查。`--batched-thinking` 用于独立模型设置对照。设计见[批量 ReAct 架构](design/25-Batched-ReAct仓库维护架构.md)。
 
 所有命令在仓库根目录运行。缓存、数据、原仓库、调用日志和预算 SQLite 都在 ignored 路径；不提交 Key 或下载的完整仓库。不要删除账本以绕过限额。
+
+## Belief Runtime 完整 175 题评测
+
+按同一冻结版本生成并评分全部 175 道公开题。题目曾参与历史评测，报告全量结果和历史可比子集时保留各自分母。候选生成用 Flash 的选择性思考，`ORIENT`、`BELIEF_UPDATE`、`VERIFY` 开启思考，`DRAFT` 和 `DRAFT_DELTA` 关闭思考。单题共用 12 次决策上限。复核可要求补查或撤销候选，实际分支以运行记录为准。
+
+Windows CUDA 配置见下文。`$prepared` 为已核验的完整封存输入目录，`$cudaDllDir` 为 CUDA DLL 路径，`$batchCap` 为本批次人民币估算上限。使用新的 `$batch`，沿用同目录恢复时保持冻结源码、参数和账本一致。
+
+```powershell
+$batch = '.cache/evals/dogbench-belief-full175'
+.venv\Scripts\python.exe -m scripts.evaluate_dogbench --prepared $prepared `
+    --repository-policy belief-react-v1 --model deepseek-flash --model-limit 12 `
+    --workers 8 --task-timeout-seconds 1800 --request-timeout-seconds 180 `
+    --retrieval-mode hybrid --retrieval-provider CUDAExecutionProvider --cuda-dll-dir $cudaDllDir `
+    --wsl-index-io --capture-error-usage --cache-aware --api-only-symlinks `
+    --cap-cny $batchCap --output $batch
+if ($LASTEXITCODE -ne 0) { throw 'Candidate generation exited early' }
+$generation = Get-Content -Raw "$batch/summary.json" | ConvertFrom-Json
+if (!$generation.complete -or $generation.finished -ne 175) { throw 'Incomplete generation' }
+.venv\Scripts\python.exe -m scripts.score_dogbench --predictions "$batch/predictions.jsonl" `
+    --output "$batch-judgments" --model gpt-5.6-terra --workers 4
+```
 
 ## 批量 ReAct 的固定 49 题对照
 
@@ -105,7 +126,7 @@ Key 只配置在本地 `.env` 的 `SHOPRESOLVE_MODEL_API_KEY`，不要放入命�
 .venv\Scripts\python.exe -m scripts.run_repository --docs-root D:\work\project-docs --code-root D:\work\project-code --task-file D:\work\task.txt
 ```
 
-当前使用Pro/high，有真实API费用，独立账本`.cache/docchange/repository-pro-budget.sqlite`累计100请求/峰值预估2元；旧账本保留。默认章节混合检索，`--retrieval-mode section_bm25|dense|hybrid`可选。大仓库首次向量索引建议使用已配置CUDA的环境，CLI提供`--retrieval-provider CUDAExecutionProvider --cuda-dll-dir 本机DLL目录`；普通CPU默认可运行小仓库。输出候选patch、run_id与日志，不自动应用、提交或推送。
+默认策略使用 Flash 选择性思考，有真实 API 费用。仓库 CLI 使用已有账本 `.cache/docchange/repository-pro-budget.sqlite`，累计上限为 100 请求及高峰价预估 2 元。默认章节混合检索，`--retrieval-mode section_bm25|dense|hybrid` 可选。大仓库首次向量索引建议使用已配置 CUDA 的环境，CLI 提供 `--retrieval-provider CUDAExecutionProvider --cuda-dll-dir 本机DLL目录`。输出候选补丁、运行 ID 与日志，补丁需人工审批。
 
 仓库搜索返回路径、标题、行号、匹配词、原文片段和evidence_id；`queries`可包含最多4个查询；`read_many.reads`允许每文件分别指定query/offset/limit。已展示片段可支持编辑，但不能授权未展示范围；删除要求完整读取。
 

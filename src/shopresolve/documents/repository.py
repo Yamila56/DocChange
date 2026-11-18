@@ -607,6 +607,12 @@ class RepositoryRuntime:
 
     async def _run(self, lease, task_prompt):
         state, calls, _ = await self.store.load(lease)
+        if state["config"].get("repository_policy") == "belief-react-v1":
+            from .maintenance_belief_runtime import BeliefMaintenanceRuntime
+
+            return await BeliefMaintenanceRuntime(
+                self.store, self.gateway, self.environment, self.trace
+            ).run(lease, task_prompt)
         if state["config"].get("repository_policy") == "batched-react-v1":
             from .maintenance_batched import BatchedResearchRuntime
 

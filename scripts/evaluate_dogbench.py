@@ -27,6 +27,7 @@ from shopresolve.documents.maintenance_batched_protocol import (
     REVIEW_RESEARCH_LIMIT,
     TASKGRAPH_POLICIES,
 )
+from shopresolve.documents.maintenance_belief_protocol import BELIEF_MODEL_LIMIT, BELIEF_POLICY
 from shopresolve.documents.model_profile import PRO_MODEL, cache_hit_rate
 from shopresolve.documents.repository import (
     RepositoryDecision,
@@ -140,6 +141,15 @@ async def main(args):
         plan["review_research_limit"] = REVIEW_RESEARCH_LIMIT
         if batched_thinking:
             plan["thinking"] = "reason/verify high, edit/repair disabled"
+    if policy == BELIEF_POLICY:
+        plan["effective_model_limit"] = min(args.model_limit, BELIEF_MODEL_LIMIT)
+        plan["pre_edit_research_limit"] = PRE_EDIT_RESEARCH_LIMIT
+        plan["review_research_limit"] = REVIEW_RESEARCH_LIMIT
+        plan["thinking"] = (
+            "disabled"
+            if args.no_belief_thinking
+            else "orient/belief/verify high, draft/delta disabled"
+        )
     if use_wsl_index:
         plan["implementation_index_io"] = "WSL-local reader for verified Linux workspaces"
     if cohort:
@@ -187,7 +197,9 @@ async def main(args):
         model=args.model,
         model_base_url="https://api.deepseek.com",
         allow_paid_model=True,
-        model_max_output_tokens=8192 if args.model == PRO_MODEL or batched_thinking else 4096,
+        model_max_output_tokens=8192
+        if args.model == PRO_MODEL or batched_thinking or policy == BELIEF_POLICY
+        else 4096,
         model_timeout_seconds=request_timeout,
         model_max_input_bytes=120000,
     )
@@ -319,6 +331,8 @@ async def main(args):
                 }
                 if policy == BATCHED_POLICY:
                     cfg["batched_thinking"] = batched_thinking
+                if policy == BELIEF_POLICY:
+                    cfg["belief_thinking"] = not args.no_belief_thinking
                 execution_path = folder / "execution.json"
                 if execution_path.exists():
                     rid = json.loads(execution_path.read_text())["run_id"]
@@ -475,6 +489,7 @@ if __name__ == "__main__":
         "--repository-policy", choices=("coverage-v1", *TASKGRAPH_POLICIES), default="coverage-v1"
     )
     parser.add_argument("--batched-thinking", action="store_true")
+    parser.add_argument("--no-belief-thinking", action="store_true")
     parser.add_argument("--task-timeout-seconds", type=int, default=900)
     parser.add_argument("--request-timeout-seconds", type=int)
     parser.add_argument("--cohort-predictions", type=Path)
