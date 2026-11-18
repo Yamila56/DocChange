@@ -52,10 +52,8 @@ from tests.test_maintenance_taskgraph import submit
         "repeat",
         "redundant_quote",
         "requirements_delta",
-        "requirements_recovery",
         "requirements_regression",
         "requirements_false_quote",
-        "scope_expansion",
         "exact_range_read",
         "editorial",
         "editorial_unsupported",
@@ -65,7 +63,6 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
     root, environment = request.getfixturevalue("belief_repository")
     task = "Update timeout"
     quality_mode = mode.startswith("requirements_")
-    reader_goal = "Choose the updated timeout and migrate older configurations"
     if mode == "exact_range_read":
         (root / "guide.mdx").write_text("# Guide\n" + "\n" * 160 + "Timeout: 30\n", encoding="utf8")
         git(root, "add", "guide.mdx")
@@ -128,19 +125,6 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
             ):
                 return {"action": "no_change", "reason": "Maybe existing docs are enough"}
             proposed = "../invalid.md" if mode == "unsafe" else target
-            if mode == "scope_expansion" and context.get("review_scope_gaps"):
-                assert context["retained_draft_paths"] == [target]
-                assert context["review_scope_gaps"][0]["path"] == "migration.md"
-                return {
-                    "action": "propose",
-                    "surfaces": [
-                        {
-                            "path": "migration.md",
-                            "reason": "Synchronize the maintained migration guide",
-                            "doc_evidence_ids": [docs["migration.md"]],
-                        }
-                    ],
-                }
             if quality_mode or mode.startswith("editorial"):
                 requirements = (
                     [
@@ -161,7 +145,7 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                     "doc_evidence_ids": [docs["migration.md"]],
                     "requirements": requirements,
                 }
-                action = {"action": "propose", "surfaces": [surface], "reader_goal": reader_goal}
+                action = {"action": "propose", "surfaces": [surface]}
                 if mode.startswith("editorial"):
                     action["documentation_request_quote"] = task
                 return action
@@ -195,7 +179,6 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                 return response
             return {
                 "action": "propose",
-                "reader_goal": reader_goal,
                 "surfaces": [
                     {
                         "path": proposed,
@@ -207,19 +190,6 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
             }
         if phase == "DRAFT":
             assert len(context["targets"]) == 1
-            if mode == "scope_expansion":
-                assert context["reader_goal"] == reader_goal
-                if phases.count("DRAFT") > 1:
-                    assert context["targets"][0]["path"] == "migration.md"
-                    return {
-                        "edits": [
-                            {
-                                "path": "migration.md",
-                                "old": "Compatibility value was 30.",
-                                "new": "Compatibility value is 60.",
-                            }
-                        ]
-                    }
             if target == "added.md":
                 return {
                     "edits": [
@@ -228,7 +198,6 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                 }
             assert target in docs
             if quality_mode:
-                assert context["reader_goal"] == reader_goal
                 assert len(context["targets"][0]["requirements"]) == 2
                 if phases.count("DRAFT") == 1:
                     return {
@@ -239,11 +208,6 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                     }
                 previous = {edit["old"]: edit["edit_id"] for edit in context["prior_edits"]}
                 assert context["draft_feedback"]["defects"][0]["requirement_id"].startswith("R")
-                if mode == "requirements_recovery" and phases.count("DRAFT") == 3:
-                    assert context["draft_feedback"]["code"] in {
-                        "UNOBSERVED_EDIT",
-                        "PATCH_MISMATCH",
-                    }
                 return {
                     "defect_ids": [context["draft_feedback"]["defects"][0]["id"]],
                     "replace_edit_ids": [
@@ -252,9 +216,7 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                     "edits": [
                         {
                             "path": target,
-                            "old": "Timeout: 999"
-                            if mode == "requirements_recovery" and phases.count("DRAFT") == 2
-                            else "Timeout: 30",
+                            "old": "Timeout: 30",
                             "new": "Timeout: 60 by default",
                         }
                         if mode != "requirements_regression"
@@ -330,30 +292,6 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
                     }
                 ],
             }
-        if mode == "scope_expansion":
-            assert context["reader_goal"] == reader_goal
-            if phases.count("QUALITY") == 1:
-                return {
-                    "action": "revise",
-                    "defects": [
-                        {
-                            "path": "migration.md",
-                            "problem": "The compatibility guide is stale.",
-                            "expected": "Tell readers the compatibility value is 60.",
-                            "evidence_ids": [impl, docs["migration.md"]],
-                        }
-                    ],
-                }
-            assert context["previous_scope_findings"][0]["path"] == "migration.md"
-            return {
-                "action": "pass",
-                "coverage": [
-                    {
-                        "requirement_id": context["requirements"][0]["id"],
-                        "quote": "Compatibility value is 60.",
-                    }
-                ],
-            }
         if quality_mode:
             normal, default = (requirement["id"] for requirement in context["requirements"])
             coverage = [{"requirement_id": normal, "quote": "# Timeout guide"}]
@@ -368,11 +306,7 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
             if phases.count("QUALITY") == 1:
                 return {
                     "action": "revise",
-                    "coverage": [
-                        {"requirement_id": normal, "quote": "An inexact supporting quote."},
-                        *coverage,
-                        {"requirement_id": default, "quote": "Timeout: 60"},
-                    ],
+                    "coverage": coverage,
                     "defects": [
                         {
                             "path": target,
@@ -527,16 +461,10 @@ async def test_proposal_first_through_repository_gateway(request, commerce, tmp_
     if mode == "revise":
         assert phases[-4:] == ["NECESSITY", "QUALITY", "DRAFT", "QUALITY"]
         assert "+Timeout: 60 by default" in result["patch"]
-    if mode in {"requirements_delta", "requirements_recovery"}:
-        assert "by default" not in data["first_draft"]["patch"]
+    if mode == "requirements_delta":
         assert "+# Timeout guide" in result["patch"]
         assert "+Timeout: 60 by default" in result["patch"]
         assert len(data["best_valid_candidate"]["candidate"]["quality"]["covered"]) == 2
-    if mode == "scope_expansion":
-        assert result["review_status"] == "verified"
-        assert "migration.md" not in data["first_draft"]["changed_paths"]
-        assert "Compatibility value is 60." in result["patch"]
-        assert "+Timeout: 60" in result["patch"]
     if mode in {"requirements_regression", "requirements_false_quote"}:
         assert "+# Timeout guide" in result["patch"]
         assert "+Timeout: 60\n" in result["patch"]

@@ -43,7 +43,6 @@ class Reason(DecisionFields):
     kind: Literal["research", "propose", "no_change", "unresolved"]
     questions: list[Question] = Field(default_factory=list)
     surfaces: list[ProposalSurface] = Field(default_factory=list, max_length=8)
-    reader_goal: str = Field(default="", max_length=420)
     evidence_ids: list[str] = Field(default_factory=list)
     change_refs: list[str] = Field(default_factory=list)
     changes: list[ChangeObservation] = Field(default_factory=list, max_length=6)
@@ -99,13 +98,7 @@ PROTOCOLS = {
 }
 PROMPTS = {
     "REASON": (
-        "Start with the user-facing outcome: what must a reader be able to do or decide "
-        "after this change? State it in reader_goal before choosing surfaces. For a workflow "
-        "identify its complete ordered handoff and material prerequisites; for an API or "
-        "configuration change identify the exact entries, applicability, defaults and "
-        "exception behavior needed to use it. Pick evidence and maintained locations for "
-        "these needs, checking authoritative references and user guides for stale parallel "
-        "claims. For each proposed surface cite "
+        "Find material changes and plausible affected documentation. For each surface cite "
         "doc_evidence_ids. A single active change can be inherited; when there is no active "
         "change, use change_refs for the relevant facts in change_ledger. If several distinct "
         "changes matter, describe them in changes with their own implementation citations, "
@@ -132,10 +125,7 @@ PROMPTS = {
     "DRAFT": (
         "Write exact edits from the supplied original source. Use each target's requirements to "
         "cover the supported facts in the specified maintained location. Preserve existing correct "
-        "guidance and make reader_goal achievable with the changed and retained text. In a "
-        "workflow, spell out the ordered steps and the handoffs between them. In API and "
-        "configuration examples, check literal values and argument order against cited sources. "
-        "Create only an approved new path; delete only with the full source visible. "
+        "guidance. Create only an approved new path; delete only with the full source visible. "
         "For a revision, return only edits addressing the supplied defects, list their defect_ids, "
         "and provide replace_edit_ids only for prior edits these new edits supersede. Unlisted "
         "prior edits are retained, including other edits on the same path."
@@ -156,26 +146,15 @@ PROMPTS = {
         "that was not cited to draft the patch. Research uncertainty. Do not review wording."
     ),
     "QUALITY": (
-        "Independently reconstruct what a reader must do or decide from task and source evidence. "
-        "Walk that scenario against the final text and identify the first missing step, wrong "
-        "action or stale authoritative page before consulting reader_goal and requirements. "
-        "Look for evidence outside the chosen documents even when all listed requirements "
-        "appear satisfied. Compare code and documentation literals in context, distinguishing "
-        "historical notes from currently applicable guidance. For a gap outside edited paths, "
-        "identify the tracked path and give its concrete obligation in expected, or request "
-        "targeted research if the authoritative location is unknown. For every satisfied "
+        "Judge what the user will read after applying the exact edits. For every satisfied "
         "requirement report coverage with requirement_id and a short exact quote from that "
         "path's final text, whether retained or added. For a requirement to remove a stale "
-        "statement, use the original evidence. Literal evidence shows exact source occurrences "
-        "and whether replacement text contains them. Check meaning, alternatives, and order. "
-        "For removal coverage set absent true and quote the removed original text. Check examples, "
+        "statement, set absent true and quote the removed original text. Check examples, "
         "contradictions elsewhere in the edited text, and placement in the maintained guide. "
         "Report revise for defects, with path, problem, requirement_id if known, and observed "
         "evidence_ids. Use only IDs listed under requirements for coverage and known defects. "
-        "List only fully satisfied requirements in coverage. "
-        "A defect leaves its requirement open. "
-        "For a gap uncovered by the checklist, leave requirement_id empty even when other "
-        "requirements are present. A new requirement needs expected (the precise "
+        "If the list is empty, independently look for missing or incorrect facts and use an "
+        "empty requirement_id for any new defect. A new requirement needs expected (the precise "
         "behavior or documentation obligation) and change-side plus relevant docs evidence. "
         "Keep reporting still-open "
         "defects and recheck previously verified requirements after a revision. Use pass only "
@@ -191,7 +170,7 @@ ALIASES = {
 }
 FIELDS = {
     "research": {"questions", "reason", "change_refs", "changes"},
-    "propose": {"reader_goal", "surfaces", "change_refs", "changes", "documentation_request_quote"},
+    "propose": {"surfaces", "change_refs", "changes", "documentation_request_quote"},
     "no_change": {
         "reason",
         "evidence_ids",
@@ -202,7 +181,7 @@ FIELDS = {
     },
     "counterevidence": {"reason", "counterevidence_ids", "change_refs"},
     "keep_patch": {"reason", "evidence_ids"},
-    "pass": {"reason", "coverage", "defects"},
+    "pass": {"reason", "coverage"},
     "revise": {"defects", "reason", "coverage"},
     "unresolved": {"reason"},
 }

@@ -2,7 +2,6 @@
 
 import asyncio
 import copy
-import re
 from bisect import bisect_right
 from itertools import accumulate
 from pathlib import PurePosixPath
@@ -217,12 +216,7 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
         if trigger in REVIEW_PHASES:
             self.data["review_followup"] = True
             candidate = self.data["candidate"]
-            scope_known = any(
-                self._path_refs(gap["path"]) for gap in self.data.get("review_scope_gaps", [])
-            )
-            if (not new_ids and not scope_known) or self._model_limit() - self.calls < (
-                VERIFY_RESERVE + 2
-            ):
+            if not new_ids or self._model_limit() - self.calls < VERIFY_RESERVE + 2:
                 next_phase = "NECESSITY" if candidate["decision"] == "abstain" else trigger
         await self._transition("RESEARCH", next_phase)
 
@@ -380,30 +374,8 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
             )
         if len(targets | approved) > 8:
             raise DomainError("UNBOUND_EDIT", "At most eight document paths per candidate")
-        gaps = self.data.get("review_scope_gaps", [])
-        if gaps:
-            existing = set(self.data.get("candidate", {}).get("changed_paths", []))
-            approved = {path: target for path, target in approved.items() if path not in existing}
-            if not approved:
-                return await self._unresolved(
-                    "REVIEW_STALLED", "Replanning found no supported additional document"
-                )
-            for gap in gaps:
-                if (target := approved.get(gap["path"])) is None:
-                    continue
-                key, requirement = self._material_requirement(
-                    gap["path"],
-                    gap["expected"],
-                    "",
-                    self._known_refs([*gap["evidence_ids"], *target["evidence_ids"]]),
-                    target["change_refs"],
-                )
-                if all(item["id"] != key for item in target["requirements"]):
-                    target["requirements"].append(requirement)
         self.data["tasks"] = list((targets | approved).values())
         self.data["draft_paths"] = sorted(approved)
-        if action.reader_goal.strip():
-            self.data["reader_goal"] = action.reader_goal.strip()
         self.data["open_questions"] = [f"Check whether {p} is material" for p in unsupported]
         self.data.pop("proposed_abstention", None)
         self.data.pop("quality_revision", None)
@@ -568,15 +540,6 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
         for target in self.data["tasks"]:
             path = target["path"]
             self._record_surface(path, "edit", target["description"], target["evidence_ids"])
-        if "first_draft" not in self.data:
-            self.data["first_draft"] = {
-                key: candidate[key] for key in ("patch", "patch_hash", "changed_paths")
-            }
-        if gaps := self.data.pop("review_scope_gaps", []):
-            self.data["scope_expansion"] = {
-                "patch_hash": candidate["patch_hash"],
-                "reviewed_gaps": gaps,
-            }
         if "best_valid_candidate" not in self.data:
             self._checkpoint_candidate()
         if self.data.pop("quality_revision", False):
@@ -594,9 +557,6 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
             prior_count = prior["defect_count"]
             same_scope = prior["candidate"]["changed_paths"] == candidate["changed_paths"]
             if validated_improvement and not same_scope:
-                # A widened draft keeps its older fallback until its full scope passes.
-                if self.data.get("scope_expansion"):
-                    return
                 raise DomainError("INVALID_REVIEW", "A quality delta must preserve approved paths")
             if (
                 not validated_improvement
@@ -721,9 +681,6 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
         pending = self.data.get("pending_quality_revision")
         if pending:
             known.update(pending["requirements"])
-        if self.data.get("scope_expansion"):
-            prior = self.data.get("best_valid_candidate", {}).get("candidate", {})
-            known.update(prior.get("quality", {}).get("requirements", {}))
         known.update(self.data.get("candidate", {}).get("quality", {}).get("requirements", {}))
         return known
 
@@ -734,42 +691,6 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
             for path in {edit["path"] for edit in edits if edit["operation"] != "create"}
         }
         return apply_edits(base, edits, self.env.read_paths)
-
-    def _literal_evidence(self, requirements, edits):
-        sources = self.data["evidence"]
-        results = []
-        for requirement in requirements:
-            path = requirement["path"]
-            for literal in dict.fromkeys(
-                re.findall(r"`([^`\n]{1,100})`", requirement["statement"])
-            ):
-                for ref in requirement["evidence_ids"]:
-                    source = sources[ref]
-                    if not self._change_side_refs([ref]):
-                        continue
-                    content = source["content"]
-                    if isinstance(content, dict):
-                        content = content.get("diff_excerpt", "")
-                    start = content.find(literal)
-                    if start < 0:
-                        continue
-                    results.append(
-                        {
-                            "path": path,
-                            "literal": literal,
-                            "evidence_id": ref,
-                            "source_excerpt": content[
-                                max(0, start - 60) : start + len(literal) + 60
-                            ],
-                            "in_replacement": any(
-                                edit["path"] == path and literal in edit["new"] for edit in edits
-                            ),
-                        }
-                    )
-                    break
-                if len(results) == 8:
-                    return results
-        return results
 
     def _assess_quality(self, action, candidate, requirements):
         pending = self.data.get("pending_quality_revision") or {}
@@ -828,11 +749,10 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
         postimage = self._final_review_text(candidate) if action.coverage else {}
         for item in action.coverage:
             key = item.requirement_id
-            if key not in requirements:
-                raise DomainError("INVALID_REVIEW", "Coverage names an unknown requirement")
-            # A quote can support part of a requirement while a defect leaves it open.
-            if key in reported or key in covered:
-                continue
+            if key not in requirements or key in covered or key in reported:
+                raise DomainError(
+                    "INVALID_REVIEW", "Coverage needs a unique, known and undisputed requirement"
+                )
             path = requirements[key]["path"]
             quote = item.quote.strip()
             present = quote in postimage.get(path, {}).get("content", "")
@@ -847,7 +767,9 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
                 or (item.absent and (present or not original))
                 or (not item.absent and not present)
             ):
-                continue
+                raise DomainError(
+                    "INVALID_REVIEW", "Coverage quote must match the retained or removed text"
+                )
             covered[key] = {"quote": quote, "absent": item.absent}
             defects.pop(key, None)
         if action.kind == "pass" and (set(requirements) != covered.keys() or defects):
@@ -976,14 +898,6 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
                 for defect in additional:
                     self._authorized_path(defect.path)
                     self._known_refs(defect.evidence_ids)
-                if self._model_limit() - self.calls < VERIFY_RESERVE + 2:
-                    return await self._unresolved(
-                        "VERIFY_RESERVE", "Additional document needs replanning and verification"
-                    )
-                self.data["review_scope_gaps"] = [defect.model_dump() for defect in additional]
-                if all(self._path_refs(defect.path) for defect in additional):
-                    self.data["review_followup"] = True
-                    return await self._transition("QUALITY", "REASON")
                 questions = [
                     Question(root="docs", paths=[d.path], question=d.expected[:400])
                     for d in additional[:4]
@@ -1064,11 +978,6 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
         context = super()._context(phase, task_prompt)
         sources = self.data["evidence"]
         if phase == "DRAFT":
-            if revision := self.data.get("pending_quality_revision"):
-                context["draft_feedback"] = {
-                    **(context.get("draft_feedback") or {}),
-                    "defects": [revision["defects"][key] for key in revision["offered"]],
-                }
             defects = (context.get("draft_feedback") or {}).get("defects", [])
             cited = {item["evidence_id"] for item in context["evidence"]}
             required = {
@@ -1082,7 +991,6 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
             ) - cited
             context["evidence"].extend(review_evidence(sources, extra))
             context["task"] = task_prompt
-            context["reader_goal"] = self.data.get("reader_goal", "")
             context["prior_edits"] = [
                 {**edit, "edit_id": edit_identity(edit)} for edit in context["prior_edits"]
             ]
@@ -1112,9 +1020,6 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
             context["minimum_draft_and_review_decisions"] = VERIFY_RESERVE + 1
             if self.data.get("review_followup"):
                 context["previous_review"] = self.data.get("review")
-            if gaps := self.data.get("review_scope_gaps"):
-                context["review_scope_gaps"] = gaps
-                context["retained_draft_paths"] = self.data["candidate"]["changed_paths"]
         if phase in REVIEW_PHASES:
             contrary = {
                 ref
@@ -1147,11 +1052,6 @@ class ProposalMaintenanceRuntime(LedgerMaintenanceRuntime):
             for edit in draft["edits"]:
                 edit.pop("requirement_ids", None)
             context["requirements"] = list(self._quality_requirements().values())
-            context["reader_goal"] = self.data.get("reader_goal", "")
-            if literals := self._literal_evidence(context["requirements"], draft["edits"]):
-                context["literal_evidence"] = literals
-            if scope := self.data.get("scope_expansion"):
-                context["previous_scope_findings"] = scope["reviewed_gaps"]
             pending = self.data.get("pending_quality_revision")
             if pending:
                 context["previous_quality"] = {
