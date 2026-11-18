@@ -3,6 +3,7 @@ import json
 import httpx
 import pytest
 
+from scripts.evaluate_models import EvaluationBudget, RecordedGateway
 from shopresolve.agent.gateway import ModelReply
 from shopresolve.config import Settings
 from shopresolve.documents.maintenance_belief_protocol import (
@@ -11,7 +12,11 @@ from shopresolve.documents.maintenance_belief_protocol import (
     PROTOCOLS,
     build_belief_payload,
 )
-from shopresolve.documents.repository import RepositoryEnvironment, RepositoryRuntime
+from shopresolve.documents.repository import (
+    RepositoryEnvironment,
+    RepositoryGateway,
+    RepositoryRuntime,
+)
 from shopresolve.models import ModelStep, Run
 from shopresolve.runstore import RunStore
 from tests.test_document_repository import git  # noqa: F401
@@ -263,6 +268,55 @@ async def test_restart_resumes_persisted_belief_without_repeating_orientation(
     assert result["decision"] == "patch"
     assert first.phases == ["ORIENT", "BELIEF_UPDATE"] and second.phases == ["DRAFT", "VERIFY"]
     assert (await restored.get("alice", rid))["model_calls"] == 4
+
+
+@pytest.mark.asyncio
+async def test_belief_runs_through_recorded_repository_gateway(
+    belief_repository, commerce, tmp_path
+):
+    _, env = belief_repository
+    store = RunStore(commerce[1])
+    _, lease = await submit(store, policy=BELIEF_POLICY, model_limit=12)
+    scripted = Gateway()
+    phases = ["ORIENT", "BELIEF_UPDATE", "DRAFT", "VERIFY"]
+
+    async def respond(request):
+        phase = phases[len(scripted.phases)]
+        payload = json.loads(request.content)
+        assert payload["thinking"]["type"] == ("disabled" if phase == "DRAFT" else "enabled")
+        context = json.loads(payload["messages"][1]["content"])
+        reply = await scripted.request(BELIEF_PREFIX + phase, context)
+        return httpx.Response(
+            200,
+            json={
+                "choices": [
+                    {"finish_reason": "stop", "message": {"content": json.dumps(reply.output)}}
+                ],
+                "usage": {"prompt_tokens": 100, "completion_tokens": 25},
+            },
+        )
+
+    settings = Settings(
+        _env_file=None,
+        provider="deepseek",
+        model="deepseek-flash",
+        model_api_key="fixture-key",
+        model_base_url="https://api.deepseek.com",
+        allow_paid_model=True,
+        model_max_output_tokens=8192,
+    )
+    gateway = RepositoryGateway(settings, transport=httpx.MockTransport(respond))
+    budget = EvaluationBudget(tmp_path / "budget.sqlite", 12, 2, 0)
+    recorded = RecordedGateway(gateway, budget, tmp_path / "model-calls.jsonl")
+    try:
+        result = await RepositoryRuntime(store, recorded, env, tmp_path / "trace.jsonl").run(
+            lease, "Update timeout"
+        )
+    finally:
+        await gateway.aclose()
+    assert result["decision"] == "patch"
+    assert scripted.phases == phases
+    assert budget.summary()["by_model"][settings.model]["calls"] == len(phases)
 
 
 def test_phase_schemas_allow_semantic_text_and_allocate_thinking_only_where_used():

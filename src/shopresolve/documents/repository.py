@@ -27,6 +27,7 @@ from .coverage import (
     require_edit_bindings,
     require_plan,
 )
+from .maintenance_belief_protocol import BELIEF_PREFIX
 from .model_profile import configure_document_payload
 from .repository_search import RepositorySearch, change_summary, encoder_for
 from .retriever import DocumentRetriever, tokens
@@ -70,7 +71,7 @@ class RepositoryDecision(BaseModel):
 
 class RepositoryGateway(CompatibleJsonGateway):
     def build_payload(self, phase, context):
-        if phase.startswith("MAINTENANCE_"):
+        if phase.startswith(("MAINTENANCE_", BELIEF_PREFIX)):
             from .maintenance_runtime import build_maintenance_payload
 
             return build_maintenance_payload(self.settings, phase, context)
